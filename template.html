@@ -10,9 +10,9 @@
 <style>
 /*FONTS*/
 :root{--bg:#fff;--card:#fff;--raised:#f1f3f6;--ink:#111827;--ink2:#4b5565;--muted:#6b7487;--line:rgba(17,24,39,.09);--line2:rgba(17,24,39,.24);--band:#ffe27a;--acc:#ffd60a;
-  --d:#2f5fb3;--d2:#7c9fd8;--d3:#c2d3ee;--t:#d9dce3;--r3:#f1c5be;--r2:#de8579;--r:#c8402f;--banner:#111827;--stripe:linear-gradient(90deg,var(--d) 0 14.3%,var(--d2) 14.3% 28.6%,var(--d3) 28.6% 42.9%,var(--t) 42.9% 57.1%,var(--r3) 57.1% 71.4%,var(--r2) 71.4% 85.7%,var(--r) 85.7% 100%);--serif:'Newsreader',Georgia,serif;--sans:'Instrument Sans',system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
+  --d:#2f5fb3;--r:#c8402f;--k0:#2f5fb3;--k1:#6288cf;--k2:#97b5eb;--k3:#75809a;--k4:#ccba83;--k5:#a0756c;--k6:#eb9c96;--k7:#dc5f52;--k8:#c8402f;--banner:#111827;--stripe:linear-gradient(90deg,var(--k0) 0 20%,var(--k1) 20% 32%,var(--k2) 32% 40%,var(--k3) 40% 46%,var(--k4) 46% 54%,var(--k5) 54% 60%,var(--k6) 60% 68%,var(--k7) 68% 80%,var(--k8) 80% 100%);--serif:'Newsreader',Georgia,serif;--sans:'Instrument Sans',system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
 @media (prefers-color-scheme:dark){:root{--bg:#0b0d14;--card:#11141c;--raised:#1a1e28;--ink:#eef0f5;--ink2:#a3a9b8;--muted:#7a8296;--line:rgba(238,240,245,.09);--line2:rgba(238,240,245,.26);--band:#6b5a12;--banner:#1a1e28;
-  --d:#6f9be8;--d2:#4a72b8;--d3:#2f4670;--t:#3a3f4c;--r3:#6e3934;--r2:#b0564c;--r:#e8776a}}
+  --d:#6f9be8;--r:#e8776a;--k0:#2c56a8;--k1:#5078c4;--k2:#89a8e1;--k3:#78839c;--k4:#c3b075;--k5:#a4786f;--k6:#e08f88;--k7:#ce5247;--k8:#af2c1f}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;overflow-x:clip;background:var(--bg);color:var(--ink);font:400 16px/24px var(--sans);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
@@ -29,6 +29,7 @@ svg{display:block;width:100%;height:auto;overflow:visible}
 .dateline,.meta{font-size:13px;line-height:20px;color:var(--muted);margin:16px 0 0}
 
 nav{border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:9}
+.tab [id]{scroll-margin-top:72px}
 nav .wide{display:flex;align-items:center;gap:24px;height:56px}
 .brand{display:flex;align-items:center;gap:8px;font:600 17px/1 var(--sans);text-decoration:none;margin-right:auto}
 .brand svg{width:24px;height:24px}
@@ -68,7 +69,7 @@ h1{font:500 clamp(40px,4.6vw,60px)/1.05 var(--serif);letter-spacing:-.02em;margi
 .legend span,.chipsrow button{display:inline-flex;align-items:center;gap:8px}
 .legend i,.chipsrow i{width:12px;height:12px;border-radius:3px;flex:none}
 .legend b{color:var(--ink);font-weight:500}
-.c0{background:var(--d)}.c1{background:var(--d2)}.c2{background:var(--d3)}.c3{background:var(--t)}.c4{background:var(--r3)}.c5{background:var(--r2)}.c6{background:var(--r)}
+.c0{background:var(--k0)}.c1{background:var(--k1)}.c2{background:var(--k2)}.c3{background:var(--k3)}.c4{background:var(--k4)}.c5{background:var(--k5)}.c6{background:var(--k6)}.c7{background:var(--k7)}.c8{background:var(--k8)}
 .chipsrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .chipsrow button{font-size:12px;line-height:16px;height:28px;border:1px solid var(--line);background:none;border-radius:8px;padding:0 8px;cursor:pointer}
 .chipsrow button:hover{background:var(--raised)}
@@ -237,7 +238,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   <b>The national margin, and how sure the forecast is of it</b>
   <div class="sub" id="ruler-sub"></div>
   <div id="ruler"></div>
-  <figcaption>The yellow band is the range the final margin falls in four times out of five. <a href="#model">How that range will narrow</a></figcaption>
+  <figcaption>The yellow band is the range the final margin falls in four times out of five. <a href="#model/narrow">How that range will narrow</a></figcaption>
 </figure>
 
 <div class="col"><h2>The states that decide it</h2><p>These are the twelve closest contests. The dot is the projected margin and the yellow band is its range. Two years out the bands are wide enough that every one of them crosses the middle, which is the honest picture: nobody knows yet who these states will be choosing between.</p></div>
@@ -268,7 +269,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   <div id="qa"></div>
   <details class="qa plain"><summary>Every setting, changed one at a time</summary><div><p class="try" id="p-set"></p><div class="scroll"><table id="set"></table></div></div></details>
 </div>
-<div class="col"><h2>Will the range narrow?</h2><p id="p-narrow"></p></div>
+<div class="col" id="narrow"><h2>Will the range narrow?</h2><p id="p-narrow"></p></div>
 <figure class="mid">
   <b>How the forecast changes as the election gets closer</b>
   <div class="sub">Drag the slider from today toward election day</div>
@@ -365,8 +366,8 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   })();
 
   // ---- map, snake, state panel
-  const BINS = [[0.95, 'Safe D'], [0.8, 'Likely D'], [0.6, 'Lean D'], [0.4, 'Toss-up'], [0.2, 'Lean R'], [0.05, 'Likely R'], [-1, 'Safe R']];
-  const bin = x => BINS.findIndex(b => x >= b[0]), COL = ['--d', '--d2', '--d3', '--t', '--r3', '--r2', '--r'].map(v => 'var(' + v + ')');
+  const BINS = [[0.95, 'Safe D'], [0.8, 'Likely D'], [0.65, 'Lean D'], [0.55, 'Tilt D'], [0.45, 'Toss-up'], [0.35, 'Tilt R'], [0.2, 'Lean R'], [0.05, 'Likely R'], [-1, 'Safe R']];
+  const bin = x => BINS.findIndex(b => x >= b[0]), COL = BINS.map((b, i) => 'var(--k' + i + ')');
   const tipS = s => '<b>' + esc(s.name) + '</b> · ' + s.ev + (s.ev === 1 ? ' vote' : ' votes') + '<br>Democrats win ' + in100(s.p_dem) + '<br>Projected ' + mg(s.mean) + ' (' + mg(hi80(s)) + ' to ' + mg(lo80(s)) + ')';
   let sel = F.tipping_point;
   let m = '<svg viewBox="0 0 975 610" role="img" aria-label="Map of the states shaded by the chance the Democratic nominee wins each">';
@@ -586,9 +587,11 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
       return '<b>' + longDate(h.date) + '</b><br>Democrats ' + in100(h.p) + '<br>Republicans ' + in100(1 - h.p) + '<br>National margin ' + mg(h.national); }); })();
   // ---- tabs
   (function () { const T = ['forecast', 'model', 'backtests', 'research'];
-    const go = () => { const h = (location.hash || '#forecast').slice(1), cur = T.indexOf(h) >= 0 ? h : 'forecast';
+    const go = () => { const parts = (location.hash || '#forecast').slice(1).split('/'), cur = T.indexOf(parts[0]) >= 0 ? parts[0] : 'forecast';
       T.forEach(k => { $('t-' + k).hidden = k !== cur; }); document.querySelectorAll('#tabs a').forEach(a => { if (a.getAttribute('href') === '#' + cur) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
-      window.scrollTo({top: 0, behavior: 'instant'}); tipHide(); };
+      const to = parts[1] && document.getElementById(parts[1]);          // a section inside the tab, as in #model/narrow
+      if (to && $('t-' + cur).contains(to)) to.scrollIntoView({behavior: 'instant', block: 'start'}); else window.scrollTo({top: 0, behavior: 'instant'});
+      tipHide(); };
     window.addEventListener('hashchange', go); go(); })();
   $('src-market').textContent = 'Betting odds: ' + F.inputs.market_note + '.';
   if (DATA.contact) { const c = '<a href="' + esc(DATA.contact.url) + '" rel="noopener">' + esc(DATA.contact.label) + '</a>'; $('contact').innerHTML = 'Questions or corrections: ' + c; $('foot-contact').innerHTML = c; }
