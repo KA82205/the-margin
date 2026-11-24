@@ -1,0 +1,44 @@
+name: Daily forecast
+
+on:
+  schedule:
+    # After the Tipping Point Nowcast's own two runs (6:17 and 11:17 UTC). GitHub starts scheduled runs late,
+    # so there are two a day; the second replaces the first's row for the day.
+    - cron: "47 7 * * *"
+    - cron: "47 12 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-forecast
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy pandas
+
+      - name: Fetch today's inputs and run the forecast
+        id: update
+        continue-on-error: true
+        run: python update.py
+
+      - name: Save the day
+        run: |
+          git config user.name "forecast-bot"
+          git config user.email "forecast-bot@users.noreply.github.com"
+          git add data/inputs.json data/nowcast.js data/forecast_2028.json data/history.csv docs/index.html
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Forecast $(TZ=America/New_York date +%Y-%m-%d)" && git push; fi
+
+      - name: Flag a failed fetch
+        if: steps.update.outcome == 'failure'
+        run: |
+          echo "::error::Today's inputs could not be fetched; the forecast was rerun on the previous copy."
+          exit 1

@@ -1,0 +1,137 @@
+{
+ "by_day": [
+  {
+   "days": 150,
+   "national": 6.4,
+   "states": 7.8,
+   "elections": 11,
+   "state_averages": 307
+  },
+  {
+   "days": 120,
+   "national": 4.3,
+   "states": 7.3,
+   "elections": 11,
+   "state_averages": 335
+  },
+  {
+   "days": 90,
+   "national": 10.3,
+   "states": 7.3,
+   "elections": 12,
+   "state_averages": 361
+  },
+  {
+   "days": 60,
+   "national": 4.6,
+   "states": 6.5,
+   "elections": 12,
+   "state_averages": 399
+  },
+  {
+   "days": 30,
+   "national": 4.2,
+   "states": 5.3,
+   "elections": 12,
+   "state_averages": 477
+  },
+  {
+   "days": 14,
+   "national": 4.2,
+   "states": 4.9,
+   "elections": 12,
+   "state_averages": 506
+  },
+  {
+   "days": 7,
+   "national": 3.7,
+   "states": 4.5,
+   "elections": 12,
+   "state_averages": 510
+  },
+  {
+   "days": 1,
+   "national": 2.9,
+   "states": 4.2,
+   "elections": 12,
+   "state_averages": 513
+  }
+ ],
+ "by_year": [
+  {
+   "year": 1972,
+   "polls": -26.4,
+   "result": -23.6,
+   "miss": -2.8
+  },
+  {
+   "year": 1976,
+   "polls": 0.6,
+   "result": 2.3,
+   "miss": -1.6
+  },
+  {
+   "year": 1980,
+   "polls": -2.6,
+   "result": -10.3,
+   "miss": 7.7
+  },
+  {
+   "year": 1984,
+   "polls": -18.7,
+   "result": -18.2,
+   "miss": -0.5
+  },
+  {
+   "year": 1988,
+   "polls": -11.3,
+   "result": -7.7,
+   "miss": -3.6
+  },
+  {
+   "year": 1992,
+   "polls": 9.3,
+   "result": 7.2,
+   "miss": 2.1
+  },
+  {
+   "year": 1996,
+   "polls": 15.1,
+   "result": 9.6,
+   "miss": 5.5
+  },
+  {
+   "year": 2000,
+   "polls": -4.0,
+   "result": 0.5,
+   "miss": -4.5
+  },
+  {
+   "year": 2004,
+   "polls": -1.7,
+   "result": -2.5,
+   "miss": 0.9
+  },
+  {
+   "year": 2008,
+   "polls": 7.6,
+   "result": 7.5,
+   "miss": 0.0
+  },
+  {
+   "year": 2012,
+   "polls": 0.4,
+   "result": 3.8,
+   "miss": -3.5
+  },
+  {
+   "year": 2016,
+   "polls": 4.5,
+   "result": 2.3,
+   "miss": 2.2
+  }
+ ],
+ "toward_dem": 5,
+ "years": 12,
+ "mean_signed": 0.2
+}

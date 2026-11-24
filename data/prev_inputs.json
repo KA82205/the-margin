@@ -1,0 +1,11 @@
+{
+ "as_of": "2026-11-23",
+ "net_approval": -28.0,
+ "approval_note": "Tipping Point Nowcast's pooled average of presidential approval among adults, last 30 days",
+ "market_dem": 0.674,
+ "market_note": "electionbettingodds.com, party to win the presidency, November 23, 2026: Democrats 66.5%, Republicans 32.2%",
+ "keys": 0.42,
+ "keys_sd": 0.13,
+ "keys_note": "Fifty-Two Keys with every open key landing the way it leans, and the spread of its run ahead",
+ "approval_drift": 10.0
+}

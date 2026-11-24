@@ -1,0 +1,511 @@
+{
+ "ratings": [
+  {
+   "weight": 0,
+   "favored": 4,
+   "p_winner": 0.686,
+   "state_miss": 1.88,
+   "called": 264,
+   "of": 280,
+   "brier": 0.0412,
+   "national_miss": 0.86,
+   "close_n": 53,
+   "close_called": 42,
+   "close_miss": 1.39,
+   "by_year": {
+    "2008": 53,
+    "2012": 55,
+    "2016": 50,
+    "2020": 53,
+    "2024": 53
+   }
+  },
+  {
+   "weight": 0.15,
+   "favored": 4,
+   "p_winner": 0.678,
+   "state_miss": 1.89,
+   "called": 264,
+   "of": 280,
+   "brier": 0.0407,
+   "national_miss": 0.86,
+   "close_n": 53,
+   "close_called": 42,
+   "close_miss": 1.45,
+   "by_year": {
+    "2008": 53,
+    "2012": 55,
+    "2016": 50,
+    "2020": 53,
+    "2024": 53
+   }
+  },
+  {
+   "weight": 0.3,
+   "favored": 3,
+   "p_winner": 0.67,
+   "state_miss": 1.91,
+   "called": 264,
+   "of": 280,
+   "brier": 0.0407,
+   "national_miss": 0.86,
+   "close_n": 53,
+   "close_called": 42,
+   "close_miss": 1.55,
+   "by_year": {
+    "2008": 53,
+    "2012": 55,
+    "2016": 50,
+    "2020": 53,
+    "2024": 53
+   }
+  },
+  {
+   "weight": 0.5,
+   "favored": 3,
+   "p_winner": 0.656,
+   "state_miss": 1.95,
+   "called": 265,
+   "of": 280,
+   "brier": 0.0414,
+   "national_miss": 0.86,
+   "close_n": 53,
+   "close_called": 43,
+   "close_miss": 1.72,
+   "by_year": {
+    "2008": 53,
+    "2012": 55,
+    "2016": 50,
+    "2020": 54,
+    "2024": 53
+   }
+  },
+  {
+   "weight": 1.0,
+   "favored": 3,
+   "p_winner": 0.608,
+   "state_miss": 2.12,
+   "called": 263,
+   "of": 280,
+   "brier": 0.0461,
+   "national_miss": 0.86,
+   "close_n": 53,
+   "close_called": 41,
+   "close_miss": 2.26,
+   "by_year": {
+    "2008": 52,
+    "2012": 54,
+    "2016": 50,
+    "2020": 54,
+    "2024": 53
+   }
+  }
+ ],
+ "rating_record": [
+  {
+   "rating": 1,
+   "n": 71,
+   "dem_won": 71,
+   "share": 63.8
+  },
+  {
+   "rating": 2,
+   "n": 24,
+   "dem_won": 23,
+   "share": 53.9
+  },
+  {
+   "rating": 3,
+   "n": 14,
+   "dem_won": 12,
+   "share": 51.9
+  },
+  {
+   "rating": 4,
+   "n": 32,
+   "dem_won": 16,
+   "share": 50.5
+  },
+  {
+   "rating": 5,
+   "n": 7,
+   "dem_won": 0,
+   "share": 47.1
+  },
+  {
+   "rating": 6,
+   "n": 27,
+   "dem_won": 1,
+   "share": 43.4
+  },
+  {
+   "rating": 7,
+   "n": 80,
+   "dem_won": 0,
+   "share": 37.0
+  }
+ ],
+ "base": {
+  "1": {
+   "favored": 4,
+   "p_winner": 0.686,
+   "state_miss": 1.88,
+   "called": 264,
+   "of": 280,
+   "brier": 0.0412,
+   "national_miss": 0.86
+  },
+  "30": {
+   "favored": 3,
+   "p_winner": 0.665,
+   "state_miss": 2.23,
+   "called": 263,
+   "of": 280,
+   "brier": 0.0476,
+   "national_miss": 1.24
+  }
+ },
+ "settings": [
+  {
+   "setting": "prior_polls",
+   "value": 0.75,
+   "ours": 1.5,
+   "1": {
+    "favored": 3,
+    "p_winner": 0.68,
+    "state_miss": 1.88,
+    "called": 264,
+    "of": 280,
+    "brier": 0.0408,
+    "national_miss": 0.86
+   },
+   "30": {
+    "favored": 3,
+    "p_winner": 0.655,
+    "state_miss": 2.27,
+    "called": 262,
+    "of": 280,
+    "brier": 0.0468,
+    "national_miss": 1.24
+   }
+  },
+  {
+   "setting": "prior_polls",
+   "value": 3.0,
+   "ours": 1.5,
+   "1": {
+    "favored": 4,
+    "p_winner": 0.692,
+    "state_miss": 1.87,
+    "called": 266,
+    "of": 280,
+    "brier": 0.0423,
+    "national_miss": 0.86
+   },
+   "30": {
+    "favored": 3,
+    "p_winner": 0.676,
+    "state_miss": 2.22,
+    "called": 262,
+    "of": 280,
+    "brier": 0.0493,
+    "national_miss": 1.24
+   }
+  },
+  {
+   "setting": "half_life",
+   "value": [
+    7,
+    30,
+    3
+   ],
+   "ours": [
+    7,
+    30,
+    5
+   ],
+   "1": {
+    "favored": 4,
+    "p_winner": 0.686,
+    "state_miss": 1.88,
+    "called": 264,
+    "of": 280,
+    "brier": 0.0412,
+    "national_miss": 0.86
+   },
+   "30": {
+    "favored": 3,
+    "p_winner": 0.655,
+    "state_miss": 2.23,
+    "called": 263,
+    "of": 280,
+    "brier": 0.0472,
+    "national_miss": 1.2
+   }
+  },
+  {
+   "setting": "half_life",
+   "value": [
+    7,
+    30,
+    8
+   ],
+   "ours": [
+    7,
+    30,
+    5
+   ],
+   "1": {
+    "favored": 4,
+    "p_winner": 0.686,
+    "state_miss": 1.88,
+    "called": 264,
+    "of": 280,
+    "brier": 0.0412,
+    "national_miss": 0.86
+   },
+   "30": {
+    "favored": 3,
+    "p_winner": 0.665,
+    "state_miss": 2.23,
+    "called": 263,
+    "of": 280,
+    "brier": 0.0476,
+    "national_miss": 1.24
+   }
+  },
+  {
+   "setting": "pollster_repeat",
+   "value": 0.25,
+   "ours": 0.5,
+   "1": {
+    "favored": 3,
+    "p_winner": 0.682,
+    "state_miss": 1.88,
+    "called": 264,
+    "of": 280,
+    "brier": 0.0416,
+    "national_miss": 0.88
+   },
+   "30": {
+    "favored": 3,
+    "p_winner": 0.666,
+    "state_miss": 2.24,
+    "called": 263,
+    "of": 280,
+    "brier": 0.0478,
+    "national_miss": 1.26
+   }
+  },
+  {
+   "setting": "pollster_repeat",
+   "value": 1.0,
+   "ours": 0.5,
+   "1": {
+    "favored": 4,
+    "p_winner": 0.694,
+    "state_miss": 1.95,
+    "called": 265,
+    "of": 280,
+    "brier": 0.0402,
+    "national_miss": 0.84
+   },
+   "30": {
+    "favored": 3,
+    "p_winner": 0.657,
+    "state_miss": 2.2,
+    "called": 263,
+    "of": 280,
+    "brier": 0.0473,
+    "national_miss": 1.18
+   }
+  },
+  {
+   "setting": "lean",
+   "value": [
+    1.0,
+    0.0
+   ],
+   "ours": [
+    0.75,
+    0.25
+   ],
+   "1": {
+    "favored": 4,
+    "p_winner": 0.686,
+    "state_miss": 1.84,
+    "called": 265,
+    "of": 280,
+    "brier": 0.0405,
+    "national_miss": 0.86
+   },
+   "30": {
+    "favored": 3,
+    "p_winner": 0.665,
+    "state_miss": 2.16,
+    "called": 262,
+    "of": 280,
+    "brier": 0.0468,
+    "national_miss": 1.24
+   }
+  },
+  {
+   "setting": "lean",
+   "value": [
+    0.5,
+    0.5
+   ],
+   "ours": [
+    0.75,
+    0.25
+   ],
+   "1": {
+    "favored": 4,
+    "p_winner": 0.687,
+    "state_miss": 1.96,
+    "called": 264,
+    "of": 280,
+    "brier": 0.0425,
+    "national_miss": 0.86
+   },
+   "30": {
+    "favored": 3,
+    "p_winner": 0.667,
+    "state_miss": 2.34,
+    "called": 259,
+    "of": 280,
+    "brier": 0.0497,
+    "national_miss": 1.24
+   }
+  },
+  {
+   "setting": "region_share",
+   "value": 0.2,
+   "ours": 0.4,
+   "1": {
+    "favored": 4,
+    "p_winner": 0.687,
+    "state_miss": 1.88,
+    "called": 264,
+    "of": 280,
+    "brier": 0.0412,
+    "national_miss": 0.86
+   },
+   "30": {
+    "favored": 3,
+    "p_winner": 0.667,
+    "state_miss": 2.23,
+    "called": 263,
+    "of": 280,
+    "brier": 0.0476,
+    "national_miss": 1.24
+   }
+  },
+  {
+   "setting": "region_share",
+   "value": 0.6,
+   "ours": 0.4,
+   "1": {
+    "favored": 4,
+    "p_winner": 0.686,
+    "state_miss": 1.88,
+    "called": 264,
+    "of": 280,
+    "brier": 0.0412,
+    "national_miss": 0.86
+   },
+   "30": {
+    "favored": 3,
+    "p_winner": 0.664,
+    "state_miss": 2.23,
+    "called": 263,
+    "of": 280,
+    "brier": 0.0476,
+    "national_miss": 1.24
+   }
+  },
+  {
+   "setting": "t_df",
+   "value": 3,
+   "ours": 5,
+   "1": {
+    "favored": 4,
+    "p_winner": 0.69,
+    "state_miss": 1.88,
+    "called": 264,
+    "of": 280,
+    "brier": 0.0409,
+    "national_miss": 0.86
+   },
+   "30": {
+    "favored": 3,
+    "p_winner": 0.67,
+    "state_miss": 2.23,
+    "called": 263,
+    "of": 280,
+    "brier": 0.0474,
+    "national_miss": 1.24
+   }
+  },
+  {
+   "setting": "t_df",
+   "value": 30,
+   "ours": 5,
+   "1": {
+    "favored": 4,
+    "p_winner": 0.684,
+    "state_miss": 1.88,
+    "called": 264,
+    "of": 280,
+    "brier": 0.0413,
+    "national_miss": 0.86
+   },
+   "30": {
+    "favored": 3,
+    "p_winner": 0.662,
+    "state_miss": 2.23,
+    "called": 263,
+    "of": 280,
+    "brier": 0.0478,
+    "national_miss": 1.24
+   }
+  }
+ ],
+ "calibration": [
+  {
+   "lo": 0.5,
+   "hi": 0.6,
+   "n": 17,
+   "said": 0.556,
+   "happened": 0.471
+  },
+  {
+   "lo": 0.6,
+   "hi": 0.75,
+   "n": 20,
+   "said": 0.668,
+   "happened": 0.85
+  },
+  {
+   "lo": 0.75,
+   "hi": 0.9,
+   "n": 34,
+   "said": 0.828,
+   "happened": 0.882
+  },
+  {
+   "lo": 0.9,
+   "hi": 0.99,
+   "n": 64,
+   "said": 0.958,
+   "happened": 1.0
+  },
+  {
+   "lo": 0.99,
+   "hi": 1.001,
+   "n": 145,
+   "said": 0.998,
+   "happened": 1.0
+  }
+ ]
+}
