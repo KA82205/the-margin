@@ -34,7 +34,7 @@ jobs:
         run: |
           git config user.name "forecast-bot"
           git config user.email "forecast-bot@users.noreply.github.com"
-          git add data/inputs.json data/nowcast.js data/forecast_2028.json data/history.csv docs/index.html
+          git add data/inputs.json data/nowcast.js data/prev_inputs.json data/prev_nowcast.js data/forecast_2028.json data/history.csv docs/index.html
           if git diff --cached --quiet; then echo "No changes"; else git commit -m "Forecast $(TZ=America/New_York date +%Y-%m-%d)" && git push; fi
 
       - name: Flag a failed fetch

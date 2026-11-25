@@ -16,7 +16,10 @@ def table():
                         {'year': 2024, 'deminc': 1, 'incvote': 49.25, 'juneapp': -20, 'term1': 1}])
     a = pd.concat([a, add], ignore_index=True)
     k = pd.read_csv('data/keys_index.csv')[['year', 'index']].rename(columns={'index': 'keys'})
-    return a.merge(k, on='year', how='left')
+    p = pd.read_csv('data/nh_primaries.csv'); p['primary'] = p.office_share - p.challenger_share      # New Hampshire: the party in office's candidate against the challenger
+    return a.merge(k, on='year', how='left').merge(p[['year', 'primary']], on='year', how='left')
+
+PRIMARY = False        # research only: add a primary equation to the average (see research.py and the README). The forecast does not use it.
 
 def one(t, year, juneapp=None, term1=None, keys=None):
     """Fundamentals forecast of the party in office's share in `year`, from elections before it."""
@@ -30,7 +33,12 @@ def one(t, year, juneapp=None, term1=None, keys=None):
     f2 = None
     if len(pk) >= 6 and not np.isnan(keys):
         s, i = np.polyfit(pk['keys'], pk.incvote, 1); f2 = float(i + s * keys)
-    return (f1 if f2 is None else 0.5 * (f1 + f2)), f1, f2
+    f = f1 if f2 is None else 0.5 * (f1 + f2)
+    if PRIMARY:
+        pp = past.dropna(subset=['primary']); gap = float(row['primary'].iloc[0])
+        b3 = np.linalg.lstsq(np.column_stack([np.ones(len(pp)), pp.primary, pp.term1]), pp.incvote.values, rcond=None)[0]
+        f = float(np.mean([x for x in (f1, f2, float(b3 @ [1, gap, term1])) if x is not None]))
+    return f, f1, f2
 
 def forecast(year, t=None, **now):
     """(Democratic share expected, its error) for `year`. `now` gives this year's inputs when the year is not in the table."""

@@ -21,11 +21,14 @@ numbers; this table is the first day's.
 
 ## The site
 
-One self-contained page, `docs/index.html`, with four tabs: **Forecast** (the map, the forecast day by day, the national
-margin, the closest states), **Model** (what goes in, why each weight, how the range narrows, sources and limits),
+One self-contained page, `docs/index.html`, with five tabs: **Forecast** (the map, the forecast day by day, the national
+margin, the closest states), **States** (a profile of every state and district: how it has voted since 1976, its lean
+against the nation, how its projection is built, its polls, and how often it decides the election; `#states/PA` opens
+one directly), **Model** (what goes in, why each weight, how the range narrows, sources and limits),
 **Back-tests** (2008-2024 against the results, calibration, every distance from the election) and **Research** (a
 notebook of questions about elections that stands apart from the forecast: how good expert ratings are, how far off the
-polls have been). Section headings share one device: a dark band across the
+polls have been, whether they miss everywhere at once, the Electoral College's tilt, approval and the vote, which states
+are moving, and the primaries). Section headings share one device: a dark band across the
 whole screen with a blue-to-red stripe under it, each color as wide as its share of the 538 electoral votes on the map. To add a contact link, set `CONTACT` at the top of `make_page.py`.
 
 ## The daily update
@@ -47,8 +50,10 @@ names a state is filed under that state; so far the feed has national polls only
 Units: the scripts work in points of the two-party vote share. The page shows every miss in points of margin, which is
 twice that (a typical state miss of 1.9 points of share is 3.8 points of margin).
 
-The Fifty-Two Keys figures (`keys`, `keys_sd`) in `data/inputs.json` are entered by hand and stay as they are until
-changed. If the Nowcast cannot be fetched the forecast is still rerun for the day on the previous copy and the run is
+The Fifty-Two Keys count (`keys`, `keys_sd` in `data/inputs.json`) is read each day from that site's own feed,
+`https://ka82205.github.io/fifty-two-keys/keys.json`, which is rebuilt every week: the share of keys in the Republicans'
+favor if every open key lands the way it leans, and the spread of its run ahead. If the feed cannot be read the last
+count is kept and the run only warns. The daily change is split five ways, the keys among them. If the Nowcast cannot be fetched the forecast is still rerun for the day on the previous copy and the run is
 marked failed. If the odds cannot be read the last price is kept, with the date it was read, and the run only warns.
 
 ## Run it
@@ -129,6 +134,15 @@ Run as of 120, 90, 60, 30, 14, 7 and 1 days before each election, with only the 
 - **Are the chances honest?** Last-day state forecasts grouped by the chance given to the favorite: said 56%, won 47% (17
   forecasts); said 67%, won 85% (20); said 83%, won 88% (34); said 96%, won 100% (64); said 99.8%, won 100% (145). The
   model is a little less sure than it needs to be.
+
+- **A primary equation.** Helmut Norpoth's Primary Model reads November from the early primaries. A third fundamentals
+  equation was tried in that spirit: the party in office's candidate's share in New Hampshire less the challenger's, with
+  first term, fitted on earlier elections and averaged with the other two (`fundamentals.PRIMARY`). In the back-test the
+  national miss fell at every distance (last day: 1.72 to 1.47 points of margin; 120 days: 2.04 to 1.68), with no change
+  in state calls or in the calibration score. But that rests on five elections, was better in three of them and worse in
+  two (2012, 2024), and the gain is mostly 2008. Over the 13 elections since 1976 the fundamentals alone were worse with
+  the primary equation than without it (a typical miss of 2.7 points of share against 2.0, better in 3 of 13; in 2020 it
+  put Trump four points too high). So it is not used. The Research tab has the study.
 
 ### What the back-test does not cover
 

@@ -45,8 +45,10 @@ def change(NOW, nc, res, errs, t, today_p):
     p1 = chance(step, poll_table(nc), onc['states'], old['as_of'], res, errs, t)
     step['net_approval'] = NOW['net_approval']; p2 = chance(step, poll_table(nc), onc['states'], old['as_of'], res, errs, t)
     step['market_dem'] = NOW['market_dem']; p3 = chance(step, poll_table(nc), onc['states'], old['as_of'], res, errs, t)
+    step['keys'], step['keys_sd'] = NOW['keys'], NOW['keys_sd']; p4 = chance(step, poll_table(nc), onc['states'], old['as_of'], res, errs, t)
     return {'from': old['as_of'], 'p_prev': round(p0, 4), 'p': round(today_p, 4),
-            'parts': [{'name': 'New polling', 'd': round(p1 - p0, 4)}, {'name': 'Presidential approval', 'd': round(p2 - p1, 4)}, {'name': 'Betting markets', 'd': round(p3 - p2, 4)}, {'name': 'State models and the calendar', 'd': round(today_p - p3, 4)}],
+            'parts': [{'name': 'New polling', 'd': round(p1 - p0, 4)}, {'name': 'Presidential approval', 'd': round(p2 - p1, 4)}, {'name': 'Betting markets', 'd': round(p3 - p2, 4)}, {'name': 'Fifty-Two Keys', 'd': round(p4 - p3, 4)}, {'name': 'State models and the calendar', 'd': round(today_p - p4, 4)}],
+            'keys': [old['keys'], NOW['keys']],
             'approval': [old['net_approval'], NOW['net_approval']], 'market': [round(old['market_dem'], 4), round(NOW['market_dem'], 4)], 'polls': [len(onc['h2h']['polls']), len(nc['h2h']['polls'])]}
 
 def main():
@@ -73,14 +75,15 @@ def main():
     msens = [{'weight': w, 'p': round(float(1 / (1 + np.exp(-((1 - w) * lo(out['p_model']) + w * lo(NOW['market_dem']))))), 3)} for w in (0, 0.25, 0.5, 0.7, 1.0)]
     r = res.set_index(['year', 'state'])
     S = out['states']; names = {s['abbr'].replace('-', ''): s.get('name', s['abbr']) for s in nc['states']}
-    order = S.sort_values('mean', ascending=False); cum = order.ev.cumsum(); tip = order.state[cum >= 270].iloc[0]
+    tip = S.state[S.tip.idxmax()]                       # the state that most often carries the winner past 270
     J = {'as_of': TODAY, 'days_out': (pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(TODAY)).days, 'p_dem': out['p_dem'], 'p_model': out['p_model'], 'market': NOW['market_dem'],
          'p_without_extras': plain['p_dem'], 'p_popular': out['p_popular'], 'national': out['national'], 'national_sd': out['national_sd'], 'ev_mean': out['ev_mean'], 'ev_median': out['ev_median'], 'ev_lo': out['ev_lo'], 'ev_hi': out['ev_hi'],
          'ev_dist': [round(float(x), 5) for x in out['ev_dist']], 'tipping_point': tip,
          'inputs': {'national_polls': info['national_polls'], 'polls_n': int(len(polls)), 'poll_share': info['poll_share'], 'fundamentals': fd, 'fundamentals_sd': sd, 'approval_model': parts['approval_model'], 'keys_model': parts['keys_model'],
                     'net_approval': NOW['net_approval'], 'market_note': NOW['market_note'], 'keys': NOW['keys'], 'nowcast_p_dem': nc['summary']['pDemWin'], 'nowcast_national': nc['summary']['demPopular'], 'nowcast_as_of': nc['as_of']},
-         'states': [{'state': q['state'], 'ev': int(q['ev']), 'mean': round(float(q['mean']), 2), 'sd': round(float(np.sqrt(q['sd'] ** 2 + out['national_sd'] ** 2)), 2), 'p_dem': round(float(q['p_dem']), 4), 'prior': round(float(q['prior']), 2), 'lean': round(float(M.lean(res, 2028, q['state'])), 2), 'r2024': round(float(r.dem2[(2024, q['state'])]), 1), 'r2020': round(float(r.dem2[(2020, q['state'])]), 1), 'nowcast': round(float(extra[q['state']]), 1)} for _, q in S.iterrows()],
+         'states': [{'state': q['state'], 'ev': int(q['ev']), 'mean': round(float(q['mean']), 2), 'sd': round(float(np.sqrt(q['sd'] ** 2 + out['national_sd'] ** 2)), 2), 'p_dem': round(float(q['p_dem']), 4), 'tip': round(float(q['tip']), 4), 'prior': round(float(q['prior']), 2), 'lean': round(float(M.lean(res, 2028, q['state'])), 2), 'r2024': round(float(r.dem2[(2024, q['state'])]), 2), 'r2020': round(float(r.dem2[(2020, q['state'])]), 2), 'nowcast': round(float(extra[q['state']]), 1)} for _, q in S.iterrows()],
          'change': change(NOW, nc, res, errs, t, out['p_dem']), 'state_polls': int((polls.state != 'US').sum()),
+         'state_poll_list': [{'state': q.state, 'pollster': q.pollster, 'end': str(q.end.date()), 'dem': round(float(q.dem2), 1)} for q in polls[polls.state != 'US'].sort_values('end', ascending=False).itertuples()],
          'funnel': funnel, 'market_sensitivity': msens, 'equation_error': fsd,
          'settings': {k: v for k, v in M.SET.items()}}
     json.dump(J, open('data/forecast_2028.json', 'w'), indent=1)

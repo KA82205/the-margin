@@ -133,5 +133,1097 @@
  ],
  "toward_dem": 5,
  "years": 12,
- "mean_signed": 0.2
+ "mean_signed": 0.2,
+ "tilt": {
+  "years": [
+   {
+    "year": 1972,
+    "state": "OH",
+    "state_margin": -22.1,
+    "national": -23.6,
+    "tilt": 1.5,
+    "winner": "R"
+   },
+   {
+    "year": 1976,
+    "state": "WI",
+    "state_margin": 1.7,
+    "national": 2.3,
+    "tilt": -0.6,
+    "winner": "D"
+   },
+   {
+    "year": 1980,
+    "state": "IL",
+    "state_margin": -8.7,
+    "national": -10.3,
+    "tilt": 1.6,
+    "winner": "R"
+   },
+   {
+    "year": 1984,
+    "state": "MI",
+    "state_margin": -19.1,
+    "national": -18.2,
+    "tilt": -0.8,
+    "winner": "R"
+   },
+   {
+    "year": 1988,
+    "state": "MI",
+    "state_margin": -8.0,
+    "national": -7.7,
+    "tilt": -0.3,
+    "winner": "R"
+   },
+   {
+    "year": 1992,
+    "state": "CO",
+    "state_margin": 5.6,
+    "national": 7.2,
+    "tilt": -1.6,
+    "winner": "D"
+   },
+   {
+    "year": 1996,
+    "state": "PA",
+    "state_margin": 10.3,
+    "national": 9.6,
+    "tilt": 0.7,
+    "winner": "D"
+   },
+   {
+    "year": 2000,
+    "state": "FL",
+    "state_margin": -0.0,
+    "national": 0.5,
+    "tilt": -0.5,
+    "winner": "R"
+   },
+   {
+    "year": 2004,
+    "state": "OH",
+    "state_margin": -2.1,
+    "national": -2.5,
+    "tilt": 0.4,
+    "winner": "R"
+   },
+   {
+    "year": 2008,
+    "state": "CO",
+    "state_margin": 9.1,
+    "national": 7.5,
+    "tilt": 1.6,
+    "winner": "D"
+   },
+   {
+    "year": 2012,
+    "state": "PA",
+    "state_margin": 5.5,
+    "national": 3.8,
+    "tilt": 1.6,
+    "winner": "D"
+   },
+   {
+    "year": 2016,
+    "state": "WI",
+    "state_margin": -0.8,
+    "national": 2.3,
+    "tilt": -3.1,
+    "winner": "R"
+   },
+   {
+    "year": 2020,
+    "state": "WI",
+    "state_margin": 0.6,
+    "national": 4.5,
+    "tilt": -3.9,
+    "winner": "D"
+   },
+   {
+    "year": 2024,
+    "state": "PA",
+    "state_margin": -1.7,
+    "national": -1.5,
+    "tilt": -0.2,
+    "winner": "R"
+   }
+  ],
+  "toward_rep": 8,
+  "toward_dem": 6,
+  "typical": 1.3,
+  "largest": {
+   "year": 2020,
+   "state": "WI",
+   "state_margin": 0.6,
+   "national": 4.5,
+   "tilt": -3.9,
+   "winner": "D"
+  }
+ },
+ "approval": {
+  "points": [
+   {
+    "year": 1948,
+    "net": -4.0,
+    "share": 52.3,
+    "party": "D",
+    "miss": 1.9
+   },
+   {
+    "year": 1952,
+    "net": -26.0,
+    "share": 44.6,
+    "party": "D",
+    "miss": -2.6
+   },
+   {
+    "year": 1956,
+    "net": 55.0,
+    "share": 57.8,
+    "party": "R",
+    "miss": -3.0
+   },
+   {
+    "year": 1960,
+    "net": 30.0,
+    "share": 49.9,
+    "party": "R",
+    "miss": -6.8
+   },
+   {
+    "year": 1964,
+    "net": 59.0,
+    "share": 61.3,
+    "party": "D",
+    "miss": 0.9
+   },
+   {
+    "year": 1968,
+    "net": -7.0,
+    "share": 49.6,
+    "party": "D",
+    "miss": -0.4
+   },
+   {
+    "year": 1972,
+    "net": 23.0,
+    "share": 61.8,
+    "party": "R",
+    "miss": 7.6
+   },
+   {
+    "year": 1976,
+    "net": 5.0,
+    "share": 48.9,
+    "party": "R",
+    "miss": -3.2
+   },
+   {
+    "year": 1980,
+    "net": -27.0,
+    "share": 44.7,
+    "party": "D",
+    "miss": -2.3
+   },
+   {
+    "year": 1984,
+    "net": 18.0,
+    "share": 59.2,
+    "party": "R",
+    "miss": 5.5
+   },
+   {
+    "year": 1988,
+    "net": 8.0,
+    "share": 53.9,
+    "party": "R",
+    "miss": 1.6
+   },
+   {
+    "year": 1992,
+    "net": -17.0,
+    "share": 46.5,
+    "party": "R",
+    "miss": -2.0
+   },
+   {
+    "year": 1996,
+    "net": 10.0,
+    "share": 54.7,
+    "party": "D",
+    "miss": 2.1
+   },
+   {
+    "year": 2000,
+    "net": 15.0,
+    "share": 50.3,
+    "party": "D",
+    "miss": -3.5
+   },
+   {
+    "year": 2004,
+    "net": -1.0,
+    "share": 51.2,
+    "party": "R",
+    "miss": 0.3
+   },
+   {
+    "year": 2008,
+    "net": -40.0,
+    "share": 46.3,
+    "party": "R",
+    "miss": 2.1
+   },
+   {
+    "year": 2012,
+    "net": 1.0,
+    "share": 52.0,
+    "party": "D",
+    "miss": 0.8
+   },
+   {
+    "year": 2016,
+    "net": 4.0,
+    "share": 51.1,
+    "party": "D",
+    "miss": -0.7
+   },
+   {
+    "year": 2020,
+    "net": -19.0,
+    "share": 47.7,
+    "party": "R",
+    "miss": -0.3
+   },
+   {
+    "year": 2024,
+    "net": -20.0,
+    "share": 49.2,
+    "party": "D",
+    "miss": 1.5
+   }
+  ],
+  "r": 0.82,
+  "slope10": 1.6,
+  "at_zero": 51.1,
+  "miss": 2.5,
+  "side": 18,
+  "n": 20,
+  "even_at": -7.0
+ },
+ "movers": {
+  "states": [
+   {
+    "state": "HI",
+    "from": 39.6,
+    "to": 25.1,
+    "move": -14.5
+   },
+   {
+    "state": "NY",
+    "from": 28.3,
+    "to": 14.2,
+    "move": -14.1
+   },
+   {
+    "state": "IA",
+    "from": 2.1,
+    "to": -11.9,
+    "move": -14.0
+   },
+   {
+    "state": "ND",
+    "from": -24.1,
+    "to": -35.9,
+    "move": -11.8
+   },
+   {
+    "state": "WV",
+    "from": -31.2,
+    "to": -41.2,
+    "move": -10.0
+   },
+   {
+    "state": "OH",
+    "from": -0.8,
+    "to": -9.8,
+    "move": -9.0
+   },
+   {
+    "state": "FL",
+    "from": -2.9,
+    "to": -11.7,
+    "move": -8.8
+   },
+   {
+    "state": "RI",
+    "from": 24.2,
+    "to": 15.7,
+    "move": -8.5
+   },
+   {
+    "state": "NJ",
+    "from": 14.1,
+    "to": 7.5,
+    "move": -6.6
+   },
+   {
+    "state": "MS",
+    "from": -15.4,
+    "to": -21.6,
+    "move": -6.2
+   },
+   {
+    "state": "SD",
+    "from": -22.3,
+    "to": -28.4,
+    "move": -6.1
+   },
+   {
+    "state": "MI",
+    "from": 5.8,
+    "to": 0.1,
+    "move": -5.7
+   },
+   {
+    "state": "NV",
+    "from": 3.0,
+    "to": -1.7,
+    "move": -4.6
+   },
+   {
+    "state": "TN",
+    "from": -24.5,
+    "to": -28.6,
+    "move": -4.1
+   },
+   {
+    "state": "MO",
+    "from": -13.4,
+    "to": -17.2,
+    "move": -3.8
+   },
+   {
+    "state": "IN",
+    "from": -14.2,
+    "to": -17.8,
+    "move": -3.6
+   },
+   {
+    "state": "ME",
+    "from": 11.9,
+    "to": 8.6,
+    "move": -3.3
+   },
+   {
+    "state": "AL",
+    "from": -26.3,
+    "to": -29.4,
+    "move": -3.1
+   },
+   {
+    "state": "KY",
+    "from": -26.9,
+    "to": -29.5,
+    "move": -2.6
+   },
+   {
+    "state": "WI",
+    "from": 3.1,
+    "to": 0.6,
+    "move": -2.5
+   },
+   {
+    "state": "SC",
+    "from": -14.4,
+    "to": -16.6,
+    "move": -2.2
+   },
+   {
+    "state": "PA",
+    "from": 1.6,
+    "to": -0.2,
+    "move": -1.9
+   },
+   {
+    "state": "AR",
+    "from": -28.1,
+    "to": -29.8,
+    "move": -1.7
+   },
+   {
+    "state": "MT",
+    "from": -17.9,
+    "to": -19.1,
+    "move": -1.2
+   },
+   {
+    "state": "IL",
+    "from": 13.3,
+    "to": 12.6,
+    "move": -0.7
+   },
+   {
+    "state": "LA",
+    "from": -21.3,
+    "to": -20.9,
+    "move": 0.5
+   },
+   {
+    "state": "ID",
+    "from": -36.7,
+    "to": -36.0,
+    "move": 0.7
+   },
+   {
+    "state": "WY",
+    "from": -46.2,
+    "to": -45.5,
+    "move": 0.7
+   },
+   {
+    "state": "NM",
+    "from": 6.8,
+    "to": 7.6,
+    "move": 0.9
+   },
+   {
+    "state": "DE",
+    "from": 15.1,
+    "to": 16.5,
+    "move": 1.4
+   },
+   {
+    "state": "VT",
+    "from": 32.7,
+    "to": 34.3,
+    "move": 1.6
+   },
+   {
+    "state": "MN",
+    "from": 4.1,
+    "to": 5.8,
+    "move": 1.8
+   },
+   {
+    "state": "CA",
+    "from": 19.9,
+    "to": 22.3,
+    "move": 2.4
+   },
+   {
+    "state": "NH",
+    "from": 1.8,
+    "to": 4.3,
+    "move": 2.5
+   },
+   {
+    "state": "CT",
+    "from": 13.7,
+    "to": 16.3,
+    "move": 2.5
+   },
+   {
+    "state": "OK",
+    "from": -37.4,
+    "to": -33.4,
+    "move": 3.9
+   },
+   {
+    "state": "NC",
+    "from": -5.9,
+    "to": -1.8,
+    "move": 4.1
+   },
+   {
+    "state": "AK",
+    "from": -18.5,
+    "to": -12.2,
+    "move": 6.3
+   },
+   {
+    "state": "NE",
+    "from": -26.1,
+    "to": -19.3,
+    "move": 6.7
+   },
+   {
+    "state": "DC",
+    "from": 81.3,
+    "to": 88.1,
+    "move": 6.8
+   },
+   {
+    "state": "VA",
+    "from": 0.1,
+    "to": 7.4,
+    "move": 7.3
+   },
+   {
+    "state": "TX",
+    "from": -19.8,
+    "to": -12.4,
+    "move": 7.5
+   },
+   {
+    "state": "OR",
+    "from": 8.7,
+    "to": 16.4,
+    "move": 7.6
+   },
+   {
+    "state": "MA",
+    "from": 19.7,
+    "to": 27.4,
+    "move": 7.7
+   },
+   {
+    "state": "MD",
+    "from": 22.8,
+    "to": 31.0,
+    "move": 8.2
+   },
+   {
+    "state": "AZ",
+    "from": -13.1,
+    "to": -4.1,
+    "move": 9.0
+   },
+   {
+    "state": "WA",
+    "from": 11.4,
+    "to": 20.4,
+    "move": 9.0
+   },
+   {
+    "state": "GA",
+    "from": -11.7,
+    "to": -0.7,
+    "move": 11.0
+   },
+   {
+    "state": "CO",
+    "from": 1.7,
+    "to": 12.8,
+    "move": 11.1
+   },
+   {
+    "state": "KS",
+    "from": -26.1,
+    "to": -14.9,
+    "move": 11.1
+   },
+   {
+    "state": "UT",
+    "from": -53.1,
+    "to": -20.7,
+    "move": 32.4
+   }
+  ],
+  "toward_rep": 24,
+  "toward_dem": 22,
+  "close": [
+   {
+    "year": 1972,
+    "n": 0,
+    "ev": 0
+   },
+   {
+    "year": 1976,
+    "n": 19,
+    "ev": 256
+   },
+   {
+    "year": 1980,
+    "n": 15,
+    "ev": 152
+   },
+   {
+    "year": 1984,
+    "n": 3,
+    "ev": 27
+   },
+   {
+    "year": 1988,
+    "n": 10,
+    "ev": 154
+   },
+   {
+    "year": 1992,
+    "n": 13,
+    "ev": 158
+   },
+   {
+    "year": 1996,
+    "n": 9,
+    "ev": 71
+   },
+   {
+    "year": 2000,
+    "n": 12,
+    "ev": 139
+   },
+   {
+    "year": 2004,
+    "n": 11,
+    "ev": 115
+   },
+   {
+    "year": 2008,
+    "n": 6,
+    "ev": 87
+   },
+   {
+    "year": 2012,
+    "n": 4,
+    "ev": 75
+   },
+   {
+    "year": 2016,
+    "n": 10,
+    "ev": 123
+   },
+   {
+    "year": 2020,
+    "n": 8,
+    "ev": 123
+   },
+   {
+    "year": 2024,
+    "n": 8,
+    "ev": 96
+   }
+  ],
+  "persist": 0.995,
+  "persist_1976": 0.43
+ },
+ "together": {
+  "years": [
+   {
+    "year": 1972,
+    "states": 17,
+    "mean": -7.5,
+    "same_side": 0.88,
+    "spread": 9.5
+   },
+   {
+    "year": 1976,
+    "states": 26,
+    "mean": 1.4,
+    "same_side": 0.54,
+    "spread": 4.9
+   },
+   {
+    "year": 1980,
+    "states": 42,
+    "mean": 2.9,
+    "same_side": 0.71,
+    "spread": 6.5
+   },
+   {
+    "year": 1984,
+    "states": 30,
+    "mean": -1.5,
+    "same_side": 0.7,
+    "spread": 7.1
+   },
+   {
+    "year": 1988,
+    "states": 49,
+    "mean": 1.3,
+    "same_side": 0.61,
+    "spread": 5.0
+   },
+   {
+    "year": 1992,
+    "states": 50,
+    "mean": 1.9,
+    "same_side": 0.74,
+    "spread": 5.3
+   },
+   {
+    "year": 1996,
+    "states": 51,
+    "mean": 1.9,
+    "same_side": 0.67,
+    "spread": 4.2
+   },
+   {
+    "year": 2000,
+    "states": 51,
+    "mean": -1.2,
+    "same_side": 0.55,
+    "spread": 4.8
+   },
+   {
+    "year": 2004,
+    "states": 49,
+    "mean": 0.2,
+    "same_side": 0.59,
+    "spread": 2.9
+   },
+   {
+    "year": 2008,
+    "states": 50,
+    "mean": -0.7,
+    "same_side": 0.62,
+    "spread": 4.6
+   },
+   {
+    "year": 2012,
+    "states": 47,
+    "mean": -1.9,
+    "same_side": 0.72,
+    "spread": 4.3
+   },
+   {
+    "year": 2016,
+    "states": 51,
+    "mean": 3.9,
+    "same_side": 0.78,
+    "spread": 5.1
+   }
+  ],
+  "shared": 0.25,
+  "pair": 0.17,
+  "states": 48
+ },
+ "primary": {
+  "points": [
+   {
+    "year": 1952,
+    "gap": -6,
+    "share": 44.6,
+    "won": 0,
+    "who": "Truman",
+    "against": "Eisenhower"
+   },
+   {
+    "year": 1956,
+    "gap": 79,
+    "share": 57.8,
+    "won": 1,
+    "who": "Eisenhower",
+    "against": "Stevenson"
+   },
+   {
+    "year": 1960,
+    "gap": 4,
+    "share": 49.9,
+    "won": 0,
+    "who": "Nixon",
+    "against": "Kennedy"
+   },
+   {
+    "year": 1964,
+    "gap": 73,
+    "share": 61.3,
+    "won": 1,
+    "who": "Johnson",
+    "against": "Goldwater"
+   },
+   {
+    "year": 1968,
+    "gap": -28,
+    "share": 49.6,
+    "won": 0,
+    "who": "Johnson",
+    "against": "Nixon"
+   },
+   {
+    "year": 1972,
+    "gap": 31,
+    "share": 61.8,
+    "won": 1,
+    "who": "Nixon",
+    "against": "McGovern"
+   },
+   {
+    "year": 1976,
+    "gap": 21,
+    "share": 48.9,
+    "won": 0,
+    "who": "Ford",
+    "against": "Carter"
+   },
+   {
+    "year": 1980,
+    "gap": -2,
+    "share": 44.7,
+    "won": 0,
+    "who": "Carter",
+    "against": "Reagan"
+   },
+   {
+    "year": 1984,
+    "gap": 57,
+    "share": 59.2,
+    "won": 1,
+    "who": "Reagan",
+    "against": "Mondale"
+   },
+   {
+    "year": 1988,
+    "gap": 2,
+    "share": 53.9,
+    "won": 1,
+    "who": "Bush",
+    "against": "Dukakis"
+   },
+   {
+    "year": 1992,
+    "gap": 28,
+    "share": 46.5,
+    "won": 0,
+    "who": "Bush",
+    "against": "Clinton"
+   },
+   {
+    "year": 1996,
+    "gap": 58,
+    "share": 54.7,
+    "won": 1,
+    "who": "Clinton",
+    "against": "Dole"
+   },
+   {
+    "year": 2000,
+    "gap": 20,
+    "share": 50.3,
+    "won": 0,
+    "who": "Gore",
+    "against": "Bush"
+   },
+   {
+    "year": 2004,
+    "gap": 43,
+    "share": 51.2,
+    "won": 1,
+    "who": "Bush",
+    "against": "Kerry"
+   },
+   {
+    "year": 2008,
+    "gap": 1,
+    "share": 46.3,
+    "won": 0,
+    "who": "McCain",
+    "against": "Obama"
+   },
+   {
+    "year": 2012,
+    "gap": 42,
+    "share": 52.0,
+    "won": 1,
+    "who": "Obama",
+    "against": "Romney"
+   },
+   {
+    "year": 2016,
+    "gap": 3,
+    "share": 51.1,
+    "won": 0,
+    "who": "Clinton",
+    "against": "Trump"
+   },
+   {
+    "year": 2020,
+    "gap": 78,
+    "share": 47.7,
+    "won": 0,
+    "who": "Trump",
+    "against": "Biden"
+   },
+   {
+    "year": 2024,
+    "gap": 10,
+    "share": 49.2,
+    "won": 0,
+    "who": "Biden",
+    "against": "Trump"
+   }
+  ],
+  "r": 0.57,
+  "stronger_won": 11,
+  "n": 19,
+  "lost_nh": [
+   1952,
+   2016
+  ],
+  "lost_nh_won": 0,
+  "published": [
+   {
+    "year": 1996,
+    "call": "Clinton",
+    "winner": "Clinton",
+    "right": true
+   },
+   {
+    "year": 2000,
+    "call": "Gore",
+    "winner": "Bush",
+    "right": false
+   },
+   {
+    "year": 2004,
+    "call": "Bush",
+    "winner": "Bush",
+    "right": true
+   },
+   {
+    "year": 2008,
+    "call": "Obama",
+    "winner": "Obama",
+    "right": true
+   },
+   {
+    "year": 2012,
+    "call": "Obama",
+    "winner": "Obama",
+    "right": true
+   },
+   {
+    "year": 2016,
+    "call": "Trump",
+    "winner": "Trump",
+    "right": true
+   },
+   {
+    "year": 2020,
+    "call": "Trump",
+    "winner": "Biden",
+    "right": false
+   },
+   {
+    "year": 2024,
+    "call": "Harris",
+    "winner": "Trump",
+    "right": false
+   }
+  ],
+  "published_right": 5,
+  "walk": {
+   "primary": 4.8,
+   "approval": 2.61,
+   "both": 3.16,
+   "since2008": {
+    "primary": 4.28,
+    "approval": 1.75,
+    "both": 1.89
+   },
+   "n": 13,
+   "better_with": [
+    1988,
+    2000,
+    2004,
+    2020
+   ]
+  },
+  "sitting": {
+   "n": 14,
+   "weak": 5,
+   "weak_won": 0,
+   "weak_years": [
+    1952,
+    1968,
+    1976,
+    1980,
+    1992
+   ],
+   "strong": 9,
+   "strong_won": 7,
+   "strong_lost": [
+    2020,
+    2024
+   ],
+   "points": [
+    {
+     "year": 1952,
+     "who": "Truman",
+     "share": 44,
+     "won": 0
+    },
+    {
+     "year": 1956,
+     "who": "Eisenhower",
+     "share": 94,
+     "won": 1
+    },
+    {
+     "year": 1964,
+     "who": "Johnson",
+     "share": 95,
+     "won": 1
+    },
+    {
+     "year": 1968,
+     "who": "Johnson",
+     "share": 50,
+     "won": 0
+    },
+    {
+     "year": 1972,
+     "who": "Nixon",
+     "share": 68,
+     "won": 1
+    },
+    {
+     "year": 1976,
+     "who": "Ford",
+     "share": 50,
+     "won": 0
+    },
+    {
+     "year": 1980,
+     "who": "Carter",
+     "share": 48,
+     "won": 0
+    },
+    {
+     "year": 1984,
+     "who": "Reagan",
+     "share": 86,
+     "won": 1
+    },
+    {
+     "year": 1992,
+     "who": "Bush",
+     "share": 53,
+     "won": 0
+    },
+    {
+     "year": 1996,
+     "who": "Clinton",
+     "share": 84,
+     "won": 1
+    },
+    {
+     "year": 2004,
+     "who": "Bush",
+     "share": 81,
+     "won": 1
+    },
+    {
+     "year": 2012,
+     "who": "Obama",
+     "share": 81,
+     "won": 1
+    },
+    {
+     "year": 2020,
+     "who": "Trump",
+     "share": 86,
+     "won": 0
+    },
+    {
+     "year": 2024,
+     "who": "Biden",
+     "share": 64,
+     "won": 0
+    }
+   ]
+  },
+  "r_approval": 0.82
+ }
 }

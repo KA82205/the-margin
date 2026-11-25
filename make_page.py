@@ -35,6 +35,11 @@ def main():
     assert max(miss) - min(miss) < 0.4
     hist = pd.read_csv('data/history.csv'); assert hist.date.iloc[-1] == f['as_of'], 'the day-by-day record does not end on the forecast date'
     data = {'f': f, 'back': back, 'checks': ck, 'contact': CONTACT, 'research': json.load(open('data/research.json')), 'history': [{'date': r.date, 'p': round(r.p_dem, 4), 'national': r.national} for r in hist.itertuples()]}
+    res = pd.read_csv('data/results.csv'); res = res[res.year >= 1976]; years = sorted(res.year.unique())      # how each state has voted, for its profile
+    wide = res.pivot(index='state', columns='year', values='dem2')
+    data['hist'] = {'years': [int(y) for y in years], 'nat': [round(float(res.nat2[res.year == y].iloc[0]), 2) for y in years],
+                    's': {s: [None if pd.isna(v) else round(float(v), 2) for v in wide.loc[s]] for s in wide.index}}
+    assert all(s['state'] in data['hist']['s'] for s in f['states']), 'a state on the map has no history'
     shapes = open('data/us-states.js').read(); shapes = shapes[shapes.index('window.US_STATES'):]
     fonts = ''
     for fam, file in (('Newsreader', 'newsreader-latin-wght-normal.woff2'), ('Instrument Sans', 'instrument-sans-latin-wght-normal.woff2')):

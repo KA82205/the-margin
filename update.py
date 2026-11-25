@@ -4,14 +4,15 @@ from electionbettingodds.com, reruns the 2028 forecast, adds the day to data/his
     python update.py            # fetch, then run
     python update.py --offline  # run on the copies already in data/
 
-The Fifty-Two Keys figures in data/inputs.json are entered by hand. If a fetch fails, yesterday's value is kept and the
-forecast is still rerun for today. A failed Nowcast fetch ends the script with an error so that it shows up; failed odds
+The Fifty-Two Keys count comes from that site's own feed (keys.json), which is rebuilt every week. If a fetch fails,
+yesterday's value is kept and the forecast is still rerun for today. A failed Nowcast fetch ends the script with an error so that it shows up; failed odds
 only print a warning, and the page goes on showing the date the odds were last read.
 """
 import datetime, json, re, shutil, sys, urllib.request, zoneinfo
 
 NOWCAST_URL = 'https://ka82205.github.io/tipping-point/nowcast.js'
 ODDS_URL = 'https://electionbettingodds.com/PresidentialParty2028.html'
+KEYS_URL = 'https://ka82205.github.io/fifty-two-keys/keys.json'
 ET = zoneinfo.ZoneInfo('America/New_York')
 
 def get(url):
@@ -28,6 +29,13 @@ def odds(html):
     d, r = first('DEM.png', 'REP.png'), first('REP.png')
     assert 0 < d < 100 and 0 < r < 100 and 85 <= d + r <= 100.5, f'odds do not look right: {d}, {r}'
     return d, r
+
+def keys(text):
+    """The count from the Fifty-Two Keys feed: the share of keys in the party's favor if every open key lands the way it
+    leans, and the spread of that site's run ahead."""
+    k = json.loads(text); index, sd = float(k['likely']['index']), float(k['sd'])
+    assert k['party_in_office'] == 'R' and 0 < index < 1 and 0.02 <= sd <= 0.3 and 0 <= int(k['likely']['in_favor']) <= int(k['keys']), 'the keys feed is not in the shape expected'
+    return round(index, 3), round(sd, 3), f"Fifty-Two Keys, {k['as_of']}: {k['likely']['in_favor']} of {k['keys']} keys in the Republicans' favor if each open key lands the way it leans"
 
 def parse(text):
     d = json.loads(re.search(r'=\s*(\{[\s\S]*\});?\s*$', text).group(1))
@@ -56,6 +64,10 @@ def main():
             inp['market_note'] = f"electionbettingodds.com, party to win the presidency, {now.strftime('%B')} {now.day}, {now.year}: Democrats {d}%, Republicans {r}%"
         except Exception as e:                       # keep the last price and its date
             print('::warning::Could not refresh the betting odds:', e)
+        try:
+            inp['keys'], inp['keys_sd'], inp['keys_note'] = keys(get(KEYS_URL))
+        except Exception as e:                       # keep the last count
+            print('::warning::Could not refresh the Fifty-Two Keys count:', e)
     inp['net_approval'] = round(float(nc['approval']['approve']) - float(nc['approval']['disapprove']), 1)
     json.dump(inp, open('data/inputs.json', 'w'), indent=1)
     import run_2028, make_page

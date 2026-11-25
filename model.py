@@ -164,7 +164,13 @@ def simulate(S, nat, s_nat, year, market=None, ev=None):
         sh[i] = m + eN + sd * (rs * eR[R[st]] + ids * rng.standard_normal(n))
     dem_ev = (evs[:, None] * (sh > 50)).sum(0); total = evs.sum()
     p = float((dem_ev > total / 2).mean() + 0.5 * (dem_ev == total / 2).mean())
-    S = S.assign(p_dem=(sh > 50).mean(1), ev=evs)
+    # the tipping point: line the states up from the winner's best to worst and count electoral votes; the state that takes the
+    # winner past half is the one that decided it
+    order = np.argsort(-sh, axis=0); col = np.arange(n)
+    first = lambda o: o[(np.cumsum(evs[o], axis=0) > total / 2).argmax(0), col]
+    dwin, rwin = dem_ev > total / 2, dem_ev < total / 2
+    tipped = np.where(dwin, first(order), first(order[::-1]))[dwin | rwin]
+    S = S.assign(p_dem=(sh > 50).mean(1), ev=evs, tip=np.bincount(tipped, minlength=len(S)) / max(1, len(tipped)))
     out = {'p_dem': p, 'p_model': p, 'ev_mean': float(dem_ev.mean()), 'ev_median': float(np.median(dem_ev)), 'ev_lo': float(np.percentile(dem_ev, 10)), 'ev_hi': float(np.percentile(dem_ev, 90)),
            'national': float(nat), 'national_sd': float(s_nat), 'states': S, 'ev_dist': np.bincount(dem_ev.astype(int), minlength=int(total) + 1) / n,
            'p_popular': float((nat + eN > 50).mean())}
