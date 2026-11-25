@@ -43,7 +43,9 @@ def score(out, res, year):
             'states_called': int(((S.p_dem > 0.5) == (won > 0.5)).sum()), 'of': int(len(S)), 'brier': float(((S.p_dem - won) ** 2).mean()),
             'states51_called': int(((S.p_dem > 0.5) == (won > 0.5))[two].sum()), 'brier51': float(((S.p_dem - won) ** 2)[two].mean()),
             'missed': sorted(S.index[(S.p_dem > 0.5) != (won > 0.5)]),
-            'cover80': float(((act >= S['mean'] - 1.2816 * np.sqrt(S.sd ** 2 + out['national_sd'] ** 2)) & (act <= S['mean'] + 1.2816 * np.sqrt(S.sd ** 2 + out['national_sd'] ** 2)))[two].mean())}
+            'cover80': float(((act >= S.lo) & (act <= S.hi))[two].mean()),           # the range as published: the 10th to the 90th of every hundred simulated results
+            'width80': float(2 * (S.hi - S.lo)[two].mean()),
+            'nat_in80': bool(out['national_lo'] <= r.nat2.iloc[0] <= out['national_hi'])}
 
 def implied():
     """Share of the vote each rating points to: three points a step from a toss-up; solid states are left alone."""

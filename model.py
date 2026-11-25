@@ -247,6 +247,16 @@ def ev_table(year, res):
     """Electoral votes in force for `year` (the previous election's unless the census has moved them)."""
     return dict(zip(res[res.year == year].state, res[res.year == year].ev))
 
+def bound(x):
+    """Keep simulated shares inside 0 to 100. The errors are drawn on an open scale, so a place as lopsided as the District
+    of Columbia could otherwise be handed more than every vote. A share past 90 is folded smoothly into the last ten points
+    (and one under 10 into the first ten), never reaching 100 or 0. Nothing between 10 and 90 is touched, and the fold
+    never moves a share across 50 or past another state's, so no chance, electoral count or tipping point changes."""
+    x = np.asarray(x, float)
+    x = np.where(x > 90, 100 - 10 * np.exp(-(np.maximum(x, 90) - 90) / 10), x)
+    return np.where(x < 10, 10 * np.exp((np.minimum(x, 10) - 10) / 10), x)
+
+
 def simulate(S, nat, s_nat, year, market=None, ev=None):
     rng = np.random.default_rng(SET['seed'] + year); n = SET['sims']; R = regions()
     df = SET['t_df']; eN = rng.standard_t(df, n) * s_nat / np.sqrt(df / (df - 2))
@@ -256,6 +266,7 @@ def simulate(S, nat, s_nat, year, market=None, ev=None):
     sh = np.empty((len(S), n))
     for i, (st, m, sd) in enumerate(zip(S.state, S['mean'], S.sd)):
         sh[i] = m + eN + sd * (rs * eR[R[st]] + ids * rng.standard_normal(n))
+    sh = bound(sh); natv = bound(nat + eN)
     dem_ev = (evs[:, None] * (sh > 50)).sum(0); total = evs.sum()
     p = float((dem_ev > total / 2).mean() + 0.5 * (dem_ev == total / 2).mean())
     # the tipping point: line the states up from the winner's best to worst and count electoral votes; the state that takes the
@@ -264,10 +275,12 @@ def simulate(S, nat, s_nat, year, market=None, ev=None):
     first = lambda o: o[(np.cumsum(evs[o], axis=0) > total / 2).argmax(0), col]
     dwin, rwin = dem_ev > total / 2, dem_ev < total / 2
     tipped = np.where(dwin, first(order), first(order[::-1]))[dwin | rwin]
-    S = S.assign(p_dem=(sh > 50).mean(1), ev=evs, tip=np.bincount(tipped, minlength=len(S)) / max(1, len(tipped)))
+    # the range given for each place is read off the simulated results themselves: the 10th and 90th of every hundred
+    lo, hi = np.percentile(sh, [10, 90], axis=1)
+    S = S.assign(p_dem=(sh > 50).mean(1), ev=evs, tip=np.bincount(tipped, minlength=len(S)) / max(1, len(tipped)), lo=lo, hi=hi)
     out = {'p_dem': p, 'p_model': p, 'ev_mean': float(dem_ev.mean()), 'ev_median': float(np.median(dem_ev)), 'ev_lo': float(np.percentile(dem_ev, 10)), 'ev_hi': float(np.percentile(dem_ev, 90)),
            'national': float(nat), 'national_sd': float(s_nat), 'states': S, 'ev_dist': np.bincount(dem_ev.astype(int), minlength=int(total) + 1) / n,
-           'p_popular': float((nat + eN > 50).mean())}
+           'p_popular': float((natv > 50).mean()), 'national_lo': float(np.percentile(natv, 10)), 'national_hi': float(np.percentile(natv, 90))}
     if market is not None:
         lo = lambda q: np.log(np.clip(q, 1e-4, 1 - 1e-4) / (1 - np.clip(q, 1e-4, 1 - 1e-4)))
         z = (1 - SET['market_weight']) * lo(p) + SET['market_weight'] * lo(market); out['p_dem'] = float(1 / (1 + np.exp(-z))); out['market'] = market

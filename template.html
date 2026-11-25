@@ -63,8 +63,11 @@ h1{font:500 clamp(40px,4.6vw,60px)/1.05 var(--serif);letter-spacing:-.02em;margi
 .snake-w{position:relative}
 .snake-w::after{content:"";position:absolute;left:50%;top:-4px;bottom:-4px;width:2px;margin-left:-1px;background:var(--ink)}
 .snake-l{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;line-height:16px;margin-top:8px}
-.ro{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;line-height:20px;color:var(--ink2);min-height:37px}
+.ro{display:grid;grid-template-rows:24px 20px 20px;gap:2px;height:85px;box-sizing:border-box;overflow:hidden;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;line-height:20px;color:var(--ink2)}
+.ro b,.ro span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .ro b{font:500 20px/24px var(--serif);color:var(--ink)}
+.ro i{font-style:normal}
+.even{color:var(--k4);font-weight:500}.pt.even{background:var(--k4)}
 .legend{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:12px;font-size:12px;line-height:16px;color:var(--muted)}
 .legend span,.chipsrow button{display:inline-flex;align-items:center;gap:8px}
 .legend i,.chipsrow i{width:12px;height:12px;border-radius:3px;flex:none}
@@ -403,22 +406,27 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   const F = DATA.f, B = DATA.back, C = DATA.checks, $ = id => document.getElementById(id);
   const pc = (x, d) => (100 * x).toFixed(d || 0) + '%', in100 = x => Math.round(100 * x) + ' in 100';
   const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
-  const mg = sh => Math.abs(sh - 50) < 0.025 ? 'Even' : (sh >= 50 ? 'D+' : 'R+') + Math.abs(2 * (sh - 50)).toFixed(1);
-  const cls = sh => sh >= 50 ? 'dem' : 'rep';
+  // One routine for every margin shown, in points (+ Democratic). A margin that rounds to 0.0 is written "0.0", with no
+  // party letter or sign, and takes the neutral toss-up color: the text and the color come from the same rounding.
+  const side = v => { const r = Math.round(Math.abs(v) * 10); return r === 0 ? 0 : (v > 0 ? 1 : -1); };
+  const pts = v => side(v) === 0 ? '0.0' : (side(v) > 0 ? 'D+' : 'R+') + (Math.round(Math.abs(v) * 10) / 10).toFixed(1);
+  const pcl = v => side(v) === 0 ? 'even' : side(v) > 0 ? 'dem' : 'rep';
+  const mg = sh => pts(2 * (sh - 50)), cls = sh => pcl(2 * (sh - 50));
   const longDate = s => new Date(s + 'T12:00:00').toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric'});
   const tipEl = $('tip');
   const tipShow = (e, html) => { tipEl.innerHTML = html; tipEl.hidden = false; const r = tipEl.getBoundingClientRect(); let x = e.clientX + 14, y = e.clientY + 16;
     if (x + r.width > innerWidth - 8) x = e.clientX - r.width - 14; if (y + r.height > innerHeight - 8) y = e.clientY - r.height - 14; tipEl.style.left = Math.max(8, x) + 'px'; tipEl.style.top = Math.max(8, y) + 'px'; };
   const tipHide = () => { tipEl.hidden = true; };
   const hover = (el, fn) => { el.addEventListener('pointermove', e => tipShow(e, fn(e))); el.addEventListener('pointerleave', tipHide); };
-  const lo80 = s => s.mean - 1.2816 * s.sd, hi80 = s => s.mean + 1.2816 * s.sd;
+  // the range of a place: the 10th and 90th of every hundred simulated results, as the forecast file gives them
+  const lo80 = s => s.lo, hi80 = s => s.hi, rangeOf = s => (isFinite(s.lo) && isFinite(s.hi)) ? mg(s.hi) + ' to ' + mg(s.lo) : 'not available';
   const ST = {}; F.states.forEach(s => ST[s.state] = s);
 
   // ---- top
   const p = F.p_dem, lead = p >= 0.5 ? 'Democrats' : 'Republicans', q = Math.max(p, 1 - p);
   const word = q >= 0.9 ? 'are strong favorites' : q >= 0.75 ? 'are favored' : q >= 0.6 ? 'are modest favorites' : q >= 0.55 ? 'have a slight edge' : null;
   $('headline').textContent = word ? lead + ' ' + word + ' to win the White House in 2028' : 'The 2028 race for the White House is a toss-up';
-  $('stand').textContent = 'Two years out and with no nominees, the Democratic candidate wins ' + in100(p) + ' simulated elections. That is a lean, not a call.';
+  $('stand').textContent = 'Two years out and with no nominees, the forecast gives the Democratic candidate ' + in100(p) + ': ' + in100(F.p_model) + ' simulated elections, moved a quarter of the way toward the betting markets\' ' + in100(F.market) + '. That is a lean, not a call.';
   $('dateline').textContent = 'Updated ' + longDate(F.as_of) + ' · ' + F.days_out + ' days to the election';
   $('top').innerHTML = '<div class="dn"><span>Democrats win</span><strong>' + Math.round(100 * p) + '</strong><em>in 100</em></div><div class="rn"><span>Republicans win</span><strong>' + Math.round(100 * (1 - p)) + '</strong><em>in 100</em></div>';
   $('odds').innerHTML = '<i class="bd" style="flex:' + p + '"></i><i class="br" style="flex:' + (1 - p) + '"></i>';
@@ -430,23 +438,23 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 
   // ---- ruler
   (function () {
-    const lim = 16, m0 = -2 * (F.national - 50), half = 2 * 1.2816 * F.national_sd, c = F.national >= 50 ? 'var(--d)' : 'var(--r)';
+    const lim = 16, m0 = -2 * (F.national - 50), mD = -2 * (F.national_hi - 50), mR = -2 * (F.national_lo - 50), half = (mR - mD) / 2, c = side(-m0) === 0 ? 'var(--k4)' : F.national >= 50 ? 'var(--d)' : 'var(--r)';
     const draw = (W, H, every, k) => { const L = 14, R = 14, y0 = H - 30, X = m => L + (m + lim) / (2 * lim) * (W - L - R);
       let s = '<svg class="' + k + '" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Projected national margin ' + mg(F.national) + ', give or take ' + half.toFixed(1) + ' points">';
-      s += '<rect x="' + X(Math.max(m0 - half, -lim)) + '" y="' + (y0 - 26) + '" width="' + (X(Math.min(m0 + half, lim)) - X(Math.max(m0 - half, -lim))) + '" height="26" fill="var(--band)"/>';
+      s += '<rect x="' + X(Math.max(mD, -lim)) + '" y="' + (y0 - 26) + '" width="' + (X(Math.min(mR, lim)) - X(Math.max(mD, -lim))) + '" height="26" fill="var(--band)"/>';
       for (let m = -lim; m <= lim; m++) { const big = m % 4 === 0, h = m === 0 ? 30 : big ? 16 : 8;
         s += '<line class="rt" x1="' + X(m) + '" x2="' + X(m) + '" y1="' + y0 + '" y2="' + (y0 - h) + '" stroke-width="' + (m === 0 ? 2 : 1) + '"/>';
         if (m % every === 0) s += '<text class="' + (m === 0 ? 'rz' : 'rx') + '" x="' + X(m) + '" y="' + (y0 + 18) + '" text-anchor="' + (m === -lim ? 'start' : m === lim ? 'end' : 'middle') + '">' + (m === 0 ? 'Even' : (m < 0 ? 'D+' : 'R+') + Math.abs(m)) + '</text>'; }
       s += '<line class="rt" x1="' + L + '" x2="' + (W - R) + '" y1="' + y0 + '" y2="' + y0 + '"/>';
       return s + '<path d="M' + X(m0) + ' ' + (y0 - 3) + 'l-7 -14h14z" fill="' + c + '"/><text x="' + X(m0) + '" y="' + (y0 - 36) + '" text-anchor="middle" style="font:600 15px var(--sans);fill:' + c + '">' + mg(F.national) + '</text></svg>'; };
     $('ruler').innerHTML = draw(680, 96, 4, 'r-w') + draw(360, 96, 8, 'r-s');
-    $('ruler-sub').textContent = 'Democrats are projected to win the national vote by ' + Math.abs(2 * (F.national - 50)).toFixed(1) + ' points, but anything from ' + mg(F.national + 1.2816 * F.national_sd) + ' to ' + mg(F.national - 1.2816 * F.national_sd) + ' is in range.';
+    $('ruler-sub').textContent = 'Democrats are projected to win the national vote by ' + Math.abs(2 * (F.national - 50)).toFixed(1) + ' points, but anything from ' + mg(F.national_hi) + ' to ' + mg(F.national_lo) + ' is in range.';
   })();
 
   // ---- map, snake, state panel
   const BINS = [[0.95, 'Safe D'], [0.8, 'Likely D'], [0.65, 'Lean D'], [0.55, 'Tilt D'], [0.45, 'Toss-up'], [0.35, 'Tilt R'], [0.2, 'Lean R'], [0.05, 'Likely R'], [-1, 'Safe R']];
   const bin = x => BINS.findIndex(b => x >= b[0]), COL = BINS.map((b, i) => 'var(--k' + i + ')');
-  const tipS = s => '<b>' + esc(s.name) + '</b> · ' + s.ev + (s.ev === 1 ? ' vote' : ' votes') + '<br>Democrats win ' + in100(s.p_dem) + '<br>Projected ' + mg(s.mean) + ' (' + mg(hi80(s)) + ' to ' + mg(lo80(s)) + ')';
+  const tipS = s => '<b>' + esc(s.name) + '</b> · ' + s.ev + (s.ev === 1 ? ' vote' : ' votes') + '<br>Democrats win ' + in100(s.p_dem) + '<br>Projected ' + mg(s.mean) + '<br>Four times in five: ' + rangeOf(s);
   let sel = F.tipping_point;
   let m = '<svg viewBox="0 0 975 610" role="img" aria-label="Map of the states shaded by the chance the Democratic nominee wins each">';
   F.states.forEach(s => { const sh = window.US_STATES[s.state]; if (sh) m += '<path data-s="' + s.state + '" d="' + sh.d + '" fill="' + COL[bin(s.p_dem)] + '"/>'; });
@@ -461,11 +469,12 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   const paint = () => { all().forEach(el => el.classList.toggle('sel', el.dataset.s === sel)); const s = ST[sel];
     $('sp').innerHTML = '<h4>' + esc(s.name) + '</h4><div class="ev">' + s.ev + (s.ev === 1 ? ' electoral vote' : ' electoral votes') + ' · ' + BINS[bin(s.p_dem)][1].replace(' D', ' Democratic').replace(' R', ' Republican') + '</div>' +
       '<div class="big ' + (s.p_dem >= 0.5 ? 'dem' : 'rep') + '">' + Math.round(100 * Math.max(s.p_dem, 1 - s.p_dem)) + '<small>in 100 for the ' + (s.p_dem >= 0.5 ? 'Democrats' : 'Republicans') + '</small></div>' +
-      '<dl><dt>Projected margin</dt><dd class="' + cls(s.mean) + '">' + mg(s.mean) + '</dd><dt>Four times in five</dt><dd>' + mg(hi80(s)) + ' to ' + mg(lo80(s)) + '</dd><dt>2024 result</dt><dd>' + mg(s.r2024) + '</dd><dt>2020 result</dt><dd>' + mg(s.r2020) +
-      '</dd><dt>Lean against the nation</dt><dd>' + (s.lean >= 0 ? 'D+' : 'R+') + Math.abs(2 * s.lean).toFixed(1) + '</dd><dt>Tipping Point state model</dt><dd>' + mg(s.nowcast) + '</dd><dt>State polls so far</dt><dd>None</dd></dl>' +
+      '<dl><dt>Projected margin</dt><dd class="' + cls(s.mean) + '">' + mg(s.mean) + '</dd><dt>Four times in five</dt><dd>' + rangeOf(s) + '</dd><dt>2024 result</dt><dd>' + mg(s.r2024) + '</dd><dt>2020 result</dt><dd>' + mg(s.r2020) +
+      '</dd><dt>Lean against the nation</dt><dd>' + pts(2 * s.lean) + '</dd><dt>Tipping Point state model</dt><dd>' + mg(s.nowcast) + '</dd><dt>State polls so far</dt><dd>None</dd></dl>' +
       '<p>The projection is the average of two starting points: the national number plus this state\'s lean, and the Tipping Point model. State polls will pull it from there once there are any.</p>' +
       '<p><a href="#states/' + s.state + '">Full profile of ' + esc(s.name) + '</a></p>'; };
-  const ro = st => { const s = ST[st]; $('ro').innerHTML = '<b>' + esc(s.name) + '</b><span>' + s.ev + (s.ev === 1 ? ' electoral vote' : ' electoral votes') + '</span><span>Democrats win ' + in100(s.p_dem) + '</span><span class="' + cls(s.mean) + '">' + mg(s.mean) + '</span><span>range ' + mg(hi80(s)) + ' to ' + mg(lo80(s)) + '</span>'; };
+  // three lines of fixed height, the same for every place, so nothing around the readout moves when its text changes
+  const ro = st => { const s = ST[st]; $('ro').innerHTML = '<b>' + esc(s.name) + '</b><span>' + s.ev + (s.ev === 1 ? ' electoral vote' : ' electoral votes') + ' · Democrats win ' + in100(s.p_dem) + '</span><span>Projected <i class="' + cls(s.mean) + '">' + mg(s.mean) + '</i> · range ' + rangeOf(s) + '</span>'; };
   const pick = st => { sel = st; paint(); ro(st); document.querySelectorAll('[data-r]').forEach(el => el.classList.toggle('on', el.dataset.r === st)); };
   all().forEach(el => { hover(el, () => tipS(ST[el.dataset.s])); el.addEventListener('click', () => pick(el.dataset.s));
     el.addEventListener('pointerenter', () => { ro(el.dataset.s); $('map-svg').classList.add('dim'); document.querySelectorAll('#map-svg [data-s="' + el.dataset.s + '"]').forEach(x => x.classList.add('hot')); });
@@ -474,7 +483,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   const lim = 20, pos = sh => Math.max(0, Math.min(100, 50 + (-2 * (sh - 50)) / (2 * lim) * 100));
   $('strips').innerHTML = '<div class="strip h"><span>State</span><span class="n">Votes</span><span>Projected margin and range</span><span class="n">Margin</span><span class="n">Democrats win</span></div>' +
     F.states.slice().sort((a, b) => Math.abs(a.mean - 50) - Math.abs(b.mean - 50)).slice(0, 12).map(s => { const a = pos(hi80(s)), b = pos(lo80(s));
-      return '<button class="strip" data-r="' + s.state + '"><span class="nm">' + esc(s.name) + '</span><span class="n">' + s.ev + '</span><span class="trk"><i class="rg" style="left:' + a + '%;width:' + (b - a) + '%"></i><i class="pt ' + cls(s.mean) + '" style="left:' + pos(s.mean) + '%"></i></span><span class="n ' + cls(s.mean) + '">' + mg(s.mean) + '</span><span class="n">' + in100(s.p_dem) + '</span></button>'; }).join('');
+      return '<button class="strip" data-r="' + s.state + '"><span class="nm">' + esc(s.name) + '</span><span class="n">' + s.ev + '</span><span class="trk"><i class="rg" style="left:' + a + '%;width:' + (b - a) + '%"></i><i class="pt ' + cls(s.mean) + '" style="left:' + (cls(s.mean) === 'even' ? 50 : pos(s.mean)) + '%"></i></span><span class="n ' + cls(s.mean) + '">' + mg(s.mean) + '</span><span class="n">' + in100(s.p_dem) + '</span></button>'; }).join('');
   document.querySelectorAll('[data-r]').forEach(el => { hover(el, () => tipS(ST[el.dataset.r])); el.addEventListener('click', () => pick(el.dataset.r)); });
   pick(sel);
 
@@ -562,7 +571,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 
   // ---- back-test
   const fin = B.final, right = fin.filter(r => r.called).length, demWon = r => r.ev_actual >= 270;
-  const natm = sh => (sh >= 50 ? 'D+' : 'R+') + Math.abs(2 * (sh - 50)).toFixed(1);
+  const natm = mg;
   const inside = fin.filter(r => r.ev_actual >= r.ev_lo && r.ev_actual <= r.ev_hi).length, natMiss = fin.reduce((a, r) => a + Math.abs(2 * (r.national - r.national_actual)), 0) / fin.length;
   $('p-record').innerHTML = 'The model was run as it would have stood before each election from 2008 to 2024, using only polls that had finished and equations fitted on earlier elections. On the last day it favored the winner in ' + right + ' of ' + fin.length +
     ' and missed 2016. The national margin was off by ' + natMiss.toFixed(1) + ' points on average, each time in the Democrats\' favor, as the polls were. The electoral-vote result fell inside its range in ' + inside + ' of ' + fin.length + '.';
@@ -635,7 +644,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
       D.map((d, i) => '<circle data-pe="' + i + '" cx="' + X(d.days) + '" cy="' + Y(d[k[0]]) + '" r="5" fill="' + k[1] + '" stroke="var(--bg)" stroke-width="2"/>').join('') + '<text class="axb" x="' + (X(1) + 12) + '" y="' + (Y(eve[k[0]]) + 4) + '" style="fill:' + k[1] + '">' + k[2] + ' ' + eve[k[0]].toFixed(1) + '</text>'; });
     $('pe').innerHTML = s + '</svg>';
     document.querySelectorAll('[data-pe]').forEach(c => hover(c, () => { const d = D[+c.dataset.pe]; return '<b>' + (d.days === 1 ? 'Last day' : d.days + ' days out') + '</b><br>National average off by ' + d.national.toFixed(1) + '<br>State averages off by ' + d.states.toFixed(1) + '<br>' + d.elections + ' elections'; }));
-    const sd = v => (v >= 0 ? 'D+' : 'R+') + Math.abs(v).toFixed(1), big = P.by_year.reduce((a, b) => Math.abs(b.miss) > Math.abs(a.miss) ? b : a);
+    const sd = pts, big = P.by_year.reduce((a, b) => Math.abs(b.miss) > Math.abs(a.miss) ? b : a);
     $('p-pe2').innerHTML = 'The polls do not lean one way. In these ' + P.years + ' elections the final national average was too favorable to the Democrat ' + P.by_year.filter(r => r.miss >= 0.05).length + ' times and to the Republican ' + P.by_year.filter(r => r.miss <= -0.05).length + ' times, and the misses average out to ' + sd(P.mean_signed).replace('D+', '').replace('R+', '') +
       ' points. The largest was ' + big.year + ', when the average was ' + Math.abs(big.miss).toFixed(1) + ' points too favorable to the ' + (big.miss > 0 ? 'Democrat' : 'Republican') + '. From one election to the next the miss has changed direction more often than it has repeated.';
     $('pey').innerHTML = '<tr><th>Election</th><th class="n">Polls</th><th class="n">Result</th><th class="n">Miss</th><th>Polls were too favorable to</th></tr>' +
@@ -672,14 +681,13 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   // ---- the states: a profile for each
   let stSel = null;
   const RATE = i => BINS[i][1].replace(' D', ' Democratic').replace(' R', ' Republican');
-  const pts = v => (v >= 0 ? 'D+' : 'R+') + Math.abs(v).toFixed(1);
   const evs = n => n + (n === 1 ? ' electoral vote' : ' electoral votes');
   const byMargin = F.states.slice().sort((a, b) => b.mean - a.mean), tipRank = F.states.slice().sort((a, b) => b.tip - a.tip).map(x => x.state);
   $('st-sel').innerHTML = F.states.slice().sort((a, b) => a.name.localeCompare(b.name)).map(x => '<option value="' + x.state + '">' + esc(x.name) + '</option>').join('');
   $('st-strip').innerHTML = byMargin.map(x => '<button type="button" data-st="' + x.state + '" style="flex:' + x.ev + ' 0 0;background:' + COL[bin(x.p_dem)] + '" aria-label="' + esc(x.name) + ', ' + RATE(bin(x.p_dem)) + '"></button>').join('');
   $('st-all').innerHTML = '<thead><tr><th>State</th><th class="n">Electoral votes</th><th>Rating</th><th class="n">Democrats win</th><th class="n">Projected margin</th><th class="n">Four times in five</th><th class="n">Decides the election</th></tr></thead><tbody>' +
     byMargin.map(x => '<tr data-st="' + x.state + '"><td><a href="#states/' + x.state + '">' + esc(x.name) + '</a></td><td class="n">' + x.ev + '</td><td><i class="dot" style="background:' + COL[bin(x.p_dem)] + '"></i>' + RATE(bin(x.p_dem)) + '</td><td class="n">' + in100(x.p_dem) +
-      '</td><td class="n ' + cls(x.mean) + '">' + mg(x.mean) + '</td><td class="n">' + mg(hi80(x)) + ' to ' + mg(lo80(x)) + '</td><td class="n">' + (x.tip < 0.005 ? 'under 1 in 100' : in100(x.tip)) + '</td></tr>').join('') + '</tbody>';
+      '</td><td class="n ' + cls(x.mean) + '">' + mg(x.mean) + '</td><td class="n">' + rangeOf(x) + '</td><td class="n">' + (x.tip < 0.005 ? 'under 1 in 100' : in100(x.tip)) + '</td></tr>').join('') + '</tbody>';
   function showState(st) {
     stSel = st; const x = ST[st], Hd = DATA.hist, hs = Hd.s[st], b = bin(x.p_dem), lead = x.p_dem >= 0.5, rank = tipRank.indexOf(st) + 1;
     $('st-sel').value = st; document.querySelectorAll('#st-strip button,#st-all tr').forEach(el => el.classList.toggle('on', el.dataset.st === st));
@@ -706,9 +714,9 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     const first = rows[0], last = rows[rows.length - 1], drift = (last.m - last.nat) - (first.m - first.nat);
     $('st-prof').innerHTML = '<div class="st-head"><div><h3 class="st-name">' + esc(x.name) + '</h3><p class="st-sub"><i class="dot" style="background:' + COL[b] + '"></i>' + RATE(b) + ' · ' + evs(x.ev) + '</p></div>' +
       '<div class="st-big ' + (lead ? 'dem' : 'rep') + '">' + Math.round(100 * Math.max(x.p_dem, 1 - x.p_dem)) + '<small>in 100 for the ' + (lead ? 'Democrats' : 'Republicans') + '</small></div></div>' +
-      '<dl class="st-facts"><div><dt>Projected margin</dt><dd class="' + cls(x.mean) + '">' + mg(x.mean) + '</dd><p>Four times in five it falls between ' + mg(hi80(x)) + ' and ' + mg(lo80(x)) + '</p></div>' +
+      '<dl class="st-facts"><div><dt>Projected margin</dt><dd class="' + cls(x.mean) + '">' + mg(x.mean) + '</dd><p>Four times in five: ' + rangeOf(x) + '</p></div>' +
       '<div><dt>Decides the election</dt><dd>' + (x.tip < 0.005 ? 'Under 1 in 100' : in100(x.tip)) + '</dd><p>' + (rank <= 5 ? 'The ' + ord[rank] + ' likely state to carry the winner past 270' : 'How often it carries the winner past 270') + '</p></div>' +
-      '<div><dt>Against the nation</dt><dd class="' + (x.lean >= 0 ? 'dem' : 'rep') + '">' + pts(2 * x.lean) + '</dd><p>Its lean, from the last two elections. In ' + first.y + ' it was ' + pts(first.m - first.nat) + '</p></div>' +
+      '<div><dt>Against the nation</dt><dd class="' + pcl(2 * x.lean) + '">' + pts(2 * x.lean) + '</dd><p>Its lean, from the last two elections. In ' + first.y + ' it was ' + pts(first.m - first.nat) + '</p></div>' +
       '<div><dt>Since ' + first.y + '</dt><dd>' + demWins + ' of ' + rows.length + '</dd><p>Elections carried by the Democrats. In 2024: ' + mg(x.r2024) + '</p></div></dl>' +
       '<div class="st-charts"><figure><b>How ' + esc(x.name) + ' has voted</b><div class="sub">Margin between the two parties. The black tick is the national margin; the yellow band is the range for 2028</div>' + g + '</figure>' +
       '<figure><b>Against the nation</b><div class="sub">The state\'s margin less the national margin. ' + (Math.abs(drift) < 3 ? 'Little changed' : 'It has moved ' + Math.abs(drift).toFixed(0) + ' points toward the ' + (drift > 0 ? 'Democrats' : 'Republicans')) + ' since ' + first.y + '</div>' + l + '</svg></figure></div>' +

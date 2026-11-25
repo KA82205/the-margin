@@ -167,7 +167,11 @@ down before the back-test was scored and none is fitted to the five elections it
 5. **Uncertainty.** A national error with fat tails, a regional error and a state error. Their sizes come from how far
    FiveThirtyEight's published polling averages of 1972-2016 stood from the result at each distance from the election,
    and from how far states have landed from their leans, using only elections before the one being forecast.
-6. **Simulation.** 40,000 elections; Maine and Nebraska split by district; a 269-269 tie counts as half a win.
+6. **Simulation.** 40,000 elections; Maine and Nebraska split by district; a 269-269 tie counts as half a win. The
+   errors are drawn on an open scale, so a simulated share past 90 (or under 10) is folded smoothly into the last ten
+   points and none passes 100 or 0 (`model.bound`). Nothing between 10 and 90 is touched and no share is moved across
+   50, so no chance or electoral count changes; in practice only the District of Columbia is affected. The range shown
+   for a place is the 10th to the 90th of every hundred simulated results, not a normal curve drawn around its middle.
 7. **Betting markets.** The market's chance is pooled with the model's at 25%, on the log-odds scale. The markets are one
    of four sources (polls, fundamentals, state models, markets), so they get one share in four; not more, because prices
    already lean on the same polls, the 2028 markets are thinly traded, and this weight is not back-tested yet. At 0% the

@@ -44,6 +44,7 @@ jobs:
           python tests/test_model.py
           python tests/test_polls.py
           python tests/test_update.py
+          node tests/test_page.js
 
       # Reads every source and compares with what the last forecast was made from. Nothing new: nothing is run or saved.
       - name: Read the sources and run the forecast if anything is new

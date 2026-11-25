@@ -75,6 +75,31 @@ def test_early_state_polls_stay_under_the_ceiling():
     kw2, _, _ = setup(2024, 1); assert abs(float(M.curve(kw2['timeline']['state'], 1) / M.curve(kw2['timeline']['state'], 1)) - 1) < 1e-12      # no ceiling on the last day
 
 
+def test_every_number_is_a_possible_one():
+    """No share outside 0 to 100, no margin outside -100 to +100, ranges in order, and the counts add up: in the forecast
+    file, and in a made-up map with places as lopsided as can be, both ways."""
+    import json
+    assert M.bound(50) == 50 and np.allclose(M.bound(np.array([10, 37.5, 90])), [10, 37.5, 90])           # nothing between 10 and 90 is touched
+    x = np.linspace(-500, 600, 200001); y = M.bound(x)
+    assert (np.diff(y) >= 0).all() and y.min() >= 0 and y.max() <= 100 and ((x > 50) == (y > 50)).all()      # in order, in bounds, and never across the middle
+    J = json.load(open('data/forecast_2028.json')); S = J['states']
+    assert len(S) == 56 and sum(s['ev'] for s in S) == 538
+    for s in S:
+        assert 0 <= s['lo'] <= s['mean'] <= s['hi'] <= 100 and 0 <= s['p_dem'] <= 1, s
+        assert -100 <= 2 * (s['lo'] - 50) <= 2 * (s['hi'] - 50) <= 100, s
+    assert 0 <= J['national_lo'] < J['national'] < J['national_hi'] <= 100
+    assert abs(sum(J['ev_dist']) - 1) < 1e-3 and len(J['ev_dist']) == 539
+    assert abs(J['ev_mean'] - sum(s['ev'] * s['p_dem'] for s in S)) < 0.05                                   # expected electoral votes agree with the state chances
+    assert abs(J['p_model'] - (sum(J['ev_dist'][270:]) + 0.5 * J['ev_dist'][269])) < 2e-3                    # the chance is the share of simulated counts past 269, a tie counting half
+    assert J['ev_lo'] <= J['ev_median'] <= J['ev_hi'] and 0 < J['p_dem'] < 1 and 0 < J['p_popular'] < 1
+    lop = pd.DataFrame([{'state': s, 'ev': 3, 'mean': m, 'sd': 4.0, 'poll': None, 'poll_weight': 0.0, 'poll_share': 0.0, 'prior': m}
+                        for s, m in (('DC', 99.5), ('WY', 0.5), ('VT', 97.0), ('OK', 3.0), ('PA', 50.0), ('NC', 49.99))])
+    out = M.simulate(lop, 50.0, 3.0, 2028)['states'].set_index('state')
+    assert (out.lo >= 0).all() and (out.hi <= 100).all() and (out.lo <= out.hi).all()
+    assert out.hi['DC'] < 100 and out.lo['WY'] > 0 and abs((out.hi['DC'] - 50) + (out.lo['WY'] - 50)) < 0.6     # the two ends are treated alike
+    assert out.p_dem['DC'] == 1 and out.p_dem['WY'] == 0 and 0.4 < out.p_dem['PA'] < 0.6
+
+
 if __name__ == '__main__':
     for name, fn in sorted(globals().items()):
         if name.startswith('test_') and callable(fn):
