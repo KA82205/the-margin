@@ -8,7 +8,9 @@ on:
   repository_dispatch:
     # Sent by Fifty-Two Keys and by Tipping Point the moment one of them publishes something new (needs the
     # DISPATCH_TOKEN secret in those two repositories; without it the hourly run above picks the change up).
-    types: [upstream-updated]
+    # heartbeat: "check now", sent by the other two sites when this one has not checked for most of an hour, or by an
+    # outside scheduler (RUNBOOK.md). It is treated exactly as a scheduled run.
+    types: [upstream-updated, heartbeat]
   workflow_dispatch:
     inputs:
       check:
@@ -55,7 +57,7 @@ jobs:
         run: |
           case "${{ github.event_name }}" in
             workflow_dispatch) if [ "$CHECK" = "true" ]; then python update.py; else python update.py --force; fi ;;
-            repository_dispatch) python update.py --wait 240 ;;
+            repository_dispatch) if [ "${{ github.event.action }}" = "heartbeat" ]; then python update.py; else python update.py --wait 240; fi ;;
             *) python update.py ;;
           esac
 

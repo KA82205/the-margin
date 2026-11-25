@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Margin: how the three sites have been running</title>
+<style>
+:root{--bg:#fff;--ink:#111827;--ink2:#4b5565;--muted:#6b7487;--line:rgba(17,24,39,.12);--ok:#2f5fb3;--warn:#c8402f}
+@media (prefers-color-scheme:dark){:root{--bg:#0b0d14;--ink:#eef0f5;--ink2:#a3a9b8;--muted:#7a8296;--line:rgba(238,240,245,.14);--ok:#6f9be8;--warn:#e8776a}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/24px system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:920px;margin:0 auto;padding:32px 16px 64px}h1{font:600 28px/36px Georgia,serif;margin:0 0 8px}h2{font:600 18px/24px inherit;margin:40px 0 4px}
+p{color:var(--ink2);margin:0 0 12px;max-width:70ch}a{color:inherit}.fine{font-size:14px;line-height:20px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 24px;margin:12px 0}.cards strong{display:block;font:500 20px/28px inherit}.cards span{font-size:13px;line-height:18px;color:var(--muted);display:block}
+table{border-collapse:collapse;width:100%;font-size:14px;line-height:20px}th,td{text-align:left;padding:6px 12px 6px 0;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--muted);font-weight:400}
+.scroll{overflow-x:auto}.bad{color:var(--warn);font-weight:500}.good{color:var(--ok);font-weight:500}
+@media (max-width:640px){.cards{grid-template-columns:1fr 1fr}}
+</style></head><body><main>
+<p class="fine"><a href="./">The Margin</a></p>
+<h1>How the three sites have been running</h1>
+<p>Read live from GitHub's public record of runs each time this page is opened. A run marked <b>schedule</b> is one GitHub started by itself; <b>notification</b> is one site telling another; <b>by hand</b> and <b>push</b> are a person. A check that finds nothing new is still a successful run: it just saves nothing.</p>
+<p class="fine" id="note"></p>
+<div id="out"></div>
+<p class="fine">GitHub allows a visitor about sixty of these readings an hour. If the tables are empty, wait and reload.</p>
+</main>
+<script>
+(function () {
+  const SITES = [['the-margin', 'The Margin', 'update.yml'], ['fifty-two-keys', 'Fifty-Two Keys', 'update.yml'], ['tipping-point', 'Tipping Point', 'update.yml']];
+  const KIND = {schedule: 'schedule', repository_dispatch: 'notification', workflow_dispatch: 'by hand', push: 'push'};
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+  const when = t => new Date(t).toLocaleString('en-US', {month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'});
+  const ago = t => { const m = Math.round((Date.now() - new Date(t)) / 60000); return m < 90 ? m + ' minutes ago' : m < 2880 ? Math.round(m / 60) + ' hours ago' : Math.round(m / 1440) + ' days ago'; };
+  document.getElementById('note').textContent = 'Read at ' + when(new Date()) + ', your time.';
+  SITES.forEach(([repo, name, wf]) => {
+    const box = document.createElement('section'); box.innerHTML = '<h2>' + name + '</h2><p class="fine">Reading…</p>'; document.getElementById('out').appendChild(box);
+    fetch('https://api.github.com/repos/KA82205/' + repo + '/actions/workflows/' + wf + '/runs?per_page=100').then(r => { if (!r.ok) throw new Error('GitHub answered ' + r.status); return r.json(); }).then(j => {
+      const runs = j.workflow_runs || [], day = 864e5, now = Date.now(), sched = runs.filter(r => r.event === 'schedule'), in24 = sched.filter(r => now - new Date(r.created_at) < day), in7 = sched.filter(r => now - new Date(r.created_at) < 7 * day);
+      const ok = runs.filter(r => r.conclusion === 'success'), gaps = in7.slice(0, -1).map((r, i) => (new Date(r.created_at) - new Date(in7[i + 1].created_at)) / 60000).sort((a, b) => a - b), mid = gaps.length ? Math.round(gaps[Math.floor(gaps.length / 2)]) : null;
+      const failed = runs.filter(r => now - new Date(r.created_at) < 7 * day && r.conclusion === 'failure').length, lastAny = runs[0], stale = lastAny && now - new Date(lastAny.created_at) > 3 * 3600e3;
+      box.innerHTML = '<h2>' + name + '</h2><div class="cards"><div><strong class="' + (stale ? 'bad' : 'good') + '">' + (lastAny ? ago(lastAny.created_at) : 'never') + '</strong><span>last run of any kind</span></div>' +
+        '<div><strong class="' + (in24.length ? 'good' : 'bad') + '">' + in24.length + '</strong><span>runs GitHub started by itself in the last 24 hours</span></div>' +
+        '<div><strong>' + in7.length + (mid != null ? ' · ' + mid + ' min' : '') + '</strong><span>in the last 7 days' + (mid != null ? ', and the usual gap between them' : '') + '</span></div>' +
+        '<div><strong class="' + (failed ? 'bad' : '') + '">' + failed + '</strong><span>runs that ended as failed in the last 7 days</span></div></div>' +
+        '<div class="scroll"><table><tr><th>Started</th><th>Started by</th><th>Ended</th><th>Record</th></tr>' + runs.slice(0, 12).map(r => '<tr><td>' + when(r.created_at) + '</td><td>' + (KIND[r.event] || esc(r.event)) + '</td><td class="' + (r.conclusion === 'failure' ? 'bad' : '') + '">' + esc(r.conclusion || r.status) + '</td><td><a href="' + esc(r.html_url) + '" rel="noopener">open</a></td></tr>').join('') + '</table></div>' +
+        '<p class="fine" style="margin-top:8px">' + (sched.length ? 'Last scheduled run: ' + when(sched[0].created_at) + '.' : 'No scheduled run among the last ' + runs.length + '.') + ' <a href="https://github.com/KA82205/' + repo + '/actions" rel="noopener">The whole record</a></p>';
+    }).catch(e => { box.innerHTML = '<h2>' + name + '</h2><p class="fine">Could not be read just now (' + esc(e.message) + ').</p>'; });
+  });
+})();
+</script></body></html>
