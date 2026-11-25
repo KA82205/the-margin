@@ -229,9 +229,9 @@ national polls moves a typical state by about 0.18 points. The candidate's map m
 
 **What is known.** Erikson and Wlezien's work on the timeline of presidential elections finds that polls at the start
 of the election year bear almost no relation to the result and that the relation tightens through the campaign as
-voters come into line with the fundamentals; Wlezien and Erikson (2002) put the typical gap between poll leads and the
-result at about 6.5 points 200 days out and 2.2 at the end, and Jennings, Lewis-Beck and Wlezien put the useful lead
-time of a forecast at two to three months. `timeline.py` measures the same thing on the record in hand:
+voters come into line with the fundamentals. Wlezien and Erikson put the typical gap between the polls and the result
+at about 6.5 points 200 days out and 2.2 at the end, and Jennings, Lewis-Beck and Wlezien put the useful lead time of
+a forecast at two to three months. `timeline.py` measures the same thing on the record in hand:
 FiveThirtyEight's published polling averages for 1972 to 2016 and this model's own for 2020 and 2024.
 
 | Days before the election | 1 | 7 | 14 | 30 | 60 | 90 | 120 | 150 | 200 | 250 |
@@ -443,8 +443,8 @@ The sources were checked directly on November 25, 2026.
 - **RealClearPolling** listed national pairings only among its 2028 general-election races. It is not read: its data
   are not openly licensed.
 
-Found today: 108 general-election questions in the feed, 35 national polls and **5 polls of single states** (AK, NC, NV, PA),
-8 questions in all. 1 meets the rules. The rest: 3 no named candidates (a generic ballot); 1 paid for by a party or a campaign; 1 Barack Obama cannot be elected again; 1 Donald Trump cannot be elected again; 1 Josh Shapiro's own state, while the nominees are not known.
+Found today: 108 general-election questions in the feed, 35 national polls and **5 polls of single states** (AK, NC, NV, PA)
+with 8 questions between them. Polls that meet the rules: 1. Questions set aside: 3 for "no named candidates (a generic ballot)"; 1 for "Barack Obama cannot be elected again"; 1 for "paid for by a party or a campaign"; 1 for "Josh Shapiro's own state, while the nominees are not known"; 1 for "Donald Trump cannot be elected again".
 
 So there were state polls, and the forecast was not retrieving them: it read only the Nowcast's national list. They are
 now read, placed, counted once and listed on each state's page with the reason each is or is not usable

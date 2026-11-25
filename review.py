@@ -286,9 +286,9 @@ national polls moves a typical state by about {pub_states_load:.2f} points. The 
 
 **What is known.** Erikson and Wlezien's work on the timeline of presidential elections finds that polls at the start
 of the election year bear almost no relation to the result and that the relation tightens through the campaign as
-voters come into line with the fundamentals; Wlezien and Erikson (2002) put the typical gap between poll leads and the
-result at about 6.5 points 200 days out and 2.2 at the end, and Jennings, Lewis-Beck and Wlezien put the useful lead
-time of a forecast at two to three months. `timeline.py` measures the same thing on the record in hand:
+voters come into line with the fundamentals. Wlezien and Erikson put the typical gap between the polls and the result
+at about 6.5 points 200 days out and 2.2 at the end, and Jennings, Lewis-Beck and Wlezien put the useful lead time of
+a forecast at two to three months. `timeline.py` measures the same thing on the record in hand:
 FiveThirtyEight's published polling averages for 1972 to 2016 and this model's own for 2020 and 2024.
 
 {record}
@@ -390,8 +390,8 @@ The sources were checked directly on November 25, 2026.
 - **RealClearPolling** listed national pairings only among its 2028 general-election races. It is not read: its data
   are not openly licensed.
 
-Found today: {f['general_election_questions']} general-election questions in the feed, {f['national_polls']} national polls and **{f['state_polls']} polls of single states** ({', '.join(f['states_polled'])}),
-{f['state_questions']} questions in all. {f['usable_state_polls']} meets the rules. The rest: {'; '.join(f'{v} {k}' for k, v in f['not_usable'].items())}.
+Found today: {f['general_election_questions']} general-election questions in the feed, {f['national_polls']} national polls and **{f['state_polls']} polls of single states** ({', '.join(f['states_polled'])})
+with {f['state_questions']} questions between them. Polls that meet the rules: {f['usable_state_polls']}. Questions set aside: {'; '.join(f'{v} for "{k}"' for k, v in f['not_usable'].items())}.
 
 So there were state polls, and the forecast was not retrieving them: it read only the Nowcast's national list. They are
 now read, placed, counted once and listed on each state's page with the reason each is or is not usable
