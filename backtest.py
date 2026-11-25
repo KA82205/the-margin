@@ -19,7 +19,7 @@ show"):
     - betting odds are not in the back-test: checkable election-eve odds for 2008-2024 have not been collected.
 
     python backtest.py                 the published forecast (writes data/backtest.csv, data/backtest_states.csv)
-    python backtest.py candidate       the candidate under review (writes data/backtest_candidate.csv)
+    python backtest.py candidate       the candidate under review (writes data/backtest_candidate.csv); also hybrid, structural
 """
 import json, sys
 import numpy as np, pandas as pd
@@ -27,7 +27,7 @@ import model as M, fundamentals as F
 
 DAYS = [120, 90, 60, 30, 14, 7, 1]
 YEARS = [2008, 2012, 2016, 2020, 2024]
-VERSIONS = {'published': {}, 'candidate': M.CANDIDATE}
+VERSIONS = {'published': {}, 'candidate': M.CANDIDATE, 'hybrid': M.HYBRID, 'structural': M.STRUCTURAL}
 
 def load():
     res = pd.read_csv('data/results.csv'); polls = pd.read_csv('data/polls.csv', parse_dates=['end']); errs = pd.read_csv('data/average_errors.csv')
@@ -75,10 +75,10 @@ def run(days=DAYS, ratings=False, settings=None, keep_states=False, version='pub
             asof = pd.Timestamp(M.ELECTION[y]) - pd.Timedelta(days=d)
             # the candidate's prior holds the long-range model, which is built on the national polls of the October before:
             # as long as those still weigh in the polling average they are counted once, not twice (model.long_range_weight)
-            weight, carried = M.long_range_weight(y, asof, tl, polls) if need_timeline else (1.0, 0.0)
-            prior = {'fundamentals': fd, 'three_models': F.three_models(E, D, K, weight),
-                     'four_models': (E + D + K + parts['approval_model']) / 4}[M.SET['national_prior']]      # four_models: a check only, the approval equation as a fourth
-            carried = {'fundamentals': 0.0, 'three_models': carried, 'four_models': 0.75 * carried}[M.SET['national_prior']]
+            kind = M.SET['national_prior']; n_other = 3 if kind == 'four_models' else 2
+            weight, carried = M.long_range_weight(y, asof, tl, polls, others=n_other) if need_timeline and kind in ('three_models', 'four_models') else (1.0 if kind != 'structural' else 0.0, 0.0)
+            prior = {'fundamentals': fd, 'three_models': F.three_models(E, D, K, weight), 'four_models': F.four_models(E, D, K, parts['approval_model'], weight),
+                     'structural': F.four_models(E, None, K, parts['approval_model'])}[kind]
             # the second figure is the prior's error. Under the 'timeline' rule the error of the whole mix comes from the record
             # and this is only what the prior's inputs may still drift by: nothing here, they are each year's final inputs.
             # Under the published rule it is the fundamentals forecast's own error, whichever prior is being tried.
@@ -88,7 +88,7 @@ def run(days=DAYS, ratings=False, settings=None, keep_states=False, version='pub
             if keep_states and d == 1:
                 r = res[res.year == y].set_index('state')
                 for q in out['states'].itertuples():
-                    states.append({'year': y, 'state': q.state, 'p_dem': q.p_dem, 'mean': q.mean, 'actual': float(r.dem2[q.state]), 'poll_weight': q.poll_weight})
+                    states.append({'year': y, 'state': q.state, 'p_dem': q.p_dem, 'mean': q.mean, 'actual': float(r.dem2[q.state]), 'poll_weight': q.poll_weight, 'lo': q.lo, 'hi': q.hi})
     M.SET.clear(); M.SET.update(old)
     R = pd.DataFrame(rows)
     return (R, pd.DataFrame(states)) if keep_states else R
@@ -98,7 +98,7 @@ def summary(R):
                                  brier=('brier', 'mean'), cover80=('cover80', 'mean'), poll_share=('poll_share', 'mean')).sort_index(ascending=False)
 
 if __name__ == '__main__':
-    version = 'candidate' if 'candidate' in sys.argv else 'published'
+    version = next((v for v in VERSIONS if v in sys.argv), 'published')
     R, ST = run(keep_states=True, version=version)
     pd.set_option('display.width', 250)
     print(version)
@@ -108,4 +108,4 @@ if __name__ == '__main__':
     if version == 'published':
         ST.to_csv('data/backtest_states.csv', index=False); R.drop(columns=['missed']).to_csv('data/backtest.csv', index=False)
     else:
-        R.drop(columns=['missed']).to_csv('data/backtest_candidate.csv', index=False)
+        R.drop(columns=['missed']).to_csv(f'data/backtest_{version}.csv', index=False)

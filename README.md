@@ -133,6 +133,7 @@ python state_geography_check.py # the state models: their national level and the
 python timeline.py              # what the polls have been worth at each distance, and the curves that follow
 python validate_phase_in.py     # the phase-in of polls tested near the election, far from it, and under a flood
 python review.py                # REVIEW.md, from the files the scripts above wrote
+python status.py                # STATUS.md: where things stand, the hybrid's evidence, the ranges, the open decisions
 python polls.py                 # the state polls; writes data/state_polls.json (--offline to rebuild from the saved feed)
 python run_2028.py              # the forecast for the date in data/inputs.json; writes data/forecast_2028.json, data/history.csv
 python update.py                # the update: read, compare, and if anything is new run_2028, archive, make_page
@@ -201,6 +202,19 @@ tested in `REVIEW.md`. It is not on the page; it is in `data/forecast_2028.json`
   out, 43% at 120 days, all of it on the last day).
 - **State models** give only where they place a state against their own national figure, since their national level
   is already in the national number.
+
+### The hybrid
+
+A third forecast is run the same way: `model.HYBRID`, in `data/forecast_2028.json` under `candidate.hybrid` and in two more
+columns of `data/history.csv`. It is the candidate with the approval equation kept, as the published forecast keeps it. Its
+national prior is the Nowcast's approval-and-economy model, the Fifty-Two Keys line and the approval equation, a third
+each; the long-range model joins as a fourth equal part once the polls it is built on exist. Nothing else differs from the
+candidate, and no weight in it was fitted. `STATUS.md` sets it against the published forecast at ten distances from the
+election and gives a recommendation. Neither it nor the candidate is the published forecast.
+
+`STATUS.md` (written by `status.py`) is the standing report: what is official and what is under review, the evidence, how
+the ranges have held up, and the decisions that are open. `RUNBOOK.md` says how the three sites are kept running: what
+starts each run, the two secrets, what a failed run means, and what is still done by hand.
 
 ## Back-test, 2008-2024
 

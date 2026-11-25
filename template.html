@@ -343,8 +343,10 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   <div class="mix" id="mix"></div>
   <div class="wbar" id="wbar"></div>
   <div id="funnel"></div>
-  <figcaption>Projected with the model's own error tables, assuming 2028 is polled about as heavily as past elections. The range never closes: on the last day the national polling average has still missed by about two points of vote share in a typical year.</figcaption>
+  <figcaption>Projected with the model's own error tables, assuming 2028 is polled about as heavily as past elections and that the allowance for approval and the keys still moving runs down to nothing by the end of June 2028, when both are final. The range never closes: on the last day the national polling average has still missed by about two points of vote share in a typical year.</figcaption>
 </figure>
+<div class="col" id="sister"><h2>Three sites, three questions</h2><p>The Margin reads two sister sites, and neither of them reads The Margin. Each answers a different question, so the three figures below are not the same kind of number: a count of conditions is not a chance of winning, and a share of the vote is not one either.</p></div>
+<figure class="mid"><div class="scroll"><table id="sis"></table></div><figcaption id="sis-cap"></figcaption></figure>
 <div class="col"><h2>Sources and limits</h2>
   <p class="fine">The Margin is a personal, non-commercial project. It checks its sources every hour and reruns the forecast when a poll, the odds or one of its sources has changed. Polls of past elections come from FiveThirtyEight's archive and the model data The Economist published; polling averages for 1972 to 2016 come from FiveThirtyEight's public data; expert ratings are Cook Political Report's and Sabato's Crystal Ball's; results are official counts. The fundamentals use the Fifty-Two Keys count, and the national head-to-head polls, state starting points and presidential approval come from the Tipping Point Nowcast, which reads its polls from VoteHub and from PollResults.org. Polls of single states are read from PollResults.org, which serves The New York Times's poll data. Both sets of poll data are used under the CC BY 4.0 license; The Margin is not affiliated with or endorsed by VoteHub, PollResults.org or The New York Times. <span id="src-market"></span> The code and data are in the repository.</p>
   <p class="fine">Limits worth knowing: pollsters are not rated, so each counts the same apart from sample size and recency. Betting odds are in the 2028 number but not in the back-tests, because election-eve odds for 2008 to 2024 still have to be collected from sources that can be checked. The Fifty-Two Keys count for a past year uses that year's final data. The back-tests include Tipping Point's state-level models, but with one forecast for each year standing in for every day of it, and for 2020 the approval model's entry is the forecast its authors published then, made with an earlier version of the model.</p>
@@ -499,7 +501,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     [0, 100, 200, 300, 400, 500].forEach(v => { s += '<text class="ax" x="' + (L + v / step * bw) + '" y="' + (H - 6) + '" text-anchor="' + (v ? 'middle' : 'start') + '">' + v + '</text>'; });
     $('hist').innerHTML = s + '</svg>';
     document.querySelectorAll('[data-b]').forEach(g => hover(g, () => { const b = bins[+g.dataset.b]; return '<b>' + b.a + ' to ' + (b.a + step - 1) + ' electoral votes</b><br>' + pc(b.v, 1) + ' of simulations<br>Democrats get ' + b.a + ' or more: ' + pc(b.up) ; }));
-    $('hist-cap').textContent = 'Four simulations in five land between ' + Math.round(F.ev_lo) + ' and ' + Math.round(F.ev_hi) + '. The spread is wide because states move together: when the polls miss in one, they usually miss the same way in many.';
+    $('hist-cap').textContent = 'Four simulations in five land between ' + Math.round(F.ev_lo) + ' and ' + Math.round(F.ev_hi) + '. The spread is wide because states move together: when the polls miss in one, they usually miss the same way in many.' + (F.p_tie != null ? ' A 269 to 269 tie comes up in ' + (F.p_tie < 0.0005 ? 'fewer than 1' : Math.round(1000 * F.p_tie)) + ' of 1,000 simulations and counts as half a win for each side. The Democrats win the most votes and lose the Electoral College in ' + in100(F.p_vote_not_college) + '; the reverse happens in ' + in100(F.p_college_not_vote) + '.' : '');
   })();
 
   // ---- narrowing
@@ -808,6 +810,18 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     navh(); window.addEventListener('resize', navh);
     window.addEventListener('hashchange', go); go(); })();
   $('src-market').textContent = 'Betting odds: ' + F.inputs.market_note + '.';
+  (function () {
+    const I = F.inputs, U = F.upstream || {}, K = U.fifty_two_keys || {}, T = U.tipping_point || {};
+    const link = (u, t) => '<a href="' + u + '" rel="noopener">' + t + '</a>';
+    const rows = [
+      [link('https://ka82205.github.io/fifty-two-keys/', 'Fifty-Two Keys'), 'How many of 52 yes-or-no conditions favor the party in the White House', pc(I.keys) + ' of the count, if each open key lands the way it leans',
+       (K.settled != null ? K.settled + ' keys called, ' + K.unresolved + ' open. ' : '') + 'Under one half points to the party in office losing. It is not a chance of winning'],
+      [link('https://ka82205.github.io/tipping-point/', 'Tipping Point'), 'The Democratic share of the two-party vote, from two published academic models', I.nowcast_national.toFixed(1) + '% (' + mg(I.nowcast_national) + ')',
+       'Its own simulation gives the Democrats ' + in100(I.nowcast_p_dem) + '. Its long-range model is run early, on polls taken before the ones it is built for'],
+      ['The Margin', 'The chance each party wins the Electoral College', in100(F.p_dem) + ' for the Democrats; national vote ' + mg(F.national), in100(F.p_model) + ' simulated elections, moved a quarter of the way toward betting markets']];
+    $('sis').innerHTML = '<tr><th>Site</th><th>What it measures</th><th>Now</th><th>How to read it</th></tr>' + rows.map(r => '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td></tr>').join('');
+    $('sis-cap').textContent = 'Read ' + (K.as_of ? 'from Fifty-Two Keys as of ' + K.as_of + ' and ' : '') + 'from Tipping Point as of ' + longDate(String(T.as_of || I.nowcast_as_of).slice(0, 10)) + '. The Margin rereads both at every check and reruns when either has changed.';
+  })();
   if (DATA.contact) { const c = '<a href="' + esc(DATA.contact.url) + '" rel="noopener">' + esc(DATA.contact.label) + '</a>'; $('contact').innerHTML = 'Questions or corrections: ' + c; $('foot-contact').innerHTML = c; }
   $('asof').textContent = 'Forecast of ' + longDate(F.as_of);
 })();

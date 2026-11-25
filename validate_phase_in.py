@@ -32,7 +32,8 @@ VARIANTS = {
     'candidate, polls by the published rule': dict(M.CANDIDATE, poll_weight='precision', state_poll_weight='volume'),
     'candidate, published national prior': dict(M.CANDIDATE, national_prior='fundamentals'),
     'candidate, state models as published': dict(M.CANDIDATE, state_model_mode='share'),
-    'candidate, approval equation as a fourth model': dict(M.CANDIDATE, national_prior='four_models'),
+    'candidate, approval equation as a fourth model': M.HYBRID,          # the hybrid
+    'structural': M.STRUCTURAL,                                          # the hybrid without the long-range model
 }
 
 
@@ -71,11 +72,12 @@ def far():
         hindsight    the model as it finally stood, built on polls that had not yet been taken
     In the middle two the polls are counted once: the average gets only what the model does not already carry."""
     rows = []
-    def candidate(y, asof, tl, E, D, K, before, **kw):
-        old = dict(M.SET); M.SET.update(M.CANDIDATE, long_range_before=before)
+    def candidate(y, asof, tl, E, D, K, before, A=None, **kw):
+        old = dict(M.SET); M.SET.update(M.CANDIDATE if A is None else M.HYBRID, long_range_before=before)
         try:
-            weight, load = M.long_range_weight(y, asof, tl, polls)
-            out, info = M.forecast(y, asof, polls, fund=(F.three_models(E, D, K, weight), 0.0), timeline=tl, pairing_spread=None, prior_poll_load=load, **kw)
+            weight, load = M.long_range_weight(y, asof, tl, polls, others=2 if A is None else 3)
+            prior = F.three_models(E, D, K, weight) if A is None else F.four_models(E, D, K, A, weight)
+            out, info = M.forecast(y, asof, polls, fund=(prior, 0.0), timeline=tl, pairing_spread=None, prior_poll_load=load, **kw)
         finally:
             M.SET.clear(); M.SET.update(old)
         return out, info, weight
@@ -88,7 +90,8 @@ def far():
             if M.Polls(polls, y).national(asof)[0] is None: continue
             Dd = early_long_range(y, asof, D); live = asof < pd.Timestamp(f'{y - 1}{M.LONG_RANGE_FIXED}')
             got = {'published': M.forecast(y, asof, polls, res, tables, (fd, fsd), ev=ev, extra_prior=extra) + (None,),
-                   'candidate': candidate(y, asof, tl, E, Dd, K, 'out', **kw), 'in_part': candidate(y, asof, tl, E, Dd, K, 'part', **kw), 'in_full': candidate(y, asof, tl, E, Dd, K, 'full', **kw)}
+                   'candidate': candidate(y, asof, tl, E, Dd, K, 'out', **kw), 'in_part': candidate(y, asof, tl, E, Dd, K, 'part', **kw), 'in_full': candidate(y, asof, tl, E, Dd, K, 'full', **kw),
+                   'hybrid': candidate(y, asof, tl, E, Dd, K, 'out', A=parts['approval_model'], **kw)}
             old = dict(M.SET); M.SET.update(M.CANDIDATE)
             got['hindsight'] = M.forecast(y, asof, polls, fund=(F.three_models(E, D, K), 0.0), timeline=tl, **kw) + (1.0,)
             M.SET.clear(); M.SET.update(old)
@@ -104,7 +107,7 @@ def far():
                                          'start': round(float((2 * (St.prior - nat - a)).abs().mean()), 2), 'polls': round(float((2 * (St.poll - nat - a)).abs().mean()), 2),
                                          'blend': round(float((2 * (St['mean'] - nat - a)).abs().mean()), 2)}
             rows.append(row)
-    live = [r for r in rows if r['long_range_live']]; names = ('published', 'candidate', 'in_part', 'in_full', 'hindsight')
+    live = [r for r in rows if r['long_range_live']]; names = ('published', 'candidate', 'hybrid', 'in_part', 'in_full', 'hindsight')
     mean = lambda rs: {k: round(float(np.mean([abs(r[k]['miss']) for r in rs])), 2) for k in names}
     return {'rows': rows, 'before_its_polls_existed': {'dates': len(live), 'all': mean(live), 'by_year': {y: dict(mean([r for r in live if r['year'] == y]), dates=len([r for r in live if r['year'] == y])) for y in (2016, 2020, 2024)}}}
 

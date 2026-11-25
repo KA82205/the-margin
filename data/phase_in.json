@@ -276,7 +276,7 @@
     "favored": 4,
     "p_winner": 0.683,
     "brier": 0.0414,
-    "cover80": 0.898,
+    "cover80": 0.894,
     "poll_share": 0.651,
     "by_year": {
      "2008": 1.81,
@@ -293,7 +293,7 @@
     "favored": 4,
     "p_winner": 0.649,
     "brier": 0.0476,
-    "cover80": 0.886,
+    "cover80": 0.875,
     "poll_share": 0.609,
     "by_year": {
      "2008": 1.85,
@@ -327,7 +327,7 @@
     "favored": 3,
     "p_winner": 0.632,
     "brier": 0.0489,
-    "cover80": 0.953,
+    "cover80": 0.945,
     "poll_share": 0.429,
     "by_year": {
      "2008": 1.61,
@@ -344,7 +344,7 @@
     "favored": 4,
     "p_winner": 0.64,
     "brier": 0.0534,
-    "cover80": 0.933,
+    "cover80": 0.929,
     "poll_share": 0.359,
     "by_year": {
      "2008": 2.51,
@@ -361,7 +361,7 @@
     "favored": 4,
     "p_winner": 0.716,
     "brier": 0.0496,
-    "cover80": 0.949,
+    "cover80": 0.945,
     "poll_share": 0.309,
     "by_year": {
      "2008": 3.17,
@@ -395,7 +395,7 @@
     "favored": 4,
     "p_winner": 0.633,
     "brier": 0.0529,
-    "cover80": 0.945,
+    "cover80": 0.941,
     "poll_share": 0.232,
     "by_year": {
      "2008": 2.72,
@@ -412,7 +412,7 @@
     "favored": 4,
     "p_winner": 0.694,
     "brier": 0.054,
-    "cover80": 0.941,
+    "cover80": 0.937,
     "poll_share": 0.161,
     "by_year": {
      "2008": 3.3,
@@ -431,7 +431,7 @@
     "favored": 4,
     "p_winner": 0.684,
     "brier": 0.0405,
-    "cover80": 0.91,
+    "cover80": 0.902,
     "poll_share": 0.67,
     "by_year": {
      "2008": 0.63,
@@ -448,7 +448,7 @@
     "favored": 4,
     "p_winner": 0.673,
     "brier": 0.0425,
-    "cover80": 0.906,
+    "cover80": 0.898,
     "poll_share": 0.652,
     "by_year": {
      "2008": 0.68,
@@ -465,7 +465,7 @@
     "favored": 4,
     "p_winner": 0.641,
     "brier": 0.0491,
-    "cover80": 0.871,
+    "cover80": 0.851,
     "poll_share": 0.62,
     "by_year": {
      "2008": 0.58,
@@ -482,7 +482,7 @@
     "favored": 4,
     "p_winner": 0.677,
     "brier": 0.0479,
-    "cover80": 0.906,
+    "cover80": 0.898,
     "poll_share": 0.534,
     "by_year": {
      "2008": -0.47,
@@ -533,7 +533,7 @@
     "favored": 4,
     "p_winner": 0.73,
     "brier": 0.0483,
-    "cover80": 0.933,
+    "cover80": 0.929,
     "poll_share": 0.223,
     "by_year": {
      "2008": 1.46,
@@ -584,7 +584,7 @@
     "favored": 4,
     "p_winner": 0.711,
     "brier": 0.0496,
-    "cover80": 0.945,
+    "cover80": 0.937,
     "poll_share": 0.077,
     "by_year": {
      "2008": 1.63,
@@ -603,7 +603,7 @@
     "favored": 4,
     "p_winner": 0.685,
     "brier": 0.0406,
-    "cover80": 0.91,
+    "cover80": 0.906,
     "poll_share": 0.692,
     "by_year": {
      "2008": 0.65,
@@ -620,7 +620,7 @@
     "favored": 4,
     "p_winner": 0.675,
     "brier": 0.042,
-    "cover80": 0.902,
+    "cover80": 0.886,
     "poll_share": 0.651,
     "by_year": {
      "2008": 0.74,
@@ -637,7 +637,7 @@
     "favored": 4,
     "p_winner": 0.638,
     "brier": 0.0486,
-    "cover80": 0.847,
+    "cover80": 0.839,
     "poll_share": 0.609,
     "by_year": {
      "2008": 0.64,
@@ -654,7 +654,7 @@
     "favored": 3,
     "p_winner": 0.662,
     "brier": 0.0471,
-    "cover80": 0.906,
+    "cover80": 0.898,
     "poll_share": 0.532,
     "by_year": {
      "2008": -0.5,
@@ -705,7 +705,7 @@
     "favored": 4,
     "p_winner": 0.71,
     "brier": 0.05,
-    "cover80": 0.949,
+    "cover80": 0.945,
     "poll_share": 0.309,
     "by_year": {
      "2008": 1.05,
@@ -739,7 +739,7 @@
     "favored": 4,
     "p_winner": 0.623,
     "brier": 0.0537,
-    "cover80": 0.945,
+    "cover80": 0.941,
     "poll_share": 0.232,
     "by_year": {
      "2008": 0.38,
@@ -775,7 +775,7 @@
     "favored": 4,
     "p_winner": 0.685,
     "brier": 0.0404,
-    "cover80": 0.91,
+    "cover80": 0.906,
     "poll_share": 0.67,
     "by_year": {
      "2008": 1.55,
@@ -792,7 +792,7 @@
     "favored": 4,
     "p_winner": 0.674,
     "brier": 0.0423,
-    "cover80": 0.906,
+    "cover80": 0.902,
     "poll_share": 0.652,
     "by_year": {
      "2008": 1.68,
@@ -809,7 +809,7 @@
     "favored": 4,
     "p_winner": 0.644,
     "brier": 0.0487,
-    "cover80": 0.871,
+    "cover80": 0.859,
     "poll_share": 0.62,
     "by_year": {
      "2008": 1.71,
@@ -826,7 +826,7 @@
     "favored": 4,
     "p_winner": 0.677,
     "brier": 0.0475,
-    "cover80": 0.906,
+    "cover80": 0.894,
     "poll_share": 0.534,
     "by_year": {
      "2008": 0.99,
@@ -843,7 +843,7 @@
     "favored": 3,
     "p_winner": 0.652,
     "brier": 0.0486,
-    "cover80": 0.937,
+    "cover80": 0.933,
     "poll_share": 0.39,
     "by_year": {
      "2008": 2.19,
@@ -877,7 +877,7 @@
     "favored": 4,
     "p_winner": 0.714,
     "brier": 0.0505,
-    "cover80": 0.929,
+    "cover80": 0.922,
     "poll_share": 0.223,
     "by_year": {
      "2008": 3.92,
@@ -894,7 +894,7 @@
     "favored": 4,
     "p_winner": 0.689,
     "brier": 0.0514,
-    "cover80": 0.933,
+    "cover80": 0.929,
     "poll_share": 0.176,
     "by_year": {
      "2008": 3.82,
@@ -911,7 +911,7 @@
     "favored": 4,
     "p_winner": 0.659,
     "brier": 0.0544,
-    "cover80": 0.929,
+    "cover80": 0.925,
     "poll_share": 0.126,
     "by_year": {
      "2008": 4.05,
@@ -928,7 +928,7 @@
     "favored": 4,
     "p_winner": 0.675,
     "brier": 0.0556,
-    "cover80": 0.933,
+    "cover80": 0.925,
     "poll_share": 0.078,
     "by_year": {
      "2008": 4.42,
@@ -947,7 +947,7 @@
     "favored": 4,
     "p_winner": 0.689,
     "brier": 0.0402,
-    "cover80": 0.914,
+    "cover80": 0.91,
     "poll_share": 0.67,
     "by_year": {
      "2008": 0.63,
@@ -964,7 +964,7 @@
     "favored": 4,
     "p_winner": 0.682,
     "brier": 0.0419,
-    "cover80": 0.914,
+    "cover80": 0.902,
     "poll_share": 0.652,
     "by_year": {
      "2008": 0.68,
@@ -981,7 +981,7 @@
     "favored": 4,
     "p_winner": 0.655,
     "brier": 0.0476,
-    "cover80": 0.89,
+    "cover80": 0.886,
     "poll_share": 0.62,
     "by_year": {
      "2008": 0.58,
@@ -998,7 +998,7 @@
     "favored": 4,
     "p_winner": 0.691,
     "brier": 0.0462,
-    "cover80": 0.922,
+    "cover80": 0.918,
     "poll_share": 0.534,
     "by_year": {
      "2008": -0.47,
@@ -1032,7 +1032,7 @@
     "favored": 4,
     "p_winner": 0.686,
     "brier": 0.0491,
-    "cover80": 0.937,
+    "cover80": 0.933,
     "poll_share": 0.29,
     "by_year": {
      "2008": 1.0,
@@ -1049,7 +1049,7 @@
     "favored": 4,
     "p_winner": 0.734,
     "brier": 0.0474,
-    "cover80": 0.953,
+    "cover80": 0.941,
     "poll_share": 0.223,
     "by_year": {
      "2008": 1.46,
@@ -1083,7 +1083,7 @@
     "favored": 4,
     "p_winner": 0.704,
     "brier": 0.0484,
-    "cover80": 0.957,
+    "cover80": 0.945,
     "poll_share": 0.126,
     "by_year": {
      "2008": 1.34,
@@ -1119,7 +1119,7 @@
     "favored": 4,
     "p_winner": 0.684,
     "brier": 0.0403,
-    "cover80": 0.914,
+    "cover80": 0.906,
     "poll_share": 0.67,
     "by_year": {
      "2008": 0.89,
@@ -1136,7 +1136,7 @@
     "favored": 4,
     "p_winner": 0.673,
     "brier": 0.0422,
-    "cover80": 0.918,
+    "cover80": 0.906,
     "poll_share": 0.652,
     "by_year": {
      "2008": 0.96,
@@ -1153,7 +1153,7 @@
     "favored": 4,
     "p_winner": 0.642,
     "brier": 0.0487,
-    "cover80": 0.878,
+    "cover80": 0.867,
     "poll_share": 0.62,
     "by_year": {
      "2008": 0.89,
@@ -1170,7 +1170,7 @@
     "favored": 4,
     "p_winner": 0.679,
     "brier": 0.0471,
-    "cover80": 0.914,
+    "cover80": 0.902,
     "poll_share": 0.534,
     "by_year": {
      "2008": -0.07,
@@ -1221,7 +1221,7 @@
     "favored": 4,
     "p_winner": 0.729,
     "brier": 0.0477,
-    "cover80": 0.933,
+    "cover80": 0.929,
     "poll_share": 0.223,
     "by_year": {
      "2008": 2.14,
@@ -1238,7 +1238,7 @@
     "favored": 4,
     "p_winner": 0.71,
     "brier": 0.0478,
-    "cover80": 0.941,
+    "cover80": 0.933,
     "poll_share": 0.176,
     "by_year": {
      "2008": 1.95,
@@ -1255,7 +1255,7 @@
     "favored": 4,
     "p_winner": 0.688,
     "brier": 0.0493,
-    "cover80": 0.933,
+    "cover80": 0.929,
     "poll_share": 0.126,
     "by_year": {
      "2008": 2.09,
@@ -1280,6 +1280,178 @@
      "2016": 0.6,
      "2020": 1.28,
      "2024": 1.49
+    }
+   }
+  },
+  "structural": {
+   "1": {
+    "national": 1.87,
+    "state": 3.7,
+    "called": 264,
+    "favored": 4,
+    "p_winner": 0.684,
+    "brier": 0.0404,
+    "cover80": 0.906,
+    "poll_share": 0.67,
+    "by_year": {
+     "2008": 1.4,
+     "2012": -0.84,
+     "2016": 1.93,
+     "2020": 2.76,
+     "2024": 2.42
+    }
+   },
+   "7": {
+    "national": 2.02,
+    "state": 3.85,
+    "called": 263,
+    "favored": 4,
+    "p_winner": 0.672,
+    "brier": 0.0423,
+    "cover80": 0.914,
+    "poll_share": 0.652,
+    "by_year": {
+     "2008": 1.51,
+     "2012": -0.81,
+     "2016": 2.42,
+     "2020": 2.89,
+     "2024": 2.48
+    }
+   },
+   "14": {
+    "national": 2.47,
+    "state": 4.3,
+    "called": 262,
+    "favored": 4,
+    "p_winner": 0.641,
+    "brier": 0.049,
+    "cover80": 0.863,
+    "poll_share": 0.62,
+    "by_year": {
+     "2008": 1.52,
+     "2012": -1.39,
+     "2016": 3.56,
+     "2020": 3.42,
+     "2024": 2.48
+    }
+   },
+   "30": {
+    "national": 2.28,
+    "state": 4.22,
+    "called": 261,
+    "favored": 4,
+    "p_winner": 0.678,
+    "brier": 0.0471,
+    "cover80": 0.91,
+    "poll_share": 0.534,
+    "by_year": {
+     "2008": 0.75,
+     "2012": 2.02,
+     "2016": 2.42,
+     "2020": 2.97,
+     "2024": 3.25
+    }
+   },
+   "60": {
+    "national": 1.68,
+    "state": 3.71,
+    "called": 262,
+    "favored": 4,
+    "p_winner": 0.651,
+    "brier": 0.0481,
+    "cover80": 0.937,
+    "poll_share": 0.39,
+    "by_year": {
+     "2008": 1.86,
+     "2012": 0.7,
+     "2016": 1.45,
+     "2020": 1.64,
+     "2024": 2.74
+    }
+   },
+   "90": {
+    "national": 1.93,
+    "state": 3.89,
+    "called": 265,
+    "favored": 4,
+    "p_winner": 0.672,
+    "brier": 0.0504,
+    "cover80": 0.925,
+    "poll_share": 0.29,
+    "by_year": {
+     "2008": 2.89,
+     "2012": 1.51,
+     "2016": 2.16,
+     "2020": 1.44,
+     "2024": 1.66
+    }
+   },
+   "120": {
+    "national": 1.83,
+    "state": 3.94,
+    "called": 262,
+    "favored": 4,
+    "p_winner": 0.72,
+    "brier": 0.0488,
+    "cover80": 0.929,
+    "poll_share": 0.223,
+    "by_year": {
+     "2008": 3.51,
+     "2012": 1.8,
+     "2016": 1.69,
+     "2020": 1.19,
+     "2024": 0.93
+    }
+   },
+   "150": {
+    "national": 1.74,
+    "state": 3.89,
+    "called": 264,
+    "favored": 4,
+    "p_winner": 0.7,
+    "brier": 0.049,
+    "cover80": 0.933,
+    "poll_share": 0.176,
+    "by_year": {
+     "2008": 3.39,
+     "2012": 1.87,
+     "2016": 1.35,
+     "2020": 0.68,
+     "2024": 1.4
+    }
+   },
+   "200": {
+    "national": 1.81,
+    "state": 3.99,
+    "called": 264,
+    "favored": 4,
+    "p_winner": 0.674,
+    "brier": 0.051,
+    "cover80": 0.925,
+    "poll_share": 0.126,
+    "by_year": {
+     "2008": 3.6,
+     "2012": 1.88,
+     "2016": 1.83,
+     "2020": 0.27,
+     "2024": 1.48
+    }
+   },
+   "250": {
+    "national": 1.79,
+    "state": 4.12,
+    "called": 262,
+    "favored": 4,
+    "p_winner": 0.69,
+    "brier": 0.0516,
+    "cover80": 0.933,
+    "poll_share": 0.078,
+    "by_year": {
+     "2008": 3.95,
+     "2012": 2.28,
+     "2016": 1.24,
+     "2020": 0.14,
+     "2024": 1.32
     }
    }
   }
@@ -1316,6 +1488,12 @@
      "prior": 3.88,
      "direct": 0.0,
      "total": 0.174
+    },
+    "hybrid": {
+     "miss": 1.6,
+     "prior": 0.99,
+     "direct": 0.041,
+     "total": 0.041
     },
     "hindsight": {
      "miss": 1.58,
@@ -1371,6 +1549,12 @@
      "direct": 0.0,
      "total": 0.174
     },
+    "hybrid": {
+     "miss": 1.37,
+     "prior": 0.99,
+     "direct": 0.047,
+     "total": 0.047
+    },
     "hindsight": {
      "miss": 1.35,
      "prior": 0.97,
@@ -1425,6 +1609,12 @@
      "direct": 0.0,
      "total": 0.174
     },
+    "hybrid": {
+     "miss": 0.96,
+     "prior": 0.99,
+     "direct": 0.056,
+     "total": 0.056
+    },
     "hindsight": {
      "miss": 0.94,
      "prior": 0.97,
@@ -1477,6 +1667,12 @@
      "miss": 0.97,
      "prior": 0.97,
      "direct": 0.002,
+     "total": 0.067
+    },
+    "hybrid": {
+     "miss": 0.28,
+     "prior": 0.28,
+     "direct": 0.019,
      "total": 0.067
     },
     "hindsight": {
@@ -1533,6 +1729,12 @@
      "direct": 0.075,
      "total": 0.082
     },
+    "hybrid": {
+     "miss": 0.36,
+     "prior": 0.28,
+     "direct": 0.077,
+     "total": 0.082
+    },
     "hindsight": {
      "miss": 1.01,
      "prior": 0.97,
@@ -1586,6 +1788,12 @@
      "prior": 4.14,
      "direct": 0.0,
      "total": 0.174
+    },
+    "hybrid": {
+     "miss": 0.29,
+     "prior": 0.07,
+     "direct": 0.027,
+     "total": 0.027
     },
     "hindsight": {
      "miss": 3.59,
@@ -1641,6 +1849,12 @@
      "direct": 0.0,
      "total": 0.174
     },
+    "hybrid": {
+     "miss": 0.16,
+     "prior": 0.07,
+     "direct": 0.031,
+     "total": 0.031
+    },
     "hindsight": {
      "miss": 3.45,
      "prior": 3.46,
@@ -1694,6 +1908,12 @@
      "prior": 3.48,
      "direct": 0.0,
      "total": 0.174
+    },
+    "hybrid": {
+     "miss": 0.2,
+     "prior": 0.07,
+     "direct": 0.035,
+     "total": 0.035
     },
     "hindsight": {
      "miss": 3.47,
@@ -1749,6 +1969,12 @@
      "direct": 0.0,
      "total": 0.174
     },
+    "hybrid": {
+     "miss": 0.31,
+     "prior": 0.07,
+     "direct": 0.04,
+     "total": 0.04
+    },
     "hindsight": {
      "miss": 3.57,
      "prior": 3.46,
@@ -1802,6 +2028,12 @@
      "prior": 3.5,
      "direct": 0.0,
      "total": 0.174
+    },
+    "hybrid": {
+     "miss": 0.24,
+     "prior": 0.07,
+     "direct": 0.046,
+     "total": 0.046
     },
     "hindsight": {
      "miss": 3.48,
@@ -1857,6 +2089,12 @@
      "direct": 0.0,
      "total": 0.174
     },
+    "hybrid": {
+     "miss": 0.26,
+     "prior": 0.07,
+     "direct": 0.054,
+     "total": 0.054
+    },
     "hindsight": {
      "miss": 3.47,
      "prior": 3.46,
@@ -1911,6 +2149,12 @@
      "direct": 0.0,
      "total": 0.116
     },
+    "hybrid": {
+     "miss": 1.33,
+     "prior": 1.33,
+     "direct": 0.0,
+     "total": 0.087
+    },
     "hindsight": {
      "miss": 3.51,
      "prior": 3.46,
@@ -1963,6 +2207,12 @@
      "miss": 3.4,
      "prior": 3.46,
      "direct": 0.061,
+     "total": 0.08
+    },
+    "hybrid": {
+     "miss": 1.4,
+     "prior": 1.33,
+     "direct": 0.066,
      "total": 0.08
     },
     "hindsight": {
@@ -2019,6 +2269,12 @@
      "direct": 0.0,
      "total": 0.174
     },
+    "hybrid": {
+     "miss": 1.69,
+     "prior": 1.68,
+     "direct": 0.03,
+     "total": 0.03
+    },
     "hindsight": {
      "miss": 2.24,
      "prior": 2.25,
@@ -2072,6 +2328,12 @@
      "prior": 2.68,
      "direct": 0.0,
      "total": 0.174
+    },
+    "hybrid": {
+     "miss": 1.7,
+     "prior": 1.68,
+     "direct": 0.034,
+     "total": 0.034
     },
     "hindsight": {
      "miss": 2.26,
@@ -2127,6 +2389,12 @@
      "direct": 0.0,
      "total": 0.174
     },
+    "hybrid": {
+     "miss": 1.7,
+     "prior": 1.68,
+     "direct": 0.038,
+     "total": 0.038
+    },
     "hindsight": {
      "miss": 2.25,
      "prior": 2.25,
@@ -2180,6 +2448,12 @@
      "prior": 2.59,
      "direct": 0.0,
      "total": 0.174
+    },
+    "hybrid": {
+     "miss": 1.67,
+     "prior": 1.68,
+     "direct": 0.044,
+     "total": 0.044
     },
     "hindsight": {
      "miss": 2.22,
@@ -2235,6 +2509,12 @@
      "direct": 0.0,
      "total": 0.174
     },
+    "hybrid": {
+     "miss": 1.68,
+     "prior": 1.68,
+     "direct": 0.051,
+     "total": 0.051
+    },
     "hindsight": {
      "miss": 2.22,
      "prior": 2.25,
@@ -2289,6 +2569,12 @@
      "direct": 0.0,
      "total": 0.174
     },
+    "hybrid": {
+     "miss": 1.6,
+     "prior": 1.68,
+     "direct": 0.06,
+     "total": 0.06
+    },
     "hindsight": {
      "miss": 2.14,
      "prior": 2.25,
@@ -2341,6 +2627,12 @@
      "miss": 2.21,
      "prior": 2.25,
      "direct": 0.019,
+     "total": 0.071
+    },
+    "hybrid": {
+     "miss": 1.8,
+     "prior": 1.86,
+     "direct": 0.033,
      "total": 0.071
     },
     "hindsight": {
@@ -2397,6 +2689,12 @@
      "direct": 0.075,
      "total": 0.087
     },
+    "hybrid": {
+     "miss": 1.66,
+     "prior": 1.86,
+     "direct": 0.078,
+     "total": 0.087
+    },
     "hindsight": {
      "miss": 1.99,
      "prior": 2.25,
@@ -2426,6 +2724,7 @@
    "all": {
     "published": 1.85,
     "candidate": 2.47,
+    "hybrid": 1.03,
     "in_part": 2.87,
     "in_full": 3.08,
     "hindsight": 2.55
@@ -2434,6 +2733,7 @@
     "2016": {
      "published": 2.19,
      "candidate": 2.64,
+     "hybrid": 1.31,
      "in_part": 2.82,
      "in_full": 2.98,
      "hindsight": 1.29,
@@ -2442,6 +2742,7 @@
     "2020": {
      "published": 1.35,
      "candidate": 2.72,
+     "hybrid": 0.24,
      "in_part": 3.3,
      "in_full": 3.6,
      "hindsight": 3.5,
@@ -2450,6 +2751,7 @@
     "2024": {
      "published": 2.19,
      "candidate": 2.14,
+     "hybrid": 1.67,
      "in_part": 2.47,
      "in_full": 2.61,
      "hindsight": 2.22,

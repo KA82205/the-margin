@@ -100,6 +100,39 @@ def test_every_number_is_a_possible_one():
     assert out.p_dem['DC'] == 1 and out.p_dem['WY'] == 0 and 0.4 < out.p_dem['PA'] < 0.6
 
 
+def test_the_versions_under_review_are_what_they_say_and_leave_the_published_one_alone():
+    """The hybrid is the candidate with the approval equation kept; the structural one has no long-range model at any date.
+    Neither changes a published setting, and the approval allowance keeps its published rule until a decision is made."""
+    import fundamentals as F
+    assert M.SET['national_prior'] == 'fundamentals' and M.SET['poll_weight'] == 'precision' and M.SET['state_model_mode'] == 'share' and M.SET['drift_rule'] == 'fixed'
+    assert {k: v for k, v in M.HYBRID.items() if k != 'national_prior'} == {k: v for k, v in M.CANDIDATE.items() if k != 'national_prior'} and M.HYBRID['national_prior'] == 'four_models'
+    assert F.four_models(52.0, 49.0, 53.0, 51.0, 0.0) == 52.0 and F.four_models(52.0, 49.0, 53.0, 51.0, 1.0) == 51.25 and F.four_models(52.0, None, 53.0, 51.0) == 52.0
+    assert F.three_models(52.0, 49.0, 53.0, 0.0) == 52.5                                # the candidate's prior is as it was
+    # the long-range model's polls are counted once: its share of the prior, times how far it moves with the polls
+    tl = {'national': (0.61, 100, 2.0)}
+    w3, l3 = M.long_range_weight(2028, '2028-06-01', tl, None, fixed=True); w4, l4 = M.long_range_weight(2028, '2028-06-01', tl, None, fixed=True, others=3)
+    assert (w3, w4) == (1.0, 1.0) and l3 == l4 == 0.0                                   # no polls in hand: nothing shared
+    assert M.long_range_weight(2028, '2026-11-25', tl, None, fixed=False, others=3) == (0.0, 0.0)      # before its polls exist it is left out
+
+
+def test_the_approval_allowance_by_the_calendar_and_the_vote_the_keys_point_to():
+    import run_2028 as R, fundamentals as F
+    assert R.approval_left(713) == 1.0 and R.approval_left(130) == 0.0 and R.approval_left(1) == 0.0 and R.approval_left(2000) == 1.0
+    assert 0 < R.approval_left(300) < R.approval_left(500) < 1
+    t = F.table(); base = dict(term1=1, deminc=0)
+    spread = [[0.30, 0.25], [0.40, 0.50], [0.50, 0.25]]
+    kv = R.keys_vote({'keys_dist': spread}, t, base)
+    line = lambda k: F.forecast(2028, t, juneapp=-30.0, keys=k, **base)[2]['keys_model']
+    assert abs(kv['mean'] - line(0.40)) < 0.1 and 0 <= kv['p10'] < kv['p50'] < kv['p90'] <= 100            # Democratic share: the middle of the spread, through the line
+    assert kv['sd'] > kv['equation_error'] > 0 and kv['sd'] > kv['from_count'] > 0                           # the two sources of doubt, and both together
+    assert abs(kv['sd'] ** 2 - kv['equation_error'] ** 2 - kv['from_count'] ** 2) < 0.6
+    one = R.keys_vote({'keys_dist': [[0.40, 1.0]]}, t, base)                                                 # every key called: only the line's own misses are left
+    assert one['from_count'] == 0 and abs(one['sd'] - one['equation_error']) < 0.1
+    rep = R.keys_vote({'keys_dist': spread}, t, dict(term1=1, deminc=1))                                     # a Democratic president: the same count now speaks for the Democrats
+    assert abs(rep['mean'] + kv['mean'] - 100) < 0.2
+    assert R.keys_vote({}, t, base)['from'] == 'the count and its spread only'
+
+
 if __name__ == '__main__':
     for name, fn in sorted(globals().items()):
         if name.startswith('test_') and callable(fn):

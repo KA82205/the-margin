@@ -47,6 +47,13 @@ def pairing_spread(nc):
 APPROVAL_RESPONSE = 0.30      # the approval model's published coefficient: points of vote for each point of approval
 DRIFT_FROM, DRIFT_TO = 713, 130   # the inputs' drift is sized for the 713 days then left, and is gone by late June 2028, when they are final
 
+def approval_left(days_out):
+    """The share of the approval allowance's variance still open at `days_out` under the 'calendar' rule: all of it at the
+    713 days the allowance was sized for, none from the end of June 2028 (130 days out), when June approval is a fact.
+    In between it falls in a straight line, so the allowance itself falls with the square root of the time left."""
+    return float(np.clip((days_out - DRIFT_TO) / (DRIFT_FROM - DRIFT_TO), 0, 1))
+
+
 def candidate(NOW, nc, polls, sp, res, errs, t, tables, ev, today):
     """The forecast under review, run on today's inputs. It is not the published forecast and is not shown as one.
 
@@ -70,17 +77,35 @@ def candidate(NOW, nc, polls, sp, res, errs, t, tables, ev, today):
     left = float(np.clip((d_out - DRIFT_TO) / (DRIFT_FROM - DRIFT_TO), 0, 1))
     dE = APPROVAL_RESPONSE * NOW['approval_drift'] / 2; dK = abs(line(km + NOW['keys_sd']) - K)
 
-    def run(before):
-        """The candidate with the long-range model treated, before its own polls exist, in one of the three ways."""
-        old = dict(M.SET); M.SET.update(M.CANDIDATE, long_range_before=before)
+    A = F.forecast(2028, t, juneapp=NOW['net_approval'], keys=km, **base)[2]['approval_model']          # the approval equation, as the published forecast runs it
+    dA = abs(F.forecast(2028, t, juneapp=NOW['net_approval'] + NOW['approval_drift'], keys=km, **base)[2]['approval_model'] - A)
+
+    def run(before, kind='three_models'):
+        """The candidate with the long-range model treated, before its own polls exist, in one of the three ways. kind:
+        'three_models' is the candidate; 'four_models' the hybrid, with the approval equation kept; 'structural' the hybrid
+        without the long-range model at any date."""
+        old = dict(M.SET); M.SET.update({'three_models': M.CANDIDATE, 'four_models': M.HYBRID, 'structural': M.STRUCTURAL}[kind], long_range_before=before)
         try:
-            weight, load = M.long_range_weight(2028, today, tl, polls, fixed) if D is not None else (0.0, 0.0)
-            S = F.three_models(E, D, K, weight) if D is not None else (E + K) / 2
-            drift = float(np.sqrt(left) * (dE + dK) / ((2 + weight) if D is not None else 2))
+            if kind == 'three_models':
+                weight, load = M.long_range_weight(2028, today, tl, polls, fixed) if D is not None else (0.0, 0.0)
+                S = F.three_models(E, D, K, weight) if D is not None else (E + K) / 2
+                drift = float(np.sqrt(left) * (dE + dK) / ((2 + weight) if D is not None else 2))
+            else:
+                weight, load = M.long_range_weight(2028, today, tl, polls, fixed, others=3) if (D is not None and kind == 'four_models') else (0.0, 0.0)
+                S = F.four_models(E, D if kind == 'four_models' else None, K, A, weight)
+                drift = float(np.sqrt(left) * (dE + dK + dA) / (3 + weight))            # approval moves all three together, so the three are added
             out, info = M.forecast(2028, today, allp, res, tables, (S, drift), market=NOW['market_dem'], extra_prior=extra, ev=ev, timeline=tl, pairing_spread=spread, prior_poll_load=load)
         finally:
             M.SET.clear(); M.SET.update(old)
         return out, info, S, drift, weight, load
+
+    def told(kind):
+        o, i, S_, drift_, w_, load_ = run(M.SET['long_range_before'], kind); St_ = o['states']
+        return {'p_dem': o['p_dem'], 'p_model': o['p_model'], 'p_popular': o['p_popular'], 'national': o['national'], 'national_sd': o['national_sd'], 'national_lo': o['national_lo'], 'national_hi': o['national_hi'],
+                'ev_median': o['ev_median'], 'ev_lo': o['ev_lo'], 'ev_hi': o['ev_hi'], 'tipping_point': St_.state[St_.tip.idxmax()], 'prior': S_, 'drift': drift_, 'long_range_weight': w_,
+                'parts': {'approval_and_economy': E, 'fifty_two_keys': K, 'approval_equation': A, 'long_range': D if w_ else None},
+                'poll_share': i['poll_share'], 'poll_share_total': i['poll_share_total'], 'prior_moves_with_polls': load_,
+                'states': {q['state']: [round(float(q['mean']), 2), round(float(q['p_dem']), 4), round(float(q['lo']), 2), round(float(q['hi']), 2)] for _, q in St_.iterrows()}}
 
     out, info, S, drift, weight, load = run(M.SET['long_range_before'])
     St = out['states']
@@ -94,7 +119,28 @@ def candidate(NOW, nc, polls, sp, res, errs, t, tables, ev, today):
             'prior_moves_with_polls': load, 'pairing_spread': spread, 'nominees_known': nominees(nc) is not None,
             'state_poll_ceiling': float(M.curve(tl['state'], d_out) / M.curve(tl['state'], 1)), 'state_polls_counted': int(len(sp.get('polls', []))),
             'states': {q['state']: [round(float(q['mean']), 2), round(float(q['p_dem']), 4), round(float(q['poll_share']), 3)] for _, q in St.iterrows()},
-            'other_ways': other, 'settings': dict(M.CANDIDATE)}
+            'other_ways': other, 'settings': dict(M.CANDIDATE),
+            # the hybrid: the candidate with the approval equation kept (model.HYBRID). Also under review, also not published.
+            'hybrid': dict(told('four_models'), settings=dict(M.HYBRID)),
+            'keys_vote': keys_vote(NOW, t, base)}
+
+def keys_vote(NOW, t, base, draws=40000, seed=52):
+    """The national vote the Fifty-Two Keys count points to, as a spread and not one number: every count that site's run
+    ahead gives, with its share of runs, put through the line fitted on earlier elections, with the line's own misses
+    added. Three things are kept apart: where the count may end up (the spread of the count), how far the line has missed
+    on past elections (equation_error), and the two together (sd). Democratic share of the two-party vote."""
+    dist = NOW.get('keys_dist') or []
+    past = t[t.year < 2028].dropna(subset=['keys']); slope, icept = np.polyfit(past['keys'], past.incvote, 1)
+    resid = float(np.sqrt(np.mean(np.square(past.incvote - (icept + slope * past['keys'])))))
+    if not dist: return {'from': 'the count and its spread only', 'equation_error': round(resid, 2), 'slope': round(float(slope), 2)}
+    x = np.array([a for a, _ in dist], float); w = np.array([b for _, b in dist], float); w = w / w.sum()
+    rng = np.random.default_rng(seed); idx = rng.choice(x, size=draws, p=w)
+    inc = icept + slope * idx + rng.normal(0, resid, draws); dem = 100 - inc if not base.get('deminc') else inc
+    q = lambda a: round(float(np.percentile(dem, a)), 2)
+    return {'from': 'the spread of the count', 'mean': round(float(dem.mean()), 2), 'sd': round(float(dem.std()), 2), 'p10': q(10), 'p50': q(50), 'p90': q(90),
+            'count_mean': round(float((x * w).sum()), 3), 'count_sd': round(float(np.sqrt((w * (x - (x * w).sum()) ** 2).sum())), 3), 'from_count': round(float(abs(slope)) * float(np.sqrt((w * (x - (x * w).sum()) ** 2).sum())), 2),
+            'equation_error': round(resid, 2), 'slope': round(float(slope), 2), 'elections': int(len(past))}
+
 
 def poll_table(nc):
     """The Nowcast's head-to-head polls as the model's poll table. A poll that names a state is filed under that state."""
@@ -141,7 +187,8 @@ def main():
     fd, fsd, parts = F.forecast(2028, t, juneapp=NOW['net_approval'], keys=NOW['keys'], **base)
     up = F.forecast(2028, t, juneapp=NOW['net_approval'] + NOW['approval_drift'], keys=NOW['keys'], **base)[0]
     ku = F.forecast(2028, t, juneapp=NOW['net_approval'], keys=NOW['keys'] + NOW['keys_sd'], **base)[0]
-    sd = float(np.sqrt(fsd ** 2 + (up - fd) ** 2 + (ku - fd) ** 2))      # the equations' own error, plus two years of drift in their inputs
+    open_ = approval_left((pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(TODAY)).days) if M.SET['drift_rule'] == 'calendar' else 1.0
+    sd = float(np.sqrt(fsd ** 2 + open_ * (up - fd) ** 2 + (ku - fd) ** 2))      # the equations' own error, plus what their inputs may still move by (the keys' part shrinks by itself: it is that site's own spread)
     tables = M.error_tables(2028, res, errs)
     extra = {s['abbr'].replace('-', ''): s['demShare'] for s in nc['states']}
     ev = M.ev_table(2024, res)
@@ -162,7 +209,7 @@ def main():
     S = out['states']; names = {s['abbr'].replace('-', ''): s.get('name', s['abbr']) for s in nc['states']}
     tip = S.state[S.tip.idxmax()]                       # the state that most often carries the winner past 270
     J = {'as_of': TODAY, 'days_out': (pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(TODAY)).days, 'p_dem': out['p_dem'], 'p_model': out['p_model'], 'market': NOW['market_dem'],
-         'p_without_extras': plain['p_dem'], 'p_popular': out['p_popular'], 'national': out['national'], 'national_sd': out['national_sd'], 'ev_mean': out['ev_mean'], 'ev_median': out['ev_median'], 'ev_lo': out['ev_lo'], 'ev_hi': out['ev_hi'],
+         'p_without_extras': plain['p_dem'], 'p_popular': out['p_popular'], 'p_tie': out['p_tie'], 'p_vote_not_college': out['p_vote_not_college'], 'p_college_not_vote': out['p_college_not_vote'], 'national': out['national'], 'national_sd': out['national_sd'], 'ev_mean': out['ev_mean'], 'ev_median': out['ev_median'], 'ev_lo': out['ev_lo'], 'ev_hi': out['ev_hi'],
          'ev_dist': [round(float(x), 5) for x in out['ev_dist']], 'tipping_point': tip,
          'inputs': {'national_polls': info['national_polls'], 'polls_n': int(len(polls)), 'poll_share': info['poll_share'], 'fundamentals': fd, 'fundamentals_sd': sd, 'approval_model': parts['approval_model'], 'keys_model': parts['keys_model'],
                     'net_approval': NOW['net_approval'], 'market_note': NOW['market_note'], 'keys': NOW['keys'], 'nowcast_p_dem': nc['summary']['pDemWin'], 'nowcast_national': nc['summary']['demPopular'], 'nowcast_as_of': nc['as_of']},
@@ -185,7 +232,8 @@ def main():
     # the day-by-day record: one row a day, today's row replaced if the forecast is run again
     row = {'date': TODAY, 'p_dem': round(J['p_dem'], 4), 'p_model': round(J['p_model'], 4), 'market': round(J['market'], 4), 'national': round(J['national'], 2), 'ev_median': int(J['ev_median']),
            'national_polls': round(J['inputs']['national_polls'], 2), 'polls_n': J['inputs']['polls_n'], 'net_approval': NOW['net_approval'],
-           'candidate_p_dem': round(cand['p_dem'], 4), 'candidate_national': round(cand['national'], 2)}
+           'candidate_p_dem': round(cand['p_dem'], 4), 'candidate_national': round(cand['national'], 2),
+           'hybrid_p_dem': round(cand['hybrid']['p_dem'], 4), 'hybrid_national': round(cand['hybrid']['national'], 2)}
     try:
         h = pd.read_csv(HISTORY); h = h[h.date != TODAY]
     except FileNotFoundError:
@@ -193,7 +241,8 @@ def main():
     pd.concat([h, pd.DataFrame([row])]).sort_values('date').to_csv(HISTORY, index=False)
     quiet = ('ev_dist', 'states', 'settings', 'inputs', 'state_poll_list', 'state_poll_sources', 'candidate', 'funnel', 'market_sensitivity')
     print({k: (round(v, 3) if isinstance(v, float) else v) for k, v in J.items() if k not in quiet}); print({k: (round(v, 3) if isinstance(v, float) else v) for k, v in J['inputs'].items()})
-    print('under review:', {k: (round(v, 3) if isinstance(v, float) else v) for k, v in cand.items() if k not in ('states', 'settings', 'parts')}, {k: round(v, 2) for k, v in cand['parts'].items() if v is not None})
+    print('under review:', {k: (round(v, 3) if isinstance(v, float) else v) for k, v in cand.items() if k not in ('states', 'settings', 'parts', 'hybrid', 'keys_vote')}, {k: round(v, 2) for k, v in cand['parts'].items() if v is not None})
+    hy = cand['hybrid']; print('hybrid:', {k: (round(v, 3) if isinstance(v, float) else v) for k, v in hy.items() if k not in ('states', 'settings', 'parts')}, {k: round(v, 2) for k, v in hy['parts'].items() if v is not None}); print('keys vote:', cand['keys_vote'])
     f = sp.get('found', {}); print(f"state polls: {f.get('state_polls', 0)} found in {f.get('states_polled', [])}, {f.get('usable_state_polls', 0)} meet the rules")
     print(S.assign(lead=(S['mean'] - 50).abs()).sort_values('lead').head(12)[['state', 'ev', 'mean', 'p_dem']].round(3).to_string(index=False))
 

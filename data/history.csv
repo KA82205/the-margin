@@ -1,4 +1,4 @@
-date,p_dem,p_model,market,national,ev_median,national_polls,polls_n,net_approval,candidate_p_dem,candidate_national
-2026-11-23,0.6043,0.5799,0.674,51.36,280,48.82,28,-28.0,,
-2026-11-24,0.6227,0.6043,0.6758,51.53,284,48.82,28,-30.6,,
-2026-11-25,0.623,0.6046,0.6758,51.54,284,48.82,28,-30.8,0.6887,52.1
+date,p_dem,p_model,market,national,ev_median,national_polls,polls_n,net_approval,candidate_p_dem,candidate_national,hybrid_p_dem,hybrid_national
+2026-11-23,0.6043,0.5799,0.674,51.36,280,48.82,28,-28.0,,,,
+2026-11-24,0.6227,0.6043,0.6758,51.53,284,48.82,28,-30.6,,,,
+2026-11-25,0.623,0.6046,0.6758,51.54,284,48.82,28,-30.8,0.6887,52.1,0.6906,52.06

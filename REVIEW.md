@@ -329,12 +329,12 @@ one piece put back at a time.
 
 | State results inside the 80% range, by days before the election | 250 | 200 | 150 | 120 | 90 | 60 | 30 | 14 | 7 | 1 |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| Published forecast | 94% | 94% | 94% | 95% | 93% | 95% | 91% | 89% | 90% | 91% |
-| Candidate | 94% | 94% | 94% | 93% | 93% | 94% | 91% | 87% | 91% | 91% |
-| Candidate, but polls weighed by the published rules | 94% | 94% | 94% | 95% | 94% | 95% | 91% | 85% | 90% | 91% |
-| Candidate, but the published fundamentals as the prior | 93% | 93% | 93% | 93% | 93% | 94% | 91% | 87% | 91% | 91% |
-| Candidate, but the state models as they stand (the published setting) | 95% | 96% | 95% | 95% | 94% | 94% | 92% | 89% | 91% | 91% |
-| Candidate, with the approval equation as a fourth model | 94% | 93% | 94% | 93% | 92% | 94% | 91% | 88% | 92% | 91% |
+| Published forecast | 94% | 94% | 94% | 94% | 93% | 94% | 91% | 88% | 89% | 91% |
+| Candidate | 94% | 94% | 94% | 93% | 93% | 94% | 90% | 85% | 90% | 90% |
+| Candidate, but polls weighed by the published rules | 94% | 94% | 94% | 94% | 94% | 95% | 90% | 84% | 89% | 91% |
+| Candidate, but the published fundamentals as the prior | 92% | 92% | 93% | 92% | 93% | 93% | 89% | 86% | 90% | 91% |
+| Candidate, but the state models as they stand (the published setting) | 95% | 94% | 95% | 94% | 93% | 94% | 92% | 89% | 90% | 91% |
+| Candidate, with the approval equation as a fourth model | 94% | 93% | 93% | 93% | 92% | 94% | 90% | 87% | 91% | 91% |
 
 **Test B: far from the election.** Early polls are on file for 2016, 2020 and 2024 only. In each cell: the national
 miss (+ is too Democratic) and, in brackets, how much of the national number moved with the polls of the day. Before the

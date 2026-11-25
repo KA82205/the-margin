@@ -62,6 +62,15 @@ def three_models(enns, desart, keys_line, long_range=1.0):
     return (enns + keys_line + long_range * desart) / (2 + long_range)
 
 
+def four_models(enns, desart, keys_line, approval_equation, long_range=1.0):
+    """The hybrid's national prior: the Nowcast's approval-and-economy model, the Fifty-Two Keys line and the approval
+    equation, with the long-range model as a fourth equal part for as much of its part as `long_range` gives it (none
+    before the polls it is built on exist). With long_range = 0 this is the structural prior: three models, none of them
+    built on polls of the race."""
+    w = long_range if desart is not None else 0.0
+    return (enns + keys_line + approval_equation + (w * desart if w else 0.0)) / (3 + w)
+
+
 if __name__ == '__main__':
     t = table()
     for y in (2008, 2012, 2016, 2020, 2024):

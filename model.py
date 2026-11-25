@@ -26,10 +26,15 @@ SET = dict(
     # published; the second is the candidate under review (CANDIDATE below, README "The candidate").
     national_prior='fundamentals',   # 'fundamentals': the approval equation and the Fifty-Two Keys line, averaged.
                                      # 'three_models': the Tipping Point Nowcast's two national models and the Fifty-Two Keys line, a third each
+                                     # 'four_models': the same with the approval equation, each an equal part (HYBRID below)
+                                     # 'structural': the approval-and-economy model, the Keys line and the approval equation; no long-range model
     poll_weight='precision',         # 'precision': polls against the prior by the size of each one's past errors, as if the two were unrelated.
                                      # 'timeline': by what the polling average has been worth at this distance from the election (timeline.py)
     state_poll_weight='volume',      # 'volume': a state's polls against a starting point worth prior_polls, whatever the distance.
                                      # 'horizon': the same, under a ceiling that falls with the distance from the election (timeline.py)
+    drift_rule='fixed',              # what approval may still move by before June 2028. 'fixed': the figure in data/inputs.json at every distance.
+                                     # 'calendar': that figure today, shrinking with the square root of the time left and gone by the end of June 2028,
+                                     # when June approval is known (run_2028.approval_left). Not in use: a change to future forecasts, awaiting a decision.
     pairing_spread_floor=1.5,        # 'timeline' and 'horizon' only: until both nominees are known, polls are of pairings that may never happen.
                                      # The spread between pairings counts as extra error in the polls, and is never taken as less than this (points of share)
     long_range_before='out',         # 'three_models' only: the long-range model before the polls it is built on exist (long_range_weight below).
@@ -37,6 +42,14 @@ SET = dict(
 )
 # the candidate: every setting that differs from the published forecast
 CANDIDATE = dict(national_prior='three_models', poll_weight='timeline', state_poll_weight='horizon', state_model_mode='lean')
+# The hybrid: the candidate with the approval equation kept, as the published forecast keeps it. Its national prior is the
+# Nowcast's approval-and-economy model, the Fifty-Two Keys line and the approval equation, a third each; the long-range
+# model joins as a fourth, equal part once the polls it is built on exist (four_models). Nothing else differs from the
+# candidate: polls by the timeline, state polls under the ceiling, the state models used for their placing only.
+# STRUCTURAL is the same without the long-range model at any date: polls then reach the national number by one road only.
+# Neither is the published forecast. No weight in either was fitted.
+HYBRID = dict(CANDIDATE, national_prior='four_models')
+STRUCTURAL = dict(CANDIDATE, national_prior='structural')
 # The long-range model inside the Tipping Point Nowcast reads national head-to-head polls: its forecast moves by this much
 # for each point in their average (DeSart's equation as that site runs it, docs/combine.js there). It is up to a third of
 # the candidate's national prior, so up to a third of this is in the prior before a poll is counted here.
@@ -154,7 +167,7 @@ def october_share(polls, year, asof):
     return float(w[october].sum() / w.sum()) if w.sum() > 0 else 0.0
 
 
-def long_range_weight(year, asof, timeline, polls=None, fixed=None):
+def long_range_weight(year, asof, timeline, polls=None, fixed=None, others=2):
     """How much of its third the long-range model gets in the candidate's prior, and how far that prior then moves when the
     polls being averaged move by a point: (weight, load).
 
@@ -168,13 +181,14 @@ def long_range_weight(year, asof, timeline, polls=None, fixed=None):
                   reads them (timeline.py)
           'full'  it counts in full
         In the last two every poll in the average is also in the model.
-    fixed: True or False where it is known (the Nowcast says when its polls are fixed); None to go by the calendar."""
+    fixed: True or False where it is known (the Nowcast says when its polls are fixed); None to go by the calendar.
+    others: how many other models share the prior with it (two in the candidate, three in the hybrid)."""
     asof = pd.Timestamp(asof); eday = pd.Timestamp(ELECTION[year]); day = pd.Timestamp(f'{year - 1}{LONG_RANGE_FIXED}')
     if fixed is None: fixed = asof >= day
-    if fixed: return 1.0, LONG_RANGE_POLLS / 3 * (october_share(polls, year, asof) if polls is not None else 0.0)
+    if fixed: return 1.0, LONG_RANGE_POLLS / (others + 1) * (october_share(polls, year, asof) if polls is not None else 0.0)
     w = {'out': 0.0, 'full': 1.0}.get(SET['long_range_before'])
     if w is None: w = float(min(1.0, curve(timeline['national'], max((eday - asof).days, 1)) / curve(timeline['national'], (eday - day).days)))
-    return w, LONG_RANGE_POLLS * w / (2 + w)
+    return w, LONG_RANGE_POLLS * w / (others + w)
 
 
 def lean(res, year, st):
@@ -280,7 +294,10 @@ def simulate(S, nat, s_nat, year, market=None, ev=None):
     S = S.assign(p_dem=(sh > 50).mean(1), ev=evs, tip=np.bincount(tipped, minlength=len(S)) / max(1, len(tipped)), lo=lo, hi=hi)
     out = {'p_dem': p, 'p_model': p, 'ev_mean': float(dem_ev.mean()), 'ev_median': float(np.median(dem_ev)), 'ev_lo': float(np.percentile(dem_ev, 10)), 'ev_hi': float(np.percentile(dem_ev, 90)),
            'national': float(nat), 'national_sd': float(s_nat), 'states': S, 'ev_dist': np.bincount(dem_ev.astype(int), minlength=int(total) + 1) / n,
-           'p_popular': float((natv > 50).mean()), 'national_lo': float(np.percentile(natv, 10)), 'national_hi': float(np.percentile(natv, 90))}
+           'p_popular': float((natv > 50).mean()), 'national_lo': float(np.percentile(natv, 10)), 'national_hi': float(np.percentile(natv, 90)),
+           # counted from the same simulated elections: an even split of the electoral votes (half of it goes to each side in
+           # p_model), and the two ways the national vote and the Electoral College can disagree
+           'p_tie': float((dem_ev == total / 2).mean()), 'p_vote_not_college': float(((natv > 50) & rwin).mean()), 'p_college_not_vote': float(((natv < 50) & dwin).mean())}
     if market is not None:
         lo = lambda q: np.log(np.clip(q, 1e-4, 1 - 1e-4) / (1 - np.clip(q, 1e-4, 1 - 1e-4)))
         z = (1 - SET['market_weight']) * lo(p) + SET['market_weight'] * lo(market); out['p_dem'] = float(1 / (1 + np.exp(-z))); out['market'] = market
