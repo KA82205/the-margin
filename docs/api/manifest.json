@@ -7,7 +7,7 @@
  "forecast": {
   "as_of": "2026-11-25",
   "file": "api/forecast.json",
-  "hash": "596a54823cab332f",
+  "hash": "f52cdeac4b10859e",
   "last_kept": "2026-11-25T2230Z.json",
   "kept": 2
  },
@@ -28,7 +28,7 @@
   "fifty_two_keys": {
    "date": "2026-11-25",
    "as_of": "November 25, 2026",
-   "engine": "2026.11b",
+   "engine": "2026.11c",
    "format": 2,
    "settled": 8,
    "unresolved": 44,
@@ -36,7 +36,7 @@
    "held": 0,
    "closed": false,
    "approval_in": false,
-   "hash": "e40bfa71f2262c9b"
+   "hash": "19a3de382a47bb2d"
   },
   "tipping_point": {
    "as_of": "2026-11-25",
@@ -53,8 +53,8 @@
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-25T22:37Z",
- "commit": null,
+ "made": "2026-11-25T22:47Z",
+ "commit": "4b659aded0c3",
  "sources": {
   "state polls": "PollResults.org and VoteHub, CC BY 4.0; not affiliated with this site"
  }
