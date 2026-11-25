@@ -9,5 +9,10 @@
  "keys_note": "Fifty-Two Keys, November 25, 2026: 27 of 52 keys in the Republicans' favor if each open key lands the way it leans",
  "approval_drift": 10.0,
  "keys_mean": 0.394,
- "read": {}
+ "read": {
+  "nowcast": "2026-11-25",
+  "odds": "2026-11-25",
+  "keys": "2026-11-25",
+  "state_polls": "2026-11-25"
+ }
 }

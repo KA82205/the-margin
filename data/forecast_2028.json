@@ -1442,14 +1442,17 @@
    "usable_state_polls": 1,
    "not_usable": {
     "no named candidates (a generic ballot)": 3,
-    "paid for by a party or a campaign": 1,
     "Barack Obama cannot be elected again": 1,
-    "Donald Trump cannot be elected again": 1,
-    "Josh Shapiro's own state, while the nominees are not known": 1
+    "paid for by a party or a campaign": 1,
+    "Josh Shapiro's own state, while the nominees are not known": 1,
+    "Donald Trump cannot be elected again": 1
    }
   },
-  "answered": {},
-  "fetched": "2026-11-25T17:00Z"
+  "answered": {
+   "PollResults.org": true,
+   "VoteHub": true
+  },
+  "fetched": "2026-11-25T17:56Z"
  },
  "candidate": {
   "p_dem": 0.6886720537105799,

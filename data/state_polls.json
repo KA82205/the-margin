@@ -1,6 +1,30 @@
 {
- "fetched": "2026-11-25T17:00Z",
- "sources": {},
+ "fetched": "2026-11-25T17:56Z",
+ "sources": {
+  "PollResults.org": {
+   "pages": 3,
+   "stopped_at": "the last page",
+   "answered": true,
+   "polls": 223
+  },
+  "VoteHub": {
+   "answered": true,
+   "poll_types": [
+    "approval",
+    "attorney-general",
+    "favorability",
+    "generic-ballot",
+    "governor",
+    "mayor",
+    "presidential-primary",
+    "proposition-50",
+    "us-representative",
+    "us-senator"
+   ],
+   "presidential_general_types": [],
+   "note": "lists no presidential general-election polls"
+  }
+ },
  "found": {
   "general_election_questions": 108,
   "duplicates_removed": 0,
@@ -17,10 +41,10 @@
   "usable_state_polls": 1,
   "not_usable": {
    "no named candidates (a generic ballot)": 3,
-   "paid for by a party or a campaign": 1,
    "Barack Obama cannot be elected again": 1,
-   "Donald Trump cannot be elected again": 1,
-   "Josh Shapiro's own state, while the nominees are not known": 1
+   "paid for by a party or a campaign": 1,
+   "Josh Shapiro's own state, while the nominees are not known": 1,
+   "Donald Trump cannot be elected again": 1
   }
  },
  "polls": [
