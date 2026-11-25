@@ -9,7 +9,12 @@ on:
     # Sent by Fifty-Two Keys and by Tipping Point the moment one of them publishes something new (needs the
     # DISPATCH_TOKEN secret in those two repositories; without it the hourly run above picks the change up).
     types: [upstream-updated]
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      check:
+        description: "Run as the hourly check does: stop if nothing is new"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -40,9 +45,11 @@ jobs:
       - name: Read the sources and run the forecast if anything is new
         id: update
         continue-on-error: true
+        env:
+          CHECK: ${{ inputs.check }}
         run: |
           case "${{ github.event_name }}" in
-            workflow_dispatch) python update.py --force ;;
+            workflow_dispatch) if [ "$CHECK" = "true" ]; then python update.py; else python update.py --force; fi ;;
             repository_dispatch) python update.py --wait 240 ;;
             *) python update.py ;;
           esac
