@@ -62,6 +62,21 @@ def three_models(enns, desart, keys_line, long_range=1.0):
     return (enns + keys_line + long_range * desart) / (2 + long_range)
 
 
+def keys_line(t, year, window=None):
+    """The Democratic share the Fifty-Two Keys count of `year` points to, from a line fitted on the elections before it.
+    window: fit on only that many of the latest elections (None: all of them, as the forecast does)."""
+    past = t[t.year < year].dropna(subset=['keys']); row = t[t.year == year].iloc[0]
+    if window: past = past.tail(window)
+    s, i = np.polyfit(past['keys'], past.incvote, 1); inc = float(i + s * row['keys'])
+    return inc if int(row.deminc) else 100 - inc
+
+
+def mix(parts, weights):
+    """A weighted mean of national forecasts, leaving out any that are missing or have no weight."""
+    use = [(p, w) for p, w in zip(parts, weights) if p is not None and w]
+    return sum(p * w for p, w in use) / sum(w for _, w in use)
+
+
 def four_models(enns, desart, keys_line, approval_equation, long_range=1.0):
     """The hybrid's national prior: the Nowcast's approval-and-economy model, the Fifty-Two Keys line and the approval
     equation, with the long-range model as a fourth equal part for as much of its part as `long_range` gives it (none

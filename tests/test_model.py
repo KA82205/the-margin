@@ -115,6 +115,10 @@ def test_the_versions_under_review_are_what_they_say_and_leave_the_published_one
     assert {k: v for k, v in M.HYBRID.items() if k != 'national_prior'} == {k: v for k, v in M.CANDIDATE.items() if k != 'national_prior'} and M.HYBRID['national_prior'] == 'four_models'
     assert F.four_models(52.0, 49.0, 53.0, 51.0, 0.0) == 52.0 and F.four_models(52.0, 49.0, 53.0, 51.0, 1.0) == 51.25 and F.four_models(52.0, None, 53.0, 51.0) == 52.0
     assert F.three_models(52.0, 49.0, 53.0, 0.0) == 52.5                                # the candidate's prior is as it was
+    # the recommended version is the hybrid with the Fifty-Two Keys line taken out and nothing else changed
+    assert {k: v for k, v in M.RECOMMENDED.items() if k != 'national_prior'} == {k: v for k, v in M.HYBRID.items() if k != 'national_prior'} and M.RECOMMENDED['national_prior'] == 'no_keys'
+    assert F.mix([52.0, 51.0, 49.0], [1, 1, 0.0]) == 51.5 and abs(F.mix([52.0, 51.0, 49.0], [1, 1, 1.0]) - 152 / 3) < 1e-9 and F.mix([52.0, None, 50.0], [1, 1, 1]) == 51.0
+    t = F.table(); assert abs(F.keys_line(t, 2024) - F.forecast(2024, t)[2]['keys_model']) < 1e-9 and F.keys_line(t, 2024, 10) != F.keys_line(t, 2024)
     # the long-range model's polls are counted once: its share of the prior, times how far it moves with the polls
     tl = {'national': (0.61, 100, 2.0)}
     w3, l3 = M.long_range_weight(2028, '2028-06-01', tl, None, fixed=True); w4, l4 = M.long_range_weight(2028, '2028-06-01', tl, None, fixed=True, others=3)

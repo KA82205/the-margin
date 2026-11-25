@@ -111,26 +111,30 @@ def candidate(NOW, nc, polls, sp, res, errs, t, tables, ev, today):
         """The candidate with the long-range model treated, before its own polls exist, in one of the three ways. kind:
         'three_models' is the candidate; 'four_models' the hybrid, with the approval equation kept; 'structural' the hybrid
         without the long-range model at any date."""
-        old = dict(M.SET); M.SET.update({'three_models': M.CANDIDATE, 'four_models': M.HYBRID, 'structural': M.STRUCTURAL}[kind], long_range_before=before)
+        old = dict(M.SET); M.SET.update({'three_models': M.CANDIDATE, 'four_models': M.HYBRID, 'structural': M.STRUCTURAL, 'no_keys': M.RECOMMENDED}[kind], long_range_before=before)
         try:
             if kind == 'three_models':
                 weight, load = M.long_range_weight(2028, today, tl, polls, fixed) if D is not None else (0.0, 0.0)
                 S = F.three_models(E, D, K, weight) if D is not None else (E + K) / 2
                 drift = float(np.sqrt(left) * (dE + dK) / ((2 + weight) if D is not None else 2))
+            elif kind == 'no_keys':                                                            # no Fifty-Two Keys line: approval moves the two parts left together
+                weight, load = M.long_range_weight(2028, today, tl, polls, fixed, others=2) if D is not None else (0.0, 0.0)
+                S = F.mix([E, A, D], [1, 1, weight])
+                drift = float(np.sqrt(left) * (dE + dA) / (2 + weight))
             else:
                 weight, load = M.long_range_weight(2028, today, tl, polls, fixed, others=3) if (D is not None and kind == 'four_models') else (0.0, 0.0)
                 S = F.four_models(E, D if kind == 'four_models' else None, K, A, weight)
                 drift = float(np.sqrt(left) * (dE + dK + dA) / (3 + weight))            # approval moves all three together, so the three are added
-            out, info = M.forecast(2028, today, allp, res, tables, (S, drift), market=NOW['market_dem'], extra_prior=extra, ev=ev, timeline=tl, pairing_spread=spread, prior_poll_load=load)
+            out, info = M.forecast(2028, today, allp, res, tables, (S, drift), market=NOW['market_dem'], extra_prior=extra, ev=ev, timeline=tl, pairing_spread=spread, prior_poll_load=load, turnout=turnout())
         finally:
             M.SET.clear(); M.SET.update(old)
         return out, info, S, drift, weight, load
 
     def told(kind):
         o, i, S_, drift_, w_, load_ = run(M.SET['long_range_before'], kind); St_ = o['states']
-        return {'p_dem': o['p_dem'], 'p_model': o['p_model'], 'p_popular': o['p_popular'], 'national': o['national'], 'national_sd': o['national_sd'], 'national_lo': o['national_lo'], 'national_hi': o['national_hi'],
+        return {'p_dem': o['p_dem'], 'p_rep': o['p_rep'], 'p_tie': o['p_tie'], 'p_model': o['p_model'], 'p_popular': (o['national_from_states'] or {}).get('p_popular', o['p_popular']), 'national_from_states': o['national_from_states'], 'national': o['national'], 'national_sd': o['national_sd'], 'national_lo': o['national_lo'], 'national_hi': o['national_hi'],
                 'ev_median': o['ev_median'], 'ev_lo': o['ev_lo'], 'ev_hi': o['ev_hi'], 'tipping_point': St_.state[St_.tip.idxmax()], 'prior': S_, 'drift': drift_, 'long_range_weight': w_,
-                'parts': {'approval_and_economy': E, 'fifty_two_keys': K, 'approval_equation': A, 'long_range': D if w_ else None},
+                'parts': {'approval_and_economy': E, 'fifty_two_keys': K if kind != 'no_keys' else None, 'approval_equation': A, 'long_range': D if w_ else None},
                 'poll_share': i['poll_share'], 'poll_share_total': i['poll_share_total'], 'prior_moves_with_polls': load_,
                 'states': {q['state']: [round(float(q['mean']), 2), round(float(q['p_dem']), 4), round(float(q['lo']), 2), round(float(q['hi']), 2)] for _, q in St_.iterrows()}}
 
@@ -149,6 +153,8 @@ def candidate(NOW, nc, polls, sp, res, errs, t, tables, ev, today):
             'other_ways': other, 'settings': dict(M.CANDIDATE),
             # the hybrid: the candidate with the approval equation kept (model.HYBRID). Also under review, also not published.
             'hybrid': dict(told('four_models'), settings=dict(M.HYBRID)),
+            # the hybrid without the Fifty-Two Keys line: the version recommended after keys_study.py. Under review.
+            'recommended': dict(told('no_keys'), settings=dict(M.RECOMMENDED)),
             'keys_vote': keys_vote(NOW, t, base)}
 
 def keys_vote(NOW, t, base, draws=40000, seed=52):
@@ -288,7 +294,8 @@ def main():
     row = {'date': TODAY, 'p_dem': round(J['p_dem'], 4), 'p_rep': round(J['p_rep'], 4), 'p_tie': round(J['p_tie'], 4), 'p_model': round(J['p_model'], 4), 'market': round(J['market'], 4), 'national': round(J['national'], 2), 'ev_median': int(J['ev_median']),
            'national_polls': round(J['inputs']['national_polls'], 2), 'polls_n': J['inputs']['polls_n'], 'net_approval': NOW['net_approval'],
            'candidate_p_dem': round(cand['p_dem'], 4), 'candidate_national': round(cand['national'], 2),
-           'hybrid_p_dem': round(cand['hybrid']['p_dem'], 4), 'hybrid_national': round(cand['hybrid']['national'], 2)}
+           'hybrid_p_dem': round(cand['hybrid']['p_dem'], 4), 'hybrid_national': round(cand['hybrid']['national'], 2),
+           'recommended_p_dem': round(cand['recommended']['p_dem'], 4), 'recommended_national': round(cand['recommended']['national'], 2)}
     try:
         h = pd.read_csv(HISTORY); h = h[h.date != TODAY]
     except FileNotFoundError:
@@ -296,7 +303,8 @@ def main():
     pd.concat([h, pd.DataFrame([row])]).sort_values('date').to_csv(HISTORY, index=False)
     quiet = ('ev_dist', 'states', 'settings', 'inputs', 'state_poll_list', 'state_poll_sources', 'candidate', 'funnel', 'market_sensitivity')
     print({k: (round(v, 3) if isinstance(v, float) else v) for k, v in J.items() if k not in quiet}); print({k: (round(v, 3) if isinstance(v, float) else v) for k, v in J['inputs'].items()})
-    print('under review:', {k: (round(v, 3) if isinstance(v, float) else v) for k, v in cand.items() if k not in ('states', 'settings', 'parts', 'hybrid', 'keys_vote')}, {k: round(v, 2) for k, v in cand['parts'].items() if v is not None})
+    print('under review:', {k: (round(v, 3) if isinstance(v, float) else v) for k, v in cand.items() if k not in ('states', 'settings', 'parts', 'hybrid', 'keys_vote', 'recommended')}, {k: round(v, 2) for k, v in cand['parts'].items() if v is not None})
+    rc = cand['recommended']; print('recommended:', {k: (round(v, 3) if isinstance(v, float) else v) for k, v in rc.items() if k not in ('states', 'settings', 'parts')}, {k: round(v, 2) for k, v in rc['parts'].items() if v is not None})
     hy = cand['hybrid']; print('hybrid:', {k: (round(v, 3) if isinstance(v, float) else v) for k, v in hy.items() if k not in ('states', 'settings', 'parts')}, {k: round(v, 2) for k, v in hy['parts'].items() if v is not None}); print('keys vote:', cand['keys_vote'])
     f = sp.get('found', {}); print(f"state polls: {f.get('state_polls', 0)} found in {f.get('states_polled', [])}, {f.get('usable_state_polls', 0)} meet the rules")
     print(S.assign(lead=(S['mean'] - 50).abs()).sort_values('lead').head(12)[['state', 'ev', 'mean', 'p_dem']].round(3).to_string(index=False))

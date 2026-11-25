@@ -27,7 +27,7 @@ import model as M, fundamentals as F
 
 DAYS = [120, 90, 60, 30, 14, 7, 1]
 YEARS = [2008, 2012, 2016, 2020, 2024]
-VERSIONS = {'published': {}, 'candidate': M.CANDIDATE, 'hybrid': M.HYBRID, 'structural': M.STRUCTURAL}
+VERSIONS = {'published': {}, 'candidate': M.CANDIDATE, 'hybrid': M.HYBRID, 'structural': M.STRUCTURAL, 'recommended': M.RECOMMENDED}
 
 def load():
     res = pd.read_csv('data/results.csv'); polls = pd.read_csv('data/polls.csv', parse_dates=['end']); errs = pd.read_csv('data/average_errors.csv')
@@ -75,10 +75,15 @@ def run(days=DAYS, ratings=False, settings=None, keep_states=False, version='pub
             asof = pd.Timestamp(M.ELECTION[y]) - pd.Timedelta(days=d)
             # the candidate's prior holds the long-range model, which is built on the national polls of the October before:
             # as long as those still weigh in the polling average they are counted once, not twice (model.long_range_weight)
-            kind = M.SET['national_prior']; n_other = 3 if kind == 'four_models' else 2
-            weight, carried = M.long_range_weight(y, asof, tl, polls, others=n_other) if need_timeline and kind in ('three_models', 'four_models') else (1.0 if kind != 'structural' else 0.0, 0.0)
-            prior = {'fundamentals': fd, 'three_models': F.three_models(E, D, K, weight), 'four_models': F.four_models(E, D, K, parts['approval_model'], weight),
-                     'structural': F.four_models(E, None, K, parts['approval_model'])}[kind]
+            kind = M.SET['national_prior']; n_other = {'four_models': 3, 'keys_recent': 3, 'keys_half': 2.5, 'no_keys': 2}.get(kind, 2)
+            with_long = kind in ('three_models', 'four_models', 'no_keys', 'keys_half', 'keys_recent')
+            weight, carried = M.long_range_weight(y, asof, tl, polls, others=n_other) if need_timeline and with_long else (1.0 if kind != 'structural' else 0.0, 0.0)
+            A = parts['approval_model']
+            prior = {'fundamentals': fd, 'three_models': F.three_models(E, D, K, weight), 'four_models': F.four_models(E, D, K, A, weight),
+                     'structural': F.four_models(E, None, K, A),
+                     # the hybrid with the Fifty-Two Keys line taken out, counted at half, or fitted on the last ten elections only (keys_study.py)
+                     'no_keys': F.mix([E, A, D], [1, 1, weight]), 'keys_half': F.mix([E, A, K, D], [1, 1, 0.5, weight]),
+                     'keys_recent': F.mix([E, A, F.keys_line(t, y, 10), D], [1, 1, 1, weight])}[kind]
             # the second figure is the prior's error. Under the 'timeline' rule the error of the whole mix comes from the record
             # and this is only what the prior's inputs may still drift by: nothing here, they are each year's final inputs.
             # Under the published rule it is the fundamentals forecast's own error, whichever prior is being tried.

@@ -28,6 +28,7 @@ SET = dict(
                                      # 'three_models': the Tipping Point Nowcast's two national models and the Fifty-Two Keys line, a third each
                                      # 'four_models': the same with the approval equation, each an equal part (HYBRID below)
                                      # 'structural': the approval-and-economy model, the Keys line and the approval equation; no long-range model
+                                     # 'no_keys': the approval-and-economy model, the approval equation and, once eligible, the long-range model (RECOMMENDED)
     poll_weight='precision',         # 'precision': polls against the prior by the size of each one's past errors, as if the two were unrelated.
                                      # 'timeline': by what the polling average has been worth at this distance from the election (timeline.py)
     state_poll_weight='volume',      # 'volume': a state's polls against a starting point worth prior_polls, whatever the distance.
@@ -49,6 +50,10 @@ CANDIDATE = dict(national_prior='three_models', poll_weight='timeline', state_po
 # STRUCTURAL is the same without the long-range model at any date: polls then reach the national number by one road only.
 # Neither is the published forecast. No weight in either was fitted.
 HYBRID = dict(CANDIDATE, national_prior='four_models')
+# RECOMMENDED: the hybrid without the Fifty-Two Keys line (keys_study.py: every score was better without it, and better
+# still the less of it there was). Its prior is the approval-and-economy model and the approval equation, with the
+# long-range model as a third equal part once the polls it is built on exist. Under review until approved.
+RECOMMENDED = dict(CANDIDATE, national_prior='no_keys')
 STRUCTURAL = dict(CANDIDATE, national_prior='structural')
 # The long-range model inside the Tipping Point Nowcast reads national head-to-head polls: its forecast moves by this much
 # for each point in their average (DeSart's equation as that site runs it, docs/combine.js there). It is up to a third of

@@ -53,8 +53,8 @@
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-25T22:30Z",
- "commit": "e0600b125070",
+ "made": "2026-11-25T22:37Z",
+ "commit": null,
  "sources": {
   "state polls": "PollResults.org and VoteHub, CC BY 4.0; not affiliated with this site"
  }
