@@ -1,0 +1,34 @@
+name: Source samples
+# Fetches a sample from each outside source and keeps it as a download. Started by hand only; it changes nothing.
+on:
+  workflow_dispatch:
+    inputs:
+      names:
+        description: "Which samples (the start of their names, separated by spaces); empty for all"
+        required: false
+        default: ""
+      script:
+        description: "The script to run"
+        required: false
+        default: "tools/samples.py"
+permissions:
+  contents: read
+jobs:
+  samples:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy pandas
+      - env:
+          NAMES: ${{ inputs.names }}
+          SCRIPT: ${{ inputs.script }}
+        run: python "$SCRIPT" samples $NAMES
+      - uses: actions/upload-artifact@v4
+        with:
+          name: samples
+          path: samples
+          retention-days: 3
