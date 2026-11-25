@@ -9,5 +9,16 @@
 "the calendar"
 ],
 "file": "2026-11-25T1756Z.json"
+},
+{
+"made": "2026-11-25T22:30Z",
+"as_of": "2026-11-25",
+"p_dem": 0.6006,
+"national": 51.538,
+"ev_median": 284,
+"why": [
+"state forecasts"
+],
+"file": "2026-11-25T2230Z.json"
 }
 ]

@@ -7,9 +7,9 @@
  "forecast": {
   "as_of": "2026-11-25",
   "file": "api/forecast.json",
-  "hash": "49374ed25bb66fb1",
-  "last_kept": "2026-11-25T1756Z.json",
-  "kept": 1
+  "hash": "596a54823cab332f",
+  "last_kept": "2026-11-25T2230Z.json",
+  "kept": 2
  },
  "units": {
   "shares": "Democratic share of the two-party vote, in percent (0 to 100)",
@@ -35,29 +35,12 @@
    "provisional": 0,
    "held": 0,
    "closed": false,
-   "outlook": "2026-11-16",
-   "through": {
-    "UNRATE": "October 2026",
-    "PAYEMS": "October 2026",
-    "MANEMP": "October 2026",
-    "CPIAUCSL": "October 2026",
-    "INDPRO": "October 2026",
-    "DPCERA3M086SBEA": "October 2026",
-    "CES0600000008": "October 2026",
-    "MCOILWTICO": "October 2026",
-    "SP500": "October 2026",
-    "UMCSENT": "November 2026",
-    "HOUST": "October 2026",
-    "ICSA": "October 2026",
-    "quarterly": "2026 Q3",
-    "states": "2026-09",
-    "approval_polls": "2026-11-25"
-   },
+   "approval_in": false,
    "hash": "e40bfa71f2262c9b"
   },
   "tipping_point": {
    "as_of": "2026-11-25",
-   "generated_at": "2026-11-25T21:47:39Z",
+   "generated_at": "2026-11-25T22:29:20Z",
    "mode": "nowcast",
    "frozen": false,
    "models": {
@@ -65,13 +48,13 @@
     "desart": 49.846
    },
    "combined": 50.946,
-   "hash": "530d5fdb59013842"
+   "hash": "05a5268311b806d9"
   }
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-25T22:25Z",
- "commit": null,
+ "made": "2026-11-25T22:30Z",
+ "commit": "e0600b125070",
  "sources": {
   "state polls": "PollResults.org and VoteHub, CC BY 4.0; not affiliated with this site"
  }
