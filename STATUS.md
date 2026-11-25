@@ -1,178 +1,125 @@
 # Where the three sites stand
 
-Written by `status.py` on the forecast of 2026-11-25. Tables are read from the data files; nothing in them is typed.
-Misses are in points of margin (twice the miss in share). `REVIEW.md` holds the research this builds on, `RUNBOOK.md` how the
-sites are kept running.
+Written by `status.py` on the forecast of 2026-11-25. Every figure in a table is read from a data file. Misses are in
+points of margin. `RUNBOOK.md` says how the sites are kept running; `REVIEW.md` holds the earlier research.
 
-## 1. What is official and what is not
+Each line below is marked: **live** (deployed and seen working on the public site or in GitHub's record), **tested** (passes
+its tests here; not yet seen in production because the event has not happened), **under review** (built, run beside the
+published forecast, waiting for your word), or **open**.
 
-| | What it is | Status |
-|---|---|---|
-| **Published forecast** (The Margin) | The model as it has stood since November 24: the approval equation and the Fifty-Two Keys line averaged, polls weighted by their precision, half of each state's starting point from Tipping Point's state models | Official. Unchanged in this round: `tests/test_model.py` fails if a last-day back-test figure moves |
-| Candidate | The two Nowcast models and the Keys line; polls by the record of what they have been worth; state models for their placing only; state polls under a ceiling | Under review, run beside the published one every time |
-| **Hybrid** | The candidate with the approval equation kept: approval-and-economy model, Keys line, approval equation, a third each; the long-range model joins as a fourth once its own polls exist (November 7, 2027) | Under review, run beside the published one. **Recommended** (decision A) |
-| Fifty-Two Keys | 52 keys, five groups, call at one half; locked | Official. Unchanged |
-| Fifty-Two Keys run-ahead and key calls | Where the open keys are likely to land; which keys are called | Running. The outlook is now read from the forecasters' survey by rule |
-| Tipping Point | Two published academic models and their Nowcast | Official. Unchanged apart from a footer link |
+## 1. What changed in this round
 
-## 2. Done in this round, with the evidence
+| | Status |
+|---|---|
+| The headline is the simulations' own number: Democrats 60 in 100, Republicans 39, a 269 to 269 tie 8 in 1,000, counted for neither. Betting markets are shown beside it. Forecasts kept before the change are untouched; the change is in `data/methods.json` and marked on the history chart | live |
+| No figure is written +0.0, -0.0, D+0.0 or R+0.0: one routine for margins and one for changes, checked on every tab by `tests/browser_page.js` | live |
+| "Forecast updates" is one line when nothing has moved and opens up when something has, with 7, 30 and 90-day comparisons as history allows. What moved is split between national polls, approval, the Keys count, Tipping Point's state models and time, each credited with its average effect over every order, so the order does not matter and the parts add up. Nothing is called "the calendar" | live |
+| The history chart covers the days there are, with 7, 30, 90-day and all-time views; one point a day, a day without a new forecast keeping the last | live |
+| All 56 places in one list: search, five orders, four filters, the profile beside it | live |
+| State chart: bars for the state, a dashed line for the nation, 2028 set apart and labelled as a forecast, a legend, hover for each year | live |
+| Paths to 270 and the chance of the vote and the Electoral College disagreeing, counted from whole simulated elections | live |
+| The national vote of each simulated election is added up from its own states by the votes each cast in 2024 (districts not counted twice) | live |
+| What approval may still move by shrinks with the square root of the time left and closes only when Fifty-Two Keys reports the June 2028 polls are in; if they are late a month's worth stays open | live; the closing itself tested |
+| Contact link in the footer, no name or picture | live |
+| Map hover, ranges for every place, no margin past 100: checked again at five window sizes (`tests/browser_hover.js`) | live |
+| Fifty-Two Keys: seats of a new Congress and polls naming a third candidate are read by rule; 47 of 52 keys need nothing typed; approval is run from today's reading; the count closes August 1, 2028; no vote estimate for 2028 | deployed; the rules tested on made-up futures |
+| Both sites notify The Margin; any of the three can be asked from outside to check now | live |
 
-**The Margin's display defects** (deployed, commit `ce173b4`).
-The map moved because the readout under it wrapped onto a second line for some places and not others; it is now three lines
-of fixed height. Ranges were a normal curve around each state's middle, which gave the District of Columbia D+101.6; they are
-now the 10th and 90th of every hundred simulated results, and simulated shares are kept inside 0 to 100 without moving any
-across 50, so no chance changed. A margin that rounds to 0.0 is written `0.0` in the neutral color by one routine used
-everywhere. The headline says its figure includes the betting markets. `node tests/browser_hover.js` hovers over 13 places
-(both parties, safe and close, the District, the districts, nothing) at five window sizes and fails if the map, the
-electoral-vote bar or the headline moves by half a pixel; `node tests/test_page.js` checks the margin routine;
-`tests/test_model.py` checks that every share, margin and range in every forecast is a possible one.
+## 2. Does Fifty-Two Keys belong in The Margin?
 
-**Fifty-Two Keys calls its keys by itself** (deployed, commits `908bc40`, `0ff1655`).
-`calls.py` scores 2028 with the model's own scoring function on the figures published so far and puts each key in one of
-four states: unresolved, provisional, settled, held. `KEYS.md` and `data/key_registry.json` list, for all 52, what the key
-reads, when it can first be called and what is still entered by hand. Every call and correction is added to
-`data/key_calls.csv` and nothing in it is rewritten. Today: 8 settled, 44 unresolved. `tests/test_calls.py` walks a made-up
-future from today to the day the count is closed.
+No. `keys_study.py` runs the hybrid on 2008 to 2024 at ten distances from the election, changing only what is done with the Keys.
 
-**The run-ahead reads its outlook instead of having it typed** (deployed, commits `9107761`, `0709049`).
-`outlook.py` reads the Survey of Professional Forecasters' own table and lays a later survey into the outlook. On GitHub's
-servers it read the real file and, by rule, gave the growth, inflation and unemployment figures that had been entered by
-hand; the only difference was jobs a month in 2028, 51,000 by rule against 50,000 entered. Only a later survey replaces the
-outlook. Income, pay, spending, industrial production, factory jobs, oil, sentiment, population and the 30% recession share
-are not in the survey and stay as entered, with their date.
+| Mean over ten distances, 250 days to the last day | National miss | Of which toward the Democrats | State miss | Chance given to the winner | Brier score, winner | Log loss, winner | Favored the winner (of 5), fewest |
+|---|---|---|---|---|---|---|---|
+| Published | 2.15 | +2.01 | 3.93 | 67% | 0.182 | 0.538 | 3 |
+| Hybrid: Keys as an equal part | 1.85 | +1.74 | 3.95 | 68% | 0.169 | 0.503 | 4 |
+| Keys at half weight | 1.66 | +1.52 | 3.89 | 69% | 0.164 | 0.493 | 4 |
+| Keys line fitted on the last ten elections | 1.71 | +1.59 | 3.91 | 69% | 0.164 | 0.492 | 4 |
+| **No Keys (recommended)** | 1.45 | +1.22 | 3.85 | 69% | 0.159 | 0.480 | 4 |
+| No Keys in the vote; the count used as a sign of the winner | 1.45 | +1.22 | 3.85 | 68% | 0.205 | 0.598 | 3 |
 
-**Every kept forecast says what it was made from** (commit `db01e43`).
-The archive now records the version of the Fifty-Two Keys feed and of the Nowcast behind each forecast, the model's settings
-and the commit that ran it, and keeps the Nowcast file itself once for each version. `docs/api/manifest.json` and
-`docs/api/forecast.json` give the current forecast to other programs, the manifest written last.
-
-**The simulation reports ties and splits.** A 269 to 269 tie comes up in 8 of 1,000 simulations and counts as
-half a win for each side; the Democrats win the most votes and lose the Electoral College in 15 of 100, the reverse in
-3 of 100.
-
-**The three sites link to each other**, and The Margin's Model tab sets the three figures side by side with what each one
-measures.
-
-## 3. The hybrid against the published forecast
-
-The hybrid was not found by searching for weights: it is the candidate with one part of the published forecast put back.
-Eight versions have now been scored on the same five elections (all are in `data/phase_in.json`), so a small edge among
-them means little; what follows is the size and the consistency of the differences.
-
-National miss, mean over 2008 to 2024:
-
-|  | 250 days | 200 days | 150 days | 120 days | 90 days | 60 days | 30 days | 14 days | 7 days | last day |
+| National miss | 250 days | 200 days | 150 days | 120 days | 90 days | 60 days | 30 days | 14 days | 7 days | last day |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Published | 2.66 | 2.46 | 2.12 | 2.04 | 2.14 | 1.83 | 2.47 | 2.17 | 1.90 | 1.72 |
-| Candidate | 2.09 | 2.10 | 2.00 | 2.07 | 2.15 | 1.86 | 2.62 | 2.57 | 2.12 | 1.97 |
-| Hybrid | 1.68 | 1.70 | 1.62 | 1.72 | 1.83 | 1.59 | 2.24 | 2.38 | 1.94 | 1.80 |
-| Hybrid, no long-range model | 1.79 | 1.81 | 1.74 | 1.83 | 1.93 | 1.68 | 2.28 | 2.47 | 2.02 | 1.87 |
-| Published prior, polls by the timeline | 2.97 | 2.85 | 2.54 | 2.37 | 2.28 | 1.95 | 2.48 | 2.21 | 1.83 | 1.66 |
+| Hybrid: Keys as an equal part | 1.68 | 1.70 | 1.62 | 1.72 | 1.83 | 1.59 | 2.24 | 2.38 | 1.94 | 1.80 |
+| Keys at half weight | 1.34 | 1.38 | 1.33 | 1.44 | 1.58 | 1.37 | 2.13 | 2.36 | 1.92 | 1.77 |
+| Keys line fitted on the last ten elections | 1.46 | 1.49 | 1.43 | 1.54 | 1.67 | 1.44 | 2.20 | 2.30 | 1.87 | 1.73 |
+| **No Keys (recommended)** | 1.14 | 0.96 | 1.07 | 1.06 | 1.24 | 1.14 | 1.98 | 2.32 | 1.88 | 1.74 |
 
-The same without 2020, the election the candidate's edge was thought to rest on:
-
-|  | 250 days | 200 days | 150 days | 120 days | 90 days | 60 days | 30 days | 14 days | 7 days | last day |
+| Log loss for the winner | 250 days | 200 days | 150 days | 120 days | 90 days | 60 days | 30 days | 14 days | 7 days | last day |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Published | 2.95 | 2.76 | 2.50 | 2.53 | 2.59 | 2.16 | 2.60 | 2.08 | 1.84 | 1.59 |
-| Candidate | 1.82 | 1.82 | 1.64 | 1.64 | 1.73 | 1.41 | 2.14 | 2.04 | 1.63 | 1.48 |
-| Hybrid | 1.77 | 1.78 | 1.60 | 1.60 | 1.71 | 1.39 | 1.92 | 2.00 | 1.60 | 1.46 |
+| Published | 0.46 | 0.61 | 0.44 | 0.43 | 0.63 | 0.58 | 0.61 | 0.65 | 0.51 | 0.48 |
+| Hybrid: Keys as an equal part | 0.41 | 0.47 | 0.41 | 0.41 | 0.53 | 0.52 | 0.60 | 0.66 | 0.52 | 0.49 |
+| Keys at half weight | 0.40 | 0.46 | 0.40 | 0.40 | 0.52 | 0.51 | 0.59 | 0.66 | 0.52 | 0.49 |
+| Keys line fitted on the last ten elections | 0.40 | 0.46 | 0.40 | 0.39 | 0.51 | 0.51 | 0.60 | 0.66 | 0.51 | 0.48 |
+| **No Keys (recommended)** | 0.38 | 0.43 | 0.38 | 0.38 | 0.50 | 0.50 | 0.58 | 0.65 | 0.51 | 0.48 |
+| No Keys in the vote; the count used as a sign of the winner | 0.46 | 0.53 | 0.47 | 0.47 | 0.62 | 0.62 | 0.75 | 0.79 | 0.65 | 0.63 |
 
-Typical state miss:
+Among the versions of the hybrid every average is best with the Keys left out, and the order is the same on every measure:
+the more of the Keys line there is, the worse the forecast. That holds for the vote (national and state misses, and the lean
+toward the Democrats) and for the winner (Brier score and log loss). On the national miss it holds at eight of the ten
+distances and is within 0.02 at the other two. Against the published forecast the version without the Keys is closer from
+250 days to 30 days and level in the last fortnight (2.32 against 2.17 at 14 days, 1.74 against 1.72 on the last day).
 
-|  | 250 days | 200 days | 150 days | 120 days | 90 days | 60 days | 30 days | 14 days | 7 days | last day |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Published | 4.04 | 3.89 | 3.92 | 3.86 | 3.95 | 3.82 | 4.15 | 4.22 | 3.81 | 3.66 |
-| Candidate | 4.14 | 4.07 | 4.04 | 4.10 | 4.11 | 3.95 | 4.46 | 4.40 | 3.92 | 3.76 |
-| Hybrid | 4.01 | 3.89 | 3.84 | 3.91 | 3.89 | 3.75 | 4.28 | 4.31 | 3.86 | 3.71 |
-| Hybrid, no long-range model | 4.12 | 3.99 | 3.89 | 3.94 | 3.89 | 3.71 | 4.22 | 4.30 | 3.85 | 3.70 |
-| Published prior, polls by the timeline | 4.75 | 4.51 | 4.27 | 4.21 | 4.11 | 3.79 | 4.27 | 4.24 | 3.82 | 3.67 |
+Why. The Keys line, taken alone, missed the national margin by more than any other part and always the same way:
 
-Mean chance given to the party that went on to win:
+| Each part alone, miss on the national margin | 2008 | 2012 | 2016 | 2020 | 2024 | Typical size | Mean, toward the Democrats |
+|---|---|---|---|---|---|---|---|
+| Keys line | +4.8 | +7.8 | +4.4 | +0.8 | +3.8 | 4.3 | +4.3 |
+| Keys line, last ten elections | +3.4 | +7.6 | +2.4 | +0.5 | +3.0 | 3.4 | +3.4 |
+| Approval equation | +5.5 | +2.7 | -1.8 | -5.1 | +0.7 | 3.1 | +0.4 |
+| Approval-and-economy model | +3.6 | -3.6 | +0.4 | +4.5 | +0.5 | 2.5 | +1.1 |
+| Long-range model | -2.1 | +3.6 | -1.9 | +5.1 | +2.4 | 3.0 | +1.4 |
 
-|  | 250 days | 200 days | 150 days | 120 days | 90 days | 60 days | 30 days | 14 days | 7 days | last day |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Published | 69% | 63% | 69% | 72% | 64% | 63% | 67% | 65% | 68% | 69% |
-| Candidate | 71% | 69% | 71% | 73% | 68% | 65% | 68% | 64% | 67% | 68% |
-| Hybrid | 71% | 69% | 71% | 73% | 68% | 66% | 68% | 64% | 67% | 68% |
-| Hybrid, no long-range model | 69% | 67% | 70% | 72% | 67% | 65% | 68% | 64% | 67% | 68% |
-| Published prior, polls by the timeline | 68% | 66% | 69% | 71% | 67% | 65% | 68% | 64% | 67% | 68% |
+As a sign of the winner the count did no better. Laid over the simulations with its own past record (shrunk halfway to a coin
+toss, because the keys were chosen with the results in view), it made every winner score worse:
 
-Brier score of the state forecasts (lower is better):
-
-|  | 250 days | 200 days | 150 days | 120 days | 90 days | 60 days | 30 days | 14 days | 7 days | last day |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Published | 0.0540 | 0.0529 | 0.0512 | 0.0496 | 0.0534 | 0.0489 | 0.0461 | 0.0476 | 0.0414 | 0.0402 |
-| Candidate | 0.0496 | 0.0496 | 0.0483 | 0.0483 | 0.0503 | 0.0482 | 0.0479 | 0.0491 | 0.0425 | 0.0405 |
-| Hybrid | 0.0496 | 0.0493 | 0.0478 | 0.0477 | 0.0496 | 0.0476 | 0.0471 | 0.0487 | 0.0422 | 0.0403 |
-| Hybrid, no long-range model | 0.0516 | 0.0510 | 0.0490 | 0.0488 | 0.0504 | 0.0481 | 0.0471 | 0.0490 | 0.0423 | 0.0404 |
-| Published prior, polls by the timeline | 0.0556 | 0.0544 | 0.0514 | 0.0505 | 0.0517 | 0.0486 | 0.0475 | 0.0487 | 0.0423 | 0.0404 |
-
-Before the long-range model's own polls existed (2016, 2020, 2024; more than a year out), mean size of the national miss:
-
-| Election | Dates | Published | Candidate | Hybrid |
+| Election | Count | The count called | Right? | Its record before, as used |
 |---|---|---|---|---|
-| 2016 | 3 | 2.19 | 2.64 | 1.31 |
-| 2020 | 6 | 1.35 | 2.72 | 0.24 |
-| 2024 | 6 | 2.19 | 2.14 | 1.67 |
-| All | 15 | 1.85 | 2.47 | 1.03 |
+| 2008 | 26% | Democrats | yes | 66% |
+| 2012 | 70% | Democrats | yes | 66% |
+| 2016 | 62% | Democrats | no | 67% |
+| 2020 | 38% | Democrats | yes | 64% |
+| 2024 | 53% | Democrats | no | 65% |
 
-What this shows. From 250 days to 30 days the hybrid's national number was closer than the published one at every distance,
-by a quarter of a point to a full point, and it favored the eventual winner in four elections of five at all ten distances
-(the published forecast in three of five at 60 and 30 days). In the last two weeks the published forecast was slightly
-closer: by 0.21 at 14 days, 0.04 at 7 and 0.08 on the last day. State misses are level throughout; the hybrid's
-Brier score is lower far out and level at the end. Without 2020 the hybrid is closer at all ten distances, so the difference
-does not rest on that year. More than a year out, on the 15 dates there are, the hybrid was closer in all three elections.
+In all five elections the count pointed to the Democrats; three of the five went that way. Its record of 15 Electoral College
+winners in 19 (17 for the national vote) is a record of rules written after the results were known.
 
-What it does not show. Five elections, three of them for the early test. The approval-and-economy model's forecast of each
-year is the one made about 100 days out, used here at every distance, and the Keys count for a past year uses that year's
-final figures, so the early rows flatter every version that uses them, the hybrid included. The published forecast is
-flattered the same way by the Keys count. None of this is a forecast made at the time.
+What this does not show. Five elections; ten distances from the same election are not ten elections. Six versions were
+scored on them, so a small gap between two versions means little: the case rests on the gap being large, in one direction,
+and on every measure. The approval-and-economy model's forecast is the one made about 100 days out, used at every distance,
+and the Keys counts use final figures: both flatter early forecasts, and the second flatters the Keys.
 
-| 2028, as of 2026-11-25 | Published | Candidate | Hybrid |
+**Recommendation: give Fifty-Two Keys no weight in The Margin.** The version without it is `model.RECOMMENDED`. It is run on
+every forecast and is not published until you say so.
+
+| 2028, as of 2026-11-25 | Published | Hybrid | Recommended (no Keys) |
 |---|---|---|---|
-| Democrats win the Electoral College | 62 in 100 | 69 in 100 | 69 in 100 |
-| The same, simulations only (no betting markets) | 60 in 100 | 69 in 100 | 70 in 100 |
-| National vote | D+3.1 | D+4.2 | D+4.1 |
-| Democratic electoral votes, middle simulation | 284 | 300 | 299 |
-| Four in five simulations | 214 to 364 | 220 to 392 | 223 to 387 |
-| Polls in the national number | 11% | 3% | 3% |
+| Democrats win | 60 in 100 | 68 in 100 | 70 in 100 |
+| National vote | D+3.1 | D+4.0 | D+4.0 |
+| Democratic electoral votes, middle simulation | 284 | 298 | 298 |
+| Four in five simulations | 214 to 364 | 222 to 386 | 227 to 379 |
+| National number less the states added up | -0.32 | -0.03 | -0.03 |
 
-The Fifty-Two Keys part, as a spread and not one number: the middle of that site's run ahead, 40% of the count, points
-to a Democratic share of 52.3% (D+4.6), with four chances in five between 47.1% and 57.7%. Of that
-spread, 2.8 points of share come from where the count may still end up and 3.0 from the line's own misses on
-past elections. The second part stays when every key is called.
+For 2028 the choice moves little: today the Keys line (D+4.1) stands beside the other two parts (D+4.1 and D+4.1).
+The difference from the published forecast comes from the rest of the hybrid: early polls counted for 3% and not 11%, and the
+approval-and-economy model added. The recommendation is not made for the number it gives.
 
-## 4. The Fifty-Two Keys vote line
+Fifty-Two Keys goes on as its own site. It calls a winner; it no longer gives an estimate of the vote.
 
-The line's misses were all toward the Democrats in the five back-tested elections. That is not a mistake of orientation:
-in the party-in-office terms the line is fitted in, the misses go both ways.
+## 3. The national number and the states
 
-| Election | Party in office | Miss toward the party in office | Miss toward the Democrats |
-|---|---|---|---|
-| 2008 | Republicans | -4.9 | +4.9 |
-| 2012 | Democrats | +7.6 | +7.6 |
-| 2016 | Democrats | +4.5 | +4.5 |
-| 2020 | Republicans | -0.8 | +0.8 |
-| 2024 | Democrats | +3.8 | +3.8 |
+In the published forecast the states, added up by the votes each cast in 2024, come to 51.21% against a national number of
+51.54%: 0.32 points apart. Half of each state's starting point is Tipping Point's forecast of that state as it stands,
+which carries that site's lower national level into the states a second time. In the versions under review the state models
+are used only for where they place each state against their own national figure, and the two agree to 0.03. The chance of
+winning the most votes shown on the page is counted from the states added up (68 in 100), not from the national number alone.
+Adopting the recommended version closes the gap; nothing else was needed.
 
-The share the line is fitted on and the national share in the results file differ by at most 0.14 points, so the two are
-the same measure. The line has flattened as elections were added: the vote now moves less for a given count than it did
-before the 1990s.
+## 4. How wide the ranges are
 
-| Line fitted on | Typical miss, 2008 to 2024 | Mean miss toward the Democrats | Mean miss toward the party in office | Points of vote for the whole count, 2024 fit |
-|---|---|---|---|---|
-| Every election since 1952 (as used) | 4.3 | +4.3 | +2.0 | 24 |
-| Last ten elections | 3.4 | +3.4 | +1.8 | 18 |
-| Elections since 1980 | 2.8 | +2.8 | +1.2 | 19 |
-
-A line fitted on fewer, later elections would have missed by less, but those windows were looked at after the fact and five
-elections cannot tell a real change of slope from chance. No correction by party is proposed. Recommendation: leave the
-line as it is and carry its error (3.0 points of share) in full (decision D).
-
-## 5. Are the ranges too wide?
-
-The range shown for a place is the 10th to the 90th of every hundred simulated results: a range for the result, not for the
-model's middle estimate. All places use the same rule.
+Unchanged, and the evidence is as before: on the last day the ranges held more results than four in five on average, but in
+2016 they needed nearly all of their width.
 
 | Last day, 2008 to 2024 | Forecasts | Result inside the range | More Republican than the range | More Democratic | Width of the range, points | Typical miss |
 |---|---|---|---|---|---|---|
@@ -191,88 +138,80 @@ model's middle estimate. All places use the same rule.
 | 2020 | 88% | 12% | 0% | 83% |
 | 2024 | 98% | 2% | 0% | 38% |
 
-| Days out | State results inside the range | Width, points | National result inside its range, of 5 |
-|---|---|---|---|
-| 120 | 95% | 21.3 | 5 |
-| 90 | 93% | 20.7 | 5 |
-| 60 | 95% | 19.4 | 5 |
-| 30 | 91% | 17.8 | 5 |
-| 14 | 87% | 17.0 | 5 |
-| 7 | 89% | 16.4 | 5 |
-| 1 | 91% | 15.9 | 5 |
+One assumption was checked against a record for the first time. The allowance for approval still moving is 10 points of net
+approval. Between the midterm and June of the election year, net approval moved by about 20 points in a typical term since
+1950, and by about 11 in the five most recent. At 20 the Democratic chance today would be about one point lower; the choice
+is yours (decision 3). Fifty-Two Keys' run-ahead now uses the full record.
 
-On average the ranges held more than four results in five, which read alone says they are wider than they need to be. Read
-by election it says something else: in 2016 and 2020 the results fell outside almost only on one side, and in 2016 the
-ranges needed nearly all of their width. A range has to be wide enough for the year in which the polls miss together, and
-two of the five years were such years. Narrowing the ranges to fit the average would have left 2016 well short.
-**Recommendation: keep the width.** Five elections cannot show that a two-year range is too wide or too narrow; this is a
-check on the last day only, where there is a record.
+## 5. Running by itself: what is proven and what is not
 
-One part of the range does need a decision. The allowance for approval still moving (10 points of net approval, set by hand)
-does not shrink as June 2028 approaches, while the chart on the Model tab assumes it does. `drift_rule='calendar'` in
-`model.py` makes the forecast do what the chart shows: the allowance as it is today, falling with the square root of the
-time left and gone by the end of June 2028, when June approval is a fact. It is written, tested and switched off. Today's
-forecast is the same either way (decision B).
+| Evidence | Status |
+|---|---|
+| Tests on this machine: The Margin 17 and three browser tests, Fifty-Two Keys 34 | pass |
+| Made-up futures: keys landing, the close, late figures, a new survey, seats, third candidates | pass |
+| Runs started by hand on GitHub, with and without something new | seen |
+| Notification, Fifty-Two Keys to The Margin | seen: 19:01 UTC, November 25 |
+| Notification, Tipping Point to The Margin | seen: 21:48 and 22:29 UTC. The Margin ran within a minute, found the new state forecasts, kept and deployed a forecast |
+| A check asked for from outside (`heartbeat`) | seen in all three between 22:28 and 22:47 UTC: the two upstream sites found nothing new and saved nothing; The Margin found the new Keys count, reran, and kept no new forecast because the forecast had not moved |
+| The forecasters' survey read from the Philadelphia Fed on GitHub's servers | seen: it gave the figures entered by hand |
+| A changed source published with nobody starting the run | **not yet seen** |
+| A run GitHub started by itself since the hourly schedules went in | **not yet seen** |
 
-## 6. Updates as they actually run
+Tipping Point's secret was added after the run this report first read; its next run notified The Margin.
 
-Measured from GitHub's own record of runs, not from the schedule.
+The schedule is the open problem. Before the change Tipping Point asked for runs at 06:17 and 11:17 UTC and GitHub started
+them seven to ten hours late, every day. Hourly schedules went in at about 18:00 UTC on November 25 and no scheduled run
+had started in any repository by 22:50. If GitHub is simply seven to ten hours behind, hourly runs will begin overnight and
+keep an hourly rhythm; if it drops them, they will not. [ops.html](https://ka82205.github.io/the-margin/ops.html) reads GitHub's record live and shows,
+for each site, the last run of any kind and how many runs GitHub started by itself in the last day and week.
 
-- Hourly schedules went into all three repositories at about 18:00 UTC on November 25. In the four hours after that, to
-  22:00 UTC, **GitHub started no scheduled run in any of the three**. Every run in that window was started by hand, by a
-  push, or by a notification. Before the change, Tipping Point's scheduled runs did start, about twice a day.
-- Notifications work from Fifty-Two Keys: two of its runs told The Margin, and The Margin ran within two minutes each time
-  (19:01 and 21:48 UTC). Tipping Point has no `DISPATCH_TOKEN` secret and says so in its log, so its changes reach The
-  Margin only at The Margin's own next run.
-- A run with nothing new ends without saving anything (checked by hand in all three). A run with something new saves,
-  archives and deploys.
+What is in place so that one late schedule does not stall everything: each upstream site, whenever it runs, wakes The Margin
+if The Margin has not checked for most of an hour. What is not in place: anything outside GitHub that wakes the upstream
+sites. That needs one free account and one change to your token, and only you can make them (decision 4).
 
-So the chain works when a run starts; what cannot be promised is when GitHub starts one. `RUNBOOK.md` has the two things
-that would make it dependable (decisions F and G).
+## 6. Fifty-Two Keys: all 52 keys
+
+`KEYS.md` in that repository has the row for each key: what it reads, its window, when it can first be called, what happens
+if the figure is missing. In short:
+
+| Keys | Evidence | Typed by hand |
+|---|---|---|
+| 33 economy keys (A01 to A18, B01 to B15) | FRED and the Philadelphia Fed state indexes; called when June 2028 figures are out | nothing |
+| 6 approval keys (C01 to C06) | VoteHub's list of approval polls; called a week after June 2028 ends | nothing |
+| 5 seat keys (D01, D02, D03, D05, D06) | the public list of sitting members, in the January a Congress meets | nothing (was one line every two years) |
+| D04, E02 | the 2024 result; the table of past elections | nothing |
+| E03, third candidate | PollResults.org: June 2028 polls naming one, three pollsters or more | nothing (was one entry) |
+| E01 | the president cannot run again | entered once, done |
+| E04, delegates | pledged delegates when the primaries end | **one entry in 2028** |
+| E05, E06, E07, New Hampshire | certified results, for each party's candidate with a majority of pledged delegates | **one line in 2028** |
+
+The four that still need an entry have no free, open source to read: delegate counts and New Hampshire's certified results
+are published as pages and documents. The rules for them are now fixed in `KEYS.md`: pledged delegates at the end of the
+primaries, not the convention; the nominee is the candidate with a majority of pledged delegates; a party with no such
+candidate by August 1, 2028 has its keys left open, and the count closes without them.
+
+Still entered in the run-ahead, with their dates: the parts of the outlook the forecasters' survey does not give (income,
+pay, spending, industrial production, factory jobs, oil, sentiment, population), the 30% share of runs with a recession, and
+the odds for the four nomination keys. No dependable free forecast of these was found; they are labelled as entered.
 
 ## 7. Decisions that are yours
 
-A. **Adopt the hybrid as the published national method?** Recommended: yes. It keeps every part of the published forecast
-   that has earned its place, adds the approval-and-economy model, stops early polls from counting for more than their
-   record supports, and holds early state polls under a ceiling. Effect today: 62 to 69 in 100, national vote D+3.1 to
-   D+4.1, 284 to 299 electoral votes. The published forecast stays as it is until you say so. This is the one decision here
-   worth a second, slower look.
-B. **Let the approval allowance shrink with the calendar?** Recommended: yes. No change today; without it somebody has to
-   edit `data/inputs.json` by hand in 2028.
-C. **Which number is the headline?** Today the headline (62 in 100) is the simulations (60 in 100) moved a quarter of
-   the way toward betting markets, and the page says so. Markets are in no back-test, and the blend makes the headline
-   differ from the map and the electoral-vote chart beneath it. Recommended: make the simulations the headline and show the
-   market figure beside it.
-D. **The Keys vote line.** Recommended: no change (section 4).
-E. **Three rules Fifty-Two Keys needs before 2028**: the day the count is closed (proposed: August 1, 2028); which polls
-   decide the third-candidate key and how they are averaged; and who counts as "the nominee" before the conventions, for
-   the delegate and New Hampshire keys. `KEYS.md` sets out each. Until they are settled those five keys are entered by hand.
-F. **Add `DISPATCH_TOKEN` to Tipping Point.** It is already in Fifty-Two Keys. Steps in `RUNBOOK.md`; nothing to paste here.
-G. **Scheduled runs.** Wait a day and read the record again, or let each site's run wake the other two (the token would then
-   need to cover all three repositories). No paid service is needed for either.
-H. **A contact link on The Margin.** Tipping Point's footer links to your LinkedIn page. Say the word and The Margin's
-   footer gets the same link, with no name or photo beside it.
+1. **Make the version without Fifty-Two Keys the published forecast?** Recommended. Today: 60 in 100 to 70 in 100, national vote D+3.1 to D+4.0,
+   284 to 298 electoral votes. It also brings the national number and the states into agreement. `RUNBOOK.md` has the steps; every
+   forecast kept before the change stays as it was.
+2. **Freeze the method after that.** If you approve 1, I suggest no further change to The Margin's method before the
+   election except to fix a fault.
+3. **The size of the approval allowance:** 10 points of net approval (as now, close to the five most recent terms) or 20
+   (every term since 1950). About one point of the Democratic chance today.
+4. **An outside clock for the three sites,** if GitHub's own schedule proves undependable. One free account at a scheduling
+   service and your existing token widened from one repository to three. Steps in `RUNBOOK.md`.
 
-## 8. The roadmap, section by section
+## 8. Not done
 
-| Roadmap | Status |
-|---|---|
-| 3 Audit; 4 Literature | Done in `REVIEW.md`; reconciled here |
-| 5 National architecture; 12 Combination and overlap | Built and tested as the hybrid; under review (A). Polls shared with the long-range model are counted once, and the test says so; no claim that this removes every overlap |
-| 6 Tipping Point integration | Working: The Margin reads the Nowcast's two models separately and records its version, mode and whether it is fixed. Still read from `nowcast.js`, not a plain JSON file. Token missing (F) |
-| 7 Fifty-Two Keys: vote line, spread, key calls, run-ahead | Done and deployed. Still by hand: five nomination and third-candidate keys (E), the seat counts every two years, and the parts of the outlook the survey does not give |
-| 8 Approval; 9 National polls | The Margin takes both from Tipping Point. Fifty-Two Keys reads the same approval list itself, for its own windows. No separate file of every poll with every field yet |
-| 10 Phasing polls in; 11 State polls | Built; state polls are collected and listed, and counted only in the versions under review (A). 5 found, 1 meets the rules |
-| 13 National and state agreement | Not changed: the national number is set first and states are placed around it. Turnout-weighted adding-up is not built |
-| 14 Correlated errors; 16 Long-range ranges | Ranges now come from the simulation and cannot leave 0 to 100. Coverage report in section 5; calendar rule waiting (B) |
-| 15 Betting markets | Labelled on the page; decision C |
-| 17 Validation; 18 Trying parts in and out | Back-test with state models; eight versions scored and kept. Not rebuilt as it stood on the day: the approval-and-economy model before its publication date, and Keys counts on first-published figures |
-| 19 Electoral College | Tipping-point chances, ties and splits from the same simulations. Paths to victory not built |
-| 20 Automation; 21 Failures; 22 Archives | Built and checked by hand both ways; archives are write-once and now carry upstream versions. Scheduled starts are GitHub's and are not dependable yet (section 6) |
-| 23 What moved | As before: parts are swapped in one at a time, so the split depends on the order. Not rebuilt |
-| 24 Site; 26 Links between sites | Display defects fixed; three-site table and links added. No polling page, forecast-history page or scenario tool on The Margin yet |
-| 25 Scenario lab; 28 Congress and governors | Not started, as instructed |
-| 27 Methodology pages; 31 Governance | Model and Research tabs, `README.md`, `REVIEW.md`, this file. Official and under-review versions are separate in code and on record |
-| 29 Accessibility | Not audited in this round |
-| 30 Tests | The Margin 17 Python tests and two browser tests; Fifty-Two Keys 31; Tipping Point's own. All pass |
-| 32 Independent review | Not done in this round |
+- The back-tests still use one forecast a year from the approval-and-economy model and final Keys counts; they are labelled
+  as such and have not been rebuilt as they stood on each day. Dropping the Keys removes the second of these.
+- No separate page for polls; state polls are listed on each state's page with the reason each is or is not counted.
+- Tipping Point's state approval is still copied by hand from Civiqs, which offers no feed; a new forecast published by the
+  models' authors would also have to be entered by hand.
+- A large, real economic move is still held back until somebody lets it through; no second source confirms it automatically.
+- No accessibility audit and no outside review in this round. Congress is out, as instructed.
