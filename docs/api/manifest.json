@@ -1,0 +1,78 @@
+{
+ "schema": 1,
+ "model": "the-margin",
+ "election": 2028,
+ "office": "president",
+ "status": "published",
+ "forecast": {
+  "as_of": "2026-11-25",
+  "file": "api/forecast.json",
+  "hash": "9f3ebbb6c327c0f0",
+  "last_kept": "2026-11-25T1756Z.json",
+  "kept": 1
+ },
+ "units": {
+  "shares": "Democratic share of the two-party vote, in percent (0 to 100)",
+  "margins": "twice the share less 100: positive is Democratic",
+  "chances": "between 0 and 1",
+  "ranges": "the 10th and 90th of every hundred simulated results"
+ },
+ "model_version": {
+  "settings": "281134a01411",
+  "sims": 40000,
+  "seed": 538,
+  "status": "published",
+  "under_review": "dbc6f6da4baa"
+ },
+ "upstream": {
+  "fifty_two_keys": {
+   "date": "2026-11-25",
+   "as_of": "November 25, 2026",
+   "engine": "2026.11b",
+   "format": 2,
+   "settled": 8,
+   "unresolved": 44,
+   "provisional": 0,
+   "held": 0,
+   "closed": false,
+   "outlook": "2026-11-16",
+   "through": {
+    "UNRATE": "October 2026",
+    "PAYEMS": "October 2026",
+    "MANEMP": "October 2026",
+    "CPIAUCSL": "October 2026",
+    "INDPRO": "October 2026",
+    "DPCERA3M086SBEA": "October 2026",
+    "CES0600000008": "October 2026",
+    "MCOILWTICO": "October 2026",
+    "SP500": "October 2026",
+    "UMCSENT": "November 2026",
+    "HOUST": "October 2026",
+    "ICSA": "October 2026",
+    "quarterly": "2026 Q3",
+    "states": "2026-09",
+    "approval_polls": "2026-11-25"
+   },
+   "hash": "e40bfa71f2262c9b"
+  },
+  "tipping_point": {
+   "as_of": "2026-11-25",
+   "generated_at": "2026-11-25T18:15:06Z",
+   "mode": "nowcast",
+   "frozen": false,
+   "models": {
+    "enns": 52.068,
+    "desart": 49.846
+   },
+   "combined": 50.946,
+   "hash": "a417798a5773c618"
+  }
+ },
+ "archive": "archive/index.json",
+ "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
+ "made": "2026-11-25T21:39Z",
+ "commit": null,
+ "sources": {
+  "state polls": "PollResults.org and VoteHub, CC BY 4.0; not affiliated with this site"
+ }
+}

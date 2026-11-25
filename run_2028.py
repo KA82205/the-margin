@@ -1,5 +1,5 @@
 """The 2028 forecast as it stands today. Writes data/forecast_2028.json."""
-import json, re, sys
+import hashlib, json, re, sys
 import numpy as np, pandas as pd
 import model as M, fundamentals as F
 
@@ -176,7 +176,11 @@ def main():
          'state_poll_sources': {'found': sp.get('found', {}), 'answered': {k: bool(v.get('answered')) for k, v in sp.get('sources', {}).items()}, 'fetched': sp.get('fetched')},
          'candidate': cand,
          'funnel': funnel, 'market_sensitivity': msens, 'equation_error': fsd,
-         'settings': {k: v for k, v in M.SET.items()}}
+         'settings': {k: v for k, v in M.SET.items()},
+         # what this forecast was made from (update.py records the other sites' versions) and with
+         'upstream': NOW.get('upstream'),
+         'model': {'settings': hashlib.sha256(json.dumps(M.SET, sort_keys=True, default=str).encode()).hexdigest()[:12], 'sims': M.SET['sims'], 'seed': M.SET['seed'], 'status': 'published',
+                   'under_review': hashlib.sha256(json.dumps(M.CANDIDATE, sort_keys=True, default=str).encode()).hexdigest()[:12]}}
     json.dump(J, open('data/forecast_2028.json', 'w'), indent=1)
     # the day-by-day record: one row a day, today's row replaced if the forecast is run again
     row = {'date': TODAY, 'p_dem': round(J['p_dem'], 4), 'p_model': round(J['p_model'], 4), 'market': round(J['market'], 4), 'national': round(J['national'], 2), 'ev_median': int(J['ev_median']),

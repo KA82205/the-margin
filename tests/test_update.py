@@ -121,6 +121,40 @@ def test_feeds_are_checked_before_use():
         pass
 
 
+def test_a_kept_forecast_says_what_it_was_made_from():
+    """The other sites' versions go into every kept forecast, the Nowcast file itself is kept once for each version of it,
+    and the files for other programs describe the forecast they hold."""
+    import gzip, hashlib
+    text = open('data/nowcast.js').read(); nc = U.parse(text)
+    v = U.nowcast_version(text, nc)
+    assert v['hash'] == hashlib.sha256(text.encode()).hexdigest()[:16] and v['as_of'] == nc['as_of'] and set(v['models']) >= {'enns', 'desart'} and v['frozen'] is False
+    assert U.nowcast_version(text + ' ', nc)['hash'] != v['hash']
+    feed = {'as_of': 'November 25, 2026', 'date': '2026-11-25', 'party_in_office': 'R', 'keys': 52, 'engine': '2026.11b', 'format': 2, 'likely': {'in_favor': 27, 'index': 0.42}, 'mean': 0.394, 'sd': 0.132,
+            'count': {'settled': 8, 'unresolved': 44, 'provisional': 0, 'held': 0, 'closed': False}, 'calls': {'D01': {'status': 'settled', 'value': False, 'final': True}},
+            'index_dist': [[0.3, 0.25], [0.4, 0.5], [0.5, 0.25]]}
+    kv, dist = U.keys_version(json.dumps(feed))
+    assert kv['engine'] == '2026.11b' and kv['settled'] == 8 and kv['unresolved'] == 44 and dist == [[0.3, 0.25], [0.4, 0.5], [0.5, 0.25]]
+    called = copy.deepcopy(feed); called['calls']['D01']['value'] = True
+    assert U.keys_version(json.dumps(called))[0]['hash'] != kv['hash'], 'a call that changes is another version'
+    assert U.keys_version(json.dumps(dict(feed, index_dist=[[0.3, 0.9], [1.4, 0.5]])))[1] == [], 'a spread that is not a spread is not used'
+    root = tempfile.mkdtemp(); J = dict(forecast(), upstream={'tipping_point': v, 'fifty_two_keys': kv}, model={'settings': 'abc', 'sims': 40000, 'seed': 538})
+    name = U.archive(J, ['a poll'], root=root, made='2027-02-01T10:00Z')
+    kept = json.load(open(os.path.join(root, name)))
+    assert kept['upstream']['fifty_two_keys']['hash'] == kv['hash'] and kept['model']['seed'] == 538
+    path = os.path.join(root, kept['upstream']['tipping_point']['file'])
+    assert gzip.decompress(open(path, 'rb').read()).decode() == text, 'the Nowcast file kept is the one the forecast was made from'
+    stamp = os.path.getmtime(path)
+    U.archive(dict(J, p_dem=0.7), ['the odds'], root=root, made='2027-02-01T11:00Z')
+    assert os.path.getmtime(path) == stamp and len(os.listdir(os.path.join(root, 'upstream'))) == 1, 'one copy for one version, never rewritten'
+    other = copy.deepcopy(J); other['upstream']['tipping_point']['hash'] = '0' * 16; other['p_dem'] = 0.4
+    U.archive(other, ['x'], root=root, made='2027-02-01T12:00Z')
+    assert len(os.listdir(os.path.join(root, 'upstream'))) == 1, 'a file that is not the one the forecast used is not kept under its name'
+    api = tempfile.mkdtemp(); full = dict(J, as_of='2027-02-01', candidate={'p_dem': 0.9}, settings={}, states=[{'state': 'PA', 'mean': 51.0, 'lo': 45.0, 'hi': 57.0, 'p_dem': 0.6}])
+    man = U.export(full, root=api); body = json.load(open(os.path.join(api, 'forecast.json')))
+    assert 'candidate' not in body and body['states'][0]['state'] == 'PA' and man['upstream']['fifty_two_keys']['engine'] == '2026.11b'
+    assert man['forecast']['hash'] == hashlib.sha256(open(os.path.join(api, 'forecast.json')).read().encode()).hexdigest()[:16] and not [f for f in os.listdir(api) if f.endswith('.tmp')]
+
+
 if __name__ == '__main__':
     for name, fn in sorted(globals().items()):
         if name.startswith('test_') and callable(fn):

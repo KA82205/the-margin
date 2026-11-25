@@ -15,7 +15,9 @@ when any of these is true, and otherwise the run ends with nothing saved:
     - the day has changed: the first run of each day is always made, so the day-by-day record has every day
 
 Every forecast that differs from the last one kept is written to docs/archive/ and never changed afterwards
-(docs/archive/index.json lists them). data/history.csv keeps one row a day, the day's latest.
+(docs/archive/index.json lists them), with the versions of the other two sites it was made from and a copy of the Nowcast
+file itself (docs/archive/upstream/). data/history.csv keeps one row a day, the day's latest. docs/api/ holds the current
+forecast and a manifest for other programs.
 
 A source that cannot be read keeps its last value and the run goes on. That is a warning on an ordinary run. On the day's
 first run, and on a run started by hand, an input that has gone stale ends the run with an error after the forecast has
@@ -68,6 +70,31 @@ def keys(text):
     return round(index, 3), round(sd, 3), round(mean, 3), f"Fifty-Two Keys, {k['as_of']}: {k['likely']['in_favor']} of {k['keys']} keys in the Republicans' favor if each open key lands the way it leans"
 
 
+def short(x):
+    return hashlib.sha256(json.dumps(x, sort_keys=True, separators=(',', ':')).encode()).hexdigest()[:16]
+
+
+def keys_version(text):
+    """Which version of the Fifty-Two Keys feed a forecast was made from, and the spread of that site's count as it gave it:
+    [count to the nearest hundredth, share of runs]. The spread sums to one and lies between 0 and 1, or it is not used."""
+    k = json.loads(text); c = k.get('count') or {}
+    dist = [[round(float(a), 2), round(float(b), 5)] for a, b in (k.get('index_dist') or [])]
+    if dist and not (abs(sum(b for _, b in dist) - 1) < 0.01 and all(0 <= a <= 1 and b >= 0 for a, b in dist)): dist = []
+    calls = {i: [x.get('status'), x.get('value'), x.get('final')] for i, x in sorted((k.get('calls') or {}).items())}
+    return {'date': k.get('date'), 'as_of': k.get('as_of'), 'engine': k.get('engine'), 'format': k.get('format'), 'settled': c.get('settled', k.get('settled')), 'unresolved': c.get('unresolved'),
+            'provisional': c.get('provisional'), 'held': c.get('held'), 'closed': c.get('closed'), 'outlook': (k.get('outlook_from') or {}).get('date'), 'through': k.get('through'),
+            'hash': short([k.get('likely'), k.get('mean'), k.get('sd'), dist, calls, k.get('engine')])}, dist
+
+
+def nowcast_version(text, nc):
+    """Which version of the Tipping Point Nowcast a forecast was made from. `mode` and `frozen` say whether its forecasts
+    are that site's running figures or ones it has fixed on purpose: a fixed forecast is not a failed update."""
+    f = nc.get('desart_final') or {}
+    return {'as_of': nc.get('as_of'), 'generated_at': nc.get('generated_at'), 'mode': nc.get('mode'), 'frozen': bool(f.get('frozen')),
+            'models': {k: round(float(v['demPopular']), 3) for k, v in (nc.get('models') or {}).items() if isinstance(v, dict) and v.get('demPopular') is not None},
+            'combined': round(float(nc['summary']['demPopular']), 3), 'hash': hashlib.sha256(text.encode()).hexdigest()[:16]}
+
+
 def parse(text):
     d = json.loads(re.search(r'=\s*(\{[\s\S]*\});?\s*$', text).group(1))
     assert len(d['states']) >= 51 and 'approve' in d['approval'] and len(d['h2h']['polls']) > 0, 'the Nowcast file is not in the shape expected'
@@ -101,7 +128,8 @@ def read(inp, today, new_day, offline):
             open('data/nowcast.js', 'w').write(text); seen['nowcast'] = today
         except Exception as e:                       # noqa: BLE001  keep the copy in hand
             failed.append(f'the Nowcast ({type(e).__name__}: {e})')
-    nc = parse(open('data/nowcast.js').read())
+    text = open('data/nowcast.js').read(); nc = parse(text)
+    up = dict(inp.get('upstream') or {}); up['tipping_point'] = nowcast_version(text, nc); inp['upstream'] = up
     inp['as_of'] = today
     if not offline:
         try:
@@ -112,7 +140,9 @@ def read(inp, today, new_day, offline):
         except Exception as e:                       # noqa: BLE001  keep the last price and its date
             failed.append(f'the betting odds ({type(e).__name__}: {e})')
         try:
-            inp['keys'], inp['keys_sd'], inp['keys_mean'], inp['keys_note'] = keys(get(KEYS_URL)); seen['keys'] = today
+            feed = get(KEYS_URL)
+            inp['keys'], inp['keys_sd'], inp['keys_mean'], inp['keys_note'] = keys(feed); seen['keys'] = today
+            up = dict(inp.get('upstream') or {}); up['fifty_two_keys'], inp['keys_dist'] = keys_version(feed); inp['upstream'] = up
         except Exception as e:                       # noqa: BLE001  keep the last count
             failed.append(f'the Fifty-Two Keys count ({type(e).__name__}: {e})')
         try:
@@ -135,7 +165,9 @@ def snapshot(J, made, why):
             'tipping_point': J['tipping_point'],
             'inputs': {k: (round(v, 3) if isinstance(v, float) else v) for k, v in J['inputs'].items() if k in ('national_polls', 'polls_n', 'poll_share', 'fundamentals', 'net_approval', 'keys', 'nowcast_national', 'nowcast_as_of')},
             'states': {s['state']: [s['mean'], s['p_dem']] for s in J['states']},
-            'under_review': {k: (round(c[k], 4) if isinstance(c[k], float) else c[k]) for k in ('p_dem', 'national', 'ev_median') if k in c}}
+            'under_review': {k: (round(c[k], 4) if isinstance(c[k], float) else c[k]) for k in ('p_dem', 'national', 'ev_median') if k in c},
+            # what it was made from and with: the other sites' versions, this model's settings, and the commit that ran it
+            'upstream': J.get('upstream'), 'model': J.get('model'), 'commit': os.environ.get('GITHUB_SHA', '')[:12] or None}
 
 
 def differs(a, b):
@@ -157,11 +189,47 @@ def archive(J, why, root=ARCHIVE, made=None):
         last = json.load(open(os.path.join(root, entries[-1]['file'])))
         if not differs(snap, last): return None
     name = made.replace(':', '') + '.json'
+    keep_nowcast(snap, root)
     with open(os.path.join(root, name), 'x') as f:                    # 'x': fails rather than replace a forecast already kept
         json.dump(snap, f, separators=(',', ':'))
     entries.append({'made': made, 'as_of': snap['as_of'], 'p_dem': snap['p_dem'], 'national': snap['national'], 'ev_median': snap['ev_median'], 'why': why, 'file': name})
     json.dump(entries, open(index, 'w'), indent=0)
     return name
+
+
+def keep_nowcast(snap, root=ARCHIVE, source='data/nowcast.js'):
+    """Keep the Nowcast file a kept forecast was made from, once for each version of it, so that the forecast can be made
+    again from what it was made from and not from what that site says today."""
+    tp = (snap.get('upstream') or {}).get('tipping_point') or {}
+    if not tp.get('hash') or not os.path.exists(source): return None
+    raw = open(source, 'rb').read()
+    if hashlib.sha256(raw).hexdigest()[:16] != tp['hash']: return None      # the file in hand is not the one the forecast used
+    import gzip
+    os.makedirs(os.path.join(root, 'upstream'), exist_ok=True); path = os.path.join(root, 'upstream', f"nowcast-{tp['hash']}.js.gz")
+    if not os.path.exists(path):
+        with open(path, 'xb') as f: f.write(gzip.compress(raw, mtime=0))
+    tp['file'] = 'upstream/' + os.path.basename(path)
+    return path
+
+
+def export(J, root='docs/api'):
+    """The forecast as files other programs can read: api/forecast.json, and api/manifest.json saying what it is. The
+    manifest is written last, so a reader that starts from it never finds a forecast half written."""
+    os.makedirs(root, exist_ok=True)
+    body = {k: v for k, v in J.items() if k not in ('candidate', 'settings', 'state_poll_sources')}
+    text = json.dumps(body, separators=(',', ':')); tmp = os.path.join(root, 'forecast.json.tmp')
+    open(tmp, 'w').write(text); os.replace(tmp, os.path.join(root, 'forecast.json'))
+    try: kept = json.load(open(os.path.join(ARCHIVE, 'index.json')))
+    except FileNotFoundError: kept = []
+    man = {'schema': 1, 'model': 'the-margin', 'election': 2028, 'office': 'president', 'status': 'published',
+           'forecast': {'as_of': J['as_of'], 'file': 'api/forecast.json', 'hash': hashlib.sha256(text.encode()).hexdigest()[:16], 'last_kept': kept[-1]['file'] if kept else None, 'kept': len(kept)},
+           'units': {'shares': "Democratic share of the two-party vote, in percent (0 to 100)", 'margins': 'twice the share less 100: positive is Democratic', 'chances': 'between 0 and 1',
+                     'ranges': 'the 10th and 90th of every hundred simulated results'},
+           'model_version': J.get('model'), 'upstream': J.get('upstream'), 'archive': 'archive/index.json', 'history': 'https://github.com/KA82205/the-margin/blob/main/data/history.csv',
+           'made': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%MZ'), 'commit': os.environ.get('GITHUB_SHA', '')[:12] or None,
+           'sources': {'state polls': 'PollResults.org and VoteHub, CC BY 4.0; not affiliated with this site'}}
+    tmp = os.path.join(root, 'manifest.json.tmp'); json.dump(man, open(tmp, 'w'), indent=1); os.replace(tmp, os.path.join(root, 'manifest.json'))
+    return man
 
 
 # --------------------------------------------------------------------------------------------------------- the run
@@ -206,6 +274,7 @@ def main(argv):
         kept = archive(json.load(open('data/forecast_2028.json')), [w for w in what if w != 'day'] or ['the calendar'])
         print('Kept as', kept) if kept else print('The forecast is the same as the last one kept: nothing added to the archive.')
     make_page.main()
+    export(json.load(open('data/forecast_2028.json')))
     json.dump(fp, open('data/fingerprint.json', 'w'), indent=1)
     say('changed', 'true'); say('what', ', '.join(w for w in what if w != 'day') or 'the calendar')
     old_news = stale(inp, today) if (new_day or force or not os.environ.get('GITHUB_ACTIONS')) else []
