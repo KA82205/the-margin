@@ -230,12 +230,13 @@ nothing fails.
 |---|---|
 | Fifty-Two Keys notifies The Margin | 19:01 |
 | Tipping Point notifies The Margin; The Margin runs within a minute and publishes | 21:48, 22:29, 23:06 |
-| A check asked for from outside, the way an outside clock would ask (`workflow_dispatch`, check only) | Tipping Point 23:12 and Fifty-Two Keys 23:12: both found nothing new and saved nothing. The Margin: see RUNBOOK |
+| A check asked for from outside, the way an outside clock would ask (`workflow_dispatch`, check only) | Tipping Point 23:12, Fifty-Two Keys 23:12, The Margin 23:40 (sent the exact message in `RUNBOOK.md`; GitHub answered 204). Each ran as "Check: outside clock", found nothing new and saved nothing |
 | A `heartbeat` check | all three, 22:28 to 22:47 |
 | The official method published and kept | 23:14, `docs/archive/2026-11-25T2314Z.json` |
 | The forecasters' survey read from the Philadelphia Fed | gave the figures that had been typed |
 | The Bureau of Labor Statistics read as a second source | 23:28: "gives the same 11 figures" for the unemployment rate |
 | Polls naming a third candidate read from PollResults.org | every Fifty-Two Keys run |
+| The operations page on the public site | read at 23:41: it listed the outside-clock runs, the last saved update and no failures for The Margin |
 | **A run GitHub started by its own schedule since the hourly schedules went in** | **none in the first five and a half hours** |
 
 GitHub's schedule is the weak point. A schedule is a request; GitHub started Tipping Point's old twice-daily runs seven to
