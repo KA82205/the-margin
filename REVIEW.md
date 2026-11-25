@@ -506,6 +506,13 @@ A change in Fifty-Two Keys or Tipping Point reaches The Margin at its next hourl
 The Margin an event when they publish, if their repositories hold a secret named `DISPATCH_TOKEN`. That takes a token
 only the owner can create, so it is built and switched off until the secret is there.
 
+**How often the checks really run is up to GitHub.** Every run was started by hand after the change and behaved as
+described: a full run where something was new, and "nothing new" with nothing saved where it was not. What could not
+be shown in an afternoon is the hourly rhythm itself. GitHub starts scheduled runs when it has room, and from November
+20 to 25 it started Tipping Point's two daily runs 6 to 11 hours late. If hourly entries are treated the same way, the
+checks will come in bursts, hours apart. A late run loses nothing but time. A clock outside GitHub that calls each
+workflow once an hour would make the rhythm exact; it needs a token and somewhere to run.
+
 **The checks on new economic figures.** The allowance made for 2020 and 2021 in the quarterly series does not loosen
 the check on a newly published figure. The figures already in the tables are checked only for having been revised; a
 figure for a new date is held to a tight limit against the one before it. A wrong unit, a slipped decimal point, a
