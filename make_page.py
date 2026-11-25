@@ -1,5 +1,6 @@
 """Builds docs/index.html from template.html and the model's output. The page is one self-contained file."""
 import base64, json, re
+from model import SET as M_SET
 import pandas as pd
 
 TITLE = 'The Margin'
@@ -34,6 +35,13 @@ def main():
     miss = [s['1']['state_miss'] for s in ck['settings']]
     assert max(miss) - min(miss) < 0.4
     hist = pd.read_csv('data/history.csv'); assert hist.date.iloc[-1] == f['as_of'], 'the day-by-day record does not end on the forecast date'
+    sm = json.load(open('data/state_model_check.json'))      # the share of a state's starting point given to the state-level models, tried on 2008-2024
+    pick = lambda key, field: {str(x['w']): x[field] for x in sm['runs'][key]}
+    ck['state_model'] = {'used': M_SET['state_model_weight'], 'start': pick('average/share', 'start_miss'), 'start_close': pick('average/share', 'start_miss_close'),
+                         'one_model': pick('approval_economy/share', 'start_miss'), 'lean_best': min(x['start_miss'] for x in sm['runs']['average/lean']),
+                         'eve': {str(x['w']): x['miss']['1'] if '1' in x['miss'] else x['miss'][1] for x in sm['runs']['average/share']}, 'polls_share': sm['polls_share_close'], 'n_close': sm['n_close']}
+    s0, s5 = ck['state_model']['start']['0'], ck['state_model']['start'][str(ck['state_model']['used'])]
+    assert s5 < s0 and abs(ck['state_model']['start']['0.6'] - ck['state_model']['start']['0.5']) < 0.1 and ck['state_model']['one_model']['1.0'] > ck['state_model']['one_model']['0.4'], 'the page says the state models help and that half to four fifths does equally well'
     data = {'f': f, 'back': back, 'checks': ck, 'contact': CONTACT, 'research': json.load(open('data/research.json')), 'history': [{'date': r.date, 'p': round(r.p_dem, 4), 'national': r.national} for r in hist.itertuples()]}
     res = pd.read_csv('data/results.csv'); res = res[res.year >= 1976]; years = sorted(res.year.unique())      # how each state has voted, for its profile
     wide = res.pivot(index='state', columns='year', values='dem2')

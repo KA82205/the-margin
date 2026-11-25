@@ -135,6 +135,18 @@ Run as of 120, 90, 60, 30, 14, 7 and 1 days before each election, with only the 
   forecasts); said 67%, won 85% (20); said 83%, won 88% (34); said 96%, won 100% (64); said 99.8%, won 100% (145). The
   model is a little less sure than it needs to be.
 
+- **The state-level models' share of a state's starting point** (`state_model_check.py`). For 2028 half of each
+  state's starting point is the Tipping Point Nowcast's forecast of that state, which averages two state-level models
+  (state approval and economy, after Enns and colleagues; long-range polls, after DeSart). Tipping Point's record of
+  those models for 2008 to 2024 is in `data/state_models.csv`: the forecasts the authors published for 2020 and 2024,
+  and for 2008 to 2016 each model refitted on the elections before. With every state poll taken away, the starting
+  point missed the final margin by 4.67 points with no state model, 4.00 at half, 3.98 at 60%, 4.00 at 80% and 4.12
+  with the state models alone (close states: 3.90, 3.32, 3.33, 3.40, 3.56). Half to four fifths is flat, so half stays.
+  The approval model alone was best near 40% (4.20) and worse past half (5.18 alone; its 2020 forecast was too
+  Democratic), so the average of the two is used. Using only where the models place a state against the nation, not
+  their national level, was worse (4.41 at best). With polls in, the gain shrinks (last day: 3.75 to 3.66), because
+  polls make up 55% of a close state's projection at 120 days and 80% on the last day. At 60% today's 2028 chance
+  would be 62.1% and not 62.3%.
 - **A primary equation.** Helmut Norpoth's Primary Model reads November from the early primaries. A third fundamentals
   equation was tried in that spirit: the party in office's candidate's share in New Hampshire less the challenger's, with
   first term, fitted on earlier elections and averaged with the other two (`fundamentals.PRIMARY`). In the back-test the
@@ -150,7 +162,8 @@ Run as of 120, 90, 60, 30, 14, 7 and 1 days before each election, with only the 
   to be collected from sources that can be checked.
 - **The Fifty-Two Keys count** for a past year uses that year's final data. Most of it is known by late summer, so the
   early snapshots see slightly more than they could have.
-- **The Tipping Point state forecasts** are used for 2028 only; its back-test needs the papers' replication files.
+- **The Tipping Point state forecasts** are in the 2028 forecast and not in the main back-test above, which still runs
+  on the national number and each state's lean alone. They were tested on their own (`state_model_check.py`, below).
 - **Pollster quality and house effects** are not modelled. Every pollster counts the same apart from sample and recency.
 
 ## Sources

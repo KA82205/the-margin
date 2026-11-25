@@ -14,6 +14,8 @@ SET = dict(
     pop_weight={'lv': 1.0, 'rv': 0.9, 'a': 0.7},
     n_ref=600, n_cap=1.5,      # sample size counts by its square root, relative to 600, up to 1.5
     prior_polls=1.5,           # a state's polls are averaged with its prior as if the prior were this many fresh polls
+    state_model_weight=0.5,    # where a state-level model's forecast of the state is given (2028: the Tipping Point Nowcast), its share of the starting point
+    state_model_mode='share',  # 'share': its forecast of the state as it stands. 'lean': only where it puts the state against its own national figure
     lean=(0.75, 0.25),         # state lean: last election and the one before
     region_share=0.4,          # share of a state's own error that it shares with its region
     t_df=5,                    # fat tails for the national error
@@ -138,7 +140,9 @@ def forecast(year, asof, polls, res, tables, fund, ratings=None, market=None, ex
     rows = []
     for st, ev0 in zip(prev.state, prev.ev):
         prior = nat + lean(res, year, st)
-        if extra_prior and st in extra_prior: prior = 0.5 * prior + 0.5 * extra_prior[st]
+        if extra_prior and st in extra_prior:           # a state-level model's own forecast of the state shares the starting point
+            x = extra_prior[st] if SET['state_model_mode'] == 'share' else nat + extra_prior[st] - extra_prior['US']      # 'lean': only where it puts the state against its own national figure
+            prior = (1 - SET['state_model_weight']) * prior + SET['state_model_weight'] * x
         ps, ws = P.state(st, asof)
         v = ws / (ws + SET['prior_polls']) if ps is not None else 0.0
         est = v * ps + (1 - v) * prior if ps is not None else prior

@@ -7,7 +7,7 @@
  "p_without_extras": 0.6216375000000001,
  "p_popular": 0.73415,
  "national": 51.53876856943148,
- "national_sd": 2.9431765096744793,
+ "national_sd": 2.94317650967448,
  "ev_mean": 286.23815,
  "ev_median": 284.0,
  "ev_lo": 214.0,
@@ -557,9 +557,9 @@
  "inputs": {
   "national_polls": 48.81792167191573,
   "polls_n": 28,
-  "poll_share": 0.10804372765076228,
+  "poll_share": 0.10804372765076234,
   "fundamentals": 51.8683480009437,
-  "fundamentals_sd": 3.1163377938465953,
+  "fundamentals_sd": 3.116337793846596,
   "approval_model": 52.06764610990314,
   "keys_model": 51.669049891984265,
   "net_approval": -30.8,
@@ -1433,7 +1433,7 @@
    "p": 0.676
   }
  ],
- "equation_error": 2.5701421438925927,
+ "equation_error": 2.5701421438925913,
  "settings": {
   "half_life": [
    7,
@@ -1449,6 +1449,8 @@
   "n_ref": 600,
   "n_cap": 1.5,
   "prior_polls": 1.5,
+  "state_model_weight": 0.5,
+  "state_model_mode": "share",
   "lean": [
    0.75,
    0.25
