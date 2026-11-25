@@ -6,8 +6,8 @@ import model as M, fundamentals as F
 HISTORY = 'data/history.csv'
 
 def inputs():
-    """Today's inputs (data/inputs.json). update.py refreshes the date and approval every day; the market price and the
-    Fifty-Two Keys figures are entered by hand, with the date they were read."""
+    """Today's inputs (data/inputs.json). update.py refreshes all of them every day: the date, approval, the market price
+    and the Fifty-Two Keys count, each with the date it was read. A source that cannot be read keeps its last value."""
     return json.load(open('data/inputs.json'))
 
 def nowcast():
