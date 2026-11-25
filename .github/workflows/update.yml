@@ -1,23 +1,27 @@
-name: Daily forecast
+name: Forecast
 
 on:
   schedule:
-    # After the Tipping Point Nowcast's own two runs (6:17 and 11:17 UTC). GitHub starts scheduled runs late,
-    # so there are two a day; the second replaces the first's row for the day.
-    - cron: "47 7 * * *"
-    - cron: "47 12 * * *"
+    # Every hour. The other two sites check their own sources at :07 and :17, so this run sees what they found.
+    # GitHub can start a scheduled run late; nothing here depends on the exact minute.
+    - cron: "37 * * * *"
+  repository_dispatch:
+    # Sent by Fifty-Two Keys and by Tipping Point the moment one of them publishes something new (needs the
+    # DISPATCH_TOKEN secret in those two repositories; without it the hourly run above picks the change up).
+    types: [upstream-updated]
   workflow_dispatch: {}
 
 permissions:
   contents: write
 
 concurrency:
-  group: daily-forecast
+  group: forecast
   cancel-in-progress: false
 
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -25,20 +29,50 @@ jobs:
           python-version: "3.12"
       - run: pip install numpy pandas
 
-      - name: Fetch today's inputs and run the forecast
+      # The first test fails if the published forecast would come out differently from the one on record.
+      - name: Tests
+        run: |
+          python tests/test_model.py
+          python tests/test_polls.py
+          python tests/test_update.py
+
+      # Reads every source and compares with what the last forecast was made from. Nothing new: nothing is run or saved.
+      - name: Read the sources and run the forecast if anything is new
         id: update
         continue-on-error: true
-        run: python update.py
+        run: |
+          case "${{ github.event_name }}" in
+            workflow_dispatch) python update.py --force ;;
+            repository_dispatch) python update.py --wait 240 ;;
+            *) python update.py ;;
+          esac
 
-      - name: Save the day
+      - name: Save
+        if: steps.update.outputs.changed == 'true'
+        env:
+          WHAT: ${{ steps.update.outputs.what }}
         run: |
           git config user.name "forecast-bot"
           git config user.email "forecast-bot@users.noreply.github.com"
-          git add data/inputs.json data/nowcast.js data/prev_inputs.json data/prev_nowcast.js data/forecast_2028.json data/history.csv docs/index.html
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Forecast $(TZ=America/New_York date +%Y-%m-%d)" && git push; fi
+          git add -A data docs
+          if git diff --cached --quiet; then
+            echo "The forecast came out the same: nothing to save."
+          else
+            git commit -m "Forecast $(TZ=America/New_York date '+%Y-%m-%d %H:%M'): $WHAT"
+            git push || { git pull --rebase && git push; }
+          fi
 
-      - name: Flag a failed fetch
+      # An input that has gone stale is always flagged (update.py reports it once a day). A run that fails for another
+      # reason is tried again every hour and marked as failed at 7 a.m., 1 p.m. and 7 p.m. Eastern only, so a fault that
+      # lasts is reported three times a day and a passing one not at all. A run started by hand is always marked.
+      - name: Flag a stale input or a failed run
         if: steps.update.outcome == 'failure'
+        env:
+          ALERT: ${{ steps.update.outputs.alert }}
         run: |
-          echo "::error::Today's inputs could not be fetched; the forecast was rerun on the previous copy."
-          exit 1
+          hour=$(TZ=America/New_York date +%H)
+          if [ "$ALERT" = "true" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$hour" = "07" ] || [ "$hour" = "13" ] || [ "$hour" = "19" ]; then
+            echo "::error::An input has gone stale or the run failed; see the step above. The forecast in place is the last good one."
+            exit 1
+          fi
+          echo "::warning::The run failed this hour; the forecast in place is the last good one. The next hourly run tries again."

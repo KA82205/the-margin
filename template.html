@@ -283,6 +283,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   <b>The forecast, day by day</b>
   <div class="sub" id="hist-sub"></div>
   <div id="daily"></div>
+  <figcaption id="arch-note"></figcaption>
 </figure>
 
 <figure class="col">
@@ -342,8 +343,8 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   <figcaption>Projected with the model's own error tables, assuming 2028 is polled about as heavily as past elections. The range never closes: on the last day the national polling average has still missed by about two points of vote share in a typical year.</figcaption>
 </figure>
 <div class="col"><h2>Sources and limits</h2>
-  <p class="fine">The Margin is a personal, non-commercial project, rerun every day. Polls come from FiveThirtyEight's archive and the model data The Economist published; polling averages for 1972 to 2016 come from FiveThirtyEight's public data; expert ratings are Cook Political Report's and Sabato's Crystal Ball's; results are official counts. The fundamentals use the Fifty-Two Keys count, and the head-to-head polls, state starting points and presidential approval come from the Tipping Point Nowcast. <span id="src-market"></span> The code and data are in the repository.</p>
-  <p class="fine">Limits worth knowing: pollsters are not rated, so each counts the same apart from sample size and recency. Betting odds are in the 2028 number but not in the back-tests, because election-eve odds for 2008 to 2024 still have to be collected from sources that can be checked. The Fifty-Two Keys count for a past year uses that year's final data.</p>
+  <p class="fine">The Margin is a personal, non-commercial project. It checks its sources every hour and reruns the forecast when a poll, the odds or one of its sources has changed. Polls of past elections come from FiveThirtyEight's archive and the model data The Economist published; polling averages for 1972 to 2016 come from FiveThirtyEight's public data; expert ratings are Cook Political Report's and Sabato's Crystal Ball's; results are official counts. The fundamentals use the Fifty-Two Keys count, and the national head-to-head polls, state starting points and presidential approval come from the Tipping Point Nowcast, which reads its polls from VoteHub and from PollResults.org. Polls of single states are read from PollResults.org, which serves The New York Times's poll data. Both sets of poll data are used under the CC BY 4.0 license; The Margin is not affiliated with or endorsed by VoteHub, PollResults.org or The New York Times. <span id="src-market"></span> The code and data are in the repository.</p>
+  <p class="fine">Limits worth knowing: pollsters are not rated, so each counts the same apart from sample size and recency. Betting odds are in the 2028 number but not in the back-tests, because election-eve odds for 2008 to 2024 still have to be collected from sources that can be checked. The Fifty-Two Keys count for a past year uses that year's final data. The back-tests include Tipping Point's state-level models, but with one forecast for each year standing in for every day of it, and for 2020 the approval model's entry is the forecast its authors published then, made with an earlier version of the model.</p>
   <p class="fine" id="contact"></p>
 </div>
 </section>
@@ -517,7 +518,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   // ---- inputs
   const I = F.inputs;
   $('inrows').innerHTML = [
-    ['Polls', mg(I.national_polls), '<b>' + pc(I.poll_share) + ' of the national number today.</b> ' + I.polls_n + ' national head-to-head polls of possible nominees. Newer and larger polls count for more, and a pollster\'s older polls count for less. State polls will be added as they appear.'],
+    ['Polls', mg(I.national_polls), '<b>' + pc(I.poll_share) + ' of the national number today.</b> ' + I.polls_n + ' national head-to-head polls of possible nominees. Newer and larger polls count for more, and a pollster\'s older polls count for less. Polls of single states are listed on each state\'s page and are not counted yet.'],
     ['Fundamentals', mg(I.fundamentals), '<b>' + pc(1 - I.poll_share) + ' of the national number today.</b> The average of two equations fitted on past elections: presidential approval with a first-term adjustment (' + mg(I.approval_model) + ') and the Fifty-Two Keys count (' + mg(I.keys_model) + ').'],
     ['State models', in100(I.nowcast_p_dem), '<b>Half of each state\'s starting point.</b> The Tipping Point Nowcast runs two published state-by-state models. The other half is how the state voted against the nation in 2024 and 2020.'],
     ['Betting markets', in100(F.market), '<b>A quarter of the final chance.</b> The price of a Democratic win, blended with the model\'s own ' + in100(F.p_model) + '.']
@@ -665,6 +666,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     s += '<rect id="dhit" x="' + L + '" y="' + T + '" width="' + (W - L - R) + '" height="' + (H - T - Bm) + '" fill="transparent"/></svg>';
     $('daily').innerHTML = s;
     $('hist-sub').textContent = 'Chance of winning the Electoral College, updated every day since ' + longDate(Hh[0].date);
+    const Ar = DATA.archive; if (Ar && Ar.n) $('arch-note').innerHTML = 'The chart has one point a day, the day\'s latest. The sources are checked every hour, and every forecast that differed from the one before it is kept unchanged: ' + Ar.n + ' so far, the first from ' + longDate(Ar.first) + '. <a href="archive/index.json">The full list</a>';
     hover($('dhit'), e => { const b = $('dhit').getBoundingClientRect(), tt = +t0 + (e.clientX - b.left) / b.width * (t1 - t0); let h = Hh[0]; Hh.forEach(x => { if (+new Date(x.date + 'T12:00:00') <= tt) h = x; });
       return '<b>' + longDate(h.date) + '</b><br>Democrats ' + in100(h.p) + '<br>Republicans ' + in100(1 - h.p) + '<br>National margin ' + mg(h.national); }); })();
   // ---- the states: a profile for each
@@ -713,10 +715,11 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
       '<div class="st-build"><figure><b>How the projection is built</b><div class="scroll"><table><tbody>' +
       '<tr><td>2024 result, and 2020</td><td class="n">' + mg(x.r2024) + ', ' + mg(x.r2020) + '</td></tr><tr><td>Lean against the nation, 2024 counting three times as much as 2020</td><td class="n">' + pts(2 * x.lean) + '</td></tr>' +
       '<tr><td>The national forecast (' + mg(F.national) + ') with that lean</td><td class="n">' + mg(F.national + x.lean) + '</td></tr><tr><td>Tipping Point\'s model of the state</td><td class="n">' + mg(x.nowcast) + '</td></tr>' +
-      '<tr><td>Starting point: the two averaged</td><td class="n">' + mg(x.prior) + '</td></tr><tr><td>State polls</td><td class="n">' + (polls.length ? polls.length : 'None yet') + '</td></tr>' +
+      '<tr><td>Starting point: the two averaged</td><td class="n">' + mg(x.prior) + '</td></tr><tr><td>State polls</td><td class="n">' + (polls.length ? polls.length + ' listed, not counted yet' : 'None yet') + '</td></tr>' +
       '<tr class="tot"><td>Projection</td><td class="n ' + cls(x.mean) + '">' + mg(x.mean) + '</td></tr></tbody></table></div></figure>' +
-      '<figure><b>Polls of ' + esc(x.name) + '</b>' + (polls.length ? '<div class="scroll"><table><thead><tr><th>Pollster</th><th>Finished</th><th class="n">Margin</th></tr></thead><tbody>' + polls.map(q => '<tr><td>' + esc(q.pollster) + '</td><td>' + longDate(q.end) + '</td><td class="n ' + cls(q.dem) + '">' + mg(q.dem) + '</td></tr>').join('') + '</tbody></table></div>' :
-        '<p class="fine" style="margin:8px 0 0">No poll of this ' + (x.state.length > 2 ? 'district' : 'state') + ' for 2028 yet. Until there is one, the projection rests on how it has voted and on the Tipping Point model. Each poll that arrives pulls it toward the polls, and the range narrows</p>') + '</figure></div>';
+      '<figure><b>Polls of ' + esc(x.name) + '</b>' + (polls.length ? '<div class="scroll"><table><thead><tr><th>Pollster</th><th>Finished</th><th>Pairing</th><th class="n">Margin</th><th>Status</th></tr></thead><tbody>' + polls.map(q => '<tr><td>' + (q.url ? '<a href="' + esc(q.url) + '" rel="noopener">' + esc(q.pollster) + '</a>' : esc(q.pollster)) + '</td><td>' + longDate(q.end) + '</td><td>' + esc(q.pairing || '') + '</td><td class="n ' + cls(q.dem) + '">' + mg(q.dem) + '</td><td>' + (q.usable ? 'Meets the rules' : 'Set aside: ' + esc(q.why)) + '</td></tr>').join('') + '</tbody></table></div>' +
+        '<p class="fine" style="margin:8px 0 0">Every poll of this ' + (x.state.length > 2 ? 'district' : 'state') + ' for the 2028 general election that the sources hold. State polls are listed and not yet counted in the projection: this far from the election a state poll says little about the result</p>' :
+        '<p class="fine" style="margin:8px 0 0">No poll of this ' + (x.state.length > 2 ? 'district' : 'state') + ' for 2028 yet. The projection rests on how it has voted and on the Tipping Point model</p>') + '</figure></div>';
   }
   $('st-sel').addEventListener('change', e => { location.hash = '#states/' + e.target.value; });
   $('st-strip').addEventListener('click', e => { const b = e.target.closest('[data-st]'); if (b) location.hash = '#states/' + b.dataset.st; });

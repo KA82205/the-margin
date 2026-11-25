@@ -51,6 +51,17 @@ def forecast(year, t=None, **now):
     dem = f if deminc else 100 - f
     return dem, sd, {'approval_model': f1 if deminc else 100 - f1, 'keys_model': (f2 if deminc else 100 - f2) if f2 is not None else None, 'party_in_office_share': f}
 
+def three_models(enns, desart, keys_line, long_range=1.0):
+    """The candidate's national prior: the two national models of the Tipping Point Nowcast (approval and economy, after
+    Enns and colleagues; long-range polls, after DeSart) and the Fifty-Two Keys line, a third each. Three models, each
+    counted once. No weights are fitted: with five elections on record for two of them there is nothing to fit to. The
+    approval equation above is left out here: its June approval is already in the first model and in six of the keys.
+
+    long_range is how much of its third the long-range model gets (model.long_range_weight): all of it once the polls it
+    is built on exist, less while it is being run early on the polls of the day."""
+    return (enns + keys_line + long_range * desart) / (2 + long_range)
+
+
 if __name__ == '__main__':
     t = table()
     for y in (2008, 2012, 2016, 2020, 2024):

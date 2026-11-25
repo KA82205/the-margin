@@ -5,7 +5,9 @@
  "market_dem": 0.6758,
  "market_note": "electionbettingodds.com, party to win the presidency, November 25, 2026: Democrats 66.9%, Republicans 32.1%",
  "keys": 0.42,
- "keys_sd": 0.131,
- "keys_note": "Fifty-Two Keys, November 22, 2026: 27 of 52 keys in the Republicans' favor if each open key lands the way it leans",
- "approval_drift": 10.0
+ "keys_sd": 0.132,
+ "keys_note": "Fifty-Two Keys, November 25, 2026: 27 of 52 keys in the Republicans' favor if each open key lands the way it leans",
+ "approval_drift": 10.0,
+ "keys_mean": 0.394,
+ "read": {}
 }

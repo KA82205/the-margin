@@ -42,7 +42,12 @@ def main():
                          'eve': {str(x['w']): x['miss']['1'] if '1' in x['miss'] else x['miss'][1] for x in sm['runs']['average/share']}, 'polls_share': sm['polls_share_close'], 'n_close': sm['n_close']}
     s0, s5 = ck['state_model']['start']['0'], ck['state_model']['start'][str(ck['state_model']['used'])]
     assert s5 < s0 and abs(ck['state_model']['start']['0.6'] - ck['state_model']['start']['0.5']) < 0.1 and ck['state_model']['one_model']['1.0'] > ck['state_model']['one_model']['0.4'], 'the page says the state models help and that half to four fifths does equally well'
+    f.pop('candidate', None); f.pop('state_poll_sources', None)      # the forecast under review is kept in the data file and is not part of the page
     data = {'f': f, 'back': back, 'checks': ck, 'contact': CONTACT, 'research': json.load(open('data/research.json')), 'history': [{'date': r.date, 'p': round(r.p_dem, 4), 'national': r.national} for r in hist.itertuples()]}
+    try:
+        kept = json.load(open('docs/archive/index.json')); data['archive'] = {'n': len(kept), 'first': kept[0]['made'][:10]} if kept else None
+    except FileNotFoundError:
+        data['archive'] = None
     res = pd.read_csv('data/results.csv'); res = res[res.year >= 1976]; years = sorted(res.year.unique())      # how each state has voted, for its profile
     wide = res.pivot(index='state', columns='year', values='dem2')
     data['hist'] = {'years': [int(y) for y in years], 'nat': [round(float(res.nat2[res.year == y].iloc[0]), 2) for y in years],

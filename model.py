@@ -22,7 +22,26 @@ SET = dict(
     rating_weight=0.0,         # expert ratings: tested at 15% to 100% on 2008-2024 and left out; they did not improve the state forecasts (checks.py)
     market_weight=0.25,        # betting markets, pooled with the model's chance on the log-odds scale
     sims=40000, seed=538,
+    # ---- how the national number is put together, and how polls are phased in. The first value of each is the forecast as
+    # published; the second is the candidate under review (CANDIDATE below, README "The candidate").
+    national_prior='fundamentals',   # 'fundamentals': the approval equation and the Fifty-Two Keys line, averaged.
+                                     # 'three_models': the Tipping Point Nowcast's two national models and the Fifty-Two Keys line, a third each
+    poll_weight='precision',         # 'precision': polls against the prior by the size of each one's past errors, as if the two were unrelated.
+                                     # 'timeline': by what the polling average has been worth at this distance from the election (timeline.py)
+    state_poll_weight='volume',      # 'volume': a state's polls against a starting point worth prior_polls, whatever the distance.
+                                     # 'horizon': the same, under a ceiling that falls with the distance from the election (timeline.py)
+    pairing_spread_floor=1.5,        # 'timeline' and 'horizon' only: until both nominees are known, polls are of pairings that may never happen.
+                                     # The spread between pairings counts as extra error in the polls, and is never taken as less than this (points of share)
+    long_range_before='out',         # 'three_models' only: the long-range model before the polls it is built on exist (long_range_weight below).
+                                     # 'out': left out until they do. 'part': counted for part of its third. 'full': counted in full, as the Nowcast shows it
 )
+# the candidate: every setting that differs from the published forecast
+CANDIDATE = dict(national_prior='three_models', poll_weight='timeline', state_poll_weight='horizon', state_model_mode='lean')
+# The long-range model inside the Tipping Point Nowcast reads national head-to-head polls: its forecast moves by this much
+# for each point in their average (DeSart's equation as that site runs it, docs/combine.js there). It is up to a third of
+# the candidate's national prior, so up to a third of this is in the prior before a poll is counted here.
+LONG_RANGE_POLLS = 0.522
+LONG_RANGE_FIXED = '-11-07'      # the day, in the year before the election, on which that model's polls (those of October) are fixed
 REGION = None
 
 def regions():
@@ -76,10 +95,11 @@ class Polls:
 # ------------------------------------------------------------------ sizes of error, from earlier elections only
 H = [1, 7, 14, 30, 60, 90, 120, 150]
 
-def average_errors(res, avg538):
+def average_errors(res, avg538, days=None):
     """How far 538's published polling averages of 1972-2016 stood from the result, by days out (run once, by prep.py)."""
+    days = days or H
     names = json.load(open('data/results_2024.json')); ab = {v['name']: k for k, v in names.items() if len(k) == 2}; ab['National'] = 'US'
-    a = avg538[avg538.days.isin(H) & (avg538.cycle >= 1972)]
+    a = avg538[avg538.days.isin(days) & (avg538.cycle >= 1972)]
     a = a.assign(st=a.state.map(ab)).dropna(subset=['st'])
     DEM = {'George S. McGovern', 'Jimmy Carter', 'Walter F. Mondale', 'Michael S. Dukakis', 'Bill Clinton', 'Al Gore', 'John Kerry', 'Barack Obama', 'Hillary Rodham Clinton'}
     top = a.sort_values('pct_estimate', ascending=False).groupby(['cycle', 'st', 'days']).head(2)
@@ -114,6 +134,49 @@ def error_tables(year, res, errs):
 def at(table, d):
     h = sorted(table); return float(np.interp(d, h, [table[k] for k in h]))
 
+def curve(p, d):
+    """A weight that is p[0] on the last day, half of that p[1] days out, and falls away beyond with power p[2]."""
+    return p[0] / (1 + (np.asarray(d, float) / p[1]) ** p[2])
+
+def discount(w, extra_sd, base_sd):
+    """A weight on polls, cut for extra error in them. The weight w is read as a ratio of error sizes (polls to prior);
+    extra_sd, measured against the prior's own error base_sd, is added to the polls' side."""
+    if w <= 0 or not extra_sd: return float(max(w, 0.0))
+    return float(1 / (1 + (1 - w) / w + (extra_sd / base_sd) ** 2))
+
+def october_share(polls, year, asof):
+    """Of the weight in the national polling average on `asof`, the share on polls taken in the October before the election
+    year: the polls the long-range model is built on."""
+    P = Polls(polls, year); asof = pd.Timestamp(asof); nat = P.nat[P.nat.end <= asof]
+    if not len(nat): return 0.0
+    w = weights(nat, asof, max((P.eday - asof).days, 1))
+    october = ((nat.end >= f'{year - 1}-10-01') & (nat.end <= f'{year - 1}-10-31')).values
+    return float(w[october].sum() / w.sum()) if w.sum() > 0 else 0.0
+
+
+def long_range_weight(year, asof, timeline, polls=None, fixed=None):
+    """How much of its third the long-range model gets in the candidate's prior, and how far that prior then moves when the
+    polls being averaged move by a point: (weight, load).
+
+    The model is built on the national polls of the October before the election year.
+      Once they are fixed the model counts in full. The polls in it are then the October ones, and the average shares them
+        only for as long as they still weigh in it: a few months.
+      Before then the model has made no forecast. What the Nowcast shows for it is the model run early, on today's polls,
+        which is early polling with a coefficient of a half. SET['long_range_before'] says what is done with that:
+          'out'   it is left out, and polls reach the national number only by the weight the record gives them
+          'part'  it counts for as much of its third as polls this far out are worth against polls on the day the model
+                  reads them (timeline.py)
+          'full'  it counts in full
+        In the last two every poll in the average is also in the model.
+    fixed: True or False where it is known (the Nowcast says when its polls are fixed); None to go by the calendar."""
+    asof = pd.Timestamp(asof); eday = pd.Timestamp(ELECTION[year]); day = pd.Timestamp(f'{year - 1}{LONG_RANGE_FIXED}')
+    if fixed is None: fixed = asof >= day
+    if fixed: return 1.0, LONG_RANGE_POLLS / 3 * (october_share(polls, year, asof) if polls is not None else 0.0)
+    w = {'out': 0.0, 'full': 1.0}.get(SET['long_range_before'])
+    if w is None: w = float(min(1.0, curve(timeline['national'], max((eday - asof).days, 1)) / curve(timeline['national'], (eday - day).days)))
+    return w, LONG_RANGE_POLLS * w / (2 + w)
+
+
 def lean(res, year, st):
     r = res.set_index(['year', 'state']); a, b = SET['lean']
     try:
@@ -127,15 +190,40 @@ def lean(res, year, st):
     return a * l1 + b * l2
 
 # ------------------------------------------------------------------ the forecast for one day
-def forecast(year, asof, polls, res, tables, fund, ratings=None, market=None, extra_prior=None, ev=None):
-    """fund = (Democratic share the fundamentals expect, its error). ratings = {state: implied share}. market = Democratic chance."""
+def forecast(year, asof, polls, res, tables, fund, ratings=None, market=None, extra_prior=None, ev=None, timeline=None, pairing_spread=None, prior_poll_load=0.0):
+    """fund = (Democratic share the national prior expects, its error). ratings = {state: implied share}. market = Democratic chance.
+    extra_prior = {state: a state-level model's forecast of it, 'US': that model's national figure}.
+    timeline = timeline.curves(year), needed by the 'timeline' and 'horizon' settings. pairing_spread = how far the polled
+    pairings stand apart, in points of share, while the nominees are not known (None once they are).
+    prior_poll_load = how far the national prior itself moves when the polls being averaged here move by a point (the
+    long-range model inside it reads national polls). Used by the 'timeline' setting only, so that no poll counts twice."""
     asof = pd.Timestamp(asof); P = Polls(polls, year); d_out = max((P.eday - asof).days, 1)
     pn, wn = P.national(asof)
-    sp, sf = at(tables['nat'], d_out), fund[1]
-    if pn is None: w, nat, s_nat = 0.0, fund[0], sf
+    sf = fund[1]
+    extra_sd = max(pairing_spread, SET['pairing_spread_floor']) if pairing_spread is not None else 0.0
+    if SET['poll_weight'] == 'timeline':
+        # what the national average has been worth at this distance, against a structural forecast with no polls in it
+        record = discount(float(curve(timeline['national'], d_out)), extra_sd, timeline['prior_error'])
+        # the polls already inside the prior are part of that weight, not extra to it: the average gets only what is left.
+        # Where the prior carries more than the record supports, the average gets nothing and the excess counts as error
+        g = float(prior_poll_load or 0.0)
+        w = max(0.0, (record - g) / (1 - g)) if pn is not None else 0.0
+        total = w + (1 - w) * g
+        nat = w * pn + (1 - w) * fund[0] if pn is not None else fund[0]
+        over = max(total - record, 0.0) * float(np.sqrt(at(timeline['poll_error'], d_out) ** 2 + timeline['prior_error'] ** 2))
+        # the error is the one the mix itself has made on the record, with whatever the prior may still drift by (fund[1]
+        # carries only that drift here)
+        base = at(timeline['mix_error'], d_out) if (pn is not None or g > 0) else timeline['prior_error']
+        s_nat = float(np.sqrt(base ** 2 + over ** 2 + sf ** 2))
     else:
-        w = sf ** 2 / (sf ** 2 + sp ** 2); nat = w * pn + (1 - w) * fund[0]
-        s_nat = float(np.sqrt(w ** 2 * sp ** 2 + (1 - w) ** 2 * sf ** 2))
+        sp = at(tables['nat'], d_out); record = total = None
+        if pn is None: w, nat, s_nat = 0.0, fund[0], sf
+        else:
+            w = sf ** 2 / (sf ** 2 + sp ** 2); nat = w * pn + (1 - w) * fund[0]
+            s_nat = float(np.sqrt(w ** 2 * sp ** 2 + (1 - w) ** 2 * sf ** 2))
+    horizon = SET['state_poll_weight'] == 'horizon'
+    ceiling = float(curve(timeline['state'], d_out) / curve(timeline['state'], 1)) if horizon else 1.0
+    tau = at(timeline['state_poll_error'], d_out) if horizon else at(tables['state'], d_out)
     prev = res[res.year == year - 4]
     rows = []
     for st, ev0 in zip(prev.state, prev.ev):
@@ -145,13 +233,15 @@ def forecast(year, asof, polls, res, tables, fund, ratings=None, market=None, ex
             prior = (1 - SET['state_model_weight']) * prior + SET['state_model_weight'] * x
         ps, ws = P.state(st, asof)
         v = ws / (ws + SET['prior_polls']) if ps is not None else 0.0
+        if horizon and v > 0: v = discount(ceiling * v, extra_sd, tables['lean'])
         est = v * ps + (1 - v) * prior if ps is not None else prior
         if ratings and st in ratings and ratings[st] is not None:
             est = (1 - SET['rating_weight']) * est + SET['rating_weight'] * ratings[st]
-        sd = float(np.sqrt(v ** 2 * at(tables['state'], d_out) ** 2 + (1 - v) ** 2 * tables['lean'] ** 2))
-        rows.append({'state': st, 'ev': ev0, 'mean': est, 'sd': sd, 'poll': ps, 'poll_weight': ws, 'prior': prior})
+        sd = float(np.sqrt(v ** 2 * tau ** 2 + (1 - v) ** 2 * tables['lean'] ** 2))
+        rows.append({'state': st, 'ev': ev0, 'mean': est, 'sd': sd, 'poll': ps, 'poll_weight': ws, 'poll_share': v, 'prior': prior})
     S = pd.DataFrame(rows)
-    return simulate(S, nat, s_nat, year, market, ev), {'national_polls': pn, 'poll_share': w, 'fundamentals': fund[0]}
+    return simulate(S, nat, s_nat, year, market, ev), {'national_polls': pn, 'poll_share': w, 'fundamentals': fund[0],
+                                                       'poll_share_record': w if record is None else record, 'poll_share_total': w if total is None else total}
 
 def ev_table(year, res):
     """Electoral votes in force for `year` (the previous election's unless the census has moved them)."""
