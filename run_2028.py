@@ -48,10 +48,37 @@ APPROVAL_RESPONSE = 0.30      # the approval model's published coefficient: poin
 DRIFT_FROM, DRIFT_TO = 713, 130   # the inputs' drift is sized for the 713 days then left, and is gone by late June 2028, when they are final
 
 def approval_left(days_out):
-    """The share of the approval allowance's variance still open at `days_out` under the 'calendar' rule: all of it at the
-    713 days the allowance was sized for, none from the end of June 2028 (130 days out), when June approval is a fact.
-    In between it falls in a straight line, so the allowance itself falls with the square root of the time left."""
+    """The share of the approval allowance's variance still open at `days_out`, by the calendar alone: all of it at the 713
+    days the allowance was sized for, none at the end of June 2028 (130 days out). In between it falls in a straight line,
+    so the allowance itself falls with the square root of the time left, as the spread of a figure that drifts does."""
     return float(np.clip((days_out - DRIFT_TO) / (DRIFT_FROM - DRIFT_TO), 0, 1))
+
+
+APPROVAL_FLOOR = 30 / (DRIFT_FROM - DRIFT_TO)      # a month's worth of drift: what stays open while the June polls are awaited
+
+
+def june_approval_in(NOW):
+    """Is the June 2028 approval reading a fact yet? It is when Fifty-Two Keys has scored its approval keys on the June
+    polls (their state in its feed is provisional or settled), which that site does a week after the month ends and only
+    if polls of all adults finished in June exist. The date alone never says so."""
+    k = ((NOW.get('upstream') or {}).get('fifty_two_keys') or {})
+    return bool(k.get('approval_in'))
+
+
+def approval_open(days_out, observed):
+    """The share of the approval allowance still open. It runs down with the calendar while June 2028 is ahead, and it
+    closes only when the June reading is in. If the calendar runs out first (polls late, none taken, the feed not read),
+    a month's worth stays open until the reading arrives."""
+    if M.SET['drift_rule'] != 'calendar': return 1.0
+    return 0.0 if observed else max(approval_left(days_out), APPROVAL_FLOOR)
+
+
+TURNOUT = None
+def turnout():
+    """Two-party votes cast in each state in 2024: how much each state counts when the national vote is added up from the states."""
+    global TURNOUT
+    if TURNOUT is None: TURNOUT = {k: float(v['votes']) for k, v in json.load(open('data/results_2024.json')).items() if len(k) == 2 and v.get('votes')}
+    return TURNOUT
 
 
 def candidate(NOW, nc, polls, sp, res, errs, t, tables, ev, today):
@@ -150,34 +177,58 @@ def poll_table(nc):
         return names.get(s, s.replace('-', '') if s.replace('-', '') in names.values() else 'US')
     return pd.DataFrame([{'year': 2028, 'state': where(p), 'pollster': p['pollster'], 'end': pd.Timestamp(p['date']), 'n': p.get('n') or 1000, 'pop': 'rv', 'dem2': p['share']} for p in nc['h2h']['polls']])
 
-def chance(now, polls, states, date, res, errs, t, market=True):
-    """The headline chance for one set of inputs: used to split a day's change between them."""
-    base = dict(term1=1, deminc=0)
+def chance(now, polls, states, date, res, errs, t, market=False):
+    """The chance of a Democratic win for one set of inputs: used to split a change between them. Every call draws the same
+    simulated errors (the seed is fixed), so two calls differ only by what was changed between them."""
+    base = dict(term1=1, deminc=0); days = (pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(date)).days
     fd, fsd, _ = F.forecast(2028, t, juneapp=now['net_approval'], keys=now['keys'], **base)
     up = F.forecast(2028, t, juneapp=now['net_approval'] + now['approval_drift'], keys=now['keys'], **base)[0]
     ku = F.forecast(2028, t, juneapp=now['net_approval'], keys=now['keys'] + now['keys_sd'], **base)[0]
-    sd = float(np.sqrt(fsd ** 2 + (up - fd) ** 2 + (ku - fd) ** 2))
+    sd = float(np.sqrt(fsd ** 2 + approval_open(days, june_approval_in(now)) * (up - fd) ** 2 + (ku - fd) ** 2))
     extra = {s['abbr'].replace('-', ''): s['demShare'] for s in states}
     out, _ = M.forecast(2028, date, polls, res, M.error_tables(2028, res, errs), (fd, sd), market=now['market_dem'] if market else None, extra_prior=extra, ev=M.ev_table(2024, res))
-    return out['p_dem']
+    return out['p_model']
 
-def change(NOW, nc, res, errs, t, today_p):
-    """What moved the chance since the previous day's inputs (data/prev_inputs.json, data/prev_nowcast.js): yesterday's
-    inputs are replaced by today's one at a time, in the order polls, approval, markets, then everything else."""
+PARTS = [('polls', 'National polls'), ('approval', 'Presidential approval'), ('keys', 'Fifty-Two Keys count'), ('models', "Tipping Point's models of the states"), ('time', 'Time until the election')]
+
+def change(NOW, nc, res, errs, t, today_p, since=None):
+    """What moved the simulations' chance since an earlier day's inputs (by default the previous day's: data/prev_inputs.json,
+    data/prev_nowcast.js). Each part is credited with its average effect over every order in which the parts could have
+    been changed, so the split does not depend on an order and the parts add up to the whole. Parts that did not change are
+    left out of the sum: they are zero by construction. What is left over after the parts (an input outside these five) is
+    reported as such and not given a name it has not earned."""
+    from itertools import combinations
+    from math import factorial
     try:
-        old = json.load(open('data/prev_inputs.json')); onc = json.loads(re.search(r'=\s*(\{[\s\S]*\});?\s*$', open('data/prev_nowcast.js').read()).group(1))
+        old, onc = since or (json.load(open('data/prev_inputs.json')), json.loads(re.search(r'=\s*(\{[\s\S]*\});?\s*$', open('data/prev_nowcast.js').read()).group(1)))
     except FileNotFoundError:
         return None
     if old['as_of'] >= NOW['as_of']: return None
-    step = dict(old); p0 = chance(step, poll_table(onc), onc['states'], old['as_of'], res, errs, t)
-    p1 = chance(step, poll_table(nc), onc['states'], old['as_of'], res, errs, t)
-    step['net_approval'] = NOW['net_approval']; p2 = chance(step, poll_table(nc), onc['states'], old['as_of'], res, errs, t)
-    step['market_dem'] = NOW['market_dem']; p3 = chance(step, poll_table(nc), onc['states'], old['as_of'], res, errs, t)
-    step['keys'], step['keys_sd'] = NOW['keys'], NOW['keys_sd']; p4 = chance(step, poll_table(nc), onc['states'], old['as_of'], res, errs, t)
-    return {'from': old['as_of'], 'p_prev': round(p0, 4), 'p': round(today_p, 4),
-            'parts': [{'name': 'New polling', 'd': round(p1 - p0, 4)}, {'name': 'Presidential approval', 'd': round(p2 - p1, 4)}, {'name': 'Betting markets', 'd': round(p3 - p2, 4)}, {'name': 'Fifty-Two Keys', 'd': round(p4 - p3, 4)}, {'name': 'State models and the calendar', 'd': round(today_p - p4, 4)}],
-            'keys': [old['keys'], NOW['keys']],
-            'approval': [old['net_approval'], NOW['net_approval']], 'market': [round(old['market_dem'], 4), round(NOW['market_dem'], 4)], 'polls': [len(onc['h2h']['polls']), len(nc['h2h']['polls'])]}
+    opolls, npolls = poll_table(onc), poll_table(nc)
+    sig = lambda pt: sorted(map(tuple, pt[['pollster', 'end', 'dem2', 'state']].astype(str).values.tolist()))
+    moved = {'polls': sig(opolls) != sig(npolls), 'approval': old['net_approval'] != NOW['net_approval'], 'keys': (old['keys'], old['keys_sd']) != (NOW['keys'], NOW['keys_sd']),
+             'models': [round(s['demShare'], 3) for s in onc['states']] != [round(s['demShare'], 3) for s in nc['states']], 'time': True}
+    live = [k for k, _ in PARTS if moved[k]]; memo = {}
+    def value(on):
+        key = frozenset(on)
+        if key not in memo:
+            now = dict(old)
+            if 'approval' in on: now['net_approval'] = NOW['net_approval']
+            if 'keys' in on: now['keys'], now['keys_sd'] = NOW['keys'], NOW['keys_sd']
+            if 'time' in on and NOW.get('upstream'): now['upstream'] = NOW['upstream']
+            memo[key] = chance(now, npolls if 'polls' in on else opolls, (nc if 'models' in on else onc)['states'], NOW['as_of'] if 'time' in on else old['as_of'], res, errs, t)
+        return memo[key]
+    n = len(live); d = {k: 0.0 for k, _ in PARTS}
+    for k in live:
+        rest = [x for x in live if x != k]
+        for size in range(n):
+            for sub in combinations(rest, size):
+                d[k] += factorial(size) * factorial(n - size - 1) / factorial(n) * (value(sub + (k,)) - value(sub))
+    p0, p1 = value(()), value(tuple(live))
+    parts = [{'key': k, 'name': name, 'd': round(d[k], 5)} for k, name in PARTS]
+    return {'from': old['as_of'], 'p_prev': round(p0, 5), 'p': round(today_p, 5), 'explained': round(p1 - p0, 5), 'other': round(today_p - p1, 5), 'parts': parts, 'evaluated': len(memo),
+            'keys': [old['keys'], NOW['keys']], 'approval': [old['net_approval'], NOW['net_approval']], 'market': [round(old['market_dem'], 4), round(NOW['market_dem'], 4)],
+            'polls': [len(onc['h2h']['polls']), len(nc['h2h']['polls'])], 'days': [(pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(old['as_of'])).days, (pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(NOW['as_of'])).days]}
 
 def main():
     NOW = inputs(); TODAY = NOW['as_of']
@@ -187,21 +238,25 @@ def main():
     fd, fsd, parts = F.forecast(2028, t, juneapp=NOW['net_approval'], keys=NOW['keys'], **base)
     up = F.forecast(2028, t, juneapp=NOW['net_approval'] + NOW['approval_drift'], keys=NOW['keys'], **base)[0]
     ku = F.forecast(2028, t, juneapp=NOW['net_approval'], keys=NOW['keys'] + NOW['keys_sd'], **base)[0]
-    open_ = approval_left((pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(TODAY)).days) if M.SET['drift_rule'] == 'calendar' else 1.0
+    open_ = approval_open((pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(TODAY)).days, june_approval_in(NOW))
     sd = float(np.sqrt(fsd ** 2 + open_ * (up - fd) ** 2 + (ku - fd) ** 2))      # the equations' own error, plus what their inputs may still move by (the keys' part shrinks by itself: it is that site's own spread)
     tables = M.error_tables(2028, res, errs)
     extra = {s['abbr'].replace('-', ''): s['demShare'] for s in nc['states']}
     ev = M.ev_table(2024, res)
-    out, info = M.forecast(2028, TODAY, polls, res, tables, (fd, sd), market=NOW['market_dem'], extra_prior=extra, ev=ev)
+    out, info = M.forecast(2028, TODAY, polls, res, tables, (fd, sd), market=NOW['market_dem'], extra_prior=extra, ev=ev, turnout=turnout())
     plain, _ = M.forecast(2028, TODAY, polls, res, tables, (fd, sd), ev=ev)                       # without the Nowcast's state forecasts or the market
     # how the range should narrow: the same formulas at other distances from the election, with the drift in the fundamentals' inputs shrinking to nothing by June 2028
     d0 = (pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(TODAY)).days; funnel = []
     for d in [d0, 600, 500, 400, 300, 200, 150, 100, 60, 30, 14, 7, 1]:
-        k = max(d - 130, 0) / (d0 - 130); sf = float(np.sqrt(fsd ** 2 + k * ((up - fd) ** 2 + (ku - fd) ** 2))); sp = M.at(tables['nat'], d)
+        k = max(d - 130, 0) / (d0 - 130); sf = float(np.sqrt(fsd ** 2 + approval_open(d, False if d > DRIFT_TO else True) * (up - fd) ** 2 + k * (ku - fd) ** 2)); sp = M.at(tables['nat'], d)
         w = sf ** 2 / (sf ** 2 + sp ** 2); sn = float(np.sqrt(w ** 2 * sp ** 2 + (1 - w) ** 2 * sf ** 2))
         funnel.append({'days': d, 'half': round(2 * 1.2816 * sn, 2), 'poll_share': round(w, 3)})
     lo = lambda q: np.log(q / (1 - q))
     msens = [{'weight': w, 'p': round(float(1 / (1 + np.exp(-((1 - w) * lo(out['p_model']) + w * lo(NOW['market_dem']))))), 3)} for w in (0, 0.25, 0.5, 0.7, 1.0)]
+    # the national vote of each simulated election, added up from that election's own states by the votes each cast in 2024:
+    # the chance of winning the most votes, and of the vote and the Electoral College disagreeing, are counted from that
+    ns = out['national_from_states']
+    if ns: out.update(p_popular_national=out['p_popular'], p_popular=ns['p_popular'], p_vote_not_college=ns['p_vote_not_college'], p_college_not_vote=ns['p_college_not_vote'])
     r = res.set_index(['year', 'state'])
     sp = state_poll_file()
     cand = candidate(NOW, nc, polls, sp, res, errs, t, tables, ev, TODAY)
@@ -209,7 +264,7 @@ def main():
     S = out['states']; names = {s['abbr'].replace('-', ''): s.get('name', s['abbr']) for s in nc['states']}
     tip = S.state[S.tip.idxmax()]                       # the state that most often carries the winner past 270
     J = {'as_of': TODAY, 'days_out': (pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(TODAY)).days, 'p_dem': out['p_dem'], 'p_model': out['p_model'], 'market': NOW['market_dem'],
-         'p_without_extras': plain['p_dem'], 'p_popular': out['p_popular'], 'p_tie': out['p_tie'], 'p_vote_not_college': out['p_vote_not_college'], 'p_college_not_vote': out['p_college_not_vote'], 'national': out['national'], 'national_sd': out['national_sd'], 'ev_mean': out['ev_mean'], 'ev_median': out['ev_median'], 'ev_lo': out['ev_lo'], 'ev_hi': out['ev_hi'],
+         'p_rep': out['p_rep'], 'p_without_extras': plain['p_dem'], 'p_popular': out['p_popular'], 'p_tie': out['p_tie'], 'paths': out['paths'], 'national_from_states': out['national_from_states'], 'approval_open': open_, 'june_approval_in': june_approval_in(NOW), 'p_vote_not_college': out['p_vote_not_college'], 'p_college_not_vote': out['p_college_not_vote'], 'national': out['national'], 'national_sd': out['national_sd'], 'ev_mean': out['ev_mean'], 'ev_median': out['ev_median'], 'ev_lo': out['ev_lo'], 'ev_hi': out['ev_hi'],
          'ev_dist': [round(float(x), 5) for x in out['ev_dist']], 'tipping_point': tip,
          'inputs': {'national_polls': info['national_polls'], 'polls_n': int(len(polls)), 'poll_share': info['poll_share'], 'fundamentals': fd, 'fundamentals_sd': sd, 'approval_model': parts['approval_model'], 'keys_model': parts['keys_model'],
                     'net_approval': NOW['net_approval'], 'market_note': NOW['market_note'], 'keys': NOW['keys'], 'nowcast_p_dem': nc['summary']['pDemWin'], 'nowcast_national': nc['summary']['demPopular'], 'nowcast_as_of': nc['as_of']},
@@ -230,7 +285,7 @@ def main():
                    'under_review': hashlib.sha256(json.dumps(M.CANDIDATE, sort_keys=True, default=str).encode()).hexdigest()[:12]}}
     json.dump(J, open('data/forecast_2028.json', 'w'), indent=1)
     # the day-by-day record: one row a day, today's row replaced if the forecast is run again
-    row = {'date': TODAY, 'p_dem': round(J['p_dem'], 4), 'p_model': round(J['p_model'], 4), 'market': round(J['market'], 4), 'national': round(J['national'], 2), 'ev_median': int(J['ev_median']),
+    row = {'date': TODAY, 'p_dem': round(J['p_dem'], 4), 'p_rep': round(J['p_rep'], 4), 'p_tie': round(J['p_tie'], 4), 'p_model': round(J['p_model'], 4), 'market': round(J['market'], 4), 'national': round(J['national'], 2), 'ev_median': int(J['ev_median']),
            'national_polls': round(J['inputs']['national_polls'], 2), 'polls_n': J['inputs']['polls_n'], 'net_approval': NOW['net_approval'],
            'candidate_p_dem': round(cand['p_dem'], 4), 'candidate_national': round(cand['national'], 2),
            'hybrid_p_dem': round(cand['hybrid']['p_dem'], 4), 'hybrid_national': round(cand['hybrid']['national'], 2)}

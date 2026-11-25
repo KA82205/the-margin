@@ -82,7 +82,8 @@ def keys_version(text):
     if dist and not (abs(sum(b for _, b in dist) - 1) < 0.01 and all(0 <= a <= 1 and b >= 0 for a, b in dist)): dist = []
     calls = {i: [x.get('status'), x.get('value'), x.get('final')] for i, x in sorted((k.get('calls') or {}).items())}
     return {'date': k.get('date'), 'as_of': k.get('as_of'), 'engine': k.get('engine'), 'format': k.get('format'), 'settled': c.get('settled', k.get('settled')), 'unresolved': c.get('unresolved'),
-            'provisional': c.get('provisional'), 'held': c.get('held'), 'closed': c.get('closed'), 'outlook': (k.get('outlook_from') or {}).get('date'), 'through': k.get('through'),
+            'provisional': c.get('provisional'), 'held': c.get('held'), 'closed': c.get('closed'),
+            'approval_in': (calls.get('C01') or [None])[0] in ('provisional', 'settled'),      # the June 2028 polls are in and scored: a fact, not a date 'outlook': (k.get('outlook_from') or {}).get('date'), 'through': k.get('through'),
             'hash': short([k.get('likely'), k.get('mean'), k.get('sd'), dist, calls, k.get('engine')])}, dist
 
 
@@ -271,12 +272,12 @@ def main(argv):
     import run_2028, make_page
     run_2028.main()
     if not offline:                                  # a run on the copies in hand is not a new published forecast
-        kept = archive(json.load(open('data/forecast_2028.json')), [w for w in what if w != 'day'] or ['the calendar'])
+        kept = archive(json.load(open('data/forecast_2028.json')), [w for w in what if w != 'day'] or ['a new day'])
         print('Kept as', kept) if kept else print('The forecast is the same as the last one kept: nothing added to the archive.')
     make_page.main()
     export(json.load(open('data/forecast_2028.json')))
     json.dump(fp, open('data/fingerprint.json', 'w'), indent=1)
-    say('changed', 'true'); say('what', ', '.join(w for w in what if w != 'day') or 'the calendar')
+    say('changed', 'true'); say('what', ', '.join(w for w in what if w != 'day') or 'a new day')
     old_news = stale(inp, today) if (new_day or force or not os.environ.get('GITHUB_ACTIONS')) else []
     for s in old_news: print(f'::error::Stale input: {s}.')
     if old_news: say('alert', 'true')

@@ -4,7 +4,7 @@ from model import SET as M_SET
 import pandas as pd
 
 TITLE = 'The Margin'
-CONTACT = None            # {'label': 'Contact on LinkedIn', 'url': 'https://www.linkedin.com/in/...'} once there is an address to link to
+CONTACT = {'label': 'Contact', 'url': 'https://www.linkedin.com/in/kleinahmetaj/'}      # the same address as on Tipping Point; no name or picture beside it
 NAMES = {v['name']: k for k, v in json.load(open('data/results_2024.json')).items()}
 ABBR = {k.replace('-', ''): n for n, k in NAMES.items()}
 
@@ -43,9 +43,11 @@ def main():
     s0, s5 = ck['state_model']['start']['0'], ck['state_model']['start'][str(ck['state_model']['used'])]
     assert s5 < s0 and abs(ck['state_model']['start']['0.6'] - ck['state_model']['start']['0.5']) < 0.1 and ck['state_model']['one_model']['1.0'] > ck['state_model']['one_model']['0.4'], 'the page says the state models help and that half to four fifths does equally well'
     f.pop('candidate', None); f.pop('state_poll_sources', None)      # the forecast under review is kept in the data file and is not part of the page
-    data = {'f': f, 'back': back, 'checks': ck, 'contact': CONTACT, 'research': json.load(open('data/research.json')), 'history': [{'date': r.date, 'p': round(r.p_dem, 4), 'national': r.national} for r in hist.itertuples()]}
+    data = {'f': f, 'back': back, 'checks': ck, 'contact': CONTACT, 'research': json.load(open('data/research.json')), 'history': [{'date': r.date, 'p': round(r.p_dem, 4), 'sim': round(r.p_model, 4), 'national': r.national, **({'rep': round(r.p_rep, 4)} if 'p_rep' in hist.columns and r.p_rep == r.p_rep else {})} for r in hist.itertuples()],
+            'methods': json.load(open('data/methods.json'))}
     try:
         kept = json.load(open('docs/archive/index.json')); data['archive'] = {'n': len(kept), 'first': kept[0]['made'][:10]} if kept else None
+        data['kept'] = [{'made': k['made'], 'p': k['p_dem'], 'national': k['national'], 'ev': k['ev_median'], 'why': k.get('why') or []} for k in kept]
     except FileNotFoundError:
         data['archive'] = None
     res = pd.read_csv('data/results.csv'); res = res[res.year >= 1976]; years = sorted(res.year.unique())      # how each state has voted, for its profile

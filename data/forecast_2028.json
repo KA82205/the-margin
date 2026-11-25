@@ -1,14 +1,198 @@
 {
  "as_of": "2026-11-25",
  "days_out": 713,
- "p_dem": 0.6229888058421867,
- "p_model": 0.6046374999999999,
+ "p_dem": 0.600575,
+ "p_model": 0.600575,
  "market": 0.6758,
- "p_without_extras": 0.621225,
- "p_popular": 0.733875,
+ "p_rep": 0.3913,
+ "p_without_extras": 0.617525,
+ "p_popular": 0.675775,
  "p_tie": 0.008125,
- "p_vote_not_college": 0.1546,
- "p_college_not_vote": 0.02765,
+ "paths": {
+  "places": [
+   "NC",
+   "NV",
+   "GA",
+   "PA",
+   "AZ",
+   "WI",
+   "MI",
+   "NH",
+   "FL",
+   "MN"
+  ],
+  "given": {
+   "NC": {
+    "dem_if_dem": 0.8581861837827022,
+    "dem_if_rep": 0.34319556199710133
+   },
+   "NV": {
+    "dem_if_dem": 0.7894662123793299,
+    "dem_if_rep": 0.3890184439262243
+   },
+   "GA": {
+    "dem_if_dem": 0.8262136767008874,
+    "dem_if_rep": 0.29567364213496355
+   },
+   "PA": {
+    "dem_if_dem": 0.8147746026231217,
+    "dem_if_rep": 0.3100035348179569
+   },
+   "AZ": {
+    "dem_if_dem": 0.8379210323802758,
+    "dem_if_rep": 0.4270567360540096
+   },
+   "WI": {
+    "dem_if_dem": 0.7782509937535491,
+    "dem_if_rep": 0.3151309787566793
+   },
+   "MI": {
+    "dem_if_dem": 0.7872741870734645,
+    "dem_if_rep": 0.2923790589794566
+   },
+   "NH": {
+    "dem_if_dem": 0.691584,
+    "dem_if_rep": 0.27554285714285714
+   },
+   "FL": {
+    "dem_if_dem": 0.980876301137739,
+    "dem_if_rep": 0.5015753985758397
+   },
+   "MN": {
+    "dem_if_dem": 0.6801244111607682,
+    "dem_if_rep": 0.2178965717606043
+   }
+  },
+  "dem": [
+   {
+    "dem_carries": [
+     "NC",
+     "NV",
+     "GA",
+     "PA",
+     "AZ",
+     "WI",
+     "MI",
+     "NH",
+     "FL",
+     "MN"
+    ],
+    "share_of_wins": 0.11347458685426466,
+    "share_of_all": 0.06815
+   },
+   {
+    "dem_carries": [
+     "NC",
+     "NV",
+     "GA",
+     "PA",
+     "AZ",
+     "WI",
+     "MI",
+     "NH",
+     "MN"
+    ],
+    "share_of_wins": 0.07651001123922907,
+    "share_of_all": 0.04595
+   },
+   {
+    "dem_carries": [
+     "NC",
+     "NV",
+     "GA",
+     "PA",
+     "WI",
+     "MI",
+     "NH",
+     "MN"
+    ],
+    "share_of_wins": 0.02913874203887941,
+    "share_of_all": 0.0175
+   },
+   {
+    "dem_carries": [
+     "NV",
+     "GA",
+     "PA",
+     "AZ",
+     "WI",
+     "MI",
+     "NH",
+     "MN"
+    ],
+    "share_of_wins": 0.028555967198101818,
+    "share_of_all": 0.01715
+   },
+   {
+    "dem_carries": [
+     "NC",
+     "NV",
+     "GA",
+     "PA",
+     "WI",
+     "MI",
+     "NH",
+     "FL",
+     "MN"
+    ],
+    "share_of_wins": 0.024643050410023726,
+    "share_of_all": 0.0148
+   }
+  ],
+  "rep": [
+   {
+    "dem_carries": [],
+    "share_of_wins": 0.0720035778175313,
+    "share_of_all": 0.028175
+   },
+   {
+    "dem_carries": [
+     "MN"
+    ],
+    "share_of_wins": 0.042614362381804244,
+    "share_of_all": 0.016675
+   },
+   {
+    "dem_carries": [
+     "NH",
+     "MN"
+    ],
+    "share_of_wins": 0.04171990799897777,
+    "share_of_all": 0.016325
+   },
+   {
+    "dem_carries": [
+     "NH"
+    ],
+    "share_of_wins": 0.029005877843087145,
+    "share_of_all": 0.01135
+   },
+   {
+    "dem_carries": [
+     "WI",
+     "MI",
+     "NH",
+     "MN"
+    ],
+    "share_of_wins": 0.024597495527728087,
+    "share_of_all": 0.009625
+   }
+  ]
+ },
+ "national_from_states": {
+  "mean": 51.20020073042986,
+  "lo": 47.58222402141326,
+  "hi": 54.82119242210444,
+  "p_popular": 0.675775,
+  "of_means": 51.21380912958077,
+  "gap": -0.3237744925110846,
+  "p_vote_not_college": 0.098625,
+  "p_college_not_vote": 0.02885
+ },
+ "approval_open": 1.0,
+ "june_approval_in": false,
+ "p_vote_not_college": 0.098625,
+ "p_college_not_vote": 0.02885,
  "national": 51.53758362209185,
  "national_sd": 2.9484626103478986,
  "ev_mean": 286.226825,
@@ -1418,30 +1602,38 @@
  ],
  "change": {
   "from": "2026-11-24",
-  "p_prev": 0.6227,
-  "p": 0.623,
+  "p_prev": 0.60015,
+  "p": 0.60057,
+  "explained": 0.00043,
+  "other": 0.0,
   "parts": [
    {
-    "name": "New polling",
+    "key": "polls",
+    "name": "National polls",
     "d": 0.0
    },
    {
+    "key": "approval",
     "name": "Presidential approval",
-    "d": 0.0005
+    "d": 0.00085
    },
    {
-    "name": "Betting markets",
-    "d": 0.0
+    "key": "keys",
+    "name": "Fifty-Two Keys count",
+    "d": -0.0005
    },
    {
-    "name": "Fifty-Two Keys",
-    "d": -0.0003
-   },
-   {
-    "name": "State models and the calendar",
+    "key": "models",
+    "name": "Tipping Point's models of the states",
     "d": 0.0001
+   },
+   {
+    "key": "time",
+    "name": "Time until the election",
+    "d": -2e-05
    }
   ],
+  "evaluated": 16,
   "keys": [
    0.42,
    0.42
@@ -1457,6 +1649,10 @@
   "polls": [
    28,
    28
+  ],
+  "days": [
+   714,
+   713
   ]
  },
  "state_polls": 0,
@@ -1572,8 +1768,8 @@
   "fetched": "2026-11-25T17:56Z"
  },
  "candidate": {
-  "p_dem": 0.6886909459779575,
-  "p_model": 0.692925,
+  "p_dem": 0.68975,
+  "p_model": 0.68975,
   "p_popular": 0.764225,
   "national": 52.09833268936554,
   "national_sd": 3.447802296606999,
@@ -1884,13 +2080,13 @@
   },
   "other_ways": {
    "long_range_in_part": {
-    "p_dem": 0.6686,
+    "p_dem": 0.6628,
     "national": 51.8,
     "ev_median": 294,
     "polls_in_national": 0.086
    },
    "long_range_in_full": {
-    "p_dem": 0.634,
+    "p_dem": 0.6158,
     "national": 51.406,
     "ev_median": 287,
     "polls_in_national": 0.174
@@ -1903,8 +2099,8 @@
    "state_model_mode": "lean"
   },
   "hybrid": {
-   "p_dem": 0.6905529624358531,
-   "p_model": 0.6953875,
+   "p_dem": 0.6921,
+   "p_model": 0.6921,
    "p_popular": 0.772225,
    "national": 52.05997256387119,
    "national_sd": 3.2546549275486325,
@@ -2320,7 +2516,7 @@
   {
    "days": 150,
    "half": 5.74,
-   "poll_share": 0.254
+   "poll_share": 0.255
   },
   {
    "days": 100,
@@ -2356,19 +2552,19 @@
  "market_sensitivity": [
   {
    "weight": 0,
-   "p": 0.605
+   "p": 0.601
   },
   {
    "weight": 0.25,
-   "p": 0.623
+   "p": 0.62
   },
   {
    "weight": 0.5,
-   "p": 0.641
+   "p": 0.639
   },
   {
    "weight": 0.7,
-   "p": 0.655
+   "p": 0.654
   },
   {
    "weight": 1.0,
@@ -2400,13 +2596,13 @@
   "region_share": 0.4,
   "t_df": 5,
   "rating_weight": 0.0,
-  "market_weight": 0.25,
+  "market_weight": 0.0,
   "sims": 40000,
   "seed": 538,
   "national_prior": "fundamentals",
   "poll_weight": "precision",
   "state_poll_weight": "volume",
-  "drift_rule": "fixed",
+  "drift_rule": "calendar",
   "pairing_spread_floor": 1.5,
   "long_range_before": "out"
  },
@@ -2455,7 +2651,7 @@
   }
  },
  "model": {
-  "settings": "31b090385279",
+  "settings": "9da5e0272057",
   "sims": 40000,
   "seed": 538,
   "status": "published",

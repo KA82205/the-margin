@@ -20,7 +20,7 @@ SET = dict(
     region_share=0.4,          # share of a state's own error that it shares with its region
     t_df=5,                    # fat tails for the national error
     rating_weight=0.0,         # expert ratings: tested at 15% to 100% on 2008-2024 and left out; they did not improve the state forecasts (checks.py)
-    market_weight=0.25,        # betting markets, pooled with the model's chance on the log-odds scale
+    market_weight=0.0,         # betting markets are shown beside the forecast and do not move it (0.25 until November 25, 2026, pooled on the log-odds scale)
     sims=40000, seed=538,
     # ---- how the national number is put together, and how polls are phased in. The first value of each is the forecast as
     # published; the second is the candidate under review (CANDIDATE below, README "The candidate").
@@ -32,9 +32,9 @@ SET = dict(
                                      # 'timeline': by what the polling average has been worth at this distance from the election (timeline.py)
     state_poll_weight='volume',      # 'volume': a state's polls against a starting point worth prior_polls, whatever the distance.
                                      # 'horizon': the same, under a ceiling that falls with the distance from the election (timeline.py)
-    drift_rule='fixed',              # what approval may still move by before June 2028. 'fixed': the figure in data/inputs.json at every distance.
+    drift_rule='calendar',              # what approval may still move by before June 2028. 'fixed': the figure in data/inputs.json at every distance.
                                      # 'calendar': that figure today, shrinking with the square root of the time left and gone by the end of June 2028,
-                                     # when June approval is known (run_2028.approval_left). Not in use: a change to future forecasts, awaiting a decision.
+                                     # and closed for good only when the June polls are actually in (run_2028.approval_open). In use from November 25, 2026.
     pairing_spread_floor=1.5,        # 'timeline' and 'horizon' only: until both nominees are known, polls are of pairings that may never happen.
                                      # The spread between pairings counts as extra error in the polls, and is never taken as less than this (points of share)
     long_range_before='out',         # 'three_models' only: the long-range model before the polls it is built on exist (long_range_weight below).
@@ -204,7 +204,7 @@ def lean(res, year, st):
     return a * l1 + b * l2
 
 # ------------------------------------------------------------------ the forecast for one day
-def forecast(year, asof, polls, res, tables, fund, ratings=None, market=None, extra_prior=None, ev=None, timeline=None, pairing_spread=None, prior_poll_load=0.0):
+def forecast(year, asof, polls, res, tables, fund, ratings=None, market=None, extra_prior=None, ev=None, timeline=None, pairing_spread=None, prior_poll_load=0.0, turnout=None):
     """fund = (Democratic share the national prior expects, its error). ratings = {state: implied share}. market = Democratic chance.
     extra_prior = {state: a state-level model's forecast of it, 'US': that model's national figure}.
     timeline = timeline.curves(year), needed by the 'timeline' and 'horizon' settings. pairing_spread = how far the polled
@@ -254,7 +254,7 @@ def forecast(year, asof, polls, res, tables, fund, ratings=None, market=None, ex
         sd = float(np.sqrt(v ** 2 * tau ** 2 + (1 - v) ** 2 * tables['lean'] ** 2))
         rows.append({'state': st, 'ev': ev0, 'mean': est, 'sd': sd, 'poll': ps, 'poll_weight': ws, 'poll_share': v, 'prior': prior})
     S = pd.DataFrame(rows)
-    return simulate(S, nat, s_nat, year, market, ev), {'national_polls': pn, 'poll_share': w, 'fundamentals': fund[0],
+    return simulate(S, nat, s_nat, year, market, ev, turnout), {'national_polls': pn, 'poll_share': w, 'fundamentals': fund[0],
                                                        'poll_share_record': w if record is None else record, 'poll_share_total': w if total is None else total}
 
 def ev_table(year, res):
@@ -271,7 +271,10 @@ def bound(x):
     return np.where(x < 10, 10 * np.exp((np.minimum(x, 10) - 10) / 10), x)
 
 
-def simulate(S, nat, s_nat, year, market=None, ev=None):
+def simulate(S, nat, s_nat, year, market=None, ev=None, turnout=None):
+    """turnout: {state: two-party votes cast last time}. With it the national vote of each simulated election is also added
+    up from that election's own state results, each state counting by its votes (the districts are inside their states and
+    are not counted again)."""
     rng = np.random.default_rng(SET['seed'] + year); n = SET['sims']; R = regions()
     df = SET['t_df']; eN = rng.standard_t(df, n) * s_nat / np.sqrt(df / (df - 2))
     regs = sorted(set(R[s] for s in S.state)); eR = {g: rng.standard_normal(n) for g in regs}
@@ -282,7 +285,9 @@ def simulate(S, nat, s_nat, year, market=None, ev=None):
         sh[i] = m + eN + sd * (rs * eR[R[st]] + ids * rng.standard_normal(n))
     sh = bound(sh); natv = bound(nat + eN)
     dem_ev = (evs[:, None] * (sh > 50)).sum(0); total = evs.sum()
-    p = float((dem_ev > total / 2).mean() + 0.5 * (dem_ev == total / 2).mean())
+    # a win is more than half of the electoral votes. An even split is counted on its own: who then becomes president is
+    # settled by the House, and nothing here models that
+    p = float((dem_ev > total / 2).mean())
     # the tipping point: line the states up from the winner's best to worst and count electoral votes; the state that takes the
     # winner past half is the one that decided it
     order = np.argsort(-sh, axis=0); col = np.arange(n)
@@ -292,13 +297,36 @@ def simulate(S, nat, s_nat, year, market=None, ev=None):
     # the range given for each place is read off the simulated results themselves: the 10th and 90th of every hundred
     lo, hi = np.percentile(sh, [10, 90], axis=1)
     S = S.assign(p_dem=(sh > 50).mean(1), ev=evs, tip=np.bincount(tipped, minlength=len(S)) / max(1, len(tipped)), lo=lo, hi=hi)
-    out = {'p_dem': p, 'p_model': p, 'ev_mean': float(dem_ev.mean()), 'ev_median': float(np.median(dem_ev)), 'ev_lo': float(np.percentile(dem_ev, 10)), 'ev_hi': float(np.percentile(dem_ev, 90)),
+    # paths: among the closest places, how often each side wins the election when it carries one, and the commonest sets of
+    # them behind each side's wins. Counted from the simulated elections themselves, never by multiplying chances.
+    pd_ = (sh > 50).mean(1); close = [i for i in np.argsort(np.abs(pd_ - 0.5)) if 0.1 < pd_[i] < 0.9 and evs[i] >= 3][:10]
+    paths = {'places': [str(S.state.iloc[i]) for i in close], 'given': {}, 'dem': [], 'rep': []}
+    for i in close:
+        w = sh[i] > 50
+        paths['given'][str(S.state.iloc[i])] = {'dem_if_dem': float(dwin[w].mean()) if w.any() else None, 'dem_if_rep': float(dwin[~w].mean()) if (~w).any() else None}
+    if close:
+        code = (sh[close] > 50).T @ (1 << np.arange(len(close)))
+        for side_, win in (('dem', dwin), ('rep', rwin)):
+            if win.any():
+                vals, cnt = np.unique(code[win], return_counts=True)
+                for j in np.argsort(-cnt)[:5]:
+                    carried = [str(S.state.iloc[i]) for k, i in enumerate(close) if (int(vals[j]) >> k) & 1]
+                    paths[side_].append({'dem_carries': carried, 'share_of_wins': float(cnt[j] / win.sum()), 'share_of_all': float(cnt[j] / n)})
+    from_states = None
+    if turnout:
+        idx = [i for i, st in enumerate(S.state) if len(st) == 2 and st in turnout]; w = np.array([turnout[S.state.iloc[i]] for i in idx], float); w = w / w.sum()
+        nv = w @ sh[idx]
+        from_states = {'mean': float(nv.mean()), 'lo': float(np.percentile(nv, 10)), 'hi': float(np.percentile(nv, 90)), 'p_popular': float((nv > 50).mean()),
+                       'of_means': float(w @ S['mean'].values[idx]), 'gap': float(w @ S['mean'].values[idx] - nat),
+                       'p_vote_not_college': float(((nv > 50) & rwin).mean()), 'p_college_not_vote': float(((nv < 50) & dwin).mean())}
+    out = {'p_dem': p, 'p_model': p, 'p_rep': float(rwin.mean()), 'paths': paths, 'national_from_states': from_states, 'ev_mean': float(dem_ev.mean()), 'ev_median': float(np.median(dem_ev)), 'ev_lo': float(np.percentile(dem_ev, 10)), 'ev_hi': float(np.percentile(dem_ev, 90)),
            'national': float(nat), 'national_sd': float(s_nat), 'states': S, 'ev_dist': np.bincount(dem_ev.astype(int), minlength=int(total) + 1) / n,
            'p_popular': float((natv > 50).mean()), 'national_lo': float(np.percentile(natv, 10)), 'national_hi': float(np.percentile(natv, 90)),
            # counted from the same simulated elections: an even split of the electoral votes (half of it goes to each side in
            # p_model), and the two ways the national vote and the Electoral College can disagree
            'p_tie': float((dem_ev == total / 2).mean()), 'p_vote_not_college': float(((natv > 50) & rwin).mean()), 'p_college_not_vote': float(((natv < 50) & dwin).mean())}
-    if market is not None:
+    if market is not None and SET['market_weight'] > 0:
         lo = lambda q: np.log(np.clip(q, 1e-4, 1 - 1e-4) / (1 - np.clip(q, 1e-4, 1 - 1e-4)))
-        z = (1 - SET['market_weight']) * lo(p) + SET['market_weight'] * lo(market); out['p_dem'] = float(1 / (1 + np.exp(-z))); out['market'] = market
+        z = (1 - SET['market_weight']) * lo(p) + SET['market_weight'] * lo(market); out['p_dem'] = float(1 / (1 + np.exp(-z)))
+    if market is not None: out['market'] = market
     return out

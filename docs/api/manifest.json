@@ -7,7 +7,7 @@
  "forecast": {
   "as_of": "2026-11-25",
   "file": "api/forecast.json",
-  "hash": "aaafade2b679f58b",
+  "hash": "49374ed25bb66fb1",
   "last_kept": "2026-11-25T1756Z.json",
   "kept": 1
  },
@@ -18,7 +18,7 @@
   "ranges": "the 10th and 90th of every hundred simulated results"
  },
  "model_version": {
-  "settings": "31b090385279",
+  "settings": "9da5e0272057",
   "sims": 40000,
   "seed": 538,
   "status": "published",
@@ -70,7 +70,7 @@
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-25T22:00Z",
+ "made": "2026-11-25T22:25Z",
  "commit": null,
  "sources": {
   "state polls": "PollResults.org and VoteHub, CC BY 4.0; not affiliated with this site"

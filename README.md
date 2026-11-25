@@ -216,6 +216,20 @@ election and gives a recommendation. Neither it nor the candidate is the publish
 the ranges have held up, and the decisions that are open. `RUNBOOK.md` says how the three sites are kept running: what
 starts each run, the two secrets, what a failed run means, and what is still done by hand.
 
+## Changes of method
+
+Forecasts kept before a change stay in `docs/archive/` exactly as they were made. `data/methods.json` holds the same list
+for the page, which marks each change on the history chart.
+
+- **November 25, 2026.** The headline is the share of simulated elections each side wins outright. Before, it was moved a
+  quarter of the way toward betting markets (62 in 100 for the Democrats against the simulations' 60) and a 269 to 269
+  split counted as half a win for each side. Markets are now shown for comparison only; they are in no back-test. A tie is
+  counted on its own.
+- **November 25, 2026.** What approval may still move by before June 2028 now shrinks with the square root of the time
+  left, and closes only when Fifty-Two Keys reports that the June polls are in. Today's forecast is the same either way.
+- **November 25, 2026.** The chance of winning the most votes, and of the vote and the Electoral College disagreeing, are
+  counted from each simulated election's own states, added up by the votes each state cast in 2024.
+
 ## Back-test, 2008-2024
 
 Run as of 120, 90, 60, 30, 14, 7 and 1 days before each election, with only the polls that had finished, through the

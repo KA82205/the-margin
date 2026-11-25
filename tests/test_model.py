@@ -90,7 +90,14 @@ def test_every_number_is_a_possible_one():
     assert 0 <= J['national_lo'] < J['national'] < J['national_hi'] <= 100
     assert abs(sum(J['ev_dist']) - 1) < 1e-3 and len(J['ev_dist']) == 539
     assert abs(J['ev_mean'] - sum(s['ev'] * s['p_dem'] for s in S)) < 0.05                                   # expected electoral votes agree with the state chances
-    assert abs(J['p_model'] - (sum(J['ev_dist'][270:]) + 0.5 * J['ev_dist'][269])) < 2e-3                    # the chance is the share of simulated counts past 269, a tie counting half
+    # one set of simulated elections behind every headline figure: a win is 270 or more, a 269 to 269 split belongs to neither side
+    assert abs(J['p_dem'] - sum(J['ev_dist'][270:])) < 2e-4 and abs(J['p_rep'] - sum(J['ev_dist'][:269])) < 2e-4 and abs(J['p_tie'] - J['ev_dist'][269]) < 2e-4
+    assert abs(J['p_dem'] + J['p_rep'] + J['p_tie'] - 1) < 1e-9 and J['p_dem'] == J['p_model'] and J['settings']['market_weight'] == 0      # no betting markets in the headline
+    assert 0 <= J['p_vote_not_college'] <= J['p_rep'] + J['p_tie'] and 0 <= J['p_college_not_vote'] <= J['p_dem']
+    ns = J['national_from_states']                                                                           # the national vote added up from the states, the districts not counted twice
+    assert 0 <= ns['lo'] < ns['mean'] < ns['hi'] <= 100 and abs(ns['mean'] - ns['of_means']) < 0.1 and abs(ns['gap'] - (ns['of_means'] - J['national'])) < 1e-6
+    P = J['paths']; assert len(P['places']) <= 10 and all(0 <= P['given'][s]['dem_if_rep'] <= P['given'][s]['dem_if_dem'] <= 1 for s in P['places'])
+    assert all(abs(sum(w['share_of_all'] for w in P[k]) - 0) >= 0 and sum(w['share_of_wins'] for w in P[k]) <= 1 + 1e-9 for k in ('dem', 'rep'))
     assert J['ev_lo'] <= J['ev_median'] <= J['ev_hi'] and 0 < J['p_dem'] < 1 and 0 < J['p_popular'] < 1
     lop = pd.DataFrame([{'state': s, 'ev': 3, 'mean': m, 'sd': 4.0, 'poll': None, 'poll_weight': 0.0, 'poll_share': 0.0, 'prior': m}
                         for s, m in (('DC', 99.5), ('WY', 0.5), ('VT', 97.0), ('OK', 3.0), ('PA', 50.0), ('NC', 49.99))])
@@ -104,7 +111,7 @@ def test_the_versions_under_review_are_what_they_say_and_leave_the_published_one
     """The hybrid is the candidate with the approval equation kept; the structural one has no long-range model at any date.
     Neither changes a published setting, and the approval allowance keeps its published rule until a decision is made."""
     import fundamentals as F
-    assert M.SET['national_prior'] == 'fundamentals' and M.SET['poll_weight'] == 'precision' and M.SET['state_model_mode'] == 'share' and M.SET['drift_rule'] == 'fixed'
+    assert M.SET['national_prior'] == 'fundamentals' and M.SET['poll_weight'] == 'precision' and M.SET['state_model_mode'] == 'share' and M.SET['drift_rule'] == 'calendar' and M.SET['market_weight'] == 0
     assert {k: v for k, v in M.HYBRID.items() if k != 'national_prior'} == {k: v for k, v in M.CANDIDATE.items() if k != 'national_prior'} and M.HYBRID['national_prior'] == 'four_models'
     assert F.four_models(52.0, 49.0, 53.0, 51.0, 0.0) == 52.0 and F.four_models(52.0, 49.0, 53.0, 51.0, 1.0) == 51.25 and F.four_models(52.0, None, 53.0, 51.0) == 52.0
     assert F.three_models(52.0, 49.0, 53.0, 0.0) == 52.5                                # the candidate's prior is as it was
@@ -118,6 +125,10 @@ def test_the_versions_under_review_are_what_they_say_and_leave_the_published_one
 def test_the_approval_allowance_by_the_calendar_and_the_vote_the_keys_point_to():
     import run_2028 as R, fundamentals as F
     assert R.approval_left(713) == 1.0 and R.approval_left(130) == 0.0 and R.approval_left(1) == 0.0 and R.approval_left(2000) == 1.0
+    # the allowance closes on the observation, not on the date: with the June polls still out, a month's worth stays open
+    assert R.approval_open(713, False) == 1.0 and R.approval_open(400, False) == R.approval_left(400) and R.approval_open(131, False) == R.APPROVAL_FLOOR == R.approval_open(60, False) > 0
+    assert R.approval_open(60, True) == 0.0 and R.approval_open(713, True) == 0.0
+    assert R.june_approval_in({}) is False and R.june_approval_in({'upstream': {'fifty_two_keys': {'approval_in': True}}}) is True
     assert 0 < R.approval_left(300) < R.approval_left(500) < 1
     t = F.table(); base = dict(term1=1, deminc=0)
     spread = [[0.30, 0.25], [0.40, 0.50], [0.50, 0.25]]
