@@ -1,6 +1,6 @@
-"""Writes STATUS.md: where the three sites stand against the roadmap, the evidence on the versions under review, how the
-ranges have held up, and the decisions that are open. Every figure in a table is read from a data file or worked out here;
-none is typed.
+"""Writes STATUS.md: the method as frozen, the evidence behind it, the state-level and approval studies, what runs by
+itself and what does not. Every figure in a table is read from a data file or worked out here; none is typed. The lines
+about what was seen in production are a dated record and are typed.
 
     python status.py
 """
@@ -8,36 +8,50 @@ import json
 import numpy as np, pandas as pd
 import fundamentals as F
 
-P = json.load(open('data/phase_in.json')); FC = json.load(open('data/forecast_2028.json')); C = FC['candidate']; H = C['hybrid']
-DAYS = ['250', '200', '150', '120', '90', '60', '30', '14', '7', '1']
-NAMES = [('published', 'Published'), ('candidate', 'Candidate'), ('candidate, approval equation as a fourth model', 'Hybrid'), ('structural', 'Hybrid, no long-range model'),
-         ('candidate, published national prior', 'Published prior, polls by the timeline')]
+FC = json.load(open('data/forecast_2028.json')); C = FC['candidate']; H = C['hybrid']
+import model as M
 table = lambda head, rows: '\n'.join(['| ' + ' | '.join(head) + ' |', '|' + '---|' * len(head)] + ['| ' + ' | '.join(str(c) for c in r) + ' |' for r in rows])
 mgn = lambda sh: (lambda m: '0.0' if round(abs(m), 1) == 0 else ('D+' if m > 0 else 'R+') + f'{abs(m):.1f}')(2 * (sh - 50))
+mg = lambda m: '0.0' if round(abs(m), 1) == 0 else ('D+' if m > 0 else 'R+') + f'{abs(m):.1f}'
 
 
-def near(field, fmt='{:.2f}'):
-    N = P['near']
-    return table(['', *(('last day' if d == '1' else d + ' days') for d in DAYS)], [[label] + [fmt.format(N[k][d][field]) for d in DAYS] for k, label in NAMES])
+def backtests():
+    """The method as published against the one before it, on 2008 to 2024, by days out."""
+    A, B = pd.read_csv('data/backtest.csv'), pd.read_csv('data/backtest_previous.csv'); days = sorted(A.days.unique(), reverse=True)
+    def row(name, d, f): return [name] + [f(d[d.days == x]) for x in days]
+    nat = lambda g: f'{(2 * g.national_error).abs().mean():.2f}'; st = lambda g: f'{2 * g.state_mae.mean():.2f}'
+    won = lambda g: f'{int(g.called.sum())} of {len(g)}'; ll = lambda g: f'{float(-np.log(g.p_winner.clip(1e-6)).mean()):.2f}'
+    head = ['', *(('last day' if d == 1 else f'{d} days') for d in days)]
+    return table(head, [row('National miss, official method', A, nat), row('National miss, method before', B, nat), row('State miss, official', A, st), row('State miss, before', B, st),
+                        row('Favored the winner, official', A, won), row('Favored the winner, before', B, won), row('Log loss for the winner, official', A, ll), row('Log loss for the winner, before', B, ll)])
 
 
-def without(year):
-    N = P['near']
-    return table(['', *(('last day' if d == '1' else d + ' days') for d in DAYS)],
-                 [[label] + [f"{np.mean([abs(x) for y, x in N[k][d]['by_year'].items() if y != str(year)]):.2f}" for d in DAYS] for k, label in NAMES[:3]])
+def texas_florida():
+    t = open('data/nowcast.js').read(); nc = json.loads(t[t.index('{'):t.rindex('}') + 1]); us = nc['models']; T = json.load(open('data/state_trend_study.json'))['texas_florida']
+    rows = {}
+    for st in ('TX', 'FL'):
+        n = next(x for x in nc['states'] if x['abbr'] == st); f = next(x for x in FC['states'] if x['state'] == st); tf = T[st]
+        rows[st] = {'2020 result': mg(tf['margin']['2020']), '2024 result': mg(tf['margin']['2024']), '2020 against the nation': mg(tf['lean']['2020']), '2024 against the nation': mg(tf['lean']['2024']),
+                    'Lean used (three parts 2024, one part 2020)': mg(tf['rules_2028']['as used: 0.75 and 0.25']), 'Approval-and-economy model, against its own national figure': mg(2 * (n['enns'] - us['enns']['demPopular'])),
+                    'Long-range model, against its own national figure': mg(2 * (n['desart'] - us['desart']['demPopular'])), 'The two models together': mg(2 * (n['demShare'] - nc['summary']['demPopular'])),
+                    'Presidential approval in the state': f"{n['approve']:.1f}%", 'State economy index': f"{n['econ']:+.2f}", 'Starting point against the nation: half lean, half the models': mg(2 * (f['prior'] - FC['national'])),
+                    'National number': mgn(FC['national']), 'State polls for 2028': 'none', 'Forecast': mg(2 * (f['mean'] - 50)), 'Democrats win it': f"{100 * f['p_dem']:.0f} in 100",
+                    'If the last election alone set the lean': mg(tf['rules_2028']['the last election alone']), 'If a quarter of the 2020 to 2024 move were carried forward': mg(tf['rules_2028']['trend, a quarter carried forward'])}
+    return table(['', 'Texas', 'Florida'], [[k, rows['TX'][k], rows['FL'][k]] for k in rows['TX']]), rows
 
 
-def early():
-    b = P['far']['before_its_polls_existed']; cols = [('published', 'Published'), ('candidate', 'Candidate'), ('hybrid', 'Hybrid')]
-    return table(['Election', 'Dates', *(c[1] for c in cols)], [[y, v['dates']] + [f'{v[k]:.2f}' for k, _ in cols] for y, v in b['by_year'].items()] + [['All', b['dates']] + [f"{b['all'][k]:.2f}" for k, _ in cols]])
+def trend_study():
+    T = json.load(open('data/state_trend_study.json'))
+    a = table(['Rule for a state\'s lean', 'Elections scored', 'Typical miss', 'The rule in use, same elections', 'Closer in', 'Difference (standard error)'],
+              [[k[0].upper() + k[1:], f"{v['elections']} (from {v['since']})", f"{v['miss']:.2f}", f"{v['as_used_same_years']:.2f}", f"{v['better_in']} of {v['elections']}", f"{v['difference']:+.2f} ({v['se']})"] for k, v in T['rules'].items()])
+    b = table(['With the state models in, 2008 to 2024', 'Typical miss'], [[k[0].upper() + k[1:], f"{v['miss']:.2f}"] for k, v in T['with_state_models'].items()])
+    return a, b, T
 
 
-def today():
-    rows = [('Democrats win the Electoral College', lambda x: f"{100 * x['p_dem']:.0f} in 100"), ('The same, simulations only (no betting markets)', lambda x: f"{100 * x['p_model']:.0f} in 100"),
-            ('National vote', lambda x: mgn(x['national'])), ('Democratic electoral votes, middle simulation', lambda x: f"{x['ev_median']:.0f}"),
-            ('Four in five simulations', lambda x: f"{x['ev_lo']:.0f} to {x['ev_hi']:.0f}"), ('Polls in the national number', lambda x: f"{100 * x.get('poll_share', FC['inputs']['poll_share']):.0f}%")]
-    pub = dict(FC, poll_share=FC['inputs']['poll_share'])
-    return table([f"2028, as of {FC['as_of']}", 'Published', 'Candidate', 'Hybrid'], [[name] + [f(x) for x in (pub, C, H)] for name, f in rows])
+def approval_moves():
+    A = json.load(open('data/approval_moves.json'))
+    return table(['Net approval, midterm reading to June of the election year', 'Terms', 'Mean change', 'Mean size of the change', 'Median size', 'Standard deviation', 'Root mean square', 'Within 10', 'Within 15', 'Within 20'],
+                 [[k[0].upper() + k[1:], v['n'], f"{v['mean']:+.1f}", v['mean_abs'], v['median_abs'], v['sd'], v['rms'], *(f"{v['within'][w]} of {v['n']}" for w in ('10', '15', '20'))] for k, v in A['groups'].items()]), A
 
 
 def ranges():
@@ -55,27 +69,6 @@ def ranges():
     return a, b, c
 
 
-def keys_line():
-    t = F.table(); rows = []
-    def fit(past, kind):
-        x, y = past['keys'].values, past.incvote.values
-        if kind == 'last ten elections': x, y = x[-10:], y[-10:]
-        if kind == 'elections since 1980': keep = (past.year >= 1980).values; x, y = x[keep], y[keep]
-        return np.polyfit(x, y, 1)
-    for kind in ('every election since 1952 (as used)', 'last ten elections', 'elections since 1980'):
-        e = []
-        for y in (2008, 2012, 2016, 2020, 2024):
-            past = t[t.year < y].dropna(subset=['keys']); r = t[t.year == y].iloc[0]; s, i = fit(past, kind)
-            err = i + s * r['keys'] - r.incvote; e.append((2 * err, 2 * (err if r.deminc else -err), s))
-        rows.append([kind[0].upper() + kind[1:], f'{np.mean([abs(a) for a, _, _ in e]):.1f}', f'{np.mean([b for _, b, _ in e]):+.1f}', f'{np.mean([a for a, _, _ in e]):+.1f}', f'{e[-1][2]:.0f}'])
-    by = []
-    for y in (2008, 2012, 2016, 2020, 2024):
-        past = t[t.year < y].dropna(subset=['keys']); r = t[t.year == y].iloc[0]; s, i = np.polyfit(past['keys'], past.incvote, 1); err = i + s * r['keys'] - r.incvote
-        by.append([y, 'Democrats' if r.deminc else 'Republicans', f'{2 * err:+.1f}', f'{2 * (err if r.deminc else -err):+.1f}'])
-    return (table(['Line fitted on', 'Typical miss, 2008 to 2024', 'Mean miss toward the Democrats', 'Mean miss toward the party in office', 'Points of vote for the whole count, 2024 fit'], rows),
-            table(['Election', 'Party in office', 'Miss toward the party in office', 'Miss toward the Democrats'], by))
-
-
 def keys_tables():
     K = json.load(open('data/keys_study.json')); D = [str(d) for d in K['days']]
     ways = [('published', 'Published'), ('hybrid', 'Hybrid: Keys as an equal part'), ('half', 'Keys at half weight'), ('recent line', 'Keys line fitted on the last ten elections'), ('no keys', '**No Keys (recommended)**'), ('as a signal', 'No Keys in the vote; the count used as a sign of the winner')]
@@ -91,181 +84,213 @@ def keys_tables():
 
 
 def main():
-    a, b, c = ranges(); UP = (FC.get('upstream') or {}).get('fifty_two_keys') or {}; RC = C['recommended']
-    ka, kb, kc, kparts, ksig, K = keys_tables(); ns = FC['national_from_states']; rs = RC['national_from_states']
-    side = lambda x: f"{100 * x['p_dem']:.0f} in 100"
-    L = f"""# Where the three sites stand
+    a, b, c = ranges(); ka, kb, kc, kparts, ksig, K = keys_tables(); ns = FC['national_from_states']; I = FC['inputs']
+    tf, tfr = texas_florida(); ta, tb, T = trend_study(); am, A = approval_moves(); E = A['effect_on_the_forecast_of_2026-11-25']
+    S = M.SET; one = lambda v: f"{v:.0f} in 100"
+    L = f"""# The three sites: the method as frozen, the evidence, and what runs by itself
 
-Written by `status.py` on the forecast of {FC['as_of']}. Every figure in a table is read from a data file. Misses are in
-points of margin. `RUNBOOK.md` says how the sites are kept running; `REVIEW.md` holds the earlier research.
+Written by `status.py` on the forecast of {FC['as_of']}. Every figure in a table is read from a data file; misses are in
+points of margin. `RUNBOOK.md` says how the sites are kept running. `REVIEW.md` holds the earlier research.
 
-Each line below is marked: **live** (deployed and seen working on the public site or in GitHub's record), **tested** (passes
-its tests here; not yet seen in production because the event has not happened), **under review** (built, run beside the
-published forecast, waiting for your word), or **open**.
+## 1. The official method
 
-## 1. What changed in this round
+The Margin's forecast is made in this order. Nothing in it reads Fifty-Two Keys or betting markets.
 
-| | Status |
+1. **A national starting point, before polls.** The average of two things, and of a third once it exists:
+   the approval equation (net approval in June of the election year, growth, and time in office, fitted on 1948 to the
+   election before), today {mgn(I['approval_model'])}; Tipping Point's approval-and-economy model, today {mgn(I['approval_and_economy'])}; and Tipping
+   Point's long-range model, which is built on polls and so is left out until November 7, 2027 and then phased in, today
+   {'not in' if not I['long_range_weight'] else mgn(I['long_range']) + f" at weight {I['long_range_weight']:.2f}"}. Together: {mgn(I['fundamentals'])}.
+2. **An allowance for approval still moving.** Net approval is {I['net_approval']:+.1f} now and the equation wants its June 2028 value. The
+   allowance is 10 points of net approval at the midterm, shrinks with the square root of the time left, and closes only when
+   The Margin itself finds at least ten June 2028 days in the Nowcast's approval series (from July 8, 2028). If June is late,
+   a month's worth stays open. Today {100 * FC['approval_open']:.0f}% of it is open.
+3. **National polls, by the calendar.** Polls count for what the record says polls at this distance have been worth:
+   about 3% two years out, 11% at 250 days, 24% at 120, 61% on the last day. Today {100 * I['poll_share']:.0f}%, on {I['polls_n']} polls ({mgn(I['national_polls'])}).
+   The national number is {mgn(FC['national'])}.
+4. **The states.** Each state starts from the national number plus where the state sits against the nation: half from its
+   lean in the last two elections (three parts 2024, one part 2020), half from where Tipping Point's two models place it
+   against their own national figure. State polls move it by a share that grows with their number and with the calendar.
+5. **{S['sims']:,} simulated elections.** One national error for all states, a regional error shared by neighbours, and each
+   state's own. Every figure on the page is counted from these same simulated elections: who wins, the electoral votes, each
+   state's range, the national vote (each election's states added up by the votes they cast in 2024), and the chance of
+   winning the vote and losing the Electoral College.
+
+| 2028, as of {FC['as_of']} | |
 |---|---|
-| The headline is the simulations' own number: Democrats {100 * FC['p_dem']:.0f} in 100, Republicans {100 * FC['p_rep']:.0f}, a 269 to 269 tie {1000 * FC['p_tie']:.0f} in 1,000, counted for neither. Betting markets are shown beside it. Forecasts kept before the change are untouched; the change is in `data/methods.json` and marked on the history chart | live |
-| No figure is written +0.0, -0.0, D+0.0 or R+0.0: one routine for margins and one for changes, checked on every tab by `tests/browser_page.js` | live |
-| "Forecast updates" is one line when nothing has moved and opens up when something has, with 7, 30 and 90-day comparisons as history allows. What moved is split between national polls, approval, the Keys count, Tipping Point's state models and time, each credited with its average effect over every order, so the order does not matter and the parts add up. Nothing is called "the calendar" | live |
-| The history chart covers the days there are, with 7, 30, 90-day and all-time views; one point a day, a day without a new forecast keeping the last | live |
-| All 56 places in one list: search, five orders, four filters, the profile beside it | live |
-| State chart: bars for the state, a dashed line for the nation, 2028 set apart and labelled as a forecast, a legend, hover for each year | live |
-| Paths to 270 and the chance of the vote and the Electoral College disagreeing, counted from whole simulated elections | live |
-| The national vote of each simulated election is added up from its own states by the votes each cast in 2024 (districts not counted twice) | live |
-| What approval may still move by shrinks with the square root of the time left and closes only when Fifty-Two Keys reports the June 2028 polls are in; if they are late a month's worth stays open | live; the closing itself tested |
-| Contact link in the footer, no name or picture | live |
-| Map hover, ranges for every place, no margin past 100: checked again at five window sizes (`tests/browser_hover.js`) | live |
-| Fifty-Two Keys: seats of a new Congress and polls naming a third candidate are read by rule; 47 of 52 keys need nothing typed; approval is run from today's reading; the count closes August 1, 2028; no vote estimate for 2028 | deployed; the rules tested on made-up futures |
-| Both sites notify The Margin; any of the three can be asked from outside to check now | live |
+| Democrats win the Electoral College | {one(100 * FC['p_dem'])} |
+| Republicans win | {one(100 * FC['p_rep'])} |
+| A 269 to 269 tie, counted for neither | {1000 * FC['p_tie']:.0f} in 1,000 |
+| National vote, from the simulated elections | {mgn(ns['mean'])}; four in five between {mgn(ns['hi'])} and {mgn(ns['lo'])} |
+| Democrats win the most votes | {one(100 * FC['p_popular'])} |
+| Democratic electoral votes | {FC['ev_median']:.0f}; four in five between {FC['ev_lo']:.0f} and {FC['ev_hi']:.0f} |
+| Win the vote, lose the Electoral College | Democrats {100 * ns['p_vote_not_college']:.0f} in 100, Republicans {100 * ns['p_college_not_vote']:.0f} in 100 |
+| The national number less the states added up | {ns['gap']:+.2f} points |
 
-## 2. Does Fifty-Two Keys belong in The Margin?
+The method was adopted on November 25, 2026 and is frozen from that day (section 9). On the day of the change the Democratic
+chance moved from 60 to 70 in 100. Almost none of that comes from dropping Fifty-Two Keys' line: with the line left in,
+the same method gives {100 * H['p_dem']:.0f} in 100 today. It comes from the rest of the approved change: early polls counted for 3% and not
+24%, the approval-and-economy model added, and state models used for placing only. Every forecast kept before the change is untouched in `docs/archive/`; the change is recorded in
+`data/methods.json` and marked on the page's history chart. The method before it stays in the code as `model.PREVIOUS`, and
+four other versions are still run on every forecast and written to the data file, so that in 2028 they can be scored beside
+the official one. They are not shown as the forecast.
 
-No. `keys_study.py` runs the hybrid on 2008 to 2024 at ten distances from the election, changing only what is done with the Keys.
+## 2. The evidence for it
+
+The official method against the one before it, on 2008 to 2024 (`backtest.py`):
+
+{backtests()}
+
+Why Fifty-Two Keys is out (`keys_study.py`, ten distances from 250 days to the last day):
 
 {ka}
 
-{kb}
+The more of the Keys line there is, the worse every measure gets. Taken alone the line missed the national margin by {K['parts']['keys line']['size']:.1f}
+points on average, each time toward the Democrats. Used only as a sign of the winner it made every winner score worse.
 
-{kc}
+What this does not show. Five elections; ten distances from one election are not ten elections. The approval-and-economy
+model's forecast is the one its authors' method gives about 100 days out, used at every distance, which flatters the
+early distances. The real test is 2028, which is why the method is frozen now.
 
-Among the versions of the hybrid every average is best with the Keys left out, and the order is the same on every measure:
-the more of the Keys line there is, the worse the forecast. That holds for the vote (national and state misses, and the lean
-toward the Democrats) and for the winner (Brier score and log loss). On the national miss it holds at eight of the ten
-distances and is within 0.02 at the other two. Against the published forecast the version without the Keys is closer from
-250 days to 30 days and level in the last fortnight (2.32 against 2.17 at 14 days, 1.74 against 1.72 on the last day).
+## 3. The states: Texas, Florida, and whether trends or midterms would help
 
-Why. The Keys line, taken alone, missed the national margin by more than any other part and always the same way:
+**Why Texas is projected more Republican than Florida.** They voted alike in 2024. Nothing was adjusted by hand; this is
+what each part says.
 
-{kparts}
+{tf}
 
-As a sign of the winner the count did no better. Laid over the simulations with its own past record (shrunk halfway to a coin
-toss, because the keys were chosen with the results in view), it made every winner score worse:
+The gap of about two points has two sources. About a quarter of it is the lean: 2020 counts for a quarter, and in 2020
+Florida was 2.3 points less Republican against the nation than Texas. The rest is Tipping Point's two models, which
+together place Florida about three points less Republican than Texas: the approval-and-economy model by four, with approval
+a point higher in Florida, and the long-range model by under three, because it leans on earlier elections, when Florida was
+a swing state. There are no
+2028 polls of either state. A rule that carried Florida's rightward move forward would bring the leans level (last line of
+the table), not put Texas ahead.
 
-{ksig}
+**Would such a rule have forecast better?** `state_trend_study.py` scores eleven ways of setting a state's lean on every
+state and every election on record, each using only what was known beforehand. A fitted share is fitted on earlier
+elections only. Midterm leans come from the House vote in districts both parties contested, against the national House
+vote counted the same way, so uncontested seats and the difference between midterm and presidential turnout drop out.
+Senate and governor's races are left out: one race a state, decided as much by the candidates as by the state.
 
-In all five elections the count pointed to the Democrats; three of the five went that way. Its record of {K['count_alone']['right_college']} Electoral College
-winners in {K['count_alone']['elections']} ({K['count_alone']['right_vote']} for the national vote) is a record of rules written after the results were known.
+{ta}
 
-What this does not show. Five elections; ten distances from the same election are not ten elections. Six versions were
-scored on them, so a small gap between two versions means little: the case rests on the gap being large, in one direction,
-and on every measure. The approval-and-economy model's forecast is the one made about 100 days out, used at every distance,
-and the Keys counts use final figures: both flatter early forecasts, and the second flatters the Keys.
+{tb}
 
-**Recommendation: give Fifty-Two Keys no weight in The Margin.** The version without it is `model.RECOMMENDED`. It is run on
-every forecast and is not published until you say so.
+- **Trends do not persist.** A state's move against the nation in one election says almost nothing about its move in the
+  next: the correlation is {T['persistence']['correlation']:+.2f} over {T['persistence']['n']} cases and {T['persistence']['since_2008']:+.2f} since 2008. The share of a trend that would have been best to
+  carry forward is slightly negative in every election ({min(T['fitted_shares']['trend'].values()):+.2f} to {max(T['fitted_shares']['trend'].values()):+.2f}). Carrying a quarter forward was no better; a half was worse.
+- **Midterms do not help.** Moving a fifth of the way to the midterm House lean was worse in 5 of 7 elections, and the best
+  share to use was about zero ({T['fitted_shares']['midterm level']['2024']:+.2f}).
+- **The last election alone** was closer than the rule in use in 6 of 11 elections, by 0.12 points with a standard error of
+  0.15: not distinguishable from no difference. With the state models in, every rule lands between 3.89 and 3.96.
 
-| 2028, as of {FC['as_of']} | Published | Hybrid | Recommended (no Keys) |
-|---|---|---|---|
-| Democrats win | {side(FC)} | {side(H)} | {side(RC)} |
-| National vote | {mgn(FC['national'])} | {mgn(H['national'])} | {mgn(RC['national'])} |
-| Democratic electoral votes, middle simulation | {FC['ev_median']:.0f} | {H['ev_median']:.0f} | {RC['ev_median']:.0f} |
-| Four in five simulations | {FC['ev_lo']:.0f} to {FC['ev_hi']:.0f} | {H['ev_lo']:.0f} to {H['ev_hi']:.0f} | {RC['ev_lo']:.0f} to {RC['ev_hi']:.0f} |
-| National number less the states added up | {ns['gap']:+.2f} | {H['national_from_states']['gap']:+.2f} | {rs['gap']:+.2f} |
+**Conclusion: the framework is kept as it is.** No rule beat the one in use by more than chance would, and the two that
+would move Texas and Florida closer (trends, the last election alone) have no reliable record. The 2026 House vote is not in
+the source file yet and was not used. Tipping Point's models are untouched.
 
-For 2028 the choice moves little: today the Keys line ({mgn(C['parts']['fifty_two_keys'])}) stands beside the other two parts ({mgn(RC['parts']['approval_and_economy'])} and {mgn(RC['parts']['approval_equation'])}).
-The difference from the published forecast comes from the rest of the hybrid: early polls counted for {100 * RC['poll_share']:.0f}% and not {100 * FC['inputs']['poll_share']:.0f}%, and the
-approval-and-economy model added. The recommendation is not made for the number it gives.
+## 4. The allowance for approval still moving
 
-Fifty-Two Keys goes on as its own site. It calls a winner; it no longer gives an estimate of the vote.
+It stays at 10 points, as instructed. What the record says (`data/approval_moves.json`):
 
-## 3. The national number and the states
+{am}
 
-In the published forecast the states, added up by the votes each cast in 2024, come to {ns['of_means']:.2f}% against a national number of
-{FC['national']:.2f}%: {abs(ns['gap']):.2f} points apart. Half of each state's starting point is Tipping Point's forecast of that state as it stands,
-which carries that site's lower national level into the states a second time. In the versions under review the state models
-are used only for where they place each state against their own national figure, and the two agree to {abs(rs['gap']):.2f}. The chance of
-winning the most votes shown on the page is counted from the states added up ({100 * FC['p_popular']:.0f} in 100), not from the national number alone.
-Adopting the recommended version closes the gap; nothing else was needed.
+The "20" and "11" quoted before were root-mean-square changes: the spread about no change at all, for every term and for
+the five most recent. That is the right measure here, because the forecast assumes no trend and the allowance is used as one
+standard deviation. If the allowance is right, about two terms in three should fall within it. At 10, a third of all terms
+do and three of the last five; at 20, two thirds of all terms and all of the last five.
 
-## 4. How wide the ranges are
+**Recommendation: 15.** Ten is below every estimate in the table, including the one from the five most polarised terms
+(11.2), and five terms cannot pin a spread down: the range that five observations with that spread are consistent with
+runs from about 7 to about 27. Twenty fits the whole record but includes the swings of 1980 and 1992, larger than anything
+since approval hardened along party lines. Fifteen sits between the five-term figure and the seven-term figure (16.3), and
+at 15 the count of recent terms inside it is the same as at 10. This was written before measuring what it does to the
+forecast. For the record, measured afterwards: Democrats {100 * E['10']['democrats_win']:.0f} in 100 at 10, {100 * E['15']['democrats_win']:.0f} at 15, {100 * E['20']['democrats_win']:.0f} at 20; the range of the national
+margin {E['10']['range_of_the_national_margin']}, {E['15']['range_of_the_national_margin']} and {E['20']['range_of_the_national_margin']} points wide. The closing rule is the same at any size. The change is one number in
+`data/inputs.json` (`approval_drift`) and a line in `data/methods.json`; it is yours to make.
 
-Unchanged, and the evidence is as before: on the last day the ranges held more results than four in five on average, but in
-2016 they needed nearly all of their width.
+## 5. How wide the ranges are
+
+On the last day the ranges held more results than four in five on average, but in 2016 they needed nearly all their width.
+They are left as they are.
 
 {a}
 
 {b}
 
-One assumption was checked against a record for the first time. The allowance for approval still moving is 10 points of net
-approval. Between the midterm and June of the election year, net approval moved by about 20 points in a typical term since
-1950, and by about 11 in the five most recent. At 20 the Democratic chance today would be about one point lower; the choice
-is yours (decision 3). Fifty-Two Keys' run-ahead now uses the full record.
+## 6. Running by itself
 
-## 5. Running by itself: what is proven and what is not
+Each site checks its sources every hour, stops if nothing is new, and otherwise recalculates, archives and publishes. Tipping
+Point and Fifty-Two Keys tell The Margin when they publish. The Margin now starts a new forecast only for what its forecast
+reads: national polls, state polls, approval, Tipping Point's models, a new day, or a change of method. A new Fifty-Two Keys
+count or new betting odds is shown on the next forecast and does not start one; if either cannot be read the page says so and
+nothing fails.
 
-| Evidence | Status |
+| Seen in production, November 25, 2026 (UTC) | |
 |---|---|
-| Tests on this machine: The Margin 17 and three browser tests, Fifty-Two Keys 34 | pass |
-| Made-up futures: keys landing, the close, late figures, a new survey, seats, third candidates | pass |
-| Runs started by hand on GitHub, with and without something new | seen |
-| Notification, Fifty-Two Keys to The Margin | seen: 19:01 UTC, November 25 |
-| Notification, Tipping Point to The Margin | seen: 21:48 and 22:29 UTC. The Margin ran within a minute, found the new state forecasts, kept and deployed a forecast |
-| A check asked for from outside (`heartbeat`) | seen in all three between 22:28 and 22:47 UTC: the two upstream sites found nothing new and saved nothing; The Margin found the new Keys count, reran, and kept no new forecast because the forecast had not moved |
-| The forecasters' survey read from the Philadelphia Fed on GitHub's servers | seen: it gave the figures entered by hand |
-| A changed source published with nobody starting the run | **not yet seen** |
-| A run GitHub started by itself since the hourly schedules went in | **not yet seen** |
+| Fifty-Two Keys notifies The Margin | 19:01 |
+| Tipping Point notifies The Margin; The Margin runs within a minute and publishes | 21:48, 22:29, 23:06 |
+| A check asked for from outside, the way an outside clock would ask (`workflow_dispatch`, check only) | Tipping Point 23:12 and Fifty-Two Keys 23:12: both found nothing new and saved nothing. The Margin: see RUNBOOK |
+| A `heartbeat` check | all three, 22:28 to 22:47 |
+| The official method published and kept | 23:14, `docs/archive/2026-11-25T2314Z.json` |
+| The forecasters' survey read from the Philadelphia Fed | gave the figures that had been typed |
+| The Bureau of Labor Statistics read as a second source | 23:28: "gives the same 11 figures" for the unemployment rate |
+| Polls naming a third candidate read from PollResults.org | every Fifty-Two Keys run |
+| **A run GitHub started by its own schedule since the hourly schedules went in** | **none in the first five and a half hours** |
 
-Tipping Point's secret was added after the run this report first read; its next run notified The Margin.
+GitHub's schedule is the weak point. A schedule is a request; GitHub started Tipping Point's old twice-daily runs seven to
+ten hours late every day. Three things stand behind it: the notifications above; each upstream site waking The Margin when
+it has been quiet for 50 minutes; and an outside clock, which needs one free account and one new token that only you can
+make (`RUNBOOK.md`, about ten minutes). [ops.html](https://ka82205.github.io/the-margin/ops.html) reads GitHub's record live and shows for each site the last good
+check, the last saved update, the last run GitHub's schedule started, the last run an outside clock or a heartbeat started,
+what The Margin last read from each source, failures, and whether a check is overdue.
 
-The schedule is the open problem. Before the change Tipping Point asked for runs at 06:17 and 11:17 UTC and GitHub started
-them seven to ten hours late, every day. Hourly schedules went in at about 18:00 UTC on November 25 and no scheduled run
-had started in any repository by 22:50. If GitHub is simply seven to ten hours behind, hourly runs will begin overnight and
-keep an hourly rhythm; if it drops them, they will not. [ops.html](https://ka82205.github.io/the-margin/ops.html) reads GitHub's record live and shows,
-for each site, the last run of any kind and how many runs GitHub started by itself in the last day and week.
+Tests: The Margin 17 and three browser tests; Fifty-Two Keys 36, including made-up futures in which keys land, the count
+closes, figures arrive late, and the range narrows as months are published; Tipping Point's own. Each workflow runs its
+tests before it reads anything.
 
-What is in place so that one late schedule does not stall everything: each upstream site, whenever it runs, wakes The Margin
-if The Margin has not checked for most of an hour. What is not in place: anything outside GitHub that wakes the upstream
-sites. That needs one free account and one change to your token, and only you can make them (decision 4).
+## 7. What is still done by hand
 
-## 6. Fifty-Two Keys: all 52 keys
-
-`KEYS.md` in that repository has the row for each key: what it reads, its window, when it can first be called, what happens
-if the figure is missing. In short:
-
-| Keys | Evidence | Typed by hand |
+| What | When | Why it is not automatic |
 |---|---|---|
-| 33 economy keys (A01 to A18, B01 to B15) | FRED and the Philadelphia Fed state indexes; called when June 2028 figures are out | nothing |
-| 6 approval keys (C01 to C06) | VoteHub's list of approval polls; called a week after June 2028 ends | nothing |
-| 5 seat keys (D01, D02, D03, D05, D06) | the public list of sitting members, in the January a Congress meets | nothing (was one line every two years) |
-| D04, E02 | the 2024 result; the table of past elections | nothing |
-| E03, third candidate | PollResults.org: June 2028 polls naming one, three pollsters or more | nothing (was one entry) |
-| E01 | the president cannot run again | entered once, done |
-| E04, delegates | pledged delegates when the primaries end | **one entry in 2028** |
-| E05, E06, E07, New Hampshire | certified results, for each party's candidate with a majority of pledged delegates | **one line in 2028** |
+| The nominee's share of pledged delegates (Fifty-Two Keys E04) | Once, June 2028 | No open, stable list of pledged delegates exists. The best public tally carries no terms for reuse and the news agencies' counts are licensed |
+| The New Hampshire primary line (E05 to E07) | Once, when both parties have a presumptive nominee | The Secretary of State publishes certified results as spreadsheets at an address that changes each cycle, with write-in votes in a separate file; the one open collection of results has New Hampshire's primary for 2020 only. The line also needs to know who the nominees are |
+| Who the nominees are (Tipping Point's candidate file) | Once, when both are known | A fact, not a feed |
+| State approval from Civiqs (Tipping Point) | When a new copy is taken | Civiqs turns automatic reads away. Only the gaps between states are used, and those move slowly. No other open source covers fifty states |
+| A forecast published by the authors of Tipping Point's models | If one appears | It would replace the site's own reading of their method |
+| A large, real move in a series with no second source (industrial production, spending, housing starts, sentiment, oil, shares, jobless claims, the quarterly accounts) | If it happens | The run fails once a day and names the series; it is let in with `trust` after a look |
+| The size of the approval allowance | Your decision (section 4) | |
 
-The four that still need an entry have no free, open source to read: delegate counts and New Hampshire's certified results
-are published as pages and documents. The rules for them are now fixed in `KEYS.md`: pledged delegates at the end of the
-primaries, not the convention; the nominee is the candidate with a majority of pledged delegates; a party with no such
-candidate by August 1, 2028 has its keys left open, and the count closes without them.
+No longer by hand, as of this round: the odds for the nomination keys and the third-candidate key (counted from the record,
+with the count shown); the parts of the outlook no survey gives (taken from the published figures); the share of runs with
+a recession (the record's, falling as months run out); a large move in unemployment, payrolls, factory jobs, consumer prices
+or hourly pay (confirmed against the Bureau of Labor Statistics); the June 2028 approval reading (found by The Margin
+itself). A missed entry never becomes a "no": the key is held, the run fails once a day until it is entered, and if it is
+still missing when the count closes on August 1, 2028 (late figures accepted to August 15) the key stays open, the count is
+reported as a lowest and a highest, a winner is called only if both agree, and no group is re-weighted.
 
-Still entered in the run-ahead, with their dates: the parts of the outlook the forecasters' survey does not give (income,
-pay, spending, industrial production, factory jobs, oil, sentiment, population), the 30% share of runs with a recession, and
-the odds for the four nomination keys. No dependable free forecast of these was found; they are labelled as entered.
+## 8. Limits that cannot be removed
 
-## 7. Decisions that are yours
+- **Five elections.** Every back-test rests on 2008 to 2024. Differences of a few tenths of a point between methods mean
+  nothing; the choices here rest on differences that were large and pointed one way on every measure.
+- **Back-tests are not real time.** They use final economic figures and one forecast a year from the approval-and-economy
+  model, not the figures as first published on each day. Old vintages for every series and old poll releases by date are
+  not available free in one place. The page says so. Dropping Fifty-Two Keys removed the worst case of this (final key counts).
+- **No nominees.** Every 2028 poll pairs people who may never face each other. Polls count for 3% of the national number.
+- **State models place only.** Where Tipping Point's models put a state against the nation drives half of each state's
+  starting point; if those placings are off (section 3), so are the states.
+- **GitHub decides when schedules run,** and third parties decide whether their feeds stay open: PollResults.org, VoteHub,
+  FRED, the Philadelphia Fed, the Bureau of Labor Statistics, the public list of members of Congress. Each has a check that
+  reports when it stops answering; none has a contract.
+- **The accessibility check was automatic.** All three sites pass the WCAG 2 A and AA rules a program can test, in light
+  and dark, at desktop and phone widths (every tab of The Margin and its operations page; the opening view of the other
+  two). Nobody has gone through them with a screen reader.
 
-1. **Make the version without Fifty-Two Keys the published forecast?** Recommended. Today: {side(FC)} to {side(RC)}, national vote {mgn(FC['national'])} to {mgn(RC['national'])},
-   {FC['ev_median']:.0f} to {RC['ev_median']:.0f} electoral votes. It also brings the national number and the states into agreement. `RUNBOOK.md` has the steps; every
-   forecast kept before the change stays as it was.
-2. **Freeze the method after that.** If you approve 1, I suggest no further change to The Margin's method before the
-   election except to fix a fault.
-3. **The size of the approval allowance:** 10 points of net approval (as now, close to the five most recent terms) or 20
-   (every term since 1950). About one point of the Democratic chance today.
-4. **An outside clock for the three sites,** if GitHub's own schedule proves undependable. One free account at a scheduling
-   service and your existing token widened from one repository to three. Steps in `RUNBOOK.md`.
+## 9. Frozen
 
-## 8. Not done
-
-- The back-tests still use one forecast a year from the approval-and-economy model and final Keys counts; they are labelled
-  as such and have not been rebuilt as they stood on each day. Dropping the Keys removes the second of these.
-- No separate page for polls; state polls are listed on each state's page with the reason each is or is not counted.
-- Tipping Point's state approval is still copied by hand from Civiqs, which offers no feed; a new forecast published by the
-  models' authors would also have to be entered by hand.
-- A large, real economic move is still held back until somebody lets it through; no second source confirms it automatically.
-- No accessibility audit and no outside review in this round. Congress is out, as instructed.
+From November 25, 2026 the method is not changed before the election except to fix a fault, and a fix is recorded in
+`data/methods.json` with what it changed. Data, polls and the calendar move the forecast; the code that turns them into a
+forecast does not. Open to you and outside the freeze: the approval allowance (section 4). Congress is not forecast.
 """
     open('STATUS.md', 'w').write(L); print('STATUS.md', len(L), 'characters')
 

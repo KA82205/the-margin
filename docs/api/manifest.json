@@ -7,7 +7,7 @@
  "forecast": {
   "as_of": "2026-11-25",
   "file": "api/forecast.json",
-  "hash": "e789c7715dec3811",
+  "hash": "36a1fa56252598f6",
   "last_kept": "2026-11-25T2314Z.json",
   "kept": 4
  },
@@ -53,8 +53,8 @@
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-25T23:14Z",
- "commit": "9e0522e1353d",
+ "made": "2026-11-25T23:39Z",
+ "commit": null,
  "sources": {
   "state polls": "PollResults.org and VoteHub, CC BY 4.0; not affiliated with this site"
  }

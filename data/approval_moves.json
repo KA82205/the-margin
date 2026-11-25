@@ -94,5 +94,33 @@
     "20": 5
    }
   }
- }
+ },
+ "effect_on_the_forecast_of_2026-11-25": {
+  "what": "the official method run with the allowance at 10, 15 and 20 points; measured after the recommendation was written, and not a reason for it",
+  "10": {
+   "democrats_win": 0.697,
+   "range_of_the_national_margin": 14.4,
+   "electoral_votes": [
+    227,
+    379
+   ]
+  },
+  "15": {
+   "democrats_win": 0.68,
+   "range_of_the_national_margin": 16.3,
+   "electoral_votes": [
+    220,
+    388
+   ]
+  },
+  "20": {
+   "democrats_win": 0.66,
+   "range_of_the_national_margin": 18.6,
+   "electoral_votes": [
+    210,
+    398
+   ]
+  }
+ },
+ "what_the_measures_are": "mean: the average change, with its sign. mean_abs: the average size of the change. median_abs: the middle size. sd: the standard deviation about the mean. rms: the root of the mean squared change, which is the spread about no change at all. The forecast assumes no trend, so the allowance is a spread about no change and rms is the measure it should be set against. 'within' counts the terms whose change was no larger than 10, 15 or 20; if the allowance is right about two terms in three fall within it."
 }

@@ -179,8 +179,8 @@
   "lo": 48.351928230345514,
   "hi": 55.53634748361945,
   "p_popular": 0.768925,
-  "of_means": 51.955426495961014,
-  "gap": -0.02799564614287675,
+  "of_means": 51.95542649596101,
+  "gap": -0.027995646142883857,
   "p_vote_not_college": 0.08935,
   "p_college_not_vote": 0.022775
  },
@@ -189,7 +189,7 @@
  "p_vote_not_college": 0.08935,
  "p_college_not_vote": 0.022775,
  "national": 51.98342214210389,
- "national_sd": 2.9223441973135342,
+ "national_sd": 2.922344197313535,
  "ev_mean": 300.2192,
  "ev_median": 298.0,
  "ev_lo": 227.0,
@@ -741,7 +741,7 @@
   "polls_n": 28,
   "poll_share": 0.025969524072292645,
   "fundamentals": 52.06782046709789,
-  "fundamentals_sd": 1.4919712665728575,
+  "fundamentals_sd": 1.491971266572861,
   "approval_model": 52.06764610990314,
   "approval_and_economy": 52.06799482429265,
   "long_range": 49.84646304548628,
@@ -1997,7 +1997,7 @@
   "p_model": 0.69435,
   "p_popular": 0.768275,
   "national": 52.15776210843917,
-  "national_sd": 3.4814058510153982,
+  "national_sd": 3.4814058510153973,
   "ev_median": 302.0,
   "ev_lo": 221.0,
   "ev_hi": 394.0,
@@ -2348,7 +2348,7 @@
    "ev_hi": 389.0,
    "tipping_point": "PA",
    "prior": 52.18708781791914,
-   "drift": 2.101033289011177,
+   "drift": 2.101033289011179,
    "long_range_weight": 0.0,
    "parts": {
     "approval_and_economy": 52.06799482429265,
@@ -2715,13 +2715,13 @@
     "lo": 48.351928230345514,
     "hi": 55.53634748361945,
     "p_popular": 0.768925,
-    "of_means": 51.955426495961014,
-    "gap": -0.02799564614287675,
+    "of_means": 51.95542649596101,
+    "gap": -0.027995646142883857,
     "p_vote_not_college": 0.08935,
     "p_college_not_vote": 0.022775
    },
    "national": 51.98342214210389,
-   "national_sd": 2.9223441973135342,
+   "national_sd": 2.922344197313535,
    "national_lo": 48.625100855843904,
    "national_hi": 55.321991004033556,
    "ev_median": 298.0,
@@ -2729,7 +2729,7 @@
    "ev_hi": 379.0,
    "tipping_point": "PA",
    "prior": 52.06782046709789,
-   "drift": 1.4919712665728575,
+   "drift": 1.491971266572861,
    "long_range_weight": 0.0,
    "parts": {
     "approval_and_economy": 52.06799482429265,
@@ -3189,7 +3189,7 @@
    "p": 0.676
   }
  ],
- "equation_error": 2.5311906632519694,
+ "equation_error": 2.5311906632519685,
  "settings": {
   "half_life": [
    7,

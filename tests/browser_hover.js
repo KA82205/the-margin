@@ -2,7 +2,7 @@
 // sizes, and check that the map, the electoral-vote bar and the headline do not move. Needs Playwright.
 //     node tests/browser_hover.js [url]
 const { chromium } = require('playwright');
-const url = process.argv[2] || 'file:///home/claude/the-margin/docs/index.html';
+const url = process.argv[2] || 'file://' + require('path').join(__dirname, '..', 'docs', 'index.html');
 (async () => {
   const b = await chromium.launch(); let bad = 0;
   for (const [w, h] of [[1440, 900], [1280, 800], [1024, 768], [820, 1100], [390, 844]]) {

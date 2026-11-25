@@ -111,7 +111,8 @@ def fingerprint(day, nc, inp, sp):
             'state forecasts': h([[(m.get(k) or {}).get('demPopular') and round(float(m[k]['demPopular']), 2) for k in ('enns', 'desart')], round(float(nc['summary']['demPopular']), 2),
                                   sorted([s['abbr'], round(float(s['demShare']), 2)] for s in nc['states']), nc.get('tickets'), bool(f.get('frozen'))]),
             'approval': h([inp['net_approval']]),
-            'state polls': h([sp.get('polls'), sp.get('state_questions'), sp.get('nominees')])}
+            'state polls': h([sp.get('polls'), sp.get('state_questions'), sp.get('nominees')]),
+            'the method': h({k: str(v) for k, v in __import__('model').SET.items()})}
 
 
 def read(inp, today, new_day, offline):
@@ -269,12 +270,12 @@ def main(argv):
     import run_2028, make_page
     run_2028.main()
     if not offline:                                  # a run on the copies in hand is not a new published forecast
-        kept = archive(json.load(open('data/forecast_2028.json')), [w for w in what if w != 'day'] or ['a new day'])
+        kept = archive(json.load(open('data/forecast_2028.json')), [w for w in what if w != 'day'] or (['a new day'] if 'day' in what else ['a run asked for by hand']))
         print('Kept as', kept) if kept else print('The forecast is the same as the last one kept: nothing added to the archive.')
     make_page.main()
     export(json.load(open('data/forecast_2028.json')))
     json.dump(fp, open('data/fingerprint.json', 'w'), indent=1)
-    say('changed', 'true'); say('what', ', '.join(w for w in what if w != 'day') or 'a new day')
+    say('changed', 'true'); say('what', ', '.join(w for w in what if w != 'day') or ('a new day' if 'day' in what else 'a run asked for by hand'))
     old_news = stale(inp, today) if (new_day or force or not os.environ.get('GITHUB_ACTIONS')) else []
     for s in old_news: print(f'::error::Stale input: {s}.')
     if old_news: say('alert', 'true')

@@ -10,9 +10,9 @@
 <style>
 /*FONTS*/
 :root{--bg:#fff;--card:#fff;--raised:#f1f3f6;--ink:#111827;--ink2:#4b5565;--muted:#6b7487;--line:rgba(17,24,39,.09);--line2:rgba(17,24,39,.24);--band:#ffe27a;--acc:#ffd60a;
-  --d:#2f5fb3;--r:#c8402f;--k0:#2f5fb3;--k1:#6288cf;--k2:#97b5eb;--k3:#75809a;--k4:#ccba83;--k5:#a0756c;--k6:#eb9c96;--k7:#dc5f52;--k8:#c8402f;--banner:#111827;--stripe:linear-gradient(90deg,var(--k0) 0 20%,var(--k1) 20% 32%,var(--k2) 32% 40%,var(--k3) 40% 46%,var(--k4) 46% 54%,var(--k5) 54% 60%,var(--k6) 60% 68%,var(--k7) 68% 80%,var(--k8) 80% 100%);--serif:'Newsreader',Georgia,serif;--sans:'Instrument Sans',system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
+  --d:#2f5fb3;--r:#c8402f;--k0:#2f5fb3;--k1:#6288cf;--k2:#97b5eb;--k3:#75809a;--k4:#ccba83;--evt:#6b5d22;--k5:#a0756c;--k6:#eb9c96;--k7:#dc5f52;--k8:#c8402f;--banner:#111827;--stripe:linear-gradient(90deg,var(--k0) 0 20%,var(--k1) 20% 32%,var(--k2) 32% 40%,var(--k3) 40% 46%,var(--k4) 46% 54%,var(--k5) 54% 60%,var(--k6) 60% 68%,var(--k7) 68% 80%,var(--k8) 80% 100%);--serif:'Newsreader',Georgia,serif;--sans:'Instrument Sans',system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
 @media (prefers-color-scheme:dark){:root{--bg:#0b0d14;--card:#11141c;--raised:#1a1e28;--ink:#eef0f5;--ink2:#a3a9b8;--muted:#7a8296;--line:rgba(238,240,245,.09);--line2:rgba(238,240,245,.26);--band:#6b5a12;--banner:#1a1e28;
-  --d:#6f9be8;--r:#e8776a;--k0:#2c56a8;--k1:#5078c4;--k2:#89a8e1;--k3:#78839c;--k4:#c3b075;--k5:#a4786f;--k6:#e08f88;--k7:#ce5247;--k8:#af2c1f}}
+  --d:#6f9be8;--r:#e8776a;--k0:#2c56a8;--k1:#5078c4;--k2:#89a8e1;--k3:#78839c;--k4:#c3b075;--evt:#c3b075;--k5:#a4786f;--k6:#e08f88;--k7:#ce5247;--k8:#af2c1f}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;overflow-x:clip;background:var(--bg);color:var(--ink);font:400 16px/24px var(--sans);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
@@ -67,7 +67,7 @@ h1{font:500 clamp(40px,4.6vw,60px)/1.05 var(--serif);letter-spacing:-.02em;margi
 .ro b,.ro span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .ro b{font:500 20px/24px var(--serif);color:var(--ink)}
 .ro i{font-style:normal}
-.even{color:var(--k4);font-weight:500}.pt.even{background:var(--k4)}
+.even{color:var(--evt);font-weight:500}.pt.even{background:var(--k4)}
 .legend{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:12px;font-size:12px;line-height:16px;color:var(--muted)}
 .legend span,.chipsrow button{display:inline-flex;align-items:center;gap:8px}
 .legend i,.chipsrow i{width:12px;height:12px;border-radius:3px;flex:none}
@@ -167,7 +167,7 @@ td{padding:8px 12px 8px 0;border-bottom:1px solid var(--line);vertical-align:top
 tr:last-child td{border-bottom:0}
 td.n,th.n{text-align:right}td:last-child,th:last-child{padding-right:0}
 #rt td:first-child,#set td:nth-child(2),#set td:nth-child(3){white-space:nowrap}
-.scroll{overflow-x:auto}
+.scroll{overflow-x:auto}.scroll:focus-visible{outline:2px solid var(--d);outline-offset:2px}
 .inrow{display:grid;grid-template-columns:144px 112px minmax(0,1fr);gap:8px 16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:start}
 .inrow:first-of-type{border-top:1px solid var(--line2)}
 .inrow > b{font-weight:500}.inrow strong{font:500 22px/24px var(--sans);letter-spacing:-.01em}
@@ -233,7 +233,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 .st-facts > div:last-child{border-right:0;margin-right:0}
 .st-facts dt{font-size:13px;line-height:20px;color:var(--ink2)}
 .st-facts dd{margin:4px 0;font:500 28px/32px var(--sans);letter-spacing:-.01em}
-.st-facts p{margin:0;font-size:13px;line-height:20px;color:var(--muted)}
+.st-facts dd.sub{margin:0;font:400 13px/20px var(--sans);letter-spacing:0;color:var(--muted)}
 .st-charts,.st-build{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 48px}
 .st-charts figure,.st-build figure{margin:32px 0 0}
 .st-charts svg{display:block;width:100%;height:auto;margin-top:8px}
@@ -333,7 +333,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 <figure class="mid" id="paths-fig">
   <b>Paths to 270</b>
   <div class="sub">What carrying each of the closest places is worth, counted across the same simulated elections</div>
-  <div class="scroll"><table id="paths"></table></div>
+  <div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="paths"></table></div>
   <div class="ways" id="paths-ways"></div>
   <figcaption>Places move together, so these are counted from whole simulated elections and not worked out from each place's own chance. A place that looks decisive here is often a sign of a good night everywhere, not its cause.</figcaption>
 </figure>
@@ -347,14 +347,14 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   <div class="st-ends"><span>Most Democratic</span><span>Most Republican</span></div>
   <div id="st-prof" aria-live="polite"></div>
 </div>
-<div class="mid"><h2>Every state and district</h2><div class="scroll"><table id="st-all"></table></div><p class="fine" style="margin-top:12px">"Decides the election" is how often a state is the one that carries the winner past 270 electoral votes, across 40,000 simulated elections. Ranges are where the margin falls four times in five</p></div>
+<div class="mid"><h2>Every state and district</h2><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="st-all"></table></div><p class="fine" style="margin-top:12px">"Decides the election" is how often a state is the one that carries the winner past 270 electoral votes, across 40,000 simulated elections. Ranges are where the margin falls four times in five</p></div>
 </section>
 
 <section class="tab" id="t-polls" hidden>
 <div class="col lead"><h1>The polls</h1><p class="stand" id="pl-stand"></p></div>
 <div class="mid">
   <div class="xp-ctl"><input id="pl-q" type="search" placeholder="Find a pollster or a name" aria-label="Find a pollster or a candidate"><select id="pl-where" aria-label="Which place"></select><select id="pl-kind" aria-label="Which polls"><option value="all">Counted or not</option><option value="yes">Counted</option><option value="no">Set aside</option></select><span class="xp-n" id="pl-n"></span></div>
-  <div class="scroll"><table id="pl"></table></div>
+  <div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="pl"></table></div>
   <p class="fine" style="margin-top:12px" id="pl-note"></p>
 </div>
 </section>
@@ -371,7 +371,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 </figure>
 <div class="col"><h2>Why these weights?</h2><p>Every weight was written down before the back-test was scored, with a reason, and then each one was changed to see whether it mattered. Mostly it did not: across every alternative tried, the typical state miss on the last day stayed between <span id="w-lo"></span> and <span id="w-hi"></span> points.</p>
   <div id="qa"></div>
-  <details class="qa plain"><summary>Every setting, changed one at a time</summary><div><p class="try" id="p-set"></p><div class="scroll"><table id="set"></table></div></div></details>
+  <details class="qa plain"><summary>Every setting, changed one at a time</summary><div><p class="try" id="p-set"></p><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="set"></table></div></div></details>
 </div>
 <div class="col" id="narrow"><h2>Will the range narrow?</h2><p id="p-narrow"></p></div>
 <figure class="mid">
@@ -384,7 +384,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   <figcaption>Projected with the model's own error tables, assuming 2028 is polled about as heavily as past elections and that the allowance for approval and the keys still moving runs down to nothing by the end of June 2028, when both are final. The range never closes: on the last day the national polling average has still missed by about two points of vote share in a typical year.</figcaption>
 </figure>
 <div class="col" id="sister"><h2>Three sites, three questions</h2><p>The Margin reads two sister sites, and neither of them reads The Margin. Each answers a different question, so the three figures below are not the same kind of number: a count of conditions is not a chance of winning, and a share of the vote is not one either.</p></div>
-<figure class="mid"><div class="scroll"><table id="sis"></table></div><figcaption id="sis-cap"></figcaption></figure>
+<figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="sis"></table></div><figcaption id="sis-cap"></figcaption></figure>
 <div class="col"><h2>Sources and limits</h2>
   <p class="fine">The Margin is a personal, non-commercial project. It checks its sources many times a day and reruns the forecast when a poll or one of its sources has changed. Polls of past elections come from FiveThirtyEight's archive and the model data The Economist published; polling averages for 1972 to 2016 come from FiveThirtyEight's public data; expert ratings are Cook Political Report's and Sabato's Crystal Ball's; results are official counts. The fundamentals use the Fifty-Two Keys count, and the national head-to-head polls, state starting points and presidential approval come from the Tipping Point Nowcast, which reads its polls from VoteHub and from PollResults.org. Polls of single states are read from PollResults.org, which serves The New York Times's poll data. Both sets of poll data are used under the CC BY 4.0 license; The Margin is not affiliated with or endorsed by VoteHub, PollResults.org or The New York Times. <span id="src-market"></span> The code and data are in the repository.</p>
   <p class="fine">Limits worth knowing: pollsters are not rated, so each counts the same apart from sample size and recency. Betting odds are shown for comparison and are not in the forecast or the back-tests: election-eve odds for 2008 to 2024 have not been collected from sources that can be checked, so their worth has not been tested. The Fifty-Two Keys count for a past year uses that year's final data. The back-tests include Tipping Point's state-level models, but with one forecast for each year standing in for every day of it, and for 2020 the approval model's entry is the forecast its authors published then, made with an earlier version of the model.</p>
@@ -399,7 +399,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   <div class="ctl"><div class="seg" id="yseg" role="group" aria-label="Election"></div></div>
   <div class="yr" id="yr"></div>
 </figure>
-<figure class="wide" style="max-width:1000px"><b>Forecast against result, on the last day</b><div class="sub">National vote and electoral votes</div><div class="scroll"><table id="bt"></table></div>
+<figure class="wide" style="max-width:1000px"><b>Forecast against result, on the last day</b><div class="sub">National vote and electoral votes</div><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="bt"></table></div>
   <figcaption>The electoral-vote forecast is the middle simulation; the range holds four simulations in five. Margins are in points of the two-party vote.</figcaption></figure>
 <div class="col"><h2>Are the chances honest?</h2><p>If the model says a party has a 70 in 100 chance in a state, it should win about 70 times in 100. Here every state forecast from the last day of the five elections is grouped by the chance it gave the favorite.</p></div>
 <figure class="col">
@@ -407,20 +407,20 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   <figcaption id="cal-cap"></figcaption>
 </figure>
 <div class="col"><h2>At every distance from the election</h2><p>The same test run four months, three months, two months, one month, two weeks and one week before each election, as well as on the last day.</p></div>
-<figure class="mid"><div class="scroll"><table id="bd"></table></div><figcaption>Averages over the five elections. Misses are in points of margin, as in the table above</figcaption></figure>
+<figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="bd"></table></div><figcaption>Averages over the five elections. Misses are in points of margin, as in the table above</figcaption></figure>
 </section>
 
 <section class="tab" id="t-research" hidden>
 <div class="col lead"><h1>Research</h1><p class="stand">A notebook of questions about elections, looked at with data. These pieces stand apart from the forecast: each one asks something, shows the numbers, and says what they do and do not show.</p></div>
 <div class="col"><ul class="toc" id="toc"></ul></div>
 <article class="study" id="s-ratings" data-k="Expert ratings"><div class="col"><h2>How good are expert ratings?</h2><p id="p-rt1"></p></div>
-<figure class="mid"><b>What happened in states at each rating</b><div class="sub">Presidential elections, 2008 to 2024</div><div class="scroll"><table id="rt1"></table></div><figcaption>Cook Political Report's final ratings for 2008 to 2020 and Sabato's Crystal Ball for 2008 to 2024, averaged where both rated a state and rounded to the nearest rating.</figcaption></figure>
+<figure class="mid"><b>What happened in states at each rating</b><div class="sub">Presidential elections, 2008 to 2024</div><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="rt1"></table></div><figcaption>Cook Political Report's final ratings for 2008 to 2020 and Sabato's Crystal Ball for 2008 to 2024, averaged where both rated a state and rounded to the nearest rating.</figcaption></figure>
 <div class="col"><p id="p-rt"></p></div>
-<figure class="mid"><b>Polls alone against polls blended with ratings</b><div class="sub">State forecasts on the last day, 2008 to 2024</div><div class="scroll"><table id="rt"></table></div><figcaption>Each rating was read as a vote share, three points a step from a toss-up, and blended with a poll-based forecast of the state at the weight shown. Close states are those rated lean or toss-up.</figcaption></figure></article>
+<figure class="mid"><b>Polls alone against polls blended with ratings</b><div class="sub">State forecasts on the last day, 2008 to 2024</div><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="rt"></table></div><figcaption>Each rating was read as a vote share, three points a step from a toss-up, and blended with a poll-based forecast of the state at the weight shown. Close states are those rated lean or toss-up.</figcaption></figure></article>
 <article class="study" id="s-polls" data-k="Polling error"><div class="col"><h2>How far off are the polls, and when?</h2><p id="p-pe"></p></div>
 <figure class="mid"><b>How far polling averages stood from the result</b><div class="sub">Typical miss on the margin, in points, by days before the election</div><div id="pe"></div><figcaption>FiveThirtyEight's published polling averages for the presidential elections of 1972 to 2016, national and state. The miss is the gap between the two leading candidates in the average against the gap in the result.</figcaption></figure>
 <div class="col"><p id="p-pe2"></p></div>
-<figure class="mid"><b>The national polling average on the last day</b><div class="sub">Margin in the polls, margin in the result, and which way the polls missed</div><div class="scroll"><table id="pey"></table></div></figure></article>
+<figure class="mid"><b>The national polling average on the last day</b><div class="sub">Margin in the polls, margin in the result, and which way the polls missed</div><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="pey"></table></div></figure></article>
 <article class="study" id="s-together" data-k="Polling error"><div class="col"><h2>When the polls miss, do they miss everywhere?</h2><p id="p-tg"></p></div>
 <figure class="mid"><b>The average miss of the state polls, election by election</b><div class="sub">Points on the margin. Above the line the polls were too Democratic, below it too Republican</div><div id="tg"></div><figcaption>Final polling averages in each state against the result, 1972 to 2016 (FiveThirtyEight's published averages). The figure on each bar is the share of states where the polls missed in that direction.</figcaption></figure></article>
 <article class="study" id="s-tilt" data-k="Electoral College"><div class="col"><h2>Does the Electoral College favor one party?</h2><p id="p-tilt"></p></div>
@@ -432,7 +432,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 <div class="col"><p id="p-mv2"></p></div>
 <figure class="mid"><b>States decided by less than five points</b><div class="sub">Number of states at each election</div><div id="cl"></div></figure></article>
 <article class="study" id="s-primary" data-k="Primaries"><div class="col"><h2>Do the primaries predict November?</h2><p id="p-pm"></p></div>
-<figure class="mid"><b>The Primary Model's published forecasts</b><div class="sub">Helmut Norpoth's calls, made early in each election year</div><div class="scroll"><table id="pmt"></table></div><figcaption>In 2000 the model's choice, Al Gore, won the most votes nationwide and lost the Electoral College.</figcaption></figure>
+<figure class="mid"><b>The Primary Model's published forecasts</b><div class="sub">Helmut Norpoth's calls, made early in each election year</div><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="pmt"></table></div><figcaption>In 2000 the model's choice, Al Gore, won the most votes nationwide and lost the Electoral College.</figcaption></figure>
 <div class="col"><p id="p-pm2"></p></div>
 <figure class="mid"><b>Sitting presidents in the New Hampshire primary</b><div class="sub">The president's share of his own party's vote, and what his party did in November</div><div id="pm"></div><figcaption>Presidents who were on the ballot or written in. In 1952, 1968 and 2024 the president later left the race and another candidate was nominated.</figcaption></figure>
 <div class="col"><p id="p-pm3"></p></div></article>
@@ -481,18 +481,21 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     ' of the national number today. Betting markets are shown for comparison and are not part of the forecast: they put the Democrats at ' + in100(F.market) + '.';
 
   // ---- ruler
+  // The national vote shown is the vote of the simulated elections themselves: each one's states added up by the votes they
+  // cast in 2024. So the figure, its range and the chance of winning the most votes all come from the same simulated elections.
   (function () {
-    const lim = 16, m0 = -2 * (F.national - 50), mD = -2 * (F.national_hi - 50), mR = -2 * (F.national_lo - 50), half = (mR - mD) / 2, c = side(-m0) === 0 ? 'var(--k4)' : F.national >= 50 ? 'var(--d)' : 'var(--r)';
+    const NV = F.national_from_states ? { national: F.national_from_states.mean, national_lo: F.national_from_states.lo, national_hi: F.national_from_states.hi } : F;
+    const lim = 16, m0 = -2 * (NV.national - 50), mD = -2 * (NV.national_hi - 50), mR = -2 * (NV.national_lo - 50), half = (mR - mD) / 2, c = side(-m0) === 0 ? 'var(--k4)' : NV.national >= 50 ? 'var(--d)' : 'var(--r)';
     const draw = (W, H, every, k) => { const L = 14, R = 14, y0 = H - 30, X = m => L + (m + lim) / (2 * lim) * (W - L - R);
-      let s = '<svg class="' + k + '" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Projected national margin ' + mg(F.national) + ', give or take ' + half.toFixed(1) + ' points">';
+      let s = '<svg class="' + k + '" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Projected national margin ' + mg(NV.national) + ', give or take ' + half.toFixed(1) + ' points">';
       s += '<rect x="' + X(Math.max(mD, -lim)) + '" y="' + (y0 - 26) + '" width="' + (X(Math.min(mR, lim)) - X(Math.max(mD, -lim))) + '" height="26" fill="var(--band)"/>';
       for (let m = -lim; m <= lim; m++) { const big = m % 4 === 0, h = m === 0 ? 30 : big ? 16 : 8;
         s += '<line class="rt" x1="' + X(m) + '" x2="' + X(m) + '" y1="' + y0 + '" y2="' + (y0 - h) + '" stroke-width="' + (m === 0 ? 2 : 1) + '"/>';
         if (m % every === 0) s += '<text class="' + (m === 0 ? 'rz' : 'rx') + '" x="' + X(m) + '" y="' + (y0 + 18) + '" text-anchor="' + (m === -lim ? 'start' : m === lim ? 'end' : 'middle') + '">' + (m === 0 ? 'Even' : (m < 0 ? 'D+' : 'R+') + Math.abs(m)) + '</text>'; }
       s += '<line class="rt" x1="' + L + '" x2="' + (W - R) + '" y1="' + y0 + '" y2="' + y0 + '"/>';
-      return s + '<path d="M' + X(m0) + ' ' + (y0 - 3) + 'l-7 -14h14z" fill="' + c + '"/><text x="' + X(m0) + '" y="' + (y0 - 36) + '" text-anchor="middle" style="font:600 15px var(--sans);fill:' + c + '">' + mg(F.national) + '</text></svg>'; };
+      return s + '<path d="M' + X(m0) + ' ' + (y0 - 3) + 'l-7 -14h14z" fill="' + c + '"/><text x="' + X(m0) + '" y="' + (y0 - 36) + '" text-anchor="middle" style="font:600 15px var(--sans);fill:' + c + '">' + mg(NV.national) + '</text></svg>'; };
     $('ruler').innerHTML = draw(680, 96, 4, 'r-w') + draw(360, 96, 8, 'r-s');
-    $('ruler-sub').textContent = (side(-m0) === 0 ? 'The national vote is projected to be even' : (F.national > 50 ? 'Democrats' : 'Republicans') + ' are projected to win the national vote by ' + (Math.round(Math.abs(m0) * 10) / 10).toFixed(1) + ' points') + ', but anything from ' + mg(F.national_hi) + ' to ' + mg(F.national_lo) + ' is in range.';
+    $('ruler-sub').textContent = (side(-m0) === 0 ? 'The national vote is projected to be even' : (NV.national > 50 ? 'Democrats' : 'Republicans') + ' are projected to win the national vote by ' + (Math.round(Math.abs(m0) * 10) / 10).toFixed(1) + ' points') + ', but anything from ' + mg(NV.national_hi) + ' to ' + mg(NV.national_lo) + ' is in range.';
   })();
 
   // ---- map, snake, state panel
@@ -745,7 +748,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
       const other = { key: 'other', name: 'Not explained by the parts above', d: c.other || 0 };
       s += '<details class="more"><summary>' + (moved ? 'Every part, including the small ones' : 'What was checked') + '</summary>' + c.parts.concat(side(100 * other.d) !== 0 ? [other] : []).map(x => row(x, false)).join('') +
         '<p class="fine" style="margin:8px 0 0">Points of the Democratic chance since ' + longDate(c.from) + '. Each part is credited with its average effect over every order in which the parts could have been changed, so the parts add up to the whole whatever the order. The same simulated errors are drawn each time, so a part that did not change shows 0.0.</p></details>'; }
-    if (kept.length) s += '<details class="more"><summary>Every forecast kept (' + kept.length + ')</summary><div class="scroll"><table><thead><tr><th>Made</th><th class="n">Democrats win</th><th class="n">National vote</th><th class="n">Electoral votes</th><th>What was new</th></tr></thead><tbody>' +
+    if (kept.length) s += '<details class="more"><summary>Every forecast kept (' + kept.length + ')</summary><div class="scroll" tabindex="0" role="region" aria-label="Table"><table><thead><tr><th>Made</th><th class="n">Democrats win</th><th class="n">National vote</th><th class="n">Electoral votes</th><th>What was new</th></tr></thead><tbody>' +
       kept.slice().reverse().map(k => '<tr><td>' + longDate(k.made.slice(0, 10)) + ', ' + k.made.slice(11, 16) + ' UTC</td><td class="n">' + pc(k.p, 1) + '</td><td class="n ' + cls(k.national) + '">' + mg(k.national) + '</td><td class="n">' + k.ev + '</td><td>' + esc((k.why || []).join(', ').replace('the calendar', 'a new day')) + '</td></tr>').join('') +
       '</tbody></table></div><p class="fine" style="margin:8px 0 0">A forecast is kept when it differs from the one before it. A check that finds nothing new makes no forecast. <a href="archive/index.json">The list as a file</a></p></details>';
     $('chg').innerHTML = s;
@@ -820,18 +823,18 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     const first = rows[0], last = rows[rows.length - 1], drift = (last.m - last.nat) - (first.m - first.nat);
     $('st-prof').innerHTML = '<div class="st-head"><div><h3 class="st-name">' + esc(x.name) + '</h3><p class="st-sub"><i class="dot" style="background:' + COL[b] + '"></i>' + RATE(b) + ' · ' + evs(x.ev) + '</p></div>' +
       '<div class="st-big ' + (lead ? 'dem' : 'rep') + '">' + Math.round(100 * Math.max(x.p_dem, 1 - x.p_dem)) + '<small>in 100 for the ' + (lead ? 'Democrats' : 'Republicans') + '</small></div></div>' +
-      '<dl class="st-facts"><div><dt>Projected margin</dt><dd class="' + cls(x.mean) + '">' + mg(x.mean) + '</dd><p>Four times in five: ' + rangeOf(x) + '</p></div>' +
-      '<div><dt>Decides the election</dt><dd>' + (x.tip < 0.005 ? 'Under 1 in 100' : in100(x.tip)) + '</dd><p>' + (rank <= 5 ? 'The ' + ord[rank] + ' likely state to carry the winner past 270' : 'How often it carries the winner past 270') + '</p></div>' +
-      '<div><dt>Against the nation</dt><dd class="' + pcl(2 * x.lean) + '">' + pts(2 * x.lean) + '</dd><p>Its lean, from the last two elections. In ' + first.y + ' it was ' + pts(first.m - first.nat) + '</p></div>' +
-      '<div><dt>Since ' + first.y + '</dt><dd>' + demWins + ' of ' + rows.length + '</dd><p>Elections carried by the Democrats. In 2024: ' + mg(x.r2024) + '</p></div></dl>' +
+      '<dl class="st-facts"><div><dt>Projected margin</dt><dd class="' + cls(x.mean) + '">' + mg(x.mean) + '</dd><dd class="sub">Four times in five: ' + rangeOf(x) + '</dd></div>' +
+      '<div><dt>Decides the election</dt><dd>' + (x.tip < 0.005 ? 'Under 1 in 100' : in100(x.tip)) + '</dd><dd class="sub">' + (rank <= 5 ? 'The ' + ord[rank] + ' likely state to carry the winner past 270' : 'How often it carries the winner past 270') + '</dd></div>' +
+      '<div><dt>Against the nation</dt><dd class="' + pcl(2 * x.lean) + '">' + pts(2 * x.lean) + '</dd><dd class="sub">Its lean, from the last two elections. In ' + first.y + ' it was ' + pts(first.m - first.nat) + '</dd></div>' +
+      '<div><dt>Since ' + first.y + '</dt><dd>' + demWins + ' of ' + rows.length + '</dd><dd class="sub">Elections carried by the Democrats. In 2024: ' + mg(x.r2024) + '</dd></div></dl>' +
       '<div class="st-charts"><figure><b>' + esc(x.name) + ': historical results and the 2028 forecast</b>' + legend + g + '</figure>' +
       '<figure><b>Against the nation</b><div class="sub">The state\'s margin less the national margin. ' + (Math.abs(drift) < 3 ? 'Little changed' : 'It has moved ' + Math.abs(drift).toFixed(0) + ' points toward the ' + (drift > 0 ? 'Democrats' : 'Republicans')) + ' since ' + first.y + '</div>' + l + '</svg></figure></div>' +
-      '<div class="st-build"><figure><b>How the projection is built</b><div class="scroll"><table><tbody>' +
+      '<div class="st-build"><figure><b>How the projection is built</b><div class="scroll" tabindex="0" role="region" aria-label="Table"><table><tbody>' +
       '<tr><td>2024 result, and 2020</td><td class="n">' + mg(x.r2024) + ', ' + mg(x.r2020) + '</td></tr><tr><td>Lean against the nation, 2024 counting three times as much as 2020</td><td class="n">' + pts(2 * x.lean) + '</td></tr>' +
       '<tr><td>The national forecast (' + mg(F.national) + ') with that lean</td><td class="n">' + mg(F.national + x.lean) + '</td></tr><tr><td>Tipping Point\'s model of the state</td><td class="n">' + mg(x.nowcast) + '</td></tr>' +
       '<tr><td>Starting point: the two averaged</td><td class="n">' + mg(x.prior) + '</td></tr><tr><td>State polls</td><td class="n">' + (polls.length ? polls.length + ' listed, not counted yet' : 'None yet') + '</td></tr>' +
       '<tr class="tot"><td>Projection</td><td class="n ' + cls(x.mean) + '">' + mg(x.mean) + '</td></tr></tbody></table></div></figure>' +
-      '<figure><b>Polls of ' + esc(x.name) + '</b>' + (polls.length ? '<div class="scroll"><table><thead><tr><th>Pollster</th><th>Finished</th><th>Pairing</th><th class="n">Margin</th><th>Status</th></tr></thead><tbody>' + polls.map(q => '<tr><td>' + (q.url ? '<a href="' + esc(q.url) + '" rel="noopener">' + esc(q.pollster) + '</a>' : esc(q.pollster)) + '</td><td>' + longDate(q.end) + '</td><td>' + esc(q.pairing || '') + '</td><td class="n ' + cls(q.dem) + '">' + mg(q.dem) + '</td><td>' + (q.usable ? 'Meets the rules' : 'Set aside: ' + esc(q.why)) + '</td></tr>').join('') + '</tbody></table></div>' +
+      '<figure><b>Polls of ' + esc(x.name) + '</b>' + (polls.length ? '<div class="scroll" tabindex="0" role="region" aria-label="Table"><table><thead><tr><th>Pollster</th><th>Finished</th><th>Pairing</th><th class="n">Margin</th><th>Status</th></tr></thead><tbody>' + polls.map(q => '<tr><td>' + (q.url ? '<a href="' + esc(q.url) + '" rel="noopener">' + esc(q.pollster) + '</a>' : esc(q.pollster)) + '</td><td>' + longDate(q.end) + '</td><td>' + esc(q.pairing || '') + '</td><td class="n ' + cls(q.dem) + '">' + mg(q.dem) + '</td><td>' + (q.usable ? 'Meets the rules' : 'Set aside: ' + esc(q.why)) + '</td></tr>').join('') + '</tbody></table></div>' +
         '<p class="fine" style="margin:8px 0 0">Every poll of this ' + (x.state.length > 2 ? 'district' : 'state') + ' for the 2028 general election that the sources hold. State polls are listed and not yet counted in the projection: this far from the election a state poll says little about the result</p>' :
         '<p class="fine" style="margin:8px 0 0">No poll of this ' + (x.state.length > 2 ? 'district' : 'state') + ' for 2028 yet. The projection rests on how it has voted and on the Tipping Point model</p>') + '</figure></div>';
     document.querySelectorAll('#st-prof [data-hy]').forEach(el => hover(el, () => { if (el.dataset.hy === 'f') return '<b>2028 forecast</b><br>Projected ' + mg(x.mean) + '<br>Four times in five: ' + rangeOf(x) + '<br>Democrats win ' + in100(x.p_dem) + '<br>An estimate, not a result';
@@ -936,7 +939,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
        (K.settled != null ? K.settled + ' keys called, ' + K.unresolved + ' open. ' : '') + 'Under one half points to the party in office losing. It is not a chance of winning'],
       [link('https://ka82205.github.io/tipping-point/', 'Tipping Point'), 'The Democratic share of the two-party vote, from two published academic models', I.nowcast_national.toFixed(1) + '% (' + mg(I.nowcast_national) + ')',
        'Its own simulation gives the Democrats ' + in100(I.nowcast_p_dem) + '. Its long-range model is run early, on polls taken before the ones it is built for'],
-      ['The Margin', 'The chance each party wins the Electoral College', in100(F.p_dem) + ' for the Democrats; national vote ' + mg(F.national), 'The share of simulated elections the Democrats win outright. Republicans win ' + in100(F.p_rep != null ? F.p_rep : 1 - F.p_dem)]];
+      ['The Margin', 'The chance each party wins the Electoral College', in100(F.p_dem) + ' for the Democrats; national vote ' + mg((F.national_from_states || {}).mean != null ? F.national_from_states.mean : F.national), 'The share of simulated elections the Democrats win outright. Republicans win ' + in100(F.p_rep != null ? F.p_rep : 1 - F.p_dem)]];
     $('sis').innerHTML = '<tr><th>Site</th><th>What it measures</th><th>Now</th><th>How to read it</th></tr>' + rows.map(r => '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td></tr>').join('');
     $('sis-cap').textContent = 'Read ' + (K.as_of ? 'from Fifty-Two Keys as of ' + K.as_of + ' and ' : '') + 'from Tipping Point as of ' + longDate(String(T.as_of || I.nowcast_as_of).slice(0, 10)) + '. The Margin rereads both at every check and reruns when either has changed.';
   })();

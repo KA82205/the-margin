@@ -1,23 +1,20 @@
 # The Margin
 
-A forecast of the 2028 presidential election built the traditional way: polling averages, a fundamentals prior, state
-leans and betting markets, run through a simulation of the Electoral College. It is
-back-tested on 2008 to 2024. The logo is a plus-or-minus sign: `docs/logo.svg`.
+A forecast of the 2028 presidential election: polling averages, structural models of the national vote and state leans,
+run through a simulation of the Electoral College. It is back-tested on 2008 to 2024. The method was fixed on November 25,
+2026 and is not changed before the election except to fix a fault (`STATUS.md`). The logo is a plus-or-minus sign:
+`docs/logo.svg`.
 
-The Senate and the House are planned next, on the same design.
-
-## Where it stands (November 23, 2026)
+## Where it stands (November 25, 2026, the day the method was fixed)
 
 | | |
 |---|---|
-| Democrats win the Electoral College | 60% (model alone 58%; betting markets 67%) |
-| Electoral votes, average | 283 to 255; four runs in five give Democrats 211 to 360 |
-| National vote | Democrats 51.4% of the two-party vote, give or take 2.9 |
-| Democrats win the most votes | 71% |
-| Tipping-point state | Pennsylvania |
+| Democrats win the Electoral College | 70 in 100 (Republicans 30; a 269 to 269 tie 7 in 1,000) |
+| Democratic electoral votes | 298; four simulated elections in five give 227 to 379 |
+| National vote | Democrats by 3.9 points, give or take 7.2 |
+| Democrats win the most votes | 77 in 100 |
 
-The election is 715 days away and neither party has a nominee. Read it as a lean. The page carries the current
-numbers; this table is the first day's.
+The election is 713 days away and neither party has a nominee. Read it as a lean. The page carries the current numbers.
 
 ## The site
 
@@ -36,19 +33,20 @@ whole screen with a blue-to-red stripe under it, each color as wide as its share
 `.github/workflows/update.yml` runs `python update.py` every hour. Most runs read the sources, find nothing new and
 end there. A run
 
-1. reads the Tipping Point Nowcast's file (national head-to-head polls, state forecasts, presidential approval among
-   adults), the Fifty-Two Keys feed, the party odds from electionbettingodds.com and the state polls (below);
+1. reads the Tipping Point Nowcast's file (national head-to-head polls, the two models' forecasts for the nation and each
+   state, presidential approval among adults) and the state polls (below). The Fifty-Two Keys feed and the party odds from
+   electionbettingodds.com are read too, for display only;
 2. compares what it read with what the last forecast was made from (`data/fingerprint.json`: one short hash for the
-   national polls, the Nowcast's forecasts, approval, the keys, the odds, the state polls and the day). The time a
+   national polls, the Nowcast's forecasts, approval, the state polls, the method's settings and the day). The time a
    source was read, and the time another site made its file, are not in the fingerprint;
 3. stops if nothing differs. Nothing is recalculated and nothing is saved;
 4. otherwise reruns the forecast, keeps it in the archive if it differs from the last one kept, replaces the day's row in
    `data/history.csv`, rebuilds the page and commits, which republishes the site.
 
-What counts as new: a poll added, changed or dropped; a move in the Nowcast's forecasts or its approval average; a move
-in the Fifty-Two Keys count or its spread; betting odds a point or more away from the price in use (smaller hourly
-wobbles are not news); and the day itself. The first run of every day always goes through, so the day-by-day record
-has every day and the poll weights, which depend on the date, keep up.
+What counts as new: a poll added, changed or dropped; a move in the Nowcast's forecasts or its approval average; a change
+to the method's settings; and the day itself. The first run of every day always goes through, so the day-by-day record has
+every day and the poll weights, which depend on the date, keep up. A new Fifty-Two Keys count or new betting odds does not
+start a forecast: neither is in the forecast, and each is shown as last read on the next one.
 
 **The archive** (`docs/archive/`, on the site at `archive/index.json`). Every forecast that differs from the last one
 kept is written to a file of its own, named for the time it was made, and never opened for writing again. "Differs"
@@ -64,10 +62,11 @@ it the hourly run does the same job a little later. A run started that way looks
 the other site's page can take a minute or two to show what it has just saved.
 
 **When something cannot be read.** The last value is kept and the run goes on with a warning. The day's first run, and
-a run started by hand, end as failed if an input has gone stale: the Nowcast not read since the day before, the keys,
-the odds or the state polls not read for two days. So a source that is down for an hour sends nothing, and one that
-stays down is reported once a day. A run that fails for any other reason is tried again the next hour and marked as
-failed at 7 a.m., 1 p.m. and 7 p.m. Eastern only.
+a run started by hand, end as failed if an input has gone stale: the Nowcast not read since the day before, or the state
+polls not read for two days. So a source that is down for an hour sends nothing, and one that stays down is reported once
+a day. The Fifty-Two Keys feed and the betting odds cannot make a run fail: if one is not read the log says so and the page
+shows the last copy. A run that fails for any other reason is tried again the next hour and marked as failed at 7 a.m.,
+1 p.m. and 7 p.m. Eastern only.
 
 **"Every hour" is what is asked of GitHub, not what GitHub promises.** GitHub starts scheduled runs when it has room.
 In November 2026 it was starting this account's scheduled runs hours late (the Tipping Point runs asked for at 6:17 and
@@ -76,16 +75,20 @@ often the checks really happen is GitHub's doing. A run started from outside (th
 other two sites can send, or a call to GitHub's API by a clock somewhere else) starts at once. "Run workflow" has a box
 to make the run as the hourly check does.
 
-On a new day the previous day's inputs are kept as `data/prev_inputs.json` and `data/prev_nowcast.js`. The page's "What
-moved since yesterday" box comes from them: yesterday's inputs are swapped for today's one at a time (polls, approval,
-markets, the keys, then the state models and the date) and the chance is recomputed at each step.
+On a new day the previous day's inputs are kept as `data/prev_inputs.json`, `data/prev_nowcast.js` and
+`data/prev_state_polls.json`. The page's "Forecast updates" box comes from them. What moved is split between national
+polls, state polls, approval, Tipping Point's models and time, each credited with its average effect over every order in
+which the parts could be swapped in, so the order does not matter and the parts add up.
 
 Units: the scripts work in points of the two-party vote share. The page shows every miss in points of margin, which is
 twice that (a typical state miss of 1.8 points of share is 3.7 points of margin).
 
 The Fifty-Two Keys count (`keys`, `keys_mean`, `keys_sd` in `data/inputs.json`) is read from that site's own feed,
-`https://ka82205.github.io/fifty-two-keys/keys.json`: the share of keys in the Republicans' favor if every open key
-lands the way it leans, the middle of its run ahead, and the spread of that run.
+`https://ka82205.github.io/fifty-two-keys/keys.json`, and shown on the page beside the forecast. It is not used in it.
+
+**The June 2028 approval reading.** The approval equation wants net approval in June of the election year. The Margin
+finds it for itself in the Nowcast's daily approval series: from July 8, 2028, once at least ten June days are there, their
+average is the reading and the allowance for approval still moving closes. No other site has to report anything.
 
 ## State polls
 
@@ -151,70 +154,48 @@ Needs numpy and pandas. `prep.py` expects the source files listed below in `raw/
 
 ## The model
 
-Every number is the Democratic share of the two-party vote. All settings are at the top of `model.py`. They were written
-down before the back-test was scored and none is fitted to the five elections it is tested on.
+Every number is the Democratic share of the two-party vote. All settings are at the top of `model.py` (`SET`). None is
+fitted to the five elections the method is tested on.
 
 1. **National polling average.** A poll's weight halves every (days to the election / 5) days, held between 7 and 30;
    grows with the square root of its sample; is halved for each newer poll from the same pollster; and is 1.0, 0.9 or 0.7
    for likely voters, registered voters or adults.
-2. **Fundamentals** (`fundamentals.py`). The average of two equations, each fitted only on earlier elections: the
-   president's June net approval with a first-term term (after Abramowitz; second-quarter growth is left out because of
-   2020), and the Fifty-Two Keys count turned into a vote share.
-3. **National number.** Polls and fundamentals are averaged by how reliable each has been: the polling average's error at
-   that many days out against the fundamentals' error. On the last day polls carry about 70%.
-4. **States.** A state starts at the national number plus its lean (three quarters of how it voted relative to the nation
-   last time, one quarter the time before). Its own polls, each moved by the change in the national average since it was
-   taken, pull it away from that start as if the start were 1.5 fresh polls.
+2. **A national starting point before polls** (`fundamentals.py`, `run_2028.official`). The plain average of the approval
+   equation (the president's June net approval with a first-term term, after Abramowitz, fitted only on earlier
+   elections) and Tipping Point's approval-and-economy model. Tipping Point's long-range model joins as a third equal
+   part once the polls it is built on exist (November 7, 2027), phased in so that its polls are not counted twice.
+   Fifty-Two Keys is not a part.
+3. **National number.** Polls and the starting point are mixed by the calendar: polls count for what the polling average
+   has been worth at each distance from an election (`timeline.py`: about 3% two years out, 11% at 250 days, 24% at 120,
+   61% on the last day), and less again while the nominees are not known.
+4. **States.** A state starts at the national number plus where it sits against the nation: half its lean (three quarters
+   of how it voted against the nation last time, one quarter the time before), half where Tipping Point's two state models
+   place it against their own national figure. Its own polls, each moved by the change in the national average since it was
+   taken, pull it away from that start, under a ceiling that rises as the election nears (11% of a state two years out,
+   43% at 120 days, all of it on the last day).
 5. **Uncertainty.** A national error with fat tails, a regional error and a state error. Their sizes come from how far
    FiveThirtyEight's published polling averages of 1972-2016 stood from the result at each distance from the election,
-   and from how far states have landed from their leans, using only elections before the one being forecast.
-6. **Simulation.** 40,000 elections; Maine and Nebraska split by district; a 269-269 tie counts as half a win. The
-   errors are drawn on an open scale, so a simulated share past 90 (or under 10) is folded smoothly into the last ten
-   points and none passes 100 or 0 (`model.bound`). Nothing between 10 and 90 is touched and no share is moved across
-   50, so no chance or electoral count changes; in practice only the District of Columbia is affected. The range shown
-   for a place is the 10th to the 90th of every hundred simulated results, not a normal curve drawn around its middle.
-7. **Betting markets.** The market's chance is pooled with the model's at 25%, on the log-odds scale. The markets are one
-   of four sources (polls, fundamentals, state models, markets), so they get one share in four; not more, because prices
-   already lean on the same polls, the 2028 markets are thinly traded, and this weight is not back-tested yet. At 0% the
-   Democrats are at 55%, at 70% they are at 64%.
-8. **Expert ratings are left out.** They were tested (see below) and did not help.
+   and from how far states have landed from their leans, using only elections before the one being forecast. For 2028 the
+   starting point carries an allowance for approval still moving: ten points of net approval at the midterm, shrinking
+   with the square root of the time left and closing when the June 2028 reading is in.
+6. **Simulation.** 40,000 elections; Maine and Nebraska split by district. The headline is the share each side wins
+   outright; a 269-269 tie is counted on its own. Simulated shares past 90 or under 10 are folded smoothly into the last
+   ten points (`model.bound`); nothing between 10 and 90 is touched and no share is moved across 50. The range shown for a
+   place is the 10th to the 90th of every hundred simulated results.
+7. **One set of simulated elections for everything shown.** The national vote, its range and the chance of winning the
+   most votes are counted from each simulated election's own states, added up by the votes each state cast in 2024, so
+   they cannot disagree with the states or the electoral count.
+8. **Left out, after testing:** Fifty-Two Keys (`keys_study.py`: every measure was best without it), betting markets (in
+   no back-test), expert ratings (`checks.py`), trends in state leans and midterm results (`state_trend_study.py`).
 
-Half of each state's starting point is the Tipping Point Nowcast's forecast for that state (two published state-level
-models), in the 2028 forecast and in the back-test. For 2028 the fundamentals also carry extra error for two years of
-drift: ten points of net approval and the spread of the Fifty-Two Keys run ahead. That allowance does not shrink as
-the election nears; only the chart of the narrowing range assumes it does. State polls are collected and listed but not
-counted (see "State polls").
+### The other versions
 
-### The candidate
+`model.PREVIOUS` is the method published until November 25, 2026. `CANDIDATE`, `HYBRID` and `STRUCTURAL` are versions that
+were tested against it. All are run beside the official forecast every time and written to `data/forecast_2028.json`
+(`candidate`) and `data/history.csv`, never to the page, so that they can be scored against the result in 2028.
 
-A second forecast is run beside the published one every time it runs. It is the design under review, described and
-tested in `REVIEW.md`. It is not on the page; it is in `data/forecast_2028.json` under `candidate` and in two columns of
-`data/history.csv`. Every setting that differs is in `model.CANDIDATE`:
-
-- **National prior:** the Tipping Point Nowcast's two national models and the Fifty-Two Keys line, a third each, with
-  the Keys read at the middle of that site's run ahead. The approval equation is left out. The Nowcast's long-range
-  model is built on national polls taken in October 2027; until those exist it is left out, and the prior is the other
-  two (`model.long_range_weight`).
-- **National polls** are weighed by what the polling average has been worth at each distance from the election
-  (`timeline.py`: about 3% two years out, 11% at 250 days, 24% at 120, 61% on the last day), less whatever the prior
-  already carries of the same polls, and less again while the nominees are not known.
-- **State polls** count as in the published rule, under a ceiling that falls with distance (11% of a state two years
-  out, 43% at 120 days, all of it on the last day).
-- **State models** give only where they place a state against their own national figure, since their national level
-  is already in the national number.
-
-### The hybrid
-
-A third forecast is run the same way: `model.HYBRID`, in `data/forecast_2028.json` under `candidate.hybrid` and in two more
-columns of `data/history.csv`. It is the candidate with the approval equation kept, as the published forecast keeps it. Its
-national prior is the Nowcast's approval-and-economy model, the Fifty-Two Keys line and the approval equation, a third
-each; the long-range model joins as a fourth equal part once the polls it is built on exist. Nothing else differs from the
-candidate, and no weight in it was fitted. `STATUS.md` sets it against the published forecast at ten distances from the
-election and gives a recommendation. Neither it nor the candidate is the published forecast.
-
-`STATUS.md` (written by `status.py`) is the standing report: what is official and what is under review, the evidence, how
-the ranges have held up, and the decisions that are open. `RUNBOOK.md` says how the three sites are kept running: what
-starts each run, the two secrets, what a failed run means, and what is still done by hand.
+`STATUS.md` (written by `status.py`) is the standing report: the method, the evidence, the state-level and approval
+studies, what runs by itself and what is still done by hand. `RUNBOOK.md` says how the three sites are kept running.
 
 ## Changes of method
 
@@ -226,7 +207,11 @@ for the page, which marks each change on the history chart.
   split counted as half a win for each side. Markets are now shown for comparison only; they are in no back-test. A tie is
   counted on its own.
 - **November 25, 2026.** What approval may still move by before June 2028 now shrinks with the square root of the time
-  left, and closes only when Fifty-Two Keys reports that the June polls are in. Today's forecast is the same either way.
+  left, and closes only when the June 2028 polls are in.
+- **November 25, 2026.** The national number no longer uses Fifty-Two Keys. It starts from the approval equation and
+  Tipping Point's approval-and-economy model (and its long-range model from November 2027), early polls count for what the
+  record says they are worth, and Tipping Point's state models are used only for where they place each state. Democrats
+  moved from 60 to 70 in 100 on the day. Tested in `keys_study.py` and `backtest.py`; the evidence is in `STATUS.md`.
 - **November 25, 2026.** The chance of winning the most votes, and of the vote and the Electoral College disagreeing, are
   counted from each simulated election's own states, added up by the votes each state cast in 2024.
 
@@ -238,21 +223,19 @@ state-level models and the error sizes, each from before the day.
 
 | Election | Favored on the last day | Won | National margin: forecast, result, off by | Democratic electoral votes: forecast, range, result |
 |---|---|---|---|---|
-| 2008 | Democrats, 97 in 100 | Democrats | D+9.1, D+7.5, 1.6 | 354, 298 to 405, 365 |
-| 2012 | Democrats, 79 in 100 | Democrats | D+3.9, D+3.8, 0.0 | 302, 250 to 354, 332 |
-| 2016 | Democrats, 75 in 100 | Republicans (missed) | D+4.4, D+2.3, 2.1 | 300, 243 to 356, 232 (outside) |
-| 2020 | Democrats, 93 in 100 | Democrats | D+6.8, D+4.5, 2.2 | 336, 275 to 394, 306 |
-| 2024 | Republicans, 52 in 100 | Republicans | D+1.2, R+1.5, 2.7 | 267, 225 to 322, 226 |
+| 2008 | Democrats, 96 in 100 | Democrats | D+8.2, D+7.5, 0.7 | 353, 293 to 407, 365 |
+| 2012 | Democrats, 76 in 100 | Democrats | D+2.6, D+3.8, 1.3 | 300, 244 to 352, 332 |
+| 2016 | Democrats, 75 in 100 | Republicans (missed) | D+3.6, D+2.3, 1.3 | 302, 242 to 357, 232 (outside) |
+| 2020 | Democrats, 92 in 100 | Democrats | D+7.8, D+4.5, 3.2 | 336, 273 to 395, 306 |
+| 2024 | Republicans, 53 in 100 | Republicans | D+0.7, R+1.5, 2.2 | 267, 222 to 323, 226 |
 
 - Last day: favored the winner in 4 of 5; typical state miss 1.8 points of share (3.7 of margin); 264 of 280 states and
   districts called; 91% of state results inside ranges meant to hold 80%, so the ranges are a little wide.
-- The national margin was off by 1.7 points on average, every time in the Democrats' favor, as the polls were.
+- The national margin was off by 1.7 points on average, most times in the Democrats' favor, as the polls were.
 - The electoral-vote forecast is the middle simulation and the range holds four in five. The result was inside the range
-  in every year but 2016.
-- 2024 was a coin flip: the middle simulation had the Democrats on 267, three short, so the Republicans won 52 in 100.
-  The close states fell together and the Democrats finished on 226, at the bottom of the range.
-- Until November 25, 2026 the back-test ran without the state-level models (last-day state miss 3.75 points of margin;
-  now 3.66; the same 264 calls). `python backtest.py candidate` runs the candidate the same way.
+  in 4 of the 5 years.
+- This table is the official method. `python backtest.py previous` runs the method published until November 25, 2026 the same
+  way (`data/backtest_previous.csv`); `STATUS.md` sets the two side by side at every distance.
 
 ### Checks on the choices (`checks.py`)
 
@@ -301,10 +284,10 @@ it finally stood or left out, and the results above should be read with that in 
   about 100 days out, so the test at 120 days sees it three weeks early. For 2008, 2012 and 2016 the models are refits on
   the elections before, with that year's final inputs; for 2020 and 2024 they are the forecasts the authors published.
   The approval model's 2020 entry was made with an earlier version of the model and read from a chart in the article.
-- **The Fifty-Two Keys count** for a past year uses that year's final figures and today's revised economic data. Most
-  of it is known by late summer, so the early snapshots see slightly more than they could have.
-- **Betting odds.** They are in the 2028 forecast and not in the back-test. Election-eve odds for 2008-2024 still have
-  to be collected from sources that can be checked, so the 25% given to markets is not validated.
+- **Final figures, not first releases.** The approval equation's growth figure and the state models' inputs are as
+  finally revised, not as first published. Old vintages of every series, and poll lists as they stood on each day, are not
+  available free in one place, so the back-test is not a real-time one.
+- **Betting odds and Fifty-Two Keys** are in no back-test of the official method and in no part of the forecast.
 - **Two years out.** The back-test starts 120 days before each election (250 in `validate_phase_in.py`). Beyond that
   there are early polls for three elections only, of pairings picked in hindsight. Neither forecast's range at this
   distance is validated: the allowance for drift is a stated size, not a measured one.
@@ -323,10 +306,11 @@ it finally stood or left out, and the results above should be read with that in 
 | Expert ratings | Cook Political Report ratings 1988-2020 and Sabato's Crystal Ball ratings 2004-2024, from public course data (`cpr_ratings.csv`, `sabato_crystal_ball_ratings.csv`) |
 | 2028 national head-to-head polls, state forecasts and approval | Tipping Point Nowcast, read every hour (approval is its pooled average among adults over the last 30 days). It reads its polls from VoteHub and PollResults.org, both CC BY 4.0 |
 | 2028 state polls | PollResults.org (The New York Times's poll data, CC BY 4.0), read every hour; VoteHub's list of poll types is watched (`polls.py`) |
-| Fifty-Two Keys count | That site's feed, `keys.json`, read every hour |
+| Fifty-Two Keys count (shown, not used) | That site's feed, `keys.json`, read every hour |
 | Polling averages for the timeline, 1972-2016 | FiveThirtyEight `data/polls/pres_pollaverages_1968-2016.csv` (`data/timeline.csv`) |
 | State-level models, 2008-2024 | Tipping Point's record of the two models (`data/state_models.csv`) |
-| Betting odds | electionbettingodds.com, party to win the presidency, read every hour; a move of under a point is not taken |
+| Betting odds (shown, not used) | electionbettingodds.com, party to win the presidency, read every hour |
+| House vote by state, 1998-2024 (the trend study only) | FiveThirtyEight `election_results_house.csv` (`data/house_by_state.csv`: districts both parties contested) |
 | Map | us-atlas 3.0.1 (ISC), Census cartographic boundaries |
 
 The Margin is not affiliated with or endorsed by VoteHub, PollResults.org or The New York Times.

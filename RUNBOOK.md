@@ -9,18 +9,22 @@ the normal course needs anyone to run a script.
 |---|---|---|---|
 | Tipping Point | `Update data and deploy site` | approval polls, national polls, the economy (FRED), state approval | the schedule (minute 17 of each hour), a `heartbeat`, a push, a run started by hand |
 | Fifty-Two Keys | `Update` | approval polls and polls naming a third candidate on every run; the economy (FRED), the forecasters' survey and, in the January after an election, the list of members of Congress, when a release could be out and on the day's first run | the schedule (minute 7), a `heartbeat`, a run started by hand |
-| The Margin | `Forecast` | the Tipping Point Nowcast, the Fifty-Two Keys feed, betting odds (shown, not used), state polls | the schedule (minute 37), a notification from either of the other two, a `heartbeat`, a run started by hand |
+| The Margin | `Forecast` | the Tipping Point Nowcast (its models, national polls, approval) and state polls. The Fifty-Two Keys count and betting odds are read for display only | the schedule (minute 37), a notification from either of the other two, a `heartbeat`, an outside clock, a run started by hand |
 
 Each run reads its sources, compares them with what the last result was made from, and stops there if nothing differs. Only
 a run that found something new recalculates, saves, archives and deploys. The first run of each day always goes through.
+For The Margin, "new" means something its forecast reads: a new Fifty-Two Keys count or new betting odds appears on the next
+forecast and does not start one, and if either cannot be read the page says so and the run does not fail.
 
 The order is one-way: Tipping Point and Fifty-Two Keys never read The Margin, and The Margin never notifies anyone. Two kinds
 of message go to The Margin: `upstream-updated`, when one of the other two has published something new, and `heartbeat`,
 which only means "check now". Every run of the other two sends The Margin a heartbeat if it has not started a run for 50
 minutes. A message that arrives when nothing has changed ends as a run with nothing new.
 
-[ops.html](https://ka82205.github.io/the-margin/ops.html) reads GitHub's record live: for each site the last run of any kind, how many runs GitHub started by itself in the
-last day and week, and the last twelve runs with who started each.
+[ops.html](https://ka82205.github.io/the-margin/ops.html) reads GitHub's record live. For each site: the last good check, the last saved update, the last run
+GitHub's own schedule started, the last run an outside clock or a heartbeat started, failures in the last day, whether a
+check is overdue (none for three hours), and the last twelve runs with what started each. For The Margin it also shows what
+was last read from each source and when.
 
 **GitHub decides when a scheduled run starts.** A schedule is a request, not a promise. Before November 25, 2026 Tipping
 Point asked for runs at 06:17 and 11:17 UTC and GitHub started them seven to ten hours late, every day. In the first five
@@ -29,29 +33,64 @@ then arrive late but regularly, or are dropped, is what ops.html shows.
 
 ### An outside clock, if GitHub's schedule is not dependable
 
-Nothing inside GitHub can wake a repository whose schedule does not fire. An outside clock can, for free. It takes one
-account and one change to your token, and only you can make either:
+Nothing inside GitHub can wake a repository whose schedule does not fire. An outside clock can, for free. It asks each site
+for its ordinary hourly check: read the sources, stop if nothing is new. It cannot force a forecast.
 
-1. Widen the token you already made. GitHub, Settings, Developer settings, Fine-grained tokens, `the-margin dispatch`,
-   Repository access: add `tipping-point` and `fifty-two-keys` beside `the-margin`. Keep Contents: Read and write, nothing
-   else. This is needed because a "check now" message is accepted only from a token that covers the repository it is sent
-   to, and the token today covers The Margin alone. The two secrets already saved keep working; nothing in the repositories
-   changes.
-2. At cron-job.org (free, no card), make three jobs, one for each repository, each every hour at its own minute (5, 15, 35):
-   - URL: `https://api.github.com/repos/KA82205/tipping-point/dispatches` (then `fifty-two-keys`, then `the-margin`)
-   - Method: POST. Body: `{"event_type":"heartbeat"}`
-   - Headers: `Authorization: Bearer` followed by the token, `Accept: application/vnd.github+json`, `Content-Type: application/json`
-   A good answer is `204`. The service keeps a record of each call and can e-mail you when one fails.
+The token you already made (`DISPATCH_TOKEN`) is not touched and not widened. The clock gets a token of its own that can do
+one thing: start and stop workflow runs in these three repositories. It cannot read or change a file, a setting or a secret,
+and it is no use anywhere else in your account. Never paste it into a chat, an e-mail, a file or a commit: it goes from
+GitHub's page straight into the scheduler's form.
 
-The token then sits in that service's settings as well as in GitHub's. It can write to the three repositories' files and
-nothing else of yours; if the service were ever compromised, delete the token on GitHub and make a new one. Each site treats
-a heartbeat exactly as a scheduled run, so an hourly heartbeat on top of GitHub's own schedule only means more checks that
-find nothing new.
+**1. Make the token** (about three minutes)
+
+1. GitHub, your picture at the top right, Settings, Developer settings (bottom of the left column), Personal access
+   tokens, Fine-grained tokens, Generate new token.
+2. Token name: `forecast clock`. Expiration: one year is GitHub's longest fixed choice; "No expiration" is offered too.
+   With an expiry, GitHub e-mails you a week before and the three jobs below start failing on that day until the token is
+   replaced.
+3. Repository access: Only select repositories, and pick `the-margin`, `fifty-two-keys` and `tipping-point`.
+4. Permissions, Repository permissions: set **Actions** to **Read and write**. Leave everything else at "No access".
+   (GitHub adds Metadata: Read-only by itself.)
+5. Generate token, and leave the page open: the token is shown once.
+
+**2. Make the three jobs** (about five minutes)
+
+At [cron-job.org](https://cron-job.org) (free, no card), sign up, then Create cronjob, three times:
+
+| | Tipping Point | Fifty-Two Keys | The Margin |
+|---|---|---|---|
+| Title | `tipping-point check` | `fifty-two-keys check` | `the-margin check` |
+| URL | `https://api.github.com/repos/KA82205/tipping-point/actions/workflows/update.yml/dispatches` | `https://api.github.com/repos/KA82205/fifty-two-keys/actions/workflows/update.yml/dispatches` | `https://api.github.com/repos/KA82205/the-margin/actions/workflows/update.yml/dispatches` |
+| Schedule: every hour, at minute | 12 | 22 | 42 |
+
+The same for all three, on the job's Advanced tab:
+
+- Request method: `POST`
+- Request body: `{"ref":"main","inputs":{"check":"true","source":"clock"}}`
+- Headers, one a line:
+  - `Authorization` : `Bearer ` followed by the token (the word Bearer, a space, the token)
+  - `Accept` : `application/vnd.github+json`
+  - `Content-Type` : `application/json`
+
+Switch on "Notify me when the cronjob fails" on each. Use the form's test run before saving: the answer should be `200` or
+`204`. `401` means the token was mistyped; `403` or `404` means the token does not cover that repository or lacks Actions:
+Read and write; `422` means the body was not pasted exactly.
+
+**3. Check it.** Within a minute of a test run, [ops.html](https://ka82205.github.io/the-margin/ops.html) shows a run named "Check: outside clock" for that
+site, and "Last run started by an outside clock" turns to the time. The service switches a job off after 25 failures in a
+row and tells you.
+
+**What it costs to leave in place.** Each site treats the clock's run exactly as a scheduled one, so on top of GitHub's own
+schedule it only means more checks that find nothing new. If the service were ever compromised, the most the token allows is
+starting or cancelling runs of these three workflows; delete it on GitHub's token page and make another.
+
+**To stop it:** delete the three jobs, then delete the token on GitHub.
 
 ## Secrets
 
-Two secrets, both optional, both set under each repository's Settings, Secrets and variables, Actions. Never put either in
-a file, a commit, a message or a chat.
+Three secrets, all optional, set under each repository's Settings, Secrets and variables, Actions. Never put one in a file,
+a commit, a message or a chat. The outside clock's token (above) is not a secret of any repository: it lives only in the
+scheduling service.
 
 **`FRED_API_KEY`** (Fifty-Two Keys; Tipping Point if it has one). A free key from fred.stlouisfed.org, My Account, API
 Keys. Without it FRED's download links do not answer GitHub's servers and the economic figures are not refreshed; the run
@@ -64,11 +103,16 @@ Contents: Read and write.
 
 If it is ever revoked the two sites carry on, their logs say "No DISPATCH_TOKEN secret" or warn that The Margin could not be
 told, and The Margin finds their changes at its own next run. To replace it: GitHub, Settings, Developer settings,
-Fine-grained tokens, Generate new token; Only select repositories, `the-margin` (and the other two if the outside clock above
-is in use); Repository permissions, Contents: Read and write; then save it as `DISPATCH_TOKEN` under Settings, Secrets and
+Fine-grained tokens, Generate new token; Only select repositories, `the-margin`; Repository permissions, Contents: Read and
+write; then save it as `DISPATCH_TOKEN` under Settings, Secrets and
 variables, Actions in `tipping-point` and in `fifty-two-keys`, and delete the old token.
 
 Without the token nothing breaks. The Margin's own scheduled run is the fallback.
+
+**`BLS_API_KEY`** (Fifty-Two Keys). Not needed. The second-source check asks the Bureau of Labor Statistics without a key,
+which allows a few requests a day from each address; GitHub's servers share addresses, so on some days the Bureau may
+answer that the allowance is used up. Then a held figure simply stays held until the next run. A free key from
+bls.gov/developers, saved under this name, removes that limit.
 
 ## When a run ends as failed
 
@@ -76,11 +120,11 @@ A failed run means "somebody should look", not "the site is down". The page alwa
 
 | The log says | What it means | What to do |
 |---|---|---|
-| A figure was held back | A new figure was outside its believable range or jumped too far. It was not used | Look at the series at its source. If it is real (a shock like spring 2020), start the workflow by hand with the series name in the `trust` box. If it is wrong, do nothing: the next good figure replaces it |
+| A figure was held back | A new figure was outside its believable range or jumped too far, and its own agency did not confirm it. It was not used | For unemployment, payrolls, factory jobs, consumer prices and hourly pay the run has already asked the Bureau of Labor Statistics, and the line says what the Bureau answered; a real figure passes by itself once the Bureau gives it. For any other series, look at it at its source. If it is real, start the workflow by hand with the series name in the `trust` box. If it is wrong, do nothing: the next good figure replaces it |
 | Held: a key's evidence is late or in dispute | A key should have been callable by now and its evidence is missing, or an entry and the rule disagree | `KEYS.md` says what each key needs. The key keeps its chance and is never counted as no |
 | Not read for N days | A source has not answered | Usually passes. If it lasts, check whether the source moved |
 | A newer survey should be out and has not been read | The forecasters' survey was not reached, or its table changed shape | Find the line starting `The outlook:` in the log. If the table changed, `outlook.py` needs to learn the new layout; until then the older outlook is used and labelled with its date |
-| Stale input (The Margin) | The Nowcast, the Keys feed, the odds or the state polls have not been read for a day or two | Check that the other site's page is up; the last copy is used meanwhile |
+| Stale input (The Margin) | The Nowcast has not been read for a day, or the state polls for two | Check that Tipping Point's page is up; the last copy is used meanwhile |
 | The repository changed while this run was working | Two runs overlapped. The later one's result was dropped | Nothing: the next run starts from the new state |
 
 To run any site again by hand: its repository, Actions, the workflow, Run workflow. Ticking `check` makes the run behave as
@@ -91,31 +135,36 @@ the hourly one does (stop if nothing is new); leaving it unticked runs everythin
 | What | When | Where |
 |---|---|---|
 | The nominee's share of pledged delegates (key E04) | Once, when the primaries end in June 2028 | `fifty-two-keys/data/outlook.json`, the `settled` block, with its source |
-| The New Hampshire primary line (keys E05 to E07) | Once, when both parties have a candidate with a majority of pledged delegates | `fifty-two-keys/data/nh_primaries.csv`, from the Secretary of State's certified results |
-| The parts of the outlook the forecasters' survey does not give (income, pay, spending, industrial production, factory jobs, oil, sentiment, population), the 30% share of runs with a recession, and the odds for the nomination keys | When you judge they have changed. Each carries the date it was entered | `fifty-two-keys/data/outlook.json` |
+| The New Hampshire primary line (keys E05 to E07) | Once, when both parties have a candidate with a majority of pledged delegates | `fifty-two-keys/data/nh_primaries.csv`, from the Secretary of State's certified results (two spreadsheets a party: the summary by counties, and the write-ins) |
 | Who the nominees are | Once, when both are known | Tipping Point's candidate file; The Margin reads it from the Nowcast |
-| State approval from Civiqs (Tipping Point) | When a new copy is taken. Civiqs offers no feed | as now |
-| A forecast published by the authors of Tipping Point's models | If and when one appears | as Tipping Point's own notes say |
-| A real economic move too large for the checks | If it happens: the run fails once a day and names the series | start the workflow by hand with the series in the `trust` box, after looking at it |
-| A decision on any change to a published method | When you choose | see below |
+| State approval from Civiqs (Tipping Point) | When a new copy is taken. Civiqs turns automatic reads away | `python pipeline/civiqs.py "saved page.html"`, as that file says |
+| A forecast published by the authors of Tipping Point's models | If and when one appears | `python pipeline/put_in.py`, as Tipping Point's readme says |
+| A real economic move too large for the checks, in a series with no second source | If it happens: the run fails once a day and names the series | start the workflow by hand with the series in the `trust` box, after looking at it |
+| The size of the approval allowance, if you change it | Your decision; STATUS.md, section 4 | `the-margin/data/inputs.json`, `approval_drift`, and a line in `data/methods.json` |
 
-No longer by hand: seats in Congress (counted from the public list of members each January after an election), the
-third-candidate key (scored from the June 2028 polls), growth, jobs, unemployment and inflation in the outlook (read from
-the forecasters' survey), and the allowance for approval still moving (it closes when the June polls are in).
+If one of the 2028 entries is missed, the key is held (never counted as no), the run fails once a day to say so, and if it
+is still missing when the count closes the key stays open: the count is given as a lowest and a highest, and a winner is
+called only if both agree. No group of keys is re-weighted and the line at one half does not move.
 
-Everything else is read by the workflows.
+Nothing else is typed. Read by rule: the economic series, approval polls, the forecasters' outlook, seats in Congress, polls
+naming a third candidate, and the June 2028 approval reading. Counted from the record or the published figures: the odds
+for the nomination and third-candidate keys, the parts of the outlook no survey gives, and the share of runs with a
+recession.
 
-## Changing a published method
+## The method is frozen
 
-The published forecast is `model.SET` in `the-margin/model.py`. The versions under review are `CANDIDATE` and `HYBRID`
-beside it; they are run on every forecast and written to the data file and the archive, not to the page.
+The published forecast is `model.SET` in `the-margin/model.py`: the version approved on November 25, 2026, with no weight for
+Fifty-Two Keys or betting markets. It is not changed before the election except to fix a fault. `PREVIOUS`, `CANDIDATE`,
+`HYBRID` and `STRUCTURAL` beside it are run on every forecast and written to the data file and the archive, never to the
+page, so that they can be scored beside the official one afterwards.
 
-To adopt the recommended version (the hybrid without the Fifty-Two Keys line): copy `RECOMMENDED`'s settings into `SET`,
-add a line to `data/methods.json` saying what changed, run `python backtest.py` (this rewrites `data/backtest.csv`, which is
-what `tests/test_model.py` guards), then `python checks.py`, `python status.py` and `python update.py --force`. The archive
-keeps every forecast made before the change exactly as it was, and the page marks the day on its history chart.
+If a fault has to be fixed: change the code, add a line to `data/methods.json` saying what changed and why, run
+`python backtest.py` (this rewrites `data/backtest.csv`, which `tests/test_model.py` guards), then `python checks.py`,
+`python status.py` and `python update.py --force`. The archive keeps every earlier forecast as it was, the page marks the
+day on its history chart, and the next check publishes a forecast whose reason reads "the method".
 
-Fifty-Two Keys' rules are locked (`locked_keys.csv`, `tests/test_model.py`) and are not changed by any of this.
+Fifty-Two Keys' rules are locked (`locked_keys.csv`, `tests/test_model.py`). Tipping Point's two models follow their
+authors' published methods and are not adjusted.
 
 ## Checking that everything still works
 
