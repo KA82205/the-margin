@@ -450,7 +450,7 @@ only the owner can create, so it is built and switched off until the secret is t
 **How often the checks really run is up to GitHub.** Every run was started by hand after the change and behaved as
 described: a full run where something was new, and "nothing new" with nothing saved where it was not. What could not
 be shown in an afternoon is the hourly rhythm itself. GitHub starts scheduled runs when it has room, and from November
-20 to 25 it started Tipping Point's two daily runs 6 to 11 hours late. If hourly entries are treated the same way, the
+20 to 25 it started Tipping Point's two daily runs 6 to 12 hours late. If hourly entries are treated the same way, the
 checks will come in bursts, hours apart. A late run loses nothing but time. A clock outside GitHub that calls each
 workflow once an hour would make the rhythm exact; it needs a token and somewhere to run.
 

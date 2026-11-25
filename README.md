@@ -71,7 +71,7 @@ failed at 7 a.m., 1 p.m. and 7 p.m. Eastern only.
 
 **"Every hour" is what is asked of GitHub, not what GitHub promises.** GitHub starts scheduled runs when it has room.
 In November 2026 it was starting this account's scheduled runs hours late (the Tipping Point runs asked for at 6:17 and
-11:17 UTC began 6 to 11 hours later). A late run loses nothing but time, since every run is complete in itself, but how
+11:17 UTC began 6 to 12 hours later). A late run loses nothing but time, since every run is complete in itself, but how
 often the checks really happen is GitHub's doing. A run started from outside (the "Run workflow" button, the event the
 other two sites can send, or a call to GitHub's API by a clock somewhere else) starts at once. "Run workflow" has a box
 to make the run as the hourly check does.
