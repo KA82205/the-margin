@@ -7,9 +7,9 @@
  "forecast": {
   "as_of": "2026-11-25",
   "file": "api/forecast.json",
-  "hash": "f52cdeac4b10859e",
-  "last_kept": "2026-11-25T2230Z.json",
-  "kept": 2
+  "hash": "9d9d3e5b5fab1066",
+  "last_kept": "2026-11-25T2307Z.json",
+  "kept": 3
  },
  "units": {
   "shares": "Democratic share of the two-party vote, in percent (0 to 100)",
@@ -28,7 +28,7 @@
   "fifty_two_keys": {
    "date": "2026-11-25",
    "as_of": "November 25, 2026",
-   "engine": "2026.11c",
+   "engine": "2026.11d",
    "format": 2,
    "settled": 8,
    "unresolved": 44,
@@ -36,11 +36,11 @@
    "held": 0,
    "closed": false,
    "approval_in": false,
-   "hash": "19a3de382a47bb2d"
+   "hash": "99cc4842c4f1452b"
   },
   "tipping_point": {
    "as_of": "2026-11-25",
-   "generated_at": "2026-11-25T22:29:20Z",
+   "generated_at": "2026-11-25T23:05:56Z",
    "mode": "nowcast",
    "frozen": false,
    "models": {
@@ -48,13 +48,13 @@
     "desart": 49.846
    },
    "combined": 50.946,
-   "hash": "05a5268311b806d9"
+   "hash": "a617b035c63b725d"
   }
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-25T22:49Z",
- "commit": null,
+ "made": "2026-11-25T23:07Z",
+ "commit": "a31f07cf64b4",
  "sources": {
   "state polls": "PollResults.org and VoteHub, CC BY 4.0; not affiliated with this site"
  }
