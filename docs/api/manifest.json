@@ -7,9 +7,9 @@
  "forecast": {
   "as_of": "2026-11-25",
   "file": "api/forecast.json",
-  "hash": "36a1fa56252598f6",
-  "last_kept": "2026-11-25T2307Z.json",
-  "kept": 3
+  "hash": "e789c7715dec3811",
+  "last_kept": "2026-11-25T2314Z.json",
+  "kept": 4
  },
  "units": {
   "shares": "Democratic share of the two-party vote, in percent (0 to 100)",
@@ -53,8 +53,8 @@
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-25T23:11Z",
- "commit": null,
+ "made": "2026-11-25T23:14Z",
+ "commit": "9e0522e1353d",
  "sources": {
   "state polls": "PollResults.org and VoteHub, CC BY 4.0; not affiliated with this site"
  }
