@@ -1,5 +1,6 @@
 name: Source samples
-# Fetches a sample from each outside source and keeps it as a download. Started by hand only; it changes nothing.
+# Fetches a sample from each outside source and keeps it on a side branch (samples-data). Started by hand only; the main
+# branch and the site are not touched.
 on:
   workflow_dispatch:
     inputs:
@@ -12,7 +13,7 @@ on:
         required: false
         default: "tools/samples.py"
 permissions:
-  contents: read
+  contents: write
 jobs:
   samples:
     runs-on: ubuntu-latest
@@ -27,8 +28,14 @@ jobs:
           NAMES: ${{ inputs.names }}
           SCRIPT: ${{ inputs.script }}
         run: python "$SCRIPT" samples $NAMES
-      - uses: actions/upload-artifact@v4
-        with:
-          name: samples
-          path: samples
-          retention-days: 3
+      - name: Keep the samples on a side branch
+        run: |
+          git config user.name "forecast-bot"
+          git config user.email "forecast-bot@users.noreply.github.com"
+          mv samples /tmp/samples
+          git checkout -q --orphan samples-data
+          git rm -rfq . || true
+          mv /tmp/samples samples
+          git add -f samples
+          git commit -qm "Samples"
+          git push -qf origin samples-data
