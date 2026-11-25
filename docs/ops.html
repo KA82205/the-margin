@@ -14,32 +14,45 @@ table{border-collapse:collapse;width:100%;font-size:14px;line-height:20px}th,td{
 </style></head><body><main>
 <p class="fine"><a href="./">The Margin</a></p>
 <h1>How the three sites have been running</h1>
-<p>Read live from GitHub's public record of runs each time this page is opened. A run marked <b>schedule</b> is one GitHub started by itself; <b>notification</b> is one site telling another; <b>by hand</b> and <b>push</b> are a person. A check that finds nothing new is still a successful run: it just saves nothing.</p>
+<p>Read live from GitHub's public record of runs each time this page is opened. Each run is listed by what started it: GitHub's own schedule, the outside clock, a sister site, or a person. A check that finds nothing new is still a good check: it just saves nothing, so "last check" and "last time something new was saved" are different times.</p>
 <p class="fine" id="note"></p>
+<div id="fresh"></div>
 <div id="out"></div>
 <p class="fine">GitHub allows a visitor about sixty of these readings an hour. If the tables are empty, wait and reload.</p>
 </main>
 <script>
 (function () {
-  const SITES = [['the-margin', 'The Margin', 'update.yml'], ['fifty-two-keys', 'Fifty-Two Keys', 'update.yml'], ['tipping-point', 'Tipping Point', 'update.yml']];
-  const KIND = {schedule: 'schedule', repository_dispatch: 'notification', workflow_dispatch: 'by hand', push: 'push'};
+  const SITES = [['the-margin', 'The Margin', /^Forecast /], ['fifty-two-keys', 'Fifty-Two Keys', /^Update /], ['tipping-point', 'Tipping Point', /^Data update /]];
   const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
   const when = t => new Date(t).toLocaleString('en-US', {month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'});
-  const ago = t => { const m = Math.round((Date.now() - new Date(t)) / 60000); return m < 90 ? m + ' minutes ago' : m < 2880 ? Math.round(m / 60) + ' hours ago' : Math.round(m / 1440) + ' days ago'; };
-  document.getElementById('note').textContent = 'Read at ' + when(new Date()) + ', your time.';
-  SITES.forEach(([repo, name, wf]) => {
+  const ago = t => { if (!t) return 'not yet'; const m = Math.round((Date.now() - new Date(t)) / 60000); return m < 90 ? m + ' min ago' : m < 2880 ? Math.round(m / 60) + ' hours ago' : Math.round(m / 1440) + ' days ago'; };
+  const hours = t => t ? (Date.now() - new Date(t)) / 3600e3 : Infinity;
+  // what started a run: the workflows name each run for it (older runs are told by their event)
+  const kind = r => /outside clock/.test(r.display_title) ? 'outside clock' : /heartbeat/.test(r.display_title) ? 'heartbeat from a sister site' : r.event === 'schedule' ? "GitHub's schedule" : r.event === 'repository_dispatch' ? 'told by a sister site' : r.event === 'push' ? 'a push' : 'by hand';
+  const get = u => fetch(u).then(r => { if (!r.ok) throw new Error('GitHub answered ' + r.status); return r.json(); });
+  document.getElementById('note').textContent = 'Read at ' + when(new Date()) + ', your time. Overdue means no finished check for three hours.';
+  const card = (v, label, cls) => '<div><strong class="' + (cls || '') + '">' + v + '</strong><span>' + label + '</span></div>';
+  SITES.forEach(([repo, name, saved]) => {
     const box = document.createElement('section'); box.innerHTML = '<h2>' + name + '</h2><p class="fine">Reading…</p>'; document.getElementById('out').appendChild(box);
-    fetch('https://api.github.com/repos/KA82205/' + repo + '/actions/workflows/' + wf + '/runs?per_page=100').then(r => { if (!r.ok) throw new Error('GitHub answered ' + r.status); return r.json(); }).then(j => {
-      const runs = j.workflow_runs || [], day = 864e5, now = Date.now(), sched = runs.filter(r => r.event === 'schedule'), in24 = sched.filter(r => now - new Date(r.created_at) < day), in7 = sched.filter(r => now - new Date(r.created_at) < 7 * day);
-      const ok = runs.filter(r => r.conclusion === 'success'), gaps = in7.slice(0, -1).map((r, i) => (new Date(r.created_at) - new Date(in7[i + 1].created_at)) / 60000).sort((a, b) => a - b), mid = gaps.length ? Math.round(gaps[Math.floor(gaps.length / 2)]) : null;
-      const failed = runs.filter(r => now - new Date(r.created_at) < 7 * day && r.conclusion === 'failure').length, lastAny = runs[0], stale = lastAny && now - new Date(lastAny.created_at) > 3 * 3600e3;
-      box.innerHTML = '<h2>' + name + '</h2><div class="cards"><div><strong class="' + (stale ? 'bad' : 'good') + '">' + (lastAny ? ago(lastAny.created_at) : 'never') + '</strong><span>last run of any kind</span></div>' +
-        '<div><strong class="' + (in24.length ? 'good' : 'bad') + '">' + in24.length + '</strong><span>runs GitHub started by itself in the last 24 hours</span></div>' +
-        '<div><strong>' + in7.length + (mid != null ? ' · ' + mid + ' min' : '') + '</strong><span>in the last 7 days' + (mid != null ? ', and the usual gap between them' : '') + '</span></div>' +
-        '<div><strong class="' + (failed ? 'bad' : '') + '">' + failed + '</strong><span>runs that ended as failed in the last 7 days</span></div></div>' +
-        '<div class="scroll"><table><tr><th>Started</th><th>Started by</th><th>Ended</th><th>Record</th></tr>' + runs.slice(0, 12).map(r => '<tr><td>' + when(r.created_at) + '</td><td>' + (KIND[r.event] || esc(r.event)) + '</td><td class="' + (r.conclusion === 'failure' ? 'bad' : '') + '">' + esc(r.conclusion || r.status) + '</td><td><a href="' + esc(r.html_url) + '" rel="noopener">open</a></td></tr>').join('') + '</table></div>' +
-        '<p class="fine" style="margin-top:8px">' + (sched.length ? 'Last scheduled run: ' + when(sched[0].created_at) + '.' : 'No scheduled run among the last ' + runs.length + '.') + ' <a href="https://github.com/KA82205/' + repo + '/actions" rel="noopener">The whole record</a></p>';
+    Promise.all([get('https://api.github.com/repos/KA82205/' + repo + '/actions/workflows/update.yml/runs?per_page=100'), get('https://api.github.com/repos/KA82205/' + repo + '/commits?per_page=30')]).then(([j, commits]) => {
+      const runs = j.workflow_runs || [], day = 864e5, now = Date.now(), last = f => runs.find(f), done = r => r.status === 'completed';
+      const ok = last(r => r.conclusion === 'success'), sched = last(r => r.event === 'schedule'), clock = last(r => kind(r) === 'outside clock'), beat = last(r => kind(r) === 'heartbeat from a sister site');
+      const upd = commits.find(c => saved.test(c.commit.message)), failed = runs.filter(r => now - new Date(r.created_at) < 7 * day && r.conclusion === 'failure');
+      const in24 = runs.filter(r => r.event === 'schedule' && now - new Date(r.created_at) < day).length, clock24 = runs.filter(r => kind(r) === 'outside clock' && now - new Date(r.created_at) < day).length;
+      const overdue = hours(ok && ok.updated_at) > 3;
+      box.innerHTML = '<h2>' + name + (overdue ? ' <span class="bad">· overdue</span>' : '') + '</h2><div class="cards">' +
+        card(ok ? ago(ok.updated_at) : 'never', 'last check of its sources that finished without a fault' + (ok ? ' (' + kind(ok) + ')' : ''), overdue ? 'bad' : 'good') +
+        card(upd ? ago(upd.commit.committer.date) : 'not among the last 30 commits', 'last time a check found something new and saved it' + (upd ? ': ' + esc(upd.commit.message.split('\n')[0].replace(/^[A-Za-z ]+\d{4}-\d\d-\d\d \d\d:\d\d:? ?/, '') || 'a new day') : '')) +
+        card(sched ? ago(sched.created_at) : 'not yet', "last run GitHub's own schedule started · " + in24 + ' in the last 24 hours', in24 ? 'good' : 'bad') +
+        card(clock ? ago(clock.created_at) : 'not set up', 'last run started by the outside clock · ' + clock24 + ' in the last 24 hours' + (beat ? ' · last heartbeat from a sister site ' + ago(beat.created_at) : ''), clock ? 'good' : '') + '</div>' +
+        (failed.length ? '<p class="bad">' + failed.length + ' run' + (failed.length > 1 ? 's' : '') + ' ended as failed in the last 7 days: ' + failed.slice(0, 5).map(r => '<a href="' + esc(r.html_url) + '" rel="noopener">' + when(r.created_at) + '</a>').join(', ') + '. A failed run means a figure was held back or a source was out of reach; the site keeps its last good figures.</p>' : '<p class="fine">No run ended as failed in the last 7 days.</p>') +
+        '<div class="scroll"><table><tr><th>Started</th><th>Started by</th><th>Ended</th><th>Record</th></tr>' + runs.slice(0, 10).map(r => '<tr><td>' + when(r.created_at) + '</td><td>' + kind(r) + '</td><td class="' + (r.conclusion === 'failure' ? 'bad' : '') + '">' + esc(r.conclusion || r.status) + '</td><td><a href="' + esc(r.html_url) + '" rel="noopener">open</a></td></tr>').join('') + '</table></div>' +
+        '<p class="fine" style="margin-top:8px"><a href="https://github.com/KA82205/' + repo + '/actions" rel="noopener">The whole record</a></p>';
     }).catch(e => { box.innerHTML = '<h2>' + name + '</h2><p class="fine">Could not be read just now (' + esc(e.message) + ').</p>'; });
   });
+  // how fresh the sources are, as The Margin last read them
+  fetch('api/manifest.json', {cache: 'no-store'}).then(r => r.json()).then(m => { const u = m.upstream || {}, tp = u.tipping_point || {}, k = u.fifty_two_keys || {};
+    document.getElementById('fresh').innerHTML = '<h2>What The Margin last read</h2><div class="cards">' + card(esc(m.forecast.as_of), 'the day of the forecast on the page') + card(esc(String(tp.as_of || '').slice(0, 10) || 'unknown'), "Tipping Point's Nowcast: the day it was made" + (tp.frozen ? ' (fixed on purpose)' : '')) +
+      card(esc(k.date || 'unknown'), 'Fifty-Two Keys feed, shown for comparison only') + card(esc(m.made || ''), 'when this record was written (UTC)') + '</div>'; }).catch(() => {});
 })();
 </script></body></html>

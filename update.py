@@ -10,8 +10,6 @@ What it read is then compared with what the last forecast was made from (data/fi
 when any of these is true, and otherwise the run ends with nothing saved:
     - a poll has been added, changed or dropped, national or of a state
     - the Nowcast's forecasts or its approval average have moved
-    - the Fifty-Two Keys count, or the spread around it, has moved
-    - the betting odds stand a point or more from the price in use
     - the day has changed: the first run of each day is always made, so the day-by-day record has every day
 
 Every forecast that differs from the last one kept is written to docs/archive/ and never changed afterwards
@@ -36,7 +34,7 @@ ODDS_URL = 'https://electionbettingodds.com/PresidentialParty2028.html'
 KEYS_URL = 'https://ka82205.github.io/fifty-two-keys/keys.json'
 ET = zoneinfo.ZoneInfo('America/New_York')
 ODDS_STEP = 0.01                                    # the odds count as new once they stand this far from the price in use
-STALE = {'nowcast': 1, 'keys': 2, 'odds': 2, 'state_polls': 2}        # days since the last good read at which the day's first run reports it
+STALE = {'nowcast': 1, 'state_polls': 2}        # days since the last good read at which the day's first run reports it
 ARCHIVE = 'docs/archive'
 
 
@@ -113,8 +111,6 @@ def fingerprint(day, nc, inp, sp):
             'state forecasts': h([[(m.get(k) or {}).get('demPopular') and round(float(m[k]['demPopular']), 2) for k in ('enns', 'desart')], round(float(nc['summary']['demPopular']), 2),
                                   sorted([s['abbr'], round(float(s['demShare']), 2)] for s in nc['states']), nc.get('tickets'), bool(f.get('frozen'))]),
             'approval': h([inp['net_approval']]),
-            'Fifty-Two Keys': h([inp['keys'], inp['keys_sd'], inp.get('keys_mean')]),
-            'betting odds': h([inp['market_dem']]),
             'state polls': h([sp.get('polls'), sp.get('state_questions'), sp.get('nominees')])}
 
 
@@ -139,13 +135,13 @@ def read(inp, today, new_day, offline):
                 inp['market_dem'] = price
                 inp['market_note'] = f"electionbettingodds.com, party to win the presidency, {now.strftime('%B')} {now.day}, {now.year}: Democrats {d}%, Republicans {r}%"
         except Exception as e:                       # noqa: BLE001  keep the last price and its date
-            failed.append(f'the betting odds ({type(e).__name__}: {e})')
+            print(f'The betting odds were not read ({type(e).__name__}); they are shown for comparison only and the forecast does not use them.')
         try:
             feed = get(KEYS_URL)
             inp['keys'], inp['keys_sd'], inp['keys_mean'], inp['keys_note'] = keys(feed); seen['keys'] = today
             up = dict(inp.get('upstream') or {}); up['fifty_two_keys'], inp['keys_dist'] = keys_version(feed); inp['upstream'] = up
         except Exception as e:                       # noqa: BLE001  keep the last count
-            failed.append(f'the Fifty-Two Keys count ({type(e).__name__}: {e})')
+            print(f'The Fifty-Two Keys count was not read ({type(e).__name__}); it is shown for comparison only and the forecast does not use it.')
         try:
             if polls.main([]) != 0: raise RuntimeError('no polls in hand')
             if any(v.get('answered') for k, v in (run_2028.state_poll_file().get('sources') or {}).items() if k in ('PollResults.org', "Tipping Point's saved copy")): seen['state_polls'] = today
@@ -256,6 +252,7 @@ def main(argv):
     held = json.load(open('data/inputs.json')); new_day = held['as_of'] < today
     if new_day:                                      # keep yesterday's inputs, to show what moved
         shutil.copy('data/inputs.json', 'data/prev_inputs.json'); shutil.copy('data/nowcast.js', 'data/prev_nowcast.js')
+        if os.path.exists('data/state_polls.json'): shutil.copy('data/state_polls.json', 'data/prev_state_polls.json')
     old = json.load(open('data/fingerprint.json')) if os.path.exists('data/fingerprint.json') else {}
     started = time.time()
     while True:

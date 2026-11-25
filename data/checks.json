@@ -3,15 +3,15 @@
   {
    "weight": 0,
    "favored": 4,
-   "p_winner": 0.692,
-   "state_miss": 1.83,
+   "p_winner": 0.684,
+   "state_miss": 1.84,
    "called": 264,
    "of": 280,
    "brier": 0.0402,
-   "national_miss": 0.86,
+   "national_miss": 0.87,
    "close_n": 53,
    "close_called": 42,
-   "close_miss": 1.36,
+   "close_miss": 1.39,
    "by_year": {
     "2008": 53,
     "2012": 55,
@@ -23,15 +23,15 @@
   {
    "weight": 0.15,
    "favored": 4,
-   "p_winner": 0.683,
-   "state_miss": 1.84,
+   "p_winner": 0.676,
+   "state_miss": 1.86,
    "called": 263,
    "of": 280,
    "brier": 0.0399,
-   "national_miss": 0.86,
+   "national_miss": 0.87,
    "close_n": 53,
    "close_called": 41,
-   "close_miss": 1.43,
+   "close_miss": 1.46,
    "by_year": {
     "2008": 52,
     "2012": 55,
@@ -43,15 +43,15 @@
   {
    "weight": 0.3,
    "favored": 4,
-   "p_winner": 0.674,
-   "state_miss": 1.87,
+   "p_winner": 0.666,
+   "state_miss": 1.88,
    "called": 264,
    "of": 280,
    "brier": 0.0401,
-   "national_miss": 0.86,
+   "national_miss": 0.87,
    "close_n": 53,
    "close_called": 42,
-   "close_miss": 1.54,
+   "close_miss": 1.56,
    "by_year": {
     "2008": 53,
     "2012": 55,
@@ -63,15 +63,15 @@
   {
    "weight": 0.5,
    "favored": 3,
-   "p_winner": 0.659,
-   "state_miss": 1.91,
+   "p_winner": 0.651,
+   "state_miss": 1.92,
    "called": 265,
    "of": 280,
-   "brier": 0.0409,
-   "national_miss": 0.86,
+   "brier": 0.0408,
+   "national_miss": 0.87,
    "close_n": 53,
    "close_called": 43,
-   "close_miss": 1.71,
+   "close_miss": 1.72,
    "by_year": {
     "2008": 53,
     "2012": 55,
@@ -83,21 +83,21 @@
   {
    "weight": 1.0,
    "favored": 3,
-   "p_winner": 0.609,
+   "p_winner": 0.602,
    "state_miss": 2.09,
-   "called": 263,
+   "called": 262,
    "of": 280,
-   "brier": 0.0458,
-   "national_miss": 0.86,
+   "brier": 0.0457,
+   "national_miss": 0.87,
    "close_n": 53,
-   "close_called": 41,
+   "close_called": 40,
    "close_miss": 2.26,
    "by_year": {
     "2008": 52,
     "2012": 54,
     "2016": 50,
     "2020": 54,
-    "2024": 53
+    "2024": 52
    }
   }
  ],
@@ -148,21 +148,21 @@
  "base": {
   "1": {
    "favored": 4,
-   "p_winner": 0.692,
-   "state_miss": 1.83,
+   "p_winner": 0.684,
+   "state_miss": 1.84,
    "called": 264,
    "of": 280,
    "brier": 0.0402,
-   "national_miss": 0.86
+   "national_miss": 0.87
   },
   "30": {
-   "favored": 3,
-   "p_winner": 0.672,
-   "state_miss": 2.07,
+   "favored": 4,
+   "p_winner": 0.681,
+   "state_miss": 2.09,
    "called": 262,
    "of": 280,
-   "brier": 0.0461,
-   "national_miss": 1.24
+   "brier": 0.0464,
+   "national_miss": 0.99
   }
  },
  "settings": [
@@ -172,21 +172,21 @@
    "ours": 1.5,
    "1": {
     "favored": 4,
-    "p_winner": 0.684,
-    "state_miss": 1.85,
+    "p_winner": 0.679,
+    "state_miss": 1.86,
     "called": 264,
     "of": 280,
-    "brier": 0.0403,
-    "national_miss": 0.86
+    "brier": 0.0401,
+    "national_miss": 0.87
    },
    "30": {
-    "favored": 3,
-    "p_winner": 0.659,
-    "state_miss": 2.15,
-    "called": 263,
+    "favored": 4,
+    "p_winner": 0.675,
+    "state_miss": 2.11,
+    "called": 262,
     "of": 280,
-    "brier": 0.0459,
-    "national_miss": 1.24
+    "brier": 0.0455,
+    "national_miss": 0.99
    }
   },
   {
@@ -195,21 +195,21 @@
    "ours": 1.5,
    "1": {
     "favored": 4,
-    "p_winner": 0.702,
-    "state_miss": 1.82,
-    "called": 267,
+    "p_winner": 0.689,
+    "state_miss": 1.83,
+    "called": 266,
     "of": 280,
-    "brier": 0.0406,
-    "national_miss": 0.86
+    "brier": 0.0409,
+    "national_miss": 0.87
    },
    "30": {
     "favored": 4,
-    "p_winner": 0.687,
-    "state_miss": 2.03,
-    "called": 262,
+    "p_winner": 0.686,
+    "state_miss": 2.07,
+    "called": 264,
     "of": 280,
-    "brier": 0.0466,
-    "national_miss": 1.24
+    "brier": 0.0472,
+    "national_miss": 0.99
    }
   },
   {
@@ -226,21 +226,21 @@
    ],
    "1": {
     "favored": 4,
-    "p_winner": 0.692,
-    "state_miss": 1.83,
+    "p_winner": 0.684,
+    "state_miss": 1.84,
     "called": 264,
     "of": 280,
     "brier": 0.0402,
-    "national_miss": 0.86
+    "national_miss": 0.87
    },
    "30": {
-    "favored": 3,
-    "p_winner": 0.66,
+    "favored": 4,
+    "p_winner": 0.674,
     "state_miss": 2.08,
     "called": 262,
     "of": 280,
     "brier": 0.046,
-    "national_miss": 1.2
+    "national_miss": 0.99
    }
   },
   {
@@ -257,21 +257,21 @@
    ],
    "1": {
     "favored": 4,
-    "p_winner": 0.692,
-    "state_miss": 1.83,
+    "p_winner": 0.684,
+    "state_miss": 1.84,
     "called": 264,
     "of": 280,
     "brier": 0.0402,
-    "national_miss": 0.86
+    "national_miss": 0.87
    },
    "30": {
-    "favored": 3,
-    "p_winner": 0.672,
-    "state_miss": 2.07,
+    "favored": 4,
+    "p_winner": 0.681,
+    "state_miss": 2.09,
     "called": 262,
     "of": 280,
-    "brier": 0.0461,
-    "national_miss": 1.24
+    "brier": 0.0464,
+    "national_miss": 0.99
    }
   },
   {
@@ -280,21 +280,21 @@
    "ours": 0.5,
    "1": {
     "favored": 4,
-    "p_winner": 0.689,
-    "state_miss": 1.83,
+    "p_winner": 0.681,
+    "state_miss": 1.85,
     "called": 264,
     "of": 280,
     "brier": 0.0406,
-    "national_miss": 0.88
+    "national_miss": 0.89
    },
    "30": {
-    "favored": 3,
-    "p_winner": 0.673,
-    "state_miss": 2.08,
-    "called": 262,
+    "favored": 4,
+    "p_winner": 0.681,
+    "state_miss": 2.1,
+    "called": 263,
     "of": 280,
-    "brier": 0.0461,
-    "national_miss": 1.26
+    "brier": 0.0466,
+    "national_miss": 1.0
    }
   },
   {
@@ -303,21 +303,21 @@
    "ours": 0.5,
    "1": {
     "favored": 4,
-    "p_winner": 0.699,
-    "state_miss": 1.89,
+    "p_winner": 0.692,
+    "state_miss": 1.9,
     "called": 265,
     "of": 280,
-    "brier": 0.0393,
-    "national_miss": 0.84
+    "brier": 0.0392,
+    "national_miss": 0.86
    },
    "30": {
-    "favored": 3,
-    "p_winner": 0.664,
-    "state_miss": 2.04,
+    "favored": 4,
+    "p_winner": 0.673,
+    "state_miss": 2.05,
     "called": 262,
     "of": 280,
     "brier": 0.0459,
-    "national_miss": 1.18
+    "national_miss": 0.95
    }
   },
   {
@@ -332,21 +332,21 @@
    ],
    "1": {
     "favored": 4,
-    "p_winner": 0.692,
-    "state_miss": 1.81,
+    "p_winner": 0.684,
+    "state_miss": 1.83,
     "called": 265,
     "of": 280,
-    "brier": 0.0397,
-    "national_miss": 0.86
+    "brier": 0.0396,
+    "national_miss": 0.87
    },
    "30": {
-    "favored": 3,
-    "p_winner": 0.672,
-    "state_miss": 2.03,
+    "favored": 4,
+    "p_winner": 0.68,
+    "state_miss": 2.04,
     "called": 262,
     "of": 280,
-    "brier": 0.0456,
-    "national_miss": 1.24
+    "brier": 0.0454,
+    "national_miss": 0.99
    }
   },
   {
@@ -361,21 +361,21 @@
    ],
    "1": {
     "favored": 4,
-    "p_winner": 0.693,
-    "state_miss": 1.86,
+    "p_winner": 0.685,
+    "state_miss": 1.87,
     "called": 264,
     "of": 280,
     "brier": 0.0412,
-    "national_miss": 0.86
+    "national_miss": 0.87
    },
    "30": {
-    "favored": 3,
-    "p_winner": 0.673,
-    "state_miss": 2.12,
+    "favored": 4,
+    "p_winner": 0.68,
+    "state_miss": 2.15,
     "called": 260,
     "of": 280,
-    "brier": 0.0474,
-    "national_miss": 1.24
+    "brier": 0.0484,
+    "national_miss": 0.99
    }
   },
   {
@@ -384,21 +384,21 @@
    "ours": 0.4,
    "1": {
     "favored": 4,
-    "p_winner": 0.693,
-    "state_miss": 1.83,
+    "p_winner": 0.685,
+    "state_miss": 1.84,
     "called": 264,
     "of": 280,
     "brier": 0.0402,
-    "national_miss": 0.86
+    "national_miss": 0.87
    },
    "30": {
-    "favored": 3,
-    "p_winner": 0.674,
-    "state_miss": 2.07,
+    "favored": 4,
+    "p_winner": 0.682,
+    "state_miss": 2.09,
     "called": 262,
     "of": 280,
-    "brier": 0.046,
-    "national_miss": 1.24
+    "brier": 0.0464,
+    "national_miss": 0.99
    }
   },
   {
@@ -407,21 +407,21 @@
    "ours": 0.4,
    "1": {
     "favored": 4,
-    "p_winner": 0.692,
-    "state_miss": 1.83,
-    "called": 265,
+    "p_winner": 0.684,
+    "state_miss": 1.84,
+    "called": 264,
     "of": 280,
     "brier": 0.0402,
-    "national_miss": 0.86
+    "national_miss": 0.87
    },
    "30": {
-    "favored": 3,
-    "p_winner": 0.671,
-    "state_miss": 2.07,
+    "favored": 4,
+    "p_winner": 0.68,
+    "state_miss": 2.09,
     "called": 262,
     "of": 280,
-    "brier": 0.046,
-    "national_miss": 1.24
+    "brier": 0.0463,
+    "national_miss": 0.99
    }
   },
   {
@@ -430,21 +430,21 @@
    "ours": 5,
    "1": {
     "favored": 4,
-    "p_winner": 0.696,
-    "state_miss": 1.83,
+    "p_winner": 0.69,
+    "state_miss": 1.84,
     "called": 264,
     "of": 280,
-    "brier": 0.0399,
-    "national_miss": 0.86
+    "brier": 0.0398,
+    "national_miss": 0.87
    },
    "30": {
-    "favored": 3,
-    "p_winner": 0.677,
-    "state_miss": 2.07,
+    "favored": 4,
+    "p_winner": 0.688,
+    "state_miss": 2.09,
     "called": 262,
     "of": 280,
-    "brier": 0.0458,
-    "national_miss": 1.24
+    "brier": 0.0462,
+    "national_miss": 0.99
    }
   },
   {
@@ -453,21 +453,21 @@
    "ours": 5,
    "1": {
     "favored": 4,
-    "p_winner": 0.69,
-    "state_miss": 1.83,
+    "p_winner": 0.681,
+    "state_miss": 1.84,
     "called": 264,
     "of": 280,
-    "brier": 0.0403,
-    "national_miss": 0.86
+    "brier": 0.0404,
+    "national_miss": 0.87
    },
    "30": {
-    "favored": 3,
-    "p_winner": 0.669,
-    "state_miss": 2.07,
+    "favored": 4,
+    "p_winner": 0.676,
+    "state_miss": 2.09,
     "called": 262,
     "of": 280,
-    "brier": 0.0462,
-    "national_miss": 1.24
+    "brier": 0.0466,
+    "national_miss": 0.99
    }
   }
  ],
@@ -476,29 +476,29 @@
    "lo": 0.5,
    "hi": 0.6,
    "n": 15,
-   "said": 0.548,
+   "said": 0.551,
    "happened": 0.4
   },
   {
    "lo": 0.6,
    "hi": 0.75,
-   "n": 21,
+   "n": 20,
    "said": 0.669,
-   "happened": 0.857
+   "happened": 0.85
   },
   {
    "lo": 0.75,
    "hi": 0.9,
-   "n": 35,
-   "said": 0.826,
-   "happened": 0.886
+   "n": 36,
+   "said": 0.827,
+   "happened": 0.917
   },
   {
    "lo": 0.9,
    "hi": 0.99,
    "n": 62,
-   "said": 0.957,
-   "happened": 1.0
+   "said": 0.958,
+   "happened": 0.984
   },
   {
    "lo": 0.99,

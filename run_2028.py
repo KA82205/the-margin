@@ -57,12 +57,14 @@ def approval_left(days_out):
 APPROVAL_FLOOR = 30 / (DRIFT_FROM - DRIFT_TO)      # a month's worth of drift: what stays open while the June polls are awaited
 
 
-def june_approval_in(NOW):
-    """Is the June 2028 approval reading a fact yet? It is when Fifty-Two Keys has scored its approval keys on the June
-    polls (their state in its feed is provisional or settled), which that site does a week after the month ends and only
-    if polls of all adults finished in June exist. The date alone never says so."""
-    k = ((NOW.get('upstream') or {}).get('fifty_two_keys') or {})
-    return bool(k.get('approval_in'))
+def june_approval(nc, today, year=2028):
+    """Net approval in June of the election year, once it is a fact: the mean of the Nowcast's daily approval average over
+    the days of June, taken from July 8 so that polls published late are in it. None until then, and None if the series has
+    no day in June (the source was down, or nobody polled): a date alone never makes it a fact."""
+    if str(today) < f'{year}-07-08': return None
+    days = [x for x in (nc.get('approval') or {}).get('trend') or [] if str(x.get('d', '')).startswith(f'{year}-06') and x.get('a') is not None and x.get('dis') is not None]
+    if len(days) < 10: return None
+    return round(float(np.mean([x['a'] - x['dis'] for x in days])), 1)
 
 
 def approval_open(days_out, observed):
@@ -183,19 +185,40 @@ def poll_table(nc):
         return names.get(s, s.replace('-', '') if s.replace('-', '') in names.values() else 'US')
     return pd.DataFrame([{'year': 2028, 'state': where(p), 'pollster': p['pollster'], 'end': pd.Timestamp(p['date']), 'n': p.get('n') or 1000, 'pop': 'rv', 'dem2': p['share']} for p in nc['h2h']['polls']])
 
-def chance(now, polls, states, date, res, errs, t, market=False):
+def official(now, ncp, ncm, sp, res, errs, t, date, with_turnout=True):
+    """The published forecast for one set of inputs. ncp: the Nowcast file the national polls are taken from; ncm: the one
+    the models, the state forecasts and approval's June reading are taken from (the same file, except when a change is being
+    split between them).
+
+    National number: the Nowcast's approval-and-economy model and the approval equation, half each; the long-range model
+    joins as a third equal part once the polls it is built on exist, and the polls it shares with the average are then
+    counted once. The national polling average gets the weight the record gives polls at this distance.
+    States: the national number, each state's lean, and where the Nowcast's state models place the state against their own
+    national figure. State polls count under a ceiling that falls with the distance from the election."""
+    import timeline as T
+    tl = T.curves(2028); base = dict(term1=1, deminc=0); d_out = max((pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(date)).days, 1)
+    june = june_approval(ncm, date); net = june if june is not None else now['net_approval']
+    A = F.forecast(2028, t, juneapp=net, **base)[2]['approval_model']
+    dA = abs(F.forecast(2028, t, juneapp=net + now['approval_drift'], **base)[2]['approval_model'] - A); dE = APPROVAL_RESPONSE * now['approval_drift'] / 2
+    E = float(ncm['models']['enns']['demPopular']); ds = ncm['models'].get('desart'); D = float(ds['demPopular']) if ds else None
+    fixed = bool((ncm.get('desart_final') or {}).get('frozen')); polls = poll_table(ncp)
+    weight, load = M.long_range_weight(2028, date, tl, polls, fixed, others=2) if D is not None else (0.0, 0.0)
+    S = F.mix([E, A, D], [1, 1, weight]); open_ = approval_open(d_out, june is not None)
+    drift = float(np.sqrt(open_) * (dE + dA) / (2 + weight))                       # approval moves both parts together, so the two are added
+    extra = {s['abbr'].replace('-', ''): s['demShare'] for s in ncm['states']}; extra['US'] = float(ncm['summary']['demPopular'])
+    allp = pd.concat([polls[polls.state == 'US'], state_poll_table(sp)], ignore_index=True)
+    out, info = M.forecast(2028, date, allp, res, M.error_tables(2028, res, errs), (S, drift), market=now['market_dem'], extra_prior=extra, ev=M.ev_table(2024, res), timeline=tl,
+                           pairing_spread=pairing_spread(ncp), prior_poll_load=load, turnout=turnout() if with_turnout else None)
+    return out, info, {'prior': S, 'drift': drift, 'approval_equation': A, 'approval_and_economy': E, 'long_range': D, 'long_range_weight': weight, 'prior_moves_with_polls': load, 'approval_open': open_,
+                       'june_approval': june, 'net_approval': net, 'timeline': tl, 'dE': dE, 'dA': dA}
+
+
+def chance(now, ncp, ncm, sp, date, res, errs, t):
     """The chance of a Democratic win for one set of inputs: used to split a change between them. Every call draws the same
     simulated errors (the seed is fixed), so two calls differ only by what was changed between them."""
-    base = dict(term1=1, deminc=0); days = (pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(date)).days
-    fd, fsd, _ = F.forecast(2028, t, juneapp=now['net_approval'], keys=now['keys'], **base)
-    up = F.forecast(2028, t, juneapp=now['net_approval'] + now['approval_drift'], keys=now['keys'], **base)[0]
-    ku = F.forecast(2028, t, juneapp=now['net_approval'], keys=now['keys'] + now['keys_sd'], **base)[0]
-    sd = float(np.sqrt(fsd ** 2 + approval_open(days, june_approval_in(now)) * (up - fd) ** 2 + (ku - fd) ** 2))
-    extra = {s['abbr'].replace('-', ''): s['demShare'] for s in states}
-    out, _ = M.forecast(2028, date, polls, res, M.error_tables(2028, res, errs), (fd, sd), market=now['market_dem'] if market else None, extra_prior=extra, ev=M.ev_table(2024, res))
-    return out['p_model']
+    return official(now, ncp, ncm, sp, res, errs, t, date, with_turnout=False)[0]['p_model']
 
-PARTS = [('polls', 'National polls'), ('approval', 'Presidential approval'), ('keys', 'Fifty-Two Keys count'), ('models', "Tipping Point's models of the states"), ('time', 'Time until the election')]
+PARTS = [('polls', 'National polls'), ('state_polls', 'State polls'), ('approval', 'Presidential approval'), ('models', "Tipping Point's models"), ('time', 'Time until the election')]
 
 def change(NOW, nc, res, errs, t, today_p, since=None):
     """What moved the simulations' chance since an earlier day's inputs (by default the previous day's: data/prev_inputs.json,
@@ -210,19 +233,19 @@ def change(NOW, nc, res, errs, t, today_p, since=None):
     except FileNotFoundError:
         return None
     if old['as_of'] >= NOW['as_of']: return None
-    opolls, npolls = poll_table(onc), poll_table(nc)
-    sig = lambda pt: sorted(map(tuple, pt[['pollster', 'end', 'dem2', 'state']].astype(str).values.tolist()))
-    moved = {'polls': sig(opolls) != sig(npolls), 'approval': old['net_approval'] != NOW['net_approval'], 'keys': (old['keys'], old['keys_sd']) != (NOW['keys'], NOW['keys_sd']),
-             'models': [round(s['demShare'], 3) for s in onc['states']] != [round(s['demShare'], 3) for s in nc['states']], 'time': True}
+    sp_new = state_poll_file()
+    try: sp_old = json.load(open('data/prev_state_polls.json'))
+    except FileNotFoundError: sp_old = sp_new
+    sig = lambda x: sorted([p.get('pollster'), p.get('date'), p.get('d'), p.get('r'), round(float(p['share']), 2)] for p in x['h2h']['polls'])
+    mod = lambda x: [[round(float(v['demPopular']), 3) for v in x['models'].values() if isinstance(v, dict) and v.get('demPopular') is not None], [round(s['demShare'], 3) for s in x['states']]]
+    moved = {'polls': sig(onc) != sig(nc), 'state_polls': sp_old.get('polls') != sp_new.get('polls'), 'approval': old['net_approval'] != NOW['net_approval'], 'models': mod(onc) != mod(nc), 'time': True}
     live = [k for k, _ in PARTS if moved[k]]; memo = {}
     def value(on):
         key = frozenset(on)
         if key not in memo:
             now = dict(old)
             if 'approval' in on: now['net_approval'] = NOW['net_approval']
-            if 'keys' in on: now['keys'], now['keys_sd'] = NOW['keys'], NOW['keys_sd']
-            if 'time' in on and NOW.get('upstream'): now['upstream'] = NOW['upstream']
-            memo[key] = chance(now, npolls if 'polls' in on else opolls, (nc if 'models' in on else onc)['states'], NOW['as_of'] if 'time' in on else old['as_of'], res, errs, t)
+            memo[key] = chance(now, nc if 'polls' in on else onc, nc if 'models' in on else onc, sp_new if 'state_polls' in on else sp_old, NOW['as_of'] if 'time' in on else old['as_of'], res, errs, t)
         return memo[key]
     n = len(live); d = {k: 0.0 for k, _ in PARTS}
     for k in live:
@@ -233,46 +256,37 @@ def change(NOW, nc, res, errs, t, today_p, since=None):
     p0, p1 = value(()), value(tuple(live))
     parts = [{'key': k, 'name': name, 'd': round(d[k], 5)} for k, name in PARTS]
     return {'from': old['as_of'], 'p_prev': round(p0, 5), 'p': round(today_p, 5), 'explained': round(p1 - p0, 5), 'other': round(today_p - p1, 5), 'parts': parts, 'evaluated': len(memo),
-            'keys': [old['keys'], NOW['keys']], 'approval': [old['net_approval'], NOW['net_approval']], 'market': [round(old['market_dem'], 4), round(NOW['market_dem'], 4)],
+            'approval': [old['net_approval'], NOW['net_approval']], 'state_polls': [len(sp_old.get('polls') or []), len(sp_new.get('polls') or [])], 'market': [round(old['market_dem'], 4), round(NOW['market_dem'], 4)],
             'polls': [len(onc['h2h']['polls']), len(nc['h2h']['polls'])], 'days': [(pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(old['as_of'])).days, (pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(NOW['as_of'])).days]}
 
 def main():
     NOW = inputs(); TODAY = NOW['as_of']
     res = pd.read_csv('data/results.csv'); errs = pd.read_csv('data/average_errors.csv'); t = F.table(); nc = nowcast()
-    polls = poll_table(nc)
-    base = dict(term1=1, deminc=0)
-    fd, fsd, parts = F.forecast(2028, t, juneapp=NOW['net_approval'], keys=NOW['keys'], **base)
-    up = F.forecast(2028, t, juneapp=NOW['net_approval'] + NOW['approval_drift'], keys=NOW['keys'], **base)[0]
-    ku = F.forecast(2028, t, juneapp=NOW['net_approval'], keys=NOW['keys'] + NOW['keys_sd'], **base)[0]
-    open_ = approval_open((pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(TODAY)).days, june_approval_in(NOW))
-    sd = float(np.sqrt(fsd ** 2 + open_ * (up - fd) ** 2 + (ku - fd) ** 2))      # the equations' own error, plus what their inputs may still move by (the keys' part shrinks by itself: it is that site's own spread)
-    tables = M.error_tables(2028, res, errs)
-    extra = {s['abbr'].replace('-', ''): s['demShare'] for s in nc['states']}
-    ev = M.ev_table(2024, res)
-    out, info = M.forecast(2028, TODAY, polls, res, tables, (fd, sd), market=NOW['market_dem'], extra_prior=extra, ev=ev, turnout=turnout())
-    plain, _ = M.forecast(2028, TODAY, polls, res, tables, (fd, sd), ev=ev)                       # without the Nowcast's state forecasts or the market
-    # how the range should narrow: the same formulas at other distances from the election, with the drift in the fundamentals' inputs shrinking to nothing by June 2028
+    polls = poll_table(nc); sp = state_poll_file(); tables = M.error_tables(2028, res, errs); ev = M.ev_table(2024, res)
+    out, info, meta = official(NOW, nc, nc, sp, res, errs, t, TODAY); tl = meta['timeline']
+    fd, sd, open_ = meta['prior'], meta['drift'], meta['approval_open']
+    # how the range should narrow: the same rule at other distances from the election. The error of the mix of polls and prior
+    # comes from the record at each distance; what approval may still move by runs down as June 2028 approaches
     d0 = (pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(TODAY)).days; funnel = []
     for d in [d0, 600, 500, 400, 300, 200, 150, 100, 60, 30, 14, 7, 1]:
-        k = max(d - 130, 0) / (d0 - 130); sf = float(np.sqrt(fsd ** 2 + approval_open(d, False if d > DRIFT_TO else True) * (up - fd) ** 2 + k * (ku - fd) ** 2)); sp = M.at(tables['nat'], d)
-        w = sf ** 2 / (sf ** 2 + sp ** 2); sn = float(np.sqrt(w ** 2 * sp ** 2 + (1 - w) ** 2 * sf ** 2))
-        funnel.append({'days': d, 'half': round(2 * 1.2816 * sn, 2), 'poll_share': round(w, 3)})
+        left = approval_open(d, d <= DRIFT_TO) if d < d0 else open_
+        sn = float(np.sqrt(M.at(tl['mix_error'], d) ** 2 + left * ((meta['dE'] + meta['dA']) / (2 + (1.0 if d < 365 else meta['long_range_weight']))) ** 2))
+        funnel.append({'days': d, 'half': round(2 * 1.2816 * sn, 2), 'poll_share': round(float(info['poll_share']) if d == d0 else float(M.curve(tl['national'], d)), 3)})
     lo = lambda q: np.log(q / (1 - q))
     msens = [{'weight': w, 'p': round(float(1 / (1 + np.exp(-((1 - w) * lo(out['p_model']) + w * lo(NOW['market_dem']))))), 3)} for w in (0, 0.25, 0.5, 0.7, 1.0)]
     # the national vote of each simulated election, added up from that election's own states by the votes each cast in 2024:
     # the chance of winning the most votes, and of the vote and the Electoral College disagreeing, are counted from that
     ns = out['national_from_states']
     if ns: out.update(p_popular_national=out['p_popular'], p_popular=ns['p_popular'], p_vote_not_college=ns['p_vote_not_college'], p_college_not_vote=ns['p_college_not_vote'])
-    r = res.set_index(['year', 'state'])
-    sp = state_poll_file()
+    r = res.set_index(['year', 'state']); extra = {s['abbr'].replace('-', ''): s['demShare'] for s in nc['states']}
     cand = candidate(NOW, nc, polls, sp, res, errs, t, tables, ev, TODAY)
     share = lambda q: round(100 * q['dem_pct'] / (q['dem_pct'] + q['rep_pct']), 1) if q.get('dem_pct') and q.get('rep_pct') else None
     S = out['states']; names = {s['abbr'].replace('-', ''): s.get('name', s['abbr']) for s in nc['states']}
     tip = S.state[S.tip.idxmax()]                       # the state that most often carries the winner past 270
     J = {'as_of': TODAY, 'days_out': (pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(TODAY)).days, 'p_dem': out['p_dem'], 'p_model': out['p_model'], 'market': NOW['market_dem'],
-         'p_rep': out['p_rep'], 'p_without_extras': plain['p_dem'], 'p_popular': out['p_popular'], 'p_tie': out['p_tie'], 'paths': out['paths'], 'national_from_states': out['national_from_states'], 'approval_open': open_, 'june_approval_in': june_approval_in(NOW), 'p_vote_not_college': out['p_vote_not_college'], 'p_college_not_vote': out['p_college_not_vote'], 'national': out['national'], 'national_sd': out['national_sd'], 'ev_mean': out['ev_mean'], 'ev_median': out['ev_median'], 'ev_lo': out['ev_lo'], 'ev_hi': out['ev_hi'],
+         'p_rep': out['p_rep'], 'p_popular': out['p_popular'], 'p_tie': out['p_tie'], 'paths': out['paths'], 'national_from_states': out['national_from_states'], 'approval_open': open_, 'june_approval': meta['june_approval'], 'p_vote_not_college': out['p_vote_not_college'], 'p_college_not_vote': out['p_college_not_vote'], 'national': out['national'], 'national_sd': out['national_sd'], 'ev_mean': out['ev_mean'], 'ev_median': out['ev_median'], 'ev_lo': out['ev_lo'], 'ev_hi': out['ev_hi'],
          'ev_dist': [round(float(x), 5) for x in out['ev_dist']], 'tipping_point': tip,
-         'inputs': {'national_polls': info['national_polls'], 'polls_n': int(len(polls)), 'poll_share': info['poll_share'], 'fundamentals': fd, 'fundamentals_sd': sd, 'approval_model': parts['approval_model'], 'keys_model': parts['keys_model'],
+         'inputs': {'national_polls': info['national_polls'], 'polls_n': int(len(polls)), 'poll_share': info['poll_share'], 'fundamentals': fd, 'fundamentals_sd': sd, 'approval_model': meta['approval_equation'], 'approval_and_economy': meta['approval_and_economy'], 'long_range': meta['long_range'], 'long_range_weight': meta['long_range_weight'], 'poll_share_record': info.get('poll_share_record'),
                     'net_approval': NOW['net_approval'], 'market_note': NOW['market_note'], 'keys': NOW['keys'], 'nowcast_p_dem': nc['summary']['pDemWin'], 'nowcast_national': nc['summary']['demPopular'], 'nowcast_as_of': nc['as_of']},
          'national_lo': out['national_lo'], 'national_hi': out['national_hi'],
          'states': [{'state': q['state'], 'ev': int(q['ev']), 'mean': round(float(q['mean']), 2), 'sd': round(float(np.sqrt(q['sd'] ** 2 + out['national_sd'] ** 2)), 2), 'lo': round(float(q['lo']), 2), 'hi': round(float(q['hi']), 2), 'p_dem': round(float(q['p_dem']), 4), 'tip': round(float(q['tip']), 4), 'prior': round(float(q['prior']), 2), 'lean': round(float(M.lean(res, 2028, q['state'])), 2), 'r2024': round(float(r.dem2[(2024, q['state'])]), 2), 'r2020': round(float(r.dem2[(2020, q['state'])]), 2), 'nowcast': round(float(extra[q['state']]), 1)} for _, q in S.iterrows()],
@@ -281,9 +295,13 @@ def main():
          # does not count state polls yet; the candidate does, under its ceiling.
          'state_poll_list': [{'state': q['place'], 'pollster': q['pollster'], 'end': q['end'], 'dem': share(q), 'pairing': f"{q['dem']} v {q['rep']}" if q.get('dem') and q.get('rep') else None,
                               'usable': bool(q['usable']), 'why': q['why_not'], 'url': q['url'] if str(q.get('url') or '').startswith(('https://', 'http://')) else None} for q in sp.get('state_questions', []) if q.get('place') and share(q) is not None],
+         # every national head-to-head poll the average is made from, as Tipping Point's Nowcast lists them
+         'national_poll_list': [{'pollster': q.get('pollster'), 'end': q.get('date'), 'dem': q.get('share'), 'pairing': f"{q.get('d')} v {q.get('r')}", 'added': q.get('added'),
+                                 'url': q['url'] if str(q.get('url') or '').startswith(('https://', 'http://')) else None} for q in nc['h2h']['polls']],
+         'nominees_known': nominees(nc) is not None,
          'state_poll_sources': {'found': sp.get('found', {}), 'answered': {k: bool(v.get('answered')) for k, v in sp.get('sources', {}).items()}, 'fetched': sp.get('fetched')},
          'candidate': cand,
-         'funnel': funnel, 'market_sensitivity': msens, 'equation_error': fsd,
+         'funnel': funnel, 'market_sensitivity': msens, 'equation_error': tl['prior_error'],
          'settings': {k: v for k, v in M.SET.items()},
          # what this forecast was made from (update.py records the other sites' versions) and with
          'upstream': NOW.get('upstream'),

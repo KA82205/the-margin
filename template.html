@@ -269,7 +269,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 <div id="tip" hidden></div>
 <div class="stripe" aria-hidden="true"></div>
 <nav><div class="wide"><a class="brand" href="#forecast"><svg aria-hidden="true"><use href="#logo"/></svg>{{TITLE}}</a>
-  <div class="tabs" id="tabs"><a href="#forecast">Forecast</a><a href="#states">States</a><a href="#model">Model</a><a href="#backtests">Back-tests</a><a href="#research">Research</a></div></div></nav>
+  <div class="tabs" id="tabs"><a href="#forecast">Forecast</a><a href="#states">States</a><a href="#polls">Polls</a><a href="#model">Model</a><a href="#backtests">Back-tests</a><a href="#research">Research</a></div></div></nav>
 
 <main>
 <section class="tab" id="t-forecast">
@@ -350,9 +350,17 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 <div class="mid"><h2>Every state and district</h2><div class="scroll"><table id="st-all"></table></div><p class="fine" style="margin-top:12px">"Decides the election" is how often a state is the one that carries the winner past 270 electoral votes, across 40,000 simulated elections. Ranges are where the margin falls four times in five</p></div>
 </section>
 
+<section class="tab" id="t-polls" hidden>
+<div class="col lead"><h1>The polls</h1><p class="stand" id="pl-stand"></p></div>
+<div class="mid">
+  <div class="xp-ctl"><input id="pl-q" type="search" placeholder="Find a pollster or a name" aria-label="Find a pollster or a candidate"><select id="pl-where" aria-label="Which place"></select><select id="pl-kind" aria-label="Which polls"><option value="all">Counted or not</option><option value="yes">Counted</option><option value="no">Set aside</option></select><span class="xp-n" id="pl-n"></span></div>
+  <div class="scroll"><table id="pl"></table></div>
+  <p class="fine" style="margin-top:12px" id="pl-note"></p>
+</div>
+</section>
 <section class="tab" id="t-model" hidden>
 <div class="col lead"><h1>How the forecast is made</h1><p class="stand">What goes into the number, why each part counts as much as it does, and how the forecast will sharpen as the election gets closer.</p></div>
-<div class="col"><h2>What goes into the number</h2><p>Three kinds of evidence. Polls and fundamentals set the national number. State models and each state's voting history place the states around it. Betting markets are shown beside the forecast for comparison and do not move it.</p>
+<div class="col"><h2>What goes into the number</h2><p>Three kinds of evidence. Polls and two structural models set the national number. State models and each state's voting history place the states around it. Betting markets are shown beside the forecast for comparison and do not move it.</p>
   <div id="inrows"></div>
 </div>
 <figure class="col">
@@ -469,7 +477,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   const tp = ST[F.tipping_point];
   $('keys').innerHTML = [[Math.round(F.ev_mean) + ' to ' + (538 - Math.round(F.ev_mean)), 'electoral votes on average, Democrats to Republicans'], [in100(F.p_popular), 'chance the Democrats win the most votes nationally'], [tp.name, 'the state most likely to put the winner over 270']]
     .map(k => '<div><strong>' + k[0] + '</strong><span>' + k[1] + '</span></div>').join('');
-  $('p-intro').innerHTML = 'The lean comes from an unpopular president (net approval ' + F.inputs.net_approval + ') and a Fifty-Two Keys count that favors the party out of power. The early polls point the other way, with Republicans slightly ahead, but they name candidates who may never run and count for only ' + pc(F.inputs.poll_share) +
+  $('p-intro').innerHTML = 'The lean comes from an unpopular president (net approval ' + F.inputs.net_approval + '): both structural models read that as a Democratic year. The early polls point the other way, with Republicans slightly ahead, but they name candidates who may never run and count for only ' + pc(F.inputs.poll_share) +
     ' of the national number today. Betting markets are shown for comparison and are not part of the forecast: they put the Democrats at ' + in100(F.market) + '.';
 
   // ---- ruler
@@ -586,10 +594,11 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   // ---- inputs
   const I = F.inputs;
   $('inrows').innerHTML = [
-    ['Polls', mg(I.national_polls), '<b>' + pc(I.poll_share) + ' of the national number today.</b> ' + I.polls_n + ' national head-to-head polls of possible nominees. Newer and larger polls count for more, and a pollster\'s older polls count for less. Polls of single states are listed on each state\'s page and are not counted yet.'],
-    ['Fundamentals', mg(I.fundamentals), '<b>' + pc(1 - I.poll_share) + ' of the national number today.</b> The average of two equations fitted on past elections: presidential approval with a first-term adjustment (' + mg(I.approval_model) + ') and the Fifty-Two Keys count (' + mg(I.keys_model) + ').'],
-    ['State models', in100(I.nowcast_p_dem), '<b>Half of each state\'s starting point.</b> The Tipping Point Nowcast runs two published state-by-state models. The other half is how the state voted against the nation in 2024 and 2020.'],
-    ['Betting markets', in100(F.market), '<b>Not part of the forecast.</b> The price of a Democratic win, for comparison with the simulations\' ' + in100(F.p_model) + '. Until November 25, 2026 the headline was moved a quarter of the way toward this price.']
+    ['Polls', mg(I.national_polls), '<b>' + pc(I.poll_share) + ' of the national number today.</b> ' + I.polls_n + ' national head-to-head polls of possible nominees. Newer and larger polls count for more, and a pollster\'s older polls count for less. Their share of the national number follows the record of what polls have been worth at each distance from an election.'],
+    ['Structural models', mg(I.fundamentals), '<b>The other ' + pc(1 - I.poll_share) + '.</b> Two equal parts: Tipping Point\'s approval-and-economy model (' + mg(I.approval_and_economy) + ') and an equation on the president\'s June approval with a first-term adjustment (' + mg(I.approval_model) + '). Tipping Point\'s long-range model is built on polls taken in October 2027 and joins as a third part once they exist.'],
+    ['State models', in100(I.nowcast_p_dem), '<b>Half of where each state stands against the nation.</b> The Tipping Point Nowcast runs two published state-by-state models; the forecast takes where they place each state against their own national figure. The other half is how the state voted against the nation in 2024 and 2020. State polls count under a ceiling that rises as the election nears.'],
+    ['Betting markets', in100(F.market), '<b>Not part of the forecast.</b> The price of a Democratic win, for comparison with the simulations\' ' + in100(F.p_model) + '.'],
+    ['Fifty-Two Keys', I.keys != null ? pc(I.keys) : '', '<b>Not part of the forecast.</b> A sister site\'s count of 52 conditions. It was tested as a part of the national number and left out: the forecast did better without it.']
   ].map(r => '<div class="inrow"><b>' + r[0] + '</b><strong>' + r[1] + '</strong><p>' + r[2] + '</p></div>').join('');
   (function () {
     const MS = F.market_sensitivity; let cur = MS.findIndex(x => x.weight === F.settings.market_weight);
@@ -612,9 +621,12 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     const ours = 'As used: ' + base.called + ' of ' + base.of + ' states and districts called on the last day, typical state miss ' + base.state_miss.toFixed(2) + ' points. ';
     const MS = F.market_sensitivity;
     const QA = [
-      ['Why 25% for betting markets, and not 70%?', 'The markets are one of four sources, alongside polls, fundamentals and the state models, so they get one share in four. They do not get more for three reasons. Market prices already lean on the same polls and forecasts, so a heavy weight counts that evidence twice. Two years out these markets are thinly traded. And the market weight is the one setting that could not be back-tested yet, so it is kept modest until it can be.',
-        'At 0% the Democrats are at ' + in100(MS[0].p) + ', at 25% ' + in100(MS[1].p) + ', at 70% ' + in100(MS[3].p) + '. The weight changes the size of the lean, not its direction.'],
-      ['How much do polls count against fundamentals?', 'That one is not chosen by hand. Each side is weighted by how reliable it has been: how far the national polling average stood from the result at that distance from the election, against how far the fundamentals equations have missed. Far out, polls are poor guides and get about a tenth. On the last day they have been about twice as accurate as fundamentals and get about two thirds.', 'Both error sizes are measured only on elections before the one being forecast.'],
+      ['Why are betting markets not in the forecast?', 'Market prices lean on the same polls and forecasts this one reads, so a weight on them counts that evidence twice; two years out the price is on parties, with no candidates named; and their worth could not be tested here, because election-eve odds for 2008 to 2024 have not been collected from sources that can be checked. Until November 25, 2026 the headline was moved a quarter of the way toward them.',
+        'They are shown for comparison: ' + in100(F.market) + ' for the Democrats against the simulations\' ' + in100(F.p_model) + '. At a quarter weight the figure would be ' + in100(MS[1].p) + '.'],
+      ['Why is the Fifty-Two Keys count not in the forecast?', (k => 'It was, until November 25, 2026, as half of the structural side. Then the forecast was run on 2008 to 2024 at ten distances from the election with the count as an equal part, at half weight, and left out. Averaged over the ten distances the national margin was missed by ' + k.hybrid.national.toFixed(2) + ' points with it, ' + k.half.national.toFixed(2) + ' at half weight and ' + k.none.national.toFixed(2) + ' without it, and the scores for picking the winner moved the same way.')(C.keys_study),
+        (k => 'A line from the count to the vote missed the margin by ' + k.line.toFixed(1) + ' points on average, each time in the Democrats\' favor. Used only as a sign of who wins, the count made the winner scores worse: it pointed to the Democrats in all five elections and three went that way. Five elections is a small test; the case for leaving the count out is that every measure moved the same way. Fifty-Two Keys goes on as its own site.')(C.keys_study)],
+      ['How much do polls count against the structural models?', 'By the record of what a national polling average has been worth at each distance from an election, set against a forecast with no polls in it (after Erikson and Wlezien). On the elections since 1976 that is about 3% two years out, 11% at 250 days, 24% at 120 days and 61% on the last day. Until both nominees are known the polls are of pairings that may never happen, and count for less again.',
+        'Beyond 250 days there is no long record, only the early polls of three elections, so the curve there is carried on by its own shape and should be read as rough. Today the polls are ' + pc(I.poll_share) + ' of the national number.'],
       ['Why is a state\'s starting point worth 1.5 polls?', 'A state\'s lean has landed about three and a half points from the result, and a single fresh state poll about four to five. So the starting point is worth a little more than one poll. Once a state has several recent polls they carry most of the weight.', ours + 'Tried ' + tried('prior_polls', v => 'worth ' + v + ' polls') + '.'],
       ['Why does a poll\'s weight halve every few days?', 'Opinion moves, so old polls say less. The half-life is a fifth of the days remaining, held between a week and a month: far out, a month-old poll is still useful; near the end, a week-old one is stale.', 'Tried ' + tried('half_life', v => 'a ' + (v[2] === 3 ? 'third' : 'eighth') + ' of the days remaining') + '. No change.'],
       ['Why are repeat polls from one pollster cut in half?', 'So a pollster that publishes every day cannot drown out everyone else. Each older poll from the same pollster counts half as much as the one after it.', 'Tried ' + tried('pollster_repeat', v => v === 1 ? 'no cut' : 'cut to a quarter') + '.'],
@@ -622,7 +634,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
       ['Why does half of a state\'s starting point come from Tipping Point\'s state models?', (m => 'Until a state has polls, its starting point is its projection. Half of it is how the state has voted against the nation; the other half is the average of Tipping Point\'s two state-level models, one built on state approval and the state economy, one on long-range polls. Tried on 2008 to 2024 with every state poll taken away, the starting point missed the final margin by ' +
         m.start['0'].toFixed(1) + ' points without the state models and ' + m.start['0.5'].toFixed(1) + ' with them at half. In the ' + m.n_close + ' closest results the miss fell from ' + m.start_close['0'].toFixed(1) + ' to ' + m.start_close['0.5'].toFixed(1) + '.')(C.state_model),
         (m => 'At 60% the miss was ' + m.start['0.6'].toFixed(1) + ', at 80% ' + m.start['0.8'].toFixed(1) + ' and with the state models alone ' + m.start['1.0'].toFixed(1) + ': anything from half to four fifths does equally well, so half stays. The approval model on its own did best near 40% (' + m.one_model['0.4'].toFixed(1) + ') and got worse past half (' + m.one_model['1.0'].toFixed(1) +
-          ' alone), which is why the average of the two is used. Taking only where the models place a state against the nation, and not their national level, did worse (' + m.lean_best.toFixed(1) + ' at best). As polls arrive the starting point matters less: in past elections polls made up ' + Math.round(100 * m.polls_share['120']) + '% of a close state\'s projection 120 days out and ' + Math.round(100 * m.polls_share['1']) + '% on the last day.')(C.state_model)],
+          ' alone), which is why the average of the two is used. That test gave the states the models\' own national level. The forecast now takes that level into the national number directly, through the approval-and-economy model, and gives the states only where the models place each one against their own national figure: otherwise the same national level would be counted twice, and the states added up would not come to the national number. As polls arrive the starting point matters less: in past elections polls made up ' + Math.round(100 * m.polls_share['120']) + '% of a close state\'s projection 120 days out and ' + Math.round(100 * m.polls_share['1']) + '% on the last day.')(C.state_model)],
       ['How much do states move together?', 'Forty percent of a state\'s own error is shared with its region, on top of the error shared by the whole country, and the national error has fat tails so that a 2016-size miss is not treated as impossible. These settings shape the odds, not the state estimates.', 'Regional share at 20% or 60%, and thinner or fatter tails, left every count above unchanged and moved the average chance given to the winner by less than a point.']
     ];
     $('qa').innerHTML = QA.map((x, i) => '<details class="qa"' + (i === 0 ? ' open' : '') + '><summary>' + x[0] + '</summary><div><p>' + x[1] + '</p><p class="try">' + x[2] + '</p></div></details>').join('');
@@ -727,7 +739,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     method.forEach(m => { s += '<p class="upd-cmp"><b>Method, ' + longDate(m.date) + '.</b> ' + esc(m.what) + '</p>'; });
     if (c) { const big = c.parts.filter(x => side(100 * x.d) !== 0), mx = Math.max.apply(null, big.map(x => Math.abs(x.d)).concat([0.0005]));
       const note = { polls: c.polls[1] - c.polls[0] ? Math.abs(c.polls[1] - c.polls[0]) + (c.polls[1] > c.polls[0] ? ' added' : ' dropped') : 'the list of polls changed', approval: 'net approval ' + c.approval[0] + ' to ' + c.approval[1],
-        keys: 'count ' + pc(c.keys[0], 1) + ' to ' + pc(c.keys[1], 1), models: 'the state-by-state models were rerun', time: c.days[0] + ' days to go, then ' + c.days[1] };
+        state_polls: (c.state_polls ? c.state_polls[1] + ' counted, ' + c.state_polls[0] + ' before' : ''), models: 'its national and state-by-state models were rerun', time: c.days[0] + ' days to go, then ' + c.days[1] };
       const row = (x, bar) => '<div class="chg-row"><div>' + x.name + '<small>' + (note[x.key] || '') + '</small></div><div class="tr">' + (bar && side(100 * x.d) !== 0 ? '<i style="background:' + (x.d > 0 ? 'var(--d)' : 'var(--r)') + ';' + (x.d > 0 ? 'left:50%' : 'right:50%') + ';width:' + (50 * Math.abs(x.d) / mx).toFixed(1) + '%"></i>' : '') + '</div><div class="v ' + pcl(100 * x.d) + '">' + signed(100 * x.d) + '</div></div>';
       if (moved && big.length) s += big.map(x => row(x, true)).join('');
       const other = { key: 'other', name: 'Not explained by the parts above', d: c.other || 0 };
@@ -829,6 +841,18 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   $('st-strip').addEventListener('click', e => { const b = e.target.closest('[data-st]'); if (b) location.hash = '#states/' + b.dataset.st; });
   document.querySelectorAll('#st-strip button').forEach(el => hover(el, () => tipS(ST[el.dataset.st])));
 
+  // ---- the polls: every national and state poll in hand, with whether it is counted and why
+  (function () { const nat = (F.national_poll_list || []).map(q => Object.assign({place: 'US', where: 'National', usable: true, why: ''}, q)), st = (F.state_poll_list || []).map(q => Object.assign({place: q.state, where: ST[q.state] ? ST[q.state].name : q.state}, q));
+    const all = nat.concat(st).sort((a, b) => String(b.end).localeCompare(String(a.end))), places = Array.from(new Set(st.map(q => q.place))).sort((a, b) => ST[a].name.localeCompare(ST[b].name));
+    $('pl-stand').textContent = nat.length + ' national polls and ' + st.length + ' polls of single states for 2028 so far. ' + (F.nominees_known ? 'Both nominees are known, and only their pairing is counted.' : 'No nominee is known yet: every poll here pairs people who may never face each other, which is one reason polls count for only ' + pc(I.poll_share) + ' of the national number today.');
+    $('pl-where').innerHTML = '<option value="all">Everywhere</option><option value="US">National</option>' + places.map(p => '<option value="' + p + '">' + esc(ST[p].name) + '</option>').join('');
+    const draw = () => { const q = $('pl-q').value.trim().toLowerCase(), w = $('pl-where').value, k = $('pl-kind').value;
+      const rows = all.filter(x => (w === 'all' || x.place === w) && (k === 'all' || (k === 'yes') === !!x.usable) && (!q || (String(x.pollster) + ' ' + String(x.pairing)).toLowerCase().indexOf(q) >= 0));
+      $('pl').innerHTML = '<thead><tr><th>Finished</th><th>Place</th><th>Pollster</th><th>Pairing</th><th class="n">Margin</th><th>In the forecast</th></tr></thead><tbody>' + (rows.length ? rows.map(x => '<tr><td>' + (x.end ? longDate(String(x.end).slice(0, 10)) : '') + '</td><td>' + (x.place === 'US' ? 'National' : '<a href="#states/' + x.place + '">' + esc(x.where) + '</a>') + '</td><td>' + (x.url ? '<a href="' + esc(x.url) + '" rel="noopener">' + esc(x.pollster) + '</a>' : esc(x.pollster)) +
+        '</td><td>' + esc(x.pairing || '') + '</td><td class="n ' + (x.dem != null ? cls(x.dem) : '') + '">' + (x.dem != null ? mg(x.dem) : '') + '</td><td>' + (x.usable ? (x.place === 'US' ? 'In the national average' : 'Counted, under the ceiling for state polls') : 'Set aside: ' + esc(x.why || '')) + '</td></tr>').join('') : '<tr><td colspan="6">No poll matches.</td></tr>') + '</tbody>';
+      $('pl-n').textContent = rows.length + ' of ' + all.length + ' shown'; };
+    ['pl-q', 'pl-where', 'pl-kind'].forEach(id => $(id).addEventListener(id === 'pl-q' ? 'input' : 'change', draw)); draw();
+    $('pl-note').innerHTML = 'Margins are of the two-party vote in each poll. National polls come from Tipping Point\'s list; in the average a newer or larger poll counts for more and a pollster\'s older polls for less. State polls come from PollResults.org and VoteHub (CC BY 4.0; neither is affiliated with this site). A state poll is set aside when it tests a candidate in a home state, comes from a campaign or a party, or cannot be placed; the reason is given on its line.'; })();
   // ---- research: further studies
   (function () { const Rr = DATA.research; if (!Rr.tilt) return;
     const ybars = (rows, val, lab, top, step, fmt, aria, title) => { const W = 800, H = 290, L = 52, R = 10, T = 24, Bm = 30, bw = (W - L - R) / rows.length, Y = v => T + (top - v) / (2 * top) * (H - T - Bm);
@@ -893,7 +917,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
       ', worse than leaving the primary out. A weak primary is a sharp warning for a sitting president. Beyond that it adds little to what approval already says.'; })();
 
   // ---- tabs
-  (function () { const T = ['forecast', 'states', 'model', 'backtests', 'research'];
+  (function () { const T = ['forecast', 'states', 'polls', 'model', 'backtests', 'research'];
     const go = () => { const parts = (location.hash || '#forecast').slice(1).split('/'), cur = T.indexOf(parts[0]) >= 0 ? parts[0] : 'forecast';
       T.forEach(k => { $('t-' + k).hidden = k !== cur; }); document.querySelectorAll('#tabs a').forEach(a => { if (a.getAttribute('href') === '#' + cur) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
       if (cur === 'states') showState(parts[1] && ST[parts[1]] ? parts[1] : (stSel || F.tipping_point));          // #states/PA opens a state

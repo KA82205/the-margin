@@ -2,5 +2,9 @@
  {
   "date": "2026-11-25",
   "what": "The headline is now the share of simulated elections each side wins outright. Until this day it was moved a quarter of the way toward betting markets (62 in 100 for the Democrats, against the simulations' 60), and an even split of the electoral votes was counted as half a win for each side. Forecasts kept before the change are unchanged in the archive."
+ },
+ {
+  "date": "2026-11-25",
+  "what": "The national number no longer uses the Fifty-Two Keys count. It is now Tipping Point's approval-and-economy model and the approval equation, with the national polls given the weight the record gives polls at each distance from the election; state models are used for where they place each state, and state polls count under a ceiling. Run on 2008 to 2024, this version missed the national margin by less than the one before it from 250 days to 30 days out and by as much in the last fortnight. Democrats moved from 60 to 70 in 100 on the day of the change."
  }
 ]

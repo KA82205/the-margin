@@ -27,7 +27,7 @@ import model as M, fundamentals as F
 
 DAYS = [120, 90, 60, 30, 14, 7, 1]
 YEARS = [2008, 2012, 2016, 2020, 2024]
-VERSIONS = {'published': {}, 'candidate': M.CANDIDATE, 'hybrid': M.HYBRID, 'structural': M.STRUCTURAL, 'recommended': M.RECOMMENDED}
+VERSIONS = {'published': {}, 'previous': M.PREVIOUS, 'candidate': M.CANDIDATE, 'hybrid': M.HYBRID, 'structural': M.STRUCTURAL, 'recommended': M.RECOMMENDED}
 
 def load():
     res = pd.read_csv('data/results.csv'); polls = pd.read_csv('data/polls.csv', parse_dates=['end']); errs = pd.read_csv('data/average_errors.csv')

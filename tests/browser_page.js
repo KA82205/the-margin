@@ -21,7 +21,7 @@ const url = process.argv[2] || 'file://' + require('path').join(__dirname, '..',
     for (const st of ['DC', 'WY', 'NE2']) { const t = await p.$eval('#strips [data-r="' + st + '"]', e => e.innerText); if (!/in 100/.test(t)) fail(tag, st + ' has no chance in the list'); }
     if (!(await p.$('#daily svg, #daily p'))) fail(tag, 'no history chart'); if (!/Unchanged|points|First forecast/.test(await p.textContent('#chg'))) fail(tag, 'the updates box says nothing');
     const zeroBars = await p.$$eval('#chg .chg-row', els => els.filter(e => e.querySelector('.v') && e.querySelector('.v').textContent === '0.0' && e.querySelector('.tr i')).length); if (zeroBars) fail(tag, zeroBars + ' bars drawn for a change of 0.0');
-    for (const hash of ['#forecast', '#states', '#states/NJ', '#states/DC', '#states/NE2', '#model', '#backtests', '#research']) {
+    for (const hash of ['#forecast', '#polls', '#states', '#states/NJ', '#states/DC', '#states/NE2', '#model', '#backtests', '#research']) {
       await p.goto(url + hash); await p.waitForTimeout(250);
       const txt = await p.evaluate(() => document.body.innerText + ' ' + Array.from(document.querySelectorAll('svg text, title')).map(e => e.textContent).join(' '));
       const z = txt.match(/[+−-]0\.0(?![\d])|[DR]\+0\.0(?![\d])/g); if (z) fail(tag, hash + ' shows ' + z.slice(0, 3).join(' '));

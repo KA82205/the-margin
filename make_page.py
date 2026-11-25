@@ -1,4 +1,5 @@
 """Builds docs/index.html from template.html and the model's output. The page is one self-contained file."""
+import numpy as np
 import base64, json, re
 from model import SET as M_SET
 import pandas as pd
@@ -42,6 +43,8 @@ def main():
                          'eve': {str(x['w']): x['miss']['1'] if '1' in x['miss'] else x['miss'][1] for x in sm['runs']['average/share']}, 'polls_share': sm['polls_share_close'], 'n_close': sm['n_close']}
     s0, s5 = ck['state_model']['start']['0'], ck['state_model']['start'][str(ck['state_model']['used'])]
     assert s5 < s0 and abs(ck['state_model']['start']['0.6'] - ck['state_model']['start']['0.5']) < 0.1 and ck['state_model']['one_model']['1.0'] > ck['state_model']['one_model']['0.4'], 'the page says the state models help and that half to four fifths does equally well'
+    ks = json.load(open('data/keys_study.json')); kmean = lambda w, k: float(np.mean([ks['ways'][w][str(d)][k] for d in ks['days']]))
+    ck['keys_study'] = {'hybrid': {'national': kmean('hybrid', 'national')}, 'half': {'national': kmean('half', 'national')}, 'none': {'national': kmean('no keys', 'national')}, 'line': ks['parts']['keys line']['size']}
     f.pop('candidate', None); f.pop('state_poll_sources', None)      # the forecast under review is kept in the data file and is not part of the page
     data = {'f': f, 'back': back, 'checks': ck, 'contact': CONTACT, 'research': json.load(open('data/research.json')), 'history': [{'date': r.date, 'p': round(r.p_dem, 4), 'sim': round(r.p_model, 4), 'national': r.national, **({'rep': round(r.p_rep, 4)} if 'p_rep' in hist.columns and r.p_rep == r.p_rep else {})} for r in hist.itertuples()],
             'methods': json.load(open('data/methods.json'))}

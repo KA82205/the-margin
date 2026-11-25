@@ -15,7 +15,7 @@ SET = dict(
     n_ref=600, n_cap=1.5,      # sample size counts by its square root, relative to 600, up to 1.5
     prior_polls=1.5,           # a state's polls are averaged with its prior as if the prior were this many fresh polls
     state_model_weight=0.5,    # where a state-level model's forecast of the state is given (2028: the Tipping Point Nowcast), its share of the starting point
-    state_model_mode='share',  # 'share': its forecast of the state as it stands. 'lean': only where it puts the state against its own national figure
+    state_model_mode='lean',   # 'share': its forecast of the state as it stands. 'lean': only where it puts the state against its own national figure
     lean=(0.75, 0.25),         # state lean: last election and the one before
     region_share=0.4,          # share of a state's own error that it shares with its region
     t_df=5,                    # fat tails for the national error
@@ -24,14 +24,14 @@ SET = dict(
     sims=40000, seed=538,
     # ---- how the national number is put together, and how polls are phased in. The first value of each is the forecast as
     # published; the second is the candidate under review (CANDIDATE below, README "The candidate").
-    national_prior='fundamentals',   # 'fundamentals': the approval equation and the Fifty-Two Keys line, averaged.
+    national_prior='no_keys',        # 'fundamentals': the approval equation and the Fifty-Two Keys line, averaged.
                                      # 'three_models': the Tipping Point Nowcast's two national models and the Fifty-Two Keys line, a third each
                                      # 'four_models': the same with the approval equation, each an equal part (HYBRID below)
                                      # 'structural': the approval-and-economy model, the Keys line and the approval equation; no long-range model
                                      # 'no_keys': the approval-and-economy model, the approval equation and, once eligible, the long-range model (RECOMMENDED)
-    poll_weight='precision',         # 'precision': polls against the prior by the size of each one's past errors, as if the two were unrelated.
+    poll_weight='timeline',          # 'precision': polls against the prior by the size of each one's past errors, as if the two were unrelated.
                                      # 'timeline': by what the polling average has been worth at this distance from the election (timeline.py)
-    state_poll_weight='volume',      # 'volume': a state's polls against a starting point worth prior_polls, whatever the distance.
+    state_poll_weight='horizon',      # 'volume': a state's polls against a starting point worth prior_polls, whatever the distance.
                                      # 'horizon': the same, under a ceiling that falls with the distance from the election (timeline.py)
     drift_rule='calendar',              # what approval may still move by before June 2028. 'fixed': the figure in data/inputs.json at every distance.
                                      # 'calendar': that figure today, shrinking with the square root of the time left and gone by the end of June 2028,
@@ -42,6 +42,10 @@ SET = dict(
                                      # 'out': left out until they do. 'part': counted for part of its third. 'full': counted in full, as the Nowcast shows it
 )
 # the candidate: every setting that differs from the published forecast
+# The forecast as published until November 25, 2026: the approval equation and the Fifty-Two Keys line averaged, polls weighed
+# by their precision, state polls by their number, half of each state's starting point from the state models as they stand.
+# Kept so that the back-tests can still be run on it (backtest.py previous).
+PREVIOUS = dict(national_prior='fundamentals', poll_weight='precision', state_poll_weight='volume', state_model_mode='share')
 CANDIDATE = dict(national_prior='three_models', poll_weight='timeline', state_poll_weight='horizon', state_model_mode='lean')
 # The hybrid: the candidate with the approval equation kept, as the published forecast keeps it. Its national prior is the
 # Nowcast's approval-and-economy model, the Fifty-Two Keys line and the approval equation, a third each; the long-range

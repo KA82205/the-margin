@@ -14,7 +14,7 @@ import backtest as B, fundamentals as F, model as M, timeline as T          # no
 def test_the_published_forecast_is_the_one_on_record():
     """The last-day forecasts of 2008 to 2024, run now, are the ones in data/backtest.csv to the last digit. A change to
     the code that moves the published forecast fails here, whatever else it was meant to do."""
-    assert (M.SET['national_prior'], M.SET['poll_weight'], M.SET['state_poll_weight'], M.SET['state_model_mode'], M.SET['state_model_weight'], M.SET['prior_polls']) == ('fundamentals', 'precision', 'volume', 'share', 0.5, 1.5)
+    assert (M.SET['national_prior'], M.SET['poll_weight'], M.SET['state_poll_weight'], M.SET['state_model_mode'], M.SET['state_model_weight'], M.SET['prior_polls']) == ('no_keys', 'timeline', 'horizon', 'lean', 0.5, 1.5)
     now = B.run(days=[1]).set_index('year'); rec = pd.read_csv('data/backtest.csv'); rec = rec[rec.days == 1].set_index('year')
     for col in ('p_dem', 'national', 'ev_median', 'ev_lo', 'ev_hi', 'state_mae', 'states_called', 'cover80'):
         assert np.allclose(now[col].astype(float), rec[col].astype(float), rtol=0, atol=1e-9), (col, now[col].tolist(), rec[col].tolist())
@@ -70,8 +70,10 @@ def test_early_state_polls_stay_under_the_ceiling():
     ceiling = float(M.curve(kw['timeline']['state'], 700) / M.curve(kw['timeline']['state'], 1))
     pa = candidate(kw, prior)[0]['states'].set_index('state').loc['PA']
     assert 0 < pa.poll_share <= ceiling < 0.2, (pa.poll_share, ceiling)                 # ten fresh polls two years out: a small share of the state
-    pub = M.forecast(kw['year'], kw['asof'], kw['polls'], kw['res'], kw['tables'], (prior, 2.5), ev=kw['ev'], extra_prior=kw['extra_prior'])[0]['states'].set_index('state').loc['PA']
-    assert pub.poll_share > 0.8                                                         # the published rule would give them most of it: the reason state polls are not counted yet
+    old = dict(M.SET); M.SET.update(M.PREVIOUS)
+    try: pub = M.forecast(kw['year'], kw['asof'], kw['polls'], kw['res'], kw['tables'], (prior, 2.5), ev=kw['ev'], extra_prior=kw['extra_prior'])[0]['states'].set_index('state').loc['PA']
+    finally: M.SET.clear(); M.SET.update(old)
+    assert pub.poll_share > 0.8                                                         # the rule used until November 2026 would have given them most of it
     kw2, _, _ = setup(2024, 1); assert abs(float(M.curve(kw2['timeline']['state'], 1) / M.curve(kw2['timeline']['state'], 1)) - 1) < 1e-12      # no ceiling on the last day
 
 
@@ -111,7 +113,8 @@ def test_the_versions_under_review_are_what_they_say_and_leave_the_published_one
     """The hybrid is the candidate with the approval equation kept; the structural one has no long-range model at any date.
     Neither changes a published setting, and the approval allowance keeps its published rule until a decision is made."""
     import fundamentals as F
-    assert M.SET['national_prior'] == 'fundamentals' and M.SET['poll_weight'] == 'precision' and M.SET['state_model_mode'] == 'share' and M.SET['drift_rule'] == 'calendar' and M.SET['market_weight'] == 0
+    assert {k: M.SET[k] for k in M.RECOMMENDED} == M.RECOMMENDED and M.SET['drift_rule'] == 'calendar' and M.SET['market_weight'] == 0      # the approved method: the hybrid with no Fifty-Two Keys in it
+    assert M.PREVIOUS == dict(national_prior='fundamentals', poll_weight='precision', state_poll_weight='volume', state_model_mode='share')
     assert {k: v for k, v in M.HYBRID.items() if k != 'national_prior'} == {k: v for k, v in M.CANDIDATE.items() if k != 'national_prior'} and M.HYBRID['national_prior'] == 'four_models'
     assert F.four_models(52.0, 49.0, 53.0, 51.0, 0.0) == 52.0 and F.four_models(52.0, 49.0, 53.0, 51.0, 1.0) == 51.25 and F.four_models(52.0, None, 53.0, 51.0) == 52.0
     assert F.three_models(52.0, 49.0, 53.0, 0.0) == 52.5                                # the candidate's prior is as it was
@@ -132,7 +135,10 @@ def test_the_approval_allowance_by_the_calendar_and_the_vote_the_keys_point_to()
     # the allowance closes on the observation, not on the date: with the June polls still out, a month's worth stays open
     assert R.approval_open(713, False) == 1.0 and R.approval_open(400, False) == R.approval_left(400) and R.approval_open(131, False) == R.APPROVAL_FLOOR == R.approval_open(60, False) > 0
     assert R.approval_open(60, True) == 0.0 and R.approval_open(713, True) == 0.0
-    assert R.june_approval_in({}) is False and R.june_approval_in({'upstream': {'fifty_two_keys': {'approval_in': True}}}) is True
+    # the June reading is decided here, from the Nowcast's own daily approval series, and from nothing Fifty-Two Keys says
+    june = {'approval': {'trend': [{'d': f'2028-06-{d:02d}', 'a': 40.0, 'dis': 56.0} for d in range(1, 31)]}}
+    assert R.june_approval(june, '2028-07-07') is None and R.june_approval(june, '2028-07-08') == -16.0, 'a week after the month ends, and not before'
+    assert R.june_approval({'approval': {'trend': june['approval']['trend'][:5]}}, '2028-08-01') is None and R.june_approval({}, '2028-08-01') is None, 'no June polls: not a fact, whatever the date'
     assert 0 < R.approval_left(300) < R.approval_left(500) < 1
     t = F.table(); base = dict(term1=1, deminc=0)
     spread = [[0.30, 0.25], [0.40, 0.50], [0.50, 0.25]]

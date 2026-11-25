@@ -38,9 +38,8 @@ def test_fingerprint_changes_only_with_what_the_forecast_reads():
     a = copy.deepcopy(nc); a['models']['enns']['demPopular'] += 0.2
     assert moved(a) == ['state forecasts']
     assert moved(inp2=dict(inp, net_approval=inp['net_approval'] - 0.3)) == ['approval']
-    assert moved(inp2=dict(inp, keys=inp['keys'] + 0.02)) == ['Fifty-Two Keys']
-    assert moved(inp2=dict(inp, keys_mean=inp['keys_mean'] + 0.005)) == ['Fifty-Two Keys']
-    assert moved(inp2=dict(inp, market_dem=inp['market_dem'] + 0.01)) == ['betting odds']
+    # the Fifty-Two Keys count and the betting odds are shown for comparison and are not in the forecast: neither starts a run
+    assert moved(inp2=dict(inp, keys=inp['keys'] + 0.02)) == [] and moved(inp2=dict(inp, keys_mean=inp['keys_mean'] + 0.005)) == [] and moved(inp2=dict(inp, market_dem=inp['market_dem'] + 0.01)) == []
     assert moved(sp2=dict(SP, polls=[{'place': 'PA', 'dem2': 51.0}])) == ['state polls']
     assert moved(sp2=dict(SP, state_questions=[{'place': 'PA', 'usable': False}])) == ['state polls']        # a poll that is listed and not used still changes the page
     assert moved(day='2026-11-26') == ['day']
@@ -60,7 +59,7 @@ def test_small_moves_in_the_odds_are_not_news():
         feed['odds'] = page(d0 + 0.4, 100 - d0 - 0.4)
         _, inp, _, failed = U.read(held, held['as_of'], False, False)
         assert inp['market_dem'] == held['market_dem'] and inp['market_note'] == held['market_note']         # under a point: the price in use stays
-        assert any('Nowcast' in f for f in failed) and any('Keys' in f for f in failed)                      # the sources this test leaves out are reported, not fatal
+        assert any('Nowcast' in f for f in failed) and not any('Keys' in f or 'odds' in f for f in failed)   # the Nowcast is needed and is reported; the Keys count is for show and is not
         assert inp['keys'] == held['keys']                                                                    # and keep their last values
         feed['odds'] = page(d0 + 2.0, 100 - d0 - 2.0)
         _, inp, _, _ = U.read(held, held['as_of'], False, False)
@@ -71,7 +70,7 @@ def test_small_moves_in_the_odds_are_not_news():
         for bad in ('<img src="DEM.png"> 140.0% <img src="REP.png"> 2.0%', 'no odds here', page(30.0, 20.0)):
             feed['odds'] = bad
             _, inp, _, failed = U.read(held, held['as_of'], True, False)
-            assert inp['market_dem'] == held['market_dem'] and any('odds' in f for f in failed), bad         # a page that does not look right changes nothing
+            assert inp['market_dem'] == held['market_dem'], bad                                              # a page that does not look right changes nothing
     finally:
         U.get = real; polls.main = real_polls
 
@@ -103,7 +102,7 @@ def test_archive_keeps_each_different_forecast_once():
 def test_stale_inputs_are_reported():
     inp = {'read': {'nowcast': '2026-11-25', 'keys': '2026-11-24', 'odds': '2026-11-25', 'state_polls': '2026-11-22'}}
     assert U.stale(inp, '2026-11-25') == ['state polls (last read 2026-11-22)']
-    got = U.stale(inp, '2026-11-26'); assert len(got) == 3 and got[0].startswith('nowcast') and not any('odds' in g for g in got)
+    got = U.stale(inp, '2026-11-26'); assert len(got) == 2 and got[0].startswith('nowcast') and not any('odds' in g or 'keys' in g for g in got)      # only what the forecast needs can go stale
     assert U.stale({}, '2026-11-26') == []
 
 
