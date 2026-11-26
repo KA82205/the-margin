@@ -114,7 +114,8 @@ def test_the_versions_under_review_are_what_they_say_and_leave_the_published_one
     Neither changes a published setting, and the approval allowance keeps its published rule until a decision is made."""
     import fundamentals as F
     assert {k: M.SET[k] for k in M.RECOMMENDED} == M.RECOMMENDED and M.SET['drift_rule'] == 'calendar' and M.SET['market_weight'] == 0      # the approved method: the hybrid with no Fifty-Two Keys in it
-    assert M.PREVIOUS == dict(national_prior='fundamentals', poll_weight='precision', state_poll_weight='volume', state_model_mode='share')
+    assert M.PREVIOUS == dict(national_prior='fundamentals', poll_weight='precision', state_poll_weight='volume', state_model_mode='share', lean_error='all')
+    assert (M.SET['lean_error'], M.SET['lean_window'], M.SET['lean_shrink']) == ('recent', 5, 4) and M.STUDY == {'national': 1.0, 'state': 1.0}      # each state's error from the last five elections; nothing scaled
     assert {k: v for k, v in M.HYBRID.items() if k != 'national_prior'} == {k: v for k, v in M.CANDIDATE.items() if k != 'national_prior'} and M.HYBRID['national_prior'] == 'four_models'
     assert F.four_models(52.0, 49.0, 53.0, 51.0, 0.0) == 52.0 and F.four_models(52.0, 49.0, 53.0, 51.0, 1.0) == 51.25 and F.four_models(52.0, None, 53.0, 51.0) == 52.0
     assert F.three_models(52.0, 49.0, 53.0, 0.0) == 52.5                                # the candidate's prior is as it was

@@ -1,0 +1,57 @@
+{
+ "day": "2026-11-25",
+ "what": "the Democratic chance on the inputs of the day, with each change of method switched on and off; every forecast on the same random draws",
+ "before": 0.6089,
+ "after": 0.6969,
+ "change": 0.088,
+ "kept_that_day": {
+  "2026-11-25T2307Z.json": 0.6083,
+  "2026-11-25T2314Z.json": 0.6969
+ },
+ "parts": {
+  "polls": 0.0216,
+  "Enns": 0.0016,
+  "Keys": 0.0058,
+  "centring": 0.059
+ },
+ "each_made_alone": {
+  "polls": 0.0169,
+  "Enns": 0.0039,
+  "Keys": 0.01,
+  "centring": 0.0511
+ },
+ "each_made_last": {
+  "polls": 0.0255,
+  "Enns": -0.0001,
+  "Keys": 0.001,
+  "centring": 0.0652
+ },
+ "every_combination": {
+  "none": 0.6089,
+  "polls": 0.6258,
+  "Enns": 0.6128,
+  "Keys": 0.6189,
+  "centring": 0.66,
+  "Enns+polls": 0.6281,
+  "Keys+polls": 0.6318,
+  "centring+polls": 0.6944,
+  "Enns+Keys": 0.6189,
+  "Enns+centring": 0.6647,
+  "Keys+centring": 0.6718,
+  "Enns+Keys+polls": 0.6317,
+  "Enns+centring+polls": 0.6959,
+  "Keys+centring+polls": 0.697,
+  "Enns+Keys+centring": 0.6714,
+  "Enns+Keys+centring+polls": 0.6969
+ },
+ "second_change": {
+  "before": 0.6969,
+  "after": 0.6903,
+  "parts": {
+   "allowance": -0.017,
+   "state error": 0.0104
+  },
+  "what": "the approval allowance from 10 to 15 points, counted by the structural models' share; and each state's error sized from the last five elections, state by state"
+ },
+ "not_split": "The headline was also taken off betting markets that day (62% to 60%): a change to what was shown, made before these four, and outside the simulation. The inputs are as they stood at the end of the day, so the first figure differs a little from the forecasts kept earlier in the day."
+}

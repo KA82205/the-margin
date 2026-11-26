@@ -112,7 +112,10 @@ def fingerprint(day, nc, inp, sp):
                                   sorted([s['abbr'], round(float(s['demShare']), 2)] for s in nc['states']), nc.get('tickets'), bool(f.get('frozen'))]),
             'approval': h([inp['net_approval']]),
             'state polls': h([sp.get('polls'), sp.get('state_questions'), sp.get('nominees')]),
-            'the method': h({k: str(v) for k, v in __import__('model').SET.items()})}
+            'the method': h(dict({k: str(v) for k, v in __import__('model').SET.items()}, approval_allowance=str(inp.get('approval_drift'))))}
+
+
+MARKETS = {}                                         # what this run read of the prediction markets, and whether it is news
 
 
 def read(inp, today, new_day, offline):
@@ -137,6 +140,18 @@ def read(inp, today, new_day, offline):
                 inp['market_note'] = f"electionbettingodds.com, party to win the presidency, {now.strftime('%B')} {now.day}, {now.year}: Democrats {d}%, Republicans {r}%"
         except Exception as e:                       # noqa: BLE001  keep the last price and its date
             print(f'The betting odds were not read ({type(e).__name__}); they are shown for comparison only and the forecast does not use them.')
+        try:                                         # prediction markets: for comparison and for the record, never for the forecast
+            import markets as MK
+            cache = json.load(open('data/markets_cache.json')) if os.path.exists('data/markets_cache.json') else {}
+            was = json.load(open('data/markets.json')) if os.path.exists('data/markets.json') else None
+            reading = MK.collect(cache=cache, aggregate=inp.get('market_dem'))
+            for name, why in reading['failed'].items(): print(f'Prediction markets: {name} was not read ({why}); the others were.')
+            if reading['contracts'] or not was:
+                json.dump(reading, open('data/markets.json', 'w'), indent=0); json.dump(cache, open('data/markets_cache.json', 'w'))
+                MARKETS.update(reading=reading, moved=MK.moved(was, reading)); seen['markets'] = reading['read']
+            print('Prediction markets:', reading['counts'], '| places with a figure:', sum(1 for k, v in reading['combined'].items() if v.get('p') is not None), '| moved' if MARKETS.get('moved') else '| no move worth a new page')
+        except Exception as e:                       # noqa: BLE001  the last reading stays
+            print(f'Prediction markets were not read ({type(e).__name__}: {str(e)[:100]}); they are shown for comparison only and the forecast does not use them.')
         try:
             feed = get(KEYS_URL)
             inp['keys'], inp['keys_sd'], inp['keys_mean'], inp['keys_note'] = keys(feed); seen['keys'] = today
@@ -225,6 +240,7 @@ def export(J, root='docs/api'):
                      'ranges': 'the 10th and 90th of every hundred simulated results'},
            'model_version': J.get('model'), 'upstream': J.get('upstream'), 'archive': 'archive/index.json', 'history': 'https://github.com/KA82205/the-margin/blob/main/data/history.csv',
            'made': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%MZ'), 'commit': os.environ.get('GITHUB_SHA', '')[:12] or None,
+           'markets_read': (J.get('markets') or {}).get('read'), 'markets': {'counts': (J.get('markets') or {}).get('counts'), 'failed': (J.get('markets') or {}).get('failed')},
            'sources': {'state polls': 'PollResults.org and VoteHub, CC BY 4.0; not affiliated with this site'}}
     tmp = os.path.join(root, 'manifest.json.tmp'); json.dump(man, open(tmp, 'w'), indent=1); os.replace(tmp, os.path.join(root, 'manifest.json'))
     return man
@@ -263,12 +279,23 @@ def main(argv):
         time.sleep(45)
     for f in failed: print(f'::warning::Could not read {f}; the last copy is used.')
     if not what and not force:
-        print(f'Nothing new since the forecast of {held["as_of"]}: no run.'); say('changed', 'false')
+        if not MARKETS.get('moved'):
+            print(f'Nothing new since the forecast of {held["as_of"]}: no run.'); say('changed', 'false')
+            return 0
+        # Only the markets moved. The official forecast is not made again: the same inputs give the same simulated elections,
+        # so its figures, its archive and its record stand. The comparison beside it, and the record of prices, are brought up
+        # to date.
+        import markets as MK, run_2028, make_page
+        print('New: prediction markets only. The official forecast is unchanged; the comparison and the price record are updated.')
+        json.dump(inp, open('data/inputs.json', 'w'), indent=1); run_2028.main(); print('Price lines added:', MK.keep(MARKETS['reading'])); make_page.main(); export(json.load(open('data/forecast_2028.json')))
+        say('changed', 'true'); say('what', 'prediction markets (comparison only)')
         return 0
     print('New:', ', '.join(what) if what else 'nothing (forced)')
     json.dump(inp, open('data/inputs.json', 'w'), indent=1)
     import run_2028, make_page
     run_2028.main()
+    if MARKETS.get('reading'):
+        import markets as MK; print('Price lines added:', MK.keep(MARKETS['reading']))
     if not offline:                                  # a run on the copies in hand is not a new published forecast
         kept = archive(json.load(open('data/forecast_2028.json')), [w for w in what if w != 'day'] or (['a new day'] if 'day' in what else ['a run asked for by hand']))
         print('Kept as', kept) if kept else print('The forecast is the same as the last one kept: nothing added to the archive.')

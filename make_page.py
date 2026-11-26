@@ -1,6 +1,6 @@
 """Builds docs/index.html from template.html and the model's output. The page is one self-contained file."""
 import numpy as np
-import base64, json, re
+import base64, json, os, re
 from model import SET as M_SET
 import pandas as pd
 
@@ -50,7 +50,8 @@ def main():
             'methods': json.load(open('data/methods.json'))}
     try:
         kept = json.load(open('docs/archive/index.json')); data['archive'] = {'n': len(kept), 'first': kept[0]['made'][:10]} if kept else None
-        data['kept'] = [{'made': k['made'], 'p': k['p_dem'], 'national': k['national'], 'ev': k['ev_median'], 'why': k.get('why') or []} for k in kept]
+        notes = {n['file']: n['note'] for n in (json.load(open('docs/archive/notes.json')) if os.path.exists('docs/archive/notes.json') else [])}      # corrections to what was recorded about a kept forecast; the forecast itself is never touched
+        data['kept'] = [{'made': k['made'], 'p': k['p_dem'], 'national': k['national'], 'ev': k['ev_median'], 'why': k.get('why') or [], 'note': notes.get(k.get('file'))} for k in kept]
     except FileNotFoundError:
         data['archive'] = None
     res = pd.read_csv('data/results.csv'); res = res[res.year >= 1976]; years = sorted(res.year.unique())      # how each state has voted, for its profile

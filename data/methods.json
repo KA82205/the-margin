@@ -1,10 +1,18 @@
 [
  {
   "date": "2026-11-25",
-  "what": "The headline is now the share of simulated elections each side wins outright. Until this day it was moved a quarter of the way toward betting markets (62 in 100 for the Democrats, against the simulations' 60), and an even split of the electoral votes was counted as half a win for each side. Forecasts kept before the change are unchanged in the archive."
+  "what": "The headline is now the share of simulated elections each side wins outright. Until this day it was moved a quarter of the way toward prediction markets (62% for the Democrats, against the simulations' 60%), and an even split of the electoral votes was counted as half a win for each side. Forecasts kept before the change are unchanged in the archive."
  },
  {
   "date": "2026-11-25",
-  "what": "The national number no longer uses the Fifty-Two Keys count. It is now Tipping Point's approval-and-economy model and the approval equation, with the national polls given the weight the record gives polls at each distance from the election; state models are used for where they place each state, and state polls count under a ceiling. Run on 2008 to 2024, this version missed the national margin by less than the one before it from 250 days to 30 days out and by as much in the last fortnight. Democrats moved from 60 to 70 in 100 on the day of the change."
+  "what": "The national number no longer uses the Fifty-Two Keys count. It is now Tipping Point's approval-and-economy model and the approval equation, with the national polls given the weight the record gives polls at each distance from the election; state models are used for where they place each state, and state polls count under a ceiling. Democrats moved from 61% to 70% that day: a change of method, not of the race. Run on the day's inputs with each change switched on and off, the 8.8 points come to 5.9 from using the state models for placing only, 2.2 from the smaller weight on early polls, 0.6 from taking out the Fifty-Two Keys count and 0.2 from adding the approval-and-economy model (method_change.py)."
+ },
+ {
+  "date": "2026-11-25",
+  "what": "The allowance for presidential approval still moving before June 2028 is 15 points of net approval, up from 10. Between the midterm and June of the election year net approval has moved by about 20 points in a typical term since 1950 and by about 11 in the five most recent; 10 was below both. The allowance now counts by the structural models' share of the national number, so it is not added to the part polls already carry. It still shrinks with the time left and closes when the June 2028 polls are in. On the day's inputs this took 1.7 points off the Democratic chance."
+ },
+ {
+  "date": "2026-11-25",
+  "what": "The size of each state's error is now measured on the last five elections and state by state, each state's own record pulled toward the common size. Before, it was one size for every state, measured on every election since 1980, when states moved about more than they have since 2000. Tested forward on 2008 to 2024, the prediction intervals scored better in all five elections and are about 7% narrower on average; some states' are now wider than before, some narrower. On the day's inputs this added 1.0 points to the Democratic chance (interval_study.py)."
  }
 ]

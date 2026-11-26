@@ -1,0 +1,27 @@
+{
+"read": "2026-11-26T00:28Z",
+"counts": {},
+"failed": {
+"Polymarket": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden (agent proxy: no rule or network setting allo",
+"Kalshi": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden (agent proxy: no rule or network setting allo",
+"Manifold": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden (agent proxy: no rule or network setting allo"
+},
+"combined": {
+"winner:US": {
+"p": 0.6758,
+"quality": 0.25,
+"real_money": true,
+"providers": [
+{
+"provider": "Election Betting Odds",
+"p": 0.6758,
+"quality": 0.25,
+"real_money": true,
+"url": "https://electionbettingodds.com/"
+}
+],
+"election_betting_odds": 0.6758
+}
+},
+"contracts": []
+}

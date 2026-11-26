@@ -1,0 +1,2094 @@
+{
+ "levels": [
+  50,
+  80,
+  90,
+  95
+ ],
+ "days": [
+  250,
+  200,
+  150,
+  120,
+  90,
+  60,
+  30,
+  14,
+  7,
+  1
+ ],
+ "elections": [
+  2008,
+  2012,
+  2016,
+  2020,
+  2024
+ ],
+ "units": "points of margin; electoral votes for EV",
+ "states_by_days": {
+  "1": {
+   "cover50": 0.624,
+   "cover80": 0.902,
+   "cover90": 0.961,
+   "cover95": 0.98,
+   "width50": 8.0,
+   "width80": 15.4,
+   "width90": 19.9,
+   "width95": 23.9,
+   "wis": 1.92,
+   "more_republican_than_80": 0.09,
+   "more_democratic_than_80": 0.008,
+   "n": 255
+  },
+  "7": {
+   "cover50": 0.624,
+   "cover80": 0.894,
+   "cover90": 0.965,
+   "cover95": 0.98,
+   "width50": 8.4,
+   "width80": 16.1,
+   "width90": 20.9,
+   "width95": 25.2,
+   "wis": 1.99,
+   "more_republican_than_80": 0.102,
+   "more_democratic_than_80": 0.004,
+   "n": 255
+  },
+  "14": {
+   "cover50": 0.624,
+   "cover80": 0.843,
+   "cover90": 0.949,
+   "cover95": 0.976,
+   "width50": 8.7,
+   "width80": 16.7,
+   "width90": 21.6,
+   "width95": 26.0,
+   "wis": 2.17,
+   "more_republican_than_80": 0.149,
+   "more_democratic_than_80": 0.008,
+   "n": 255
+  },
+  "30": {
+   "cover50": 0.62,
+   "cover80": 0.882,
+   "cover90": 0.945,
+   "cover95": 0.973,
+   "width50": 8.7,
+   "width80": 16.6,
+   "width90": 21.5,
+   "width95": 26.0,
+   "wis": 2.14,
+   "more_republican_than_80": 0.102,
+   "more_democratic_than_80": 0.016,
+   "n": 255
+  },
+  "60": {
+   "cover50": 0.741,
+   "cover80": 0.925,
+   "cover90": 0.965,
+   "cover95": 0.988,
+   "width50": 9.6,
+   "width80": 18.5,
+   "width90": 24.0,
+   "width95": 29.0,
+   "wis": 2.07,
+   "more_republican_than_80": 0.055,
+   "more_democratic_than_80": 0.02,
+   "n": 255
+  },
+  "90": {
+   "cover50": 0.702,
+   "cover80": 0.925,
+   "cover90": 0.961,
+   "cover95": 0.984,
+   "width50": 9.9,
+   "width80": 19.1,
+   "width90": 24.7,
+   "width95": 29.9,
+   "wis": 2.14,
+   "more_republican_than_80": 0.063,
+   "more_democratic_than_80": 0.012,
+   "n": 255
+  },
+  "120": {
+   "cover50": 0.725,
+   "cover80": 0.918,
+   "cover90": 0.973,
+   "cover95": 0.988,
+   "width50": 9.9,
+   "width80": 19.1,
+   "width90": 24.8,
+   "width95": 30.0,
+   "wis": 2.12,
+   "more_republican_than_80": 0.063,
+   "more_democratic_than_80": 0.02,
+   "n": 255
+  },
+  "150": {
+   "cover50": 0.761,
+   "cover80": 0.925,
+   "cover90": 0.973,
+   "cover95": 0.992,
+   "width50": 10.3,
+   "width80": 19.9,
+   "width90": 25.8,
+   "width95": 31.3,
+   "wis": 2.14,
+   "more_republican_than_80": 0.055,
+   "more_democratic_than_80": 0.02,
+   "n": 255
+  },
+  "200": {
+   "cover50": 0.773,
+   "cover80": 0.933,
+   "cover90": 0.973,
+   "cover95": 0.984,
+   "width50": 10.4,
+   "width80": 20.1,
+   "width90": 26.1,
+   "width95": 31.6,
+   "wis": 2.17,
+   "more_republican_than_80": 0.055,
+   "more_democratic_than_80": 0.012,
+   "n": 255
+  },
+  "250": {
+   "cover50": 0.78,
+   "cover80": 0.933,
+   "cover90": 0.973,
+   "cover95": 0.988,
+   "width50": 10.7,
+   "width80": 20.6,
+   "width90": 26.8,
+   "width95": 32.5,
+   "wis": 2.23,
+   "more_republican_than_80": 0.047,
+   "more_democratic_than_80": 0.02,
+   "n": 255
+  }
+ },
+ "states_by_year_last_day": {
+  "2008": {
+   "cover50": 0.686,
+   "cover80": 0.902,
+   "cover90": 0.941,
+   "cover95": 0.961,
+   "width50": 8.6,
+   "width80": 16.4,
+   "width90": 21.2,
+   "width95": 25.6,
+   "wis": 2.18,
+   "more_republican_than_80": 0.078,
+   "more_democratic_than_80": 0.02,
+   "n": 51
+  },
+  "2012": {
+   "cover50": 0.706,
+   "cover80": 0.961,
+   "cover90": 1.0,
+   "cover95": 1.0,
+   "width50": 8.6,
+   "width80": 16.4,
+   "width90": 21.2,
+   "width95": 25.5,
+   "wis": 1.73,
+   "more_republican_than_80": 0.02,
+   "more_democratic_than_80": 0.02,
+   "n": 51
+  },
+  "2016": {
+   "cover50": 0.392,
+   "cover80": 0.804,
+   "cover90": 0.902,
+   "cover95": 0.941,
+   "width50": 7.6,
+   "width80": 14.5,
+   "width90": 18.8,
+   "width95": 22.6,
+   "wis": 2.37,
+   "more_republican_than_80": 0.196,
+   "more_democratic_than_80": 0.0,
+   "n": 51
+  },
+  "2020": {
+   "cover50": 0.49,
+   "cover80": 0.902,
+   "cover90": 0.98,
+   "cover95": 1.0,
+   "width50": 7.5,
+   "width80": 14.4,
+   "width90": 18.6,
+   "width95": 22.4,
+   "wis": 1.83,
+   "more_republican_than_80": 0.098,
+   "more_democratic_than_80": 0.0,
+   "n": 51
+  },
+  "2024": {
+   "cover50": 0.843,
+   "cover80": 0.941,
+   "cover90": 0.98,
+   "cover95": 1.0,
+   "width50": 7.9,
+   "width80": 15.1,
+   "width90": 19.5,
+   "width95": 23.5,
+   "wis": 1.46,
+   "more_republican_than_80": 0.059,
+   "more_democratic_than_80": 0.0,
+   "n": 51
+  }
+ },
+ "states_by_year_all_days": {
+  "2008": {
+   "cover50": 0.635,
+   "cover80": 0.89,
+   "cover90": 0.941,
+   "cover95": 0.976,
+   "width50": 10.1,
+   "width80": 19.4,
+   "width90": 25.1,
+   "width95": 30.4,
+   "wis": 2.51,
+   "more_republican_than_80": 0.082,
+   "more_democratic_than_80": 0.027,
+   "n": 510
+  },
+  "2012": {
+   "cover50": 0.804,
+   "cover80": 0.975,
+   "cover90": 0.984,
+   "cover95": 0.998,
+   "width50": 10.1,
+   "width80": 19.4,
+   "width90": 25.1,
+   "width95": 30.3,
+   "wis": 1.93,
+   "more_republican_than_80": 0.022,
+   "more_democratic_than_80": 0.004,
+   "n": 510
+  },
+  "2016": {
+   "cover50": 0.488,
+   "cover80": 0.751,
+   "cover90": 0.904,
+   "cover95": 0.943,
+   "width50": 9.2,
+   "width80": 17.7,
+   "width90": 23.0,
+   "width95": 27.7,
+   "wis": 2.68,
+   "more_republican_than_80": 0.212,
+   "more_democratic_than_80": 0.037,
+   "n": 510
+  },
+  "2020": {
+   "cover50": 0.676,
+   "cover80": 0.945,
+   "cover90": 0.99,
+   "cover95": 1.0,
+   "width50": 9.0,
+   "width80": 17.4,
+   "width90": 22.5,
+   "width95": 27.1,
+   "wis": 1.85,
+   "more_republican_than_80": 0.055,
+   "more_democratic_than_80": 0.0,
+   "n": 510
+  },
+  "2024": {
+   "cover50": 0.882,
+   "cover80": 0.98,
+   "cover90": 0.998,
+   "cover95": 1.0,
+   "width50": 8.9,
+   "width80": 17.2,
+   "width90": 22.4,
+   "width95": 27.1,
+   "wis": 1.58,
+   "more_republican_than_80": 0.02,
+   "more_democratic_than_80": 0.0,
+   "n": 510
+  }
+ },
+ "states_all": {
+  "cover50": 0.697,
+  "cover80": 0.908,
+  "cover90": 0.964,
+  "cover95": 0.984,
+  "width50": 9.5,
+  "width80": 18.2,
+  "width90": 23.6,
+  "width95": 28.5,
+  "wis": 2.11,
+  "more_republican_than_80": 0.078,
+  "more_democratic_than_80": 0.014,
+  "n": 2550
+ },
+ "US": {
+  "by_days": {
+   "1": {
+    "inside50_of_5": 3,
+    "inside80_of_5": 5,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 7.8
+   },
+   "7": {
+    "inside50_of_5": 3,
+    "inside80_of_5": 5,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 8.9
+   },
+   "14": {
+    "inside50_of_5": 2,
+    "inside80_of_5": 5,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 9.1
+   },
+   "30": {
+    "inside50_of_5": 3,
+    "inside80_of_5": 5,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 9.1
+   },
+   "60": {
+    "inside50_of_5": 5,
+    "inside80_of_5": 5,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 10.8
+   },
+   "90": {
+    "inside50_of_5": 5,
+    "inside80_of_5": 5,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 11.3
+   },
+   "120": {
+    "inside50_of_5": 5,
+    "inside80_of_5": 5,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 11.3
+   },
+   "150": {
+    "inside50_of_5": 5,
+    "inside80_of_5": 5,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 12.2
+   },
+   "200": {
+    "inside50_of_5": 5,
+    "inside80_of_5": 5,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 12.2
+   },
+   "250": {
+    "inside50_of_5": 5,
+    "inside80_of_5": 5,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 12.7
+   }
+  },
+  "all": {
+   "cover50": 0.82,
+   "cover80": 1.0,
+   "cover90": 1.0,
+   "cover95": 1.0
+  }
+ },
+ "EV": {
+  "by_days": {
+   "1": {
+    "inside50_of_5": 2,
+    "inside80_of_5": 4,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 109.4
+   },
+   "7": {
+    "inside50_of_5": 2,
+    "inside80_of_5": 4,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 114.0
+   },
+   "14": {
+    "inside50_of_5": 1,
+    "inside80_of_5": 4,
+    "inside90_of_5": 4,
+    "inside95_of_5": 5,
+    "width80": 116.8
+   },
+   "30": {
+    "inside50_of_5": 2,
+    "inside80_of_5": 4,
+    "inside90_of_5": 4,
+    "inside95_of_5": 5,
+    "width80": 111.0
+   },
+   "60": {
+    "inside50_of_5": 3,
+    "inside80_of_5": 4,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 131.6
+   },
+   "90": {
+    "inside50_of_5": 4,
+    "inside80_of_5": 4,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 130.6
+   },
+   "120": {
+    "inside50_of_5": 4,
+    "inside80_of_5": 5,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 127.0
+   },
+   "150": {
+    "inside50_of_5": 4,
+    "inside80_of_5": 5,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 135.8
+   },
+   "200": {
+    "inside50_of_5": 4,
+    "inside80_of_5": 5,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 134.8
+   },
+   "250": {
+    "inside50_of_5": 4,
+    "inside80_of_5": 5,
+    "inside90_of_5": 5,
+    "inside95_of_5": 5,
+    "width80": 137.6
+   }
+  },
+  "all": {
+   "cover50": 0.6,
+   "cover80": 0.88,
+   "cover90": 0.96,
+   "cover95": 1.0
+  }
+ },
+ "states_last_day_by_polls": {
+  "half or more from its own polls": {
+   "cover50": 0.576,
+   "cover80": 0.904,
+   "cover90": 0.96,
+   "cover95": 0.983,
+   "width50": 7.6,
+   "width80": 14.5,
+   "width90": 18.8,
+   "width95": 22.7,
+   "wis": 1.82,
+   "more_republican_than_80": 0.096,
+   "more_democratic_than_80": 0.0,
+   "n": 177
+  },
+  "no polls": {
+   "cover50": 0.846,
+   "cover80": 1.0,
+   "cover90": 1.0,
+   "cover95": 1.0,
+   "width50": 9.6,
+   "width80": 18.3,
+   "width90": 23.5,
+   "width95": 28.1,
+   "wis": 1.78,
+   "more_republican_than_80": 0.0,
+   "more_democratic_than_80": 0.0,
+   "n": 26
+  },
+  "some polls": {
+   "cover50": 0.673,
+   "cover80": 0.846,
+   "cover90": 0.942,
+   "cover95": 0.962,
+   "width50": 8.8,
+   "width80": 16.7,
+   "width90": 21.6,
+   "width95": 26.0,
+   "wis": 2.3,
+   "more_republican_than_80": 0.115,
+   "more_democratic_than_80": 0.038,
+   "n": 52
+  }
+ },
+ "states_last_day_by_margin": {
+  "10 to 30": {
+   "cover50": 0.596,
+   "cover80": 0.882,
+   "cover90": 0.949,
+   "cover95": 0.971,
+   "width50": 8.0,
+   "width80": 15.3,
+   "width90": 19.8,
+   "width95": 23.8,
+   "wis": 2.01,
+   "more_republican_than_80": 0.11,
+   "more_democratic_than_80": 0.007,
+   "n": 136
+  },
+  "30 or more": {
+   "cover50": 0.657,
+   "cover80": 0.886,
+   "cover90": 1.0,
+   "cover95": 1.0,
+   "width50": 8.4,
+   "width80": 16.1,
+   "width90": 20.8,
+   "width95": 24.9,
+   "wis": 1.88,
+   "more_republican_than_80": 0.086,
+   "more_democratic_than_80": 0.029,
+   "n": 35
+  },
+  "within 10 points": {
+   "cover50": 0.655,
+   "cover80": 0.94,
+   "cover90": 0.964,
+   "cover95": 0.988,
+   "width50": 7.9,
+   "width80": 15.2,
+   "width90": 19.6,
+   "width95": 23.6,
+   "wis": 1.78,
+   "more_republican_than_80": 0.06,
+   "more_democratic_than_80": 0.0,
+   "n": 84
+  }
+ },
+ "by_state": {
+  "ways": {
+   "one size for every state": {
+    "log_score": -3.224,
+    "by_year": {
+     "2000": -3.411,
+     "2004": -3.135,
+     "2008": -3.465,
+     "2012": -3.097,
+     "2016": -3.495,
+     "2020": -2.994,
+     "2024": -2.971
+    },
+    "better_than_one_size_in": 0,
+    "of": 7
+   },
+   "own size, pulled toward the common one as if by 2 elections": {
+    "log_score": -3.1907,
+    "by_year": {
+     "2000": -3.398,
+     "2004": -3.107,
+     "2008": -3.431,
+     "2012": -3.039,
+     "2016": -3.484,
+     "2020": -2.946,
+     "2024": -2.929
+    },
+    "better_than_one_size_in": 7,
+    "of": 7
+   },
+   "pulled as if by 4 elections": {
+    "log_score": -3.1933,
+    "by_year": {
+     "2000": -3.397,
+     "2004": -3.119,
+     "2008": -3.427,
+     "2012": -3.054,
+     "2016": -3.46,
+     "2020": -2.957,
+     "2024": -2.939
+    },
+    "better_than_one_size_in": 7,
+    "of": 7
+   },
+   "pulled as if by 8 elections": {
+    "log_score": -3.1999,
+    "by_year": {
+     "2000": -3.399,
+     "2004": -3.128,
+     "2008": -3.43,
+     "2012": -3.069,
+     "2016": -3.453,
+     "2020": -2.97,
+     "2024": -2.95
+    },
+    "better_than_one_size_in": 7,
+    "of": 7
+   },
+   "own size, not pulled at all": {
+    "log_score": -3.2195,
+    "by_year": {
+     "2000": -3.42,
+     "2004": -3.096,
+     "2008": -3.493,
+     "2012": -3.011,
+     "2016": -3.675,
+     "2020": -2.929,
+     "2024": -2.913
+    },
+    "better_than_one_size_in": 4,
+    "of": 7
+   }
+  },
+  "typical_miss_of_the_lean": {
+   "all states": 6.61,
+   "10 electoral votes or more": 5.29,
+   "fewer than 10": 7.39,
+   "leans 20 points or more either way": 7.5,
+   "leans less than 20": 5.63,
+   "most": {
+    "AR": 11.7,
+    "GA": 10.7,
+    "ND": 10.5,
+    "UT": 10.3,
+    "HI": 10.2,
+    "WV": 9.4
+   },
+   "least": {
+    "IL": 3.0,
+    "MI": 3.5,
+    "VA": 3.7,
+    "NM": 3.8,
+    "OH": 3.8,
+    "PA": 3.8
+   },
+   "elections": 11
+  },
+  "first_half_against_second": 0.26
+ },
+ "two_years_out": {
+  "by_election": [
+   {
+    "year": 1976,
+    "with_june": -0.9,
+    "with_midterm": -1.8,
+    "moved_by_approval": -1.0
+   },
+   {
+    "year": 1980,
+    "with_june": 26.5,
+    "with_midterm": 28.8,
+    "moved_by_approval": 2.4
+   },
+   {
+    "year": 1984,
+    "with_june": 8.4,
+    "with_midterm": 15.5,
+    "moved_by_approval": 7.1
+   },
+   {
+    "year": 1988,
+    "with_june": 7.3,
+    "with_midterm": 0.6,
+    "moved_by_approval": -6.7
+   },
+   {
+    "year": 1992,
+    "with_june": -1.5,
+    "with_midterm": -14.2,
+    "moved_by_approval": -12.7
+   },
+   {
+    "year": 1996,
+    "with_june": -0.0,
+    "with_midterm": -4.8,
+    "moved_by_approval": -4.8
+   },
+   {
+    "year": 2000,
+    "with_june": 3.0,
+    "with_midterm": 5.6,
+    "moved_by_approval": 2.6
+   },
+   {
+    "year": 2004,
+    "with_june": -3.8,
+    "with_midterm": -13.5,
+    "moved_by_approval": -9.7
+   },
+   {
+    "year": 2008,
+    "with_june": 5.6,
+    "with_midterm": 0.5,
+    "moved_by_approval": -5.1
+   },
+   {
+    "year": 2012,
+    "with_june": 2.5,
+    "with_midterm": 1.7,
+    "moved_by_approval": -0.9
+   },
+   {
+    "year": 2016,
+    "with_june": -1.7,
+    "with_midterm": -6.6,
+    "moved_by_approval": -4.9
+   },
+   {
+    "year": 2020,
+    "with_june": -5.1,
+    "with_midterm": -5.8,
+    "moved_by_approval": -0.8
+   },
+   {
+    "year": 2024,
+    "with_june": 0.7,
+    "with_midterm": -0.2,
+    "moved_by_approval": -0.9
+   }
+  ],
+  "elections": 13,
+  "miss_with_june_approval": 8.41,
+  "miss_with_midterm_approval": 11.07,
+  "from_approval_moving": 5.81,
+  "since_2000": {
+   "miss_with_june_approval": 3.59,
+   "miss_with_midterm_approval": 6.48,
+   "from_approval_moving": 4.68,
+   "elections": 7
+  }
+ },
+ "alternatives": {
+  "grid": {
+   "0.6 0.6": {
+    "wis": 2.007,
+    "cover50": 0.499,
+    "cover80": 0.754,
+    "cover95": 0.889,
+    "width80": 10.9,
+    "worst_year_cover80": 0.549,
+    "national_inside_80": 0.86,
+    "electoral_votes_inside_80": 0.78
+   },
+   "0.6 0.7": {
+    "wis": 1.989,
+    "cover50": 0.532,
+    "cover80": 0.789,
+    "cover95": 0.92,
+    "width80": 12.1,
+    "worst_year_cover80": 0.586,
+    "national_inside_80": 0.86,
+    "electoral_votes_inside_80": 0.78
+   },
+   "0.6 0.8": {
+    "wis": 1.988,
+    "cover50": 0.569,
+    "cover80": 0.818,
+    "cover95": 0.945,
+    "width80": 13.4,
+    "worst_year_cover80": 0.61,
+    "national_inside_80": 0.86,
+    "electoral_votes_inside_80": 0.78
+   },
+   "0.6 0.9": {
+    "wis": 2.002,
+    "cover50": 0.605,
+    "cover80": 0.851,
+    "cover95": 0.96,
+    "width80": 14.6,
+    "worst_year_cover80": 0.655,
+    "national_inside_80": 0.86,
+    "electoral_votes_inside_80": 0.74
+   },
+   "0.6 1.0": {
+    "wis": 2.029,
+    "cover50": 0.641,
+    "cover80": 0.872,
+    "cover95": 0.969,
+    "width80": 15.9,
+    "worst_year_cover80": 0.686,
+    "national_inside_80": 0.86,
+    "electoral_votes_inside_80": 0.74
+   },
+   "0.6 1.1": {
+    "wis": 2.067,
+    "cover50": 0.676,
+    "cover80": 0.895,
+    "cover95": 0.979,
+    "width80": 17.2,
+    "worst_year_cover80": 0.724,
+    "national_inside_80": 0.86,
+    "electoral_votes_inside_80": 0.74
+   },
+   "0.8 0.6": {
+    "wis": 1.992,
+    "cover50": 0.538,
+    "cover80": 0.793,
+    "cover95": 0.932,
+    "width80": 12.3,
+    "worst_year_cover80": 0.586,
+    "national_inside_80": 0.92,
+    "electoral_votes_inside_80": 0.82
+   },
+   "0.8 0.7": {
+    "wis": 1.992,
+    "cover50": 0.572,
+    "cover80": 0.822,
+    "cover95": 0.948,
+    "width80": 13.4,
+    "worst_year_cover80": 0.618,
+    "national_inside_80": 0.92,
+    "electoral_votes_inside_80": 0.82
+   },
+   "0.8 0.8": {
+    "wis": 2.005,
+    "cover50": 0.608,
+    "cover80": 0.848,
+    "cover95": 0.96,
+    "width80": 14.6,
+    "worst_year_cover80": 0.647,
+    "national_inside_80": 0.92,
+    "electoral_votes_inside_80": 0.82
+   },
+   "0.8 0.9": {
+    "wis": 2.028,
+    "cover50": 0.636,
+    "cover80": 0.873,
+    "cover95": 0.968,
+    "width80": 15.7,
+    "worst_year_cover80": 0.684,
+    "national_inside_80": 0.92,
+    "electoral_votes_inside_80": 0.84
+   },
+   "0.8 1.0": {
+    "wis": 2.062,
+    "cover50": 0.668,
+    "cover80": 0.887,
+    "cover95": 0.976,
+    "width80": 17.0,
+    "worst_year_cover80": 0.714,
+    "national_inside_80": 0.92,
+    "electoral_votes_inside_80": 0.82
+   },
+   "0.8 1.1": {
+    "wis": 2.106,
+    "cover50": 0.695,
+    "cover80": 0.907,
+    "cover95": 0.983,
+    "width80": 18.2,
+    "worst_year_cover80": 0.747,
+    "national_inside_80": 0.92,
+    "electoral_votes_inside_80": 0.82
+   },
+   "1.0 0.6": {
+    "wis": 2.003,
+    "cover50": 0.586,
+    "cover80": 0.835,
+    "cover95": 0.954,
+    "width80": 13.9,
+    "worst_year_cover80": 0.631,
+    "national_inside_80": 1.0,
+    "electoral_votes_inside_80": 0.88
+   },
+   "1.0 0.7": {
+    "wis": 2.017,
+    "cover50": 0.615,
+    "cover80": 0.855,
+    "cover95": 0.964,
+    "width80": 14.9,
+    "worst_year_cover80": 0.659,
+    "national_inside_80": 1.0,
+    "electoral_votes_inside_80": 0.88
+   },
+   "1.0 0.8": {
+    "wis": 2.039,
+    "cover50": 0.64,
+    "cover80": 0.876,
+    "cover95": 0.97,
+    "width80": 15.9,
+    "worst_year_cover80": 0.692,
+    "national_inside_80": 1.0,
+    "electoral_votes_inside_80": 0.88
+   },
+   "1.0 0.9": {
+    "wis": 2.07,
+    "cover50": 0.667,
+    "cover80": 0.89,
+    "cover95": 0.977,
+    "width80": 17.0,
+    "worst_year_cover80": 0.718,
+    "national_inside_80": 1.0,
+    "electoral_votes_inside_80": 0.88
+   },
+   "1.0 1.0": {
+    "wis": 2.109,
+    "cover50": 0.697,
+    "cover80": 0.908,
+    "cover95": 0.984,
+    "width80": 18.2,
+    "worst_year_cover80": 0.751,
+    "national_inside_80": 1.0,
+    "electoral_votes_inside_80": 0.88
+   },
+   "1.0 1.1": {
+    "wis": 2.156,
+    "cover50": 0.721,
+    "cover80": 0.927,
+    "cover95": 0.986,
+    "width80": 19.4,
+    "worst_year_cover80": 0.8,
+    "national_inside_80": 1.0,
+    "electoral_votes_inside_80": 0.88
+   },
+   "1.2 0.6": {
+    "wis": 2.04,
+    "cover50": 0.629,
+    "cover80": 0.87,
+    "cover95": 0.969,
+    "width80": 15.6,
+    "worst_year_cover80": 0.686,
+    "national_inside_80": 1.0,
+    "electoral_votes_inside_80": 0.9
+   },
+   "1.2 0.7": {
+    "wis": 2.062,
+    "cover50": 0.647,
+    "cover80": 0.884,
+    "cover95": 0.977,
+    "width80": 16.5,
+    "worst_year_cover80": 0.708,
+    "national_inside_80": 1.0,
+    "electoral_votes_inside_80": 0.9
+   },
+   "1.2 0.8": {
+    "wis": 2.09,
+    "cover50": 0.673,
+    "cover80": 0.895,
+    "cover95": 0.979,
+    "width80": 17.5,
+    "worst_year_cover80": 0.731,
+    "national_inside_80": 1.0,
+    "electoral_votes_inside_80": 0.9
+   },
+   "1.2 0.9": {
+    "wis": 2.126,
+    "cover50": 0.701,
+    "cover80": 0.912,
+    "cover95": 0.984,
+    "width80": 18.5,
+    "worst_year_cover80": 0.771,
+    "national_inside_80": 1.0,
+    "electoral_votes_inside_80": 0.9
+   },
+   "1.2 1.0": {
+    "wis": 2.169,
+    "cover50": 0.723,
+    "cover80": 0.933,
+    "cover95": 0.987,
+    "width80": 19.6,
+    "worst_year_cover80": 0.82,
+    "national_inside_80": 1.0,
+    "electoral_votes_inside_80": 0.9
+   },
+   "1.2 1.1": {
+    "wis": 2.219,
+    "cover50": 0.747,
+    "cover80": 0.944,
+    "cover95": 0.991,
+    "width80": 20.7,
+    "worst_year_cover80": 0.847,
+    "national_inside_80": 1.0,
+    "electoral_votes_inside_80": 0.9
+   }
+  },
+  "held_out": {
+   "2008": {
+    "national_scale": 0.6,
+    "state_scale": 0.7,
+    "wis": 2.485,
+    "wis_as_published": 2.509,
+    "cover80": 0.763,
+    "cover80_as_published": 0.89,
+    "cover95": 0.894,
+    "cover95_as_published": 0.976,
+    "width80": 12.9,
+    "width80_as_published": 19.4,
+    "national_inside_80": 1.0,
+    "national_inside_80_as_published": 1.0,
+    "electoral_votes_inside_80": 1.0,
+    "electoral_votes_inside_80_as_published": 1.0
+   },
+   "2012": {
+    "national_scale": 0.6,
+    "state_scale": 0.8,
+    "wis": 1.681,
+    "wis_as_published": 1.931,
+    "cover80": 0.916,
+    "cover80_as_published": 0.975,
+    "cover95": 0.982,
+    "cover95_as_published": 0.998,
+    "width80": 14.2,
+    "width80_as_published": 19.4,
+    "national_inside_80": 1.0,
+    "national_inside_80_as_published": 1.0,
+    "electoral_votes_inside_80": 1.0,
+    "electoral_votes_inside_80_as_published": 1.0
+   },
+   "2016": {
+    "national_scale": 0.6,
+    "state_scale": 0.6,
+    "wis": 3.02,
+    "wis_as_published": 2.681,
+    "cover80": 0.549,
+    "cover80_as_published": 0.751,
+    "cover95": 0.718,
+    "cover95_as_published": 0.943,
+    "width80": 10.6,
+    "width80_as_published": 17.7,
+    "national_inside_80": 0.9,
+    "national_inside_80_as_published": 1.0,
+    "electoral_votes_inside_80": 0.0,
+    "electoral_votes_inside_80_as_published": 0.4
+   },
+   "2020": {
+    "national_scale": 0.6,
+    "state_scale": 0.8,
+    "wis": 1.677,
+    "wis_as_published": 1.848,
+    "cover80": 0.82,
+    "cover80_as_published": 0.945,
+    "cover95": 0.975,
+    "cover95_as_published": 1.0,
+    "width80": 12.7,
+    "width80_as_published": 17.4,
+    "national_inside_80": 0.6,
+    "national_inside_80_as_published": 1.0,
+    "electoral_votes_inside_80": 1.0,
+    "electoral_votes_inside_80_as_published": 1.0
+   },
+   "2024": {
+    "national_scale": 0.6,
+    "state_scale": 0.8,
+    "wis": 1.301,
+    "wis_as_published": 1.576,
+    "cover80": 0.935,
+    "cover80_as_published": 0.98,
+    "cover95": 0.99,
+    "cover95_as_published": 1.0,
+    "width80": 12.6,
+    "width80_as_published": 17.2,
+    "national_inside_80": 0.8,
+    "national_inside_80_as_published": 1.0,
+    "electoral_votes_inside_80": 0.9,
+    "electoral_votes_inside_80_as_published": 1.0
+   }
+  },
+  "held_out_mean": {
+   "wis": 2.033,
+   "wis_as_published": 2.109,
+   "cover80": 0.797,
+   "cover80_as_published": 0.908,
+   "cover95": 0.912,
+   "cover95_as_published": 0.983,
+   "width80": 12.6,
+   "width80_as_published": 18.22,
+   "national_inside_80": 0.86,
+   "national_inside_80_as_published": 1.0,
+   "electoral_votes_inside_80": 0.78,
+   "electoral_votes_inside_80_as_published": 0.88
+  },
+  "held_out_better_in": 4
+ },
+ "variants": {
+  "until November 25, 2026: every election since 1980, one size for all states": {
+   "wis": 2.19,
+   "wis_by_year": {
+    "2008": 2.6,
+    "2012": 2.016,
+    "2016": 2.709,
+    "2020": 1.921,
+    "2024": 1.702
+   },
+   "cover50": 0.726,
+   "cover80": 0.928,
+   "cover90": 0.967,
+   "cover95": 0.984,
+   "width80": 19.6,
+   "cover80_by_year": {
+    "2008": 0.904,
+    "2012": 0.971,
+    "2016": 0.829,
+    "2020": 0.945,
+    "2024": 0.99
+   },
+   "cover50_by_year": {
+    "2008": 0.68,
+    "2012": 0.812,
+    "2016": 0.518,
+    "2020": 0.712,
+    "2024": 0.91
+   },
+   "last_day": {
+    "cover50": 0.643,
+    "cover80": 0.91,
+    "cover90": 0.953,
+    "cover95": 0.98,
+    "width80": 15.8,
+    "wis": 1.948,
+    "cover80_by_year": {
+     "2008": 0.902,
+     "2012": 0.961,
+     "2016": 0.824,
+     "2020": 0.902,
+     "2024": 0.961
+    },
+    "narrowest_and_widest_state": [
+     13.8,
+     18.0
+    ]
+   },
+   "electoral_votes_inside_80": 0.9,
+   "electoral_votes_width80": 129.3,
+   "by_days": {
+    "1": {
+     "cover50": 0.643,
+     "cover80": 0.91,
+     "cover95": 0.98,
+     "width80": 15.8,
+     "wis": 1.948
+    },
+    "7": {
+     "cover50": 0.635,
+     "cover80": 0.91,
+     "cover95": 0.984,
+     "width80": 16.8,
+     "wis": 2.024
+    },
+    "14": {
+     "cover50": 0.616,
+     "cover80": 0.875,
+     "cover95": 0.98,
+     "width80": 17.5,
+     "wis": 2.211
+    },
+    "30": {
+     "cover50": 0.651,
+     "cover80": 0.914,
+     "cover95": 0.973,
+     "width80": 17.8,
+     "wis": 2.197
+    },
+    "60": {
+     "cover50": 0.769,
+     "cover80": 0.945,
+     "cover95": 0.98,
+     "width80": 20.0,
+     "wis": 2.155
+    },
+    "90": {
+     "cover50": 0.753,
+     "cover80": 0.933,
+     "cover95": 0.984,
+     "width80": 20.7,
+     "wis": 2.234
+    },
+    "120": {
+     "cover50": 0.776,
+     "cover80": 0.937,
+     "cover95": 0.988,
+     "width80": 20.9,
+     "wis": 2.231
+    },
+    "150": {
+     "cover50": 0.808,
+     "cover80": 0.949,
+     "cover95": 0.992,
+     "width80": 21.7,
+     "wis": 2.254
+    },
+    "200": {
+     "cover50": 0.8,
+     "cover80": 0.953,
+     "cover95": 0.988,
+     "width80": 22.0,
+     "wis": 2.289
+    },
+    "250": {
+     "cover50": 0.812,
+     "cover80": 0.953,
+     "cover95": 0.988,
+     "width80": 22.6,
+     "wis": 2.353
+    }
+   },
+   "better_than_the_earlier_sizing_in": 0
+  },
+  "last 5 elections, one size": {
+   "wis": 2.129,
+   "wis_by_year": {
+    "2008": 2.57,
+    "2012": 1.942,
+    "2016": 2.703,
+    "2020": 1.867,
+    "2024": 1.565
+   },
+   "cover50": 0.702,
+   "cover80": 0.911,
+   "cover90": 0.958,
+   "cover95": 0.98,
+   "width80": 18.2,
+   "cover80_by_year": {
+    "2008": 0.892,
+    "2012": 0.961,
+    "2016": 0.786,
+    "2020": 0.933,
+    "2024": 0.982
+   },
+   "cover50_by_year": {
+    "2008": 0.641,
+    "2012": 0.792,
+    "2016": 0.488,
+    "2020": 0.692,
+    "2024": 0.894
+   },
+   "last_day": {
+    "cover50": 0.624,
+    "cover80": 0.894,
+    "cover90": 0.949,
+    "cover95": 0.98,
+    "width80": 15.1,
+    "wis": 1.924,
+    "cover80_by_year": {
+     "2008": 0.902,
+     "2012": 0.941,
+     "2016": 0.804,
+     "2020": 0.882,
+     "2024": 0.941
+    },
+    "narrowest_and_widest_state": [
+     12.4,
+     16.6
+    ]
+   },
+   "electoral_votes_inside_80": 0.88,
+   "electoral_votes_width80": 126.7,
+   "by_days": {
+    "1": {
+     "cover50": 0.624,
+     "cover80": 0.894,
+     "cover95": 0.98,
+     "width80": 15.1,
+     "wis": 1.924
+    },
+    "7": {
+     "cover50": 0.604,
+     "cover80": 0.894,
+     "cover95": 0.98,
+     "width80": 15.9,
+     "wis": 1.993
+    },
+    "14": {
+     "cover50": 0.592,
+     "cover80": 0.839,
+     "cover95": 0.976,
+     "width80": 16.5,
+     "wis": 2.183
+    },
+    "30": {
+     "cover50": 0.616,
+     "cover80": 0.894,
+     "cover95": 0.965,
+     "width80": 16.5,
+     "wis": 2.159
+    },
+    "60": {
+     "cover50": 0.737,
+     "cover80": 0.937,
+     "cover95": 0.98,
+     "width80": 18.4,
+     "wis": 2.087
+    },
+    "90": {
+     "cover50": 0.733,
+     "cover80": 0.925,
+     "cover95": 0.976,
+     "width80": 19.0,
+     "wis": 2.163
+    },
+    "120": {
+     "cover50": 0.753,
+     "cover80": 0.929,
+     "cover95": 0.976,
+     "width80": 19.2,
+     "wis": 2.154
+    },
+    "150": {
+     "cover50": 0.776,
+     "cover80": 0.929,
+     "cover95": 0.988,
+     "width80": 20.0,
+     "wis": 2.17
+    },
+    "200": {
+     "cover50": 0.78,
+     "cover80": 0.925,
+     "cover95": 0.984,
+     "width80": 20.2,
+     "wis": 2.202
+    },
+    "250": {
+     "cover50": 0.8,
+     "cover80": 0.941,
+     "cover95": 0.988,
+     "width80": 20.8,
+     "wis": 2.26
+    }
+   },
+   "better_than_the_earlier_sizing_in": 5
+  },
+  "as published: last 5 elections, each state its own, pulled as if by 4": {
+   "wis": 2.109,
+   "wis_by_year": {
+    "2008": 2.509,
+    "2012": 1.931,
+    "2016": 2.681,
+    "2020": 1.848,
+    "2024": 1.576
+   },
+   "cover50": 0.697,
+   "cover80": 0.908,
+   "cover90": 0.964,
+   "cover95": 0.984,
+   "width80": 18.2,
+   "cover80_by_year": {
+    "2008": 0.89,
+    "2012": 0.975,
+    "2016": 0.751,
+    "2020": 0.945,
+    "2024": 0.98
+   },
+   "cover50_by_year": {
+    "2008": 0.635,
+    "2012": 0.804,
+    "2016": 0.488,
+    "2020": 0.676,
+    "2024": 0.882
+   },
+   "last_day": {
+    "cover50": 0.624,
+    "cover80": 0.902,
+    "cover90": 0.961,
+    "cover95": 0.98,
+    "width80": 15.4,
+    "wis": 1.915,
+    "cover80_by_year": {
+     "2008": 0.902,
+     "2012": 0.961,
+     "2016": 0.804,
+     "2020": 0.902,
+     "2024": 0.941
+    },
+    "narrowest_and_widest_state": [
+     12.1,
+     20.2
+    ]
+   },
+   "electoral_votes_inside_80": 0.88,
+   "electoral_votes_width80": 124.9,
+   "by_days": {
+    "1": {
+     "cover50": 0.624,
+     "cover80": 0.902,
+     "cover95": 0.98,
+     "width80": 15.4,
+     "wis": 1.915
+    },
+    "7": {
+     "cover50": 0.624,
+     "cover80": 0.894,
+     "cover95": 0.98,
+     "width80": 16.1,
+     "wis": 1.986
+    },
+    "14": {
+     "cover50": 0.624,
+     "cover80": 0.843,
+     "cover95": 0.976,
+     "width80": 16.7,
+     "wis": 2.169
+    },
+    "30": {
+     "cover50": 0.62,
+     "cover80": 0.882,
+     "cover95": 0.973,
+     "width80": 16.6,
+     "wis": 2.14
+    },
+    "60": {
+     "cover50": 0.741,
+     "cover80": 0.925,
+     "cover95": 0.988,
+     "width80": 18.5,
+     "wis": 2.069
+    },
+    "90": {
+     "cover50": 0.702,
+     "cover80": 0.925,
+     "cover95": 0.984,
+     "width80": 19.1,
+     "wis": 2.142
+    },
+    "120": {
+     "cover50": 0.725,
+     "cover80": 0.918,
+     "cover95": 0.988,
+     "width80": 19.1,
+     "wis": 2.124
+    },
+    "150": {
+     "cover50": 0.761,
+     "cover80": 0.925,
+     "cover95": 0.992,
+     "width80": 19.9,
+     "wis": 2.145
+    },
+    "200": {
+     "cover50": 0.773,
+     "cover80": 0.933,
+     "cover95": 0.984,
+     "width80": 20.1,
+     "wis": 2.173
+    },
+    "250": {
+     "cover50": 0.78,
+     "cover80": 0.933,
+     "cover95": 0.988,
+     "width80": 20.6,
+     "wis": 2.226
+    }
+   },
+   "better_than_the_earlier_sizing_in": 5
+  },
+  "last 5, pulled as if by 2": {
+   "wis": 2.105,
+   "wis_by_year": {
+    "2008": 2.497,
+    "2012": 1.927,
+    "2016": 2.681,
+    "2020": 1.845,
+    "2024": 1.575
+   },
+   "cover50": 0.688,
+   "cover80": 0.905,
+   "cover90": 0.964,
+   "cover95": 0.984,
+   "width80": 18.2,
+   "cover80_by_year": {
+    "2008": 0.888,
+    "2012": 0.976,
+    "2016": 0.737,
+    "2020": 0.945,
+    "2024": 0.98
+   },
+   "cover50_by_year": {
+    "2008": 0.641,
+    "2012": 0.798,
+    "2016": 0.484,
+    "2020": 0.663,
+    "2024": 0.853
+   },
+   "last_day": {
+    "cover50": 0.616,
+    "cover80": 0.894,
+    "cover90": 0.961,
+    "cover95": 0.98,
+    "width80": 15.4,
+    "wis": 1.913,
+    "cover80_by_year": {
+     "2008": 0.902,
+     "2012": 0.961,
+     "2016": 0.765,
+     "2020": 0.902,
+     "2024": 0.941
+    },
+    "narrowest_and_widest_state": [
+     12.0,
+     21.3
+    ]
+   },
+   "electoral_votes_inside_80": 0.88,
+   "electoral_votes_width80": 124.2,
+   "by_days": {
+    "1": {
+     "cover50": 0.616,
+     "cover80": 0.894,
+     "cover95": 0.98,
+     "width80": 15.4,
+     "wis": 1.913
+    },
+    "7": {
+     "cover50": 0.62,
+     "cover80": 0.89,
+     "cover95": 0.98,
+     "width80": 16.2,
+     "wis": 1.985
+    },
+    "14": {
+     "cover50": 0.616,
+     "cover80": 0.843,
+     "cover95": 0.98,
+     "width80": 16.7,
+     "wis": 2.167
+    },
+    "30": {
+     "cover50": 0.612,
+     "cover80": 0.882,
+     "cover95": 0.973,
+     "width80": 16.6,
+     "wis": 2.138
+    },
+    "60": {
+     "cover50": 0.729,
+     "cover80": 0.925,
+     "cover95": 0.984,
+     "width80": 18.5,
+     "wis": 2.066
+    },
+    "90": {
+     "cover50": 0.69,
+     "cover80": 0.922,
+     "cover95": 0.984,
+     "width80": 19.0,
+     "wis": 2.139
+    },
+    "120": {
+     "cover50": 0.718,
+     "cover80": 0.918,
+     "cover95": 0.988,
+     "width80": 19.0,
+     "wis": 2.118
+    },
+    "150": {
+     "cover50": 0.749,
+     "cover80": 0.922,
+     "cover95": 0.992,
+     "width80": 19.8,
+     "wis": 2.14
+    },
+    "200": {
+     "cover50": 0.757,
+     "cover80": 0.929,
+     "cover95": 0.988,
+     "width80": 19.9,
+     "wis": 2.166
+    },
+    "250": {
+     "cover50": 0.773,
+     "cover80": 0.929,
+     "cover95": 0.988,
+     "width80": 20.5,
+     "wis": 2.219
+    }
+   },
+   "better_than_the_earlier_sizing_in": 5
+  },
+  "last 5, pulled as if by 8": {
+   "wis": 2.114,
+   "wis_by_year": {
+    "2008": 2.525,
+    "2012": 1.935,
+    "2016": 2.683,
+    "2020": 1.852,
+    "2024": 1.574
+   },
+   "cover50": 0.698,
+   "cover80": 0.908,
+   "cover90": 0.962,
+   "cover95": 0.981,
+   "width80": 18.2,
+   "cover80_by_year": {
+    "2008": 0.894,
+    "2012": 0.969,
+    "2016": 0.761,
+    "2020": 0.935,
+    "2024": 0.982
+   },
+   "cover50_by_year": {
+    "2008": 0.631,
+    "2012": 0.8,
+    "2016": 0.496,
+    "2020": 0.678,
+    "2024": 0.884
+   },
+   "last_day": {
+    "cover50": 0.62,
+    "cover80": 0.898,
+    "cover90": 0.957,
+    "cover95": 0.98,
+    "width80": 15.3,
+    "wis": 1.918,
+    "cover80_by_year": {
+     "2008": 0.902,
+     "2012": 0.941,
+     "2016": 0.804,
+     "2020": 0.902,
+     "2024": 0.941
+    },
+    "narrowest_and_widest_state": [
+     12.2,
+     19.0
+    ]
+   },
+   "electoral_votes_inside_80": 0.88,
+   "electoral_votes_width80": 125.4,
+   "by_days": {
+    "1": {
+     "cover50": 0.62,
+     "cover80": 0.898,
+     "cover95": 0.98,
+     "width80": 15.3,
+     "wis": 1.918
+    },
+    "7": {
+     "cover50": 0.624,
+     "cover80": 0.894,
+     "cover95": 0.98,
+     "width80": 16.1,
+     "wis": 1.988
+    },
+    "14": {
+     "cover50": 0.616,
+     "cover80": 0.843,
+     "cover95": 0.973,
+     "width80": 16.6,
+     "wis": 2.173
+    },
+    "30": {
+     "cover50": 0.616,
+     "cover80": 0.89,
+     "cover95": 0.969,
+     "width80": 16.6,
+     "wis": 2.143
+    },
+    "60": {
+     "cover50": 0.733,
+     "cover80": 0.933,
+     "cover95": 0.984,
+     "width80": 18.5,
+     "wis": 2.073
+    },
+    "90": {
+     "cover50": 0.714,
+     "cover80": 0.925,
+     "cover95": 0.98,
+     "width80": 19.1,
+     "wis": 2.147
+    },
+    "120": {
+     "cover50": 0.729,
+     "cover80": 0.922,
+     "cover95": 0.98,
+     "width80": 19.2,
+     "wis": 2.132
+    },
+    "150": {
+     "cover50": 0.769,
+     "cover80": 0.918,
+     "cover95": 0.992,
+     "width80": 19.9,
+     "wis": 2.15
+    },
+    "200": {
+     "cover50": 0.769,
+     "cover80": 0.929,
+     "cover95": 0.984,
+     "width80": 20.1,
+     "wis": 2.18
+    },
+    "250": {
+     "cover50": 0.792,
+     "cover80": 0.929,
+     "cover95": 0.984,
+     "width80": 20.7,
+     "wis": 2.235
+    }
+   },
+   "better_than_the_earlier_sizing_in": 5
+  },
+  "last 3 elections, pulled as if by 4": {
+   "wis": 2.104,
+   "wis_by_year": {
+    "2008": 2.517,
+    "2012": 1.915,
+    "2016": 2.698,
+    "2020": 1.862,
+    "2024": 1.529
+   },
+   "cover50": 0.69,
+   "cover80": 0.904,
+   "cover90": 0.958,
+   "cover95": 0.978,
+   "width80": 17.8,
+   "cover80_by_year": {
+    "2008": 0.888,
+    "2012": 0.976,
+    "2016": 0.727,
+    "2020": 0.949,
+    "2024": 0.98
+   },
+   "cover50_by_year": {
+    "2008": 0.62,
+    "2012": 0.8,
+    "2016": 0.471,
+    "2020": 0.688,
+    "2024": 0.871
+   },
+   "last_day": {
+    "cover50": 0.616,
+    "cover80": 0.89,
+    "cover90": 0.953,
+    "cover95": 0.98,
+    "width80": 15.1,
+    "wis": 1.914,
+    "cover80_by_year": {
+     "2008": 0.902,
+     "2012": 0.941,
+     "2016": 0.784,
+     "2020": 0.882,
+     "2024": 0.941
+    },
+    "narrowest_and_widest_state": [
+     11.6,
+     19.2
+    ]
+   },
+   "electoral_votes_inside_80": 0.88,
+   "electoral_votes_width80": 124.3,
+   "by_days": {
+    "1": {
+     "cover50": 0.616,
+     "cover80": 0.89,
+     "cover95": 0.98,
+     "width80": 15.1,
+     "wis": 1.914
+    },
+    "7": {
+     "cover50": 0.612,
+     "cover80": 0.894,
+     "cover95": 0.98,
+     "width80": 15.8,
+     "wis": 1.983
+    },
+    "14": {
+     "cover50": 0.604,
+     "cover80": 0.843,
+     "cover95": 0.969,
+     "width80": 16.3,
+     "wis": 2.17
+    },
+    "30": {
+     "cover50": 0.612,
+     "cover80": 0.875,
+     "cover95": 0.969,
+     "width80": 16.2,
+     "wis": 2.137
+    },
+    "60": {
+     "cover50": 0.729,
+     "cover80": 0.918,
+     "cover95": 0.976,
+     "width80": 18.1,
+     "wis": 2.063
+    },
+    "90": {
+     "cover50": 0.714,
+     "cover80": 0.918,
+     "cover95": 0.98,
+     "width80": 18.6,
+     "wis": 2.137
+    },
+    "120": {
+     "cover50": 0.722,
+     "cover80": 0.918,
+     "cover95": 0.984,
+     "width80": 18.7,
+     "wis": 2.118
+    },
+    "150": {
+     "cover50": 0.749,
+     "cover80": 0.925,
+     "cover95": 0.984,
+     "width80": 19.5,
+     "wis": 2.138
+    },
+    "200": {
+     "cover50": 0.765,
+     "cover80": 0.929,
+     "cover95": 0.98,
+     "width80": 19.6,
+     "wis": 2.167
+    },
+    "250": {
+     "cover50": 0.776,
+     "cover80": 0.933,
+     "cover95": 0.98,
+     "width80": 20.2,
+     "wis": 2.217
+    }
+   },
+   "better_than_the_earlier_sizing_in": 5
+  },
+  "last 7 elections, pulled as if by 4": {
+   "wis": 2.133,
+   "wis_by_year": {
+    "2008": 2.551,
+    "2012": 1.986,
+    "2016": 2.654,
+    "2020": 1.857,
+    "2024": 1.618
+   },
+   "cover50": 0.711,
+   "cover80": 0.91,
+   "cover90": 0.967,
+   "cover95": 0.989,
+   "width80": 18.9,
+   "cover80_by_year": {
+    "2008": 0.894,
+    "2012": 0.971,
+    "2016": 0.761,
+    "2020": 0.943,
+    "2024": 0.982
+   },
+   "cover50_by_year": {
+    "2008": 0.678,
+    "2012": 0.812,
+    "2016": 0.5,
+    "2020": 0.675,
+    "2024": 0.892
+   },
+   "last_day": {
+    "cover50": 0.631,
+    "cover80": 0.898,
+    "cover90": 0.965,
+    "cover95": 0.98,
+    "width80": 15.8,
+    "wis": 1.93,
+    "cover80_by_year": {
+     "2008": 0.902,
+     "2012": 0.941,
+     "2016": 0.804,
+     "2020": 0.902,
+     "2024": 0.941
+    },
+    "narrowest_and_widest_state": [
+     13.5,
+     20.4
+    ]
+   },
+   "electoral_votes_inside_80": 0.88,
+   "electoral_votes_width80": 126.7,
+   "by_days": {
+    "1": {
+     "cover50": 0.631,
+     "cover80": 0.898,
+     "cover95": 0.98,
+     "width80": 15.8,
+     "wis": 1.93
+    },
+    "7": {
+     "cover50": 0.631,
+     "cover80": 0.894,
+     "cover95": 0.988,
+     "width80": 16.6,
+     "wis": 2.001
+    },
+    "14": {
+     "cover50": 0.627,
+     "cover80": 0.843,
+     "cover95": 0.98,
+     "width80": 17.3,
+     "wis": 2.183
+    },
+    "30": {
+     "cover50": 0.62,
+     "cover80": 0.894,
+     "cover95": 0.98,
+     "width80": 17.3,
+     "wis": 2.156
+    },
+    "60": {
+     "cover50": 0.757,
+     "cover80": 0.929,
+     "cover95": 0.988,
+     "width80": 19.3,
+     "wis": 2.096
+    },
+    "90": {
+     "cover50": 0.725,
+     "cover80": 0.933,
+     "cover95": 0.992,
+     "width80": 19.8,
+     "wis": 2.169
+    },
+    "120": {
+     "cover50": 0.765,
+     "cover80": 0.918,
+     "cover95": 0.996,
+     "width80": 19.9,
+     "wis": 2.155
+    },
+    "150": {
+     "cover50": 0.784,
+     "cover80": 0.925,
+     "cover95": 0.996,
+     "width80": 20.7,
+     "wis": 2.176
+    },
+    "200": {
+     "cover50": 0.776,
+     "cover80": 0.933,
+     "cover95": 0.992,
+     "width80": 20.9,
+     "wis": 2.206
+    },
+    "250": {
+     "cover50": 0.796,
+     "cover80": 0.933,
+     "cover95": 0.992,
+     "width80": 21.4,
+     "wis": 2.26
+    }
+   },
+   "better_than_the_earlier_sizing_in": 5
+  },
+  "every election since 1980, each state its own, pulled as if by 4": {
+   "wis": 2.166,
+   "wis_by_year": {
+    "2008": 2.551,
+    "2012": 2.008,
+    "2016": 2.647,
+    "2020": 1.912,
+    "2024": 1.712
+   },
+   "cover50": 0.726,
+   "cover80": 0.919,
+   "cover90": 0.973,
+   "cover95": 0.991,
+   "width80": 19.6,
+   "cover80_by_year": {
+    "2008": 0.894,
+    "2012": 0.973,
+    "2016": 0.796,
+    "2020": 0.949,
+    "2024": 0.982
+   },
+   "cover50_by_year": {
+    "2008": 0.678,
+    "2012": 0.835,
+    "2016": 0.522,
+    "2020": 0.696,
+    "2024": 0.898
+   },
+   "last_day": {
+    "cover50": 0.651,
+    "cover80": 0.91,
+    "cover90": 0.961,
+    "cover95": 0.984,
+    "width80": 16.1,
+    "wis": 1.941,
+    "cover80_by_year": {
+     "2008": 0.902,
+     "2012": 0.961,
+     "2016": 0.824,
+     "2020": 0.922,
+     "2024": 0.941
+    },
+    "narrowest_and_widest_state": [
+     13.5,
+     22.9
+    ]
+   },
+   "electoral_votes_inside_80": 0.88,
+   "electoral_votes_width80": 126.9,
+   "by_days": {
+    "1": {
+     "cover50": 0.651,
+     "cover80": 0.91,
+     "cover95": 0.984,
+     "width80": 16.1,
+     "wis": 1.941
+    },
+    "7": {
+     "cover50": 0.643,
+     "cover80": 0.906,
+     "cover95": 0.988,
+     "width80": 17.0,
+     "wis": 2.015
+    },
+    "14": {
+     "cover50": 0.627,
+     "cover80": 0.863,
+     "cover95": 0.984,
+     "width80": 17.7,
+     "wis": 2.193
+    },
+    "30": {
+     "cover50": 0.647,
+     "cover80": 0.894,
+     "cover95": 0.988,
+     "width80": 18.0,
+     "wis": 2.173
+    },
+    "60": {
+     "cover50": 0.761,
+     "cover80": 0.933,
+     "cover95": 0.992,
+     "width80": 20.0,
+     "wis": 2.133
+    },
+    "90": {
+     "cover50": 0.745,
+     "cover80": 0.937,
+     "cover95": 0.996,
+     "width80": 20.6,
+     "wis": 2.209
+    },
+    "120": {
+     "cover50": 0.776,
+     "cover80": 0.929,
+     "cover95": 0.996,
+     "width80": 20.8,
+     "wis": 2.201
+    },
+    "150": {
+     "cover50": 0.788,
+     "cover80": 0.937,
+     "cover95": 0.996,
+     "width80": 21.6,
+     "wis": 2.227
+    },
+    "200": {
+     "cover50": 0.796,
+     "cover80": 0.933,
+     "cover95": 0.996,
+     "width80": 21.8,
+     "wis": 2.255
+    },
+    "250": {
+     "cover50": 0.824,
+     "cover80": 0.945,
+     "cover95": 0.992,
+     "width80": 22.4,
+     "wis": 2.313
+    }
+   },
+   "better_than_the_earlier_sizing_in": 4
+  }
+ }
+}

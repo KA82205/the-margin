@@ -18,7 +18,8 @@ const url = process.argv[2] || 'file://' + require('path').join(__dirname, '..',
     await p.click('#xp-only [data-only="all"]'); await p.fill('#xp-q', 'nebraska'); r = await rows(); if (r.join() !== ['NE', 'NE1', 'NE2', 'NE3'].sort((a, c) => r.indexOf(a) - r.indexOf(c)).join() || r.length !== 4) fail(tag, 'search for nebraska gave ' + r);
     await p.fill('#xp-q', 'zzz'); if ((await rows()).length !== 0) fail(tag, 'a search that matches nothing still lists places'); await p.fill('#xp-q', '');
     await p.click('#strips [data-r="WY"]'); const sp = await p.textContent('#sp'); if (!/Wyoming/.test(sp) || !/R\+\d/.test(sp)) fail(tag, 'choosing Wyoming did not show its panel');
-    for (const st of ['DC', 'WY', 'NE2']) { const t = await p.$eval('#strips [data-r="' + st + '"]', e => e.innerText); if (!/in 100/.test(t)) fail(tag, st + ' has no chance in the list'); }
+    if (/\bin 100\b|in 1,000|four times in five/i.test(await p.evaluate(() => document.body.innerText))) fail(tag, 'a chance is written as "in 100", or an interval as "four times in five"');
+    for (const st of ['DC', 'WY', 'NE2']) { const t = await p.$eval('#strips [data-r="' + st + '"]', e => e.innerText); if (!/\d%/.test(t)) fail(tag, st + ' has no chance in the list'); }
     if (!(await p.$('#daily svg, #daily p'))) fail(tag, 'no history chart'); if (!/Unchanged|points|First forecast/.test(await p.textContent('#chg'))) fail(tag, 'the updates box says nothing');
     const zeroBars = await p.$$eval('#chg .chg-row', els => els.filter(e => e.querySelector('.v') && e.querySelector('.v').textContent === '0.0' && e.querySelector('.tr i')).length); if (zeroBars) fail(tag, zeroBars + ' bars drawn for a change of 0.0');
     for (const hash of ['#forecast', '#polls', '#states', '#states/NJ', '#states/DC', '#states/NE2', '#model', '#backtests', '#research']) {
@@ -29,7 +30,7 @@ const url = process.argv[2] || 'file://' + require('path').join(__dirname, '..',
     }
     await p.goto(url + '#states/NJ'); await p.waitForTimeout(250);
     const chart = await p.evaluate(() => { const f = document.querySelector('#st-prof .st-charts figure'); return { title: f.querySelector('b').textContent, legend: f.querySelector('.lg').innerText, hits: f.querySelectorAll('[data-hy]').length }; });
-    if (!/New Jersey: historical results and the 2028 forecast/.test(chart.title) || !/The nation that year/.test(chart.legend) || /black/i.test(chart.legend) || chart.hits < 10) fail(tag, 'state chart: ' + JSON.stringify(chart));
+    if (!/New Jersey: historical results and the 2028 forecast/.test(chart.title) || !/Democratic margin\s+Republican margin\s+National margin\s+2028 forecast\s+80% prediction interval/.test(chart.legend) || /black/i.test(chart.legend) || chart.hits < 10) fail(tag, 'state chart: ' + JSON.stringify(chart));
     if (errs.length) fail(tag, errs.join('; '));
     console.log(tag, 'closest:', closest.join(', '), '| battlegrounds', nb, '| leaning', nd, '+', nr); await p.close(); }
   console.log(bad ? 'FAIL: ' + bad : 'OK: the list, the charts and the zero rule hold on every tab'); await b.close(); process.exit(bad ? 1 : 0); })();

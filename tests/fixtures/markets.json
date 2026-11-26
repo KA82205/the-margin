@@ -1,0 +1,245 @@
+{
+"manifold_search": [
+{
+"id": "PhINOuC86C",
+"question": "Which party will win the 2028 U.S. presidential election?",
+"slug": "which-party-will-win-the-2028-us-pr-nhSncsUR0n",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-the-2028-us-pr-nhSncsUR0n",
+"outcomeType": "MULTIPLE_CHOICE",
+"isResolved": false,
+"uniqueBettorCount": 54,
+"volume": 47336.60821187265,
+"totalLiquidity": 100000,
+"lastBetTime": 1795641825162,
+"closeTime": 1857297600000,
+"token": "MANA"
+},
+{
+"id": "IgdAISyOgZ",
+"question": "Which party will win Nebraska's 2nd District (NE-2) in the 2028 presidential election?",
+"slug": "which-party-will-win-nebraskas-2nd",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-nebraskas-2nd",
+"outcomeType": "MULTIPLE_CHOICE",
+"isResolved": false,
+"uniqueBettorCount": 2,
+"volume": 18502.00000000001,
+"totalLiquidity": 10000,
+"lastBetTime": 1793994486262,
+"closeTime": 1857297600000,
+"token": "MANA"
+},
+{
+"id": "gSORnqRdg8",
+"question": "Which party will win the popular vote in Illinois in the 2028 presidential election?",
+"slug": "which-party-will-win-the-popular-vo-ZOzt6LQ9nh",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-the-popular-vo-ZOzt6LQ9nh",
+"outcomeType": "MULTIPLE_CHOICE",
+"isResolved": false,
+"uniqueBettorCount": 2,
+"volume": 1502.000000000008,
+"totalLiquidity": 10000,
+"lastBetTime": 1793994484385,
+"closeTime": 1857297600000,
+"token": "MANA"
+},
+{
+"id": "5PZ6nOAuL6",
+"question": "Which party will win Virginia in the 2028 presidential election?",
+"slug": "which-party-will-win-virginia-in-th",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-virginia-in-th",
+"outcomeType": "MULTIPLE_CHOICE",
+"isResolved": false,
+"uniqueBettorCount": 2,
+"volume": 5252.0000000000055,
+"totalLiquidity": 10000,
+"lastBetTime": 1793994616263,
+"closeTime": 1857297600000,
+"token": "MANA"
+},
+{
+"id": "Oy0uCNNg9I",
+"question": "Which party will win Texas in the 2028 presidential election?",
+"slug": "which-party-will-win-texas-in-the-2",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-texas-in-the-2",
+"outcomeType": "MULTIPLE_CHOICE",
+"isResolved": false,
+"uniqueBettorCount": 20,
+"volume": 6754.406616286289,
+"totalLiquidity": 10000,
+"lastBetTime": 1795408388772,
+"closeTime": 1857297600000,
+"token": "MANA"
+},
+{
+"id": "EdcpOnUqPQ",
+"question": "Which party will win Florida in the 2028 presidential election?",
+"slug": "which-party-will-win-florida-in-the",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-florida-in-the",
+"outcomeType": "MULTIPLE_CHOICE",
+"isResolved": false,
+"uniqueBettorCount": 8,
+"volume": 2190.999999999998,
+"totalLiquidity": 10000,
+"lastBetTime": 1795307927844,
+"closeTime": 1857297600000,
+"token": "MANA"
+},
+{
+"id": "popvoteUS28",
+"question": "Which party will win the national popular vote in the 2028 presidential election?",
+"slug": "which-party-will-win-the-national-popular",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-the-national-popular",
+"outcomeType": "MULTIPLE_CHOICE",
+"isResolved": false,
+"uniqueBettorCount": 32,
+"volume": 47081,
+"totalLiquidity": 10000,
+"lastBetTime": 1795641825162,
+"closeTime": 1857297600000,
+"token": "MANA"
+}
+],
+"manifold_market": {
+"id": "PhINOuC86C",
+"question": "Which party will win the 2028 U.S. presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-the-2028-us-pr-nhSncsUR0n",
+"outcomeType": "MULTIPLE_CHOICE",
+"volume": 47336.60821187265,
+"uniqueBettorCount": 54,
+"totalLiquidity": 100000,
+"lastBetTime": 1795641825162,
+"closeTime": 1857297600000,
+"isResolved": false,
+"textDescription": "Resolves to the party of the person elected President in the November 7, 2028 election, however the winner is officially decided.\n\nOnly the party matters: a ticket on the Democratic or Republican line counts as that party even if also listed on other parties' lines. Any other ticket resolves to Other, or to its own answer if one has been added.\n\nN/A if no presidential election is held for the term starting January 20, 2029.",
+"answers": [
+{
+"text": "Democratic Party",
+"probability": 0.6761354874357975,
+"id": "QtZICO6ZEC"
+},
+{
+"text": "Republican Party",
+"probability": 0.3219976084041059,
+"id": "dsNQtpIIqR"
+},
+{
+"text": "Other",
+"probability": 0.001866904160096657,
+"id": "tIIU2pSZLO"
+}
+]
+},
+"polymarket_event": {
+"slug": "2028-presidential-election-texas-winner",
+"title": "2028 Presidential Election: Texas Winner",
+"closed": false,
+"endDate": "2028-11-08T04:59:00Z",
+"description": "The 2028 Presidential Election is expected to take place on November 7, 2028. \n\nThis market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Texas in the 2028 Presidenti",
+"markets": [
+{
+"question": "Will the Democrats win Texas in the 2028 Presidential Election?",
+"groupItemTitle": "Democratic Party",
+"outcomePrices": "[\"0.415\", \"0.585\"]",
+"volumeNum": 8520.665278999999,
+"liquidityNum": 58190.6435,
+"bestBid": 0.41,
+"bestAsk": 0.42,
+"spread": 0.01,
+"lastTradePrice": 0.37,
+"closed": false,
+"updatedAt": "2026-11-26T00:01:29.580616Z"
+},
+{
+"question": "Will the Republicans win Texas in the 2028 Presidential Election?",
+"groupItemTitle": "Republican Party",
+"outcomePrices": "[\"0.56\", \"0.44\"]",
+"volumeNum": 3205.4307260000005,
+"liquidityNum": 49353.1431,
+"bestBid": 0.53,
+"bestAsk": 0.59,
+"spread": 0.06,
+"lastTradePrice": 0.6,
+"closed": false,
+"updatedAt": "2026-11-26T00:01:29.580616Z"
+},
+{
+"question": "Will Person A win Texas in the 2028 Presidential Election?",
+"groupItemTitle": "Person A",
+"outcomePrices": "[\"0.5\", \"0.5\"]",
+"volumeNum": 0,
+"liquidityNum": 0,
+"bestBid": 0,
+"bestAsk": 1,
+"spread": 1,
+"lastTradePrice": 0,
+"closed": false,
+"updatedAt": "2026-10-27T17:01:34.042473Z"
+},
+{
+"question": "Will Person B win Texas in the 2028 Presidential Election?",
+"groupItemTitle": "Person B",
+"outcomePrices": "[\"0.5\", \"0.5\"]",
+"volumeNum": 0,
+"liquidityNum": 0,
+"bestBid": 0,
+"bestAsk": 1,
+"spread": 1,
+"lastTradePrice": 0,
+"closed": false,
+"updatedAt": "2026-10-27T17:01:34.049798Z"
+}
+]
+},
+"kalshi_event": {
+"event_ticker": "KXPRESPARTY-2028",
+"title": "Presidential election party winner",
+"markets": [
+{
+"ticker": "KXPRESPARTY-2028-D",
+"title": "Which party will win the 2028 presidential election?",
+"yes_sub_title": "Democratic party",
+"status": "active",
+"yes_bid_dollars": "0.6600",
+"yes_ask_dollars": "0.6700",
+"last_price_dollars": "0.6600",
+"volume_fp": "1843201.00",
+"open_interest_fp": "254415.08",
+"updated_time": "2026-11-25T22:10:00Z",
+"close_time": "2029-11-07T15:00:00Z",
+"rules_primary": "If a representative of the Democratic party is inaugurated as President for the term beginning January 20, 2029, then the market resolves to Yes."
+},
+{
+"ticker": "KXPRESPARTY-2028-R",
+"title": "Which party will win the 2028 presidential election?",
+"yes_sub_title": "Republican party",
+"status": "active",
+"yes_bid_dollars": "0.3300",
+"yes_ask_dollars": "0.3400",
+"last_price_dollars": "0.3400",
+"volume_fp": "1622010.00",
+"open_interest_fp": "231870.50",
+"updated_time": "2026-11-25T22:10:00Z",
+"close_time": "2029-11-07T15:00:00Z",
+"rules_primary": "If a representative of the Republican party is inaugurated as President for the term beginning January 20, 2029, then the market resolves to Yes."
+}
+]
+},
+"kalshi_series": [
+{
+"ticker": "KXPRESPARTY",
+"title": "Presidential elections party winner"
+},
+{
+"ticker": "PRESPARTYTX",
+"title": "Texas presidential winner"
+},
+{
+"ticker": "KXFRPRES",
+"title": "French presidential election"
+},
+{
+"ticker": "KXKELLYRUN",
+"title": "Mark Kelly announces presidential run by...?"
+}
+]
+}

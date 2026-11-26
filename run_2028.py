@@ -1,5 +1,5 @@
 """The 2028 forecast as it stands today. Writes data/forecast_2028.json."""
-import hashlib, json, re, sys
+import hashlib, json, os, re, sys
 import numpy as np, pandas as pd
 import model as M, fundamentals as F
 
@@ -185,7 +185,7 @@ def poll_table(nc):
         return names.get(s, s.replace('-', '') if s.replace('-', '') in names.values() else 'US')
     return pd.DataFrame([{'year': 2028, 'state': where(p), 'pollster': p['pollster'], 'end': pd.Timestamp(p['date']), 'n': p.get('n') or 1000, 'pop': 'rv', 'dem2': p['share']} for p in nc['h2h']['polls']])
 
-def official(now, ncp, ncm, sp, res, errs, t, date, with_turnout=True):
+def official(now, ncp, ncm, sp, res, errs, t, date, with_turnout=True, keep=False):
     """The published forecast for one set of inputs. ncp: the Nowcast file the national polls are taken from; ncm: the one
     the models, the state forecasts and approval's June reading are taken from (the same file, except when a change is being
     split between them).
@@ -208,9 +208,28 @@ def official(now, ncp, ncm, sp, res, errs, t, date, with_turnout=True):
     extra = {s['abbr'].replace('-', ''): s['demShare'] for s in ncm['states']}; extra['US'] = float(ncm['summary']['demPopular'])
     allp = pd.concat([polls[polls.state == 'US'], state_poll_table(sp)], ignore_index=True)
     out, info = M.forecast(2028, date, allp, res, M.error_tables(2028, res, errs), (S, drift), market=now['market_dem'], extra_prior=extra, ev=M.ev_table(2024, res), timeline=tl,
-                           pairing_spread=pairing_spread(ncp), prior_poll_load=load, turnout=turnout() if with_turnout else None)
+                           pairing_spread=pairing_spread(ncp), prior_poll_load=load, turnout=turnout() if with_turnout else None, keep=keep)
     return out, info, {'prior': S, 'drift': drift, 'approval_equation': A, 'approval_and_economy': E, 'long_range': D, 'long_range_weight': weight, 'prior_moves_with_polls': load, 'approval_open': open_,
                        'june_approval': june, 'net_approval': net, 'timeline': tl, 'dE': dE, 'dA': dA}
+
+
+def market_block(out, path='data/markets.json'):
+    """Prediction markets beside the forecast: what each provider says, their average by quality for each place, and what the
+    official simulated elections give when they are weighted toward the markets (markets.informed). The official figures
+    are not touched; this block is for comparison and for the record."""
+    import markets as MK
+    if not os.path.exists(path) or not out.get('sims'): return None
+    R = json.load(open(path)); C = R.get('combined') or {}; sims = out['sims']
+    nat = {k: v for k, v in C.items() if k.endswith(':US')}; st = {k: v for k, v in C.items() if not k.endswith(':US')}
+    brief = lambda x: {k: (round(v, 4) if isinstance(v, float) else v) for k, v in x.items() if k not in ('moved', 'states')}
+    ways = {'national and state markets': (C, 0.5), 'national markets only': (nat, 0.5), 'state markets only': (st, 0.5), 'national and state markets, at half strength': (C, 0.25)}
+    got = {name: MK.informed(sims, t, strength=s) for name, (t, s) in ways.items()}; main = got['national and state markets']
+    return {'read': R.get('read'), 'counts': R.get('counts'), 'failed': R.get('failed'),
+            'places': {k.split(':')[1]: {'p': v.get('p'), 'quality': v.get('quality'), 'real_money': v.get('real_money'), 'providers': v.get('providers'), 'thin': v.get('thin')} for k, v in C.items() if k.startswith('winner:')},
+            'popular_vote': C.get('popular:US'), 'election_betting_odds': (C.get('winner:US') or {}).get('election_betting_odds'),
+            'other': [{k: c.get(k) for k in ('provider', 'kind', 'place', 'title', 'url', 'answers', 'traders', 'volume', 'real_money')} for c in R.get('contracts') or [] if c.get('kind') in ('nomination', 'margin', 'electoral_votes')],
+            'informed': dict(brief(main), states=main['states'], moved=main['moved']), 'other_ways': {k: brief(v) for k, v in got.items() if k != 'national and state markets'},
+            'official': {'p_dem': out['p_dem'], 'p_rep': out['p_rep'], 'p_tie': out['p_tie']}}
 
 
 def chance(now, ncp, ncm, sp, date, res, errs, t):
@@ -263,14 +282,15 @@ def main():
     NOW = inputs(); TODAY = NOW['as_of']
     res = pd.read_csv('data/results.csv'); errs = pd.read_csv('data/average_errors.csv'); t = F.table(); nc = nowcast()
     polls = poll_table(nc); sp = state_poll_file(); tables = M.error_tables(2028, res, errs); ev = M.ev_table(2024, res)
-    out, info, meta = official(NOW, nc, nc, sp, res, errs, t, TODAY); tl = meta['timeline']
+    out, info, meta = official(NOW, nc, nc, sp, res, errs, t, TODAY, keep=True); tl = meta['timeline']
+    MARKETS = market_block(out); out.pop('sims', None)
     fd, sd, open_ = meta['prior'], meta['drift'], meta['approval_open']
     # how the range should narrow: the same rule at other distances from the election. The error of the mix of polls and prior
     # comes from the record at each distance; what approval may still move by runs down as June 2028 approaches
     d0 = (pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(TODAY)).days; funnel = []
     for d in [d0, 600, 500, 400, 300, 200, 150, 100, 60, 30, 14, 7, 1]:
         left = approval_open(d, d <= DRIFT_TO) if d < d0 else open_
-        sn = float(np.sqrt(M.at(tl['mix_error'], d) ** 2 + left * ((meta['dE'] + meta['dA']) / (2 + (1.0 if d < 365 else meta['long_range_weight']))) ** 2))
+        sn = float(np.sqrt(M.at(tl['mix_error'], d) ** 2 + left * ((1 - float(M.curve(tl['national'], d))) * (meta['dE'] + meta['dA']) / (2 + (1.0 if d < 365 else meta['long_range_weight']))) ** 2))
         funnel.append({'days': d, 'half': round(2 * 1.2816 * sn, 2), 'poll_share': round(float(info['poll_share']) if d == d0 else float(M.curve(tl['national'], d)), 3)})
     lo = lambda q: np.log(q / (1 - q))
     msens = [{'weight': w, 'p': round(float(1 / (1 + np.exp(-((1 - w) * lo(out['p_model']) + w * lo(NOW['market_dem']))))), 3)} for w in (0, 0.25, 0.5, 0.7, 1.0)]
@@ -301,7 +321,7 @@ def main():
          'nominees_known': nominees(nc) is not None,
          'state_poll_sources': {'found': sp.get('found', {}), 'answered': {k: bool(v.get('answered')) for k, v in sp.get('sources', {}).items()}, 'fetched': sp.get('fetched')},
          'candidate': cand,
-         'funnel': funnel, 'market_sensitivity': msens, 'equation_error': tl['prior_error'],
+         'funnel': funnel, 'markets': MARKETS, 'equation_error': tl['prior_error'],
          'settings': {k: v for k, v in M.SET.items()},
          # what this forecast was made from (update.py records the other sites' versions) and with
          'upstream': NOW.get('upstream'),
@@ -313,13 +333,14 @@ def main():
            'national_polls': round(J['inputs']['national_polls'], 2), 'polls_n': J['inputs']['polls_n'], 'net_approval': NOW['net_approval'],
            'candidate_p_dem': round(cand['p_dem'], 4), 'candidate_national': round(cand['national'], 2),
            'hybrid_p_dem': round(cand['hybrid']['p_dem'], 4), 'hybrid_national': round(cand['hybrid']['national'], 2),
-           'recommended_p_dem': round(cand['recommended']['p_dem'], 4), 'recommended_national': round(cand['recommended']['national'], 2)}
+           'recommended_p_dem': round(cand['recommended']['p_dem'], 4), 'recommended_national': round(cand['recommended']['national'], 2),
+           'markets_p_dem': ((MARKETS or {}).get('places') or {}).get('US', {}).get('p'), 'market_informed_p_dem': round(MARKETS['informed']['p_dem'], 4) if MARKETS else None}
     try:
         h = pd.read_csv(HISTORY); h = h[h.date != TODAY]
     except FileNotFoundError:
         h = pd.DataFrame()
     pd.concat([h, pd.DataFrame([row])]).sort_values('date').to_csv(HISTORY, index=False)
-    quiet = ('ev_dist', 'states', 'settings', 'inputs', 'state_poll_list', 'state_poll_sources', 'candidate', 'funnel', 'market_sensitivity')
+    quiet = ('ev_dist', 'states', 'settings', 'inputs', 'state_poll_list', 'state_poll_sources', 'candidate', 'funnel', 'markets', 'market_sensitivity')
     print({k: (round(v, 3) if isinstance(v, float) else v) for k, v in J.items() if k not in quiet}); print({k: (round(v, 3) if isinstance(v, float) else v) for k, v in J['inputs'].items()})
     print('under review:', {k: (round(v, 3) if isinstance(v, float) else v) for k, v in cand.items() if k not in ('states', 'settings', 'parts', 'hybrid', 'keys_vote', 'recommended')}, {k: round(v, 2) for k, v in cand['parts'].items() if v is not None})
     rc = cand['recommended']; print('recommended:', {k: (round(v, 3) if isinstance(v, float) else v) for k, v in rc.items() if k not in ('states', 'settings', 'parts')}, {k: round(v, 2) for k, v in rc['parts'].items() if v is not None})

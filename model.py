@@ -17,6 +17,9 @@ SET = dict(
     state_model_weight=0.5,    # where a state-level model's forecast of the state is given (2028: the Tipping Point Nowcast), its share of the starting point
     state_model_mode='lean',   # 'share': its forecast of the state as it stands. 'lean': only where it puts the state against its own national figure
     lean=(0.75, 0.25),         # state lean: last election and the one before
+    lean_error='recent',       # how far a state lands from its starting point: 'all' = every election since 1980, one size for every state;
+    lean_window=5,             # 'recent' = the last `lean_window` elections, each state by its own record pulled toward the common
+    lean_shrink=4,             # size as if it had `lean_shrink` more elections at that size (interval_study.py)
     region_share=0.4,          # share of a state's own error that it shares with its region
     t_df=5,                    # fat tails for the national error
     rating_weight=0.0,         # expert ratings: tested at 15% to 100% on 2008-2024 and left out; they did not improve the state forecasts (checks.py)
@@ -45,7 +48,7 @@ SET = dict(
 # The forecast as published until November 25, 2026: the approval equation and the Fifty-Two Keys line averaged, polls weighed
 # by their precision, state polls by their number, half of each state's starting point from the state models as they stand.
 # Kept so that the back-tests can still be run on it (backtest.py previous).
-PREVIOUS = dict(national_prior='fundamentals', poll_weight='precision', state_poll_weight='volume', state_model_mode='share')
+PREVIOUS = dict(national_prior='fundamentals', poll_weight='precision', state_poll_weight='volume', state_model_mode='share', lean_error='all')
 CANDIDATE = dict(national_prior='three_models', poll_weight='timeline', state_poll_weight='horizon', state_model_mode='lean')
 # The hybrid: the candidate with the approval equation kept, as the published forecast keeps it. Its national prior is the
 # Nowcast's approval-and-economy model, the Fifty-Two Keys line and the approval equation, a third each; the long-range
@@ -151,6 +154,18 @@ def error_tables(year, res, errs):
             l = lean(res, y, st)
             if l is not None and len(st) == 2: e.append(r.dem2[(y, st)] - r.nat2[(y, st)] - l)
     out['lean'] = float(np.sqrt(np.mean(np.square(e))))
+    if SET.get('lean_error', 'all') == 'recent':
+        # How far states have landed from their leans, from the last few elections only (states have held their place
+        # better since 2000 than before), and each state by its own record, pulled toward the common size as if every state
+        # had `lean_shrink` further elections at that size: no state's figure rests on its own handful of results alone.
+        years = [y for y in sorted(res.year.unique()) if 1980 <= y < year][-SET['lean_window']:]; own = {}
+        for y in years:
+            for st in res[res.year == y].state:
+                l = lean(res, y, st)
+                if l is not None and len(st) == 2: own.setdefault(st, []).append(r.dem2[(y, st)] - r.nat2[(y, st)] - l)
+        common = float(np.sqrt(np.mean(np.square([x for v in own.values() for x in v])))); k = SET['lean_shrink']
+        out['lean'] = common
+        out['lean_by_state'] = {st: float(np.sqrt((np.sum(np.square(v)) + k * common ** 2) / (len(v) + k))) for st, v in own.items()} if k is not None else {}
     return out
 
 def at(table, d):
@@ -213,7 +228,7 @@ def lean(res, year, st):
     return a * l1 + b * l2
 
 # ------------------------------------------------------------------ the forecast for one day
-def forecast(year, asof, polls, res, tables, fund, ratings=None, market=None, extra_prior=None, ev=None, timeline=None, pairing_spread=None, prior_poll_load=0.0, turnout=None):
+def forecast(year, asof, polls, res, tables, fund, ratings=None, market=None, extra_prior=None, ev=None, timeline=None, pairing_spread=None, prior_poll_load=0.0, turnout=None, keep=False):
     """fund = (Democratic share the national prior expects, its error). ratings = {state: implied share}. market = Democratic chance.
     extra_prior = {state: a state-level model's forecast of it, 'US': that model's national figure}.
     timeline = timeline.curves(year), needed by the 'timeline' and 'horizon' settings. pairing_spread = how far the polled
@@ -237,7 +252,9 @@ def forecast(year, asof, polls, res, tables, fund, ratings=None, market=None, ex
         # the error is the one the mix itself has made on the record, with whatever the prior may still drift by (fund[1]
         # carries only that drift here)
         base = at(timeline['mix_error'], d_out) if (pn is not None or g > 0) else timeline['prior_error']
-        s_nat = float(np.sqrt(base ** 2 + over ** 2 + sf ** 2))
+        # The drift is in the prior, and the prior is only part of the national number: it counts by the prior's share. (The
+        # polls' share already carries its own drift, inside the record's error for a mix at this distance.)
+        s_nat = float(np.sqrt(base ** 2 + over ** 2 + ((1 - w) * sf) ** 2))
     else:
         sp = at(tables['nat'], d_out); record = total = None
         if pn is None: w, nat, s_nat = 0.0, fund[0], sf
@@ -260,10 +277,10 @@ def forecast(year, asof, polls, res, tables, fund, ratings=None, market=None, ex
         est = v * ps + (1 - v) * prior if ps is not None else prior
         if ratings and st in ratings and ratings[st] is not None:
             est = (1 - SET['rating_weight']) * est + SET['rating_weight'] * ratings[st]
-        sd = float(np.sqrt(v ** 2 * tau ** 2 + (1 - v) ** 2 * tables['lean'] ** 2))
+        sd = float(np.sqrt(v ** 2 * tau ** 2 + (1 - v) ** 2 * (tables.get('lean_by_state') or {}).get(st, tables['lean']) ** 2))
         rows.append({'state': st, 'ev': ev0, 'mean': est, 'sd': sd, 'poll': ps, 'poll_weight': ws, 'poll_share': v, 'prior': prior})
     S = pd.DataFrame(rows)
-    return simulate(S, nat, s_nat, year, market, ev, turnout), {'national_polls': pn, 'poll_share': w, 'fundamentals': fund[0],
+    return simulate(S, nat, s_nat, year, market, ev, turnout, keep), {'national_polls': pn, 'poll_share': w, 'fundamentals': fund[0],
                                                        'poll_share_record': w if record is None else record, 'poll_share_total': w if total is None else total}
 
 def ev_table(year, res):
@@ -280,11 +297,17 @@ def bound(x):
     return np.where(x < 10, 10 * np.exp((np.minimum(x, 10) - 10) / 10), x)
 
 
-def simulate(S, nat, s_nat, year, market=None, ev=None, turnout=None):
+# For interval_study.py only: the national and the state error sizes multiplied by these. Both are 1 in every forecast.
+STUDY = {'national': 1.0, 'state': 1.0}
+Q = [2.5, 5, 25, 50, 75, 95, 97.5]                     # further points of each place's simulated results, kept beside the 10th and 90th
+QN = ['q025', 'q05', 'q25', 'q50', 'q75', 'q95', 'q975']
+
+def simulate(S, nat, s_nat, year, market=None, ev=None, turnout=None, keep=False):
     """turnout: {state: two-party votes cast last time}. With it the national vote of each simulated election is also added
     up from that election's own state results, each state counting by its votes (the districts are inside their states and
     are not counted again)."""
     rng = np.random.default_rng(SET['seed'] + year); n = SET['sims']; R = regions()
+    s_nat = s_nat * STUDY['national']; S = S.assign(sd=S.sd * STUDY['state']) if STUDY['state'] != 1.0 else S
     df = SET['t_df']; eN = rng.standard_t(df, n) * s_nat / np.sqrt(df / (df - 2))
     regs = sorted(set(R[s] for s in S.state)); eR = {g: rng.standard_normal(n) for g in regs}
     rs, ids = np.sqrt(SET['region_share']), np.sqrt(1 - SET['region_share'])
@@ -306,6 +329,7 @@ def simulate(S, nat, s_nat, year, market=None, ev=None, turnout=None):
     # the range given for each place is read off the simulated results themselves: the 10th and 90th of every hundred
     lo, hi = np.percentile(sh, [10, 90], axis=1)
     S = S.assign(p_dem=(sh > 50).mean(1), ev=evs, tip=np.bincount(tipped, minlength=len(S)) / max(1, len(tipped)), lo=lo, hi=hi)
+    S = S.assign(**dict(zip(QN, np.percentile(sh, Q, axis=1))))
     # paths: among the closest places, how often each side wins the election when it carries one, and the commonest sets of
     # them behind each side's wins. Counted from the simulated elections themselves, never by multiplying chances.
     pd_ = (sh > 50).mean(1); close = [i for i in np.argsort(np.abs(pd_ - 0.5)) if 0.1 < pd_[i] < 0.9 and evs[i] >= 3][:10]
@@ -334,6 +358,9 @@ def simulate(S, nat, s_nat, year, market=None, ev=None, turnout=None):
            # counted from the same simulated elections: an even split of the electoral votes (half of it goes to each side in
            # p_model), and the two ways the national vote and the Electoral College can disagree
            'p_tie': float((dem_ev == total / 2).mean()), 'p_vote_not_college': float(((natv > 50) & rwin).mean()), 'p_college_not_vote': float(((natv < 50) & dwin).mean())}
+    if keep:                                              # the simulated elections themselves, for markets.informed(): read, never changed
+        out['sims'] = {'states': [str(s) for s in S.state], 'dem': sh > 50, 'ev': dem_ev, 'total': float(total), 'vote': nv if turnout else natv}
+    out['quantiles'] = {'national': dict(zip([str(q) for q in Q + [10, 90]], [float(v) for v in np.percentile(natv, Q + [10, 90])])), 'ev': dict(zip([str(q) for q in Q + [10, 90]], [float(v) for v in np.percentile(dem_ev, Q + [10, 90])]))}
     if market is not None and SET['market_weight'] > 0:
         lo = lambda q: np.log(np.clip(q, 1e-4, 1 - 1e-4) / (1 - np.clip(q, 1e-4, 1 - 1e-4)))
         z = (1 - SET['market_weight']) * lo(p) + SET['market_weight'] * lo(market); out['p_dem'] = float(1 / (1 + np.exp(-z)))
