@@ -367,6 +367,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 </div>
 <div class="col" id="market-method"><h2>Prediction markets, and the experimental run</h2><p id="mm-p"></p></div>
 <figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="mm-t"></table></div><figcaption id="mm-cap"></figcaption></figure>
+<figure class="mid"><b>Markets and the forecast on 2024, the one election with a record of state markets</b><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="ms-t"></table></div><figcaption id="ms-cap"></figcaption></figure>
 <div class="col"><h2>Why these weights?</h2><p>Every weight was written down before the back-test was scored, with a reason, and then each one was changed to see whether it mattered. Mostly it did not: across every alternative tried, the typical state miss on the last day stayed between <span id="w-lo"></span> and <span id="w-hi"></span> points.</p>
   <div id="qa"></div>
   <details class="qa plain"><summary>Every setting, changed one at a time</summary><div><p class="try" id="p-set"></p><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="set"></table></div></div></details>
@@ -399,6 +400,8 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 </figure>
 <figure class="wide" style="max-width:1000px"><b>Forecast against result, on the last day</b><div class="sub">National vote and electoral votes</div><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="bt"></table></div>
   <figcaption>The electoral-vote forecast is the middle simulation; the range is the 80% prediction interval. Margins are in points of the two-party vote.</figcaption></figure>
+<div class="col" id="intervals"><h2>Do the prediction intervals hold what they say?</h2><p id="iv-p"></p></div>
+<figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="iv-t"></table></div><figcaption id="iv-cap"></figcaption></figure>
 <div class="col"><h2>Are the chances honest?</h2><p>If the model says a party has a 70% chance in a state, it should win about 70% of the time. Here every state forecast from the last day of the five elections is grouped by the chance it gave the favorite.</p></div>
 <figure class="col">
   <div id="cal"></div>
@@ -579,7 +582,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     $('mk-intro').innerHTML = 'Markets where people stake money, or play money, on who will win. They are read at every check from ' + (provs.length ? provs.join(', ') : 'the providers') + ' and Election Betting Odds, and kept in a <a href="markets/latest.json">public record</a>. ' +
       '<b>They are not part of the official forecast.</b> Today they price ' + priced + ' of the 56 states and districts as well as the national race. A market\'s figure is a price, not a count of simulated elections, and thin markets can sit far from where money would put them.';
     const rows = [['The Margin, official forecast', pc(F.p_dem), 'The share of simulated elections the Democrats win. Republicans ' + pc(F.p_rep)]];
-    (us.providers || []).forEach(p => rows.push([p.url ? '<a href="' + esc(p.url) + '" rel="noopener">' + esc(p.provider) + '</a>' : esc(p.provider), pc(p.p), depth(p) + (p.spread != null ? ', ' + Math.round(100 * p.spread) + ' cents between bid and ask' : '')]));
+    (us.providers || []).forEach(p => rows.push([p.url ? '<a href="' + esc(p.url) + '" rel="noopener">' + esc(p.provider) + '</a>' : esc(p.provider), pc(p.p), depth(p) + (p.spread != null ? ', ' + Math.max(1, Math.round(100 * p.spread)) + (Math.round(100 * p.spread) <= 1 ? ' cent' : ' cents') + ' between bid and ask' : '')]));
     if (K.election_betting_odds != null && !(us.providers || []).some(p => p.provider === 'Election Betting Odds')) rows.push(['<a href="https://electionbettingodds.com/" rel="noopener">Election Betting Odds</a>', pc(K.election_betting_odds), 'An average of several exchanges, so not counted again beside them']);
     if (us.p != null && (us.providers || []).length > 1) rows.push(['Markets together, by quality', pc(us.p), 'Each provider\'s best market, weighted by how much is staked, how recently it traded and how tight its prices are']);
     if (K.popular_vote && K.popular_vote.p != null) rows.push(['Markets, the national popular vote', pc(K.popular_vote.p), 'Against ' + pc(F.p_popular) + ' in the official forecast']);
@@ -598,6 +601,24 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     Object.keys(K.other_ways || {}).forEach(k => { t += way('Market-informed, ' + k, K.other_ways[k], K.other_ways[k].events + ' prices'); });
     $('mm-t').innerHTML = t + '</tbody>';
     $('mm-cap').textContent = 'Experimental and not validated: there is no record of such markets long enough to test this on. The rows are kept with every forecast so that they can be scored against the result in 2028.';
+  })();
+
+  // ---- prediction intervals: coverage by distance, and the markets on 2024
+  (function () {
+    const V = DATA.intervals; if (V) {
+      const days = Object.keys(V.days).map(Number).sort((a, b) => b - a), p0 = x => Math.round(100 * x) + '%';
+      $('iv-p').innerHTML = 'A state\'s 80% prediction interval should hold the result in 80% of cases, its 50% interval in half. For 2008 to 2024 the intervals held more than that: on the last day, ' + p0(V.days[1].cover80) + ' of state results fell inside the 80% interval. They are wider than five elections needed, and they stay that way on purpose. Fifty states in one election share that election\'s national miss, so five elections are five tests, not 250, and in the worst of the five (2016) the 80% intervals held ' + p0(Math.min.apply(null, Object.values(V.last_day_by_year))) + '. Narrowing them to fit these five would have left 2016 well outside. ' +
+        'One change was made, on evidence that does not rest on coverage: each state\'s error is now sized from its own record in the last five elections. Tested forward, that scored better in all ' + V.better_in + ' elections and made the average interval ' + Math.round(100 * (1 - V.now.width80 / V.before.width80)) + '% narrower.';
+      $('iv-t').innerHTML = '<thead><tr><th>Days before the election</th><th class="n">50% interval held</th><th class="n">80% held</th><th class="n">90% held</th><th class="n">95% held</th><th class="n">Width of the 80% interval</th><th class="n">Missed on the Republican side</th><th class="n">On the Democratic side</th></tr></thead><tbody>' +
+        days.map(d => { const v = V.days[d]; return '<tr><td>' + (d === 1 ? 'Last day' : d) + '</td><td class="n">' + p0(v.cover50) + '</td><td class="n">' + p0(v.cover80) + '</td><td class="n">' + p0(v.cover90) + '</td><td class="n">' + p0(v.cover95) + '</td><td class="n">' + v.width80.toFixed(1) + '</td><td class="n">' + p0(v.more_republican_than_80) + '</td><td class="n">' + p0(v.more_democratic_than_80) + '</td></tr>'; }).join('') + '</tbody>';
+      $('iv-cap').textContent = 'States, 2008 to 2024, as the method stands. Widths are in points of margin. A result outside the 80% interval was more Republican than the interval far more often than more Democratic: the polls missed that way in 2016, 2020 and 2024. The national vote fell inside its 80% interval every time (' + p0(V.national.cover80) + '), and the electoral votes in ' + p0(V.ev.cover80) + ' of cases. Early distances are flattered: the back-test runs the structural models on final figures.';
+    }
+    const S = DATA.market_study; if (S && $('ms-t')) {
+      const names = Object.keys(S.ways);
+      $('ms-t').innerHTML = '<thead><tr><th></th><th class="n">Log loss</th><th class="n">Brier score</th><th class="n">States called, of ' + S.states + '</th><th class="n">Chance given to the winner</th><th class="n">Better than the forecast at</th></tr></thead><tbody>' +
+        names.map(n => { const v = S.ways[n]; return '<tr><td>' + esc(n.charAt(0).toUpperCase() + n.slice(1)) + '</td><td class="n">' + v.log_loss.toFixed(3) + '</td><td class="n">' + v.brier.toFixed(3) + '</td><td class="n">' + v.called.toFixed(1) + '</td><td class="n">' + (v.winner_of_the_electoral_college == null ? '' : Math.round(100 * v.winner_of_the_electoral_college) + '%') + '</td><td class="n">' + (n === 'the forecast alone' ? '' : v.better_log_loss_than_the_forecast_at + ' of ' + v.of + ' distances') + '</td></tr>'; }).join('') + '</tbody>';
+      $('ms-cap').textContent = 'Averages over ' + S.days.length + ' distances from ' + Math.max.apply(null, S.days) + ' days to the last day, for the states Polymarket priced. Lower log loss and Brier score are better. One election: the states in it shared one national miss, so this is not ' + S.states + ' tests, and the forecast\'s early figures are flattered by final data. Nothing here sets a weight.';
+    }
   })();
 
   // ---- narrowing
@@ -641,7 +662,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     const tried = (k, fmt) => S.filter(s => s.setting === k).map(s => fmt(s.value) + ': ' + s['1'].called + ' of ' + s['1'].of + ' called, typical state miss ' + s['1'].state_miss.toFixed(2)).join('. ');
     const ours = 'As used: ' + base.called + ' of ' + base.of + ' states and districts called on the last day, typical state miss ' + base.state_miss.toFixed(2) + ' points. ';
     const QA = [
-      ['Why are prediction markets not in the forecast?', 'Because their worth beside this forecast has not been shown. Market prices lean on the same polls and models this forecast reads, so a weight on them counts that evidence twice unless they add something of their own. Whether they do can only be tested on a record, and the record is thin: state markets with real money exist for one past election, 2024, and almost nothing exists two years out. On 2024 the markets and this forecast were about as good as each other (the Research tab has the figures). One election cannot settle it.',
+      ['Why are prediction markets not in the forecast?', 'Because their worth beside this forecast has not been shown. Market prices lean on the same polls and models this forecast reads, so a weight on them counts that evidence twice unless they add something of their own. Whether they do can only be tested on a record, and the record is thin: state markets with real money exist for one past election, 2024, and almost nothing exists two years out. On 2024 this forecast scored a little better than the markets on the whole, the markets better in the last two weeks, and every way of mixing them in fell between (the table above). One election cannot settle it.',
         'So the markets are read, kept and shown. Every check finds each provider\'s open markets on 2028, weighs them by how much is staked and how recently they traded, and adds the prices to a public record that began on November 25, 2026. An experimental run then weights the official simulated elections toward the markets, and it is shown beside the official forecast, never in its place. By November 2028 there will be a record to judge the question on.'],
       ['How much do polls count against the structural models?', 'By the record of what a national polling average has been worth at each distance from an election, set against a forecast with no polls in it (after Erikson and Wlezien). On the elections since 1976 that is about 3% two years out, 11% at 250 days, 24% at 120 days and 61% on the last day. Until both nominees are known the polls are of pairings that may never happen, and count for less again.',
         'Beyond 250 days there is no long record, only the early polls of three elections, so the curve there is carried on by its own shape and should be read as rough. Today the polls are ' + pc(I.poll_share) + ' of the national number.'],

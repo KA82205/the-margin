@@ -191,7 +191,16 @@ def kalshi(read=get, cache=None, today=None):
     cache = cache if cache is not None else {}; today = today or str(datetime.date.today()); base = 'https://api.elections.kalshi.com/trade-api/v2/'
     if cache.get('series_day') != today or not cache.get('series'):
         series = []
-        for s in read(base + 'series?category=Elections', timeout=60).get('series') or []:
+        listed = []
+        for cat in ('Elections', 'Politics'):               # the national market and the state markets are filed under different headings
+            try: listed += read(base + 'series?category=' + cat, timeout=60).get('series') or []
+            except Exception:                               # noqa: BLE001
+                if cat == 'Elections': raise
+        listed.append({'ticker': 'KXPRESPARTY', 'title': 'Presidential election party winner'})      # the national market, asked for by name in case neither list carries it
+        seen = set()
+        for s in listed:
+            if s.get('ticker') in seen: continue
+            seen.add(s.get('ticker'))
             title = s.get('title') or ''; t = title.lower()
             if re.search(r'president|electoral college|popular vote', t) and not re.search(r'run\b|announce|debate|primary|nominee|nomination|prior office|french|brazil|colombia|chile|portugal|korea|turk|poland|ireland|kenya|peru|mongolia|tanzania|bosnia|bulgaria', t):
                 series.append([s.get('ticker'), title])

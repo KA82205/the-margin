@@ -173,11 +173,11 @@
  },
  "national_from_states": {
   "mean": 51.93889811703761,
-  "lo": 48.00776423078646,
+  "lo": 48.00776423078645,
   "hi": 55.86165467793297,
   "p_popular": 0.75195,
-  "of_means": 51.955426495961014,
-  "gap": -0.02799564614287675,
+  "of_means": 51.95542649596101,
+  "gap": -0.027995646142883857,
   "p_vote_not_college": 0.0749,
   "p_college_not_vote": 0.01755
  },
@@ -186,7 +186,7 @@
  "p_vote_not_college": 0.0749,
  "p_college_not_vote": 0.01755,
  "national": 51.98342214210389,
- "national_sd": 3.3265315316867543,
+ "national_sd": 3.326531531686758,
  "ev_mean": 300.90135,
  "ev_median": 299.0,
  "ev_lo": 222.0,
@@ -738,7 +738,7 @@
   "polls_n": 28,
   "poll_share": 0.025969524072292645,
   "fundamentals": 52.06782046709789,
-  "fundamentals_sd": 2.2379568998592845,
+  "fundamentals_sd": 2.2379568998592916,
   "approval_model": 52.06764610990314,
   "approval_and_economy": 52.06799482429265,
   "long_range": 49.84646304548628,
@@ -1994,7 +1994,7 @@
   "p_model": 0.7122,
   "p_popular": 0.772225,
   "national": 52.32416448184535,
-  "national_sd": 3.6712860804578273,
+  "national_sd": 3.6712860804578265,
   "ev_median": 304.0,
   "ev_lo": 222.0,
   "ev_hi": 405.0,
@@ -2337,7 +2337,7 @@
     "p_college_not_vote": 0.015275
    },
    "national": 52.210527092191064,
-   "national_sd": 3.5496061422027907,
+   "national_sd": 3.549606142202793,
    "national_lo": 48.13136424882807,
    "national_hi": 56.26569778336653,
    "ev_median": 303.0,
@@ -2345,7 +2345,7 @@
    "ev_hi": 399.0,
    "tipping_point": "PA",
    "prior": 52.30098047153294,
-   "drift": 2.5739514759039346,
+   "drift": 2.5739514759039395,
    "long_range_weight": 0.0,
    "parts": {
     "approval_and_economy": 52.06799482429265,
@@ -2709,16 +2709,16 @@
    "p_popular": 0.75195,
    "national_from_states": {
     "mean": 51.93889811703761,
-    "lo": 48.00776423078646,
+    "lo": 48.00776423078645,
     "hi": 55.86165467793297,
     "p_popular": 0.75195,
-    "of_means": 51.955426495961014,
-    "gap": -0.02799564614287675,
+    "of_means": 51.95542649596101,
+    "gap": -0.027995646142883857,
     "p_vote_not_college": 0.0749,
     "p_college_not_vote": 0.01755
    },
    "national": 51.98342214210389,
-   "national_sd": 3.3265315316867543,
+   "national_sd": 3.326531531686758,
    "national_lo": 48.160613842332594,
    "national_hi": 55.78374607387279,
    "ev_median": 299.0,
@@ -2726,7 +2726,7 @@
    "ev_hi": 389.0,
    "tipping_point": "PA",
    "prior": 52.06782046709789,
-   "drift": 2.2379568998592845,
+   "drift": 2.2379568998592916,
    "long_range_weight": 0.0,
    "parts": {
     "approval_and_economy": 52.06799482429265,
@@ -5924,7 +5924,7 @@
    "p_tie": 0.005625
   }
  },
- "equation_error": 2.5311906632519694,
+ "equation_error": 2.5311906632519685,
  "settings": {
   "half_life": [
    7,

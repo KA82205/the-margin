@@ -31,7 +31,7 @@ SIMS = 12000
 def capture(settings=None):
     """Every forecast of the back-test, as the inputs of its simulation: (year, days) -> (states, national, its error, electoral votes)."""
     kept = {}; real = M.simulate
-    def spy(S, nat, s_nat, year, market=None, ev=None, turnout=None):
+    def spy(S, nat, s_nat, year, market=None, ev=None, turnout=None, keep=False):
         kept['last'] = (S.copy(), nat, s_nat, year, ev); return real(S, nat, s_nat, year, market, ev, turnout)
     M.simulate = spy; keep = dict(M.SET); M.SET['sims'] = 2000; M.SET.update(settings or {}); out = {}
     try:

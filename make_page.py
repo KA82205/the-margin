@@ -64,6 +64,15 @@ def main():
     for fam, file in (('Newsreader', 'newsreader-latin-wght-normal.woff2'), ('Instrument Sans', 'instrument-sans-latin-wght-normal.woff2')):
         fonts += "@font-face{font-family:'%s';font-weight:200 900;font-display:swap;src:url(data:font/woff2;base64,%s) format('woff2')}\n" % (fam, base64.b64encode(open('fonts/' + file, 'rb').read()).decode())
     t = open('template.html').read()
+    if os.path.exists('data/interval_study.json'):        # how the prediction intervals have held up, and the markets on 2024
+        iv = json.load(open('data/interval_study.json')); pub = next(v for k, v in iv['variants'].items() if k.startswith('as published')); was = next(v for k, v in iv['variants'].items() if k.startswith('until'))
+        data['intervals'] = {'days': {d: {k: v[k] for k in ('cover50', 'cover80', 'cover90', 'cover95', 'width80', 'more_republican_than_80', 'more_democratic_than_80')} for d, v in iv['states_by_days'].items()},
+                             'last_day_by_year': {y: v['cover80'] for y, v in iv['states_by_year_last_day'].items()}, 'national': iv['US']['all'], 'ev': iv['EV']['all'],
+                             'now': {k: pub[k] for k in ('wis', 'cover80', 'width80')}, 'before': {k: was[k] for k in ('wis', 'cover80', 'width80')}, 'better_in': pub['better_than_the_earlier_sizing_in'],
+                             'two_years_out': {k: v for k, v in iv['two_years_out'].items() if k != 'by_election'}}
+    if os.path.exists('data/market_study.json'):
+        ms = json.load(open('data/market_study.json')); data['market_study'] = {'ways': ms['mean_over_days'], 'days': ms['days_scored'], 'states': ms['by_days'][str(ms['days_scored'][-1])]['states'] if str(ms['days_scored'][-1]) in ms['by_days'] else ms['by_days'][ms['days_scored'][-1]]['states']}
+    if os.path.exists('data/method_change.json'): data['method_change'] = json.load(open('data/method_change.json'))
     t = t.replace('{{TITLE}}', TITLE).replace('/*FONTS*/', fonts).replace('/*SHAPES*/', shapes).replace('/*DATA*/', 'const DATA = ' + json.dumps(data, separators=(',', ':')) + ';')
     assert not re.search(r'\{\{|/\*(FONTS|SHAPES|DATA)\*/', t)
     open('docs/index.html', 'w').write(t); print('docs/index.html', len(t), 'bytes')

@@ -9,12 +9,13 @@ the normal course needs anyone to run a script.
 |---|---|---|---|
 | Tipping Point | `Update data and deploy site` | approval polls, national polls, the economy (FRED), state approval | the schedule (minute 17 of each hour), a `heartbeat`, a push, a run started by hand |
 | Fifty-Two Keys | `Update` | approval polls and polls naming a third candidate on every run; the economy (FRED), the forecasters' survey and, in the January after an election, the list of members of Congress, when a release could be out and on the day's first run | the schedule (minute 7), a `heartbeat`, a run started by hand |
-| The Margin | `Forecast` | the Tipping Point Nowcast (its models, national polls, approval) and state polls. The Fifty-Two Keys count and betting odds are read for display only | the schedule (minute 37), a notification from either of the other two, a `heartbeat`, an outside clock, a run started by hand |
+| The Margin | `Forecast` | the Tipping Point Nowcast (its models, national polls, approval) and state polls. Prediction markets and the Fifty-Two Keys count are read for comparison only | the schedule (minute 37), a notification from either of the other two, a `heartbeat`, an outside clock, a run started by hand |
 
 Each run reads its sources, compares them with what the last result was made from, and stops there if nothing differs. Only
 a run that found something new recalculates, saves, archives and deploys. The first run of each day always goes through.
-For The Margin, "new" means something its forecast reads: a new Fifty-Two Keys count or new betting odds appears on the next
-forecast and does not start one, and if either cannot be read the page says so and the run does not fail.
+For The Margin, "new" means something its forecast reads: a new Fifty-Two Keys count does not start one; a move in prediction
+markets refreshes the comparison and the price record without a new official forecast; and if either cannot be read the
+run does not fail.
 
 The order is one-way: Tipping Point and Fifty-Two Keys never read The Margin, and The Margin never notifies anyone. Two kinds
 of message go to The Margin: `upstream-updated`, when one of the other two has published something new, and `heartbeat`,
@@ -27,9 +28,9 @@ check is overdue (none for three hours), and the last twelve runs with what star
 was last read from each source and when.
 
 **GitHub decides when a scheduled run starts.** A schedule is a request, not a promise. Before November 25, 2026 Tipping
-Point asked for runs at 06:17 and 11:17 UTC and GitHub started them seven to ten hours late, every day. In the first five
-hours after the hourly schedules went in, none of the three repositories had a scheduled run start. Whether hourly runs
-then arrive late but regularly, or are dropped, is what ops.html shows.
+Point asked for runs at 06:17 and 11:17 UTC and GitHub started them seven to ten hours late, every day. After the hourly
+schedules went in on November 25, 2026, the first scheduled run started eight hours later. How late and how regular
+they are is what ops.html shows; the outside clock below is for the hours they miss.
 
 ### An outside clock, if GitHub's schedule is not dependable
 
@@ -125,36 +126,35 @@ A failed run means "somebody should look", not "the site is down". The page alwa
 | Not read for N days | A source has not answered | Usually passes. If it lasts, check whether the source moved |
 | A newer survey should be out and has not been read | The forecasters' survey was not reached, or its table changed shape | Find the line starting `The outlook:` in the log. If the table changed, `outlook.py` needs to learn the new layout; until then the older outlook is used and labelled with its date |
 | Stale input (The Margin) | The Nowcast has not been read for a day, or the state polls for two | Check that Tipping Point's page is up; the last copy is used meanwhile |
+| Prediction markets: a provider was not read | One of Polymarket, Kalshi or Manifold did not answer | Nothing: the others are used, the last reading stays, and the forecast does not depend on any of them |
 | The repository changed while this run was working | Two runs overlapped. The later one's result was dropped | Nothing: the next run starts from the new state |
 
 To run any site again by hand: its repository, Actions, the workflow, Run workflow. Ticking `check` makes the run behave as
 the hourly one does (stop if nothing is new); leaving it unticked runs everything.
 
-## What is still done by hand, and when
+## What is done by hand
 
-| What | When | Where |
+Nothing, in the ordinary course. No figure, name, address or odds is typed in on any of the three sites.
+
+What is left to a person is the exception, and each one announces itself:
+
+| What | How you will know | What to do |
 |---|---|---|
-| The nominee's share of pledged delegates (key E04) | Once, when the primaries end in June 2028 | `fifty-two-keys/data/outlook.json`, the `settled` block, with its source |
-| The New Hampshire primary line (keys E05 to E07) | Once, when both parties have a candidate with a majority of pledged delegates | `fifty-two-keys/data/nh_primaries.csv`, from the Secretary of State's certified results (two spreadsheets a party: the summary by counties, and the write-ins) |
-| Who the nominees are | Once, when both are known | Tipping Point's candidate file; The Margin reads it from the Nowcast |
-| State approval from Civiqs (Tipping Point) | When a new copy is taken. Civiqs turns automatic reads away | `python pipeline/civiqs.py "saved page.html"`, as that file says |
-| A forecast published by the authors of Tipping Point's models | If and when one appears | `python pipeline/put_in.py`, as Tipping Point's readme says |
-| A real economic move too large for the checks, in a series with no second source | If it happens: the run fails once a day and names the series | start the workflow by hand with the series in the `trust` box, after looking at it |
-| The size of the approval allowance, if you change it | Your decision; STATUS.md, section 4 | `the-margin/data/inputs.json`, `approval_drift`, and a line in `data/methods.json` |
+| The two sources for a nomination key (E04 to E07) disagree, or one cannot be read | The Fifty-Two Keys page shows the key as held with the reason; from 2028 the run fails once a day while it lasts | Usually nothing: the next run looks again. If it does not clear, put the figure in by hand with its source (`data/outlook.json` for E04, `data/nh_primaries.csv` for New Hampshire); the entry is compared with the sources |
+| A large, real move in industrial production or housing starts | The Fifty-Two Keys run fails once a day and names the series | Look at it at its source, then start the workflow by hand with the series in the `trust` box. Every other series is confirmed against its publisher automatically |
+| The authors of Tipping Point's models publish a 2028 forecast | Tipping Point's run carries a warning naming the article; `docs/watch.json` lists it | `python pipeline/put_in.py`, as Tipping Point's readme says |
+| Civiqs state approval grows old | Tipping Point's page shows the date of the figures | Nothing is required. To refresh: `python pipeline/civiqs.py "saved page.html"` |
+| A token lapses | GitHub e-mails you; the scheduling service e-mails when its jobs fail | Make a new one as above |
 
-If one of the 2028 entries is missed, the key is held (never counted as no), the run fails once a day to say so, and if it
-is still missing when the count closes the key stays open: the count is given as a lowest and a highest, and a winner is
-called only if both agree. No group of keys is re-weighted and the line at one half does not move.
-
-Nothing else is typed. Read by rule: the economic series, approval polls, the forecasters' outlook, seats in Congress, polls
-naming a third candidate, and the June 2028 approval reading. Counted from the record or the published figures: the odds
-for the nomination and third-candidate keys, the parts of the outlook no survey gives, and the share of runs with a
-recession.
+The "Source samples" workflow in `the-margin` and the "Nomination sources check" workflow in `fifty-two-keys` are started by
+hand and change nothing: the first fetches a sample from each outside source onto a side branch, the second prints what the
+nomination reader makes of the live pages for 2016, 2020, 2024 and 2028. Use them if a source seems to have changed shape.
 
 ## The method is frozen
 
-The published forecast is `model.SET` in `the-margin/model.py`: the version approved on November 25, 2026, with no weight for
-Fifty-Two Keys or betting markets. It is not changed before the election except to fix a fault. `PREVIOUS`, `CANDIDATE`,
+The published forecast is `model.SET` in `the-margin/model.py` with the approval allowance in `data/inputs.json`
+(`approval_drift`, 15): the version approved on November 25 and 26, 2026, with no weight for Fifty-Two Keys or prediction
+markets. It is not changed before the election except to fix a fault. `PREVIOUS`, `CANDIDATE`,
 `HYBRID` and `STRUCTURAL` beside it are run on every forecast and written to the data file and the archive, never to the
 page, so that they can be scored beside the official one afterwards.
 
@@ -169,6 +169,7 @@ authors' published methods and are not adjusted.
 ## Checking that everything still works
 
     the-margin        python -m pytest tests && node tests/test_page.js && node tests/browser_hover.js && node tests/browser_page.js
+                      (the studies: python interval_study.py, market_study.py, method_change.py, keys_study.py, state_trend_study.py)
     fifty-two-keys    python -m pytest tests
     tipping-point     python pipeline/tests/test_runs.py
 

@@ -1,0 +1,624 @@
+{
+ "year": 2024,
+ "by_days": {
+  "250": {
+   "states_with_a_polymarket_price": 0,
+   "note": "too few states were priced this far out"
+  },
+  "200": {
+   "states": 48,
+   "polymarket_national_democratic": 0.575,
+   "forecast_national_democratic": 0.232,
+   "ways": {
+    "the forecast alone": {
+     "brier": 0.0194,
+     "log_loss": 0.0879,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.768
+    },
+    "Polymarket alone": {
+     "brier": 0.043,
+     "log_loss": 0.1757,
+     "called": 44,
+     "winner_of_the_electoral_college": 0.425
+    },
+    "Manifold alone": {
+     "brier": 0.0501,
+     "log_loss": 0.1672,
+     "called": 42,
+     "winner_of_the_electoral_college": null
+    },
+    "half and half with Polymarket, state by state": {
+     "brier": 0.0259,
+     "log_loss": 0.11,
+     "called": 48,
+     "winner_of_the_electoral_college": null
+    },
+    "weighted elections: national price only": {
+     "brier": 0.0247,
+     "log_loss": 0.1015,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.62,
+     "elections_effectively_kept": 0.896
+    },
+    "weighted elections: state prices only": {
+     "brier": 0.0257,
+     "log_loss": 0.1059,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.638,
+     "elections_effectively_kept": 0.779
+    },
+    "weighted elections: national and state prices": {
+     "brier": 0.0259,
+     "log_loss": 0.1063,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.613,
+     "elections_effectively_kept": 0.768
+    },
+    "weighted elections: both, at half strength": {
+     "brier": 0.0216,
+     "log_loss": 0.0948,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.693,
+     "elections_effectively_kept": 0.943
+    }
+   }
+  },
+  "150": {
+   "states": 48,
+   "polymarket_national_democratic": 0.445,
+   "forecast_national_democratic": 0.224,
+   "ways": {
+    "the forecast alone": {
+     "brier": 0.0192,
+     "log_loss": 0.0874,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.776
+    },
+    "Polymarket alone": {
+     "brier": 0.0341,
+     "log_loss": 0.1515,
+     "called": 45,
+     "winner_of_the_electoral_college": 0.555
+    },
+    "Manifold alone": {
+     "brier": 0.0448,
+     "log_loss": 0.1638,
+     "called": 47,
+     "winner_of_the_electoral_college": null
+    },
+    "half and half with Polymarket, state by state": {
+     "brier": 0.0237,
+     "log_loss": 0.1045,
+     "called": 48,
+     "winner_of_the_electoral_college": null
+    },
+    "weighted elections: national price only": {
+     "brier": 0.022,
+     "log_loss": 0.0954,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.681,
+     "elections_effectively_kept": 0.954
+    },
+    "weighted elections: state prices only": {
+     "brier": 0.0234,
+     "log_loss": 0.1008,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.684,
+     "elections_effectively_kept": 0.848
+    },
+    "weighted elections: national and state prices": {
+     "brier": 0.0235,
+     "log_loss": 0.1009,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.673,
+     "elections_effectively_kept": 0.845
+    },
+    "weighted elections: both, at half strength": {
+     "brier": 0.0209,
+     "log_loss": 0.0928,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.725,
+     "elections_effectively_kept": 0.965
+    }
+   }
+  },
+  "120": {
+   "states": 48,
+   "polymarket_national_democratic": 0.375,
+   "forecast_national_democratic": 0.176,
+   "ways": {
+    "the forecast alone": {
+     "brier": 0.0191,
+     "log_loss": 0.085,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.824
+    },
+    "Polymarket alone": {
+     "brier": 0.0274,
+     "log_loss": 0.1316,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.625
+    },
+    "Manifold alone": {
+     "brier": 0.0402,
+     "log_loss": 0.1581,
+     "called": 47,
+     "winner_of_the_electoral_college": null
+    },
+    "half and half with Polymarket, state by state": {
+     "brier": 0.0216,
+     "log_loss": 0.0986,
+     "called": 48,
+     "winner_of_the_electoral_college": null
+    },
+    "weighted elections: national price only": {
+     "brier": 0.0205,
+     "log_loss": 0.0905,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.742,
+     "elections_effectively_kept": 0.959
+    },
+    "weighted elections: state prices only": {
+     "brier": 0.0214,
+     "log_loss": 0.0953,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.756,
+     "elections_effectively_kept": 0.9
+    },
+    "weighted elections: national and state prices": {
+     "brier": 0.0215,
+     "log_loss": 0.0955,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.738,
+     "elections_effectively_kept": 0.893
+    },
+    "weighted elections: both, at half strength": {
+     "brier": 0.02,
+     "log_loss": 0.0894,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.782,
+     "elections_effectively_kept": 0.978
+    }
+   }
+  },
+  "90": {
+   "states": 48,
+   "polymarket_national_democratic": 0.485,
+   "forecast_national_democratic": 0.341,
+   "ways": {
+    "the forecast alone": {
+     "brier": 0.0251,
+     "log_loss": 0.1007,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.659
+    },
+    "Polymarket alone": {
+     "brier": 0.0361,
+     "log_loss": 0.1401,
+     "called": 45,
+     "winner_of_the_electoral_college": 0.515
+    },
+    "Manifold alone": {
+     "brier": 0.0618,
+     "log_loss": 0.2244,
+     "called": 44,
+     "winner_of_the_electoral_college": null
+    },
+    "half and half with Polymarket, state by state": {
+     "brier": 0.0295,
+     "log_loss": 0.1132,
+     "called": 47,
+     "winner_of_the_electoral_college": null
+    },
+    "weighted elections: national price only": {
+     "brier": 0.0283,
+     "log_loss": 0.1074,
+     "called": 47,
+     "winner_of_the_electoral_college": 0.589,
+     "elections_effectively_kept": 0.982
+    },
+    "weighted elections: state prices only": {
+     "brier": 0.0294,
+     "log_loss": 0.1104,
+     "called": 47,
+     "winner_of_the_electoral_college": 0.596,
+     "elections_effectively_kept": 0.915
+    },
+    "weighted elections: national and state prices": {
+     "brier": 0.0294,
+     "log_loss": 0.1105,
+     "called": 47,
+     "winner_of_the_electoral_college": 0.585,
+     "elections_effectively_kept": 0.913
+    },
+    "weighted elections: both, at half strength": {
+     "brier": 0.0271,
+     "log_loss": 0.1049,
+     "called": 47,
+     "winner_of_the_electoral_college": 0.62,
+     "elections_effectively_kept": 0.978
+    }
+   }
+  },
+  "60": {
+   "states": 48,
+   "polymarket_national_democratic": 0.472,
+   "forecast_national_democratic": 0.463,
+   "ways": {
+    "the forecast alone": {
+     "brier": 0.0337,
+     "log_loss": 0.1158,
+     "called": 45,
+     "winner_of_the_electoral_college": 0.537
+    },
+    "Polymarket alone": {
+     "brier": 0.0344,
+     "log_loss": 0.128,
+     "called": 46,
+     "winner_of_the_electoral_college": 0.528
+    },
+    "Manifold alone": {
+     "brier": 0.0579,
+     "log_loss": 0.204,
+     "called": 43,
+     "winner_of_the_electoral_college": null
+    },
+    "half and half with Polymarket, state by state": {
+     "brier": 0.0336,
+     "log_loss": 0.1184,
+     "called": 46,
+     "winner_of_the_electoral_college": null
+    },
+    "weighted elections: national price only": {
+     "brier": 0.034,
+     "log_loss": 0.1164,
+     "called": 45,
+     "winner_of_the_electoral_college": 0.526,
+     "elections_effectively_kept": 1.0
+    },
+    "weighted elections: state prices only": {
+     "brier": 0.0337,
+     "log_loss": 0.1167,
+     "called": 46,
+     "winner_of_the_electoral_college": 0.523,
+     "elections_effectively_kept": 0.933
+    },
+    "weighted elections: national and state prices": {
+     "brier": 0.0337,
+     "log_loss": 0.1167,
+     "called": 46,
+     "winner_of_the_electoral_college": 0.525,
+     "elections_effectively_kept": 0.933
+    },
+    "weighted elections: both, at half strength": {
+     "brier": 0.0336,
+     "log_loss": 0.1159,
+     "called": 46,
+     "winner_of_the_electoral_college": 0.527,
+     "elections_effectively_kept": 0.983
+    }
+   }
+  },
+  "30": {
+   "states": 48,
+   "polymarket_national_democratic": 0.499,
+   "forecast_national_democratic": 0.468,
+   "ways": {
+    "the forecast alone": {
+     "brier": 0.0329,
+     "log_loss": 0.1112,
+     "called": 44,
+     "winner_of_the_electoral_college": 0.532
+    },
+    "Polymarket alone": {
+     "brier": 0.0331,
+     "log_loss": 0.121,
+     "called": 45,
+     "winner_of_the_electoral_college": 0.501
+    },
+    "Manifold alone": {
+     "brier": 0.0544,
+     "log_loss": 0.1855,
+     "called": 43,
+     "winner_of_the_electoral_college": null
+    },
+    "half and half with Polymarket, state by state": {
+     "brier": 0.0327,
+     "log_loss": 0.1133,
+     "called": 45,
+     "winner_of_the_electoral_college": null
+    },
+    "weighted elections: national price only": {
+     "brier": 0.0338,
+     "log_loss": 0.113,
+     "called": 44,
+     "winner_of_the_electoral_college": 0.512,
+     "elections_effectively_kept": 0.999
+    },
+    "weighted elections: state prices only": {
+     "brier": 0.0328,
+     "log_loss": 0.1118,
+     "called": 45,
+     "winner_of_the_electoral_college": 0.521,
+     "elections_effectively_kept": 0.948
+    },
+    "weighted elections: national and state prices": {
+     "brier": 0.0328,
+     "log_loss": 0.1119,
+     "called": 45,
+     "winner_of_the_electoral_college": 0.513,
+     "elections_effectively_kept": 0.948
+    },
+    "weighted elections: both, at half strength": {
+     "brier": 0.0328,
+     "log_loss": 0.1113,
+     "called": 44,
+     "winner_of_the_electoral_college": 0.519,
+     "elections_effectively_kept": 0.988
+    }
+   }
+  },
+  "14": {
+   "states": 48,
+   "polymarket_national_democratic": 0.351,
+   "forecast_national_democratic": 0.429,
+   "ways": {
+    "the forecast alone": {
+     "brier": 0.0288,
+     "log_loss": 0.103,
+     "called": 47,
+     "winner_of_the_electoral_college": 0.571
+    },
+    "Polymarket alone": {
+     "brier": 0.0234,
+     "log_loss": 0.098,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.649
+    },
+    "Manifold alone": {
+     "brier": 0.0497,
+     "log_loss": 0.171,
+     "called": 44,
+     "winner_of_the_electoral_college": null
+    },
+    "half and half with Polymarket, state by state": {
+     "brier": 0.0255,
+     "log_loss": 0.098,
+     "called": 48,
+     "winner_of_the_electoral_college": null
+    },
+    "weighted elections: national price only": {
+     "brier": 0.027,
+     "log_loss": 0.0991,
+     "called": 47,
+     "winner_of_the_electoral_college": 0.6,
+     "elections_effectively_kept": 0.994
+    },
+    "weighted elections: state prices only": {
+     "brier": 0.0257,
+     "log_loss": 0.097,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.593,
+     "elections_effectively_kept": 0.913
+    },
+    "weighted elections: national and state prices": {
+     "brier": 0.0257,
+     "log_loss": 0.0969,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.601,
+     "elections_effectively_kept": 0.911
+    },
+    "weighted elections: both, at half strength": {
+     "brier": 0.0271,
+     "log_loss": 0.0996,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.583,
+     "elections_effectively_kept": 0.977
+    }
+   }
+  },
+  "7": {
+   "states": 48,
+   "polymarket_national_democratic": 0.342,
+   "forecast_national_democratic": 0.441,
+   "ways": {
+    "the forecast alone": {
+     "brier": 0.03,
+     "log_loss": 0.1044,
+     "called": 46,
+     "winner_of_the_electoral_college": 0.559
+    },
+    "Polymarket alone": {
+     "brier": 0.0208,
+     "log_loss": 0.0923,
+     "called": 48,
+     "winner_of_the_electoral_college": 0.658
+    },
+    "Manifold alone": {
+     "brier": 0.0427,
+     "log_loss": 0.1577,
+     "called": 44,
+     "winner_of_the_electoral_college": null
+    },
+    "half and half with Polymarket, state by state": {
+     "brier": 0.0248,
+     "log_loss": 0.096,
+     "called": 47,
+     "winner_of_the_electoral_college": null
+    },
+    "weighted elections: national price only": {
+     "brier": 0.0276,
+     "log_loss": 0.0993,
+     "called": 47,
+     "winner_of_the_electoral_college": 0.598,
+     "elections_effectively_kept": 0.991
+    },
+    "weighted elections: state prices only": {
+     "brier": 0.025,
+     "log_loss": 0.095,
+     "called": 47,
+     "winner_of_the_electoral_college": 0.609,
+     "elections_effectively_kept": 0.957
+    },
+    "weighted elections: national and state prices": {
+     "brier": 0.025,
+     "log_loss": 0.095,
+     "called": 47,
+     "winner_of_the_electoral_college": 0.604,
+     "elections_effectively_kept": 0.957
+    },
+    "weighted elections: both, at half strength": {
+     "brier": 0.0274,
+     "log_loss": 0.0994,
+     "called": 47,
+     "winner_of_the_electoral_college": 0.578,
+     "elections_effectively_kept": 0.99
+    }
+   }
+  },
+  "1": {
+   "states": 48,
+   "polymarket_national_democratic": 0.436,
+   "forecast_national_democratic": 0.48,
+   "ways": {
+    "the forecast alone": {
+     "brier": 0.0336,
+     "log_loss": 0.1096,
+     "called": 45,
+     "winner_of_the_electoral_college": 0.52
+    },
+    "Polymarket alone": {
+     "brier": 0.0321,
+     "log_loss": 0.1175,
+     "called": 46,
+     "winner_of_the_electoral_college": 0.564
+    },
+    "Manifold alone": {
+     "brier": 0.0485,
+     "log_loss": 0.1699,
+     "called": 45,
+     "winner_of_the_electoral_college": null
+    },
+    "half and half with Polymarket, state by state": {
+     "brier": 0.0323,
+     "log_loss": 0.1101,
+     "called": 46,
+     "winner_of_the_electoral_college": null
+    },
+    "weighted elections: national price only": {
+     "brier": 0.0325,
+     "log_loss": 0.1073,
+     "called": 46,
+     "winner_of_the_electoral_college": 0.533,
+     "elections_effectively_kept": 0.998
+    },
+    "weighted elections: state prices only": {
+     "brier": 0.0323,
+     "log_loss": 0.1084,
+     "called": 46,
+     "winner_of_the_electoral_college": 0.524,
+     "elections_effectively_kept": 0.917
+    },
+    "weighted elections: national and state prices": {
+     "brier": 0.0323,
+     "log_loss": 0.1083,
+     "called": 46,
+     "winner_of_the_electoral_college": 0.532,
+     "elections_effectively_kept": 0.916
+    },
+    "weighted elections: both, at half strength": {
+     "brier": 0.0329,
+     "log_loss": 0.1086,
+     "called": 46,
+     "winner_of_the_electoral_college": 0.522,
+     "elections_effectively_kept": 0.98
+    }
+   }
+  }
+ },
+ "what": "chances for 2024 only; one election",
+ "mean_over_days": {
+  "the forecast alone": {
+   "brier": 0.0269,
+   "log_loss": 0.1006,
+   "called": 46.5556,
+   "winner_of_the_electoral_college": 0.638,
+   "better_log_loss_than_the_forecast_at": 0,
+   "of": 9
+  },
+  "Polymarket alone": {
+   "brier": 0.0316,
+   "log_loss": 0.1284,
+   "called": 46.1111,
+   "winner_of_the_electoral_college": 0.558,
+   "better_log_loss_than_the_forecast_at": 2,
+   "of": 9
+  },
+  "Manifold alone": {
+   "brier": 0.05,
+   "log_loss": 0.178,
+   "called": 44.3333,
+   "winner_of_the_electoral_college": null,
+   "better_log_loss_than_the_forecast_at": 0,
+   "of": 9
+  },
+  "half and half with Polymarket, state by state": {
+   "brier": 0.0277,
+   "log_loss": 0.1069,
+   "called": 47.0,
+   "winner_of_the_electoral_college": null,
+   "better_log_loss_than_the_forecast_at": 2,
+   "of": 9
+  },
+  "weighted elections: national price only": {
+   "brier": 0.0278,
+   "log_loss": 0.1033,
+   "called": 46.6667,
+   "winner_of_the_electoral_college": 0.6,
+   "better_log_loss_than_the_forecast_at": 3,
+   "of": 9
+  },
+  "weighted elections: state prices only": {
+   "brier": 0.0277,
+   "log_loss": 0.1046,
+   "called": 47.0,
+   "winner_of_the_electoral_college": 0.605,
+   "better_log_loss_than_the_forecast_at": 3,
+   "of": 9
+  },
+  "weighted elections: national and state prices": {
+   "brier": 0.0278,
+   "log_loss": 0.1047,
+   "called": 47.0,
+   "winner_of_the_electoral_college": 0.598,
+   "better_log_loss_than_the_forecast_at": 3,
+   "of": 9
+  },
+  "weighted elections: both, at half strength": {
+   "brier": 0.027,
+   "log_loss": 0.1019,
+   "called": 46.8889,
+   "winner_of_the_electoral_college": 0.617,
+   "better_log_loss_than_the_forecast_at": 3,
+   "of": 9
+  }
+ },
+ "days_scored": [
+  200,
+  150,
+  120,
+  90,
+  60,
+  30,
+  14,
+  7,
+  1
+ ],
+ "cannot_be_checked": [
+  "any election before 2024 at the level of the states: no free record of the prices was found",
+  "any distance beyond about 250 days: the 2024 state markets opened in the spring of that year",
+  "the quality rule (volume, traders, freshness, spread): the record gives only each market's final volume, not what it was on each day",
+  "whether 2024 was typical: it is one election, and in it the forecast and the markets missed in the same direction"
+ ]
+}

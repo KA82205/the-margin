@@ -7,7 +7,7 @@
  "forecast": {
   "as_of": "2026-11-25",
   "file": "api/forecast.json",
-  "hash": "83dedad2b5facef7",
+  "hash": "82d02bd2bbfa17a0",
   "last_kept": "2026-11-26T0040Z.json",
   "kept": 5
  },
@@ -53,8 +53,8 @@
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-26T02:43Z",
- "commit": "600287a1fedd",
+ "made": "2026-11-26T02:53Z",
+ "commit": null,
  "markets_read": "2026-11-26T02:42Z",
  "markets": {
   "counts": {

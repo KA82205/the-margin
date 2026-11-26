@@ -18,7 +18,7 @@ table{border-collapse:collapse;width:100%;font-size:14px;line-height:20px}th,td{
 <p class="fine" id="note"></p>
 <div id="fresh"></div>
 <div id="out"></div>
-<p class="fine">GitHub allows a visitor about sixty of these readings an hour. If the tables are empty, wait and reload.</p>
+<p class="fine">GitHub allows a visitor about sixty readings an hour and this page makes about twelve. If the tables are empty, wait and reload.</p>
 </main>
 <script>
 (function () {
@@ -34,25 +34,34 @@ table{border-collapse:collapse;width:100%;font-size:14px;line-height:20px}th,td{
   const card = (v, label, cls) => '<div><strong class="' + (cls || '') + '">' + v + '</strong><span>' + label + '</span></div>';
   SITES.forEach(([repo, name, saved]) => {
     const box = document.createElement('section'); box.innerHTML = '<h2>' + name + '</h2><p class="fine">Reading…</p>'; document.getElementById('out').appendChild(box);
-    Promise.all([get('https://api.github.com/repos/KA82205/' + repo + '/actions/workflows/update.yml/runs?per_page=100'), get('https://api.github.com/repos/KA82205/' + repo + '/commits?per_page=30')]).then(([j, commits]) => {
+    const pages = get('https://api.github.com/repos/KA82205/' + repo + '/deployments?environment=github-pages&per_page=1').then(d => d.length ? get(d[0].statuses_url + '?per_page=1').then(st => ({ at: (st[0] || d[0]).created_at, state: (st[0] || {}).state || 'started' })) : null).catch(() => null);
+    Promise.all([get('https://api.github.com/repos/KA82205/' + repo + '/actions/workflows/update.yml/runs?per_page=100'), get('https://api.github.com/repos/KA82205/' + repo + '/commits?per_page=30'), pages]).then(([j, commits, dep]) => {
       const runs = j.workflow_runs || [], day = 864e5, now = Date.now(), last = f => runs.find(f), done = r => r.status === 'completed';
-      const ok = last(r => r.conclusion === 'success'), sched = last(r => r.event === 'schedule'), clock = last(r => kind(r) === 'outside clock'), beat = last(r => kind(r) === 'heartbeat from a sister site');
+      const ok = last(r => r.conclusion === 'success'), sched = last(r => r.event === 'schedule'), clock = last(r => kind(r) === 'outside clock'), beat = last(r => kind(r) === 'heartbeat from a sister site'), told = last(r => kind(r) === 'told by a sister site');
       const upd = commits.find(c => saved.test(c.commit.message)), failed = runs.filter(r => now - new Date(r.created_at) < 7 * day && r.conclusion === 'failure');
       const in24 = runs.filter(r => r.event === 'schedule' && now - new Date(r.created_at) < day).length, clock24 = runs.filter(r => kind(r) === 'outside clock' && now - new Date(r.created_at) < day).length;
       const overdue = hours(ok && ok.updated_at) > 3;
       box.innerHTML = '<h2>' + name + (overdue ? ' <span class="bad">· overdue</span>' : '') + '</h2><div class="cards">' +
         card(ok ? ago(ok.updated_at) : 'never', 'last check of its sources that finished without a fault' + (ok ? ' (' + kind(ok) + ')' : ''), overdue ? 'bad' : 'good') +
-        card(upd ? ago(upd.commit.committer.date) : 'not among the last 30 commits', 'last time a check found something new and saved it' + (upd ? ': ' + esc(upd.commit.message.split('\n')[0].replace(/^[A-Za-z ]+\d{4}-\d\d-\d\d \d\d:\d\d:? ?/, '') || 'a new day') : '')) +
+        card(upd ? ago(upd.commit.committer.date) : 'not among the last 30 commits', 'last time a check found something new and saved it (for The Margin this can be the market comparison alone; its last official forecast is in the box above)' + (upd ? ': ' + esc(upd.commit.message.split('\n')[0].replace(/^[A-Za-z ]+\d{4}-\d\d-\d\d \d\d:\d\d:? ?/, '') || 'a new day') : '')) +
         card(sched ? ago(sched.created_at) : 'not yet', "last run GitHub's own schedule started · " + in24 + ' in the last 24 hours', in24 ? 'good' : 'bad') +
-        card(clock ? ago(clock.created_at) : 'not set up', 'last run started by the outside clock · ' + clock24 + ' in the last 24 hours' + (beat ? ' · last heartbeat from a sister site ' + ago(beat.created_at) : ''), clock ? 'good' : '') + '</div>' +
+        card(clock ? ago(clock.created_at) : 'not set up', 'last run started by the outside clock · ' + clock24 + ' in the last 24 hours' + (beat ? ' · last heartbeat from a sister site ' + ago(beat.created_at) : ''), clock ? 'good' : '') +
+        card(dep ? ago(dep.at) : 'unknown', 'last time the public site was deployed' + (dep ? ' (' + esc(dep.state) + ')' : ''), dep && dep.state === 'success' ? 'good' : dep ? 'bad' : '') +
+        (repo === 'the-margin' ? card(told ? ago(told.created_at) : 'none among the last 100 runs', 'last time a sister site told it something new was out') : '') + '</div>' +
         (failed.length ? '<p class="bad">' + failed.length + ' run' + (failed.length > 1 ? 's' : '') + ' ended as failed in the last 7 days: ' + failed.slice(0, 5).map(r => '<a href="' + esc(r.html_url) + '" rel="noopener">' + when(r.created_at) + '</a>').join(', ') + '. A failed run means a figure was held back or a source was out of reach; the site keeps its last good figures.</p>' : '<p class="fine">No run ended as failed in the last 7 days.</p>') +
         '<div class="scroll"><table><tr><th>Started</th><th>Started by</th><th>Ended</th><th>Record</th></tr>' + runs.slice(0, 10).map(r => '<tr><td>' + when(r.created_at) + '</td><td>' + kind(r) + '</td><td class="' + (r.conclusion === 'failure' ? 'bad' : '') + '">' + esc(r.conclusion || r.status) + '</td><td><a href="' + esc(r.html_url) + '" rel="noopener">open</a></td></tr>').join('') + '</table></div>' +
         '<p class="fine" style="margin-top:8px"><a href="https://github.com/KA82205/' + repo + '/actions" rel="noopener">The whole record</a></p>';
     }).catch(e => { box.innerHTML = '<h2>' + name + '</h2><p class="fine">Could not be read just now (' + esc(e.message) + ').</p>'; });
   });
   // how fresh the sources are, as The Margin last read them
-  fetch('api/manifest.json', {cache: 'no-store'}).then(r => r.json()).then(m => { const u = m.upstream || {}, tp = u.tipping_point || {}, k = u.fifty_two_keys || {};
-    document.getElementById('fresh').innerHTML = '<h2>What The Margin last read</h2><div class="cards">' + card(esc(m.forecast.as_of), 'the day of the forecast on the page') + card(esc(String(tp.as_of || '').slice(0, 10) || 'unknown'), "Tipping Point's Nowcast: the day it was made" + (tp.frozen ? ' (fixed on purpose)' : '')) +
-      card(esc(k.date || 'unknown'), 'Fifty-Two Keys feed, shown for comparison only') + card(esc(m.made || ''), 'when this record was written (UTC)') + '</div>'; }).catch(() => {});
+  Promise.all([fetch('api/manifest.json', {cache: 'no-store'}).then(r => r.json()), fetch('archive/index.json', {cache: 'no-store'}).then(r => r.json()).catch(() => [])]).then(([m, ix]) => {
+    const u = m.upstream || {}, tp = u.tipping_point || {}, k = u.fifty_two_keys || {}, list = Array.isArray(ix) ? ix : (ix.forecasts || []), kept = list[list.length - 1], mk = m.markets || {};
+    const down = Object.keys(mk.failed || {}), n = Object.values(mk.counts || {}).reduce((a, b) => a + b, 0);
+    document.getElementById('fresh').innerHTML = '<h2>What The Margin last read, and what it last made</h2><div class="cards">' +
+      card(kept ? ago(kept.made) : 'unknown', 'last official forecast that differed from the one before and was kept' + (kept ? ': ' + esc((kept.why || []).join(', ')) : ''), 'good') +
+      card(esc(m.forecast.as_of), 'the day of the forecast on the page') +
+      card(esc(String(tp.as_of || '').slice(0, 10) || 'unknown'), "Tipping Point's Nowcast: the day it was made" + (tp.frozen ? ' (fixed on purpose)' : '')) +
+      card(m.markets_read ? ago(m.markets_read.replace('Z', ':00Z')) : 'not yet', 'last reading of the prediction markets, for comparison only: ' + n + ' markets' + (down.length ? '; not read: ' + esc(down.join(', ')) : ''), down.length ? 'bad' : '') +
+      card(esc(k.date || 'unknown'), 'Fifty-Two Keys feed, a sister site; not used in the forecast') + card(esc(m.made || ''), 'when this record was written (UTC)') + '</div>'; }).catch(() => {});
 })();
 </script></body></html>
