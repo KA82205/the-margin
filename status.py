@@ -292,7 +292,7 @@ official forecast is made only for what the forecast reads; a move in prediction
 | A run started by GitHub's own schedule | The Margin, November 26, 01:56. The first since the hourly schedules went in eight hours earlier: the schedule works, late |
 | Tipping Point and Fifty-Two Keys notify The Margin; it runs within a minute | 19:01, 21:48, 22:29, 23:06 |
 | A check asked for the way the outside clock will ask | all three sites, 23:12 to 23:40: each found nothing new and saved nothing |
-| Prediction markets read at three providers, kept, and shown | November 26, 02:42: Polymarket 51, Kalshi 61, Manifold 61 markets; all 56 places priced |
+| Prediction markets read at three providers, kept, and shown | November 26, 03:18: Polymarket 51, Kalshi 62 and Manifold 61 markets; all 56 states and districts priced; the national race at all three |
 | The nomination reader on the live pages of 2016, 2020 and 2024 | November 26, 02:45: the locked table's answers for all three; 2028: "not yet" for all four keys |
 | Second sources answering | Bureau of Labor Statistics, University of Michigan, Energy Information Administration, share prices: the same figures as FRED. Department of Labor: within its tolerance after a fix. The Federal Reserve Board's table did not match FRED's industrial production and is not used |
 | The official method published and kept | `docs/archive/`, with the settings of each forecast |

@@ -99,16 +99,17 @@ Odds, an average of the same exchanges, is shown on its own line and not counted
 25 points apart on one question are not averaged. Prices go into `docs/markets/` whenever they move; the record began on
 November 26, 2026 (UTC). A move in the markets alone refreshes the comparison and does not make a new official forecast.
 
-Read 2026-11-26T02:42Z: Polymarket 51, Kalshi 61, Manifold 61 markets; 56 of the 56 states and districts priced.
+Read 2026-11-26T03:18Z: Polymarket 51, Kalshi 62, Manifold 61 markets; 56 of the 56 states and districts priced.
 
-| Democrats win, 2026-11-26T02:42Z |  |  |
+| Democrats win, 2026-11-26T03:18Z |  |  |
 |---|---|---|
 | Official forecast | 69.0% | no markets |
 | Polymarket | 66.8% | $3,011,901 traded |
+| Kalshi | 66.5% | $932,547 traded |
 | Manifold | 67.5% | 118 traders, play money |
-| Markets together, by quality | 67.0% |  |
-| Market-informed run (experimental) | 68.5% | 49 prices; 87% of the simulated elections effectively kept |
-| Market-informed, national markets only | 68.2% | 2 prices |
+| Markets together, by quality | 66.8% |  |
+| Market-informed run (experimental) | 68.4% | 49 prices; 87% of the simulated elections effectively kept |
+| Market-informed, national markets only | 68.1% | 2 prices |
 | Market-informed, state markets only | 69.2% | 47 prices |
 | Market-informed, national and state markets, at half strength | 68.7% | 49 prices |
 
@@ -253,7 +254,7 @@ official forecast is made only for what the forecast reads; a move in prediction
 | A run started by GitHub's own schedule | The Margin, November 26, 01:56. The first since the hourly schedules went in eight hours earlier: the schedule works, late |
 | Tipping Point and Fifty-Two Keys notify The Margin; it runs within a minute | 19:01, 21:48, 22:29, 23:06 |
 | A check asked for the way the outside clock will ask | all three sites, 23:12 to 23:40: each found nothing new and saved nothing |
-| Prediction markets read at three providers, kept, and shown | November 26, 02:42: Polymarket 51, Kalshi 61, Manifold 61 markets; all 56 places priced |
+| Prediction markets read at three providers, kept, and shown | November 26, 03:18: Polymarket 51, Kalshi 62 and Manifold 61 markets; all 56 states and districts priced; the national race at all three |
 | The nomination reader on the live pages of 2016, 2020 and 2024 | November 26, 02:45: the locked table's answers for all three; 2028: "not yet" for all four keys |
 | Second sources answering | Bureau of Labor Statistics, University of Michigan, Energy Information Administration, share prices: the same figures as FRED. Department of Labor: within its tolerance after a fix. The Federal Reserve Board's table did not match FRED's industrial production and is not used |
 | The official method published and kept | `docs/archive/`, with the settings of each forecast |
