@@ -5,6 +5,11 @@ const src = fs.readFileSync(path.join(__dirname, '..', 'template.html'), 'utf8')
 const grab = name => { const a = src.indexOf('  function ' + name + '('), b = src.indexOf('\n  }\n', a) + 4; return src.slice(a, b); };
 const fns = new Function(grab('pollWhy') + grab('pollsIntro') + grab('pollsNote') + '; return {pollWhy, pollsIntro, pollsNote};')();
 const F0 = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'forecast_2028.json')));
+// the rules as polls.py states them, so the test does not depend on a forecast file written after a change to the rules
+const py = fs.readFileSync(path.join(__dirname, '..', 'polls.py'), 'utf8'), block = py.slice(py.indexOf('RULES = ['), py.indexOf(']\n', py.indexOf('RULES = [')));
+const RULES = [...block.matchAll(/\('\w+', (['"])(.*?)\1\)/g)].map(m => m[2].replace(/\\'/g, "'"));
+if (RULES.length < 5) { console.error('FAIL: could not read the rules from polls.py'); process.exit(1); }
+F0.poll_rules = Object.assign({national_skipped: 13, national_window_days: 180, state_ceiling: 0.11, prior_polls: 1.5}, F0.poll_rules || {}, {state: RULES});
 let bad = 0; const want = (name, text, ok, no = []) => { ok.forEach(r => { if (!r.test(text)) { bad++; console.error('FAIL ' + name + ': missing ' + r + '\n  ' + text); } }); no.forEach(r => { if (r.test(text)) { bad++; console.error('FAIL ' + name + ': should not say ' + r + '\n  ' + text); } }); if (/undefined|NaN|null/.test(text)) { bad++; console.error('FAIL ' + name + ': ' + text); } };
 const W = fns.pollWhy;
 want('national, counted', W({place: 'US', usable: true, share_of_average: 0.24, weight: 0.0062}, F0).text, [/^Counted: 24% of the national polling average, 0\.6% of the national vote estimate$/]);
