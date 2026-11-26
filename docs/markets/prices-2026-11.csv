@@ -455,3 +455,10 @@ time,provider,id,kind,place,dem,rep,p,quality,volume,liquidity,traders,spread
 2026-11-26T23:04Z,Kalshi,KXPRESSTATE-WA-28,winner,WA,0.9275,0.0545,0.9445,0.3234,1133,1073,,0.085
 2026-11-26T23:19Z,Polymarket,2028-presidential-election-mississippi-winner,winner,MS,0.2,0.79,0.202,0.4615,3628,94775,,0.06
 2026-11-26T23:19Z,Polymarket,2028-presidential-election-new-jersey-winner,winner,NJ,0.875,0.092,0.9049,0.4375,10092,101759,,0.082
+2026-11-26T23:26Z,Polymarket,2028-presidential-election-mississippi-winner,winner,MS,0.2,0.78,0.2041,0.5274,3628,90170,,0.04
+2026-11-26T23:26Z,Polymarket,2028-presidential-election-massachusetts-winner,winner,MA,0.935,0.052,0.9473,0.3612,431,65475,,0.052
+2026-11-26T23:26Z,Polymarket,2028-presidential-election-new-jersey-winner,winner,NJ,0.875,0.0925,0.9044,0.4412,10092,96116,,0.081
+2026-11-26T23:26Z,Polymarket,2028-presidential-election-west-virginia-winner,winner,WV,0.115,0.88,0.1156,0.4217,338,60459,,0.02
+2026-11-26T23:26Z,Kalshi,KXPRESSTATE-DE-28,winner,DE,0.969,0.043,0.9575,0.2223,30,20,,0.038
+2026-11-26T23:26Z,Kalshi,KXPRESSTATE-VA-28,winner,VA,0.85,0.13,0.8673,0.0,0,0,,0.04
+2026-11-26T23:26Z,Kalshi,KXPRESSTATE-VT-28,winner,VT,0.9355,0.0605,0.9393,0.3699,948,730,,0.065
