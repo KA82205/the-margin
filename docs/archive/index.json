@@ -53,5 +53,16 @@
 "a run asked for by hand"
 ],
 "file": "2026-11-26T0040Z.json"
+},
+{
+"made": "2026-11-26T05:14Z",
+"as_of": "2026-11-26",
+"p_dem": 0.6915,
+"national": 51.994,
+"ev_median": 300,
+"why": [
+"state forecasts"
+],
+"file": "2026-11-26T0514Z.json"
 }
 ]
