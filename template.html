@@ -575,7 +575,9 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   let m = '<svg viewBox="0 0 975 610" role="img" aria-label="Map of the states shaded by the chance the Democratic nominee wins each">';
   F.states.forEach(s => { const sh = window.US_STATES[s.state]; if (sh) m += '<path data-s="' + s.state + '" d="' + sh.d + '" fill="' + COL[bin(s.p_dem)] + '"/>'; });
   $('map-svg').innerHTML = m + '</svg>';
-  const order = F.states.slice().sort((a, b) => b.mean - a.mean);
+  // ordered by the Democratic chance, the figure the colours show, so the colours run in order from Safe D to Safe R. (By
+  // projected margin they would not: a state with a wide range can have a better chance at a slightly worse margin.)
+  const order = F.states.slice().sort((a, b) => (b.p_dem - a.p_dem) || (b.mean - a.mean));
   $('snake').innerHTML = order.map(s => '<i data-s="' + s.state + '" class="c' + bin(s.p_dem) + '" style="flex:' + s.ev + '"></i>').join('');
   $('chips').innerHTML = F.states.filter(s => !window.US_STATES[s.state] || s.state === 'DC').map(s => '<button data-s="' + s.state + '"><i class="c' + bin(s.p_dem) + '"></i>' + esc(s.name) + '</button>').join('');
   (function () { let acc = 0; const stops = BINS.map((b, i) => { const ev = F.states.filter(s => bin(s.p_dem) === i).reduce((a, s) => a + s.ev, 0), a = acc; acc += ev; return COL[i] + ' ' + (a / 5.38).toFixed(2) + '% ' + (acc / 5.38).toFixed(2) + '%'; });
