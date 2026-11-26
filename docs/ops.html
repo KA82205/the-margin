@@ -54,7 +54,10 @@ table{border-collapse:collapse;width:100%;font-size:14px;line-height:20px}th,td{
     }).catch(e => { box.innerHTML = '<h2>' + name + '</h2><p class="fine">Could not be read just now (' + esc(e.message) + ').</p>'; });
   });
   // how fresh the sources are, as The Margin last read them
-  Promise.all([fetch('api/manifest.json', {cache: 'no-store'}).then(r => r.json()), fetch('archive/index.json', {cache: 'no-store'}).then(r => r.json()).catch(() => [])]).then(([m, ix]) => {
+  // the one input kept up by hand: the copy of Civiqs's state approval in Tipping Point, with its date
+  const civiqs = fetch('https://raw.githubusercontent.com/KA82205/tipping-point/main/pipeline/config.json', {cache: 'no-store'}).then(r => r.json()).then(c => (c.approval || {}).state_csv_as_of || null).catch(() => null);
+  Promise.all([fetch('api/manifest.json', {cache: 'no-store'}).then(r => r.json()), fetch('archive/index.json', {cache: 'no-store'}).then(r => r.json()).catch(() => []), civiqs]).then(([m, ix, cq]) => {
+    const days = cq ? Math.floor((Date.now() - Date.parse(cq + 'T12:00:00Z')) / 864e5) : null;
     const u = m.upstream || {}, tp = u.tipping_point || {}, k = u.fifty_two_keys || {}, list = Array.isArray(ix) ? ix : (ix.forecasts || []), kept = list[list.length - 1], mk = m.markets || {};
     const down = Object.keys(mk.failed || {}), n = Object.values(mk.counts || {}).reduce((a, b) => a + b, 0);
     document.getElementById('fresh').innerHTML = '<h2>What The Margin last read, and what it last made</h2><div class="cards">' +
@@ -62,6 +65,7 @@ table{border-collapse:collapse;width:100%;font-size:14px;line-height:20px}th,td{
       card(esc(m.forecast.as_of), 'the day of the forecast on the page') +
       card(esc(String(tp.as_of || '').slice(0, 10) || 'unknown'), "Tipping Point's Nowcast: the day it was made" + (tp.frozen ? ' (fixed on purpose)' : '')) +
       card(m.markets_read ? ago(m.markets_read.replace('Z', ':00Z')) : 'not yet', 'last reading of the prediction markets, for comparison only: ' + n + ' markets' + (down.length ? '; not read: ' + esc(down.join(', ')) : ''), down.length ? 'bad' : '') +
+      card(cq ? esc(cq) : 'unknown', "state approval in Tipping Point (Civiqs): the day the copy runs through" + (days === null ? '' : ', ' + (days <= 0 ? 'today' : days + (days === 1 ? ' day' : ' days') + ' ago') + '. Kept up by hand: <a href="https://github.com/KA82205/tipping-point/tree/main/pipeline/inbox" rel="noopener">save the page and upload it</a>' + (days > 35 ? '. More than five weeks old: time for a new copy' : '')), days !== null && days > 35 ? 'bad' : '') +
       card(esc(k.date || 'unknown'), 'Fifty-Two Keys feed, a sister site; not used in the forecast') + card(esc(m.made || ''), 'when this record was written (UTC)') + '</div>'; }).catch(() => {});
 })();
 </script></body></html>
