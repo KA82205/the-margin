@@ -5,9 +5,9 @@
  "office": "president",
  "status": "published",
  "forecast": {
-  "as_of": "2026-11-25",
+  "as_of": "2026-11-26",
   "file": "api/forecast.json",
-  "hash": "ba97fc88a08f20e9",
+  "hash": "48d9ba1dc77ee315",
   "last_kept": "2026-11-26T0040Z.json",
   "kept": 5
  },
@@ -40,7 +40,7 @@
   },
   "tipping_point": {
    "as_of": "2026-11-25",
-   "generated_at": "2026-11-26T03:03:10Z",
+   "generated_at": "2026-11-26T04:59:26Z",
    "mode": "nowcast",
    "frozen": false,
    "models": {
@@ -48,14 +48,14 @@
     "desart": 49.846
    },
    "combined": 50.946,
-   "hash": "9b45039074513e64"
+   "hash": "77fa2f3297ac98cc"
   }
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-26T03:19Z",
- "commit": "276458efe288",
- "markets_read": "2026-11-26T03:18Z",
+ "made": "2026-11-26T05:04Z",
+ "commit": "bd3eb445f615",
+ "markets_read": "2026-11-26T05:04Z",
  "markets": {
   "counts": {
    "Polymarket": 51,
