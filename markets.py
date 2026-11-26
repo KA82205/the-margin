@@ -189,7 +189,7 @@ def polymarket(read=get):
 def kalshi(read=get, cache=None, today=None):
     """Kalshi: its election series are listed once a day and searched for presidential ones; their open events are read."""
     cache = cache if cache is not None else {}; today = today or str(datetime.date.today()); base = 'https://api.elections.kalshi.com/trade-api/v2/'
-    if cache.get('series_day') != today or not cache.get('series'):
+    if cache.get('series_day') != today or not cache.get('series') or cache.get('series_rule') != 3:      # once a day, and again whenever the search itself has changed
         series = []
         listed = [{'ticker': 'KXPRESPARTY', 'title': 'Presidential election party winner'}]      # the national market, asked for by name in case neither list carries it
         for cat in ('Elections', 'Politics'):               # the national market and the state markets are filed under different headings
@@ -203,7 +203,7 @@ def kalshi(read=get, cache=None, today=None):
             title = s.get('title') or ''; t = title.lower()
             if re.search(r'president\w* (election )?(party )?(winner|party)|presidential election|electoral college|popular vote', t) and not re.search(r'run\b|announce|debate|primary|nominee|nomination|prior office|french|brazil|colombia|chile|portugal|korea|turk|poland|ireland|kenya|peru|mongolia|tanzania|bosnia|bulgaria', t):
                 series.append([s.get('ticker'), title])
-        cache['series'] = series; cache['series_day'] = today
+        cache['series'] = series; cache['series_day'] = today; cache['series_rule'] = 3
     out = []
     for ticker, title in cache['series'][:120]:           # a list this long would mean the search has gone wrong; the first 120 are enough for every state and the nation
         t = title.lower(); place = place_of(title) or 'US'
