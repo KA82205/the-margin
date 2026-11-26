@@ -299,6 +299,7 @@ def main(argv):
     if new_day:                                      # keep yesterday's inputs, to show what moved
         shutil.copy('data/inputs.json', 'data/prev_inputs.json'); shutil.copy('data/nowcast.js', 'data/prev_nowcast.js')
         if os.path.exists('data/live.js'): shutil.copy('data/live.js', 'data/prev_live.js')
+        if os.path.exists('data/live.js'): shutil.copy('data/live.js', 'data/prev_live.js')
         if os.path.exists('data/state_polls.json'): shutil.copy('data/state_polls.json', 'data/prev_state_polls.json')
     old = json.load(open('data/fingerprint.json')) if os.path.exists('data/fingerprint.json') else {}
     started = time.time()
