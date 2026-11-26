@@ -7,7 +7,7 @@
  "forecast": {
   "as_of": "2026-11-26",
   "file": "api/forecast.json",
-  "hash": "f1b5ca975913a4d3",
+  "hash": "f176f4c4522f8827",
   "last_kept": "2026-11-26T0514Z.json",
   "kept": 6
  },
@@ -40,22 +40,22 @@
   },
   "tipping_point": {
    "as_of": "2026-11-26",
-   "generated_at": "2026-11-26T05:12:44Z",
+   "generated_at": "2026-11-26T16:45:47Z",
    "mode": "nowcast",
    "frozen": false,
    "models": {
-    "enns": 52.09,
+    "enns": 52.091,
     "desart": 49.846
    },
-   "combined": 50.957,
-   "hash": "9127ab284310fc75"
+   "combined": 50.958,
+   "hash": "e57ca1395c684b6f"
   }
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-26T05:14Z",
- "commit": "245e44de2930",
- "markets_read": "2026-11-26T05:13Z",
+ "made": "2026-11-26T16:48Z",
+ "commit": "660ecb555de4",
+ "markets_read": "2026-11-26T16:47Z",
  "markets": {
   "counts": {
    "Polymarket": 51,

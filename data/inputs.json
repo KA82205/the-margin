@@ -14,7 +14,7 @@
   "odds": "2026-11-26",
   "keys": "2026-11-26",
   "state_polls": "2026-11-26",
-  "markets": "2026-11-26T05:13Z"
+  "markets": "2026-11-26T16:47Z"
  },
  "keys_dist": [
   [
@@ -322,15 +322,15 @@
   },
   "tipping_point": {
    "as_of": "2026-11-26",
-   "generated_at": "2026-11-26T05:12:44Z",
+   "generated_at": "2026-11-26T16:45:47Z",
    "mode": "nowcast",
    "frozen": false,
    "models": {
-    "enns": 52.09,
+    "enns": 52.091,
     "desart": 49.846
    },
-   "combined": 50.957,
-   "hash": "9127ab284310fc75"
+   "combined": 50.958,
+   "hash": "e57ca1395c684b6f"
   }
  }
 }
