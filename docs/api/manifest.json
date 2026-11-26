@@ -7,9 +7,9 @@
  "forecast": {
   "as_of": "2026-11-25",
   "file": "api/forecast.json",
-  "hash": "3db33b5e4843fdda",
-  "last_kept": "2026-11-25T2314Z.json",
-  "kept": 4
+  "hash": "fdf4430f8312f7b2",
+  "last_kept": "2026-11-26T0040Z.json",
+  "kept": 5
  },
  "units": {
   "shares": "Democratic share of the two-party vote, in percent (0 to 100)",
@@ -28,7 +28,7 @@
   "fifty_two_keys": {
    "date": "2026-11-25",
    "as_of": "November 25, 2026",
-   "engine": "2026.11d",
+   "engine": "2026.11e",
    "format": 2,
    "settled": 8,
    "unresolved": 44,
@@ -36,7 +36,7 @@
    "held": 0,
    "closed": false,
    "approval_in": false,
-   "hash": "99cc4842c4f1452b"
+   "hash": "3be76b5558146727"
   },
   "tipping_point": {
    "as_of": "2026-11-25",
@@ -53,16 +53,16 @@
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-26T00:31Z",
- "commit": null,
- "markets_read": "2026-11-26T00:28Z",
+ "made": "2026-11-26T00:40Z",
+ "commit": "afb85c0b859b",
+ "markets_read": "2026-11-26T00:39Z",
  "markets": {
-  "counts": {},
-  "failed": {
-   "Polymarket": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden (agent proxy: no rule or network setting allo",
-   "Kalshi": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden (agent proxy: no rule or network setting allo",
-   "Manifold": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden (agent proxy: no rule or network setting allo"
-  }
+  "counts": {
+   "Polymarket": 51,
+   "Kalshi": 164,
+   "Manifold": 61
+  },
+  "failed": {}
  },
  "sources": {
   "state polls": "PollResults.org and VoteHub, CC BY 4.0; not affiliated with this site"

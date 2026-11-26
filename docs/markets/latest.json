@@ -1,0 +1,1390 @@
+{
+"read": "2026-11-26T00:39Z",
+"counts": {
+"Polymarket": 51,
+"Kalshi": 164,
+"Manifold": 61
+},
+"failed": {},
+"combined": {
+"winner:GA": {
+"p": 0.6533,
+"quality": 0.6778,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.6553,
+"quality": 0.6314,
+"real_money": true,
+"volume": 6142,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-georgia-winner",
+"id": "2028-presidential-election-georgia-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.6462,
+"quality": 0.1857,
+"real_money": false,
+"volume": 6979,
+"traders": 12,
+"spread": null,
+"last_trade": "2026-11-21T03:34:25Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-georgia-in-the",
+"id": "t2nqpLENQl"
+}
+]
+},
+"winner:AZ": {
+"p": 0.6547,
+"quality": 0.657,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.6616,
+"quality": 0.6246,
+"real_money": true,
+"volume": 5590,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-arizona-winner",
+"id": "2028-presidential-election-arizona-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.6206,
+"quality": 0.1297,
+"real_money": false,
+"volume": 4792,
+"traders": 5,
+"spread": null,
+"last_trade": "2026-11-21T03:31:57Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-arizona-in-the",
+"id": "UIhNLC5q5A"
+}
+]
+},
+"winner:FL": {
+"p": 0.2101,
+"quality": 0.691,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.2261,
+"quality": 0.6513,
+"real_money": true,
+"volume": 8085,
+"traders": null,
+"spread": 0.020000000000000018,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-florida-winner",
+"id": "2028-presidential-election-florida-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.1532,
+"quality": 0.159,
+"real_money": false,
+"volume": 2191,
+"traders": 8,
+"spread": null,
+"last_trade": "2026-11-22T00:38:47Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-florida-in-the",
+"id": "EdcpOnUqPQ"
+}
+]
+},
+"winner:AK": {
+"p": 0.2628,
+"quality": 0.6988,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.264,
+"quality": 0.6872,
+"real_money": true,
+"volume": 13282,
+"traders": null,
+"spread": 0.020000000000000018,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-alaska-winner",
+"id": "2028-presidential-election-alaska-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.246,
+"quality": 0.0464,
+"real_money": false,
+"volume": 235,
+"traders": 7,
+"spread": null,
+"last_trade": "2026-10-13T08:38:56Z",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-dqIz6NEA8E",
+"id": "glczdn2q09"
+}
+]
+},
+"winner:ID": {
+"p": 0.096,
+"quality": 0.4487,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.096,
+"quality": 0.4487,
+"real_money": true,
+"volume": 491,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-idaho-winner",
+"id": "2028-presidential-election-idaho-winner"
+}
+]
+},
+"winner:HI": {
+"p": 0.92,
+"quality": 0.4828,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.92,
+"quality": 0.4828,
+"real_money": true,
+"volume": 788,
+"traders": null,
+"spread": 0.020000000000000018,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-hawaii-winner",
+"id": "2028-presidential-election-hawaii-winner"
+}
+]
+},
+"winner:DE": {
+"p": 0.956,
+"quality": 0.3815,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.956,
+"quality": 0.3815,
+"real_money": true,
+"volume": 404,
+"traders": null,
+"spread": 0.042,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-delaware-winner",
+"id": "2028-presidential-election-delaware-winner"
+}
+]
+},
+"winner:CT": {
+"p": 0.9541,
+"quality": 0.4623,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.9541,
+"quality": 0.4623,
+"real_money": true,
+"volume": 1745,
+"traders": null,
+"spread": 0.046000000000000006,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-connecticut-winner",
+"id": "2028-presidential-election-connecticut-winner"
+}
+]
+},
+"winner:CO": {
+"p": 0.9158,
+"quality": 0.5582,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.9128,
+"quality": 0.5372,
+"real_money": true,
+"volume": 1670,
+"traders": null,
+"spread": 0.020000000000000018,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-colorado-winner",
+"id": "2028-presidential-election-colorado-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.9328,
+"quality": 0.084,
+"real_money": false,
+"volume": 6088,
+"traders": 3,
+"spread": null,
+"last_trade": "2026-11-10T10:02:23Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-colorado-in-th",
+"id": "qRhlLzhIuA"
+}
+]
+},
+"winner:CA": {
+"p": 0.9624,
+"quality": 0.3983,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.9497,
+"quality": 0.3758,
+"real_money": true,
+"volume": 243,
+"traders": null,
+"spread": 0.029999999999999916,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-california-winner",
+"id": "2028-presidential-election-california-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.9892,
+"quality": 0.0899,
+"real_money": false,
+"volume": 107,
+"traders": 3,
+"spread": null,
+"last_trade": "2026-11-13T12:15:42Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-california-in",
+"id": "clnqghA2Il"
+}
+]
+},
+"winner:AR": {
+"p": 0.0558,
+"quality": 0.4996,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.0558,
+"quality": 0.4996,
+"real_money": true,
+"volume": 994,
+"traders": null,
+"spread": 0.019999999999999907,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-arkansas-winner",
+"id": "2028-presidential-election-arkansas-winner"
+}
+]
+},
+"winner:AL": {
+"p": 0.121,
+"quality": 0.5398,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.121,
+"quality": 0.5398,
+"real_money": true,
+"volume": 1731,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-alabama-winner",
+"id": "2028-presidential-election-alabama-winner"
+}
+]
+},
+"winner:MI": {
+"p": 0.6984,
+"quality": 0.7136,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.702,
+"quality": 0.6812,
+"real_money": true,
+"volume": 12222,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-michigan-winner",
+"id": "2028-presidential-election-michigan-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.6792,
+"quality": 0.1297,
+"real_money": false,
+"volume": 5727,
+"traders": 5,
+"spread": null,
+"last_trade": "2026-11-21T01:32:21Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-michigan-in-th",
+"id": "RZ9ISZCPIl"
+}
+]
+},
+"winner:MN": {
+"p": 0.8554,
+"quality": 0.7264,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.8608,
+"quality": 0.6912,
+"real_money": true,
+"volume": 14039,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-minnesota-winner",
+"id": "2028-presidential-election-minnesota-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.826,
+"quality": 0.1408,
+"real_money": false,
+"volume": 6973,
+"traders": 6,
+"spread": null,
+"last_trade": "2026-11-21T03:31:03Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-minnesota-in-t",
+"id": "tCz5c9ROSt"
+}
+]
+},
+"winner:ME": {
+"p": 0.8071,
+"quality": 0.6756,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.8071,
+"quality": 0.6756,
+"real_money": true,
+"volume": 11318,
+"traders": null,
+"spread": 0.020000000000000018,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-maine-winner",
+"id": "2028-presidential-election-maine-winner"
+}
+]
+},
+"winner:IA": {
+"p": 0.3273,
+"quality": 0.7061,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.3416,
+"quality": 0.6797,
+"real_money": true,
+"volume": 11971,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-iowa-winner",
+"id": "2028-presidential-election-iowa-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.2436,
+"quality": 0.1057,
+"real_money": false,
+"volume": 1085,
+"traders": 4,
+"spread": null,
+"last_trade": "2026-11-14T02:36:08Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-iowa-in-the-20",
+"id": "AhOCUACQSg"
+}
+]
+},
+"winner:MS": {
+"p": 0.1524,
+"quality": 0.5472,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.1574,
+"quality": 0.5182,
+"real_money": true,
+"volume": 1959,
+"traders": null,
+"spread": 0.03,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-mississippi-winner",
+"id": "2028-presidential-election-mississippi-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.1316,
+"quality": 0.1158,
+"real_money": false,
+"volume": 544,
+"traders": 7,
+"spread": null,
+"last_trade": "2026-11-06T19:17:51Z",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-0QpS8LUZdP",
+"id": "AOp2h6CAtq"
+}
+]
+},
+"winner:MA": {
+"p": 0.9586,
+"quality": 0.3465,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.9586,
+"quality": 0.3465,
+"real_money": true,
+"volume": 431,
+"traders": null,
+"spread": 0.05800000000000001,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-massachusetts-winner",
+"id": "2028-presidential-election-massachusetts-winner"
+}
+]
+},
+"winner:MD": {
+"p": 0.8972,
+"quality": 0.5793,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.8972,
+"quality": 0.5793,
+"real_money": true,
+"volume": 2989,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-maryland-winner",
+"id": "2028-presidential-election-maryland-winner"
+}
+]
+},
+"winner:LA": {
+"p": 0.1238,
+"quality": 0.5122,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.1238,
+"quality": 0.5122,
+"real_money": true,
+"volume": 1182,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-louisiana-winner",
+"id": "2028-presidential-election-louisiana-winner"
+}
+]
+},
+"winner:KY": {
+"p": 0.1168,
+"quality": 0.5392,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.1168,
+"quality": 0.5392,
+"real_money": true,
+"volume": 1718,
+"traders": null,
+"spread": 0.020000000000000018,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-kentucky-winner",
+"id": "2028-presidential-election-kentucky-winner"
+}
+]
+},
+"winner:KS": {
+"p": 0.1601,
+"quality": 0.5916,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.18,
+"quality": 0.5499,
+"real_money": true,
+"volume": 1991,
+"traders": null,
+"spread": 0.01999999999999999,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-kansas-winner",
+"id": "2028-presidential-election-kansas-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.107,
+"quality": 0.1667,
+"real_money": false,
+"volume": 1992,
+"traders": 9,
+"spread": null,
+"last_trade": "2026-11-21T10:04:43Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-kansas-in-the",
+"id": "PS892Pgcdn"
+}
+]
+},
+"winner:IN": {
+"p": 0.1076,
+"quality": 0.557,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.1343,
+"quality": 0.5351,
+"real_money": true,
+"volume": 1623,
+"traders": null,
+"spread": 0.020000000000000018,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-indiana-winner",
+"id": "2028-presidential-election-indiana-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.0251,
+"quality": 0.0875,
+"real_money": false,
+"volume": 55,
+"traders": 3,
+"spread": null,
+"last_trade": "2026-11-12T06:27:00Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-indiana-in-the",
+"id": "9QO5yAzyy6"
+}
+]
+},
+"winner:IL": {
+"p": 0.935,
+"quality": 0.5304,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.935,
+"quality": 0.5304,
+"real_money": true,
+"volume": 1520,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-illinois-winner",
+"id": "2028-presidential-election-illinois-winner"
+}
+]
+},
+"winner:NC": {
+"p": 0.6758,
+"quality": 0.7176,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.6888,
+"quality": 0.6742,
+"real_money": true,
+"volume": 11090,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-north-carolina-winner",
+"id": "2028-presidential-election-north-carolina-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.6229,
+"quality": 0.1736,
+"real_money": false,
+"volume": 9153,
+"traders": 10,
+"spread": null,
+"last_trade": "2026-11-24T18:35:37Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-north-carolina",
+"id": "9zA8lRA6On"
+}
+]
+},
+"winner:NV": {
+"p": 0.6724,
+"quality": 0.6252,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.6818,
+"quality": 0.5962,
+"real_money": true,
+"volume": 3778,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-nevada-winner",
+"id": "2028-presidential-election-nevada-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.622,
+"quality": 0.1162,
+"real_money": false,
+"volume": 4022,
+"traders": 5,
+"spread": null,
+"last_trade": "2026-11-13T12:15:00Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-nevada-in-the",
+"id": "ECCcOUOnlO"
+}
+]
+},
+"winner:OH": {
+"p": 0.3717,
+"quality": 0.7379,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.3866,
+"quality": 0.7027,
+"real_money": true,
+"volume": 16440,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-ohio-winner",
+"id": "2028-presidential-election-ohio-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.3011,
+"quality": 0.1408,
+"real_money": false,
+"volume": 2611,
+"traders": 6,
+"spread": null,
+"last_trade": "2026-11-21T10:06:44Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-ohio-in-the-20",
+"id": "ycd0pN8y8A"
+}
+]
+},
+"winner:NM": {
+"p": 0.8901,
+"quality": 0.5681,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.8901,
+"quality": 0.5681,
+"real_money": true,
+"volume": 6833,
+"traders": null,
+"spread": 0.040000000000000036,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-new-mexico-winner",
+"id": "2028-presidential-election-new-mexico-winner"
+}
+]
+},
+"winner:NH": {
+"p": 0.7677,
+"quality": 0.6976,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.7665,
+"quality": 0.6722,
+"real_money": true,
+"volume": 10792,
+"traders": null,
+"spread": 0.01999999999999999,
+"last_trade": "2026-11-26T00:31:29.668735Z",
+"url": "https://polymarket.com/event/2028-presidential-election-new-hampshire-winner",
+"id": "2028-presidential-election-new-hampshire-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.7758,
+"quality": 0.1018,
+"real_money": false,
+"volume": 104,
+"traders": 4,
+"spread": null,
+"last_trade": "2026-11-12T08:35:06Z",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-I6nSNpCQhO",
+"id": "6Ilzq5Lctg"
+}
+]
+},
+"winner:NJ": {
+"p": 0.903,
+"quality": 0.4523,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.903,
+"quality": 0.4523,
+"real_money": true,
+"volume": 10092,
+"traders": null,
+"spread": 0.07800000000000001,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-new-jersey-winner",
+"id": "2028-presidential-election-new-jersey-winner"
+}
+]
+},
+"winner:OK": {
+"p": 0.09,
+"quality": 0.5626,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.09,
+"quality": 0.5626,
+"real_money": true,
+"volume": 2374,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-oklahoma-winner",
+"id": "2028-presidential-election-oklahoma-winner"
+}
+]
+},
+"winner:NE": {
+"p": 0.0914,
+"quality": 0.5018,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.0914,
+"quality": 0.5018,
+"real_money": true,
+"volume": 1024,
+"traders": null,
+"spread": 0.020000000000000004,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-nebraska-winner",
+"id": "2028-presidential-election-nebraska-winner"
+}
+]
+},
+"winner:MT": {
+"p": 0.145,
+"quality": 0.5511,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.145,
+"quality": 0.5511,
+"real_money": true,
+"volume": 2026,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-montana-winner",
+"id": "2028-presidential-election-montana-winner"
+}
+]
+},
+"winner:NY": {
+"p": 0.9162,
+"quality": 0.4444,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.9162,
+"quality": 0.4444,
+"real_money": true,
+"volume": 463,
+"traders": null,
+"spread": 0.01999999999999999,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-new-york-winner",
+"id": "2028-presidential-election-new-york-winner"
+}
+]
+},
+"winner:ND": {
+"p": 0.0508,
+"quality": 0.4999,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.0508,
+"quality": 0.4999,
+"real_money": true,
+"volume": 997,
+"traders": null,
+"spread": 0.019999999999999997,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-north-dakota-winner",
+"id": "2028-presidential-election-north-dakota-winner"
+}
+]
+},
+"winner:MO": {
+"p": 0.1066,
+"quality": 0.6096,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.1066,
+"quality": 0.6096,
+"real_money": true,
+"volume": 4547,
+"traders": null,
+"spread": 0.020000000000000018,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-missouri-winner",
+"id": "2028-presidential-election-missouri-winner"
+}
+]
+},
+"winner:PA": {
+"p": 0.6649,
+"quality": 0.6565,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.665,
+"quality": 0.6213,
+"real_money": true,
+"volume": 5341,
+"traders": null,
+"spread": 0.020000000000000018,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-pennsylvania-winner",
+"id": "2028-presidential-election-pennsylvania-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.6645,
+"quality": 0.1408,
+"real_money": false,
+"volume": 8353,
+"traders": 6,
+"spread": null,
+"last_trade": "2026-11-21T17:24:21Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-pennsylvania-i",
+"id": "dtcNCqg09A"
+}
+]
+},
+"winner:TX": {
+"p": 0.4124,
+"quality": 0.5864,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.4256,
+"quality": 0.5275,
+"real_money": true,
+"volume": 11726,
+"traders": null,
+"spread": 0.05999999999999994,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-texas-winner",
+"id": "2028-presidential-election-texas-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.3831,
+"quality": 0.2358,
+"real_money": false,
+"volume": 1498,
+"traders": 25,
+"spread": null,
+"last_trade": "2026-11-20T05:04:27Z",
+"url": "https://manifold.markets/GG/will-a-democrat-win-texas-in-the-20-29cb9626db1e",
+"id": "dIXJEEBVF6X78nZV7hST"
+}
+]
+},
+"winner:VA": {
+"p": 0.8731,
+"quality": 0.6687,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.8705,
+"quality": 0.6484,
+"real_money": true,
+"volume": 7768,
+"traders": null,
+"spread": 0.020000000000000018,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-virginia-winner",
+"id": "2028-presidential-election-virginia-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.8926,
+"quality": 0.0812,
+"real_money": false,
+"volume": 10071,
+"traders": 3,
+"spread": null,
+"last_trade": "2026-11-08T22:06:50Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-the-popular-vo-gCyyd0sENs",
+"id": "nP9lEy5UUQ"
+}
+]
+},
+"winner:WA": {
+"p": 0.915,
+"quality": 0.6775,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.915,
+"quality": 0.6775,
+"real_money": true,
+"volume": 11607,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-washington-winner",
+"id": "2028-presidential-election-washington-winner"
+}
+]
+},
+"winner:VT": {
+"p": 0.9388,
+"quality": 0.5909,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.9196,
+"quality": 0.5684,
+"real_money": true,
+"volume": 4082,
+"traders": null,
+"spread": 0.030000000000000027,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-vermont-winner",
+"id": "2028-presidential-election-vermont-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.99,
+"quality": 0.0899,
+"real_money": false,
+"volume": 203,
+"traders": 3,
+"spread": null,
+"last_trade": "2026-11-13T12:15:55Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-vermont-in-the",
+"id": "EUsAQ995yt"
+}
+]
+},
+"winner:WV": {
+"p": 0.12,
+"quality": 0.4217,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.12,
+"quality": 0.4217,
+"real_money": true,
+"volume": 338,
+"traders": null,
+"spread": 0.020000000000000018,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-west-virginia-winner",
+"id": "2028-presidential-election-west-virginia-winner"
+}
+]
+},
+"winner:UT": {
+"p": 0.1478,
+"quality": 0.5868,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.1436,
+"quality": 0.5734,
+"real_money": true,
+"volume": 2757,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-utah-winner",
+"id": "2028-presidential-election-utah-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.1998,
+"quality": 0.0536,
+"real_money": false,
+"volume": 265,
+"traders": 5,
+"spread": null,
+"last_trade": "2026-10-18T22:01:13Z",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-RcIC9h6Ayg",
+"id": "0099I2E2EL"
+}
+]
+},
+"winner:TN": {
+"p": 0.104,
+"quality": 0.5877,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.104,
+"quality": 0.5877,
+"real_money": true,
+"volume": 3360,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-tennessee-winner",
+"id": "2028-presidential-election-tennessee-winner"
+}
+]
+},
+"winner:SD": {
+"p": 0.0812,
+"quality": 0.4491,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.0812,
+"quality": 0.4491,
+"real_money": true,
+"volume": 712,
+"traders": null,
+"spread": 0.030000000000000027,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-south-dakota-winner",
+"id": "2028-presidential-election-south-dakota-winner"
+}
+]
+},
+"winner:RI": {
+"p": 0.9444,
+"quality": 0.4206,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.9444,
+"quality": 0.4206,
+"real_money": true,
+"volume": 469,
+"traders": null,
+"spread": 0.030000000000000006,
+"last_trade": "2026-11-26T00:35:29.255412Z",
+"url": "https://polymarket.com/event/2028-presidential-election-rhode-island-winner",
+"id": "2028-presidential-election-rhode-island-winner"
+}
+]
+},
+"winner:OR": {
+"p": 0.885,
+"quality": 0.5427,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.885,
+"quality": 0.5427,
+"real_money": true,
+"volume": 1802,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-oregon-winner",
+"id": "2028-presidential-election-oregon-winner"
+}
+]
+},
+"winner:SC": {
+"p": 0.1647,
+"quality": 0.64,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.1929,
+"quality": 0.6116,
+"real_money": true,
+"volume": 4669,
+"traders": null,
+"spread": 0.020000000000000018,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-south-carolina-winner",
+"id": "2028-presidential-election-south-carolina-winner"
+},
+{
+"provider": "Manifold",
+"p": 0.0653,
+"quality": 0.1134,
+"real_money": false,
+"volume": 213,
+"traders": 5,
+"spread": null,
+"last_trade": "2026-11-12T08:30:40Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-south-carolina",
+"id": "SlSAdIC22S"
+}
+]
+},
+"winner:US": {
+"p": 0.4276,
+"quality": 1.0,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.6683,
+"quality": 1.0,
+"real_money": true,
+"volume": 3011901,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/which-party-wins-2028-us-presidential-election",
+"id": "which-party-wins-2028-us-presidential-election"
+},
+{
+"provider": "Kalshi",
+"p": 0.165,
+"quality": 0.7459,
+"real_money": true,
+"volume": 46387,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-16T20:32:38.286962Z",
+"url": "https://kalshi.com/markets/kxdpresprimary",
+"id": "KXDPRESPRIMARY-28MI"
+}
+],
+"election_betting_odds": 0.6758
+},
+"winner:WY": {
+"p": 0.0697,
+"quality": 0.443,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.0697,
+"quality": 0.443,
+"real_money": true,
+"volume": 454,
+"traders": null,
+"spread": 0.020000000000000004,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-wyoming-winner",
+"id": "2028-presidential-election-wyoming-winner"
+}
+]
+},
+"winner:WI": {
+"p": 0.6414,
+"quality": 0.6301,
+"real_money": true,
+"providers": [
+{
+"provider": "Polymarket",
+"p": 0.6414,
+"quality": 0.6301,
+"real_money": true,
+"volume": 6035,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-26T00:33:29.944759Z",
+"url": "https://polymarket.com/event/2028-presidential-election-wisconsin-winner",
+"id": "2028-presidential-election-wisconsin-winner"
+}
+]
+},
+"popular:US": {
+"p": 0.806,
+"quality": 0.092,
+"real_money": true,
+"providers": [
+{
+"provider": "Kalshi",
+"p": 0.806,
+"quality": 0.092,
+"real_money": true,
+"volume": 7,
+"traders": null,
+"spread": 0.09,
+"last_trade": "2026-11-19T15:39:16.116496Z",
+"url": "https://kalshi.com/markets/kxpopvote",
+"id": "KXPOPVOTE-28"
+}
+]
+},
+"winner:NE2": {
+"p": 0.9097,
+"quality": 0.0612,
+"real_money": false,
+"providers": [
+{
+"provider": "Manifold",
+"p": 0.9097,
+"quality": 0.0612,
+"real_money": false,
+"volume": 18502,
+"traders": 2,
+"spread": null,
+"last_trade": "2026-11-06T19:48:06Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-nebraskas-2nd",
+"id": "IgdAISyOgZ"
+}
+]
+},
+"winner:NE1": {
+"p": 0.063,
+"quality": 0.0386,
+"real_money": false,
+"providers": [
+{
+"provider": "Manifold",
+"p": 0.063,
+"quality": 0.0386,
+"real_money": false,
+"volume": 3,
+"traders": 1,
+"spread": null,
+"last_trade": "2026-11-06T20:16:25Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-nebraskas-1st",
+"id": "NddRhpNytp"
+}
+]
+},
+"winner:NE3": {
+"p": 0.0106,
+"quality": 0.0386,
+"real_money": false,
+"providers": [
+{
+"provider": "Manifold",
+"p": 0.0106,
+"quality": 0.0386,
+"real_money": false,
+"volume": 3,
+"traders": 1,
+"spread": null,
+"last_trade": "2026-11-06T20:16:25Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-nebraskas-3rd",
+"id": "N99tAp9UCA"
+}
+]
+},
+"winner:ME1": {
+"p": 0.9899,
+"quality": 0.0386,
+"real_money": false,
+"providers": [
+{
+"provider": "Manifold",
+"p": 0.9899,
+"quality": 0.0386,
+"real_money": false,
+"volume": 2,
+"traders": 1,
+"spread": null,
+"last_trade": "2026-11-06T19:48:06Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-maines-1st-dis",
+"id": "98C5qnt2uh"
+}
+]
+},
+"winner:DC": {
+"p": 0.99,
+"quality": 0.0795,
+"real_money": false,
+"providers": [
+{
+"provider": "Manifold",
+"p": 0.99,
+"quality": 0.0795,
+"real_money": false,
+"volume": 52,
+"traders": 2,
+"spread": null,
+"last_trade": "2026-11-23T16:36:22Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-the-district-o",
+"id": "LQzugAuNny"
+}
+]
+},
+"winner:ME2": {
+"p": 0.1766,
+"quality": 0.0612,
+"real_money": false,
+"providers": [
+{
+"provider": "Manifold",
+"p": 0.1766,
+"quality": 0.0612,
+"real_money": false,
+"volume": 253,
+"traders": 2,
+"spread": null,
+"last_trade": "2026-11-06T20:16:25Z",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-maines-2nd-dis",
+"id": "NIgP5tpLLg"
+}
+]
+}
+}
+}

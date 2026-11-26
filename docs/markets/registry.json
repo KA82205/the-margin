@@ -1,0 +1,4970 @@
+{
+"Kalshi:ECMOV-28NOV07": {
+"closes": "2029-05-06T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "ECMOV-28NOV07",
+"kind": "margin",
+"last": [
+0.105,
+0.055,
+28572
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic candidate wins the Electoral College vote in 2028 by a margin of between 211-538 votes above the second-place candidate, then the market resolves to Yes.",
+"title": "2028 Electoral College margin of victory?",
+"url": "https://kalshi.com/markets/ecmov"
+},
+"Kalshi:KXDPRESPRIMARY-28AK": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28AK",
+"kind": "winner",
+"last": [
+0.205,
+null,
+1000
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Alaska Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Alaska Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28AL": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28AL",
+"kind": "winner",
+"last": [
+0.25,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Alabama Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Alabama Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28AR": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28AR",
+"kind": "winner",
+"last": [
+0.245,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Arkansas Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Arkansas Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28AZ": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28AZ",
+"kind": "winner",
+"last": [
+0.235,
+null,
+53
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Arizona Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Arizona Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28CA": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28CA",
+"kind": "winner",
+"last": [
+0.21,
+null,
+1
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 California Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "California Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28CO": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28CO",
+"kind": "winner",
+"last": [
+0.185,
+null,
+2095
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Colorado Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Colorado Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28CT": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28CT",
+"kind": "winner",
+"last": [
+0.215,
+null,
+81
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Connecticut Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Connecticut Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28DC": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28DC",
+"kind": "winner",
+"last": [
+0.255,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 District of Columbia Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "District of Columbia Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28DE": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28DE",
+"kind": "winner",
+"last": [
+0.255,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Delaware Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Delaware Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28FL": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28FL",
+"kind": "winner",
+"last": [
+0.255,
+null,
+160
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Florida Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Florida Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28GA": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28GA",
+"kind": "winner",
+"last": [
+0.305,
+null,
+66
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Georgia Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Georgia Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28HI": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28HI",
+"kind": "winner",
+"last": [
+0.235,
+null,
+6
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Hawaii Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Hawaii Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28IA": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28IA",
+"kind": "winner",
+"last": [
+0.23,
+null,
+4231
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Iowa Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Iowa Democratic presidential caucus winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28ID": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28ID",
+"kind": "winner",
+"last": [
+0.225,
+null,
+1002
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Idaho Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Idaho Democratic presidential caucus winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28IL": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28IL",
+"kind": "winner",
+"last": [
+0.225,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Illinois Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Illinois Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28IN": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28IN",
+"kind": "winner",
+"last": [
+0.245,
+null,
+20
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Indiana Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Indiana Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28KS": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28KS",
+"kind": "winner",
+"last": [
+0.215,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Kansas Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Kansas Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28KY": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28KY",
+"kind": "winner",
+"last": [
+0.195,
+null,
+6014
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Kentucky Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Kentucky Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28LA": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28LA",
+"kind": "winner",
+"last": [
+0.255,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Louisiana Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Louisiana Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28MA": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28MA",
+"kind": "winner",
+"last": [
+0.235,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Massachusetts Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Massachusetts Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28MD": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28MD",
+"kind": "winner",
+"last": [
+0.24,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Maryland Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Maryland Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28ME": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28ME",
+"kind": "winner",
+"last": [
+0.245,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Maine Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Maine Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28MI": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28MI",
+"kind": "winner",
+"last": [
+0.165,
+null,
+46387
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Michigan Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Michigan Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28MN": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28MN",
+"kind": "winner",
+"last": [
+0.235,
+null,
+34
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Minnesota Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Minnesota Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28MO": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28MO",
+"kind": "winner",
+"last": [
+0.225,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Missouri Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Missouri Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28MS": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28MS",
+"kind": "winner",
+"last": [
+0.225,
+null,
+39
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Mississippi Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Mississippi Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28MT": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28MT",
+"kind": "winner",
+"last": [
+0.235,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Montana Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Montana Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28NC": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28NC",
+"kind": "winner",
+"last": [
+0.25,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 North Carolina Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "North Carolina Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28ND": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28ND",
+"kind": "winner",
+"last": [
+0.215,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 North Dakota Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "North Dakota Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28NE": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28NE",
+"kind": "winner",
+"last": [
+0.235,
+null,
+1
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Nebraska Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Nebraska Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28NH": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28NH",
+"kind": "winner",
+"last": [
+0.155,
+null,
+18233
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 New Hampshire Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "New Hampshire Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28NJ": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28NJ",
+"kind": "winner",
+"last": [
+0.255,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 New Jersey Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "New Jersey Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28NM": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28NM",
+"kind": "winner",
+"last": [
+0.195,
+null,
+7243
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 New Mexico Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "New Mexico Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28NV": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28NV",
+"kind": "winner",
+"last": [
+0.18,
+null,
+9665
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Nevada Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Nevada Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28NY": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28NY",
+"kind": "winner",
+"last": [
+0.205,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 New York Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "New York Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28OH": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28OH",
+"kind": "winner",
+"last": [
+0.245,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Ohio Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Ohio Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28OK": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28OK",
+"kind": "winner",
+"last": [
+0.225,
+null,
+61
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Oklahoma Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Oklahoma Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28OR": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28OR",
+"kind": "winner",
+"last": [
+0.235,
+null,
+97
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Oregon Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Oregon Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28PA": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28PA",
+"kind": "winner",
+"last": [
+0.215,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Pennsylvania Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Pennsylvania Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28RI": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28RI",
+"kind": "winner",
+"last": [
+0.235,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Rhode Island Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Rhode Island Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28SC": {
+"closes": "2028-11-07T10:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28SC",
+"kind": "winner",
+"last": [
+0.03,
+null,
+5247
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Gavin Newsom wins the 2028 South Carolina Democratic presidential primary, then the market resolves to Yes.",
+"title": "South Carolina Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28SD": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28SD",
+"kind": "winner",
+"last": [
+0.225,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 South Dakota Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "South Dakota Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28TN": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28TN",
+"kind": "winner",
+"last": [
+0.245,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Tennessee Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Tennessee Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28TX": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28TX",
+"kind": "winner",
+"last": [
+0.235,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Texas Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Texas Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28UT": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28UT",
+"kind": "winner",
+"last": [
+0.23,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Utah Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Utah Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28VA": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28VA",
+"kind": "winner",
+"last": [
+0.235,
+null,
+316
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Virginia Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Virginia Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28VT": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28VT",
+"kind": "winner",
+"last": [
+0.18,
+null,
+1005
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Vermont Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Vermont Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28WA": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28WA",
+"kind": "winner",
+"last": [
+0.225,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Washington Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Washington Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28WI": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28WI",
+"kind": "winner",
+"last": [
+0.225,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 Wisconsin Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "Wisconsin Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDPRESPRIMARY-28WV": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDPRESPRIMARY-28WV",
+"kind": "winner",
+"last": [
+0.225,
+null,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Jon Ossoff wins the 2028 West Virginia Democratic presidential nominating contest, then the market resolves to Yes.",
+"title": "West Virginia Democratic presidential primary winner?",
+"url": "https://kalshi.com/markets/kxdpresprimary"
+},
+"Kalshi:KXDTICKET-28NOV07": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXDTICKET-28NOV07",
+"kind": "winner",
+"last": [
+0.015,
+null,
+374
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic presidential nominee is Gavin Newsom AND the Democratic vice presidential nominee is Gretchen Whitmer in the 2028 presidential election, then the market resolves to Yes.",
+"title": "2028 Democratic Presidential ticket",
+"url": "https://kalshi.com/markets/kxdticket"
+},
+"Kalshi:KXPOPVOTE-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPOPVOTE-28",
+"kind": "popular",
+"last": [
+0.81,
+0.195,
+7
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the national popular vote in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Popular vote winner? (2028)",
+"url": "https://kalshi.com/markets/kxpopvote"
+},
+"Kalshi:KXPOPVOTEMOVD-28NOV07": {
+"closes": "2029-05-07T14:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPOPVOTEMOVD-28NOV07",
+"kind": "margin",
+"last": [
+0.755,
+null,
+3
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If a member of the Democratic Party wins the popular vote in 2028 by a margin above 1.00%, then the market resolves to Yes.",
+"title": "2028 Democratic popular vote margin? (Directional)",
+"url": "https://kalshi.com/markets/kxpopvotemovd"
+},
+"Kalshi:KXPOPVOTEMOVR-28NOV07": {
+"closes": "2029-05-07T14:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPOPVOTEMOVR-28NOV07",
+"kind": "margin",
+"last": [
+null,
+0.16,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If a member of the Republican Party wins the popular vote in 2028 by a margin above 1.00%, then the market resolves to Yes.",
+"title": "2028 Republican popular vote margin? (Directional)",
+"url": "https://kalshi.com/markets/kxpopvotemovr"
+},
+"Kalshi:KXPRESDISTRICT-DC-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESDISTRICT-DC-28",
+"kind": "winner",
+"last": [
+0.9545,
+0.035,
+156
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in the District of Columbia in the 2028 presidential election, then the market resolves to Yes.",
+"title": "D.C. presidential election winner? (2028)",
+"url": "https://kalshi.com/markets/kxpresdistrict"
+},
+"Kalshi:KXPRESDISTRICT-ME01-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESDISTRICT-ME01-28",
+"kind": "winner",
+"last": [
+0.9495,
+0.037,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Maine's 1st Congressional District in the 2028 presidential election, then the market resolves to Yes.",
+"title": "ME-01 presidential election winner? (2028)",
+"url": "https://kalshi.com/markets/kxpresdistrict"
+},
+"Kalshi:KXPRESDISTRICT-ME02-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESDISTRICT-ME02-28",
+"kind": "winner",
+"last": [
+0.255,
+0.735,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Maine's 2nd Congressional District in the 2028 presidential election, then the market resolves to Yes.",
+"title": "ME-02 presidential election winner? (2028)",
+"url": "https://kalshi.com/markets/kxpresdistrict"
+},
+"Kalshi:KXPRESDISTRICT-NE01-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESDISTRICT-NE01-28",
+"kind": "winner",
+"last": [
+0.155,
+0.835,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Nebraska's 1st Congressional District in the 2028 presidential election, then the market resolves to Yes.",
+"title": "NE-01 presidential election winner? (2028)",
+"url": "https://kalshi.com/markets/kxpresdistrict"
+},
+"Kalshi:KXPRESDISTRICT-NE02-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESDISTRICT-NE02-28",
+"kind": "winner",
+"last": [
+0.868,
+0.1265,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Nebraska's 2nd Congressional District in the 2028 presidential election, then the market resolves to Yes.",
+"title": "NE-02 presidential election winner? (2028)",
+"url": "https://kalshi.com/markets/kxpresdistrict"
+},
+"Kalshi:KXPRESDISTRICT-NE03-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESDISTRICT-NE03-28",
+"kind": "winner",
+"last": [
+0.0445,
+0.9545,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Nebraska's 3rd Congressional District in the 2028 presidential election, then the market resolves to Yes.",
+"title": "NE-03 presidential election winner? (2028)",
+"url": "https://kalshi.com/markets/kxpresdistrict"
+},
+"Kalshi:KXPRESMATCHUP-28NOV07": {
+"closes": "2028-11-07T10:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESMATCHUP-28NOV07",
+"kind": "winner",
+"last": [
+0.0505,
+null,
+84119
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Gavin Newsom (D) and JD Vance (R) are the nominees for the 2028 presidential election, then the market resolves to Yes.",
+"title": "2028 Presidential matchup",
+"url": "https://kalshi.com/markets/kxpresmatchup"
+},
+"Kalshi:KXPRESOUTCOME-28NOV07": {
+"closes": "2029-01-20T10:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESOUTCOME-28NOV07",
+"kind": "winner",
+"last": [
+0.015,
+null,
+16229
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If Gavin Newsom defeats Marco Rubio in the 2028 presidential election, then the market resolves to Yes.",
+"title": "2028 Presidential race: exact outcome",
+"url": "https://kalshi.com/markets/kxpresoutcome"
+},
+"Kalshi:KXPRESSTATE-AK-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-AK-28",
+"kind": "winner",
+"last": [
+0.235,
+0.78,
+1606
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Alaska in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Alaska presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-AL-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-AL-28",
+"kind": "winner",
+"last": [
+0.0775,
+0.9245,
+598
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Alabama in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Alabama presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-AR-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-AR-28",
+"kind": "winner",
+"last": [
+0.046,
+0.954,
+22732
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Arkansas in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Arkansas presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-AZ-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-AZ-28",
+"kind": "winner",
+"last": [
+0.615,
+0.39,
+317
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Arizona in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Arizona presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-CA-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-CA-28",
+"kind": "winner",
+"last": [
+0.958,
+0.0395,
+16002
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in California in the 2028 presidential election, then the market resolves to Yes.",
+"title": "California presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-CO-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-CO-28",
+"kind": "winner",
+"last": [
+0.897,
+0.107,
+216
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Colorado in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Colorado presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-CT-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-CT-28",
+"kind": "winner",
+"last": [
+0.9505,
+0.0535,
+3110
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Connecticut in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Connecticut presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-DE-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-DE-28",
+"kind": "winner",
+"last": [
+0.9685,
+0.043,
+30
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Delaware in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Delaware presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-FL-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-FL-28",
+"kind": "winner",
+"last": [
+0.215,
+0.8,
+204
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Florida in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Florida presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-GA-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-GA-28",
+"kind": "winner",
+"last": [
+0.645,
+0.355,
+1081
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Georgia in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Georgia presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-HI-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-HI-28",
+"kind": "winner",
+"last": [
+0.97,
+0.032,
+20
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Hawaii in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Hawaii presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-IA-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-IA-28",
+"kind": "winner",
+"last": [
+0.29,
+0.735,
+195
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Iowa in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Iowa presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-ID-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-ID-28",
+"kind": "winner",
+"last": [
+0.054,
+0.9445,
+50
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Idaho in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Idaho presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-IL-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-IL-28",
+"kind": "winner",
+"last": [
+0.961,
+0.042,
+118
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Illinois in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Illinois presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-IN-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-IN-28",
+"kind": "winner",
+"last": [
+0.086,
+0.913,
+4876
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Indiana in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Indiana presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-KS-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-KS-28",
+"kind": "winner",
+"last": [
+0.19,
+0.84,
+1005
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Kansas in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Kansas presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-KY-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-KY-28",
+"kind": "winner",
+"last": [
+0.0975,
+0.9225,
+1122
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Kentucky in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Kentucky presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-LA-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-LA-28",
+"kind": "winner",
+"last": [
+0.0955,
+0.9155,
+1600
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Louisiana in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Louisiana presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-MA-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-MA-28",
+"kind": "winner",
+"last": [
+0.9515,
+0.0315,
+10
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Massachusetts in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Massachusetts presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-MD-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-MD-28",
+"kind": "winner",
+"last": [
+0.9525,
+0.0415,
+1053
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Maryland in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Maryland presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-ME-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-ME-28",
+"kind": "winner",
+"last": [
+0.795,
+0.195,
+949
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Maine in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Maine presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-MI-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-MI-28",
+"kind": "winner",
+"last": [
+0.685,
+0.315,
+7
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Michigan in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Michigan presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-MN-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-MN-28",
+"kind": "winner",
+"last": [
+0.84,
+0.15,
+246
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Minnesota in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Minnesota presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-MO-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-MO-28",
+"kind": "winner",
+"last": [
+0.095,
+0.9165,
+4578
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Missouri in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Missouri presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-MS-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-MS-28",
+"kind": "winner",
+"last": [
+0.1155,
+0.82,
+1277
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Mississippi in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Mississippi presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-MT-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-MT-28",
+"kind": "winner",
+"last": [
+0.14,
+0.845,
+200
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Montana in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Montana presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-NC-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-NC-28",
+"kind": "winner",
+"last": [
+0.615,
+0.405,
+4451
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in North Carolina in the 2028 presidential election, then the market resolves to Yes.",
+"title": "North Carolina presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-ND-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-ND-28",
+"kind": "winner",
+"last": [
+0.064,
+0.9335,
+500
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in North Dakota in the 2028 presidential election, then the market resolves to Yes.",
+"title": "North Dakota presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-NE-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-NE-28",
+"kind": "winner",
+"last": [
+0.0715,
+0.9275,
+146
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Nebraska in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Nebraska presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-NH-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-NH-28",
+"kind": "winner",
+"last": [
+0.74,
+0.24,
+961
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in New Hampshire in the 2028 presidential election, then the market resolves to Yes.",
+"title": "New Hampshire presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-NJ-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-NJ-28",
+"kind": "winner",
+"last": [
+0.9,
+0.0715,
+44
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in New Jersey in the 2028 presidential election, then the market resolves to Yes.",
+"title": "New Jersey presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-NM-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-NM-28",
+"kind": "winner",
+"last": [
+0.885,
+0.11,
+159
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in New Mexico in the 2028 presidential election, then the market resolves to Yes.",
+"title": "New Mexico presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-NV-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-NV-28",
+"kind": "winner",
+"last": [
+0.67,
+0.35,
+3190
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Nevada in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Nevada presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-NY-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-NY-28",
+"kind": "winner",
+"last": [
+0.927,
+0.079,
+48517
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in New York in the 2028 presidential election, then the market resolves to Yes.",
+"title": "New York presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-OH-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-OH-28",
+"kind": "winner",
+"last": [
+0.365,
+0.635,
+1823
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Ohio in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Ohio presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-OK-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-OK-28",
+"kind": "winner",
+"last": [
+0.051,
+0.9405,
+800
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Oklahoma in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Oklahoma presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-OR-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-OR-28",
+"kind": "winner",
+"last": [
+0.9065,
+0.073,
+250
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Oregon in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Oregon presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-PA-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-PA-28",
+"kind": "winner",
+"last": [
+0.655,
+0.345,
+35
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Pennsylvania in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Pennsylvania presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-RI-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-RI-28",
+"kind": "winner",
+"last": [
+0.961,
+0.056,
+248
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Rhode Island in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Rhode Island presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-SC-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-SC-28",
+"kind": "winner",
+"last": [
+0.205,
+0.835,
+405
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in South Carolina in the 2028 presidential election, then the market resolves to Yes.",
+"title": "South Carolina presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-SD-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-SD-28",
+"kind": "winner",
+"last": [
+0.0315,
+0.9275,
+266
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in South Dakota in the 2028 presidential election, then the market resolves to Yes.",
+"title": "South Dakota presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-TN-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-TN-28",
+"kind": "winner",
+"last": [
+0.0735,
+0.933,
+1095
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Tennessee in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Tennessee presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-TX-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-TX-28",
+"kind": "winner",
+"last": [
+0.39,
+0.615,
+21580
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Texas in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Texas presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-UT-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-UT-28",
+"kind": "winner",
+"last": [
+0.086,
+0.9075,
+4011
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Utah in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Utah presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-VA-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-VA-28",
+"kind": "winner",
+"last": [
+0.85,
+0.13,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Virginia in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Virginia presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-VT-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-VT-28",
+"kind": "winner",
+"last": [
+0.9365,
+0.0605,
+948
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Vermont in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Vermont presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-WA-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-WA-28",
+"kind": "winner",
+"last": [
+0.927,
+0.039,
+1133
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Washington in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Washington presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-WI-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-WI-28",
+"kind": "winner",
+"last": [
+0.635,
+0.38,
+793
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Wisconsin in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Wisconsin presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-WV-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-WV-28",
+"kind": "winner",
+"last": [
+0.0885,
+0.895,
+7957
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in West Virginia in the 2028 presidential election, then the market resolves to Yes.",
+"title": "West Virginia presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXPRESSTATE-WY-28": {
+"closes": "2029-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXPRESSTATE-WY-28",
+"kind": "winner",
+"last": [
+0.07,
+0.9275,
+101
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Democratic Party wins the most electoral votes in Wyoming in the 2028 presidential election, then the market resolves to Yes.",
+"title": "Wyoming presidential election winner?",
+"url": "https://kalshi.com/markets/kxpresstate"
+},
+"Kalshi:KXRPRESPRIMARY-28AK": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28AK",
+"kind": "winner",
+"last": [
+null,
+0.34,
+763
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Alaska Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Alaska Republican presidential caucus winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28AL": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28AL",
+"kind": "winner",
+"last": [
+null,
+0.33,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Alabama Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Alabama Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28AR": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28AR",
+"kind": "winner",
+"last": [
+null,
+0.33,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Arkansas Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Arkansas Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28AZ": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28AZ",
+"kind": "winner",
+"last": [
+null,
+0.32,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Arizona Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Arizona Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28CA": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28CA",
+"kind": "winner",
+"last": [
+null,
+0.315,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 California Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "California Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28CO": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28CO",
+"kind": "winner",
+"last": [
+null,
+0.305,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Colorado Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Colorado Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28CT": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28CT",
+"kind": "winner",
+"last": [
+null,
+0.3,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Connecticut Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Connecticut Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28DC": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28DC",
+"kind": "winner",
+"last": [
+null,
+0.28,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 District of Columbia Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "District of Columbia Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28DE": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28DE",
+"kind": "winner",
+"last": [
+null,
+0.285,
+111
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Delaware Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Delaware Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28FL": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28FL",
+"kind": "winner",
+"last": [
+null,
+0.285,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Florida Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Florida Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28GA": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28GA",
+"kind": "winner",
+"last": [
+null,
+0.305,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Georgia Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Georgia Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28HI": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28HI",
+"kind": "winner",
+"last": [
+null,
+0.305,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Hawaii Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Hawaii Republican presidential caucus winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28IA": {
+"closes": "2028-11-07T10:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28IA",
+"kind": "winner",
+"last": [
+null,
+0.295,
+1406
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Iowa Republican presidential caucus, then the market resolves to Yes.",
+"title": "Iowa Republican presidential caucus winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28ID": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28ID",
+"kind": "winner",
+"last": [
+null,
+0.33,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Idaho Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Idaho Republican presidential caucus winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28IL": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28IL",
+"kind": "winner",
+"last": [
+null,
+0.325,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Illinois Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Illinois Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28IN": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28IN",
+"kind": "winner",
+"last": [
+null,
+0.325,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Indiana Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Indiana Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28KS": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28KS",
+"kind": "winner",
+"last": [
+null,
+0.32,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Kansas Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Kansas Republican presidential caucus winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28KY": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28KY",
+"kind": "winner",
+"last": [
+null,
+0.33,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Kentucky Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Kentucky Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28LA": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28LA",
+"kind": "winner",
+"last": [
+null,
+0.325,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Louisiana Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Louisiana Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28MA": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28MA",
+"kind": "winner",
+"last": [
+null,
+0.295,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Massachusetts Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Massachusetts Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28MD": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28MD",
+"kind": "winner",
+"last": [
+null,
+0.305,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Maryland Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Maryland Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28ME": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28ME",
+"kind": "winner",
+"last": [
+null,
+0.3,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Maine Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Maine Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28MI": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28MI",
+"kind": "winner",
+"last": [
+null,
+0.31,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Michigan Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Michigan Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28MN": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28MN",
+"kind": "winner",
+"last": [
+null,
+0.315,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Minnesota Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Minnesota Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28MS": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28MS",
+"kind": "winner",
+"last": [
+null,
+0.33,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Mississippi Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Mississippi Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28MT": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28MT",
+"kind": "winner",
+"last": [
+null,
+0.31,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Montana Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Montana Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28NC": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28NC",
+"kind": "winner",
+"last": [
+null,
+0.305,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 North Carolina Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "North Carolina Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28ND": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28ND",
+"kind": "winner",
+"last": [
+null,
+0.315,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 North Dakota Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "North Dakota Republican presidential caucus winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28NE": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28NE",
+"kind": "winner",
+"last": [
+null,
+0.325,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Nebraska Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Nebraska Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28NH": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28NH",
+"kind": "winner",
+"last": [
+null,
+0.315,
+452
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 New Hampshire Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "New Hampshire Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28NJ": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28NJ",
+"kind": "winner",
+"last": [
+null,
+0.305,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 New Jersey Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "New Jersey Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28NM": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28NM",
+"kind": "winner",
+"last": [
+null,
+0.305,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 New Mexico Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "New Mexico Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28NV": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28NV",
+"kind": "winner",
+"last": [
+null,
+0.31,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Nevada Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Nevada Republican presidential caucus winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28NY": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28NY",
+"kind": "winner",
+"last": [
+null,
+0.305,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 New York Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "New York Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28OH": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28OH",
+"kind": "winner",
+"last": [
+null,
+0.375,
+58
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Ohio Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Ohio Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28OK": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28OK",
+"kind": "winner",
+"last": [
+null,
+0.335,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Oklahoma Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Oklahoma Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28OR": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28OR",
+"kind": "winner",
+"last": [
+null,
+0.31,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Oregon Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Oregon Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28PA": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28PA",
+"kind": "winner",
+"last": [
+null,
+0.325,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Pennsylvania Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Pennsylvania Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28RI": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28RI",
+"kind": "winner",
+"last": [
+null,
+0.31,
+1
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Rhode Island Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Rhode Island Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28SC": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28SC",
+"kind": "winner",
+"last": [
+null,
+0.315,
+1220
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 South Carolina Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "South Carolina Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28SD": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28SD",
+"kind": "winner",
+"last": [
+null,
+0.315,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 South Dakota Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "South Dakota Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28TN": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28TN",
+"kind": "winner",
+"last": [
+null,
+0.33,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Tennessee Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Tennessee Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28TX": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28TX",
+"kind": "winner",
+"last": [
+null,
+0.305,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Texas Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Texas Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28UT": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28UT",
+"kind": "winner",
+"last": [
+null,
+0.325,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Utah Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Utah Republican presidential caucus winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28VA": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28VA",
+"kind": "winner",
+"last": [
+null,
+0.295,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Virginia Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Virginia Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28VT": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28VT",
+"kind": "winner",
+"last": [
+null,
+0.31,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Vermont Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Vermont Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28WA": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28WA",
+"kind": "winner",
+"last": [
+null,
+0.315,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Washington Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Washington Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28WI": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28WI",
+"kind": "winner",
+"last": [
+null,
+0.31,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 Wisconsin Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "Wisconsin Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRPRESPRIMARY-28WV": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRPRESPRIMARY-28WV",
+"kind": "winner",
+"last": [
+null,
+0.335,
+0
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If J.D. Vance wins the 2028 West Virginia Republican presidential nominating contest, then the market resolves to Yes.",
+"title": "West Virginia Republican presidential primary winner?",
+"url": "https://kalshi.com/markets/kxrpresprimary"
+},
+"Kalshi:KXRTICKET-28NOV07": {
+"closes": "2028-11-07T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "KXRTICKET-28NOV07",
+"kind": "winner",
+"last": [
+null,
+0.065,
+26429
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If the Republican presidential nominee is JD Vance AND the Republican vice presidential nominee is Marco Rubio in the 2028 presidential election, then the market resolves to Yes.",
+"title": "2028 Republican Presidential ticket",
+"url": "https://kalshi.com/markets/kxrticket"
+},
+"Kalshi:POPVOTEMOV-28NOV07": {
+"closes": "2029-05-06T15:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "POPVOTEMOV-28NOV07",
+"kind": "margin",
+"last": [
+0.225,
+0.045,
+203833
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Kalshi",
+"real_money": true,
+"rules": "If a member of the Democratic Party wins the popular vote in 2028 by a margin of between 9.00-100.00%, then the market resolves to Yes.",
+"title": "2028 popular vote margin of victory?",
+"url": "https://kalshi.com/markets/popvotemov"
+},
+"Manifold:0099I2E2EL": {
+"closes": "2028-11-07T10:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "0099I2E2EL",
+"kind": "winner",
+"last": [
+0.1914,
+0.7667,
+265
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "UT",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Utah?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-RcIC9h6Ayg"
+},
+"Manifold:6Ilzq5Lctg": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "6Ilzq5Lctg",
+"kind": "winner",
+"last": [
+0.7186,
+0.2077,
+104
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NH",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in New Hampshire?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-I6nSNpCQhO"
+},
+"Manifold:8N6RzusU8C": {
+"closes": "2028-11-07T10:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "8N6RzusU8C",
+"kind": "winner",
+"last": [
+0.0512,
+0.8975,
+365
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "TN",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Tennessee?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-cluS5II28E"
+},
+"Manifold:8lsyuguU5I": {
+"closes": "2028-11-07T00:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "8lsyuguU5I",
+"kind": "margin",
+"last": [
+null,
+null,
+66
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves YES to the state with the smallest percentage point margin of victory between the first and second place candidate in that states popular vote for the 2028 Presidential election. Resolves based on the final deciding round if the state uses ranked choice voting or some other system.",
+"title": "Which state will have the smallest margin of victory in the 2028 Presidential Election?",
+"url": "https://manifold.markets/Jack1/which-state-will-have-the-smallest-NRRNyOzNlI"
+},
+"Manifold:8pnz80sS5g": {
+"closes": "2028-11-07T10:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "8pnz80sS5g",
+"kind": "winner",
+"last": [
+0.0515,
+0.897,
+376
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "ND",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in North Dakota?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-6CdPlCp5dR"
+},
+"Manifold:8uOl9NEgzQ": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "8uOl9NEgzQ",
+"kind": "winner",
+"last": [
+0.8975,
+0.0512,
+371
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "HI",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Hawaii?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-8d0O62S0Il"
+},
+"Manifold:98C5qnt2uh": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "98C5qnt2uh",
+"kind": "winner",
+"last": [
+0.98,
+0.01,
+2
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "ME1",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets the electoral vote of Maine's 1st congressional district (ME-1) in the November 7, 2028 election. N/A if Maine no longer awards an electoral vote by district, or has no 1st district.\n\nOnly the party matters: a ticket on the Democratic or Rep",
+"title": "Which party will win Maine's 1st District (ME-1) in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-maines-1st-dis"
+},
+"Manifold:9QO5yAzyy6": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "9QO5yAzyy6",
+"kind": "winner",
+"last": [
+0.0249,
+0.9671,
+55
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "IN",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets Indiana's electoral votes in the November 7, 2028 election, however Indiana awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another system, it follo",
+"title": "Which party will win Indiana in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-indiana-in-the"
+},
+"Manifold:9U5IENILtZ": {
+"closes": "2028-11-07T10:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "9U5IENILtZ",
+"kind": "winner",
+"last": [
+0.0506,
+0.8988,
+385
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "WV",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in West Virginia?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-lCtUA9gA8t"
+},
+"Manifold:9pyRSU5A6n": {
+"closes": "2028-10-31T22:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "9pyRSU5A6n",
+"kind": "popular",
+"last": [
+null,
+null,
+47081
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Manifold",
+"real_money": false,
+"rules": "",
+"title": "Which party will win the popular vote in the 2028 Presidential election?",
+"url": "https://manifold.markets/AmmonLam/which-party-will-win-the-popular-vo-CS00zSdhtC"
+},
+"Manifold:9zA8lRA6On": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "9zA8lRA6On",
+"kind": "winner",
+"last": [
+0.6224,
+0.3769,
+9153
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NC",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets North Carolina's electoral votes in the November 7, 2028 election, however North Carolina awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another sy",
+"title": "Which party will win North Carolina in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-north-carolina"
+},
+"Manifold:AOp2h6CAtq": {
+"closes": "2028-11-07T10:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "AOp2h6CAtq",
+"kind": "winner",
+"last": [
+0.1292,
+0.8523,
+544
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "MS",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Mississippi?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-0QpS8LUZdP"
+},
+"Manifold:AhOCUACQSg": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "AhOCUACQSg",
+"kind": "winner",
+"last": [
+0.243,
+0.7543,
+1085
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "IA",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets Iowa's electoral votes in the November 7, 2028 election, however Iowa awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another system, it follows wha",
+"title": "Which party will win Iowa in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-iowa-in-the-20"
+},
+"Manifold:Ay0u92zyqg": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "Ay0u92zyqg",
+"kind": "winner",
+"last": [
+0.8975,
+0.0512,
+365
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "DE",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Delaware?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-Qhsud9ERh6"
+},
+"Manifold:ECCcOUOnlO": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "ECCcOUOnlO",
+"kind": "winner",
+"last": [
+0.6214,
+0.3776,
+4022
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NV",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets Nevada's electoral votes in the November 7, 2028 election, however Nevada awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another system, it follows",
+"title": "Which party will win Nevada in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-nevada-in-the"
+},
+"Manifold:EUsAQ995yt": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "EUsAQ995yt",
+"kind": "winner",
+"last": [
+0.9803,
+0.0099,
+203
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "VT",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets Vermont's electoral votes in the November 7, 2028 election, however Vermont awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another system, it follo",
+"title": "Which party will win Vermont in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-vermont-in-the"
+},
+"Manifold:EdcpOnUqPQ": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "EdcpOnUqPQ",
+"kind": "winner",
+"last": [
+0.1526,
+0.8436,
+2191
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "FL",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets Florida's electoral votes in the November 7, 2028 election, however Florida awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another system, it follo",
+"title": "Which party will win Florida in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-florida-in-the"
+},
+"Manifold:EuU28RzAqR": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "EuU28RzAqR",
+"kind": "winner",
+"last": [
+0.8975,
+0.0512,
+269
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "IL",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Illinois?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-cCUSU0hRLS"
+},
+"Manifold:FkyWAnOISxd2uEur7Vuh": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "FkyWAnOISxd2uEur7Vuh",
+"kind": "winner",
+"last": [
+null,
+null,
+241
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "ME",
+"provider": "Manifold",
+"real_money": false,
+"rules": "This question will resolve YES if Maine switches their electoral vote allocation method to winner takes all before the 2028 US presidential election.",
+"title": "Will Maine switch to a winner takes all presidential election system by the 2028 elections?",
+"url": "https://manifold.markets/Noah1/will-maine-switch-to-a-winner-takes"
+},
+"Manifold:I0RhNQPtd6": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "I0RhNQPtd6",
+"kind": "winner",
+"last": [
+0.1439,
+0.7998,
+610
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "MO",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Missouri?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-Ol6Ln8uuPy"
+},
+"Manifold:IgdAISyOgZ": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "IgdAISyOgZ",
+"kind": "winner",
+"last": [
+0.9095,
+0.0903,
+18502
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NE2",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets the electoral vote of Nebraska's 2nd congressional district (NE-2) in the November 7, 2028 election. N/A if Nebraska no longer awards an electoral vote by district, or has no 2nd district.\n\nOnly the party matters: a ticket on the Democratic ",
+"title": "Which party will win Nebraska's 2nd District (NE-2) in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-nebraskas-2nd"
+},
+"Manifold:IglANsO0CS": {
+"closes": "2028-11-07T10:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "IglANsO0CS",
+"kind": "winner",
+"last": [
+0.0694,
+0.8974,
+385
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NE",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever wins the statewide popular vote in Nebraska according to associated press.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Nebraska?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-nNNz5L9gq9"
+},
+"Manifold:LQzugAuNny": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "LQzugAuNny",
+"kind": "winner",
+"last": [
+0.9801,
+0.0099,
+52
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "DC",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets the District of Columbia's electoral votes in the November 7, 2028 election, however the District of Columbia awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are re",
+"title": "Which party will win the District of Columbia in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-the-district-o"
+},
+"Manifold:N99tAp9UCA": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "N99tAp9UCA",
+"kind": "winner",
+"last": [
+0.0105,
+0.9797,
+3
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NE3",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets the electoral vote of Nebraska's 3rd congressional district (NE-3) in the November 7, 2028 election. N/A if Nebraska no longer awards an electoral vote by district, or has no 3rd district.\n\nOnly the party matters: a ticket on the Democratic ",
+"title": "Which party will win Nebraska's 3rd District (NE-3) in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-nebraskas-3rd"
+},
+"Manifold:NIgP5tpLLg": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "NIgP5tpLLg",
+"kind": "winner",
+"last": [
+0.1755,
+0.8183,
+253
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "ME2",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets the electoral vote of Maine's 2nd congressional district (ME-2) in the November 7, 2028 election. N/A if Maine no longer awards an electoral vote by district, or has no 2nd district.\n\nOnly the party matters: a ticket on the Democratic or Rep",
+"title": "Which party will win Maine's 2nd District (ME-2) in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-maines-2nd-dis"
+},
+"Manifold:NddRhpNytp": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "NddRhpNytp",
+"kind": "winner",
+"last": [
+0.0624,
+0.9277,
+3
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NE1",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets the electoral vote of Nebraska's 1st congressional district (NE-1) in the November 7, 2028 election. N/A if Nebraska no longer awards an electoral vote by district, or has no 1st district.\n\nOnly the party matters: a ticket on the Democratic ",
+"title": "Which party will win Nebraska's 1st District (NE-1) in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-nebraskas-1st"
+},
+"Manifold:Ndg8IlQLPl": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "Ndg8IlQLPl",
+"kind": "nomination",
+"last": [
+null,
+null,
+400
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "D",
+"provider": "Manifold",
+"real_money": false,
+"rules": "This market resolves to the option that correctly identifies the 2028 Democratic presidential nominee and whether they win the 2028 U.S. presidential election.\n\nDemocratic Nominee: The individual who officially secures the Democratic Party's presidential nomination at the 2028 Democratic National Co",
+"title": "Who will be the Democratic nominee, and will they win the 2028 presidential election?",
+"url": "https://manifold.markets/JZB/who-will-be-the-democratic-nominee-0yu0u5nSu5"
+},
+"Manifold:OC5OttquC6": {
+"closes": "2028-12-18T22:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "OC5OttquC6",
+"kind": "electoral_votes",
+"last": [
+null,
+null,
+135
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Electoral College margin = the winning candidate's electoral votes minus the second place's electoral votes.\n\nAnswers will be resolved based on the actual Electoral College votes, not electors' pledges. Unfaithful electors may impact the outcome.\n\n",
+"title": "Open Answer: What will be the (absolute) Electoral College margin in the 2028 US Presidential Election?",
+"url": "https://manifold.markets/4fa/open-answer-what-will-be-the-absolu-QlLSuSU5lR"
+},
+"Manifold:PREgpUZdpp": {
+"closes": "2028-11-07T10:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "PREgpUZdpp",
+"kind": "winner",
+"last": [
+0.0512,
+0.8975,
+365
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "LA",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Louisiana?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-pZh9OpdcsO"
+},
+"Manifold:PS892Pgcdn": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "PS892Pgcdn",
+"kind": "winner",
+"last": [
+0.1065,
+0.8887,
+1992
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "KS",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets Kansas's electoral votes in the November 7, 2028 election, however Kansas awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another system, it follows",
+"title": "Which party will win Kansas in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-kansas-in-the"
+},
+"Manifold:Pds8QhlUuR": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "Pds8QhlUuR",
+"kind": "winner",
+"last": [
+0.7248,
+0.1376,
+64
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NJ",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in New Jersey?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-Zg9ClUOQcL"
+},
+"Manifold:Qcu2QpZgQ9": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "Qcu2QpZgQ9",
+"kind": "winner",
+"last": [
+0.8351,
+0.132,
+227
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NM",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in New Mexico?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-022UnQquSS"
+},
+"Manifold:RZ9ISZCPIl": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "RZ9ISZCPIl",
+"kind": "winner",
+"last": [
+0.6784,
+0.3204,
+5727
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "MI",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets Michigan's electoral votes in the November 7, 2028 election, however Michigan awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another system, it fol",
+"title": "Which party will win Michigan in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-michigan-in-th"
+},
+"Manifold:SlSAdIC22S": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "SlSAdIC22S",
+"kind": "winner",
+"last": [
+0.0649,
+0.929,
+213
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "SC",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets South Carolina's electoral votes in the November 7, 2028 election, however South Carolina awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another sy",
+"title": "Which party will win South Carolina in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-south-carolina"
+},
+"Manifold:UIhNLC5q5A": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "UIhNLC5q5A",
+"kind": "winner",
+"last": [
+0.6201,
+0.3792,
+4792
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "AZ",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets Arizona's electoral votes in the November 7, 2028 election, however Arizona awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another system, it follo",
+"title": "Which party will win Arizona in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-arizona-in-the"
+},
+"Manifold:UgnOcS2ddg": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "UgnOcS2ddg",
+"kind": "winner",
+"last": [
+0.6074,
+0.3404,
+162
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "WI",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Wisconsin?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-S5PttZCIlE"
+},
+"Manifold:Z5ntQsN2LI": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "Z5ntQsN2LI",
+"kind": "winner",
+"last": [
+0.8975,
+0.0512,
+365
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "CT",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Connecticut?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-6Q9z6ygqEh"
+},
+"Manifold:Zn9hNCQu02": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "Zn9hNCQu02",
+"kind": "winner",
+"last": [
+0.8975,
+0.0512,
+365
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "OR",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Oregon?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-c9tnhP0Udc"
+},
+"Manifold:c5R68SUuyR": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "c5R68SUuyR",
+"kind": "winner",
+"last": [
+0.8975,
+0.0512,
+391
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "WA",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Washington?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-L9gz0cc89p"
+},
+"Manifold:clnqghA2Il": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "clnqghA2Il",
+"kind": "winner",
+"last": [
+0.9797,
+0.0107,
+107
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "CA",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets California's electoral votes in the November 7, 2028 election, however California awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another system, it",
+"title": "Which party will win California in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-california-in"
+},
+"Manifold:d2URcq8Nsz": {
+"closes": "2028-11-07T10:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "d2URcq8Nsz",
+"kind": "winner",
+"last": [
+0.0512,
+0.8975,
+365
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "KY",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Kentucky?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-t58NcIhShI"
+},
+"Manifold:dIXJEEBVF6X78nZV7hST": {
+"closes": "2029-01-01T05:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "dIXJEEBVF6X78nZV7hST",
+"kind": "winner",
+"last": [
+0.3831,
+null,
+1498
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "TX",
+"provider": "Manifold",
+"real_money": false,
+"rules": "",
+"title": "Will a Democrat win Texas in the 2028 presidential election?",
+"url": "https://manifold.markets/GG/will-a-democrat-win-texas-in-the-20-29cb9626db1e"
+},
+"Manifold:dpgdNLRRs5": {
+"closes": "2028-11-07T10:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "dpgdNLRRs5",
+"kind": "winner",
+"last": [
+0.0529,
+0.9004,
+386
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "ID",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Idaho?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-QSNUN5Nz6p"
+},
+"Manifold:dtcNCqg09A": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "dtcNCqg09A",
+"kind": "winner",
+"last": [
+0.664,
+0.3352,
+8353
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "PA",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets Pennsylvania's electoral votes in the November 7, 2028 election, however Pennsylvania awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another system",
+"title": "Which party will win Pennsylvania in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-pennsylvania-i"
+},
+"Manifold:glczdn2q09": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "glczdn2q09",
+"kind": "winner",
+"last": [
+0.2221,
+0.6807,
+235
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "AK",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Alaska?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-dqIz6NEA8E"
+},
+"Manifold:nP9lEy5UUQ": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "nP9lEy5UUQ",
+"kind": "winner",
+"last": [
+0.8919,
+0.1073,
+10071
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "VA",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket with the most votes in Virginia in the November 7, 2028 election, per Virginia's certified result. Only the vote count matters: how Virginia awards its electoral votes, including under a national popular vote compact, doesn't.\n\nOnly the party matters:",
+"title": "Which party will win the popular vote in Virginia in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-the-popular-vo-gCyyd0sENs"
+},
+"Manifold:pPONIpP0hC": {
+"closes": "2028-11-07T10:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "pPONIpP0hC",
+"kind": "winner",
+"last": [
+0.0867,
+0.8958,
+286
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "AL",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Alabama?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-sOUt2llZqC"
+},
+"Manifold:qRhlLzhIuA": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "qRhlLzhIuA",
+"kind": "winner",
+"last": [
+0.9303,
+0.067,
+6088
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "CO",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets Colorado's electoral votes in the November 7, 2028 election, however Colorado awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another system, it fol",
+"title": "Which party will win Colorado in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-colorado-in-th"
+},
+"Manifold:qRpSnZqnt8": {
+"closes": "2028-11-07T10:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "qRpSnZqnt8",
+"kind": "winner",
+"last": [
+0.0744,
+0.8512,
+331
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "AR",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Arkansas?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-p6tgE58hct"
+},
+"Manifold:sIyzI9c6IO": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "sIyzI9c6IO",
+"kind": "winner",
+"last": [
+0.8975,
+0.0512,
+167
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "MD",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Maryland?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-9U6UOSPgp0"
+},
+"Manifold:sNzuhCSgtR": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "sNzuhCSgtR",
+"kind": "winner",
+"last": [
+0.885,
+0.0575,
+150
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NY",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in New York?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-PzZ8IEusyE"
+},
+"Manifold:sqCtn95u0z": {
+"closes": "2028-11-07T10:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "sqCtn95u0z",
+"kind": "winner",
+"last": [
+0.2077,
+0.7186,
+184
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "MT",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Montana?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-nR9yuls0hC"
+},
+"Manifold:t2nqpLENQl": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "t2nqpLENQl",
+"kind": "winner",
+"last": [
+0.6457,
+0.3535,
+6979
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "GA",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets Georgia's electoral votes in the November 7, 2028 election, however Georgia awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another system, it follo",
+"title": "Which party will win Georgia in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-georgia-in-the"
+},
+"Manifold:tCz5c9ROSt": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "tCz5c9ROSt",
+"kind": "winner",
+"last": [
+0.8252,
+0.1738,
+6973
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "MN",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets Minnesota's electoral votes in the November 7, 2028 election, however Minnesota awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another system, it f",
+"title": "Which party will win Minnesota in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-minnesota-in-t"
+},
+"Manifold:ulRdlQIZg2": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "ulRdlQIZg2",
+"kind": "winner",
+"last": [
+0.8975,
+0.0512,
+365
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "RI",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Rhode Island?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-SuZEu9APAZ"
+},
+"Manifold:wpdomi6nif": {
+"closes": "2028-11-08T05:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "wpdomi6nif",
+"kind": "winner",
+"last": [
+null,
+null,
+798438
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Manifold",
+"real_money": false,
+"rules": "",
+"title": "Will JD Vance win the 2028 US Presidential Election?",
+"url": "https://manifold.markets/LarsDoucet/will-jd-vance-win-the-2028-us-presi"
+},
+"Manifold:yLyuzCPpgS": {
+"closes": "2028-11-07T10:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "yLyuzCPpgS",
+"kind": "winner",
+"last": [
+0.0512,
+0.8975,
+365
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "SD",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in South Dakota?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-dLZZnqZOUt"
+},
+"Manifold:yQLnLqP5gu": {
+"closes": "2028-11-07T10:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "yQLnLqP5gu",
+"kind": "winner",
+"last": [
+0.0479,
+0.9042,
+292
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "WY",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Wyoming?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-O2hNLptyqE"
+},
+"Manifold:ycd0pN8y8A": {
+"closes": "2028-11-08T12:00:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "ycd0pN8y8A",
+"kind": "winner",
+"last": [
+0.3005,
+0.6974,
+2611
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "OH",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves to the party of the presidential ticket that gets Ohio's electoral votes in the November 7, 2028 election, however Ohio awards them: by its own vote, by the national popular vote under an interstate compact, or any other way. If electoral votes are replaced by another system, it follows wha",
+"title": "Which party will win Ohio in the 2028 presidential election?",
+"url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-ohio-in-the-20"
+},
+"Manifold:yzUQLLu2p0": {
+"closes": "2028-11-07T23:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "yzUQLLu2p0",
+"kind": "winner",
+"last": [
+0.8983,
+0.0508,
+219
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "MA",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Massachusetts?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-LPnEIht8uP"
+},
+"Manifold:zSStNCPRht": {
+"closes": "2028-11-07T10:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "zSStNCPRht",
+"kind": "winner",
+"last": [
+0.0506,
+0.8988,
+385
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "OK",
+"provider": "Manifold",
+"real_money": false,
+"rules": "Resolves yes to whoever the associated press declares the winner of this state in the 2028 us presidential election.\n\n2028 United States presidential election - Wikipedia \n\n[link preview]",
+"title": "Which party will win the 2028 presidential election in Oklahoma?",
+"url": "https://manifold.markets/Jack1/which-party-will-win-the-2028-presi-SAqZRyyRAn"
+},
+"Polymarket:2028-presidential-election-alabama-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-alabama-winner",
+"kind": "winner",
+"last": [
+0.1205,
+0.875,
+1731
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "AL",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Alabama in the 2028 Presidenti",
+"title": "2028 Presidential Election: Alabama Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-alabama-winner"
+},
+"Polymarket:2028-presidential-election-alaska-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-alaska-winner",
+"kind": "winner",
+"last": [
+0.26,
+0.725,
+13282
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "AK",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Alaska in the 2028 Presidentia",
+"title": "2028 Presidential Election: Alaska Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-alaska-winner"
+},
+"Polymarket:2028-presidential-election-arizona-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-arizona-winner",
+"kind": "winner",
+"last": [
+0.655,
+0.335,
+5590
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "AZ",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Arizona in the 2028 Presidenti",
+"title": "2028 Presidential Election: Arizona Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-arizona-winner"
+},
+"Polymarket:2028-presidential-election-arkansas-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-arkansas-winner",
+"kind": "winner",
+"last": [
+0.055,
+0.93,
+994
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "AR",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Arkansas in the 2028 President",
+"title": "2028 Presidential Election: Arkansas Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-arkansas-winner"
+},
+"Polymarket:2028-presidential-election-california-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-california-winner",
+"kind": "winner",
+"last": [
+0.945,
+0.05,
+243
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "CA",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in California in the 2028 Preside",
+"title": "2028 Presidential Election: California Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-california-winner"
+},
+"Polymarket:2028-presidential-election-colorado-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-colorado-winner",
+"kind": "winner",
+"last": [
+0.89,
+0.085,
+1670
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "CO",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Colorado in the 2028 President",
+"title": "2028 Presidential Election: Colorado Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-colorado-winner"
+},
+"Polymarket:2028-presidential-election-connecticut-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-connecticut-winner",
+"kind": "winner",
+"last": [
+0.935,
+0.045,
+1745
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "CT",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Connecticut in the 2028 Presid",
+"title": "2028 Presidential Election: Connecticut Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-connecticut-winner"
+},
+"Polymarket:2028-presidential-election-delaware-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-delaware-winner",
+"kind": "winner",
+"last": [
+0.935,
+0.043,
+404
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "DE",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Delaware in the 2028 President",
+"title": "2028 Presidential Election: Delaware Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-delaware-winner"
+},
+"Polymarket:2028-presidential-election-florida-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-florida-winner",
+"kind": "winner",
+"last": [
+0.225,
+0.77,
+8085
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "FL",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Florida in the 2028 Presidenti",
+"title": "2028 Presidential Election: Florida Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-florida-winner"
+},
+"Polymarket:2028-presidential-election-georgia-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-georgia-winner",
+"kind": "winner",
+"last": [
+0.655,
+0.3445,
+6142
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "GA",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Georgia in the 2028 Presidenti",
+"title": "2028 Presidential Election: Georgia Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-georgia-winner"
+},
+"Polymarket:2028-presidential-election-hawaii-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-hawaii-winner",
+"kind": "winner",
+"last": [
+0.92,
+0.08,
+788
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "HI",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Hawaii in the 2028 Presidentia",
+"title": "2028 Presidential Election: Hawaii Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-hawaii-winner"
+},
+"Polymarket:2028-presidential-election-idaho-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-idaho-winner",
+"kind": "winner",
+"last": [
+0.095,
+0.895,
+491
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "ID",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Idaho in the 2028 Presidential",
+"title": "2028 Presidential Election: Idaho Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-idaho-winner"
+},
+"Polymarket:2028-presidential-election-illinois-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-illinois-winner",
+"kind": "winner",
+"last": [
+0.935,
+0.065,
+1520
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "IL",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Illinois in the 2028 President",
+"title": "2028 Presidential Election: Illinois Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-illinois-winner"
+},
+"Polymarket:2028-presidential-election-indiana-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-indiana-winner",
+"kind": "winner",
+"last": [
+0.135,
+0.87,
+1623
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "IN",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Indiana in the 2028 Presidenti",
+"title": "2028 Presidential Election: Indiana Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-indiana-winner"
+},
+"Polymarket:2028-presidential-election-iowa-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-iowa-winner",
+"kind": "winner",
+"last": [
+0.345,
+0.665,
+11971
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "IA",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Iowa in the 2028 Presidential ",
+"title": "2028 Presidential Election: Iowa Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-iowa-winner"
+},
+"Polymarket:2028-presidential-election-kansas-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-kansas-winner",
+"kind": "winner",
+"last": [
+0.18,
+0.82,
+1991
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "KS",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Kansas in the 2028 Presidentia",
+"title": "2028 Presidential Election: Kansas Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-kansas-winner"
+},
+"Polymarket:2028-presidential-election-kentucky-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-kentucky-winner",
+"kind": "winner",
+"last": [
+0.115,
+0.87,
+1718
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "KY",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Kentucky in the 2028 President",
+"title": "2028 Presidential Election: Kentucky Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-kentucky-winner"
+},
+"Polymarket:2028-presidential-election-louisiana-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-louisiana-winner",
+"kind": "winner",
+"last": [
+0.125,
+0.885,
+1182
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "LA",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Louisiana in the 2028 Presiden",
+"title": "2028 Presidential Election: Louisiana Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-louisiana-winner"
+},
+"Polymarket:2028-presidential-election-maine-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-maine-winner",
+"kind": "winner",
+"last": [
+0.795,
+0.19,
+11318
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "ME",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Maine in the 2028 Presidential",
+"title": "2028 Presidential Election: Maine Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-maine-winner"
+},
+"Polymarket:2028-presidential-election-maryland-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-maryland-winner",
+"kind": "winner",
+"last": [
+0.895,
+0.1025,
+2989
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "MD",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Maryland in the 2028 President",
+"title": "2028 Presidential Election: Maryland Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-maryland-winner"
+},
+"Polymarket:2028-presidential-election-massachusetts-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-massachusetts-winner",
+"kind": "winner",
+"last": [
+0.95,
+0.041,
+431
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "MA",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Massachusetts in the 2028 Pres",
+"title": "2028 Presidential Election: Massachusetts Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-massachusetts-winner"
+},
+"Polymarket:2028-presidential-election-michigan-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-michigan-winner",
+"kind": "winner",
+"last": [
+0.695,
+0.295,
+12222
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "MI",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Michigan in the 2028 President",
+"title": "2028 Presidential Election: Michigan Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-michigan-winner"
+},
+"Polymarket:2028-presidential-election-minnesota-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-minnesota-winner",
+"kind": "winner",
+"last": [
+0.835,
+0.135,
+14039
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "MN",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Minnesota in the 2028 Presiden",
+"title": "2028 Presidential Election: Minnesota Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-minnesota-winner"
+},
+"Polymarket:2028-presidential-election-mississippi-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-mississippi-winner",
+"kind": "winner",
+"last": [
+0.155,
+0.83,
+1959
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "MS",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Mississippi in the 2028 Presid",
+"title": "2028 Presidential Election: Mississippi Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-mississippi-winner"
+},
+"Polymarket:2028-presidential-election-missouri-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-missouri-winner",
+"kind": "winner",
+"last": [
+0.105,
+0.88,
+4547
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "MO",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Missouri in the 2028 President",
+"title": "2028 Presidential Election: Missouri Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-missouri-winner"
+},
+"Polymarket:2028-presidential-election-montana-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-montana-winner",
+"kind": "winner",
+"last": [
+0.145,
+0.855,
+2026
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "MT",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Montana in the 2028 Presidenti",
+"title": "2028 Presidential Election: Montana Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-montana-winner"
+},
+"Polymarket:2028-presidential-election-nebraska-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-nebraska-winner",
+"kind": "winner",
+"last": [
+0.09,
+0.895,
+1024
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NE",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Nebraska in the 2028 President",
+"title": "2028 Presidential Election: Nebraska Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-nebraska-winner"
+},
+"Polymarket:2028-presidential-election-nevada-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-nevada-winner",
+"kind": "winner",
+"last": [
+0.675,
+0.315,
+3778
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NV",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Nevada in the 2028 Presidentia",
+"title": "2028 Presidential Election: Nevada Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-nevada-winner"
+},
+"Polymarket:2028-presidential-election-new-hampshire-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-new-hampshire-winner",
+"kind": "winner",
+"last": [
+0.755,
+0.23,
+10792
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NH",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in New Hampshire in the 2028 Pres",
+"title": "2028 Presidential Election: New Hampshire Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-new-hampshire-winner"
+},
+"Polymarket:2028-presidential-election-new-jersey-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-new-jersey-winner",
+"kind": "winner",
+"last": [
+0.875,
+0.094,
+10092
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NJ",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in New Jersey in the 2028 Preside",
+"title": "2028 Presidential Election: New Jersey Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-new-jersey-winner"
+},
+"Polymarket:2028-presidential-election-new-mexico-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-new-mexico-winner",
+"kind": "winner",
+"last": [
+0.85,
+0.105,
+6833
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NM",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in New Mexico in the 2028 Preside",
+"title": "2028 Presidential Election: New Mexico Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-new-mexico-winner"
+},
+"Polymarket:2028-presidential-election-new-york-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-new-york-winner",
+"kind": "winner",
+"last": [
+0.875,
+0.08,
+463
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NY",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in New York in the 2028 President",
+"title": "2028 Presidential Election: New York Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-new-york-winner"
+},
+"Polymarket:2028-presidential-election-north-carolina-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-north-carolina-winner",
+"kind": "winner",
+"last": [
+0.675,
+0.305,
+11090
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "NC",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in North Carolina in the 2028 Pre",
+"title": "2028 Presidential Election: North Carolina Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-north-carolina-winner"
+},
+"Polymarket:2028-presidential-election-north-dakota-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-north-dakota-winner",
+"kind": "winner",
+"last": [
+0.05,
+0.935,
+997
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "ND",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in North Dakota in the 2028 Presi",
+"title": "2028 Presidential Election: North Dakota Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-north-dakota-winner"
+},
+"Polymarket:2028-presidential-election-ohio-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-ohio-winner",
+"kind": "winner",
+"last": [
+0.375,
+0.595,
+16440
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "OH",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Ohio in the 2028 Presidential ",
+"title": "2028 Presidential Election: Ohio Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-ohio-winner"
+},
+"Polymarket:2028-presidential-election-oklahoma-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-oklahoma-winner",
+"kind": "winner",
+"last": [
+0.0905,
+0.915,
+2374
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "OK",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Oklahoma in the 2028 President",
+"title": "2028 Presidential Election: Oklahoma Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-oklahoma-winner"
+},
+"Polymarket:2028-presidential-election-oregon-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-oregon-winner",
+"kind": "winner",
+"last": [
+0.885,
+0.115,
+1802
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "OR",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Oregon in the 2028 Presidentia",
+"title": "2028 Presidential Election: Oregon Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-oregon-winner"
+},
+"Polymarket:2028-presidential-election-pennsylvania-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-pennsylvania-winner",
+"kind": "winner",
+"last": [
+0.655,
+0.33,
+5341
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "PA",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Pennsylvania in the 2028 Presi",
+"title": "2028 Presidential Election: Pennsylvania Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-pennsylvania-winner"
+},
+"Polymarket:2028-presidential-election-rhode-island-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-rhode-island-winner",
+"kind": "winner",
+"last": [
+0.935,
+0.055,
+469
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "RI",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Rhode Island in the 2028 Presi",
+"title": "2028 Presidential Election: Rhode Island Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-rhode-island-winner"
+},
+"Polymarket:2028-presidential-election-south-carolina-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-south-carolina-winner",
+"kind": "winner",
+"last": [
+0.19,
+0.795,
+4669
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "SC",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in South Carolina in the 2028 Pre",
+"title": "2028 Presidential Election: South Carolina Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-south-carolina-winner"
+},
+"Polymarket:2028-presidential-election-south-dakota-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-south-dakota-winner",
+"kind": "winner",
+"last": [
+0.08,
+0.905,
+712
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "SD",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in South Dakota in the 2028 Presi",
+"title": "2028 Presidential Election: South Dakota Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-south-dakota-winner"
+},
+"Polymarket:2028-presidential-election-tennessee-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-tennessee-winner",
+"kind": "winner",
+"last": [
+0.105,
+0.905,
+3360
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "TN",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Tennessee in the 2028 Presiden",
+"title": "2028 Presidential Election: Tennessee Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-tennessee-winner"
+},
+"Polymarket:2028-presidential-election-texas-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-texas-winner",
+"kind": "winner",
+"last": [
+0.415,
+0.56,
+11726
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "TX",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Texas in the 2028 Presidential",
+"title": "2028 Presidential Election: Texas Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-texas-winner"
+},
+"Polymarket:2028-presidential-election-utah-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-utah-winner",
+"kind": "winner",
+"last": [
+0.145,
+0.865,
+2757
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "UT",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Utah in the 2028 Presidential ",
+"title": "2028 Presidential Election: Utah Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-utah-winner"
+},
+"Polymarket:2028-presidential-election-vermont-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-vermont-winner",
+"kind": "winner",
+"last": [
+0.915,
+0.08,
+4082
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "VT",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Vermont in the 2028 Presidenti",
+"title": "2028 Presidential Election: Vermont Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-vermont-winner"
+},
+"Polymarket:2028-presidential-election-virginia-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-virginia-winner",
+"kind": "winner",
+"last": [
+0.84,
+0.125,
+7768
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "VA",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Virginia in the 2028 President",
+"title": "2028 Presidential Election: Virginia Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-virginia-winner"
+},
+"Polymarket:2028-presidential-election-washington-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-washington-winner",
+"kind": "winner",
+"last": [
+0.915,
+0.085,
+11607
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "WA",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Washington in the 2028 Preside",
+"title": "2028 Presidential Election: Washington Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-washington-winner"
+},
+"Polymarket:2028-presidential-election-west-virginia-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-west-virginia-winner",
+"kind": "winner",
+"last": [
+0.12,
+0.88,
+338
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "WV",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in West Virginia in the 2028 Pres",
+"title": "2028 Presidential Election: West Virginia Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-west-virginia-winner"
+},
+"Polymarket:2028-presidential-election-wisconsin-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-wisconsin-winner",
+"kind": "winner",
+"last": [
+0.635,
+0.355,
+6035
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "WI",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Wisconsin in the 2028 Presiden",
+"title": "2028 Presidential Election: Wisconsin Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-wisconsin-winner"
+},
+"Polymarket:2028-presidential-election-wyoming-winner": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "2028-presidential-election-wyoming-winner",
+"kind": "winner",
+"last": [
+0.07,
+0.935,
+454
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "WY",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 Presidential Election is expected to take place on November 7, 2028. This market will resolve according to the party of the candidate, or, in the case of an independent candidate, the named candidate, who wins the most valid statewide votes of any candidate in Wyoming in the 2028 Presidenti",
+"title": "2028 Presidential Election: Wyoming Winner",
+"url": "https://polymarket.com/event/2028-presidential-election-wyoming-winner"
+},
+"Polymarket:which-party-wins-2028-us-presidential-election": {
+"closes": "2028-11-08T04:59:00Z",
+"first_seen": "2026-11-26T00:39Z",
+"id": "which-party-wins-2028-us-presidential-election",
+"kind": "winner",
+"last": [
+0.675,
+0.335,
+3011901
+],
+"last_seen": "2026-11-26T00:39Z",
+"place": "US",
+"provider": "Polymarket",
+"real_money": true,
+"rules": "The 2028 United States presidential election will be held on Tuesday, November 7, 2028. This market will resolve to the political party whose candidate is elected the next President of the United States in the 2028 election. The resolution source for this market is the Associated Press, Fox News, an",
+"title": "Which party wins 2028 US Presidential Election?",
+"url": "https://polymarket.com/event/which-party-wins-2028-us-presidential-election"
+}
+}
