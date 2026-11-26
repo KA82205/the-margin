@@ -36,7 +36,7 @@ VH_TYPES = 'https://api.votehub.com/poll-types'
 CANDIDATES_URL = 'https://raw.githubusercontent.com/KA82205/tipping-point/main/pipeline/candidates.json'
 AGENT = {'User-Agent': 'the-margin/1.0 (state polls)'}
 CYCLE = '2028'
-TERM_LIMITED = {'donald trump', 'barack obama', 'george w. bush', 'bill clinton'}          # cannot be elected president again
+TERM_LIMITED = {'donald trump', 'barack obama', 'george w. bush', 'bill clinton', 'william jefferson clinton'}          # cannot be elected president again
 POP_RANK = {'lv': 0, 'rv': 1, 'v': 1, 'a': 2}
 
 NAMES = {'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 'CA': 'California', 'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware', 'DC': 'District of Columbia',
@@ -204,24 +204,64 @@ def homes(registry, people=()):
     return h
 
 
-def usable(r, home, nominees=None):
-    """(True, '') or (False, the reason). `nominees` = (Democrat, Republican) once both are known."""
-    if r['place'] is None: return False, 'its place could not be read: ' + r['place_read_from']
-    if not r['end']: return False, 'no end date'
-    if r['n_dem'] != 1 or r['n_rep'] != 1: return False, 'not one Democrat against one Republican'
+# The rules, in the order they are checked, each with the words the page uses for it. reasons() below applies them; the
+# page lists them from here, so the description and the rule cannot drift apart.
+RULES = [
+    ('place', 'its place cannot be worked out from the poll'),
+    ('date', 'it has no end date'),
+    ('pairing', 'it does not ask about exactly one Democrat against one Republican'),
+    ('generic', 'it names no candidate, only a party (a generic ballot)'),
+    ('ineligible', 'it names someone who cannot be elected president again (the 22nd Amendment: anyone already elected twice)'),
+    ('partisan', 'a party or a campaign paid for it'),
+    ('figures', 'its percentages do not add up, or under half of those asked chose either candidate'),
+    ('nominees', 'once both nominees are known: it does not pair the two of them'),
+    ('home', 'while the nominees are not known: it is a poll of a candidate\'s own state'),
+]
+
+
+def norm_name(s):
+    """A name as compared with the list of people who cannot run: lower case, without punctuation or middle initials, so
+    that 'Donald J. Trump' and 'Donald Trump' are the same person. A suffix stays: 'Donald Trump Jr.' is someone else."""
+    w = re.sub(r"[^a-z\s'-]", ' ', str(s or '').lower()).split()
+    suffix = [w.pop()] if w and w[-1] in ('jr', 'sr', 'ii', 'iii', 'iv') else []
+    w = [x for x in w if len(x) > 1]
+    return ' '.join((w[:1] + w[-1:] if len(w) > 2 else w) + suffix)
+
+
+INELIGIBLE = {norm_name(x) for x in TERM_LIMITED}
+
+
+def reasons(r, home, nominees=None):
+    """Every rule the row fails, in the order of RULES, each in words that name the people concerned. [] when usable.
+    `nominees` = (Democrat, Republican) once both are known."""
+    out = []
+    if r['place'] is None: out.append('its place could not be read: ' + r['place_read_from'])
+    if not r['end']: out.append('no end date')
+    one_each = r['n_dem'] == 1 and r['n_rep'] == 1
+    if not one_each: out.append('not one Democrat against one Republican')
     generic = lambda s: bool(re.match(r'^\s*(generic|a |the |someone|unnamed)', s.lower())) or 'generic' in s.lower()
-    if generic(r['dem']) or generic(r['rep']): return False, 'no named candidates (a generic ballot)'
-    for who in (r['dem'], r['rep']):
-        if who.lower() in TERM_LIMITED: return False, f'{who} cannot be elected again'
-    if r['partisan'] or r['internal']: return False, 'paid for by a party or a campaign'
-    if not (0 < r['dem_pct'] < 100 and 0 < r['rep_pct'] < 100 and r['dem_pct'] + r['rep_pct'] <= 100.5): return False, 'the percentages do not add up'
-    if r['dem_pct'] + r['rep_pct'] < 50: return False, 'under half of those asked chose either candidate'
-    if nominees:
-        if (r['dem'].lower(), r['rep'].lower()) != (nominees[0].lower(), nominees[1].lower()): return False, 'not the two nominees'
-    elif r['place'] != 'US':
+    if one_each and (generic(r['dem']) or generic(r['rep'])): out.append('no named candidates (a generic ballot)')
+    if one_each:
         for who in (r['dem'], r['rep']):
-            if home.get(who.lower()) == r['place'][:2]: return False, f"{who}'s own state, while the nominees are not known"
-    return True, ''
+            if norm_name(who) in INELIGIBLE: out.append(f'{who} cannot be elected again')
+    if r['partisan'] or r['internal']: out.append('paid for by a party or a campaign')
+    dp, rp = r.get('dem_pct'), r.get('rep_pct')
+    if one_each:
+        if not (isinstance(dp, (int, float)) and isinstance(rp, (int, float)) and 0 < dp < 100 and 0 < rp < 100 and dp + rp <= 100.5): out.append('the percentages do not add up')
+        elif dp + rp < 50: out.append('under half of those asked chose either candidate')
+    if nominees:
+        if one_each and (r['dem'].lower(), r['rep'].lower()) != (nominees[0].lower(), nominees[1].lower()):
+            out.append(f'not the two nominees, {nominees[0]} and {nominees[1]}')
+    elif r['place'] not in (None, 'US') and one_each:
+        for who in (r['dem'], r['rep']):
+            if home.get(who.lower()) == r['place'][:2]: out.append(f"{who}'s own state, while the nominees are not known")
+    return out
+
+
+def usable(r, home, nominees=None):
+    """(True, '') or (False, the first reason). The same rules as reasons()."""
+    why = reasons(r, home, nominees)
+    return (not why), (why[0] if why else '')
 
 
 def collapse(rows):
@@ -246,7 +286,7 @@ def collapse(rows):
 def build(records, registry, people=(), nominees=None, sources=None, today=None):
     rows, dropped = dedupe(rows_from_pollresults(records)); home = homes(registry, people)
     for r in rows:
-        r['usable'], r['why_not'] = usable(r, home, nominees)
+        r['why_all'] = reasons(r, home, nominees); r['usable'], r['why_not'] = (not r['why_all']), (r['why_all'][0] if r['why_all'] else '')
     st = [r for r in rows if r['place'] != 'US']
     why = {}
     for r in st:
@@ -258,7 +298,7 @@ def build(records, registry, people=(), nominees=None, sources=None, today=None)
                       'state_polls': count([r for r in st if r['place']]), 'state_questions': len([r for r in st if r['place']]), 'unplaced_questions': len([r for r in rows if r['place'] is None]),
                       'states_polled': sorted({r['place'] for r in st if r['place']}), 'usable_state_polls': len(polls), 'not_usable': why},
             'polls': polls,
-            'state_questions': [{k: r[k] for k in ('place', 'pollster', 'sponsors', 'partisan', 'start', 'end', 'population', 'n', 'dem', 'dem_pct', 'rep', 'rep_pct', 'usable', 'why_not', 'url', 'place_read_from')}
+            'state_questions': [{k: r[k] for k in ('place', 'pollster', 'sponsors', 'partisan', 'start', 'end', 'population', 'n', 'dem', 'dem_pct', 'rep', 'rep_pct', 'usable', 'why_not', 'why_all', 'url', 'place_read_from', 'source', 'poll_id')}
                                 for r in sorted(st, key=lambda r: (r['end'], str(r['place'])), reverse=True)]}
 
 

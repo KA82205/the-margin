@@ -244,6 +244,12 @@ for the page, which marks each change on the history chart.
   the simulation draws from (1.143 standard deviations, not the normal 1.282), so its first point matches the simulation's
   own interval; the projected Election Day width is about ±3.6 points of margin, not the ±4.1 shown before. The simulation
   itself is unchanged.
+- **November 26, 2026.** Presentation only. The Polls page is written from the data: each set-aside poll lists every rule
+  it fails (from `polls.RULES`, the same rules that decide), each counted poll shows its share of its average and of the
+  estimate it feeds in the forecast's own weights, and a poll that meets the rules but is too old to weigh anything says so.
+  Names of people who cannot run are matched without middle initials ("Donald J. Trump"), keeping suffixes ("Donald Trump
+  Jr." is someone else). On every saved poll and four nomination scenarios no decision changed. The history chart's curves
+  are a monotone cubic through each day's recorded value, drawn for reading only.
 
 ## Back-test, 2008-2024
 

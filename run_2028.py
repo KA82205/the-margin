@@ -225,6 +225,26 @@ def poll_table(nc):
         return names.get(s, s.replace('-', '') if s.replace('-', '') in names.values() else 'US')
     return pd.DataFrame([{'year': 2028, 'state': where(p), 'pollster': p['pollster'], 'end': pd.Timestamp(p['date']), 'n': p.get('n') or 1000, 'pop': 'rv', 'dem2': p['share']} for p in nc['h2h']['polls']])
 
+def poll_influence(date, ncp, sp, out, info):
+    """What each counted poll weighs, worked out with the forecast's own weights (model.weights): its share of the average it
+    is in, and its share of the estimate that average feeds (the national vote estimate, or its state's estimate). For the
+    Polls page only; nothing here feeds the forecast. Returns ({national poll index: (share, weight)}, {(source, poll id,
+    place): (share, weight)})."""
+    asof = pd.Timestamp(date); d_out = max((pd.Timestamp(M.ELECTION[2028]) - asof).days, 1)
+    def shares(p):
+        p = p[p.end <= asof]
+        if not len(p): return {}
+        w = M.weights(p, asof, d_out); tot = float(w.sum())
+        return {i: (float(x) / tot if tot > 0 else 0.0) for i, x in zip(p.index, w)}
+    pt = poll_table(ncp); nat = {i: (sh, sh * float(info['poll_share'])) for i, sh in shares(pt[pt.state == 'US']).items()}
+    tab = state_poll_table(sp); keys = [(q.get('source'), q.get('poll_id'), q.get('place')) for q in sp.get('polls', [])]
+    v = {r['state']: float(r['poll_share']) for _, r in out['states'].iterrows()}; st = {}
+    for place in tab.state.unique():
+        for i, sh in shares(tab[tab.state == place]).items():
+            st[keys[i]] = (sh, sh * v.get(place, 0.0))
+    return nat, st
+
+
 def official(now, ncp, ncm, sp, res, errs, t, date, with_turnout=True, keep=False):
     """The published forecast for one set of inputs. ncp: the Nowcast file the national polls are taken from; ncm: the one
     the models, the state forecasts and approval's June reading are taken from (the same file, except when a change is being
@@ -340,6 +360,7 @@ def main():
     if ns: out.update(p_popular_national=out['p_popular'], p_popular=ns['p_popular'], p_vote_not_college=ns['p_vote_not_college'], p_college_not_vote=ns['p_college_not_vote'])
     r = res.set_index(['year', 'state']); extra = {s['abbr'].replace('-', ''): s['demShare'] for s in nc['states']}
     cand = candidate(NOW, nc, polls, sp, res, errs, t, tables, ev, TODAY)
+    INF = poll_influence(TODAY, nc, sp, out, info)
     share = lambda q: round(100 * q['dem_pct'] / (q['dem_pct'] + q['rep_pct']), 1) if q.get('dem_pct') and q.get('rep_pct') else None
     S = out['states']; names = {s['abbr'].replace('-', ''): s.get('name', s['abbr']) for s in nc['states']}
     tip = S.state[S.tip.idxmax()]                       # the state that most often carries the winner past 270
@@ -360,11 +381,16 @@ def main():
          # every general-election poll of a single state that the sources hold, counted or not (polls.py). The published forecast
          # does not count state polls yet; the candidate does, under its ceiling.
          'state_poll_list': [{'state': q['place'], 'pollster': q['pollster'], 'end': q['end'], 'dem': share(q), 'pairing': f"{q['dem']} v {q['rep']}" if q.get('dem') and q.get('rep') else None,
-                              'usable': bool(q['usable']), 'why': q['why_not'], 'url': q['url'] if str(q.get('url') or '').startswith(('https://', 'http://')) else None} for q in sp.get('state_questions', []) if q.get('place') and share(q) is not None],
+                              'usable': bool(q['usable']), 'why': q['why_not'], 'why_all': q.get('why_all') or ([q['why_not']] if q.get('why_not') else []),
+                              'share_of_average': INF[1].get((q.get('source'), q.get('poll_id'), q.get('place')), (None, None))[0], 'weight': INF[1].get((q.get('source'), q.get('poll_id'), q.get('place')), (None, None))[1], 'url': q['url'] if str(q.get('url') or '').startswith(('https://', 'http://')) else None} for q in sp.get('state_questions', []) if q.get('place') and share(q) is not None],
          # every national head-to-head poll the average is made from, as Tipping Point's Nowcast lists them
          'national_poll_list': [{'pollster': q.get('pollster'), 'end': q.get('date'), 'dem': q.get('share'), 'pairing': f"{q.get('d')} v {q.get('r')}", 'added': q.get('added'),
-                                 'url': q['url'] if str(q.get('url') or '').startswith(('https://', 'http://')) else None} for q in nc['h2h']['polls']],
-         'nominees_known': nominees(nc) is not None,
+                                 'share_of_average': INF[0].get(i, (None, None))[0], 'weight': INF[0].get(i, (None, None))[1],
+                                 'url': q['url'] if str(q.get('url') or '').startswith(('https://', 'http://')) else None} for i, q in enumerate(nc['h2h']['polls'])],
+         'nominees_known': nominees(nc) is not None, 'nominees': list(nominees(nc)) if nominees(nc) else None,
+         # the rules the lists above follow, for the Polls page: the state rules from polls.py, the national ones as Tipping Point applies them
+         'poll_rules': {'state': [t for _, t in __import__('polls').RULES], 'national_skipped': (nc.get('h2h') or {}).get('skipped'), 'national_window_days': (nc.get('h2h') or {}).get('days'),
+                        'state_ceiling': round(float(M.curve(tl['state'], max((pd.Timestamp(M.ELECTION[2028]) - pd.Timestamp(TODAY)).days, 1)) / M.curve(tl['state'], 1)), 3), 'prior_polls': M.SET['prior_polls']},
          'state_poll_sources': {'found': sp.get('found', {}), 'answered': {k: bool(v.get('answered')) for k, v in sp.get('sources', {}).items()}, 'fetched': sp.get('fetched')},
          'candidate': cand,
          'funnel': funnel, 'markets': MARKETS, 'equation_error': tl['prior_error'],

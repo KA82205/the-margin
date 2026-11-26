@@ -56,6 +56,8 @@ jobs:
           python tests/test_freeze.py
           node tests/test_page.js
           node tests/intro_cases.js
+          node tests/polls_page_cases.js
+          python tests/test_poll_rules.py
 
       # Reads every source and compares with what the last forecast was made from. Nothing new: nothing is run or saved.
       - name: Read the sources and run the forecast if anything is new

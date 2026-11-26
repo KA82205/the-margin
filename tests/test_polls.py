@@ -55,7 +55,7 @@ def test_rules_and_counting():
     assert ga['population'] == 'lv' and ga['pairings'] == ['Gavin Newsom v JD Vance', 'Pete Buttigieg v JD Vance'] and ga['dem'] == 47.0 and ga['rep'] == 46.5 and ga['pairing_spread'] is not None
     # once the nominees are known only their pairing counts, and a nominee's own state is polled like any other
     out = P.build(R, REG, nominees=('Josh Shapiro', 'JD Vance'), today='x')
-    assert [p['place'] for p in out['polls']] == ['PA'] and out['found']['not_usable'].get('not the two nominees', 0) >= 3
+    assert [p['place'] for p in out['polls']] == ['PA'] and sum(v for k, v in out['found']['not_usable'].items() if k.startswith('not the two nominees')) >= 3
 
 
 def test_paging_stops():
