@@ -14,7 +14,8 @@
   "odds": "2026-11-26",
   "keys": "2026-11-26",
   "state_polls": "2026-11-26",
-  "markets": "2026-11-26T16:47Z"
+  "markets": "2026-11-26T19:04Z",
+  "live": "2026-11-26"
  },
  "keys_dist": [
   [
@@ -322,15 +323,37 @@
   },
   "tipping_point": {
    "as_of": "2026-11-26",
-   "generated_at": "2026-11-26T16:45:47Z",
+   "generated_at": "2026-11-26T18:43:23Z",
    "mode": "nowcast",
    "frozen": false,
+   "fixed": false,
+   "fixed_since": null,
+   "redone": null,
+   "sources": {
+    "enns": "site run",
+    "desart": "site run"
+   },
    "models": {
     "enns": 52.091,
     "desart": 49.846
    },
    "combined": 50.958,
-   "hash": "e57ca1395c684b6f"
+   "hash": "6031ad725acdfb8d"
+  },
+  "tipping_point_live": {
+   "as_of": "2026-11-26",
+   "generated_at": "2026-11-26T18:43:23Z",
+   "academic": {
+    "fixed": false,
+    "since": null,
+    "updated": null,
+    "sources": {
+     "enns": "site run",
+     "desart": "site run"
+    }
+   },
+   "polls": 28,
+   "hash": "0b634f88e97e46a0"
   }
  }
 }
