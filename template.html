@@ -488,7 +488,24 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   const word = q >= 0.9 ? 'are strong favorites' : q >= 0.75 ? 'are favored' : q >= 0.6 ? 'are modest favorites' : q >= 0.55 ? 'have a slight edge' : null;
   const tieTxt = tie < 0.0005 ? 'under 0.1%' : (100 * tie).toFixed(1) + '%';
   $('headline').textContent = word ? lead + ' ' + word + ' to win the White House in 2028' : 'The 2028 race for the White House is a toss-up';
-  $('stand').textContent = 'Two years out and with no nominees, the Democratic candidate has a ' + hd + '% chance of winning and the Republican a ' + hr + '% chance. The electoral votes split 269 to 269 in ' + tieTxt + ' of simulated elections. That is a lean, not a call.';
+  // the summary under the headline: every clause written from the day's figures (tests/stand_cases.js)
+  function standText(F, hd, hr) {
+    const d = F.days_out, tie = F.p_tie || 0, n = (F.nominees_known && F.nominees && F.nominees.length === 2) ? F.nominees : null;
+    const when = d <= 0 ? 'On Election Day' : d === 1 ? 'The day before the election' : d < 14 ? d + ' days out' : d < 60 ? Math.round(d / 7) + ' weeks out' : d < 300 ? Math.round(d / 30.4) + ' months out' :
+      d < 455 ? 'About a year out' : d < 650 ? 'A year and a half out' : 'Two years out';
+    const who = n ? [n[0], n[1]] : ['the Democratic candidate', 'the Republican'];
+    const an = x => (x === 8 || x === 11 || x === 18 || (x >= 80 && x <= 89) ? 'an ' : 'a ') + x;          // an 8%, an 11%, an 81%
+    let s = when + (n ? ', ' : ' and with no nominees yet, ') + who[0] + ' has ' + an(hd) + '% chance of winning and ' + who[1] + ' ' + an(hr) + '% chance.';
+    s = s.charAt(0).toUpperCase() + s.slice(1);
+    s += tie < 0.0005 ? ' Almost no simulated elections end in a 269 to 269 tie.' : ' The electoral votes split 269 to 269 in ' + (100 * tie).toFixed(1) + '% of simulated elections.';
+    const q = Math.max(hd, hr) / 100, behind = n ? (hd >= hr ? n[1] : n[0]) : (hd >= hr ? 'the Republicans' : 'the Democrats');
+    const words = ['', '', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'], k = Math.round(1 / (1 - q));
+    if (q < 0.55) s += ' The race is close to even.';
+    else if (q < 0.75) s += ' That is a lean, not a call.';
+    else s += ' ' + behind.charAt(0).toUpperCase() + behind.slice(1) + (n ? ' still wins' : ' still win') + (k >= 50 ? ' fewer than one simulated election in 50.' : ' about one simulated election in ' + (words[k] || k) + '.');
+    return s;
+  }
+  $('stand').textContent = standText(F, hd, hr);
   $('dateline').textContent = 'Updated ' + longDate(F.as_of) + ' · ' + F.days_out + ' days to the election';
   $('top').innerHTML = '<div class="dn"><span>Democrats win</span><strong>' + hd + '%</strong></div><div class="rn"><span>Republicans win</span><strong>' + hr + '%</strong></div>';
   $('odds').innerHTML = '<i class="bd" style="flex:' + hd + '"></i><i class="br" style="flex:' + hr + '"></i>';

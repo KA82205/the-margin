@@ -56,6 +56,7 @@ jobs:
           python tests/test_freeze.py
           node tests/test_page.js
           node tests/intro_cases.js
+          node tests/stand_cases.js
           node tests/polls_page_cases.js
           python tests/test_poll_rules.py
 
