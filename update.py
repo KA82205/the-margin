@@ -1,7 +1,9 @@
 """The update. It is run every hour and does nothing unless something the forecast reads has changed.
 
 Each run reads four things:
-    the Tipping Point Nowcast     the national polls, the state forecasts and presidential approval (nowcast.js)
+    the Tipping Point Nowcast     the two academic models, national and state by state (nowcast.js): fixed for good on
+                                  August 6, 2028, or earlier where an author's own forecast has replaced the site's run
+    the Tipping Point live feed   the national polls, presidential approval and the nominees (live.js): written to Election Day
     Fifty-Two Keys                the count of keys and the spread of that site's run ahead (keys.json)
     electionbettingodds.com       the party odds
     PollResults.org               polls of single states (polls.py)
@@ -30,11 +32,15 @@ been made, so it shows up once a day and not once an hour.
 import datetime, hashlib, json, os, re, shutil, sys, time, urllib.request, zoneinfo
 
 NOWCAST_URL = 'https://ka82205.github.io/tipping-point/nowcast.js'
+LIVE_URL = 'https://ka82205.github.io/tipping-point/live.js'    # the polls, approval and nominees, written to Election Day (run_2028.with_live)
 ODDS_URL = 'https://electionbettingodds.com/PresidentialParty2028.html'
 KEYS_URL = 'https://ka82205.github.io/fifty-two-keys/keys.json'
 ET = zoneinfo.ZoneInfo('America/New_York')
 ODDS_STEP = 0.01                                    # the odds count as new once they stand this far from the price in use
-STALE = {'nowcast': 1, 'state_polls': 2}        # days since the last good read at which the day's first run reports it
+STALE = {'nowcast': 1, 'state_polls': 2, 'live': 2}   # days since the last good read at which the day's first run reports it. For 'live' the
+                                                    # day is the one the feed itself carries: it is written daily, so an old date means it has stopped.
+                                                    # The Nowcast is read every hour whether or not it has changed: once it is fixed for good it is
+                                                    # still read, and so it is never reported here for being old.
 ARCHIVE = 'docs/archive'
 
 
@@ -86,10 +92,14 @@ def keys_version(text):
 
 
 def nowcast_version(text, nc):
-    """Which version of the Tipping Point Nowcast a forecast was made from. `mode` and `frozen` say whether its forecasts
-    are that site's running figures or ones it has fixed on purpose: a fixed forecast is not a failed update."""
+    """Which version of the Tipping Point Nowcast a forecast was made from. `frozen`: its long-range half is fixed on the
+    polls of October 2027. `fixed`: the whole academic forecast has been posted and is not run again (from August 6, 2028);
+    `redone`: the day it was redone because an author's forecast arrived after that. `sources`: for each model, the
+    authors' own forecast or the site's run of it. A forecast fixed on purpose is not a failed update."""
     f = nc.get('desart_final') or {}
+    ac = (nc.get('live') or {}).get('academic') or {}
     return {'as_of': nc.get('as_of'), 'generated_at': nc.get('generated_at'), 'mode': nc.get('mode'), 'frozen': bool(f.get('frozen')),
+            'fixed': bool(ac.get('fixed')), 'fixed_since': ac.get('since'), 'redone': ac.get('updated'), 'sources': ac.get('sources') or nc.get('model_sources'),
             'models': {k: round(float(v['demPopular']), 3) for k, v in (nc.get('models') or {}).items() if isinstance(v, dict) and v.get('demPopular') is not None},
             'combined': round(float(nc['summary']['demPopular']), 3), 'hash': hashlib.sha256(text.encode()).hexdigest()[:16]}
 
@@ -130,8 +140,17 @@ def read(inp, today, new_day, offline):
             open('data/nowcast.js', 'w').write(text); seen['nowcast'] = today
         except Exception as e:                       # noqa: BLE001  keep the copy in hand
             failed.append(f'the Nowcast ({type(e).__name__}: {e})')
-    text = open('data/nowcast.js').read(); nc = parse(text)
+        try:
+            ltext = get(LIVE_URL); lv = run_2028.read_js_text(ltext)
+            assert lv.get('as_of') and (lv.get('h2h') or {}).get('polls') is not None and 'approve' in (lv.get('approval') or {}), 'the live feed is not in the shape expected'
+            open('data/live.js', 'w').write(ltext); seen['live'] = str(lv['as_of'])[:10]
+        except Exception as e:                       # noqa: BLE001  keep the copy in hand
+            failed.append(f'the live feed of polls ({type(e).__name__}: {e})')
+    text = open('data/nowcast.js').read(); raw = parse(text)
+    ltext = open('data/live.js').read() if os.path.exists('data/live.js') else None
+    nc = run_2028.with_live(raw, run_2028.read_js_text(ltext) if ltext else None)
     up = dict(inp.get('upstream') or {}); up['tipping_point'] = nowcast_version(text, nc); inp['upstream'] = up
+    if nc.get('live'): up['tipping_point_live'] = dict(nc['live'], polls=len(nc['h2h']['polls']), hash=hashlib.sha256(ltext.encode()).hexdigest()[:16])
     inp['as_of'] = today
     if not offline:
         try:
@@ -223,6 +242,14 @@ def keep_nowcast(snap, root=ARCHIVE, source='data/nowcast.js'):
     if not os.path.exists(path):
         with open(path, 'xb') as f: f.write(gzip.compress(raw, mtime=0))
     tp['file'] = 'upstream/' + os.path.basename(path)
+    lv = (snap.get('upstream') or {}).get('tipping_point_live') or {}; live = os.path.join(os.path.dirname(source), 'live.js')
+    if lv.get('hash') and os.path.exists(live):        # and the live feed it read its polls from, the same way
+        lraw = open(live, 'rb').read()
+        if hashlib.sha256(lraw).hexdigest()[:16] == lv['hash']:
+            lpath = os.path.join(root, 'upstream', f"live-{lv['hash']}.js.gz")
+            if not os.path.exists(lpath):
+                with open(lpath, 'xb') as f: f.write(gzip.compress(lraw, mtime=0))
+            lv['file'] = 'upstream/' + os.path.basename(lpath)
     return path
 
 
@@ -253,7 +280,8 @@ def stale(inp, today):
     day = datetime.date.fromisoformat; out = []
     for k, limit in STALE.items():
         last = (inp.get('read') or {}).get(k)
-        if last and (day(today) - day(last)).days >= limit: out.append(f'{k.replace("_", " ")} (last read {last})')
+        if last and (day(today) - day(last)).days >= limit:
+            out.append(f'the live feed of national polls (last written {last})' if k == 'live' else f'{k.replace("_", " ")} (last read {last})')
     return out
 
 
@@ -270,6 +298,7 @@ def main(argv):
     held = json.load(open('data/inputs.json')); new_day = held['as_of'] < today
     if new_day:                                      # keep yesterday's inputs, to show what moved
         shutil.copy('data/inputs.json', 'data/prev_inputs.json'); shutil.copy('data/nowcast.js', 'data/prev_nowcast.js')
+        if os.path.exists('data/live.js'): shutil.copy('data/live.js', 'data/prev_live.js')
         if os.path.exists('data/state_polls.json'): shutil.copy('data/state_polls.json', 'data/prev_state_polls.json')
     old = json.load(open('data/fingerprint.json')) if os.path.exists('data/fingerprint.json') else {}
     started = time.time()

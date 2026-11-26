@@ -136,10 +136,13 @@ def test_the_approval_allowance_by_the_calendar_and_the_vote_the_keys_point_to()
     # the allowance closes on the observation, not on the date: with the June polls still out, a month's worth stays open
     assert R.approval_open(713, False) == 1.0 and R.approval_open(400, False) == R.approval_left(400) and R.approval_open(131, False) == R.APPROVAL_FLOOR == R.approval_open(60, False) > 0
     assert R.approval_open(60, True) == 0.0 and R.approval_open(713, True) == 0.0
-    # the June reading is decided here, from the Nowcast's own daily approval series, and from nothing Fifty-Two Keys says
-    june = {'approval': {'trend': [{'d': f'2028-06-{d:02d}', 'a': 40.0, 'dis': 56.0} for d in range(1, 31)]}}
+    # the June reading is decided here, from Tipping Point's approval average on every day of June (its live feed), and from
+    # nothing Fifty-Two Keys says
+    june = {'approval': {'june': [{'d': f'2028-06-{d:02d}', 'a': 40.0, 'dis': 56.0} for d in range(1, 31)]}}
     assert R.june_approval(june, '2028-07-07') is None and R.june_approval(june, '2028-07-08') == -16.0, 'a week after the month ends, and not before'
-    assert R.june_approval({'approval': {'trend': june['approval']['trend'][:5]}}, '2028-08-01') is None and R.june_approval({}, '2028-08-01') is None, 'no June polls: not a fact, whatever the date'
+    assert R.june_approval({'approval': {'june': june['approval']['june'][:5]}}, '2028-08-01') is None and R.june_approval({}, '2028-08-01') is None, 'no June polls: not a fact, whatever the date'
+    weekly = {'approval': {'trend': [{'d': f'2028-06-{d:02d}', 'a': 40.0, 'dis': 56.0} for d in (2, 9, 16, 23, 30)]}}       # the Nowcast's own trend: one figure a week
+    assert R.june_approval(weekly, '2028-08-01') is None, 'five weekly figures are not the month'
     assert 0 < R.approval_left(300) < R.approval_left(500) < 1
     t = F.table(); base = dict(term1=1, deminc=0)
     spread = [[0.30, 0.25], [0.40, 0.50], [0.50, 0.25]]

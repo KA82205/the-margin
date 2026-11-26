@@ -10,9 +10,37 @@ def inputs():
     and the Fifty-Two Keys count, each with the date it was read. A source that cannot be read keeps its last value."""
     return json.load(open('data/inputs.json'))
 
-def nowcast():
-    s = open('data/nowcast.js').read()
+def read_js(path):
+    """One of Tipping Point's files: a line of JavaScript that assigns one object."""
+    s = open(path).read()
     return json.loads(re.search(r'=\s*(\{[\s\S]*\});?\s*$', s).group(1))
+
+def read_js_text(s):
+    return json.loads(re.search(r'=\s*(\{[\s\S]*\});?\s*$', s).group(1))
+
+def with_live(nc, live):
+    """The Nowcast with the parts that must stay current taken from Tipping Point's live feed (live.js): the national
+    head-to-head polls, the approval average with every day of June of the election year, and the nominees.
+
+    Tipping Point fixes its academic forecast for good on August 6, 2028 and its Nowcast file is not written again; the
+    polls in that file stop a week earlier still. Its live feed goes on being written every hour to Election Day. So the
+    forecast reads the models, their state forecasts and their national figure from the Nowcast, fixed or not, and the
+    polls, approval and nominees from the feed. Until the summer of 2028 the two files hold the same polls, and this
+    changes nothing. A feed older than the Nowcast in hand (it could not be read for a while) is not used."""
+    if not live or str(live.get('as_of') or '') < str(nc.get('as_of') or ''): return nc
+    out = dict(nc); h, a = live.get('h2h') or {}, live.get('approval') or {}
+    out['h2h'] = dict(nc.get('h2h') or {}, **{k: h[k] for k in ('window', 'polls', 'people', 'stale') if k in h})
+    out['approval'] = dict(nc.get('approval') or {}, **{k: a[k] for k in ('approve', 'disapprove', 'june') if k in a})
+    if 'tickets' in live: out['tickets'] = live['tickets']
+    if live.get('sitting_vp'): out['sitting_vp'] = live['sitting_vp']
+    out['live'] = {'as_of': live.get('as_of'), 'generated_at': live.get('generated_at'), 'academic': live.get('academic')}
+    return out
+
+def nowcast(prev=False):
+    """What the forecast reads of Tipping Point: its Nowcast, with the live feed laid over it (with_live). prev: the copies
+    kept from the day before."""
+    at = 'data/prev_' if prev else 'data/'
+    return with_live(read_js(at + 'nowcast.js'), read_js(at + 'live.js') if os.path.exists(at + 'live.js') else None)
 
 def nominees(nc):
     """(Democrat, Republican) once the Nowcast has found both nominees; None before then."""
@@ -29,9 +57,13 @@ def state_poll_file():
 
 def state_poll_table(sp):
     """The usable state polls as rows of the model's poll table."""
-    return pd.DataFrame([{'year': 2028, 'state': p['place'], 'pollster': p['pollster'], 'end': pd.Timestamp(p['end']), 'n': p.get('n') or 600,
-                          'pop': p.get('population') if p.get('population') in M.SET['pop_weight'] else 'rv', 'dem2': p['dem2']} for p in sp.get('polls', [])],
-                        columns=['year', 'state', 'pollster', 'end', 'n', 'pop', 'dem2'])
+    df = pd.DataFrame([{'year': 2028, 'state': p['place'], 'pollster': p['pollster'], 'end': pd.Timestamp(p['end']), 'n': p.get('n') or 600,
+                        'pop': p.get('population') if p.get('population') in M.SET['pop_weight'] else 'rv', 'dem2': p['dem2']} for p in sp.get('polls', [])],
+                      columns=['year', 'state', 'pollster', 'end', 'n', 'pop', 'dem2'])
+    # With no usable state poll (the day the nominees become known, every earlier poll is of another pairing) the table
+    # is empty, and an empty table must still say its dates are dates, or adding it to the national polls spoils theirs.
+    df['end'] = pd.to_datetime(df['end'])
+    return df.astype({'year': 'int64', 'n': 'float64', 'dem2': 'float64'})
 
 def pairing_spread(nc):
     """How far apart the polled pairings stand, in points of share: the spread of the pairings' averages, each counted by
@@ -62,7 +94,8 @@ def june_approval(nc, today, year=2028):
     the days of June, taken from July 8 so that polls published late are in it. None until then, and None if the series has
     no day in June (the source was down, or nobody polled): a date alone never makes it a fact."""
     if str(today) < f'{year}-07-08': return None
-    days = [x for x in (nc.get('approval') or {}).get('trend') or [] if str(x.get('d', '')).startswith(f'{year}-06') and x.get('a') is not None and x.get('dis') is not None]
+    a = nc.get('approval') or {}                       # 'june': every day of the month, from the live feed; 'trend' is weekly and is the older source
+    days = [x for x in a.get('june') or a.get('trend') or [] if str(x.get('d', '')).startswith(f'{year}-06') and x.get('a') is not None and x.get('dis') is not None]
     if len(days) < 10: return None
     return round(float(np.mean([x['a'] - x['dis'] for x in days])), 1)
 
@@ -248,7 +281,7 @@ def change(NOW, nc, res, errs, t, today_p, since=None):
     from itertools import combinations
     from math import factorial
     try:
-        old, onc = since or (json.load(open('data/prev_inputs.json')), json.loads(re.search(r'=\s*(\{[\s\S]*\});?\s*$', open('data/prev_nowcast.js').read()).group(1)))
+        old, onc = since or (json.load(open('data/prev_inputs.json')), nowcast(prev=True))
     except FileNotFoundError:
         return None
     if old['as_of'] >= NOW['as_of']: return None
