@@ -3165,10 +3165,10 @@
   }
  ],
  "markets": {
-  "read": "2026-11-26T03:16Z",
+  "read": "2026-11-26T03:18Z",
   "counts": {
    "Polymarket": 51,
-   "Kalshi": 61,
+   "Kalshi": 62,
    "Manifold": 61
   },
   "failed": {},
@@ -4974,7 +4974,7 @@
     "thin": null
    },
    "US": {
-    "p": 0.6701,
+    "p": 0.6679,
     "quality": 1.0,
     "real_money": true,
     "providers": [
@@ -4989,6 +4989,18 @@
       "last_trade": "2026-11-26T03:15:29.380128Z",
       "url": "https://polymarket.com/event/which-party-wins-2028-us-presidential-election",
       "id": "which-party-wins-2028-us-presidential-election"
+     },
+     {
+      "provider": "Kalshi",
+      "p": 0.665,
+      "quality": 0.9929,
+      "real_money": true,
+      "volume": 932547,
+      "traders": null,
+      "spread": 0.010000000000000009,
+      "last_trade": "2026-11-19T00:43:38.66904Z",
+      "url": "https://kalshi.com/markets/kxpresparty",
+      "id": "KXPRESPARTY-2028"
      },
      {
       "provider": "Manifold",
@@ -5227,6 +5239,17 @@
     "provider": "Kalshi",
     "kind": "margin",
     "place": "US",
+    "title": "2028 Democratic popular vote margin? (Directional)",
+    "url": "https://kalshi.com/markets/kxpopvotemovd",
+    "answers": null,
+    "traders": null,
+    "volume": 3,
+    "real_money": true
+   },
+   {
+    "provider": "Kalshi",
+    "kind": "margin",
+    "place": "US",
     "title": "2028 Republican popular vote margin? (Directional)",
     "url": "https://kalshi.com/markets/kxpopvotemovr",
     "answers": null,
@@ -5254,17 +5277,6 @@
     "answers": null,
     "traders": null,
     "volume": 203889,
-    "real_money": true
-   },
-   {
-    "provider": "Kalshi",
-    "kind": "margin",
-    "place": "US",
-    "title": "2028 Democratic popular vote margin? (Directional)",
-    "url": "https://kalshi.com/markets/kxpopvotemovd",
-    "answers": null,
-    "traders": null,
-    "volume": 3,
     "real_money": true
    },
    {
@@ -5404,17 +5416,17 @@
    "events": 49,
    "effective": 0.868,
    "strength": 0.5,
-   "p_dem": 0.6846,
-   "p_rep": 0.3096,
-   "p_tie": 0.0058,
+   "p_dem": 0.6839,
+   "p_rep": 0.3103,
+   "p_tie": 0.0059,
    "ev_median": 303.0,
    "ev_lo": 215.0,
    "ev_hi": 410.0,
-   "ev_mean": 305.9535,
-   "national": 52.1341,
-   "national_lo": 47.5965,
-   "national_hi": 56.6652,
-   "p_popular": 0.7515,
+   "ev_mean": 305.9499,
+   "national": 52.1343,
+   "national_lo": 47.5986,
+   "national_hi": 56.6656,
+   "p_popular": 0.7514,
    "states": {
     "AK": 0.1863,
     "AL": 0.0082,
@@ -5426,11 +5438,11 @@
     "DC": 1.0,
     "DE": 0.982,
     "FL": 0.2231,
-    "GA": 0.6596,
+    "GA": 0.6595,
     "HI": 0.9859,
-    "IA": 0.2319,
+    "IA": 0.2318,
     "ID": 0.0021,
-    "IL": 0.9697,
+    "IL": 0.9698,
     "IN": 0.0757,
     "KS": 0.0917,
     "KY": 0.0087,
@@ -5440,18 +5452,18 @@
     "ME": 0.8941,
     "ME1": 0.994,
     "ME2": 0.2967,
-    "MI": 0.7013,
+    "MI": 0.7012,
     "MN": 0.8883,
     "MO": 0.0719,
     "MS": 0.0323,
-    "MT": 0.0627,
-    "NC": 0.6076,
+    "MT": 0.0628,
+    "NC": 0.6075,
     "ND": 0.0051,
     "NE": 0.0445,
     "NE1": 0.1538,
     "NE2": 0.8756,
     "NE3": 0.0002,
-    "NH": 0.8363,
+    "NH": 0.8362,
     "NJ": 0.9306,
     "NM": 0.919,
     "NV": 0.6311,
@@ -5459,9 +5471,9 @@
     "OH": 0.2511,
     "OK": 0.0044,
     "OR": 0.9803,
-    "PA": 0.6644,
+    "PA": 0.6643,
     "RI": 0.9807,
-    "SC": 0.071,
+    "SC": 0.0711,
     "SD": 0.0108,
     "TN": 0.0119,
     "TX": 0.2359,
@@ -5480,7 +5492,7 @@
      "markets": 0.6502,
      "quality": 0.797,
      "aimed_at": 0.6585,
-     "reached": 0.6596
+     "reached": 0.6595
     },
     {
      "event": "winner:AZ",
@@ -5568,7 +5580,7 @@
      "markets": 0.6964,
      "quality": 0.749,
      "aimed_at": 0.7014,
-     "reached": 0.7013
+     "reached": 0.7012
     },
     {
      "event": "winner:MN",
@@ -5592,7 +5604,7 @@
      "markets": 0.3124,
      "quality": 0.801,
      "aimed_at": 0.2352,
-     "reached": 0.2319
+     "reached": 0.2318
     },
     {
      "event": "winner:MS",
@@ -5640,7 +5652,7 @@
      "markets": 0.9354,
      "quality": 0.59,
      "aimed_at": 0.9704,
-     "reached": 0.9697
+     "reached": 0.9698
     },
     {
      "event": "winner:NC",
@@ -5648,7 +5660,7 @@
      "markets": 0.6462,
      "quality": 0.87,
      "aimed_at": 0.611,
-     "reached": 0.6076
+     "reached": 0.6075
     },
     {
      "event": "winner:NV",
@@ -5680,7 +5692,7 @@
      "markets": 0.7632,
      "quality": 0.808,
      "aimed_at": 0.8313,
-     "reached": 0.8363
+     "reached": 0.8362
     },
     {
      "event": "winner:NJ",
@@ -5704,7 +5716,7 @@
      "markets": 0.1441,
      "quality": 0.61,
      "aimed_at": 0.0639,
-     "reached": 0.0627
+     "reached": 0.0628
     },
     {
      "event": "winner:NY",
@@ -5736,7 +5748,7 @@
      "markets": 0.6604,
      "quality": 0.718,
      "aimed_at": 0.6639,
-     "reached": 0.6644
+     "reached": 0.6643
     },
     {
      "event": "winner:TX",
@@ -5808,15 +5820,15 @@
      "markets": 0.175,
      "quality": 0.731,
      "aimed_at": 0.0754,
-     "reached": 0.071
+     "reached": 0.0711
     },
     {
      "event": "winner:US",
      "simulation": 0.6903,
-     "markets": 0.6701,
+     "markets": 0.6679,
      "quality": 1.0,
-     "aimed_at": 0.6803,
-     "reached": 0.6846
+     "aimed_at": 0.6792,
+     "reached": 0.6839
     },
     {
      "event": "winner:WI",
@@ -5825,14 +5837,6 @@
      "quality": 0.731,
      "aimed_at": 0.6767,
      "reached": 0.6803
-    },
-    {
-     "event": "popular:US",
-     "simulation": 0.752,
-     "markets": 0.81,
-     "quality": 0.1,
-     "aimed_at": 0.7551,
-     "reached": 0.7515
     },
     {
      "event": "winner:ME1",
@@ -5865,6 +5869,14 @@
      "quality": 0.061,
      "aimed_at": 0.8783,
      "reached": 0.8756
+    },
+    {
+     "event": "popular:US",
+     "simulation": 0.752,
+     "markets": 0.81,
+     "quality": 0.1,
+     "aimed_at": 0.7551,
+     "reached": 0.7514
     }
    ]
   },
@@ -5873,17 +5885,17 @@
     "events": 2,
     "effective": 0.999,
     "strength": 0.5,
-    "p_dem": 0.6823,
-    "p_rep": 0.3116,
-    "p_tie": 0.006,
+    "p_dem": 0.6814,
+    "p_rep": 0.3125,
+    "p_tie": 0.0061,
     "ev_median": 298.0,
     "ev_lo": 222.0,
     "ev_hi": 389.0,
-    "ev_mean": 300.356,
-    "national": 51.9217,
-    "national_lo": 48.0042,
-    "national_hi": 55.8455,
-    "p_popular": 0.7533
+    "ev_mean": 300.282,
+    "national": 51.9188,
+    "national_lo": 48.0011,
+    "national_hi": 55.8434,
+    "p_popular": 0.7532
    },
    "state markets only": {
     "events": 47,
@@ -5905,16 +5917,16 @@
     "events": 49,
     "effective": 0.97,
     "strength": 0.25,
-    "p_dem": 0.6874,
-    "p_rep": 0.3069,
-    "p_tie": 0.0057,
+    "p_dem": 0.687,
+    "p_rep": 0.3072,
+    "p_tie": 0.0058,
     "ev_median": 302.0,
-    "ev_lo": 219.0,
+    "ev_lo": 220.0,
     "ev_hi": 398.0,
-    "ev_mean": 303.2661,
-    "national": 52.0296,
-    "national_lo": 47.824,
-    "national_hi": 56.2443,
+    "ev_mean": 303.2644,
+    "national": 52.0297,
+    "national_lo": 47.8243,
+    "national_hi": 56.2447,
     "p_popular": 0.7518
    }
   },

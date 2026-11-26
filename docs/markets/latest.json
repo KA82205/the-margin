@@ -1,8 +1,8 @@
 {
-"read": "2026-11-26T03:16Z",
+"read": "2026-11-26T03:18Z",
 "counts": {
 "Polymarket": 51,
-"Kalshi": 61,
+"Kalshi": 62,
 "Manifold": 61
 },
 "failed": {},
@@ -1760,7 +1760,7 @@
 ]
 },
 "winner:US": {
-"p": 0.6701,
+"p": 0.6679,
 "quality": 1.0,
 "real_money": true,
 "providers": [
@@ -1775,6 +1775,18 @@
 "last_trade": "2026-11-26T03:15:29.380128Z",
 "url": "https://polymarket.com/event/which-party-wins-2028-us-presidential-election",
 "id": "which-party-wins-2028-us-presidential-election"
+},
+{
+"provider": "Kalshi",
+"p": 0.665,
+"quality": 0.9929,
+"real_money": true,
+"volume": 932547,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-19T00:43:38.66904Z",
+"url": "https://kalshi.com/markets/kxpresparty",
+"id": "KXPRESPARTY-2028"
 },
 {
 "provider": "Manifold",
@@ -1850,25 +1862,6 @@
 "last_trade": "2026-11-19T15:42:05.416295Z",
 "url": "https://kalshi.com/markets/kxpresstate",
 "id": "KXPRESSTATE-WI-28"
-}
-]
-},
-"popular:US": {
-"p": 0.81,
-"quality": 0.1003,
-"real_money": true,
-"providers": [
-{
-"provider": "Kalshi",
-"p": 0.81,
-"quality": 0.1003,
-"real_money": true,
-"volume": 7,
-"traders": null,
-"spread": 0.08000000000000002,
-"last_trade": "2026-11-19T15:39:16.116496Z",
-"url": "https://kalshi.com/markets/kxpopvote",
-"id": "KXPOPVOTE-28"
 }
 ]
 },
@@ -1995,6 +1988,25 @@
 "last_trade": "2026-11-06T20:16:25Z",
 "url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-nebraskas-3rd",
 "id": "N99tAp9UCA"
+}
+]
+},
+"popular:US": {
+"p": 0.81,
+"quality": 0.1003,
+"real_money": true,
+"providers": [
+{
+"provider": "Kalshi",
+"p": 0.81,
+"quality": 0.1003,
+"real_money": true,
+"volume": 7,
+"traders": null,
+"spread": 0.08000000000000002,
+"last_trade": "2026-11-19T15:39:16.116496Z",
+"url": "https://kalshi.com/markets/kxpopvote",
+"id": "KXPOPVOTE-28"
 }
 ]
 }

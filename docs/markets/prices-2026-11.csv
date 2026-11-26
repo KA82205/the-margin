@@ -305,3 +305,4 @@ time,provider,id,kind,place,dem,rep,p,quality,volume,liquidity,traders,spread
 2026-11-26T03:16Z,Polymarket,2028-presidential-election-vermont-winner,winner,VT,0.91,0.08,0.9192,0.6018,4082,76267,,0.02
 2026-11-26T03:16Z,Kalshi,KXPOPVOTEMOVD-28NOV07,margin,US,0.76,,,0.0,3,3,,0.08
 2026-11-26T03:16Z,Kalshi,KXPRESSTATE-ID-28,winner,ID,0.0535,0.945,0.0536,0.1771,50,50,,0.088
+2026-11-26T03:18Z,Kalshi,KXPRESPARTY-2028,winner,US,0.665,0.335,0.665,0.9929,932547,472387,,0.01
