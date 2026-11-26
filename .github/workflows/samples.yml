@@ -27,7 +27,9 @@ jobs:
       - env:
           NAMES: ${{ inputs.names }}
           SCRIPT: ${{ inputs.script }}
-        run: python "$SCRIPT" samples $NAMES
+        run: |
+          python "$SCRIPT" samples $NAMES
+          if [ "$SCRIPT" = "tools/samples.py" ]; then python tools/market_history.py samples || true; fi
       - name: Keep the samples on a side branch
         run: |
           git config user.name "forecast-bot"

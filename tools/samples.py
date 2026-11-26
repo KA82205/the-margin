@@ -6,7 +6,7 @@ a download.
 """
 import json, os, sys, time, urllib.parse, urllib.request
 
-UA = 'the-margin/1.0 (election forecast; github.com/KA82205/the-margin)'
+UA = 'Mozilla/5.0 (compatible; the-margin/1.0; +https://github.com/KA82205/the-margin)'
 W = 'https://en.wikipedia.org/w/api.php?format=json&formatversion=2&'
 wiki = lambda title, section=None: W + urllib.parse.urlencode(dict({'action': 'parse', 'page': title, 'prop': 'wikitext|revid|sections', 'redirects': 1}, **({'section': section} if section is not None else {})))
 M = 'https://api.manifold.markets/v0/'
@@ -42,18 +42,25 @@ SOURCES = {
     'iem_closed': 'https://iemweb.biz.uiowa.edu/closed/',
     'iem_pres24': 'https://iemweb.biz.uiowa.edu/markets/pres24.html',
     'iem_history_24': 'https://iemweb.biz.uiowa.edu/pricehistory/pricehistory_SelectContract.cfm?market_ID=390',
-    # ---- primaries and nominees
-    **{f'wiki_results_{y}_{p[0]}': wiki(f'Results of the {y} {p} Party presidential primaries', 0) for y in (2016, 2020, 2024) for p in ('Republican', 'Democratic')},
-    **{f'wiki_primaries_{y}_{p[0]}': wiki(f'{y} {p} Party presidential primaries', 0) for y in (2016, 2020, 2024, 2028) for p in ('Republican', 'Democratic')},
-    **{f'wiki_nh_{y}_{p[0]}': wiki(f'{y} New Hampshire {p} presidential primary') for y in (2016, 2020, 2024, 2028) for p in ('Republican', 'Democratic')},
-    **{f'wiki_election_{y}': wiki(f'{y} United States presidential election', 0) for y in (2016, 2020, 2024, 2028)},
-    'wiki_search_2028_nh': W + 'action=query&list=search&srlimit=20&srsearch=' + q('intitle:"2028" intitle:"New Hampshire" presidential primary'),
+    # ---- primaries and nominees: every Wikipedia page in one request, as the readers will ask
+    'wiki_batch_a': W + 'action=query&prop=revisions&rvprop=content|ids|timestamp&rvslots=main&redirects=1&titles=' + q('|'.join(
+        [f'{y} New Hampshire {p} presidential primary' for y in (2016, 2020, 2024, 2028) for p in ('Republican', 'Democratic')] + [f'{y} United States presidential election' for y in (2016, 2020, 2024, 2028)])),
+    'wiki_batch_b': W + 'action=query&prop=revisions&rvprop=content|ids|timestamp&rvslots=main&redirects=1&titles=' + q('|'.join(
+        [f'{y} {p} Party presidential primaries' for y in (2016, 2020, 2024, 2028) for p in ('Republican', 'Democratic')] + [f'Results of the {y} {p} Party presidential primaries' for y in (2016, 2020, 2024, 2028) for p in ('Republican', 'Democratic')])),
+    **{f'green_{y}_nh_{p}': f'https://www.thegreenpapers.com/P{y % 100}/NH-{p}' for y in (2016, 2020, 2024) for p in 'RD'},
+    **{f'green_{y}_{p}': f'https://www.thegreenpapers.com/P{y % 100}/{p}' for y in (2016, 2020, 2024) for p in 'RD'},
+    'green_robots': 'https://www.thegreenpapers.com/robots.txt',
+    'nh_robots': 'https://www.sos.nh.gov/robots.txt',
     'nh_results_index': 'https://www.sos.nh.gov/elections/election-results',
     'nh_2024_r': 'https://www.sos.nh.gov/2024-republican-presidential-primary-election-results',
-    'nh_2024_d': 'https://www.sos.nh.gov/2024-democratic-presidential-primary-election-results',
-    'nh_2024_index': 'https://www.sos.nh.gov/elections/election-results/2024-election-results',
-    'nh_2020_r': 'https://sos.nh.gov/elections/2020-election-results/2020-presidential-primary-election-results/2020-republican',
-    'nh_home': 'https://www.sos.nh.gov/elections',
+    'iem_history': 'https://iemweb.biz.uiowa.edu/markets/historical-data/',
+    'iem_recent': 'https://iemweb.biz.uiowa.edu/markets/recent-markets/',
+    'manifold_market_detail': M + 'slug/which-party-will-win-the-2028-us-pr-nhSncsUR0n',
+    'manifold_search_states': M + 'search-markets?limit=100&creatorId=vuI5upWB8yU00rP7yxj95J2zd952&term=' + q('2028 presidential election'),
+    'polymarket_2028_texas': P + 'events?slug=2028-presidential-election-texas-winner',
+    'polymarket_search_2028_winner': P + 'public-search?limit_per_type=100&events_status=active&q=' + q('2028 Presidential Election Winner'),
+    'kalshi_events_2028_states': K + 'events?limit=200&status=open&series_ticker=PRESPARTYTX&with_nested_markets=true',
+    'desart_site': 'https://research.uvu.edu/DeSart/forecasting/',
     # ---- second sources for the economic series
     'fed_g17': 'https://www.federalreserve.gov/releases/g17/ipdisk/ip_sa.txt',
     'census_starts': 'https://api.census.gov/data/timeseries/eits/resconst?get=cell_value,data_type_code,time_slot_id,category_code,seasonally_adj&time=from+2025-01&for=us:*',
