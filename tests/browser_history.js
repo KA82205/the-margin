@@ -38,11 +38,11 @@ const fail = m => { console.error('FAIL: ' + m); process.exit(1); };
     await p.waitForTimeout(200);
     const tip = await p.evaluate(() => { const t = document.querySelector('#tip'); return t && !t.hidden ? t.innerText : ''; });
     const last = await p.evaluate(() => { try { return DATA.history[DATA.history.length - 1]; } catch (e) { return null; } });
-    if (last) { const want = 'Democrats ' + (100 * last.p).toFixed(1) + '%'; if (!tip.includes(want)) fail(w + ' ' + scheme + ': tooltip "' + tip.replace(/\n/g, ' | ') + '" lacks ' + want + ' at ' + Math.round(x) + ' (chart ' + Math.round(box.x) + ' to ' + Math.round(box.x + box.width) + ')'); }
+    if (last) { const rr = last.rep != null ? last.rep : 1 - last.p, want = 'Democrats ' + (100 * last.p / (last.p + rr)).toFixed(1) + '%'; if (!tip.includes(want)) fail(w + ' ' + scheme + ': tooltip "' + tip.replace(/\n/g, ' | ') + '" lacks ' + want + ' at ' + Math.round(x) + ' (chart ' + Math.round(box.x) + ' to ' + Math.round(box.x + box.width) + ')'); }
     else if (!/Democrats \d+\.\d%/.test(tip)) fail('tooltip ' + tip);
     if (errs.length) fail(errs.join('; '));
     const over = await p.evaluate(() => document.documentElement.scrollWidth - innerWidth); if (over > 0) fail('sideways scroll at ' + w);
     await ctx.close();
   }
-  await b.close(); console.log('ok (history chart: ' + checked + ' curve segments through the recorded values with no overshoot, no daily dots, archived values in the tooltip, every range, 3 widths, light and dark)');
+  await b.close(); console.log('ok (history chart: ' + checked + ' curve segments through the recorded values with no overshoot, no daily dots, the headline figures in the curves and the archived ones in the tooltip, every range, 3 widths, light and dark)');
 })();

@@ -921,11 +921,14 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   (function () {
     const Hh = DATA.history || [], M_ = DATA.methods || [], day = 864e5, when = d => +new Date(d + 'T12:00:00'), el = $('daily');
     if (!Hh.length) { el.innerHTML = '<p class="fine">No forecast has been kept yet.</p>'; return; }
-    const last = Hh[Hh.length - 1], rep = h => h.rep != null ? h.rep : 1 - h.p, tieOf = h => h.rep != null ? Math.max(0, 1 - h.p - h.rep) : null;
+    const last = Hh[Hh.length - 1], repRaw = h => h.rep != null ? h.rep : 1 - h.p, tieOf = h => h.rep != null ? Math.max(0, 1 - h.p - h.rep) : null;
+    // plotted as the headline shows them: each party's outright wins out of the simulations that do not end 269 to 269. The
+    // archive keeps the raw shares; the tooltip gives them. Days before the tie was kept apart already add to 100.
+    const dem = h => h.p / (h.p + repRaw(h)), rep = h => 1 - dem(h);
     const spans = [[7, '7 days'], [30, '30 days'], [90, '90 days'], [0, 'All']]; let span = 0;
     $('hist-sub').textContent = 'Chance of winning the Electoral College, as published at the end of each day';
     const Ar = DATA.archive;
-    $('arch-note').innerHTML = 'The curves join the forecasts published at the end of each day; they are drawn smooth for reading and add no forecast between days. Each value is the share of simulated elections a party wins outright, so with the few that end 269 to 269 the two can add to a little under 100%.' +
+    $('arch-note').innerHTML = 'The curves join the forecasts published at the end of each day; they are drawn smooth for reading and add no forecast between days. Like the headline, they leave out the few simulated elections that end 269 to 269; the archive keeps every day\u2019s figures as published, ties included, and the tooltip shows them.' +
       (Ar && Ar.n ? ' <a href="archive/index.json">Every forecast kept</a>' : '') + (M_.length ? (Ar && Ar.n ? ' · ' : ' ') + 'a small mark on the date line is a change of method.' : '.');
     const fmtD = (t, o) => new Date(t).toLocaleDateString('en-US', o);
     const ticks = (t0, t1, room) => {      // date ticks that suit the span and the width: days, weeks, months or quarters
@@ -945,9 +948,10 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
       const pts = (before && (!inWin.length || when(inWin[0].date) > t0) ? [{h: before, t: t0, held: true}] : []).concat(inWin.map(h => ({h, t: when(h.date)})));
       document.querySelectorAll('#hseg button').forEach((b, i) => b.setAttribute('aria-pressed', String(spans[i][0] === span)));
       const W = Math.max(300, Math.round(el.clientWidth || 720)), narrow = W < 560, H = narrow ? 230 : 290, L = 38, R = narrow ? 62 : 84, T = 16, B = 30;
-      if (pts.length < 2) { el.innerHTML = '<p class="fine">The first forecast was published on ' + longDate(last.date) + ' (Democrats ' + pc(last.p) + ', Republicans ' + pc(rep(last)) + '). The chart starts with the second day.</p>'; return; }
+      if (pts.length < 2) { el.innerHTML = '<p class="fine">The first forecast was published on ' + longDate(last.date) + ' (Democrats ' + Math.round(100 * dem(last)) + '%, Republicans ' + (100 - Math.round(100 * dem(last))) + '%). The chart starts with the second day.</p>'; return; }
       const X = t => L + (t - t0) / Math.max(t1 - t0, day) * (W - L - R), Y = v => T + (1 - v) * (H - T - B), base = Y(0);
-      let s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="Chance of winning for each party from ' + longDate((inWin[0] || last).date) + ' to ' + longDate(last.date) + '. Latest: Democrats ' + pc(last.p) + ', Republicans ' + pc(rep(last)) + '.">' +
+      const ld = Math.round(100 * dem(last)), lr = 100 - ld;          // the same complementary rounding as the headline
+      let s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="Chance of winning for each party from ' + longDate((inWin[0] || last).date) + ' to ' + longDate(last.date) + '. Latest: Democrats ' + ld + '%, Republicans ' + lr + '%.">' +
         '<defs><linearGradient id="fh-gd" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--d)" stop-opacity=".16"/><stop offset="1" stop-color="var(--d)" stop-opacity="0"/></linearGradient>' +
         '<linearGradient id="fh-gr" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--r)" stop-opacity=".12"/><stop offset="1" stop-color="var(--r)" stop-opacity="0"/></linearGradient></defs>';
       [0.25, 0.75].forEach(v => { s += '<line class="fh-gl" x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '"/>'; });
@@ -955,15 +959,15 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
       [0, 0.25, 0.5, 0.75, 1].forEach(v => { s += '<text class="fh-ax" x="' + (L - 10) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + Math.round(100 * v) + '%</text>'; });
       ticks(t0, t1, W - L - R).forEach(k => { s += '<text class="fh-ax" x="' + X(k[0]).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle">' + k[1] + '</text>'; });
       M_.filter(m => when(m.date) >= t0 && when(m.date) <= t1).forEach(m => { s += '<circle class="fh-mk" cx="' + X(when(m.date)).toFixed(1) + '" cy="' + base + '" r="3"><title>Method changed ' + longDate(m.date) + '</title></circle>'; });
-      const lines = [[h => h.p, 'var(--d)', 'Democrats', 'fh-gd'], [rep, 'var(--r)', 'Republicans', 'fh-gr']];
+      const lines = [[dem, 'var(--d)', 'Democrats', 'fh-gd'], [rep, 'var(--r)', 'Republicans', 'fh-gr']];
       lines.forEach(k => { const P = pts.map(o => [X(o.t), Y(k[0](o.h))]), path = monoPath(P);
         s += '<path d="' + path + 'L' + P[P.length - 1][0].toFixed(1) + ' ' + base + 'L' + P[0][0].toFixed(1) + ' ' + base + 'Z" fill="url(#' + k[3] + ')"/>' +
           '<path class="fh-line" data-party="' + k[2] + '" d="' + path + '" fill="none" stroke="' + k[1] + '" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>'; });
       // the latest values: a dot at the end of each curve and a label beside it, kept apart when the curves meet
-      let yd = Y(last.p), yr = Y(rep(last)); if (Math.abs(yd - yr) < 34) { const m = (yd + yr) / 2, up = yd < yr ? -1 : 1; yd = m + up * 17; yr = m - up * 17; }
-      [[yd, Y(last.p), 'var(--d)', narrow ? 'Dem.' : 'Democrats', last.p], [yr, Y(rep(last)), 'var(--r)', narrow ? 'Rep.' : 'Republicans', rep(last)]].forEach(k => {
+      let yd = Y(dem(last)), yr = Y(rep(last)); if (Math.abs(yd - yr) < 34) { const m = (yd + yr) / 2, up = yd < yr ? -1 : 1; yd = m + up * 17; yr = m - up * 17; }
+      [[yd, Y(dem(last)), 'var(--d)', narrow ? 'Dem.' : 'Democrats', ld], [yr, Y(rep(last)), 'var(--r)', narrow ? 'Rep.' : 'Republicans', lr]].forEach(k => {
         s += '<circle cx="' + X(t1) + '" cy="' + k[1] + '" r="4" fill="' + k[2] + '" stroke="var(--bg)" stroke-width="2"/>' +
-          '<text class="fh-endv" x="' + (X(t1) + 10) + '" y="' + (k[0] - 1) + '" style="fill:' + k[2] + '">' + pc(k[4]) + '</text><text class="fh-endl" x="' + (X(t1) + 10) + '" y="' + (k[0] + 13) + '">' + k[3] + '</text>'; });
+          '<text class="fh-endv" x="' + (X(t1) + 10) + '" y="' + (k[0] - 1) + '" style="fill:' + k[2] + '">' + k[4] + '%</text><text class="fh-endl" x="' + (X(t1) + 10) + '" y="' + (k[0] + 13) + '">' + k[3] + '</text>'; });
       s += '<g id="fh-hov" visibility="hidden"><line class="fh-x" y1="' + T + '" y2="' + base + '"/><circle id="fh-hd" r="4.5" fill="var(--d)" stroke="var(--bg)" stroke-width="2"/><circle id="fh-hr" r="4.5" fill="var(--r)" stroke="var(--bg)" stroke-width="2"/></g>';
       s += '<rect id="dhit" x="' + (L - 8) + '" y="0" width="' + (W - L + 8) + '" height="' + H + '" fill="transparent"/></svg>';      // runs on under the end labels, so the latest day is easy to touch
       el.innerHTML = s;
@@ -971,9 +975,9 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
       const at = e => { const b = el.querySelector('svg').getBoundingClientRect(), sx = (e.clientX - b.left) * W / b.width;
         const tt = Math.min(t1, Math.max(t0, t0 + (sx - L) / (W - L - R) * Math.max(t1 - t0, day))); let o = pts[0]; pts.forEach(x => { if (Math.abs(x.t - tt) < Math.abs(o.t - tt)) o = x; }); return o; };
       const show = e => { const o = at(e), x = X(o.t); hov.querySelector('line').setAttribute('x1', x); hov.querySelector('line').setAttribute('x2', x);
-        $('fh-hd').setAttribute('cx', x); $('fh-hd').setAttribute('cy', Y(o.h.p)); $('fh-hr').setAttribute('cx', x); $('fh-hr').setAttribute('cy', Y(rep(o.h))); hov.setAttribute('visibility', 'visible');
+        $('fh-hd').setAttribute('cx', x); $('fh-hd').setAttribute('cy', Y(dem(o.h))); $('fh-hr').setAttribute('cx', x); $('fh-hr').setAttribute('cy', Y(rep(o.h))); hov.setAttribute('visibility', 'visible');
         const h = o.h, m = M_.filter(z => z.date === h.date)[0], tz = tieOf(h);
-        tipShow(e, '<b>' + longDate(h.date) + (o.held ? ' (in force on ' + longDate(new Date(o.t).toISOString().slice(0, 10)) + ')' : '') + '</b><br>Democrats ' + pc(h.p, 1) + '<br>Republicans ' + pc(rep(h), 1) + (tz != null ? '<br>269 to 269: ' + pc(tz, 1) : '') +
+        tipShow(e, '<b>' + longDate(h.date) + (o.held ? ' (in force on ' + longDate(new Date(o.t).toISOString().slice(0, 10)) + ')' : '') + '</b><br>Democrats ' + pc(dem(h), 1) + '<br>Republicans ' + pc(rep(h), 1) + (tz != null ? '<br><span style="opacity:.8">Of all simulated elections: ' + pc(h.p, 1) + ' and ' + pc(repRaw(h), 1) + ', 269 to 269 ' + pc(tz, 1) + '</span>' : '') +
           (h.sim != null && Math.abs(h.sim - h.p) > 0.0005 ? '<br>Simulations alone: ' + pc(h.sim, 1) : '') + '<br>National vote ' + mg(h.national) + (m ? '<br><span style="opacity:.8">Method changed this day</span>' : '')); };
       const hide = () => { hov.setAttribute('visibility', 'hidden'); tipHide(); };
       hit.addEventListener('pointermove', show);
