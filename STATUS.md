@@ -1,6 +1,6 @@
 # The three sites: the method as frozen, the evidence, and what runs by itself
 
-Written by `status.py` on the forecast of 2026-11-25. Every figure in a table is read from a data file; misses are in
+Written by `status.py` on the forecast of 2026-11-26. Every figure in a table is read from a data file; misses are in
 points of margin. `RUNBOOK.md` says how the sites are kept running. `REVIEW.md` holds the earlier research.
 
 ## 1. The official method
@@ -9,8 +9,8 @@ The Margin's forecast is made in this order. It gives no weight to Fifty-Two Key
 
 1. **A national starting point, before polls.** The average of the approval equation (net approval in June of the election
    year, growth, and time in office, fitted on 1948 to the election before), today D+4.1, and Tipping Point's
-   approval-and-economy model, today D+4.1. Tipping Point's long-range model joins from November 7, 2027, when the
-   polls it is built on exist. Together today: D+4.1.
+   approval-and-economy model, today D+4.2. Tipping Point's long-range model joins from November 7, 2027, when the
+   polls it is built on exist. Together today: D+4.2.
 2. **An allowance for approval still moving: 15 points of net approval** at the midterm, shrinking with the square root of
    the time left, closing only when The Margin itself finds ten June 2028 days in the Nowcast's approval series. It counts
    by the structural models' share of the national number, so it is not added to the part polls already carry. Today 100%
@@ -26,14 +26,14 @@ The Margin's forecast is made in this order. It gives no weight to Fifty-Two Key
    counted from the same simulated elections: who wins, the electoral votes, each state's 80% prediction interval, the
    national vote, and the chance of winning the vote and losing the Electoral College.
 
-| 2028, as of 2026-11-25 | |
+| 2028, as of 2026-11-26 | |
 |---|---|
-| Democrats win the Electoral College | 69.0% |
-| Republicans win | 30.4% |
+| Democrats win the Electoral College | 69.1% |
+| Republicans win | 30.3% |
 | A 269 to 269 tie, counted for neither | 0.6% |
 | National vote, from the simulated elections | D+3.9; 80% prediction interval D+11.7 to R+4.0 |
 | Democrats win the most votes | 75% |
-| Democratic electoral votes | 299; 80% prediction interval 222 to 389 |
+| Democratic electoral votes | 300; 80% prediction interval 222 to 389 |
 | The national number less the states added up | -0.03 points |
 
 **Where the change of November 25 came from** (`method_change.py`). The Democratic chance went from 60.9% to 69.7% that day.
@@ -99,19 +99,19 @@ Odds, an average of the same exchanges, is shown on its own line and not counted
 25 points apart on one question are not averaged. Prices go into `docs/markets/` whenever they move; the record began on
 November 26, 2026 (UTC). A move in the markets alone refreshes the comparison and does not make a new official forecast.
 
-Read 2026-11-26T03:18Z: Polymarket 51, Kalshi 62, Manifold 61 markets; 56 of the 56 states and districts priced.
+Read 2026-11-26T05:13Z: Polymarket 51, Kalshi 62, Manifold 61 markets; 56 of the 56 states and districts priced.
 
-| Democrats win, 2026-11-26T03:18Z |  |  |
+| Democrats win, 2026-11-26T05:13Z |  |  |
 |---|---|---|
-| Official forecast | 69.0% | no markets |
+| Official forecast | 69.1% | no markets |
 | Polymarket | 66.8% | $3,011,901 traded |
-| Kalshi | 66.5% | $932,547 traded |
+| Kalshi | 67.2% | $934,227 traded |
 | Manifold | 67.5% | 118 traders, play money |
-| Markets together, by quality | 66.8% |  |
-| Market-informed run (experimental) | 68.4% | 49 prices; 87% of the simulated elections effectively kept |
-| Market-informed, national markets only | 68.1% | 2 prices |
-| Market-informed, state markets only | 69.2% | 47 prices |
-| Market-informed, national and state markets, at half strength | 68.7% | 49 prices |
+| Markets together, by quality | 67.1% |  |
+| Market-informed run (experimental) | 68.5% | 49 prices; 87% of the simulated elections effectively kept |
+| Market-informed, national markets only | 68.3% | 2 prices |
+| Market-informed, state markets only | 69.3% | 47 prices |
+| Market-informed, national and state markets, at half strength | 68.8% | 49 prices |
 
 **The experimental run** (`markets.informed`). It never moves a headline. It weights the official simulated elections so
 that each priced event's chance moves toward the market's by half the market's quality on the log-odds scale; a thin market
@@ -251,12 +251,15 @@ official forecast is made only for what the forecast reads; a move in prediction
 
 | Seen in production, November 25 and 26, 2026 (UTC) | |
 |---|---|
-| A run started by GitHub's own schedule | The Margin, November 26, 01:56. The first since the hourly schedules went in eight hours earlier: the schedule works, late |
+| Runs started by GitHub's own schedule, which asks for one an hour | Two at each site in the first 22 hours, about nine hours apart: near 01:50 and near 11:00 UTC on November 26. It works, late and seldom, and is kept only as the fallback |
 | Tipping Point and Fifty-Two Keys notify The Margin; it runs within a minute | 19:01, 21:48, 22:29, 23:06 |
-| A check asked for the way the outside clock will ask | all three sites, 23:12 to 23:40: each found nothing new and saved nothing |
+| The outside clock's hourly checks, on their minutes | November 26, 04:12 to 15:42 UTC, the first twelve hours of the schedule: 12 runs of 12 at each site, each started four seconds after its minute (12 at Tipping Point, 22 at Fifty-Two Keys, 42 at The Margin), all ended well. Most found nothing new and saved nothing, as they should |
 | Prediction markets read at three providers, kept, and shown | November 26, 03:18: Polymarket 51, Kalshi 62 and Manifold 61 markets; all 56 states and districts priced; the national race at all three |
-| The nomination reader on the live pages of 2016, 2020 and 2024 | November 26, 02:45: the locked table's answers for all three; 2028: "not yet" for all four keys |
-| Second sources answering | Bureau of Labor Statistics, University of Michigan, Energy Information Administration, share prices: the same figures as FRED. Department of Labor: within its tolerance after a fix. The Federal Reserve Board's table did not match FRED's industrial production and is not used |
+| The nomination reader on the live pages of 2016, 2020 and 2024 | November 26, 05:02, with the sources in their new order: the locked table's answers for all three; 2028: "not yet" for all four keys. New Hampshire's own site turned every request away (HTTP 403), which the reader reported and stepped past |
+| New Hampshire's own count read to the vote | From the Secretary of State's 2024 workbooks as its site served them to a browser: Trump 176,391 of 324,731; Biden 79,100 write-ins of 123,996. Each column of counties adds up to its total |
+| Second sources answering, every series | November 26, 05:06: the Bureau of Labor Statistics, the University of Michigan, the Energy Information Administration, the Department of Labor, the Census Bureau (housing starts), the Federal Reserve Board (industrial production) and the second copy of share prices all gave FRED's figures |
+| A page uploaded to Tipping Point's inbox is taken in, published, and The Margin told | November 26, 04:58 to 05:00: a test page carrying the copy already held. Read, checked, the inbox emptied, the site deployed, The Margin started within a minute. No figure changed |
+| The sites' messages to each other under GitHub's newer API version | 04:57, 04:59 and 05:06: Tipping Point and Fifty-Two Keys told The Margin, which ran each time |
 | The official method published and kept | `docs/archive/`, with the settings of each forecast |
 
 [ops.html](https://ka82205.github.io/the-margin/ops.html) reads GitHub's record live. For each site: the last good check, the last saved update, the last run GitHub's
@@ -265,23 +268,32 @@ and whether a check is overdue. For The Margin also the last official forecast k
 notification from a sister site, and what was read from each source. A request that was accepted is not counted as an
 update: the page reads runs, commits and deployments, each on its own.
 
-The outside clock (`RUNBOOK.md`) is yours to set up: one token that can only start runs, three jobs. It is the fallback for
-hours when GitHub's schedule is late, and costs only checks that find nothing new.
+The outside clock is in place (`RUNBOOK.md`): three jobs at cron-job.org ask each site for its hourly check, Tipping Point
+at minute 12, Fifty-Two Keys at 22, The Margin at 42, with a token that can only start runs. GitHub's own schedules stay
+on as the fallback. The jobs and the sites' own messages name GitHub's API version `2026-03-10`; the older one can be
+withdrawn from about March 2028.
 
 ## 7. What is done by hand
 
-**Routine entry of data: none.** All 52 keys are read or worked out by rule; the nominees are read; polls, approval, the
+**One thing, every few weeks.** Tipping Point's state approval comes from Civiqs, which refuses automatic reads (its rules
+file included) and offers no data service. No free source publishes the same measure for fifty states:
+Morning Consult's state tracker is monthly, pools three months of interviews and keeps its data behind a paid plan; YouGov
+has no regular state series. Putting another measure into the approval model would change an academic model, so Civiqs
+stays, and the copy is refreshed by saving its page in a browser and uploading the file to `pipeline/inbox` in
+`tipping-point`. That upload is all: the run it starts checks the page, updates the copy, recalculates, publishes and
+tells The Margin. ops.html shows the date of the copy and marks it after five weeks.
+
+**Everything else is read.** All 52 keys are read or worked out by rule; the nominees are read; polls, approval, the
 economy, the forecasters' outlook, seats in Congress and prediction markets are read; odds are counted from the record.
 
 **Left to a person, because they are exceptions and not routine:**
 
 | What | When it would arise | What happens until then |
 |---|---|---|
-| The two sources for a nomination key disagree, or cannot be read by the close | Only if The Green Papers and Wikipedia differ on a nominee, a winner, a share or the side of two-thirds | The key stays open with the reason; never counted as no. An entry by hand settles it and is compared with the sources |
-| A large, real move in industrial production or housing starts | A shock in one of the two series with no second source | The run fails once a day and names the series; `trust` lets it in after a look. Every other series is confirmed automatically |
+| Sources that contradict each other on a nomination key | Two sources that both have the result give the key different answers, and New Hampshire's own count has not settled it; or a nominee is replaced after a convention. A source that has not been updated is a delay and holds nothing | The key stays open with the reason; never counted as no. An entry by hand settles it and is compared with the sources |
+| A large, real move in an economic series | Only on a day the series' own publisher cannot be reached: every series now has a second source | The run fails once a day and names the series; the next run asks again, and `trust` lets it in after a look |
 | A forecast published by the authors of Tipping Point's models | If one appears. Crossref is searched daily and the run says so when one does | The site runs its own reading of the method. Putting a published table in is one command; it is not automatic because a table in an article cannot be read safely unseen |
-| State approval for Tipping Point | Civiqs refuses automatic reads, its rules file included. No other open source covers fifty states, and estimating it would change an academic model | The last validated figures are used and dated on the page; each run asks again and takes a new copy if one is given |
-| Tokens | The outside clock's token, if given an expiry | GitHub e-mails before it lapses; the sites' own schedules and notifications carry on |
+| Tokens and GitHub's API version | The clock's token, if given an expiry; a version GitHub withdraws | GitHub e-mails before a token lapses and the scheduling service e-mails when a job fails; GitHub's own schedules and the sites' notifications carry on |
 | A change to a frozen method | A fault, a source that dies, or new evidence | Recorded in `data/methods.json` |
 
 ## 8. Limits that cannot be removed
@@ -296,8 +308,14 @@ economy, the forecasters' outlook, seats in Congress and prediction markets are 
 - **The 2028 nomination pages do not exist with results in them yet.** The reader gives the right answers for 2016, 2020 and
   2024 on today's live pages. That it will on 2028's cannot be shown before 2028. If a page changes shape the key stays open
   and says why.
+- **New Hampshire's own site refuses most requests from where the sites run.** Its count is first in the order of
+  sources and is read to the vote when the site answers, which it did in one of four runs from GitHub's machines and
+  every time from a browser. The reader asks once a day at most and does not work around a refusal. When refused it uses
+  The Green Papers' copy of the same certified figures, so no key waits on it.
+- **The parties publish no roll call a program can find ahead of time.** The conventions' votes are read as The Green
+  Papers records them, checked against Wikipedia.
 - **Third parties.** GitHub decides when schedules run. PollResults.org, VoteHub, FRED, the Philadelphia Fed, the statistical
-  agencies, Wikipedia, The Green Papers, Polymarket, Kalshi, Manifold and Crossref can change or close. Each has a check that
+  agencies, Wikipedia, The Green Papers, New Hampshire's Secretary of State, Civiqs, cron-job.org, Polymarket, Kalshi, Manifold and Crossref can change or close. Each has a check that
   reports when it stops answering and a last good copy to fall back on; none has a contract.
 - **Accessibility was checked by program.** All three sites pass the WCAG 2 A and AA rules a program can test, in light
   and dark, at desktop and phone widths. Nobody has gone through them with a screen reader.
