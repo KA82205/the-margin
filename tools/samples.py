@@ -72,6 +72,14 @@ SOURCES = {
     'bea_q': ('FILTER', 'https://apps.bea.gov/national/Release/TXT/NipaDataQ.txt', ('A191RL,', 'A067RL,', 'B230RC,', 'A939RX,', 'A229RX,')),
     'bea_m': ('FILTER', 'https://apps.bea.gov/national/Release/TXT/NipaDataM.txt', ('DPCERA,',)),
     'bea_series': ('FILTER', 'https://apps.bea.gov/national/Release/TXT/SeriesRegister.txt', ('A191RL,', 'A067RL,', 'B230RC,', 'A939RX,', 'A229RX,', 'DPCERA,')),
+    'census_starts_csv': 'https://www.census.gov/econ/currentdata/export/csv?programCode=RESCONST&timeSlotType=12&startYear=2025&endYear=2026&categoryCode=STARTS&dataTypeCode=TOTAL&geoLevelCode=US&adjusted=yes&errorData=no&internal=false',
+    'census_starts_xls': 'https://www.census.gov/construction/nrc/xls/starts_cust.xlsx',
+    'dol_report': ('https://oui.doleta.gov/unemploy/wkclaims/report.asp', 'level=us&final_yr=2026&strtdate=2025&enddate=2026&filetype=xml&submit=Submit'),
+    'dol_csv': 'https://oui.doleta.gov/unemploy/csv/ar539.csv',
+    'yahoo_spx': 'https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?range=6mo&interval=1d',
+    'eia_wti_month2': 'https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&s=RWTC&f=M',
+    'eia_wti_xls': 'https://www.eia.gov/dnav/pet/hist_xls/RWTCm.xls',
+    'margin_page': 'https://ka82205.github.io/the-margin/',
     'civiqs_robots': 'https://civiqs.com/robots.txt',
 }
 
