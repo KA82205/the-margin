@@ -64,3 +64,46 @@ What it shows (typical miss on the margin, in points; competitive races are thos
   simulation moves the states.
 
 Four years are four national environments: every figure here should be read as indicative, not settled.
+
+## Step 3: weighting the polls by how much polling there is, and sizing the error by race
+
+Two refinements, each fitted only on the other years, as before.
+
+**The polls' weight now grows with the amount of polling.** Instead of one weight per distance, the race's polling
+average gets a floor weight for any average, rising toward a cap as the polling grows (`poll_share` in `backtest.py`).
+The cap matters: polls in a year miss together, and more polls do not remove that error. The floor matters too: in 2018,
+thin and old averages in West Virginia, Montana and North Dakota still said more than the fundamentals did.
+
+| Competitive races | Last day | 7 days | 30 days | 60 days |
+|---|---|---|---|---|
+| Miss on the margin, one weight | 5.3 | 5.2 | 5.0 | 5.0 |
+| Miss on the margin, by volume | 4.9 | 4.7 | 5.0 | 5.0 |
+| Log loss, one weight | 0.298 | 0.293 | 0.290 | 0.256 |
+| Log loss, by volume | 0.250 | 0.242 | 0.276 | 0.256 |
+
+Against FiveThirtyEight on the same competitive races (2018-2022), log loss on the last day and a week out:
+
+| | Last day | 7 days |
+|---|---|---|
+| FiveThirtyEight deluxe | 0.232 | 0.244 |
+| FiveThirtyEight classic | 0.263 | 0.272 |
+| FiveThirtyEight lite | 0.265 | 0.278 |
+| This model, by volume | 0.275 | 0.260 |
+
+So in the final weeks the chances are now about as sharp as FiveThirtyEight's classic and lite versions, which, like this
+model, use no expert ratings; its deluxe version, which adds them, stays ahead. A month or two out the gain is small and
+the floor and cap move from year to year: four years cannot pin down three numbers at every distance.
+
+**Sizing the error by race did not help, and is not adopted.** Fitting the size of the miss on how far a race is from
+even and how much polling it has made close races' ranges too narrow: in competitive races only 42% of results fell
+inside the 50% interval on the last day. Most of the error that matters is shared by a year's races (the 2020 polling
+miss), not race by race; it belongs in the next step, which moves the races together. The version stays in the code so
+the test can be rerun.
+
+The working version is now **+polls by volume**, with one error size for races with polls and one for races without.
+
+## What comes next
+
+- Simulate the races together, with a shared national error, for the chance of each party controlling the Senate.
+- Replace the cycle's money totals with money raised by each date (the FEC's quarterly filings).
+- The Manifold race markets of 2022 and 2024, tested in the research section only, with no weight in the forecast.

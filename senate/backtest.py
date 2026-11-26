@@ -9,6 +9,8 @@ Versions, each built on the one before:
     +incumbent   whether the seat's holder is running, and for which party
     +polls       the race's polling average, mixed with the version above by a weight fitted for each distance
     +money       the two candidates' fundraising (last day only: the FEC's totals are for the whole cycle, see README)
+    +polls by volume             the polls' weight rises with the amount of polling, between a floor and a cap
+    +polls by volume, race sd    the same, with the error sized for each race (tested and not adopted, see README)
 
 Scores, at each distance: the typical miss on the margin (root mean square, in points), races called, the Brier score
 and log loss of the chance of winning, and how often the result fell inside the 50% and 80% intervals. FiveThirtyEight's
@@ -83,6 +85,51 @@ def fit(train, cols):
 def predict(b, df, cols):
     return b[0] + sum(b[i + 1] * df[c].values for i, c in enumerate(cols))
 
+K_GRID = np.exp(np.linspace(np.log(0.05), np.log(50), 60))
+W_GRID = np.round(np.arange(0, 1.0001, 0.05), 2)
+SD_FLOOR = 1.0
+
+
+def poll_share(df, p):
+    """The weight on the race's polling average: w0 for any average, rising toward w1 as the polling grows, by
+    pw / (pw + k), where pw is the average's total weight. The cap w1 stands for the error polls share in a year, which
+    more polls do not remove; the floor w0 for what even a thin or stale average says about a race."""
+    w0, w1, k = p
+    return np.where(df.poll.notna(), w0 + (w1 - w0) * df.poll_w.fillna(0).values / (df.poll_w.fillna(0).values + k), 0.0)
+
+
+def blend(df, p):
+    return df.f.values + poll_share(df, p) * (df.poll.fillna(df.f).values - df.f.values)
+
+
+def volume_fit(af):
+    """(w0, w1, k) for blend(), fitted on the training years at this distance: the grid point with the least squared error."""
+    hp = af.poll.notna().values
+    if hp.sum() < 10: return (0.0, 0.0, 1.0)
+    f, y = af.f.values[hp], af.dem2.values[hp]; dx = af.poll.values[hp] - f; pw = af.poll_w.values[hp]
+    pairs = np.array([(w0, w1) for w0 in W_GRID for w1 in W_GRID if w1 >= w0]); best = (np.inf, None)
+    for k in K_GRID:
+        W = pairs[:, :1] + (pairs[:, 1:] - pairs[:, :1]) * (pw / (pw + k))[None, :]
+        sse = (((f + W * dx) - y) ** 2).sum(axis=1); i = int(np.argmin(sse))
+        if sse[i] < best[0]: best = (float(sse[i]), (float(pairs[i, 0]), float(pairs[i, 1]), float(k)))
+    return best[1]
+
+
+def sd_features(df):
+    hp = df.poll.notna().values.astype(float)
+    return np.column_stack([np.ones(len(df)), np.abs(df.m.values - 50), hp, hp * np.log1p(df.poll_w.fillna(0).values)])
+
+
+def sd_fit(af):
+    """The error of each race, from the training years: the size of the miss regressed on how far the forecast is from
+    even, whether the race has a polling average, and how much polling it has. For a normal error, sd = sqrt(pi/2) E|e|."""
+    A = sd_features(af); e = np.abs(af.m.values - af.dem2.values)
+    return np.linalg.lstsq(A, e, rcond=None)[0]
+
+
+def sd_predict(c, df):
+    return np.maximum(SD_FLOOR, math.sqrt(math.pi / 2) * (sd_features(df) @ c))
+
 
 VERSIONS = {'lean': ['lean', 'generic'], '+incumbent': ['lean', 'generic', 'inc_d', 'inc_r'], '+money': ['lean', 'generic', 'inc_d', 'inc_r', 'money']}
 
@@ -112,6 +159,17 @@ def run(X):
                 hp = r.poll == r.poll and r.poll is not None
                 out.append({'year': y, 'state': r.state, 'special': r.special, 'days': d, 'version': '+polls', 'mean': r.f + w * (r.poll - r.f) if hp else r.f,
                             'sd': (sd_p if hp else sd_n) or 5.0, 'dem2': r.dem2, 'poll_weight': w if hp else 0.0})
+            # refinements: a poll weight that grows with the amount of polling, and an error sized for each race
+            p = volume_fit(af)
+            af['m'] = blend(af, p); hv = af.poll.notna().values; rv = af.m.values - af.dem2.values
+            sv_p = float(np.sqrt(np.mean(rv[hv] ** 2))) if hv.any() else 5.0; sv_n = float(np.sqrt(np.mean(rv[~hv] ** 2))) if (~hv).any() else sv_p
+            sdc = sd_fit(af)
+            bf['m'] = blend(bf, p); bf['sd'] = sd_predict(sdc, bf); bf['share'] = poll_share(bf, p)
+            for r in bf.itertuples():
+                hp = r.poll == r.poll and r.poll is not None
+                base = {'year': y, 'state': r.state, 'special': r.special, 'days': d, 'mean': r.m, 'dem2': r.dem2, 'poll_weight': r.share, 'w0': p[0], 'w1': p[1], 'k': p[2]}
+                out.append({**base, 'version': '+polls by volume', 'sd': sv_p if hp else sv_n})
+                out.append({**base, 'version': '+polls by volume, race sd', 'sd': r.sd})
     return pd.DataFrame(out)
 
 
@@ -128,6 +186,9 @@ def score(F):
                                      'inside50': float(np.mean(np.abs(x['mean'] - x.dem2) <= Z[50] * x.sd)), 'inside80': float(np.mean(np.abs(x['mean'] - x.dem2) <= Z[80] * x.sd)),
                                      'bias': float(np.mean(x.err))}), include_groups=False).reset_index()
     return F, S
+
+
+OURS = ('+polls', '+polls by volume', '+polls by volume, race sd')
 
 
 def benchmark(F):
@@ -151,8 +212,8 @@ def benchmark(F):
     Bf = pd.DataFrame(out)
     if not len(Bf): return None
     Bf = Bf.assign(won=(Bf.dem2 > 50).astype(int), err=2 * (Bf['mean'] - Bf.dem2), p=Bf.p.clip(0.001, 0.999))
-    ours = F[(F.version == '+polls') & (F.year < 2024)].merge(Bf[['year', 'state', 'special', 'days']].drop_duplicates(), on=['year', 'state', 'special', 'days'])
-    both = pd.concat([Bf, ours.assign(version='this model, +polls')[['year', 'state', 'special', 'days', 'version', 'mean', 'p', 'dem2', 'won', 'err']]])
+    ours = F[F.version.isin(OURS) & (F.year < 2024)].merge(Bf[['year', 'state', 'special', 'days']].drop_duplicates(), on=['year', 'state', 'special', 'days'])
+    both = pd.concat([Bf, ours.assign(version='this model, ' + ours.version)[['year', 'state', 'special', 'days', 'version', 'mean', 'p', 'dem2', 'won', 'err']]])
     both = both.assign(close=(both.dem2 - 50).abs() < 10)
     Tc = both[both.close].groupby(['version', 'days']).apply(lambda x: pd.Series({'races': len(x), 'margin_miss': float(np.sqrt(np.mean(x.err ** 2))), 'log_loss': float(-np.mean(x.won * np.log(x.p) + (1 - x.won) * np.log(1 - x.p)))}), include_groups=False).reset_index()
     print('FiveThirtyEight and this model, competitive races, 2018-2022:'); print(Tc.pivot(index='days', columns='version', values='log_loss').round(3).sort_index(ascending=False)); print(Tc.pivot(index='days', columns='version', values='margin_miss').round(2).sort_index(ascending=False))
@@ -162,23 +223,30 @@ def benchmark(F):
 
 
 def main():
+    pd.set_option('display.width', 250); pd.set_option('display.max_columns', 20)
     X = build(); F = run(X); F, S = score(F); T = benchmark(F)
     by_year = F[F.version == '+polls'].groupby(['year', 'days']).apply(lambda x: pd.Series({'bias': float(np.mean(x.err)), 'margin_miss': float(np.sqrt(np.mean(x.err ** 2)))}), include_groups=False).reset_index()
     # competitive races only: decided by under 20 points of margin, where a forecast is put to the test
     Sc = score(F[(F.dem2 - 50).abs() < 10].drop(columns=['p', 'won', 'err']))[1]
     weights = F[(F.version == '+polls') & (F.poll_weight > 0)].groupby('days').poll_weight.mean().round(3).to_dict()
+    vol = F[F.version == '+polls by volume']
+    k_by_days = vol.groupby(['days', 'year'])[['w0', 'w1', 'k']].first().reset_index().round(3).to_dict('records')
+    vol_weights = vol[vol.poll_weight > 0].groupby('days').poll_weight.describe(percentiles=[.1, .5, .9])[['10%', '50%', '90%']].round(3).to_dict('index')
     coverage = X.groupby('days').apply(lambda x: float(x.poll.notna().mean()), include_groups=False).round(3).to_dict()
     out = {'scores': S.round(4).to_dict('records'), 'scores_competitive': Sc.round(4).to_dict('records'), 'benchmark': T.round(4).to_dict('records') if T is not None else None, 'by_year': by_year.round(3).to_dict('records'),
-           'poll_weight': weights, 'races_with_a_poll_average': coverage, 'races': int(X[['year', 'state', 'special']].drop_duplicates().shape[0])}
+           'poll_weight': weights, 'volume_fit': k_by_days, 'volume_poll_weight': vol_weights, 'races_with_a_poll_average': coverage, 'races': int(X[['year', 'state', 'special']].drop_duplicates().shape[0])}
     json.dump(out, open(os.path.join(D, 'backtest.json'), 'w'), indent=1)
-    pd.set_option('display.width', 200)
     print('Scores (leave one year out). margin_miss: typical miss on the margin, points; called: of', out['races'], 'races')
     print(S.pivot(index='days', columns='version', values='margin_miss').round(2).sort_index(ascending=False))
     print(S.pivot(index='days', columns='version', values='log_loss').round(3).sort_index(ascending=False))
     print(S[S.version == '+polls'][['days', 'called', 'brier', 'inside50', 'inside80', 'bias']].round(3).to_string(index=False))
     print('Competitive races (decided by under 20 points):'); print(Sc.pivot(index='days', columns='version', values='margin_miss').round(2).sort_index(ascending=False))
-    print(Sc[Sc.version == '+polls'][['days', 'races', 'called', 'brier', 'log_loss', 'inside50', 'inside80']].round(3).to_string(index=False))
-    print('poll weight by distance', weights); print('share of races with a poll average', coverage)
+    for v in ('+polls', '+polls by volume', '+polls by volume, race sd'):
+        print(v); print(Sc[Sc.version == v][['days', 'races', 'called', 'brier', 'log_loss', 'inside50', 'inside80']].round(3).to_string(index=False))
+    print('All races:')
+    for v in ('+polls', '+polls by volume, race sd'):
+        print(v); print(S[S.version == v][['days', 'brier', 'log_loss', 'inside50', 'inside80']].round(3).to_string(index=False))
+    print('poll weight by distance', weights); print(pd.DataFrame(k_by_days).pivot(index='days', columns='year').sort_index(ascending=False)); print(pd.DataFrame(vol_weights).T); print('share of races with a poll average', coverage)
     if T is not None: print(T.pivot(index='days', columns='version', values='log_loss').round(3).sort_index(ascending=False)); print(T.pivot(index='days', columns='version', values='margin_miss').round(2).sort_index(ascending=False))
     print(by_year.pivot(index='days', columns='year', values='bias').round(2).sort_index(ascending=False))
     return out
