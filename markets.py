@@ -191,12 +191,11 @@ def kalshi(read=get, cache=None, today=None):
     cache = cache if cache is not None else {}; today = today or str(datetime.date.today()); base = 'https://api.elections.kalshi.com/trade-api/v2/'
     if cache.get('series_day') != today or not cache.get('series'):
         series = []
-        listed = []
+        listed = [{'ticker': 'KXPRESPARTY', 'title': 'Presidential election party winner'}]      # the national market, asked for by name in case neither list carries it
         for cat in ('Elections', 'Politics'):               # the national market and the state markets are filed under different headings
             try: listed += read(base + 'series?category=' + cat, timeout=60).get('series') or []
             except Exception:                               # noqa: BLE001
                 if cat == 'Elections': raise
-        listed.append({'ticker': 'KXPRESPARTY', 'title': 'Presidential election party winner'})      # the national market, asked for by name in case neither list carries it
         seen = set()
         for s in listed:
             if s.get('ticker') in seen: continue

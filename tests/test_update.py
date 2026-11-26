@@ -9,7 +9,7 @@ HERE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 sys.path.insert(0, HERE)
 os.chdir(HERE)
 import update as U                                                          # noqa: E402
-update.COLLECT = lambda cache=None, aggregate=None: {'read': '2026-11-26T00:00Z', 'counts': {}, 'failed': {}, 'combined': {}, 'contracts': []}      # no test reads a market provider
+U.COLLECT = lambda cache=None, aggregate=None: {'read': '2026-11-26T00:00Z', 'counts': {}, 'failed': {}, 'combined': {}, 'contracts': []}      # no test reads a market provider
 
 
 def nowcast():
