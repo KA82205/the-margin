@@ -52,6 +52,10 @@ HELD_BY = {('MN', 2018, True): ('SMITH', 'D'), ('MS', 2018, True): ('HYDE-SMITH'
 # Elected before the source's first year here, or in a special the source does not hold: the 2017 Alabama special.
 EXTRA_WINNERS = {('AL', 2017, True): ('JONES', 'D')}
 
+# Louisiana elects its senators in one open election with every party's candidates on the ballot: the two-party result is
+# each party's total, not its leading candidate's.
+JUNGLE = {'LA'}
+
 FEC_COLUMNS = ['CAND_ID', 'CAND_NAME', 'CAND_ICI', 'PTY_CD', 'CAND_PTY_AFFILIATION', 'TTL_RECEIPTS', 'TRANS_FROM_AUTH', 'TTL_DISB',
                'TRANS_TO_AUTH', 'COH_BOP', 'COH_COP', 'CAND_CONTRIB', 'CAND_LOANS', 'OTHER_LOANS', 'CAND_LOAN_REPAY', 'OTHER_LOAN_REPAY',
                'DEBTS_OWED_BY', 'TTL_INDIV_CONTRIB', 'CAND_OFFICE_ST', 'CAND_OFFICE_DISTRICT', 'SPEC_ELECTION', 'PRIM_ELECTION',
@@ -108,6 +112,8 @@ def results(t):
         if not len(d1) or not len(r1):
             out.append({'year': year, 'state': st, 'special': special, 'why': 'no Democratic-side or no Republican candidate on the ballot (' + ', '.join(top.candidate.head(3)) + ')'}); continue
         dv, rv = float(d1.candidatevotes.iloc[0]), float(r1.candidatevotes.iloc[0])
+        if st in JUNGLE:                                   # one open election, every party's candidates on one ballot: each party's total
+            dv, rv = float(top[top.side == 'D'].candidatevotes.sum()), float(top[top.side == 'R'].candidatevotes.sum())
         if dv <= 1 or rv <= 1:
             out.append({'year': year, 'state': st, 'special': special, 'why': 'uncontested'}); continue
         # a jungle or top-two ballot where the two leaders are not one of each: the general election is not D against R
@@ -202,7 +208,7 @@ def national():
 # ----------------------------------------------------------------------------------------------------------------- polls
 def polls(races):
     p = pd.read_csv(os.path.join(RAW, '538_senate_polls_historical.csv.gz'), low_memory=False)
-    p = p[p.cycle.isin(YEARS) & (p.stage.astype(str) == 'general')]
+    p = p[p.cycle.isin(YEARS) & p.stage.astype(str).isin(['general', 'runoff', 'jungle primary'])]       # runoff polls for the races a runoff decided
     abbr = {v: k for k, v in pd.read_json(os.path.join(ROOT, 'data', 'results_2024.json')).T['name'].items() if len(k) == 2} if os.path.exists(os.path.join(ROOT, 'data', 'results_2024.json')) else {}
     p['st'] = p.state.map(lambda s: abbr.get(s, s))
     out = []
@@ -222,7 +228,7 @@ def polls(races):
         out.append({'year': race.year, 'state': race.state, 'special': race.special, 'poll_id': r0.poll_id, 'question_id': qid, 'pollster': r0.pollster,
                     'start': r0.start_date, 'end': r0.end_date, 'n': r0.sample_size, 'population': r0.population, 'partisan': r0.partisan if isinstance(r0.partisan, str) else '',
                     'internal': bool(r0.internal) if not pd.isna(r0.internal) else False, 'grade': r0.numeric_grade, 'hypothetical': bool(r0.hypothetical) if not pd.isna(r0.hypothetical) else False,
-                    'dem_pct': dp, 'rep_pct': rp, 'dem2': round(100 * dp / (dp + rp), 3), 'candidates_named': int(g.candidate_name.nunique())})
+                    'dem_pct': dp, 'rep_pct': rp, 'dem2': round(100 * dp / (dp + rp), 3), 'candidates_named': int(g.candidate_name.nunique()), 'stage': r0.stage})
     return pd.DataFrame(out)
 
 

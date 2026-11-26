@@ -1,0 +1,188 @@
+"""The Senate back-test, step 2: forecast every race of 2018-2024 at fixed distances before the election, with ingredients
+added one at a time, and score each version. Research only.
+
+Each year is forecast from the other three (leave one year out), so no race helps fit the model that forecasts it. Four
+years is a short record: every number here rests on four national environments, and should be read that way.
+
+Versions, each built on the one before:
+    lean         the state's presidential lean, and the generic-ballot average as the national environment
+    +incumbent   whether the seat's holder is running, and for which party
+    +polls       the race's polling average, mixed with the version above by a weight fitted for each distance
+    +money       the two candidates' fundraising (last day only: the FEC's totals are for the whole cycle, see README)
+
+Scores, at each distance: the typical miss on the margin (root mean square, in points), races called, the Brier score
+and log loss of the chance of winning, and how often the result fell inside the 50% and 80% intervals. FiveThirtyEight's
+published forecasts (2018-2022, its lite, classic and deluxe versions) are scored on the same races and days.
+
+    python senate/backtest.py      writes data/senate/backtest.json and prints the tables
+"""
+import json, math, os, sys
+import numpy as np, pandas as pd
+
+HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE); sys.path.insert(0, ROOT)
+import model as M                                                    # the presidential model's poll weights, reused as they are
+
+D = os.path.join(ROOT, 'data', 'senate')
+YEARS = (2018, 2020, 2022, 2024)
+DAYS = (365, 250, 120, 60, 30, 14, 7, 1)
+ELECTION = {2018: '2018-11-06', 2020: '2020-11-03', 2022: '2022-11-08', 2024: '2024-11-05'}
+# races decided on another day: the runoffs (Georgia) and Mississippi's 2018 special runoff
+OTHER_DAY = {(2020, 'GA', False): '2021-01-05', (2020, 'GA', True): '2021-01-05', (2022, 'GA', False): '2022-12-06', (2018, 'MS', True): '2018-11-27'}
+POP = {'lv': 'lv', 'rv': 'rv', 'v': 'rv', 'a': 'a'}
+Z = {50: 0.6745, 80: 1.2816}
+
+
+def eday(r):
+    return pd.Timestamp(OTHER_DAY.get((r.year, r.state, bool(r.special)), ELECTION[r.year]))
+
+
+def table(p, cols):
+    """Polls in the shape model.weights reads: end, n, pop, pollster."""
+    return pd.DataFrame({'end': pd.to_datetime(p[cols['end']], format='mixed'), 'n': pd.to_numeric(p[cols['n']], errors='coerce').fillna(600).clip(lower=50),
+                         'pop': p[cols['pop']].map(POP).fillna('rv'), 'pollster': p[cols['pollster']].astype(str), 'x': p[cols['x']].astype(float)}).reset_index(drop=True)
+
+
+def average(t, asof, d_out, floor=1.0):
+    """The weighted average of the polls finished by asof, as the presidential model weights them; None when the weight
+    of what there is falls below floor (about one fresh poll), so that a stale handful does not pass for an average."""
+    t = t[t.end <= asof]
+    if not len(t): return None, 0.0
+    w = M.weights(t, asof, d_out)
+    if w.sum() < floor * 1e-9 or w.sum() <= 0: return None, 0.0
+    return float((w * t.x.values).sum() / w.sum()), float(w.sum())
+
+
+def build():
+    R = pd.read_csv(os.path.join(D, 'races.csv')); P = pd.read_csv(os.path.join(D, 'polls.csv')); G = pd.read_csv(os.path.join(D, 'generic.csv'))
+    P = P[(P.partisan.fillna('') == '') & ~P.internal.astype(bool)]                       # as the presidential model does
+    G = G[(G.partisan.fillna('') == '') & ~G.internal.fillna(False).astype(bool)]
+    gen = {y: table(G[G.cycle == y], {'end': 'end_date', 'n': 'sample_size', 'pop': 'population', 'pollster': 'pollster', 'x': 'dem2'}) for y in YEARS}
+    rows = []
+    for r in R.itertuples():
+        E = eday(r); pr = P[(P.year == r.year) & (P.state == r.state) & (P.special == r.special)]
+        pt = table(pr, {'end': 'end', 'n': 'n', 'pop': 'population', 'pollster': 'pollster', 'x': 'dem2'}) if len(pr) else None
+        for d in DAYS:
+            asof = E - pd.Timedelta(days=d)
+            g, _ = average(gen[r.year], asof, d)
+            pa, pw = average(pt, asof, d) if pt is not None else (None, 0.0)
+            md, mr = (r.dem_receipts if r.dem_receipts == r.dem_receipts else 0.0), (r.rep_receipts if r.rep_receipts == r.rep_receipts else 0.0)
+            rows.append({'year': r.year, 'state': r.state, 'special': bool(r.special), 'days': d, 'dem2': r.dem2, 'lean': r.lean,
+                         'generic': g, 'inc_d': int(r.incumbent == 'D'), 'inc_r': int(r.incumbent == 'R'),
+                         'money': math.log((md + 1e5) / (mr + 1e5)), 'poll': pa, 'poll_w': pw, 'indep': bool(r.dem_independent)})
+    X = pd.DataFrame(rows)
+    X['generic'] = X.groupby(['year', 'days']).generic.transform(lambda s: s.fillna(s.mean()))
+    return X
+
+
+def fit(train, cols):
+    A = np.column_stack([np.ones(len(train))] + [train[c].values for c in cols]); b = np.linalg.lstsq(A, train.dem2.values, rcond=None)[0]
+    res = train.dem2.values - A @ b
+    return b, float(np.sqrt(np.mean(res ** 2)))
+
+
+def predict(b, df, cols):
+    return b[0] + sum(b[i + 1] * df[c].values for i, c in enumerate(cols))
+
+
+VERSIONS = {'lean': ['lean', 'generic'], '+incumbent': ['lean', 'generic', 'inc_d', 'inc_r'], '+money': ['lean', 'generic', 'inc_d', 'inc_r', 'money']}
+
+
+def run(X):
+    """Leave-one-year-out forecasts for every version at every distance. Returns a frame of (race, days, version, mean, sd)."""
+    out = []
+    for y in YEARS:
+        tr, te = X[X.year != y], X[X.year == y]
+        for d in DAYS:
+            a, b_ = tr[tr.days == d], te[te.days == d].copy()
+            for name, cols in VERSIONS.items():
+                if name == '+money' and d != 1: continue
+                coef, sd = fit(a, cols); b_['m'] = predict(coef, b_, cols)
+                out += [{'year': y, 'state': r.state, 'special': r.special, 'days': d, 'version': name, 'mean': r.m, 'sd': sd, 'dem2': r.dem2} for r in b_.itertuples()]
+            # polls: the fundamentals version with incumbency, moved toward the race's polling average by a weight fitted on
+            # the other years at this distance (least squares, held between 0 and 1); its error, too, from the other years
+            cols = VERSIONS['+incumbent']; coef, _ = fit(a, cols)
+            af = a.assign(f=predict(coef, a, cols)); has = af.poll.notna()
+            if has.sum() >= 10:
+                x = (af.poll - af.f)[has].values; yv = (af.dem2 - af.f)[has].values; w = float(np.clip((x * yv).sum() / (x * x).sum(), 0, 1))
+                res = np.where(has, af.f + w * (af.poll.fillna(af.f) - af.f), af.f) - af.dem2; sd_p = float(np.sqrt(np.mean(res[has] ** 2))); sd_n = float(np.sqrt(np.mean(res[~has] ** 2))) if (~has).any() else sd_p
+            else:
+                w, sd_p, sd_n = 0.0, None, None
+            bf = b_.assign(f=predict(coef, b_, cols))
+            for r in bf.itertuples():
+                hp = r.poll == r.poll and r.poll is not None
+                out.append({'year': y, 'state': r.state, 'special': r.special, 'days': d, 'version': '+polls', 'mean': r.f + w * (r.poll - r.f) if hp else r.f,
+                            'sd': (sd_p if hp else sd_n) or 5.0, 'dem2': r.dem2, 'poll_weight': w if hp else 0.0})
+    return pd.DataFrame(out)
+
+
+def cdf(x): return 0.5 * (1 + math.erf(x / math.sqrt(2)))
+
+
+def score(F):
+    """Scores for each version and distance."""
+    F = F.assign(p=[cdf((m - 50) / s) for m, s in zip(F['mean'], F['sd'])], won=(F.dem2 > 50).astype(int), err=2 * (F['mean'] - F.dem2))
+    F['p'] = F.p.clip(0.001, 0.999)
+    g = F.groupby(['version', 'days'])
+    S = g.apply(lambda x: pd.Series({'races': len(x), 'margin_miss': float(np.sqrt(np.mean(x.err ** 2))), 'called': int(((x['mean'] > 50) == (x.dem2 > 50)).sum()),
+                                     'brier': float(np.mean((x.p - x.won) ** 2)), 'log_loss': float(-np.mean(x.won * np.log(x.p) + (1 - x.won) * np.log(1 - x.p))),
+                                     'inside50': float(np.mean(np.abs(x['mean'] - x.dem2) <= Z[50] * x.sd)), 'inside80': float(np.mean(np.abs(x['mean'] - x.dem2) <= Z[80] * x.sd)),
+                                     'bias': float(np.mean(x.err))}), include_groups=False).reset_index()
+    return F, S
+
+
+def benchmark(F):
+    """FiveThirtyEight's forecasts on the same races and days (2018-2022), scored the same way, beside this model's +polls
+    version on exactly those races."""
+    B = pd.read_csv(os.path.join(D, 'benchmark_538.csv.gz'))
+    R = pd.read_csv(os.path.join(D, 'races.csv'))
+    out = []
+    for r in R[R.year < 2024].itertuples():
+        E = eday(r); b = B[(B.year == r.year) & (B.state == r.state) & (B.special == r.special)]
+        if not len(b): continue
+        for d in DAYS:
+            day = (E - pd.Timedelta(days=d)).strftime('%Y-%m-%d'); x = b[b.forecast_date == day]
+            if not len(x): continue
+            for v, xv in x.groupby('forecast_type'):
+                dem = xv[xv.party.isin(['D']) | (xv.party.eq('I') & xv.candidate.str.upper().str.contains('|'.join(['SANDERS', 'KING', 'MCMULLIN'])))]
+                rep = xv[xv.party == 'R']
+                if not len(dem) or not len(rep): continue
+                dv, rv = float(dem.projected_voteshare.max()), float(rep.projected_voteshare.max()); pdw = float(dem.probwin.max())
+                out.append({'year': r.year, 'state': r.state, 'special': bool(r.special), 'days': d, 'version': '538 ' + v, 'mean': 100 * dv / (dv + rv), 'p': pdw, 'dem2': r.dem2})
+    Bf = pd.DataFrame(out)
+    if not len(Bf): return None
+    Bf = Bf.assign(won=(Bf.dem2 > 50).astype(int), err=2 * (Bf['mean'] - Bf.dem2), p=Bf.p.clip(0.001, 0.999))
+    ours = F[(F.version == '+polls') & (F.year < 2024)].merge(Bf[['year', 'state', 'special', 'days']].drop_duplicates(), on=['year', 'state', 'special', 'days'])
+    both = pd.concat([Bf, ours.assign(version='this model, +polls')[['year', 'state', 'special', 'days', 'version', 'mean', 'p', 'dem2', 'won', 'err']]])
+    both = both.assign(close=(both.dem2 - 50).abs() < 10)
+    Tc = both[both.close].groupby(['version', 'days']).apply(lambda x: pd.Series({'races': len(x), 'margin_miss': float(np.sqrt(np.mean(x.err ** 2))), 'log_loss': float(-np.mean(x.won * np.log(x.p) + (1 - x.won) * np.log(1 - x.p)))}), include_groups=False).reset_index()
+    print('FiveThirtyEight and this model, competitive races, 2018-2022:'); print(Tc.pivot(index='days', columns='version', values='log_loss').round(3).sort_index(ascending=False)); print(Tc.pivot(index='days', columns='version', values='margin_miss').round(2).sort_index(ascending=False))
+    T = both.groupby(['version', 'days']).apply(lambda x: pd.Series({'races': len(x), 'margin_miss': float(np.sqrt(np.mean(x.err ** 2))), 'called': int(((x['mean'] > 50) == (x.dem2 > 50)).sum()),
+                                                                    'brier': float(np.mean((x.p - x.won) ** 2)), 'log_loss': float(-np.mean(x.won * np.log(x.p) + (1 - x.won) * np.log(1 - x.p)))}), include_groups=False).reset_index()
+    return T
+
+
+def main():
+    X = build(); F = run(X); F, S = score(F); T = benchmark(F)
+    by_year = F[F.version == '+polls'].groupby(['year', 'days']).apply(lambda x: pd.Series({'bias': float(np.mean(x.err)), 'margin_miss': float(np.sqrt(np.mean(x.err ** 2)))}), include_groups=False).reset_index()
+    # competitive races only: decided by under 20 points of margin, where a forecast is put to the test
+    Sc = score(F[(F.dem2 - 50).abs() < 10].drop(columns=['p', 'won', 'err']))[1]
+    weights = F[(F.version == '+polls') & (F.poll_weight > 0)].groupby('days').poll_weight.mean().round(3).to_dict()
+    coverage = X.groupby('days').apply(lambda x: float(x.poll.notna().mean()), include_groups=False).round(3).to_dict()
+    out = {'scores': S.round(4).to_dict('records'), 'scores_competitive': Sc.round(4).to_dict('records'), 'benchmark': T.round(4).to_dict('records') if T is not None else None, 'by_year': by_year.round(3).to_dict('records'),
+           'poll_weight': weights, 'races_with_a_poll_average': coverage, 'races': int(X[['year', 'state', 'special']].drop_duplicates().shape[0])}
+    json.dump(out, open(os.path.join(D, 'backtest.json'), 'w'), indent=1)
+    pd.set_option('display.width', 200)
+    print('Scores (leave one year out). margin_miss: typical miss on the margin, points; called: of', out['races'], 'races')
+    print(S.pivot(index='days', columns='version', values='margin_miss').round(2).sort_index(ascending=False))
+    print(S.pivot(index='days', columns='version', values='log_loss').round(3).sort_index(ascending=False))
+    print(S[S.version == '+polls'][['days', 'called', 'brier', 'inside50', 'inside80', 'bias']].round(3).to_string(index=False))
+    print('Competitive races (decided by under 20 points):'); print(Sc.pivot(index='days', columns='version', values='margin_miss').round(2).sort_index(ascending=False))
+    print(Sc[Sc.version == '+polls'][['days', 'races', 'called', 'brier', 'log_loss', 'inside50', 'inside80']].round(3).to_string(index=False))
+    print('poll weight by distance', weights); print('share of races with a poll average', coverage)
+    if T is not None: print(T.pivot(index='days', columns='version', values='log_loss').round(3).sort_index(ascending=False)); print(T.pivot(index='days', columns='version', values='margin_miss').round(2).sort_index(ascending=False))
+    print(by_year.pivot(index='days', columns='year', values='bias').round(2).sort_index(ascending=False))
+    return out
+
+
+if __name__ == '__main__':
+    main()

@@ -37,3 +37,30 @@ nation's in the last presidential election (three quarters) and the one before (
 - MIT Election Data and Science Lab, "U.S. Senate 1976-2024", doi:10.7910/DVN/PEJ5QU (CC0)
 - Federal Election Commission, "All candidates" summary files, 2018-2026 (public domain)
 - FiveThirtyEight polls and forecasts (CC BY 4.0), from the archived copy in github.com/jcervas/data
+
+## Step 2: the back-test, first pass
+
+`python senate/backtest.py` forecasts every race at 365, 250, 120, 60, 30, 14, 7 and 1 days before the election, each
+year from the other three, and writes `data/senate/backtest.json`. Poll averages use the presidential model's own weights.
+
+What it shows (typical miss on the margin, in points; competitive races are those decided by under 20 points):
+
+| Version | All races, last day | Competitive, last day | Competitive, 60 days out |
+|---|---|---|---|
+| State lean and generic ballot | 9.2 | 9.0 | 8.9 |
+| + whether the seat's holder runs | 7.8 | 7.4 | 7.3 |
+| + race polls | 6.6 | 5.3 | 5.0 |
+| FiveThirtyEight deluxe (2018-2022 only) | | 5.0 | 5.7 |
+
+- **Incumbency and polls both matter;** money adds a little on the last day (7.8 to 7.4 without polls), but its figures
+  are cycle totals, so that is flattered.
+- **On the margin, the model is about as accurate as FiveThirtyEight's** in competitive races (2018-2022): a little worse on
+  the last day, better a month or two out.
+- **Its chances are not yet as sharp:** log loss 0.33 against FiveThirtyEight's 0.23 to 0.27 on the last day. One size of
+  error is used for every race, so close races get ranges that are too wide (84% of results inside the 80% interval).
+  Sizing the error by race is the first refinement.
+- **Polling misses are shared within a year:** the polls overstated the Democrats by about 5 points of margin across the
+  board in 2020 and understated them in 2018. A seat-count forecast has to move the races together, as the presidential
+  simulation moves the states.
+
+Four years are four national environments: every figure here should be read as indicative, not settled.
