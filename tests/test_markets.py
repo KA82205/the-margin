@@ -40,7 +40,9 @@ def test_names():
                         ('Which party will win the 2028 U.S. Senate election in Ohio?', (None, None)), ('Will a Democrat win Texas for President by 2050?', (None, None)), ('2028 US Presidential Election winner?', (None, None)),
                         ('Who will win the 2028 United States Presidential Election?', (None, None)), ('If a Democrat wins the presidency in 2028, will the S&P 500 close 2029 higher', (None, None)),
                         ('Which party will win the 2032 U.S. presidential election?', (None, None))):
-        assert K.kind_of(title) == want, (title, K.kind_of(title))
+        assert K.kind_of(title, party_named='Winner' not in title and 'winner 2028' not in title) == want, (title, K.kind_of(title))
+    for title in ('Will JD Vance win the 2028 US Presidential Election?', 'Will Gavin Newsom win the popular vote in the 2028 presidential election?'): assert K.kind_of(title) == (None, None), title
+    assert K.kind_of('Will a Democrat win Texas in the 2028 presidential election?') == ('winner', 'TX')
 
 
 def test_found_read_and_weighed():
@@ -60,6 +62,24 @@ def test_found_read_and_weighed():
     # the second reading asks Manifold for nothing it has already read and that has not traded since
     cache = {}; K.collect(reader(), cache=cache, now=NOW); asked = []; K.collect(reader(asked=asked), cache=cache, now=NOW)
     assert not any('/v0/market/' in u for u in asked)
+
+
+def test_what_kalshi_lists_is_read_by_each_event_s_own_title():
+    """One series holds every state; primaries and exact outcomes sit beside the winner markets. Each event is placed by its
+    own title, a primary is not a general election, and two exchanges far apart on one question are not averaged."""
+    mk = lambda who, bid, ask: {'yes_sub_title': who, 'status': 'active', 'yes_bid_dollars': str(bid), 'yes_ask_dollars': str(ask), 'last_price_dollars': str(bid), 'volume_fp': '21580', 'open_interest_fp': '9000', 'updated_time': '2026-11-25T22:10:00Z'}
+    events = {'KXPRESSTATE': [{'event_ticker': 'KXPRESSTATE-TX-28', 'title': 'Texas presidential election winner?', 'markets': [mk('Democratic party', 0.38, 0.40), mk('Republican party', 0.61, 0.62)]},
+                              {'event_ticker': 'KXPRESSTATE-NY-28', 'title': 'New York presidential election winner?', 'markets': [mk('Democratic party', 0.92, 0.93), mk('Republican party', 0.07, 0.09)]}],
+              'KXDPRESPRIMARY': [{'event_ticker': 'KXDPRESPRIMARY-28MI', 'title': 'Michigan Democratic presidential primary winner?', 'markets': [mk('Democratic governor', 0.16, 0.17)]}],
+              'KXPRESOUTCOME': [{'event_ticker': 'KXPRESOUTCOME-28NOV07', 'title': '2028 Presidential race: exact outcome', 'markets': [mk('Democratic win, Republican House', 0.01, 0.02)]}],
+              'KXPRESPARTY': [FX['kalshi_event']]}
+    def read(url, timeout=30, tries=2):
+        if '/series' in url: return {'series': [{'ticker': k, 'title': 'Presidential election winner by state' if k == 'KXPRESSTATE' else 'Presidential markets'} for k in events]}
+        return {'events': next((v for k, v in events.items() if url.endswith('series_ticker=' + k)), [])}
+    got = K.kalshi(read, {}, '2026-11-26'); where = {c['id']: (c['kind'], c['place']) for c in got}
+    assert where == {'KXPRESSTATE-TX-28': ('winner', 'TX'), 'KXPRESSTATE-NY-28': ('winner', 'NY'), 'KXPRESPARTY-2028': ('winner', 'US')}, where
+    far = [dict(provider='A', id='a', kind='winner', place='US', real_money=True, dem=0.67, rep=0.33, volume=3e6, last_trade=None, spread=0.01), dict(provider='B', id='b', kind='winner', place='US', real_money=True, dem=0.165, rep=0.83, volume=5e4, last_trade=None, spread=0.01)]
+    c = K.combine(far, NOW)['winner:US']; assert c['p'] is None and c['apart'] > 0.25 and len(c['thin']) == 2
 
 
 def test_a_provider_that_fails_does_not_stop_the_rest():
@@ -104,5 +124,5 @@ def test_the_experimental_run_weights_whole_elections():
 
 
 if __name__ == '__main__':
-    test_names(); test_found_read_and_weighed(); test_a_provider_that_fails_does_not_stop_the_rest(); test_the_record_and_what_counts_as_news(); test_the_experimental_run_weights_whole_elections()
+    test_names(); test_found_read_and_weighed(); test_what_kalshi_lists_is_read_by_each_event_s_own_title(); test_a_provider_that_fails_does_not_stop_the_rest(); test_the_record_and_what_counts_as_news(); test_the_experimental_run_weights_whole_elections()
     print('ok (prediction markets: names, providers, quality, the record, and the weighted run)')

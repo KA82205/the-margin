@@ -70,7 +70,7 @@ def place_of(text):
     return None
 
 
-def kind_of(title):
+def kind_of(title, party_named=True):
     """What a market is about: 'winner' (which party wins the presidency, or a state), 'popular' (the national popular vote),
     'margin', 'electoral_votes', 'nomination', or None. With the place it is about, or 'US'."""
     t = (title or '').lower()
@@ -82,7 +82,8 @@ def kind_of(title):
         return ('nomination', 'D' if 'democrat' in t else 'R') if re.search(r'democrat|republican|gop', t) and place is None and re.match(r'\s*(who|\d{4} (democratic|republican) nominee)', t) else (None, None)
     if not re.search(r'president|electoral|popular vote|white house', t): return None, None
     if re.match(r'\s*who\b', t) or re.search(r'winning ticket|which candidate|\bwinner\?', t) and 'party' not in t and place is None: return None, None      # a market on people, not on parties
-    if re.search(r'popular vote', t) and place is None: return 'popular', 'US'
+    if re.search(r'popular vote', t) and place is None: return ('popular', 'US') if (not party_named or re.search(r'party|democrat|republican|\bgop\b', t)) else (None, None)
+    if party_named and not re.search(r'party|democrat|republican|\bgop\b', t): return None, None       # "Will X win" is a market on a person
     if re.search(r'\bwin\b|\bwins\b|winner|\bwon\b|carry|carries|stay red|stay blue|elected', t): return 'winner', place or 'US'
     return None, None
 
@@ -140,8 +141,8 @@ def manifold(read=get, cache=None):
                 for a in full.get('answers') or []:
                     t = (a.get('text') or '').lower(); p = a.get('probability', a.get('prob'))
                     if p is None: continue
-                    if t.startswith('democrat'): d = p
-                    elif t.startswith('republican'): r = p
+                    if re.match(r'(the )?(democrat|dems?\b|blue\b)', t): d = p
+                    elif re.match(r'(the )?(republican|gop\b|reps?\b|red\b)', t): r = p
                     top.append((a.get('text'), round(p, 4)))
             row = {'provider': 'Manifold', 'id': m['id'], 'title': full.get('question'), 'url': full.get('url'), 'real_money': False, 'dem': d, 'rep': r, 'volume': round(full.get('volume') or 0), 'liquidity': round(full.get('totalLiquidity') or 0),
                    'traders': full.get('uniqueBettorCount'), 'last_trade': iso(full.get('lastBetTime')), 'closes': iso(full.get('closeTime')), 'spread': None, 'rules': (full.get('textDescription') or '')[:300],
@@ -169,7 +170,7 @@ def polymarket(read=get):
                 who = (m.get('groupItemTitle') or m.get('question') or '').lower()
                 s = 'dem' if 'democrat' in who else 'rep' if 'republican' in who else None
                 if s and not m.get('closed') and s not in side: side[s] = m
-            if not side: continue
+            if len(side) < 2: continue                     # a market between the parties prices both
             def price(m):
                 if not m: return None, None
                 b, a = m.get('bestBid'), m.get('bestAsk')
@@ -203,12 +204,16 @@ def kalshi(read=get, cache=None, today=None):
         except Exception: continue                      # noqa: BLE001  one series that does not answer does not stop the rest
         for e in events:
             if str(YEAR) not in (e.get('event_ticker') or '') + ' ' + (e.get('title') or '') and str(YEAR)[2:] not in (e.get('event_ticker') or '').split('-')[-1]: continue
+            et = (e.get('title') or title).lower()
+            if re.search(r'primary|primaries|caucus|nominee|nomination|exact outcome|outcome|combo|\band\b|senate|house|governor|tipping|closest|first|before|announce|\brun\b|vp\b|vice', et): continue
+            place = place_of(e.get('title') or '') or place_of(title) or 'US'
+            kind = 'popular' if 'popular vote' in et and 'margin' not in et else 'margin' if 'margin' in et else 'electoral_votes' if 'electoral' in et else 'winner'
             side = {}
             for m in e.get('markets') or []:
                 who = ((m.get('yes_sub_title') or '') + ' ' + (m.get('title') or '')).lower()
                 s = 'dem' if 'democrat' in who else 'rep' if 'republican' in who else None
                 if s and m.get('status') in ('active', 'open', None) and s not in side: side[s] = m
-            if not side and kind in ('winner', 'popular'): continue
+            if len(side) < 2 and kind in ('winner', 'popular'): continue      # a market between the parties prices both
             f = lambda m, k: float(m.get(k) or 0) if m else 0.0
             def price(m):
                 if not m: return None, None
@@ -300,6 +305,10 @@ def combine(contracts, now, aggregate=None):
         use = [c for c in best.values() if c['quality'] > 0]
         if not use:
             res[k] = {'p': None, 'quality': 0.0, 'providers': [], 'thin': [dict(provider=c['provider'], p=round(c['p'], 4), id=c['id']) for c in best.values()]}; continue
+        real = [c for c in use if c['real_money']]
+        apart = max((abs(a['p'] - b['p']) for a in real for b in real), default=0.0)
+        if apart > 0.25:                                    # exchanges do not sit this far apart on one question: one of them is not the market it was taken for
+            res[k] = {'p': None, 'quality': 0.0, 'providers': [], 'apart': round(apart, 3), 'thin': [dict(provider=c['provider'], p=round(c['p'], 4), id=c['id']) for c in use]}; continue
         w = sum(c['quality'] for c in use); z = sum(c['quality'] * math.log(c['p'] / (1 - c['p'])) for c in use) / w
         # several exchanges trade on the same news and against each other: together they count for the best of them and a
         # part of the rest, never for the sum
