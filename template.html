@@ -29,6 +29,20 @@ svg{display:block;width:100%;height:auto;overflow:visible}
 .dateline,.meta{font-size:13px;line-height:20px;color:var(--muted);margin:16px 0 0}
 
 nav{border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:9}
+.tie-note{margin:8px 0 0;font-size:12px;line-height:16px;color:var(--muted)}
+h3.step{font:500 20px/28px var(--serif);margin:40px 0 8px;padding-top:16px;border-top:1px solid var(--line2)}
+.wt{display:flex;height:16px;gap:2px;margin:16px 0 8px}.wt i{display:block;border-radius:2px;min-width:3px}
+.wt-key{list-style:none;padding:0;margin:0 0 16px;display:flex;flex-wrap:wrap;gap:4px 20px;font-size:13px;line-height:20px;color:var(--ink2)}
+.wt-key li{display:flex;align-items:center;gap:6px}.wt-key i,.comp h4 i{display:inline-block;width:10px;height:10px;border-radius:2px;flex:none}
+.w0{background:var(--ink)}.w1{background:var(--k3)}.w2{background:var(--k4)}.w3{background:var(--k5)}
+.comp{border-top:1px solid var(--line);padding:20px 0}
+.comp-h{display:flex;justify-content:space-between;gap:16px 24px;flex-wrap:wrap;align-items:start;margin-bottom:8px}
+.comp h4{font:500 17px/24px var(--sans);margin:0;display:flex;align-items:center;gap:8px}.comp .by{margin:2px 0 0 18px;font-size:13px;line-height:20px;color:var(--muted)}
+.comp dl{display:flex;gap:24px;margin:0}.comp dl div{min-width:0}.comp dt{font-size:12px;line-height:16px;color:var(--muted);max-width:150px}.comp dd{margin:2px 0 0;font:500 20px/24px var(--sans)}
+.comp p{font-size:15px;line-height:22px;margin:8px 0}.comp .fine{font-size:13px;line-height:20px}
+.eq{font:500 15px/22px var(--sans);background:var(--raised);padding:12px 14px;border-radius:6px}
+.try-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;margin:8px 0}.try-row input[type=range]{flex:1;min-width:160px}
+#nat-calc table,#nat-work table{width:100%}
 .tab [id]{scroll-margin-top:calc(var(--navh,64px) + 12px)}
 nav .wide{display:flex;align-items:center;gap:24px;height:56px}
 .brand{display:flex;align-items:center;gap:8px;font:600 17px/1 var(--sans);text-decoration:none;margin-right:auto}
@@ -281,6 +295,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     <p class="dateline" id="dateline"></p>
     <div class="top" id="top"></div>
     <div class="bar" id="odds"></div>
+    <p class="tie-note">Winning probabilities exclude Electoral College ties.</p>
     <div class="keys" id="keys"></div>
   </div>
   <div class="mapbox">
@@ -361,13 +376,21 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 </div>
 </section>
 <section class="tab" id="t-model" hidden>
-<div class="col lead"><h1>How the forecast is made</h1><p class="stand">What goes into the number, why each part counts as much as it does, and how the forecast will sharpen as the election gets closer.</p></div>
-<div class="col"><h2>What goes into the number</h2><p>Three kinds of evidence. Polls and two structural models set the national number. State models and each state's voting history place the states around it. Prediction markets are shown beside the forecast for comparison and do not move it.</p>
-  <div id="inrows"></div>
+<div class="col lead"><h1>How the forecast is made</h1><p class="stand">How the forecast is calculated, why each part counts as much as it does, and how the forecast will sharpen as the election gets closer.</p></div>
+<div class="col" id="calc"><h2>How the forecast is calculated</h2>
+  <p>The forecast is built in three steps. First it estimates the national popular vote: each party's share of the votes cast for the two of them, written here as a margin, so D+4.0 means the Democrat ahead by four points. Next it places each state against that national figure. Last, it simulates the election <span class="js-sims"></span> times, allowing for the ways the estimates could be wrong, and counts how often each side reaches 270 electoral votes.</p>
+  <p>The weights in step 1 apply to the estimate of the national vote, not to the chance of winning. A model with half the weight moves the national margin by half as much as it would alone; how much that changes the chance of winning depends on everything else in the simulation.</p>
+  <h3 class="step">Step 1: Estimate the national popular vote</h3>
+  <p id="nat-intro"></p>
+  <div class="wt" id="nat-bar" role="img"></div>
+  <ul class="wt-key" id="nat-key"></ul>
+  <div id="comp"></div>
+  <details class="more" id="nat-work"><summary>The calculation, step by step</summary><div id="nat-calc"></div></details>
+  <h3 class="step">Step 2: Forecast each state</h3>
+  <div id="st-step"></div>
+  <h3 class="step">Step 3: Simulate the election</h3>
+  <div id="sim-step"></div>
 </div>
-<div class="col" id="market-method"><h2>Prediction markets, and the experimental run</h2><p id="mm-p"></p></div>
-<figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="mm-t"></table></div><figcaption id="mm-cap"></figcaption></figure>
-<figure class="mid"><b>Markets and the forecast on 2024, the one election with a record of state markets</b><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="ms-t"></table></div><figcaption id="ms-cap"></figcaption></figure>
 <div class="col"><h2>Why these weights?</h2><p>Every weight was written down before the back-test was scored, with a reason, and then each one was changed to see whether it mattered. Mostly it did not: across every alternative tried, the typical state miss on the last day stayed between <span id="w-lo"></span> and <span id="w-hi"></span> points.</p>
   <div id="qa"></div>
   <details class="qa plain"><summary>Every setting, changed one at a time</summary><div><p class="try" id="p-set"></p><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="set"></table></div></div></details>
@@ -437,6 +460,10 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 <div class="col"><p id="p-pm2"></p></div>
 <figure class="mid"><b>Sitting presidents in the New Hampshire primary</b><div class="sub">The president's share of his own party's vote, and what his party did in November</div><div id="pm"></div><figcaption>Presidents who were on the ballot or written in. In 1952, 1968 and 2024 the president later left the race and another candidate was nominated.</figcaption></figure>
 <div class="col"><p id="p-pm3"></p></div></article>
+<article class="study" id="s-markets" data-k="Prediction markets"><div class="col" id="market-method"><h2>Prediction markets, and the experimental run</h2><p id="mm-p"></p></div>
+<figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="mm-t"></table></div><figcaption id="mm-cap"></figcaption></figure>
+<figure class="mid"><b>Markets and the forecast on 2024, the one election with a record of state markets</b><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="ms-t"></table></div><figcaption id="ms-cap"></figcaption></figure>
+<div class="col"><h3>Why prediction markets get no weight in the official forecast</h3><p id="mm-why"></p><p class="try" id="mm-why2"></p></div></article>
 </section>
 </main>
 <footer><div class="wide"><span id="asof"></span><span>{{TITLE}}</span><span><a href="ops.html">How the sites have been running</a></span><span id="foot-contact"></span></div></footer>
@@ -467,14 +494,18 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 
   // ---- top. The chance is the share of simulated elections each side wins outright; an even split of the electoral
   // votes is shown on its own and given to neither.
-  const p = F.p_dem, pr = F.p_rep != null ? F.p_rep : 1 - p, tie = F.p_tie || 0, lead = p >= pr ? 'Democrats' : 'Republicans', q = Math.max(p, pr);
+  const p = F.p_dem, pr = F.p_rep != null ? F.p_rep : 1 - p, tie = F.p_tie || 0;
+  // The headline shows each party's chance of winning outright, out of the simulations that do not end 269 to 269, so the
+  // two add to 100. This is presentation only: every other figure on the site, and the data, keep the tie in.
+  const hd = Math.round(100 * p / (p + pr)), hr = 100 - hd, lead = hd >= hr ? 'Democrats' : 'Republicans', q = Math.max(hd, hr) / 100;
   const word = q >= 0.9 ? 'are strong favorites' : q >= 0.75 ? 'are favored' : q >= 0.6 ? 'are modest favorites' : q >= 0.55 ? 'have a slight edge' : null;
   const tieTxt = tie < 0.0005 ? 'under 0.1%' : (100 * tie).toFixed(1) + '%';
   $('headline').textContent = word ? lead + ' ' + word + ' to win the White House in 2028' : 'The 2028 race for the White House is a toss-up';
-  $('stand').textContent = 'Two years out and with no nominees, the Democratic candidate wins ' + in100(p) + ' of simulated elections and the Republican ' + in100(pr) + '. The electoral votes split 269 to 269 in ' + tieTxt + ' of them. That is a lean, not a call.';
+  $('stand').textContent = 'Two years out and with no nominees, the Democratic candidate has a ' + hd + '% chance of winning and the Republican a ' + hr + '% chance. The electoral votes split 269 to 269 in ' + tieTxt + ' of simulated elections. That is a lean, not a call.';
   $('dateline').textContent = 'Updated ' + longDate(F.as_of) + ' · ' + F.days_out + ' days to the election';
-  $('top').innerHTML = '<div class="dn"><span>Democrats win</span><strong>' + Math.round(100 * p) + '%</strong><em>of simulations</em></div><div class="rn"><span>Republicans win</span><strong>' + Math.round(100 * pr) + '%</strong><em>of simulations</em></div>';
-  $('odds').innerHTML = '<i class="bd" style="flex:' + p + '"></i>' + (tie >= 0.002 ? '<i class="c4" style="flex:' + tie + '" title="269 to 269"></i>' : '') + '<i class="br" style="flex:' + pr + '"></i>';
+  $('top').innerHTML = '<div class="dn"><span>Democrats win</span><strong>' + hd + '%</strong></div><div class="rn"><span>Republicans win</span><strong>' + hr + '%</strong></div>';
+  $('odds').innerHTML = '<i class="bd" style="flex:' + hd + '"></i><i class="br" style="flex:' + hr + '"></i>';
+  $('odds').setAttribute('role', 'img'); $('odds').setAttribute('aria-label', 'Democrats ' + hd + '%, Republicans ' + hr + '%');
   const tp = ST[F.tipping_point];
   $('keys').innerHTML = [[Math.round(F.ev_mean) + ' to ' + (538 - Math.round(F.ev_mean)), 'electoral votes on average, Democrats to Republicans'], [in100(F.p_popular), 'chance the Democrats win the most votes nationally'], [tp.name, 'the state most likely to put the winner over 270']]
     .map(k => '<div><strong>' + k[0] + '</strong><span>' + k[1] + '</span></div>').join('');
@@ -591,7 +622,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     const failed = Object.keys(K.failed || {});
     $('mk-cap').textContent = 'Read ' + (K.read || '').replace('T', ' ').replace('Z', ' UTC') + '.' + (failed.length ? ' Not read this time: ' + failed.join(', ') + '.' : '') + ' Each state\'s profile shows the markets for that state.';
     // the Model tab: what the experimental run is and what it gives
-    $('mm-p').innerHTML = 'The official forecast gives prediction markets no weight (the question below says why). Beside it, an <b>experimental</b> run asks what the same simulated elections would say if the markets were partly believed. It does not move the headline. It gives every simulated election a weight, so that each event a market prices (the national winner, a state) happens a little more or less often: its chance moves toward the market\'s by half the market\'s quality, on the log-odds scale. A thin market moves almost nothing. ' +
+    $('mm-p').innerHTML = 'The official forecast gives prediction markets no weight (the end of this piece says why). Beside it, an <b>experimental</b> run asks what the same simulated elections would say if the markets were partly believed. It does not move the headline. It gives every simulated election a weight, so that each event a market prices (the national winner, a state) happens a little more or less often: its chance moves toward the market\'s by half the market\'s quality, on the log-odds scale. A thin market moves almost nothing. ' +
       'Because whole elections are weighted, the chance of winning, the electoral votes, each state and the national vote stay consistent with each other. If the markets pulled so hard that fewer than a quarter of the elections would effectively remain, every pull is halved.';
     const way = (name, x, note) => '<tr><td>' + name + '</td><td class="n">' + pc(x.p_dem) + '</td><td class="n">' + pc(x.p_rep) + '</td><td class="n">' + Math.round(x.ev_median) + '</td><td class="n ' + cls(x.national) + '">' + mg(x.national) + '</td><td class="n">' + (x.effective != null ? pc(x.effective) : '') + '</td><td>' + note + '</td></tr>';
     const NVm = F.national_from_states ? F.national_from_states.mean : F.national;
@@ -643,18 +674,105 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     $('slider').addEventListener('input', set); set();
   })();
 
-  // ---- inputs
   const I = F.inputs;
-  $('inrows').innerHTML = [
-    ['Polls', mg(I.national_polls), '<b>' + pc(I.poll_share) + ' of the national number today.</b> ' + I.polls_n + ' national head-to-head polls of possible nominees. Newer and larger polls count for more, and a pollster\'s older polls count for less. Their share of the national number follows the record of what polls have been worth at each distance from an election.'],
-    ['Structural models', mg(I.fundamentals), '<b>The other ' + pc(1 - I.poll_share) + '.</b> Two equal parts: Tipping Point\'s approval-and-economy model (' + mg(I.approval_and_economy) + ') and an equation on the president\'s June approval with a first-term adjustment (' + mg(I.approval_model) + '). Tipping Point\'s long-range model is built on polls taken in October 2027 and joins as a third part once they exist.'],
-    ['State models', in100(I.nowcast_p_dem), '<b>Half of where each state stands against the nation.</b> The Tipping Point Nowcast runs two published state-by-state models; the forecast takes where they place each state against their own national figure. The other half is how the state voted against the nation in 2024 and 2020. State polls count under a ceiling that rises as the election nears.'],
-    ['Prediction markets', in100(F.market), '<b>Not part of the forecast.</b> The price of a Democratic win, for comparison with the simulations\' ' + in100(F.p_model) + '.']
-  ].map(r => '<div class="inrow"><b>' + r[0] + '</b><strong>' + r[1] + '</strong><p>' + r[2] + '</p></div>').join('');
+  const farP = days => { const L = F.funnel || []; if (!L.length) return ''; const f = L.reduce((a, b) => Math.abs(b.days - days) < Math.abs(a.days - days) ? b : a); return (100 * f.poll_share).toFixed(0) + '%'; };
+  // ---- how the forecast is calculated (Model tab). Every figure is read from the forecast file; nothing is typed in.
   (function () {
-    // (the old slider that blended the headline with a market price is gone: a headline is never moved on its own)
+    const I = F.inputs, E = I.equation;
+    const sh = (x, d) => x.toFixed(d == null ? 2 : d) + '%';                       // a share of the two-party vote
+    const m2 = x => { const v = 2 * (x - 50); return (Math.abs(v) < 0.005 ? 'Even' : (v > 0 ? 'D+' : 'R+') + Math.abs(v).toFixed(2)); };
+    const wt = x => (100 * x).toFixed(1).replace(/\.0$/, '') + '%';
+    const sims = (I.sims || 40000).toLocaleString('en-US');
+    document.querySelectorAll('.js-sims').forEach(e => e.textContent = sims);
+    const w = I.poll_share, wD = I.long_range != null ? (I.long_range_weight || 0) : 0, g = I.prior_moves_with_polls || 0;
+    const eS = (1 - w) / (2 + wD), eD = (1 - w) * wD / (2 + wD);
+    const src = I.model_sources || {}, official = k => /author/.test(src[k] || '');
+    const parts = [
+      {key: 'polls', name: 'National polling average', color: 'w0', share: I.national_polls, weight: w,
+       kind: 'The Margin\'s own average of published polls', fixed: 'Never fixed: new polls are read every hour to Election Day',
+       measures: 'National polls that ask how people would vote between two possible nominees, such as a named Democrat against a named Republican. Until the parties choose, these are hypothetical matchups.',
+       why: 'Polls are the most direct evidence of how people mean to vote. Two years out they say little about November, so they count for little now and for much more near the end.',
+       more: '<p>' + I.polls_n + ' national matchup polls count today. A newer poll counts for more than an older one: a poll\'s weight halves every fifth of the days left, never faster than a week or slower than a month. A larger sample counts for more. When one pollster has several polls in the window, each older one counts half as much as the one after it, so a pollster who publishes often cannot outweigh the rest. Until both nominees are known, the spread between different possible pairings counts as extra uncertainty in the polls.</p>' +
+             '<p>How much the polls count is set by the record of what a national polling average has been worth at each distance from an election, against a forecast with no polls in it (after Erikson and Wlezien). On the projection used here that is about ' + farP(250) + ' at 250 days out, ' + farP(120) + ' at 120 days and ' + farP(1) + ' on the last day.</p>' +
+             '<p>The polling average is one input, not the forecast. Today the average stands at ' + m2(I.national_polls) + '; the national starting estimate below, with every part in, is ' + m2(I.national_start) + '.</p>'},
+      {key: 'enns', name: 'Approval-and-economy model', by: 'Peter K. Enns, Jonathan Colner, Anusha Kumar and Julius Lagodny', color: 'w1', share: I.approval_and_economy, weight: eS,
+       kind: official('enns') ? 'The authors\' own published 2028 forecast' : 'An approximation: Tipping Point\'s run of the published model on today\'s data',
+       fixed: official('enns') ? 'Fixed: the authors\' published forecast' : 'Its inputs move until the authors publish their own 2028 forecast, expected about 100 days before the election',
+       measures: 'A state-by-state model: how voters in each state rate the president, how each state\'s economy is doing, and how each state voted against the nation last time.',
+       why: 'It is a published model with a good record on the last two elections, and it reads the economy, which no other part here does.',
+       more: '<p>The State Presidential Approval/State Economy Model, published in <a href="https://doi.org/10.1017/S1049096524000994" rel="noopener"><em>PS: Political Science &amp; Politics</em> (2024)</a>. For each state it is a regression of the Democratic share of the two-party vote on the state\'s lean in the last election, the president\'s approval in that state (counted toward or against the party in office), the change in the state\'s coincident economic index, and home-state effects for the nominees and running mates. Higher approval of the president helps the president\'s party; a growing state economy does the same. The national figure is the states\' forecasts combined into one national share.</p>' +
+             '<p>What is used here is Tipping Point\'s run of the authors\' equation, refitted on 1980 to 2024. It is a close estimate, not the authors\' forecast: they estimate approval in each state from surveys that are not all public, while Tipping Point combines public national polls with Civiqs\'s state figures. When the authors publish their 2028 forecast, it replaces this run on Tipping Point and then here, and stays fixed to Election Day. <a href="https://ka82205.github.io/tipping-point/" rel="noopener">Tipping Point</a> shows the equation in full.</p>'},
+      {key: 'equation', name: 'Presidential approval equation', by: 'The Margin\'s own simplified adaptation of Alan Abramowitz\'s Time for Change model', color: 'w2', share: I.approval_model, weight: eS,
+       kind: 'The Margin\'s own equation, refitted here. Not Abramowitz\'s published equation or his forecast',
+       fixed: I.june_approval != null ? 'Fixed: June 2028 approval is in' : 'Its approval input is fixed once the June 2028 polls are in, from July 8, 2028',
+       measures: 'The president\'s net approval nationally, and how long the president\'s party has held the White House.',
+       why: 'Approval in the June of an election year has tracked the vote since 1948, a longer record than any other part here has.', more: ''},
+      {key: 'desart', name: 'Long-range model', by: 'Jay A. DeSart', color: 'w3', share: I.long_range, weight: eD,
+       kind: official('desart') ? 'The author\'s own published 2028 forecast' : 'An approximation: Tipping Point\'s run of the published model',
+       fixed: official('desart') ? 'Fixed: the author\'s published forecast' : 'Joins once the October 2027 polls it is built on are fixed, on ' + longDate(I.long_range_fixed_on || '2027-11-07'),
+       measures: 'Each state\'s vote in the last election, national head-to-head polls, home states, and how many terms the president\'s party has held the White House.',
+       why: 'It was built to forecast a year ahead, before the nominees are known, so it is the one academic model designed for the months when the polls are early.', more: ''}
+    ];
+    // the approval equation, worked through with today's inputs
+    if (E) {
+      const inc = E.party_in_office_share, dem = 100 - inc;
+      parts[2].more = '<p class="eq">Incumbent party\'s predicted two-party share = ' + E.intercept.toFixed(3) + ' + ' + E.approval.toFixed(4) + ' × net approval + ' + E.first_term.toFixed(3) + ' × first term</p>' +
+        '<p>Net approval is the share who approve of the president minus the share who disapprove. All else equal, ten points more net approval gives the president\'s party ' + (10 * E.approval).toFixed(2) + ' more points of the two-party vote. A party finishing its first consecutive term in the White House gets ' + E.first_term.toFixed(2) + ' points more: voters have tended to give a party a second term more readily than a third. The first term is the party\'s, not the president\'s: Republicans hold the White House now, and Donald Trump\'s two terms were not consecutive, so 2028 ends the Republicans\' first consecutive term and the indicator is 1.</p>' +
+        '<p><b>With today\'s figures.</b> Net approval ' + E.net_approval.toFixed(1) + (I.june_approval != null ? ' (the June 2028 average)' : ' (today\'s average, standing in for June 2028)') + ', first term ' + E.term1 + ': ' + E.intercept.toFixed(3) + ' + ' + E.approval.toFixed(4) + ' × (' + E.net_approval.toFixed(1) + ') + ' + E.first_term.toFixed(3) + ' × ' + E.term1 + ' = ' + sh(inc) + ' for the Republicans, so ' + sh(dem) + ' for the Democrats, a margin of ' + m2(dem) + '.</p>' +
+        '<details class="more"><summary>Where the equation comes from, and its limits</summary><div>' +
+        '<p>Abramowitz\'s Time for Change model forecasts the party in office\'s share of the vote from three things: the president\'s net approval at the end of June, economic growth in the second quarter of the election year, and whether the party is seeking a third consecutive term or more. The Margin keeps the first and the last and leaves out growth: the 2020 figure, from the pandemic shutdown, is far outside anything the equation was fitted on and would have dominated the fit. The equation here is fitted afresh, by ordinary least squares, on the ' + E.elections + ' presidential elections from ' + E.first + ' to ' + E.last + ', with June approval for 2020 and 2024 from Gallup. It is not Abramowitz\'s published equation and it is not his forecast. His own forecasts are published at <a href="https://centerforpolitics.org/crystalball/" rel="noopener">Sabato\'s Crystal Ball</a>.</p>' +
+        '<p>The forecast uses an equation fitted on every past election. The back-tests do not: to forecast an election, they fit it only on the elections before that one, as it would have been in that year.</p>' +
+        '<p>' + E.elections + ' elections are few, so the coefficients are uncertain, and any one election can be far from the line. The larger uncertainty now is that the equation wants June 2028 approval and has only today\'s. Until June 2028 the forecast adds an allowance for approval still moving: ' + (I.approval_allowance != null ? I.approval_allowance : 15) + ' points of net approval today, shrinking with the square root of the time left' + (I.allowance_today != null ? ', which today adds an uncertainty of about ' + I.allowance_today.toFixed(1) + ' points of vote share to the structural estimate' : '') + '. It closes for good only when the June 2028 polls are in, read from July 8, 2028; a date alone never closes it.</p>' +
+        '<p><b>Why both approval models?</b> The approval-and-economy model and this equation both read the president\'s approval, so they are not independent, and their errors will partly move together. They are kept as two parts because they read it differently: one state by state with the economy, fitted on 1980 to 2024; the other nationally, with no economy, over a record back to 1948. Their agreement today (' + m2(I.approval_and_economy) + ' and ' + m2(I.approval_model) + ') is partly that shared input, not two separate confirmations. The forecast\'s error allowance is measured on the record of the mix, not on the assumption that the parts are independent.</p>' +
+        '<p>The <a href="https://github.com/KA82205/the-margin/blob/main/fundamentals.py" rel="noopener">equation\'s code</a> and the <a href="https://github.com/KA82205/the-margin#readme" rel="noopener">method notes</a> are in the repository.</p></div></details>' +
+        '<details class="more" id="calc-try"><summary>Try the equation</summary><div><p class="fine">For learning only. This changes nothing in the forecast.</p>' +
+        '<label class="try-row">Net approval <input type="range" id="eq-a" min="-60" max="60" step="0.1" value="' + E.net_approval + '"> <output id="eq-av"></output></label>' +
+        '<label class="try-row"><input type="checkbox" id="eq-t"' + (E.term1 ? ' checked' : '') + '> The party in office is finishing its first consecutive term</label>' +
+        '<p id="eq-out" aria-live="polite"></p></div></details>';
+    }
+    parts[3].more = '<p>Jay A. DeSart is a political scientist at Utah Valley University. His long-range model, in <a href="https://doi.org/10.1017/S1049096524000805" rel="noopener"><em>PS: Political Science &amp; Politics</em> (2025)</a>, forecasts each state from its share in the last election, national head-to-head polls, home states and the party\'s terms in office. It is built on the polls of October of the year before the election, so for 2028 on polls taken in October 2027: early enough to forecast a year ahead, late enough that the possible nominees are being polled.</p>' +
+      '<p>' + (wD > 0 ? 'It is now part of the national estimate.' : 'It counts for nothing in the national estimate today. The October 2027 polls do not exist yet, and run early on today\'s polls it is mostly those same polls again, which the polling average already holds. It joins as a third structural part, equal to the other two, once those polls are fixed' + (official('desart') ? '' : ' or the author publishes his own 2028 forecast, expected in November 2027') + '.') +
+      ' Its forecast reads national polls, about ' + (I.long_range_polls != null ? I.long_range_polls : 0.522).toFixed(2) + ' of a point for each point in their average, so once it is in, part of the polls\' influence comes through it. The direct weight on the polling average is then cut so that polls in total count only as much as the record supports' + (g > 0 ? ': today ' + wt(w) + ' directly and ' + wt(I.poll_share_total) + ' in all' : '') + '.</p>' +
+      '<p>It is not without influence before then. Tipping Point\'s state forecasts are the average of its two models, this one included, and half of each state\'s starting point in step 2 comes from where those forecasts place the state against their own national figure. When DeSart publishes his 2028 forecast, it replaces Tipping Point\'s run of his model there and here, and stays fixed.</p>';
+    // the bar and its key
+    const used = parts.filter(p => p.share != null);
+    $('nat-bar').innerHTML = used.filter(p => p.weight > 0).map(p => '<i class="' + p.color + '" style="flex:' + p.weight + '"></i>').join('');
+    $('nat-bar').setAttribute('aria-label', 'Weights in the national vote estimate: ' + used.map(p => p.name + ' ' + wt(p.weight)).join(', '));
+    $('nat-key').innerHTML = used.map(p => '<li><i class="' + p.color + '"></i>' + p.name + ' <b>' + wt(p.weight) + '</b></li>').join('');
+    $('nat-intro').textContent = 'Four parts estimate the national vote. Each gives its own figure for the Democratic share of the two-party vote, and the estimate is their weighted average. Today the polls count for ' + wt(w) + ', the two approval models split the rest evenly, and the long-range model ' + (wD > 0 ? 'has joined them.' : 'waits for its polls.');
+    $('comp').innerHTML = used.map(p => '<div class="comp"><div class="comp-h"><div><h4><i class="' + p.color + '"></i>' + p.name + '</h4>' + (p.by ? '<p class="by">' + p.by + '</p>' : '') + '</div>' +
+      '<dl><div><dt>Estimate</dt><dd class="' + cls(p.share) + '">' + mg(p.share) + '</dd></div><div><dt>Current weight in the national vote forecast</dt><dd>' + wt(p.weight) + '</dd></div></dl></div>' +
+      '<p><b>What it measures.</b> ' + p.measures + '</p><p><b>Why it is included.</b> ' + p.why + '</p><p class="fine">' + p.kind + '. ' + p.fixed + '.</p>' +
+      (p.more ? '<details class="more"><summary>More on this part</summary><div>' + p.more + '</div></details>' : '') + '</div>').join('');
+    // the worked calculation, from the precise figures
+    const rows = used.map(p => '<tr><td>' + p.name + '</td><td class="n">' + sh(p.share, 3) + '</td><td class="n">' + (100 * p.weight).toFixed(2) + '%</td><td class="n">' + (p.share * p.weight).toFixed(3) + '</td></tr>').join('');
+    const sum = used.reduce((a, p) => a + p.share * p.weight, 0);
+    $('nat-calc').innerHTML = '<div class="scroll" tabindex="0" role="region" aria-label="Table"><table><thead><tr><th>Part</th><th class="n">Democratic share</th><th class="n">Weight</th><th class="n">Share × weight</th></tr></thead><tbody>' + rows +
+      '<tr><td><b>National starting estimate</b></td><td class="n"></td><td class="n">100%</td><td class="n"><b>' + sh(sum, 3) + '</b></td></tr></tbody></table></div>' +
+      '<p>' + sh(sum, 3) + ' Democratic is ' + m2(sum) + '. The two approval models\' weights are equal by design: the structural part of the estimate is ' + (wD > 0 ? 'the average of three models' : 'the plain average of the two') + ' (' + sh(I.prior, 3) + '), and the polls move it ' + wt(w) + ' of the way toward their own figure.</p>' +
+      '<p>This is where the simulation starts, not its last word. Each simulated election moves the nation from here by a random national error, and states add their own. The national popular vote reported on the Forecast tab is the average over the simulated state results, ' + m2(F.national_from_states ? F.national_from_states.mean : F.national) + ' today, which can differ slightly from the starting estimate.</p>';
+    // step 2: a state, worked through
+    const st = ST[F.tipping_point], lw = I.lean_weights || [0.75, 0.25], sw = I.state_model_weight != null ? I.state_model_weight : 0.5;
+    let s2 = '<p>Each state starts from the national estimate and is then placed by how it leans against the nation. Two guides to that lean count half each. One is history: how the state voted against the nation, ' + wt(lw[0]) + ' from 2024 and ' + wt(lw[1]) + ' from 2020. The other is Tipping Point\'s state forecasts, taken only for where they put each state against their own national figure. Tipping Point\'s national figure differs from this forecast\'s, so its states are measured from its own national figure and then laid on this one: The Margin takes its view of the map, not its view of the nation.</p>';
+    if (st && I.nowcast_national != null) {
+      const nat = F.national, hist = nat + st.lean, tpRel = st.nowcast - I.nowcast_national, tpPl = nat + tpRel, pr = st.prior;
+      s2 += '<p><b>' + st.name + ', worked through.</b> The national estimate is ' + m2(nat) + '. By its 2024 and 2020 votes ' + st.name + ' leans ' + m2(50 + st.lean) + ' against the nation, which puts it at ' + m2(hist) + '. Tipping Point puts it at ' + m2(st.nowcast) + ' against its own national ' + m2(I.nowcast_national) + ', a lean of ' + m2(50 + tpRel) + ', which on this forecast\'s nation is ' + m2(tpPl) + '. Half of each gives a starting point of ' + m2(pr) + ' (' + sh((1 - sw) * hist + sw * tpPl) + ' Democratic, from the unrounded figures).</p>';
+    }
+    s2 += '<p>State polls then pull the starting point toward themselves. Where a state has recent polls of the nominees\' pairing, they count against a starting point worth ' + (I.prior_polls || 1.5) + ' polls, under a ceiling that rises as the election nears, so a single early poll cannot carry a state. ' + (() => { const n = (F.state_poll_list || []).filter(q => q.usable).length; return n ? 'Today ' + n + (n === 1 ? ' state poll counts' : ' state polls count') + ', each for little: until the nominees are known, a poll of one possible pairing says less about November.' : 'Today no state poll counts.'; })() + '</p>';
+    $('st-step').innerHTML = s2;
+    $('sim-step').innerHTML = '<p>The forecast then plays out the election ' + sims + ' times. In each, the national vote is moved from its estimate by an error drawn from the record of how far such estimates have missed at this distance from the election, plus the allowance for approval still moving. Every state moves with the nation, then with its region, then on its own. States do not move independently: when the polls missed in 2016, they missed in the same direction across the Midwest at once, and a forecast that let each state miss on its own would make a sweep look almost impossible.</p>' +
+      '<p>Counting across the simulated elections gives the chance each side wins, the chance in each state, the expected electoral votes and their spread, the national popular vote, the prediction intervals, the state most likely to decide it, and how often the electoral votes split 269 to 269 (' + pc(F.p_tie, 1) + ' of simulations today). These are chances, not a call: a candidate given ' + (F.p_dem >= F.p_rep ? 'a 70% chance' : 'a 30% chance') + ' loses about ' + (F.p_dem >= F.p_rep ? 'three' : 'seven') + ' times in ten.</p>' +
+      '<details class="more"><summary>The technical details</summary><div><p>The national error is drawn from a t distribution whose width comes from the model\'s own back-tests at this distance. Of what is left to each state, ' + wt(I.region_share != null ? I.region_share : 0.4) + ' of the variation is shared with its region and the rest is the state\'s own, sized from that state\'s record in the last five elections. The same draws are used across forecasts, so a change from one day to the next comes from the inputs, not from chance. The <a href="#backtests">Back-tests tab</a> shows how often the intervals held in past elections.</p></div></details>';
+    // the educational calculator
+    const a = $('eq-a');
+    if (a && E) { const upd = () => { const t = $('eq-t').checked ? 1 : 0, inc = E.intercept + E.approval * +a.value + E.first_term * t;
+        $('eq-av').textContent = (+a.value > 0 ? '+' : '') + (+a.value).toFixed(1);
+        $('eq-out').textContent = 'The party in office: ' + inc.toFixed(2) + '% of the two-party vote; the other party ' + (100 - inc).toFixed(2) + '%. For the Republicans as the party in office, that is a margin of ' + m2(100 - inc) + '.'; };
+      a.addEventListener('input', upd); $('eq-t').addEventListener('change', upd); upd(); }
   })();
 
+  $('mm-why').innerHTML = 'Because their worth beside this forecast has not been shown. Market prices lean on the same polls and models this forecast reads, so a weight on them counts that evidence twice unless they add something of their own. Whether they do can only be tested on a record, and the record is thin: state markets with real money exist for one past election, 2024, and almost nothing exists two years out. On 2024 this forecast scored a little better than the markets on the whole, the markets better in the last two weeks, and every way of mixing them in fell between (the 2024 table above). One election cannot settle it.';
+  $('mm-why2').innerHTML = 'So the markets are read, kept and shown. Every check finds each provider\'s open markets on 2028, weighs them by how much is staked and how recently they traded, and adds the prices to a public record that began on November 25, 2026. An experimental run then weights the official simulated elections toward the markets, and it is shown beside the official forecast, never in its place. By November 2028 there will be a record to judge the question on.';
   // ---- why these weights
   (function () {
     const S = C.settings, base = C.base['1'], miss = S.map(s => s['1'].state_miss).concat([base.state_miss]);
@@ -662,9 +780,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     const tried = (k, fmt) => S.filter(s => s.setting === k).map(s => fmt(s.value) + ': ' + s['1'].called + ' of ' + s['1'].of + ' called, typical state miss ' + s['1'].state_miss.toFixed(2)).join('. ');
     const ours = 'As used: ' + base.called + ' of ' + base.of + ' states and districts called on the last day, typical state miss ' + base.state_miss.toFixed(2) + ' points. ';
     const QA = [
-      ['Why are prediction markets not in the forecast?', 'Because their worth beside this forecast has not been shown. Market prices lean on the same polls and models this forecast reads, so a weight on them counts that evidence twice unless they add something of their own. Whether they do can only be tested on a record, and the record is thin: state markets with real money exist for one past election, 2024, and almost nothing exists two years out. On 2024 this forecast scored a little better than the markets on the whole, the markets better in the last two weeks, and every way of mixing them in fell between (the table above). One election cannot settle it.',
-        'So the markets are read, kept and shown. Every check finds each provider\'s open markets on 2028, weighs them by how much is staked and how recently they traded, and adds the prices to a public record that began on November 25, 2026. An experimental run then weights the official simulated elections toward the markets, and it is shown beside the official forecast, never in its place. By November 2028 there will be a record to judge the question on.'],
-      ['How much do polls count against the structural models?', 'By the record of what a national polling average has been worth at each distance from an election, set against a forecast with no polls in it (after Erikson and Wlezien). On the elections since 1976 that is about 3% two years out, 11% at 250 days, 24% at 120 days and 61% on the last day. Until both nominees are known the polls are of pairings that may never happen, and count for less again.',
+      ['How much do polls count against the structural models?', 'By the record of what a national polling average has been worth at each distance from an election, set against a forecast with no polls in it (after Erikson and Wlezien). On the curve the forecast uses, fitted to the elections since 1976, that is about ' + farP(250) + ' at 250 days, ' + farP(120) + ' at 120 days and ' + farP(1) + ' on the last day. Until both nominees are known the polls are of pairings that may never happen, and count for less again.',
         'Beyond 250 days there is no long record, only the early polls of three elections, so the curve there is carried on by its own shape and should be read as rough. Today the polls are ' + pc(I.poll_share) + ' of the national number.'],
       ['Why is a state\'s starting point worth 1.5 polls?', 'A state\'s lean has landed about three and a half points from the result, and a single fresh state poll about four to five. So the starting point is worth a little more than one poll. Once a state has several recent polls they carry most of the weight.', ours + 'Tried ' + tried('prior_polls', v => 'worth ' + v + ' polls') + '.'],
       ['Why does a poll\'s weight halve every few days?', 'Opinion moves, so old polls say less. The half-life is a fifth of the days remaining, held between a week and a month: far out, a month-old poll is still useful; near the end, a week-old one is stale.', 'Tried ' + tried('half_life', v => 'a ' + (v[2] === 3 ? 'third' : 'eighth') + ' of the days remaining') + '. No change.'],

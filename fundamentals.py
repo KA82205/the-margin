@@ -91,3 +91,13 @@ if __name__ == '__main__':
     for y in (2008, 2012, 2016, 2020, 2024):
         d, sd, x = forecast(y, t); act = float(t.incvote[t.year == y].iloc[0]); act = act if int(t.deminc[t.year == y].iloc[0]) else 100 - act
         print(y, 'fundamentals', round(d, 1), '+/-', round(sd, 1), 'actual', round(act, 1), {k: (round(v, 1) if v is not None else None) for k, v in x.items()})
+
+
+def equation(t, year, juneapp, term1):
+    """The approval equation as forecast() fits it for `year`, for display: its coefficients, the elections it is fitted on
+    and what it gives for the inputs. Nothing here changes the forecast."""
+    past = t[t.year < year]
+    X = np.column_stack([np.ones(len(past)), past.juneapp, past.term1]); b = np.linalg.lstsq(X, past.incvote.values, rcond=None)[0]
+    inc = float(b @ [1, juneapp, term1])
+    return {'intercept': float(b[0]), 'approval': float(b[1]), 'first_term': float(b[2]), 'elections': int(len(past)),
+            'first': int(past.year.min()), 'last': int(past.year.max()), 'net_approval': float(juneapp), 'term1': int(term1), 'party_in_office_share': inc}

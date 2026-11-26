@@ -231,6 +231,12 @@ for the page, which marks each change on the history chart.
   the day's changes into their parts; `STATUS.md` has the table.
 - **November 25, 2026.** The chance of winning the most votes, and of the vote and the Electoral College disagreeing, are
   counted from each simulated election's own states, added up by the votes each state cast in 2024.
+- **November 26, 2026.** Presentation only. The headline's two chances are each party's outright wins out of the simulated
+  elections that do not end 269 to 269, rounded so that they add to 100, with the note "Winning probabilities exclude
+  Electoral College ties." The forecast file, the API, the archive, the back-tests and every other figure keep the raw shares
+  and the tie. The Model tab now explains the calculation step by step from the run's own figures; the prediction-market
+  study moved to the Research tab. Polls, approval and nominees are read from Tipping Point's live feed (`live.js`), which is
+  still written after its academic forecast is fixed on August 6, 2028.
 
 ## Back-test, 2008-2024
 
