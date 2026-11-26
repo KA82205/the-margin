@@ -237,6 +237,13 @@ for the page, which marks each change on the history chart.
   and the tie. The Model tab now explains the calculation step by step from the run's own figures; the prediction-market
   study moved to the Research tab. Polls, approval and nominees are read from Tipping Point's live feed (`live.js`), which is
   still written after its academic forecast is fixed on August 6, 2028.
+- **November 26, 2026.** Presentation only. The Forecast tab's opening paragraph is written from the day's inputs; the
+  forecast-updates box and the prediction-market comparison left the Forecast tab (the change attribution, the archive and
+  the market record are all still made and kept; the comparison is now in the Research tab's markets study). The history
+  chart was redrawn. The Model tab's projection of the national interval now uses the 80% multiplier of the t distribution
+  the simulation draws from (1.143 standard deviations, not the normal 1.282), so its first point matches the simulation's
+  own interval; the projected Election Day width is about ±3.6 points of margin, not the ±4.1 shown before. The simulation
+  itself is unchanged.
 
 ## Back-test, 2008-2024
 

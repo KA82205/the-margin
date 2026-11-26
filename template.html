@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{TITLE}}: 2028 presidential forecast</title>
-<meta name="description" content="Who is favored to win the White House in 2028, from polls, fundamentals, state models and prediction markets. Back-tested on 2008 to 2024.">
+<meta name="description" content="Who is favored to win the White House in 2028, from polls, structural models and state models. Back-tested on 2008 to 2024.">
 <meta name="theme-color" content="#f5f7fa">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='13' fill='%23111827'/%3E%3Cpath d='M17 26h30M32 11v30' stroke='%23fff' stroke-width='7'/%3E%3Cpath d='M17 50h30' stroke='%23ffd60a' stroke-width='7'/%3E%3C/svg%3E">
 <style>
@@ -43,6 +43,12 @@ h3.step{font:500 20px/28px var(--serif);margin:40px 0 8px;padding-top:16px;borde
 .eq{font:500 15px/22px var(--sans);background:var(--raised);padding:12px 14px;border-radius:6px}
 .try-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;margin:8px 0}.try-row input[type=range]{flex:1;min-width:160px}
 #nat-calc table,#nat-work table{width:100%}
+.fh-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px 24px;flex-wrap:wrap;margin-bottom:12px}
+.fh-chart{position:relative;min-height:240px}.fh-chart svg{display:block;width:100%;height:auto;overflow:visible}
+.fh-gl{stroke:var(--line);stroke-width:1}.fh-mid{stroke:var(--line2);stroke-width:1;stroke-dasharray:3 4}
+.fh-ax{fill:var(--muted);font:400 13px var(--sans)}.fh-end{font:500 13px var(--sans)}.fh-endv{font:600 15px var(--sans)}
+.fh-mk{stroke:var(--line2);stroke-width:1;stroke-dasharray:2 4;opacity:.7}.fh-mkd{fill:var(--muted);opacity:.8}
+.fh-x{stroke:var(--ink);stroke-width:1;opacity:.35;pointer-events:none}
 .tab [id]{scroll-margin-top:calc(var(--navh,64px) + 12px)}
 nav .wide{display:flex;align-items:center;gap:24px;height:56px}
 .brand{display:flex;align-items:center;gap:8px;font:600 17px/1 var(--sans);text-decoration:none;margin-right:auto}
@@ -142,9 +148,6 @@ input[type=range]:focus-visible{outline:2px solid var(--line2);outline-offset:6p
 .toc button{display:flex;justify-content:space-between;gap:16px;width:100%;background:none;border:0;padding:12px 0;text-align:left;cursor:pointer;font-size:16px;line-height:24px}
 .toc button:hover{color:var(--d)}
 .toc span{color:var(--muted);font-size:14px;white-space:nowrap}
-.upd{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px 24px;margin:12px 0 4px}
-.upd strong{display:block;font:500 20px/28px var(--sans);letter-spacing:-.01em}.upd span{display:block;color:var(--muted);font-size:13px;line-height:20px}
-.upd-cmp{color:var(--ink2);font-size:14px;line-height:20px;margin:12px 0 0}
 details.more{border-top:1px solid var(--line);margin-top:16px;padding-top:4px}details.more summary{cursor:pointer;font-size:14px;line-height:20px;color:var(--ink2);padding:8px 0}
 details.more summary:focus-visible{outline:2px solid var(--line2);outline-offset:2px;border-radius:4px}
 .xp-ctl{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin:0 0 12px}
@@ -156,18 +159,7 @@ details.more summary:focus-visible{outline:2px solid var(--line2);outline-offset
 .strip .sides{display:flex;justify-content:space-between}.strip .sides i{font-style:normal}
 .pt.off{background:var(--card)!important;border-color:currentColor}.pt.off.dem{color:var(--d)}.pt.off.rep{color:var(--r)}
 .ways{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 48px;margin-top:16px;font-size:14px;line-height:20px}.ways ul{margin:8px 0 0;padding-left:18px;color:var(--ink2)}.ways li{margin:0 0 6px}
-@media (max-width:820px){.upd{grid-template-columns:1fr 1fr}.ways{grid-template-columns:1fr}.xp-n{margin-left:0}}
-.chg-top{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin:8px 0 16px}
-.chg-top strong{font:500 32px/36px var(--sans);letter-spacing:-.02em}
-.chg-top span{color:var(--muted);font-size:13px;line-height:20px;display:block}
-.chg-top .arrow{color:var(--muted);font-size:20px}
-.chg-top .net{margin-left:auto;font-weight:500;font-size:16px}
-.chg-row{display:grid;grid-template-columns:minmax(0,1fr) 200px 72px;gap:16px;align-items:center;height:40px;border-top:1px solid var(--line)}
-.chg-row .tr{position:relative;height:12px}
-.chg-row .tr::before{content:"";position:absolute;left:50%;top:-4px;bottom:-4px;width:1px;background:var(--line2)}
-.chg-row .tr i{position:absolute;top:0;bottom:0;border-radius:2px}
-.chg-row .v{text-align:right;font-weight:500}
-.chg-row small{color:var(--muted);font-size:13px;margin-left:8px}
+@media (max-width:820px){.ways{grid-template-columns:1fr}.xp-n{margin-left:0}}
 .qa.plain summary{font:500 16px/24px var(--sans)}
 .mix{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:12px 0 16px}
 .mix strong{display:block;font:500 24px/28px var(--sans);letter-spacing:-.01em}
@@ -219,7 +211,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   .axis div{grid-column:2}.axis div span:nth-child(2),.axis div span:nth-child(4){display:none}
   .strip .sides{visibility:hidden}
   #xp-only{flex-wrap:wrap}.xp-ctl input{width:100%}.xp-ctl select{width:100%}
-  .chg-row{grid-template-columns:minmax(0,1fr) 72px 64px}.chg-row small{display:block;margin:0}.chg-row{height:auto;padding:8px 0}
+
   .inrow{grid-template-columns:1fr auto}.inrow p{grid-column:1/-1}
   .mix{grid-template-columns:1fr 1fr;gap:16px}.mix div:last-child{grid-column:1/-1}
   nav .wide{height:auto;flex-direction:column;align-items:flex-start;gap:0;padding-top:12px}.tabs{align-self:auto;width:100%;gap:20px}.tabs a{height:40px;padding:0}
@@ -310,16 +302,9 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 
 <div class="col"><p id="p-intro"></p></div>
 
-<figure class="mid">
-  <b>Forecast updates</b>
-  <div id="chg"></div>
-</figure>
-
-<figure class="mid">
-  <b>The forecast so far</b>
-  <div class="sub" id="hist-sub"></div>
-  <div class="ctl"><div class="seg" id="hseg" role="group" aria-label="How far back the chart goes"></div></div>
-  <div id="daily"></div>
+<figure class="mid fh" id="history">
+  <div class="fh-head"><div><b>Forecast history</b><div class="sub" id="hist-sub"></div></div><div class="seg" id="hseg" role="group" aria-label="How far back the chart goes"></div></div>
+  <div id="daily" class="fh-chart"></div>
   <figcaption id="arch-note"></figcaption>
 </figure>
 
@@ -352,8 +337,6 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   <div class="ways" id="paths-ways"></div>
   <figcaption>Places move together, so these are counted from whole simulated elections and not worked out from each place's own chance. A place that looks decisive here is often a sign of a good night everywhere, not its cause.</figcaption>
 </figure>
-<div class="col" id="markets"><h2>Prediction markets</h2><p id="mk-intro"></p></div>
-<figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="mk-t"></table></div><figcaption id="mk-cap"></figcaption></figure>
 </section>
 
 <section class="tab" id="t-states" hidden>
@@ -403,7 +386,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   <div class="mix" id="mix"></div>
   <div class="wbar" id="wbar"></div>
   <div id="funnel"></div>
-  <figcaption>Projected with the model's own error tables, assuming 2028 is polled about as heavily as past elections and that the allowance for approval still moving runs down to nothing by the end of June 2028, when both are final. The range never closes: on the last day the national polling average has still missed by about two points of vote share in a typical year.</figcaption>
+  <figcaption id="fn-cap"></figcaption>
 </figure>
 <div class="col" id="sister"><h2>Where the structural models come from</h2><p>The Margin reads Tipping Point, a sister site that runs two published academic models, and Tipping Point does not read The Margin. The two sites answer different questions: a share of the vote is not a chance of winning.</p></div>
 <figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="sis"></table></div><figcaption id="sis-cap"></figcaption></figure>
@@ -460,7 +443,9 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 <div class="col"><p id="p-pm2"></p></div>
 <figure class="mid"><b>Sitting presidents in the New Hampshire primary</b><div class="sub">The president's share of his own party's vote, and what his party did in November</div><div id="pm"></div><figcaption>Presidents who were on the ballot or written in. In 1952, 1968 and 2024 the president later left the race and another candidate was nominated.</figcaption></figure>
 <div class="col"><p id="p-pm3"></p></div></article>
-<article class="study" id="s-markets" data-k="Prediction markets"><div class="col" id="market-method"><h2>Prediction markets, and the experimental run</h2><p id="mm-p"></p></div>
+<article class="study" id="s-markets" data-k="Prediction markets"><div class="col" id="markets"><h2>Do prediction markets add anything to the forecast?</h2><p id="mk-intro"></p></div>
+<figure class="mid"><b>What the markets say today</b><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="mk-t"></table></div><figcaption id="mk-cap"></figcaption></figure>
+<div class="col" id="market-method"><h3>The experimental run</h3><p id="mm-p"></p></div>
 <figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="mm-t"></table></div><figcaption id="mm-cap"></figcaption></figure>
 <figure class="mid"><b>Markets and the forecast on 2024, the one election with a record of state markets</b><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="ms-t"></table></div><figcaption id="ms-cap"></figcaption></figure>
 <div class="col"><h3>Why prediction markets get no weight in the official forecast</h3><p id="mm-why"></p><p class="try" id="mm-why2"></p></div></article>
@@ -509,8 +494,41 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   const tp = ST[F.tipping_point];
   $('keys').innerHTML = [[Math.round(F.ev_mean) + ' to ' + (538 - Math.round(F.ev_mean)), 'electoral votes on average, Democrats to Republicans'], [in100(F.p_popular), 'chance the Democrats win the most votes nationally'], [tp.name, 'the state most likely to put the winner over 270']]
     .map(k => '<div><strong>' + k[0] + '</strong><span>' + k[1] + '</span></div>').join('');
-  $('p-intro').innerHTML = 'The lean comes from an unpopular president (net approval ' + F.inputs.net_approval + '): both structural models read that as a Democratic year. The early polls point the other way, with Republicans slightly ahead, but they name candidates who may never run and count for only ' + pc(F.inputs.poll_share) +
-    ' of the national number today. <a href="#forecast/markets">Prediction markets</a> are shown for comparison and are not part of the forecast.';
+  // ---- the introduction: written from the day's inputs, never a fixed story. Margins are of the two-party national vote.
+  function introText(F) {
+    const I = F.inputs || {}, m = sh => 2 * (sh - 50), fmt = v => Math.abs(v) < 0.05 ? 'even' : (v > 0 ? 'D+' : 'R+') + Math.abs(v).toFixed(1);
+    const side = v => Math.abs(v) < 1 ? 0 : v > 0 ? 1 : -1, party = v => v > 0 ? 'Democrats' : 'Republicans';
+    const src = I.model_sources || {}, own = k => /author/.test(src[k] || '');
+    const parts = [{v: m(I.approval_and_economy), name: own('enns') ? 'the published approval-and-economy forecast of Enns and colleagues' : 'the approval-and-economy model'},
+                   {v: m(I.approval_model), name: 'the approval equation'}];
+    if (I.long_range != null && I.long_range_weight > 0) parts.push({v: m(I.long_range), name: own('desart') ? 'DeSart\'s published long-range forecast' : 'the long-range model'});
+    const net = I.june_approval != null ? I.june_approval : I.net_approval, when = I.june_approval != null ? 'June 2028 net approval' : 'net approval';
+    const appr = net == null ? '' : Math.abs(net) < 3 ? when + ' near zero (' + (net > 0 ? '+' : net < 0 ? '\u2212' : '') + Math.abs(net).toFixed(1) + ')' :
+      when + ' of ' + (net > 0 ? '+' : '−') + Math.abs(net).toFixed(1) + ' (' + (net > 0 ? 'more approve of the president than disapprove' : 'more disapprove of the president than approve') + ')';
+    const sides = parts.map(p => side(p.v)), vals = parts.map(p => fmt(p.v)).join(', ');
+    const count = parts.length === 2 ? 'Both structural models' : 'All three structural models';
+    let structural;
+    if (sides.every(x => x === 0)) structural = 'The structural models put the national vote close to even (' + vals + ')';
+    else if (sides.every(x => x === sides.find(y => y !== 0) || x === 0) && sides.filter(x => x !== 0).length === parts.length) structural = count + ' favor the ' + party(parts[0].v) + ' in the national vote (' + vals + ')';
+    else if (sides.every(x => x !== -sides.find(y => y !== 0))) structural = 'The structural models lean to the ' + party(parts.find(p => side(p.v) !== 0).v) + ', some only slightly (' + vals + ')';
+    else structural = 'The structural models disagree: ' + parts.map(p => p.name + ' ' + fmt(p.v)).join(', ').replace(/, ([^,]*)$/, ' and $1');
+    structural += appr ? ', with the ' + (I.incumbent_party === 'D' ? 'Democratic' : 'Republican') + ' president\'s ' + appr + '.' : '.';
+    const S = parts.reduce((a, p) => a + p.v, 0) / parts.length, w = I.poll_share || 0, n = I.polls_n || 0;
+    let polls;
+    if (I.national_polls == null || !n) polls = 'No national poll counts yet, so the forecast rests on the structural models.';
+    else {
+      const P = m(I.national_polls), what = F.nominees_known ? 'National polls of the two nominees' : 'National polls of possible matchups', k = side(P), ks = side(S);
+      const say = k === 0 ? 'show a close race (' + fmt(P) + ')' : ks === 0 ? 'have the ' + party(P) + ' ahead (' + fmt(P) + ')' : k === ks ? 'agree, with the ' + party(P) + ' ahead (' + fmt(P) + ')' : 'point the other way, with the ' + party(P) + ' ahead (' + fmt(P) + ')';
+      const weight = w >= 0.5 ? 'and now carry most of the national vote estimate (' + Math.round(100 * w) + '%)' : w >= 0.15 ? 'and count for ' + Math.round(100 * w) + '% of the national vote estimate' :
+        'but count for only ' + (100 * w < 9.5 ? (100 * w).toFixed(1).replace(/\.0$/, '') : Math.round(100 * w)) + '% of the national vote estimate this far out' + (F.nominees_known ? '' : ' and before the nominees are known');
+      polls = what + ' ' + say + ', ' + weight + '.';
+      if (k === ks || k === 0 || ks === 0) polls = polls.replace(', but count for only', ', and count for only');
+    }
+    const pub = [own('enns') ? 'approval-and-economy' : null, own('desart') && I.long_range_weight > 0 ? 'long-range' : null].filter(Boolean);
+    const note = pub.length && !/disagree/.test(structural) ? ' The ' + pub.join(' and ') + ' figure' + (pub.length > 1 ? 's are' : ' is') + ' the authors\' own published forecast' + (pub.length > 1 ? 's' : '') + '.' : '';
+    return w >= 0.5 ? polls + ' ' + structural + note : structural + note + ' ' + polls;
+  }
+  $('p-intro').textContent = introText(F);
 
   // ---- ruler
   // The national vote shown is the vote of the simulated elections themselves: each one's states added up by the votes they
@@ -655,8 +673,12 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   // ---- narrowing
   (function () {
     const fn = F.funnel, d0 = fn[0].days, f1 = fn[fn.length - 1];
-    $('p-narrow').innerHTML = 'Yes. On the current forecast the national margin could land ' + fn[0].half.toFixed(1) + ' points either side of the projection. As 2028 approaches three things tighten it: the nominees get chosen and polled, approval and the economy stop being guesses, and polling averages get closer to the result the nearer the vote. By the last day the band should be about ' +
-      f1.half.toFixed(1) + ' points either side, roughly half as wide. Polls also take over from fundamentals, going from ' + pc(fn[0].poll_share) + ' of the national number to about ' + pc(f1.poll_share) + '.';
+    const ratio = f1.half / fn[0].half, simHalf = F.national_lo != null ? F.national_hi - F.national_lo : null;      // share points from end to end = margin points either side
+    $('p-narrow').innerHTML = 'Yes. Today the 80% prediction interval for the national margin runs ' + fn[0].half.toFixed(1) + ' points either side of the forecast. As 2028 approaches it tightens: the nominees are chosen and polled, the approval reading of June 2028 replaces today\'s, and polling averages get closer to the result as the vote nears. On the last day it is projected at about ' +
+      f1.half.toFixed(1) + ' points either side, ' + (ratio < 0.4 ? 'well under half' : ratio < 0.6 ? 'about half' : 'about two-thirds') + ' as wide. Polls go from ' + pc(fn[0].poll_share) + ' of the national vote estimate to about ' + pc(f1.poll_share) + '.';
+    $('fn-cap').innerHTML = 'The band is the 80% prediction interval of the national two-party vote margin. On the last day, ±' + f1.half.toFixed(1) + ' points of margin is ±' + (f1.half / 2).toFixed(2) + ' points of each party\'s share of the two-party vote: a point of share gained by one side is lost by the other, so the margin moves twice as far. ' +
+      'Today\'s width is the simulation\'s own' + (simHalf != null ? ' (±' + simHalf.toFixed(1) + ' points of margin in the ' + ((F.inputs || {}).sims || 40000).toLocaleString('en-US') + ' simulated elections)' : '') + '. Later points are projected with the same error sizes and the same distribution the simulation draws from, sized on the elections since 1976. ' +
+      'The projection is conditional on two things: that 2028 is polled about as heavily as past elections, and that the June 2028 approval reading is observed, which closes the allowance for approval still moving. If no June reading comes in, a month\'s worth of that allowance stays open and the interval stays wider. The range never closes: in a typical past election the last-day national estimate still missed by about a point and a half of margin, and in 1980 by almost ten.';
     const at = d => { for (let i = 1; i < fn.length; i++) if (d >= fn[i].days) { const a = fn[i - 1], b = fn[i], t = (a.days - d) / (a.days - b.days); return {half: a.half + t * (b.half - a.half), w: a.poll_share + t * (b.poll_share - a.poll_share)}; } return {half: f1.half, w: f1.poll_share}; };
     const W = 780, H = 220, L = 46, R = 12, T = 10, Bm = 26, mxh = Math.ceil(fn[0].half) + 1, X = d => L + (d0 - d) / d0 * (W - L - R), Y = v => T + (mxh - v) / (2 * mxh) * (H - T - Bm);
     const up = fn.map(f => X(f.days).toFixed(1) + ' ' + Y(f.half).toFixed(1)), dn = fn.slice().reverse().map(f => X(f.days).toFixed(1) + ' ' + Y(-f.half).toFixed(1));
@@ -668,8 +690,8 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
     $('slider').max = d0 - 1;
     const short = dt => (dt.getMonth() + 1) + '/' + dt.getDate() + '/' + String(dt.getFullYear()).slice(2);
     const set = () => { const gone = +$('slider').value, d = d0 - gone, a = at(d), dt = new Date(F.as_of + 'T12:00:00'); dt.setDate(dt.getDate() + gone);
-      $('mix').innerHTML = '<div><strong>' + (gone === 0 ? 'Current' : d + (d === 1 ? ' day out' : ' days out')) + '</strong><span>' + short(dt) + '</span></div><div><strong>\u00b1' + a.half.toFixed(1) + ' points</strong><span>range around the national margin</span></div><div><strong>' + pc(a.w) + ' polls</strong><span>share of the national number, the rest fundamentals</span></div>';
-      $('wbar').innerHTML = '<i class="wp" style="flex:' + a.w + '">Polls ' + pc(a.w) + '</i><i class="wf" style="flex:' + (1 - a.w) + '">Fundamentals ' + pc(1 - a.w) + '</i>';
+      $('mix').innerHTML = '<div><strong>' + (gone === 0 ? 'Current' : d + (d === 1 ? ' day out' : ' days out')) + '</strong><span>' + short(dt) + '</span></div><div><strong>\u00b1' + a.half.toFixed(1) + ' points</strong><span>80% range of the national margin (\u00b1' + (a.half / 2).toFixed(2) + ' of each party\'s share)</span></div><div><strong>' + pc(a.w) + ' polls</strong><span>weight of polls in the national vote estimate, the rest structural models</span></div>';
+      $('wbar').innerHTML = '<i class="wp" style="flex:' + a.w + '">Polls ' + pc(a.w) + '</i><i class="wf" style="flex:' + (1 - a.w) + '">Structural models ' + pc(1 - a.w) + '</i>';
       ['fmark'].forEach(id => { $(id).setAttribute('x1', X(d)); $(id).setAttribute('x2', X(d)); }); $('fdot1').setAttribute('cx', X(d)); $('fdot1').setAttribute('cy', Y(a.half)); $('fdot2').setAttribute('cx', X(d)); $('fdot2').setAttribute('cy', Y(-a.half)); };
     $('slider').addEventListener('input', set); set();
   })();
@@ -879,58 +901,76 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   (function () { const S = [...document.querySelectorAll('.study')];
     $('toc').innerHTML = S.map(s => '<li><button data-go="' + s.id + '">' + s.querySelector('h2').textContent + '<span>' + s.dataset.k + '</span></button></li>').join('');
     $('toc').addEventListener('click', e => { const b = e.target.closest('[data-go]'); if (b) $(b.dataset.go).scrollIntoView({behavior: 'smooth', block: 'start'}); }); })();
-  // ---- forecast updates: compact when nothing has moved, opened up when something has
-  (function () { const c = F.change, Hh = DATA.history, kept = DATA.kept || [], M_ = DATA.methods || [], day = 864e5, when = d => +new Date(d + 'T12:00:00');
-    const back = n => { let h = null; Hh.forEach(x => { if (when(x.date) <= when(F.as_of) - n * day + 1) h = x; }); return h; };
-    const net = c ? 100 * (c.p - c.p_prev) : null, moved = c && side(net) !== 0;
-    const cmp = [[7, '7 days'], [30, '30 days'], [90, '90 days']].map(k => { const h = back(k[0]); return h && h.sim != null ? k[1] + ': ' + signed(100 * (F.p_model - h.sim)) : null; }).filter(Boolean);
-    const lastKept = kept.length ? kept[kept.length - 1] : null, method = M_.filter(m => c ? m.date > c.from && m.date <= F.as_of : m.date === F.as_of);
-    let s = '<div class="upd"><div><strong>' + in100(F.p_dem) + '</strong><span>Democrats win, of simulated elections</span></div>';
-    if (!c) s += '<div><strong>First forecast</strong><span>nothing earlier to compare with</span></div>';
-    else if (!moved) s += '<div><strong>Unchanged</strong><span>since ' + longDate(c.from) + '</span></div>';
-    else s += '<div><strong class="' + pcl(net) + '">' + signed(net) + ' points</strong><span>for the Democrats since ' + longDate(c.from) + ', from ' + pc(c.p_prev, 1) + ' to ' + pc(c.p, 1) + '</span></div>';
-    s += '<div><strong id="last-check">' + longDate(F.as_of) + '</strong><span>last check of the sources</span></div><div><strong>' + (lastKept ? longDate(lastKept.made.slice(0, 10)) : longDate(F.as_of)) + '</strong><span>last change to the forecast' + (lastKept && lastKept.why ? ': ' + esc(lastKept.why.join(', ').replace('the calendar', 'a new day')) : '') + '</span></div></div>';
-    if (cmp.length) s += '<p class="upd-cmp">Change in the Democratic chance, in points, over ' + cmp.join(' · ') + '</p>';
-    method.forEach(m => { s += '<p class="upd-cmp"><b>Method, ' + longDate(m.date) + '.</b> ' + esc(m.what) + '</p>'; });
-    if (c) { const big = c.parts.filter(x => side(100 * x.d) !== 0), mx = Math.max.apply(null, big.map(x => Math.abs(x.d)).concat([0.0005]));
-      const note = { polls: c.polls[1] - c.polls[0] ? Math.abs(c.polls[1] - c.polls[0]) + (c.polls[1] > c.polls[0] ? ' added' : ' dropped') : 'the list of polls changed', approval: 'net approval ' + c.approval[0] + ' to ' + c.approval[1],
-        state_polls: (c.state_polls ? c.state_polls[1] + ' counted, ' + c.state_polls[0] + ' before' : ''), models: 'its national and state-by-state models were rerun', time: c.days[0] + ' days to go, then ' + c.days[1] };
-      const row = (x, bar) => '<div class="chg-row"><div>' + x.name + '<small>' + (note[x.key] || '') + '</small></div><div class="tr">' + (bar && side(100 * x.d) !== 0 ? '<i style="background:' + (x.d > 0 ? 'var(--d)' : 'var(--r)') + ';' + (x.d > 0 ? 'left:50%' : 'right:50%') + ';width:' + (50 * Math.abs(x.d) / mx).toFixed(1) + '%"></i>' : '') + '</div><div class="v ' + pcl(100 * x.d) + '">' + signed(100 * x.d) + '</div></div>';
-      if (moved && big.length) s += big.map(x => row(x, true)).join('');
-      const other = { key: 'other', name: 'Not explained by the parts above', d: c.other || 0 };
-      s += '<details class="more"><summary>' + (moved ? 'Every part, including the small ones' : 'What was checked') + '</summary>' + c.parts.concat(side(100 * other.d) !== 0 ? [other] : []).map(x => row(x, false)).join('') +
-        '<p class="fine" style="margin:8px 0 0">Points of the Democratic chance since ' + longDate(c.from) + '. Each part is credited with its average effect over every order in which the parts could have been changed, so the parts add up to the whole whatever the order. The same simulated errors are drawn each time, so a part that did not change shows 0.0.</p></details>'; }
-    if (kept.length) s += '<details class="more"><summary>Every forecast kept (' + kept.length + ')</summary><div class="scroll" tabindex="0" role="region" aria-label="Table"><table><thead><tr><th>Made</th><th class="n">Democrats win</th><th class="n">National vote</th><th class="n">Electoral votes</th><th>What was new</th></tr></thead><tbody>' +
-      kept.slice().reverse().map(k => '<tr><td>' + longDate(k.made.slice(0, 10)) + ', ' + k.made.slice(11, 16) + ' UTC</td><td class="n">' + pc(k.p, 1) + '</td><td class="n ' + cls(k.national) + '">' + mg(k.national) + '</td><td class="n">' + k.ev + '</td><td>' + esc((k.why || []).join(', ').replace('the calendar', 'a new day')) + (k.note ? '<br><span class="fine">Correction: ' + esc(k.note) + '</span>' : '') + '</td></tr>').join('') +
-      '</tbody></table></div><p class="fine" style="margin:8px 0 0">A forecast is kept when it differs from the one before it. A check that finds nothing new makes no forecast. <a href="archive/index.json">The list as a file</a></p></details>';
-    $('chg').innerHTML = s;
-    // when the sources were last checked: the time of the last run that finished, read from GitHub's public record
-    fetch('https://api.github.com/repos/KA82205/the-margin/actions/workflows/update.yml/runs?status=success&per_page=1').then(r => r.ok ? r.json() : null).then(j => { const t = j && j.workflow_runs && j.workflow_runs[0] && j.workflow_runs[0].updated_at;
-      if (t) $('last-check').textContent = new Date(t).toLocaleString('en-US', {month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit'}); }).catch(() => {}); })();
-  // ---- the forecast so far: only the days there are, with a choice of how far back to look
-  (function () { const Hh = DATA.history, M_ = DATA.methods || [], day = 864e5, when = d => +new Date(d + 'T12:00:00'), last = Hh[Hh.length - 1], W = 800, H = 260, L = 44, R = 120, T = 14, Bm = 30;
+  // ---- forecast history: each day's last published forecast, held until the next one. Nothing is smoothed and no point is
+  // drawn for a day that has no forecast of its own. The lines are the archived shares of all simulated elections, ties
+  // included, exactly as kept; the headline above is the same forecast with the ties set aside.
+  (function () {
+    const Hh = DATA.history || [], M_ = DATA.methods || [], day = 864e5, when = d => +new Date(d + 'T12:00:00'), el = $('daily');
+    if (!Hh.length) { el.innerHTML = '<p class="fine">No forecast has been kept yet.</p>'; return; }
+    const last = Hh[Hh.length - 1], rep = h => h.rep != null ? h.rep : 1 - h.p, tieOf = h => h.rep != null ? Math.max(0, 1 - h.p - h.rep) : null;
     const spans = [[7, '7 days'], [30, '30 days'], [90, '90 days'], [0, 'All']]; let span = 0;
-    $('hist-sub').textContent = 'Chance of a Democratic or Republican win, as published at the end of each day since ' + longDate(Hh[0].date);
-    const Ar = DATA.archive; $('arch-note').innerHTML = 'One point a day, the last forecast of that day; a day with no new forecast keeps the one before it. The line stops at today.' + (M_.length ? ' A dashed line marks a change of method.' : '') +
-      (Ar && Ar.n ? ' Every forecast that differed from the one before it has also been kept unchanged since ' + longDate(Ar.first) + ': ' + Ar.n + ' so far.' : '');
-    const draw = () => { const t1 = when(last.date), first = when(Hh[0].date), t0 = span ? Math.max(first, t1 - span * day) : first, rows = Hh.filter(h => when(h.date) >= t0);
-      document.querySelectorAll('#hseg button').forEach((b, i) => { b.setAttribute('aria-pressed', spans[i][0] === span); b.disabled = spans[i][0] !== 0 && t1 - first < 1; });
-      if (Hh.length < 2) { $('daily').innerHTML = '<p class="fine" style="margin:8px 0 0">The first forecast was made on ' + longDate(last.date) + ': Democrats ' + in100(last.p) + '. The chart begins with the second day.</p>'; return; }
-      const X = t => L + (t1 === t0 ? 0.5 : (t - t0) / (t1 - t0)) * (W - L - R), Y = v => T + (1 - v) * (H - T - Bm), rep = h => h.rep != null ? h.rep : 1 - h.p;
-      let s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Chance of winning the Electoral College for each party, ' + longDate(rows[0].date) + ' to ' + longDate(last.date) + '">';
-      [0, 0.25, 0.5, 0.75, 1].forEach(v => { s += '<line class="' + (v === 0.5 ? 'zk' : 'gl') + '" x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '"/><text class="ax" x="' + (L - 8) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + pc(v) + '</text>'; });
-      const days = Math.round((t1 - t0) / day), every = Math.max(1, Math.ceil(days / 6));
-      for (let i = 0; i <= days; i += every) { const t = t0 + i * day, d = new Date(t); s += '<text class="ax" x="' + X(t) + '" y="' + (H - 8) + '" text-anchor="' + (i === 0 ? 'start' : 'middle') + '">' + d.toLocaleDateString('en-US', {month: 'short', day: 'numeric'}) + (i === 0 ? ', ' + d.getFullYear() : '') + '</text>'; }
-      M_.filter(m => when(m.date) >= t0 && when(m.date) <= t1).forEach(m => { s += '<line x1="' + X(when(m.date)) + '" x2="' + X(when(m.date)) + '" y1="' + T + '" y2="' + (H - Bm) + '" stroke="var(--muted)" stroke-dasharray="4 4"/><text class="ax" x="' + (X(when(m.date)) - 6) + '" y="' + (T + 10) + '" text-anchor="end">method</text>'; });
-      const step = f => rows.map((h, i) => (i ? 'H' + X(when(h.date)).toFixed(1) + 'V' : 'M' + X(when(h.date)).toFixed(1) + ' ') + Y(f(h)).toFixed(1)).join('');
-      [[h => h.p, 'var(--d)', 'Democrats'], [rep, 'var(--r)', 'Republicans']].forEach(k => { s += '<path d="' + step(k[0]) + '" fill="none" stroke="' + k[1] + '" stroke-width="2.5" stroke-linejoin="round"/>' + (rows.length <= 45 ? rows.map(h => '<circle cx="' + X(when(h.date)) + '" cy="' + Y(k[0](h)) + '" r="3" fill="' + k[1] + '"/>').join('') : '') +
-        '<text class="axb" x="' + (X(t1) + 10) + '" y="' + (Y(k[0](last)) + 4) + '" style="fill:' + k[1] + '">' + k[2] + ' ' + pc(k[0](last)) + '</text>'; });
-      $('daily').innerHTML = s + '<rect id="dhit" x="' + L + '" y="' + T + '" width="' + (W - L - R) + '" height="' + (H - T - Bm) + '" fill="transparent"/></svg>';
-      hover($('dhit'), e => { const b = $('dhit').getBoundingClientRect(), tt = t0 + (e.clientX - b.left) / b.width * (t1 - t0) + day / 2; let h = rows[0]; rows.forEach(x => { if (when(x.date) <= tt) h = x; });
-        const m = M_.filter(z => z.date === h.date)[0];
-        return '<b>' + longDate(h.date) + '</b><br>Democrats ' + pc(h.p, 1) + '<br>Republicans ' + pc(rep(h), 1) + (h.sim != null && Math.abs(h.sim - h.p) > 0.0005 ? '<br>Simulations alone: ' + pc(h.sim, 1) : '') + '<br>National vote ' + mg(h.national) + (m ? '<br>Method changed this day' : ''); }); };
-    $('hseg').innerHTML = spans.map(k => '<button data-span="' + k[0] + '">' + k[1] + '</button>').join('');
-    $('hseg').addEventListener('click', e => { if (e.target.dataset.span != null && !e.target.disabled) { span = +e.target.dataset.span; draw(); } }); draw(); })();
+    $('hist-sub').textContent = 'Chance of winning the Electoral College, as published at the end of each day';
+    const Ar = DATA.archive;
+    $('arch-note').innerHTML = 'Each line is the share of simulated elections a party wins outright, as it was published that day; the few that end 269 to 269 count for neither, so the two can add to a little under 100%. Small marks at the top are changes of method.' +
+      (Ar && Ar.n ? ' <a href="archive/index.json">Every forecast kept</a>.' : '');
+    const fmtD = (t, o) => new Date(t).toLocaleDateString('en-US', o);
+    const ticks = (t0, t1, room) => {      // date ticks that suit the span and the width: days, weeks, months or quarters
+      const n = Math.max((t1 - t0) / day, 1), most = Math.max(2, Math.floor(room / 64)), out = [];
+      if (n <= 21) { const every = Math.max(1, Math.ceil((n + 1) / most)); for (let t = t1; t >= t0 - 1; t -= every * day) out.unshift([t, fmtD(t, {month: 'short', day: 'numeric'})]); return out; }
+      if (n <= 150) { const wk = Math.max(1, Math.ceil(n / 7 / most)), d = new Date(t1); for (let t = +d; t >= t0; t -= wk * 7 * day) out.unshift([t, fmtD(t, {month: 'short', day: 'numeric'})]); return out; }
+      const months = n / 30.4, step = [1, 2, 3, 6, 12].find(k => months / k <= most) || 12, d = new Date(t0); d.setDate(1); d.setMonth(d.getMonth() + 1);
+      while (d.getMonth() % step) d.setMonth(d.getMonth() + 1);
+      let year = null;
+      for (; +d <= t1; d.setMonth(d.getMonth() + step)) { const y = d.getFullYear(); out.push([+d, y !== year ? fmtD(+d, {month: 'short', year: 'numeric'}) : fmtD(+d, {month: 'short'})]); year = y; }
+      return out;
+    };
+    const draw = () => {
+      const t1 = when(last.date), first = when(Hh[0].date), t0 = span ? Math.max(first, t1 - span * day) : first;
+      const rows = Hh.filter(h => when(h.date) >= t0), before = Hh.filter(h => when(h.date) < t0).pop();      // the forecast in force at the window's start
+      document.querySelectorAll('#hseg button').forEach((b, i) => b.setAttribute('aria-pressed', String(spans[i][0] === span)));
+      const W = Math.max(300, Math.round(el.clientWidth || 720)), narrow = W < 560, H = narrow ? 240 : 300, L = 40, R = narrow ? 74 : 112, T = 22, B = 30;
+      if (Hh.length < 2 || t1 === first) { el.innerHTML = '<p class="fine">The first forecast was published on ' + longDate(last.date) + '. The line starts with the second day.</p>'; return; }
+      const X = t => L + (t - t0) / Math.max(t1 - t0, day) * (W - L - R), Y = v => T + (1 - v) * (H - T - B);
+      let s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="Chance of winning for each party from ' + longDate((rows[0] || last).date) + ' to ' + longDate(last.date) + '. Latest: Democrats ' + pc(last.p) + ', Republicans ' + pc(rep(last)) + '.">';
+      [0, 0.25, 0.75, 1].forEach(v => { s += '<line class="fh-gl" x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '"/>'; });
+      s += '<line class="fh-mid" x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(0.5) + '" y2="' + Y(0.5) + '"/>';
+      [0, 0.25, 0.5, 0.75, 1].forEach(v => { s += '<text class="fh-ax" x="' + (L - 8) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + Math.round(100 * v) + '%</text>'; });
+      ticks(t0, t1, W - L - R).forEach(k => { s += '<text class="fh-ax" x="' + X(k[0]).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle">' + k[1] + '</text>'; });
+      M_.filter(m => when(m.date) >= t0 && when(m.date) <= t1).forEach(m => { const x = X(when(m.date)).toFixed(1);
+        s += '<line class="fh-mk" x1="' + x + '" x2="' + x + '" y1="' + (T - 6) + '" y2="' + (H - B) + '"/><path class="fh-mkd" d="M' + x + ' ' + (T - 10) + 'l4 4l-4 4l-4-4z"><title>Method changed ' + longDate(m.date) + '</title></path>'; });
+      const pts = (before ? [Object.assign({}, before, {date: null})] : []).concat(rows);
+      const xt = h => h.date === null ? t0 : when(h.date);
+      const step = f => pts.map((h, i) => (i ? 'H' + X(xt(h)).toFixed(1) + 'V' : 'M' + X(xt(h)).toFixed(1) + ' ') + Y(f(h)).toFixed(1)).join('');
+      const lines = [[h => h.p, 'var(--d)', 'Democrats'], [rep, 'var(--r)', 'Republicans']];
+      lines.forEach(k => { s += '<path d="' + step(k[0]) + '" fill="none" stroke="' + k[1] + '" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round"/>';
+        if (rows.length <= 60) s += rows.map(h => '<circle cx="' + X(when(h.date)).toFixed(1) + '" cy="' + Y(k[0](h)).toFixed(1) + '" r="2.5" fill="' + k[1] + '"/>').join('');
+        s += '<circle cx="' + X(t1) + '" cy="' + Y(k[0](last)) + '" r="4.5" fill="' + k[1] + '" stroke="var(--bg)" stroke-width="2"/>'; });
+      // end labels, kept apart when the two lines meet
+      let yd = Y(last.p), yr = Y(rep(last)); if (Math.abs(yd - yr) < 30) { const m = (yd + yr) / 2, up = yd < yr ? -1 : 1; yd = m + up * 15; yr = m - up * 15; }
+      [[yd, 'var(--d)', narrow ? 'Dem.' : 'Democrats', last.p], [yr, 'var(--r)', narrow ? 'Rep.' : 'Republicans', rep(last)]].forEach(k => {
+        s += '<text class="fh-end" x="' + (X(t1) + 12) + '" y="' + (k[0] + 5) + '" style="fill:' + k[1] + '"><tspan class="fh-endv">' + pc(k[3]) + '</tspan> ' + k[2] + '</text>'; });
+      s += '<line id="fh-x" class="fh-x" visibility="hidden" y1="' + T + '" y2="' + (H - B) + '" x1="0" x2="0"/>';
+      s += '<rect id="dhit" x="' + L + '" y="' + T + '" width="' + (W - L - R) + '" height="' + (H - T - B) + '" fill="transparent"/></svg>';
+      el.innerHTML = s;
+      const hit = $('dhit'), cross = $('fh-x');
+      const at = e => { const b = hit.getBoundingClientRect(), tt = t0 + (e.clientX - b.left) / b.width * Math.max(t1 - t0, day); let h = pts[0]; pts.forEach(x => { if (xt(x) <= tt + day / 2) h = x; }); return h; };
+      hit.addEventListener('pointermove', e => { const h = at(e), x = X(h.date === null ? t0 : when(h.date)); cross.setAttribute('x1', x); cross.setAttribute('x2', x); cross.setAttribute('visibility', 'visible'); });
+      hit.addEventListener('pointerleave', () => { cross.setAttribute('visibility', 'hidden'); });
+      const tipOf = e => { const h = at(e), d = h.date || (before && before.date), m = M_.filter(z => z.date === d)[0], tz = tieOf(h);
+        return '<b>' + longDate(d) + (h.date === null ? ' (in force)' : '') + '</b><br>Democrats ' + pc(h.p, 1) + '<br>Republicans ' + pc(rep(h), 1) + (tz != null ? '<br>269 to 269: ' + pc(tz, 1) : '') +
+          (h.sim != null && Math.abs(h.sim - h.p) > 0.0005 ? '<br>Simulations alone: ' + pc(h.sim, 1) : '') + '<br>National vote ' + mg(h.national) + (m ? '<br><span style="opacity:.8">Method changed this day</span>' : ''); };
+      hit.addEventListener('pointermove', e => tipShow(e, tipOf(e)));
+      hit.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') tipHide(); });
+      hit.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') { tipShow(e, tipOf(e)); const h = at(e), x = X(h.date === null ? t0 : when(h.date)); cross.setAttribute('x1', x); cross.setAttribute('x2', x); cross.setAttribute('visibility', 'visible'); } });
+    };
+    $('hseg').innerHTML = spans.map(k => '<button type="button" data-span="' + k[0] + '">' + k[1] + '</button>').join('');
+    $('hseg').addEventListener('click', e => { const b = e.target.closest('[data-span]'); if (b) { span = +b.dataset.span; draw(); } });
+    document.addEventListener('pointerdown', e => { const c = $('fh-x'); if (e.pointerType !== 'mouse' && e.target.id !== 'dhit' && c) { tipHide(); c.setAttribute('visibility', 'hidden'); } });
+    let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(draw, 120); });
+    draw();
+    // the tab may be drawn while hidden (no width yet): draw again when it is first shown
+    if (!el.clientWidth && 'ResizeObserver' in window) { const ro = new ResizeObserver(() => { if (el.clientWidth) { ro.disconnect(); draw(); } }); ro.observe(el); }
+  })();
   // ---- the states: a profile for each
   let stSel = null;
   const RATE = i => BINS[i][1].replace(' D', ' Democratic').replace(' R', ' Republican');

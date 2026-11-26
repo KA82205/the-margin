@@ -20,8 +20,7 @@ const url = process.argv[2] || 'file://' + require('path').join(__dirname, '..',
     await p.click('#strips [data-r="WY"]'); const sp = await p.textContent('#sp'); if (!/Wyoming/.test(sp) || !/R\+\d/.test(sp)) fail(tag, 'choosing Wyoming did not show its panel');
     if (/\bin 100\b|in 1,000|four times (in|out of) five/i.test(await p.evaluate(() => document.body.innerText))) fail(tag, 'a chance is written as "in 100", or an interval as "four times in five"');
     for (const st of ['DC', 'WY', 'NE2']) { const t = await p.$eval('#strips [data-r="' + st + '"]', e => e.innerText); if (!/\d%/.test(t)) fail(tag, st + ' has no chance in the list'); }
-    if (!(await p.$('#daily svg, #daily p'))) fail(tag, 'no history chart'); if (!/Unchanged|points|First forecast/.test(await p.textContent('#chg'))) fail(tag, 'the updates box says nothing');
-    const zeroBars = await p.$$eval('#chg .chg-row', els => els.filter(e => e.querySelector('.v') && e.querySelector('.v').textContent === '0.0' && e.querySelector('.tr i')).length); if (zeroBars) fail(tag, zeroBars + ' bars drawn for a change of 0.0');
+    if (!(await p.$('#daily svg, #daily p'))) fail(tag, 'no history chart'); if (await p.$('#chg')) fail(tag, 'the updates section should be gone');
     for (const hash of ['#forecast', '#polls', '#states', '#states/NJ', '#states/DC', '#states/NE2', '#model', '#backtests', '#research']) {
       await p.goto(url + hash); await p.waitForTimeout(250);
       const txt = await p.evaluate(() => document.body.innerText + ' ' + Array.from(document.querySelectorAll('svg text, title')).map(e => e.textContent).join(' '));

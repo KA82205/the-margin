@@ -100,6 +100,13 @@ def june_approval(nc, today, year=2028):
     return round(float(np.mean([x['a'] - x['dis'] for x in days])), 1)
 
 
+# The 80% interval of the national error as the simulation draws it: a t distribution with SET['t_df'] degrees of freedom,
+# scaled to the error's size (model.simulate). Its central 80% is narrower than a normal curve's of the same size, so
+# the projection uses this multiplier, not the normal 1.2816, to match what the simulated elections give.
+T90 = {3: 1.637744, 4: 1.533206, 5: 1.475884, 6: 1.439756, 7: 1.414924, 8: 1.396815, 10: 1.372184, 30: 1.310415}
+Q80 = T90[M.SET['t_df']] / float(np.sqrt(M.SET['t_df'] / (M.SET['t_df'] - 2))) if M.SET['t_df'] in T90 else 1.2816
+
+
 def approval_open(days_out, observed):
     """The share of the approval allowance still open. It runs down with the calendar while June 2028 is ahead, and it
     closes only when the June reading is in. If the calendar runs out first (polls late, none taken, the feed not read),
@@ -324,7 +331,7 @@ def main():
     for d in [d0, 600, 500, 400, 300, 200, 150, 100, 60, 30, 14, 7, 1]:
         left = approval_open(d, d <= DRIFT_TO) if d < d0 else open_
         sn = float(np.sqrt(M.at(tl['mix_error'], d) ** 2 + left * ((1 - float(M.curve(tl['national'], d))) * (meta['dE'] + meta['dA']) / (2 + (1.0 if d < 365 else meta['long_range_weight']))) ** 2))
-        funnel.append({'days': d, 'half': round(2 * 1.2816 * sn, 2), 'poll_share': round(float(info['poll_share']) if d == d0 else float(M.curve(tl['national'], d)), 3)})
+        funnel.append({'days': d, 'half': round(2 * Q80 * sn, 2), 'poll_share': round(float(info['poll_share']) if d == d0 else float(M.curve(tl['national'], d)), 3)})
     lo = lambda q: np.log(q / (1 - q))
     msens = [{'weight': w, 'p': round(float(1 / (1 + np.exp(-((1 - w) * lo(out['p_model']) + w * lo(NOW['market_dem']))))), 3)} for w in (0, 0.25, 0.5, 0.7, 1.0)]
     # the national vote of each simulated election, added up from that election's own states by the votes each cast in 2024:
