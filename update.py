@@ -116,6 +116,7 @@ def fingerprint(day, nc, inp, sp):
 
 
 MARKETS = {}                                         # what this run read of the prediction markets, and whether it is news
+COLLECT = None                                       # the tests put a stand-in here, so that no test asks a market provider for anything
 
 
 def read(inp, today, new_day, offline):
@@ -144,7 +145,7 @@ def read(inp, today, new_day, offline):
             import markets as MK
             cache = json.load(open('data/markets_cache.json')) if os.path.exists('data/markets_cache.json') else {}
             was = json.load(open('data/markets.json')) if os.path.exists('data/markets.json') else None
-            reading = MK.collect(cache=cache, aggregate=inp.get('market_dem'))
+            reading = (COLLECT or MK.collect)(cache=cache, aggregate=inp.get('market_dem'))
             for name, why in reading['failed'].items(): print(f'Prediction markets: {name} was not read ({why}); the others were.')
             if reading['contracts'] or not was:
                 json.dump(reading, open('data/markets.json', 'w'), indent=0); json.dump(cache, open('data/markets_cache.json', 'w'))

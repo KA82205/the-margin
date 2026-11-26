@@ -202,11 +202,11 @@ def kalshi(read=get, cache=None, today=None):
             if s.get('ticker') in seen: continue
             seen.add(s.get('ticker'))
             title = s.get('title') or ''; t = title.lower()
-            if re.search(r'president|electoral college|popular vote', t) and not re.search(r'run\b|announce|debate|primary|nominee|nomination|prior office|french|brazil|colombia|chile|portugal|korea|turk|poland|ireland|kenya|peru|mongolia|tanzania|bosnia|bulgaria', t):
+            if re.search(r'president\w* (election )?(party )?(winner|party)|presidential election|electoral college|popular vote', t) and not re.search(r'run\b|announce|debate|primary|nominee|nomination|prior office|french|brazil|colombia|chile|portugal|korea|turk|poland|ireland|kenya|peru|mongolia|tanzania|bosnia|bulgaria', t):
                 series.append([s.get('ticker'), title])
         cache['series'] = series; cache['series_day'] = today
     out = []
-    for ticker, title in cache['series']:
+    for ticker, title in cache['series'][:120]:           # a list this long would mean the search has gone wrong; the first 120 are enough for every state and the nation
         t = title.lower(); place = place_of(title) or 'US'
         kind = 'popular' if 'popular vote' in t and 'margin' not in t else 'margin' if 'margin' in t else 'electoral_votes' if 'electoral' in t else 'winner'
         try: events = read(base + f'events?limit=50&status=open&with_nested_markets=true&series_ticker={ticker}').get('events') or []
