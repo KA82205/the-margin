@@ -336,7 +336,8 @@ def simulate(S, nat, s_nat, year, market=None, ev=None, turnout=None, keep=False
     paths = {'places': [str(S.state.iloc[i]) for i in close], 'given': {}, 'dem': [], 'rep': []}
     for i in close:
         w = sh[i] > 50
-        paths['given'][str(S.state.iloc[i])] = {'dem_if_dem': float(dwin[w].mean()) if w.any() else None, 'dem_if_rep': float(dwin[~w].mean()) if (~w).any() else None}
+        paths['given'][str(S.state.iloc[i])] = {'dem_if_dem': float(dwin[w].mean()) if w.any() else None, 'dem_if_rep': float(dwin[~w].mean()) if (~w).any() else None,
+                                                  'rep_if_rep': float(rwin[~w].mean()) if (~w).any() else None}
     if close:
         code = (sh[close] > 50).T @ (1 << np.arange(len(close)))
         for side_, win in (('dem', dwin), ('rep', rwin)):
