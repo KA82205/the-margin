@@ -102,6 +102,34 @@ the test can be rerun.
 
 The working version is now **+polls by volume**, with one error size for races with polls and one for races without.
 
+## Step 4: starting a presidential year's Senate races from the presidential forecast (tested, not adopted)
+
+The idea: in a presidential year, start each Senate race from The Margin's own forecast of that state's presidential
+vote, then model only how far the party's Senate candidate runs ahead of or behind the top of the ticket.
+`senate/president_states.py` reruns the presidential back-test exactly as published and keeps its forecast of every state
+at every distance for 2020 and 2024 (`president_forecast.csv`); `president_polls.csv` holds the raw presidential polls
+for a second variant that uses the state's presidential polling average instead.
+
+Three forms were tried (`backtest.py`): the presidential forecast in place of the state's lean and the generic ballot,
+the presidential forecast's difference from those as an extra input, and the presidential forecast taken as it is plus a
+ticket-splitting offset by incumbency. None beat the current version in 2020 and 2024:
+
+| Presidential years, all races, miss on the margin | Last day | 7 days | 60 days | 365 days |
+|---|---|---|---|---|
+| Current (+polls by volume) | 6.5 | 6.6 | 6.4 | 6.8 |
+| Starting from The Margin's presidential forecast | 6.7 | 7.0 | 5.9 | 6.7 |
+| Starting from the presidential polls | 7.2 | 7.8 | 6.9 | 7.6 |
+| Presidential forecast plus a ticket-splitting offset | 6.9 | 7.3 | 6.3 | 7.0 |
+
+Log loss tells the same story. The reason is that the state lean and the generic ballot already carry most of what the
+presidential forecast knows about a state; what decides a Senate race beyond that is its candidates. In 2020 and 2024 the
+Senate result differed from the same state's presidential result by about 3.4 points of two-party share (about 7 of
+margin), and a year out almost all of the error is of this race-by-race kind: removing what a year's races missed by in
+common lowers the miss only from 7.0 to 6.8 at 365 days, though from 6.2 to 5.2 on the last day.
+
+What the link is still good for is not accuracy but correlation: a joint simulation of president, Senate and House should
+move a state's Senate race with its presidential vote, so that the chance of one party winning all three is right.
+
 ## What comes next
 
 - Simulate the races together, with a shared national error, for the chance of each party controlling the Senate.

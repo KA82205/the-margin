@@ -11,6 +11,8 @@ Versions, each built on the one before:
     +money       the two candidates' fundraising (last day only: the FEC's totals are for the whole cycle, see README)
     +polls by volume             the polls' weight rises with the amount of polling, between a floor and a cap
     +polls by volume, race sd    the same, with the error sized for each race (tested and not adopted, see README)
+    president, our president, ticket ...   presidential years started from the presidential polls or from The Margin's own
+                                 presidential forecast of the state (tested and not adopted, see README, step 4)
 
 Scores, at each distance: the typical miss on the margin (root mean square, in points), races called, the Brier score
 and log loss of the chance of winning, and how often the result fell inside the 50% and 80% intervals. FiveThirtyEight's
@@ -59,6 +61,9 @@ def build():
     P = P[(P.partisan.fillna('') == '') & ~P.internal.astype(bool)]                       # as the presidential model does
     G = G[(G.partisan.fillna('') == '') & ~G.internal.fillna(False).astype(bool)]
     gen = {y: table(G[G.cycle == y], {'end': 'end_date', 'n': 'sample_size', 'pop': 'population', 'pollster': 'pollster', 'x': 'dem2'}) for y in YEARS}
+    H = pd.read_csv(os.path.join(D, 'president_polls.csv')); H = H[(H.partisan.fillna('') == '') & ~H.internal.astype(bool)]
+    pc = {'end': 'end', 'n': 'n', 'pop': 'population', 'pollster': 'pollster', 'x': 'dem2'}
+    pres = {(y, st): table(h, pc) for (y, st), h in H.groupby(['year', 'state'])}
     rows = []
     for r in R.itertuples():
         E = eday(r); pr = P[(P.year == r.year) & (P.state == r.state) & (P.special == r.special)]
@@ -67,23 +72,45 @@ def build():
             asof = E - pd.Timedelta(days=d)
             g, _ = average(gen[r.year], asof, d)
             pa, pw = average(pt, asof, d) if pt is not None else (None, 0.0)
+            hs = average(pres[(r.year, r.state)], asof, d)[0] if (r.year, r.state) in pres else None
+            hn = average(pres[(r.year, 'US')], asof, d)[0] if (r.year, 'US') in pres else None
             md, mr = (r.dem_receipts if r.dem_receipts == r.dem_receipts else 0.0), (r.rep_receipts if r.rep_receipts == r.rep_receipts else 0.0)
             rows.append({'year': r.year, 'state': r.state, 'special': bool(r.special), 'days': d, 'dem2': r.dem2, 'lean': r.lean,
                          'generic': g, 'inc_d': int(r.incumbent == 'D'), 'inc_r': int(r.incumbent == 'R'),
-                         'money': math.log((md + 1e5) / (mr + 1e5)), 'poll': pa, 'poll_w': pw, 'indep': bool(r.dem_independent)})
+                         'money': math.log((md + 1e5) / (mr + 1e5)), 'poll': pa, 'poll_w': pw, 'indep': bool(r.dem_independent),
+                         'pres_state': hs, 'pres_nat': hn})
     X = pd.DataFrame(rows)
     X['generic'] = X.groupby(['year', 'days']).generic.transform(lambda s: s.fillna(s.mean()))
+    # the state's presidential environment in a presidential year: its own presidential polling average, or failing that the
+    # national presidential average plus the state's lean; in a midterm year, and when there is neither, the generic ballot
+    # plus the lean, as before
+    X['fund_env'] = X.generic + X.lean
+    pres_env = X.pres_state.where(X.pres_state.notna(), X.pres_nat + X.lean)
+    X['env'] = pres_env.where(pres_env.notna(), X.fund_env)
+    X['pres_gap'] = X.env - X.fund_env
+    # The Margin's own presidential forecast of the state, at the same distance (president_states.py); 2020 and 2024 only
+    PF = pd.read_csv(os.path.join(D, 'president_forecast.csv')).rename(columns={'mean': 'margin_pres'})[['year', 'state', 'days', 'margin_pres']]
+    X = X.merge(PF, on=['year', 'state', 'days'], how='left')
+    X['our_env'] = X.margin_pres.where(X.margin_pres.notna(), X.fund_env)
+    X['our_gap'] = X.our_env - X.fund_env
     return X
 
 
+def split(cols):
+    """A column named '@x' is an offset: taken as it is, with no coefficient fitted on it."""
+    off = [c[1:] for c in cols if c.startswith('@')]; return [c for c in cols if not c.startswith('@')], off
+
+
 def fit(train, cols):
-    A = np.column_stack([np.ones(len(train))] + [train[c].values for c in cols]); b = np.linalg.lstsq(A, train.dem2.values, rcond=None)[0]
-    res = train.dem2.values - A @ b
+    cols, off = split(cols); y = train.dem2.values - sum(train[c].values for c in off)
+    A = np.column_stack([np.ones(len(train))] + [train[c].values for c in cols]); b = np.linalg.lstsq(A, y, rcond=None)[0]
+    res = y - A @ b
     return b, float(np.sqrt(np.mean(res ** 2)))
 
 
 def predict(b, df, cols):
-    return b[0] + sum(b[i + 1] * df[c].values for i, c in enumerate(cols))
+    cols, off = split(cols)
+    return b[0] + sum(b[i + 1] * df[c].values for i, c in enumerate(cols)) + sum(df[c].values for c in off)
 
 K_GRID = np.exp(np.linspace(np.log(0.05), np.log(50), 60))
 W_GRID = np.round(np.arange(0, 1.0001, 0.05), 2)
@@ -131,7 +158,15 @@ def sd_predict(c, df):
     return np.maximum(SD_FLOOR, math.sqrt(math.pi / 2) * (sd_features(df) @ c))
 
 
-VERSIONS = {'lean': ['lean', 'generic'], '+incumbent': ['lean', 'generic', 'inc_d', 'inc_r'], '+money': ['lean', 'generic', 'inc_d', 'inc_r', 'money']}
+VERSIONS = {'lean': ['lean', 'generic'], '+incumbent': ['lean', 'generic', 'inc_d', 'inc_r'], '+money': ['lean', 'generic', 'inc_d', 'inc_r', 'money'],
+            'president': ['env', 'inc_d', 'inc_r'], 'president gap': ['lean', 'generic', 'inc_d', 'inc_r', 'pres_gap'],
+            'our president': ['our_env', 'inc_d', 'inc_r'], 'our president gap': ['lean', 'generic', 'inc_d', 'inc_r', 'our_gap'],
+            # the Senate result as the state's presidential forecast plus how far the party's candidate runs ahead of the top
+            # of the ticket, which depends on who holds the seat: the forecast is taken as it is, with no coefficient fitted on it
+            'ticket': ['@our_env', 'inc_d', 'inc_r']}
+# the race-poll blend by volume, on each starting point: the fundamentals with incumbency, and the two presidential ones
+BLENDS = {'+polls by volume': '+incumbent', 'president, +polls by volume': 'president', 'president gap, +polls by volume': 'president gap',
+          'our president, +polls by volume': 'our president', 'our president gap, +polls by volume': 'our president gap', 'ticket, +polls by volume': 'ticket'}
 
 
 def run(X):
@@ -160,16 +195,19 @@ def run(X):
                 out.append({'year': y, 'state': r.state, 'special': r.special, 'days': d, 'version': '+polls', 'mean': r.f + w * (r.poll - r.f) if hp else r.f,
                             'sd': (sd_p if hp else sd_n) or 5.0, 'dem2': r.dem2, 'poll_weight': w if hp else 0.0})
             # refinements: a poll weight that grows with the amount of polling, and an error sized for each race
-            p = volume_fit(af)
-            af['m'] = blend(af, p); hv = af.poll.notna().values; rv = af.m.values - af.dem2.values
-            sv_p = float(np.sqrt(np.mean(rv[hv] ** 2))) if hv.any() else 5.0; sv_n = float(np.sqrt(np.mean(rv[~hv] ** 2))) if (~hv).any() else sv_p
-            sdc = sd_fit(af)
-            bf['m'] = blend(bf, p); bf['sd'] = sd_predict(sdc, bf); bf['share'] = poll_share(bf, p)
-            for r in bf.itertuples():
-                hp = r.poll == r.poll and r.poll is not None
-                base = {'year': y, 'state': r.state, 'special': r.special, 'days': d, 'mean': r.m, 'dem2': r.dem2, 'poll_weight': r.share, 'w0': p[0], 'w1': p[1], 'k': p[2]}
-                out.append({**base, 'version': '+polls by volume', 'sd': sv_p if hp else sv_n})
-                out.append({**base, 'version': '+polls by volume, race sd', 'sd': r.sd})
+            for bname, base_v in BLENDS.items():
+                cols = VERSIONS[base_v]; coef, _ = fit(a, cols)
+                af = a.assign(f=predict(coef, a, cols)); bf = b_.assign(f=predict(coef, b_, cols))
+                p = volume_fit(af)
+                af['m'] = blend(af, p); hv = af.poll.notna().values; rv = af.m.values - af.dem2.values
+                sv_p = float(np.sqrt(np.mean(rv[hv] ** 2))) if hv.any() else 5.0; sv_n = float(np.sqrt(np.mean(rv[~hv] ** 2))) if (~hv).any() else sv_p
+                sdc = sd_fit(af)
+                bf['m'] = blend(bf, p); bf['sd'] = sd_predict(sdc, bf); bf['share'] = poll_share(bf, p)
+                for r in bf.itertuples():
+                    hp = r.poll == r.poll and r.poll is not None
+                    base = {'year': y, 'state': r.state, 'special': r.special, 'days': d, 'mean': r.m, 'dem2': r.dem2, 'poll_weight': r.share, 'w0': p[0], 'w1': p[1], 'k': p[2]}
+                    out.append({**base, 'version': bname, 'sd': sv_p if hp else sv_n})
+                    if bname == '+polls by volume': out.append({**base, 'version': '+polls by volume, race sd', 'sd': r.sd})
     return pd.DataFrame(out)
 
 

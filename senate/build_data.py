@@ -239,6 +239,27 @@ def generic():
     return g.assign(dem2=(100 * g.dem / (g.dem + g.rep)).round(3))
 
 
+def president_polls():
+    """Presidential general-election polls of 2020 and 2024, national and by state, as a Democratic two-party share of
+    the matchup voters faced at the time: Biden against Trump in 2020, and in 2024 Biden against Trump until Biden withdrew
+    on July 21, Harris against Trump after. Other questions (hypothetical matchups, district polls) are left out."""
+    p = pd.read_csv(os.path.join(RAW, '538_president_polls_historical.csv.gz'), low_memory=False)
+    p = p[p.cycle.isin([2020, 2024]) & (p.stage == 'general')]
+    abbr = {v: k for k, v in pd.read_json(os.path.join(ROOT, 'data', 'results_2024.json')).T['name'].items() if len(k) == 2}
+    out = []
+    for qid, g in p.groupby('question_id'):
+        r0 = g.iloc[0]; end = pd.Timestamp(r0.end_date)
+        dem = 'Biden' if r0.cycle == 2020 or end < pd.Timestamp('2024-07-21') else 'Harris'
+        a = dict(zip(g.answer, g.pct))
+        if dem not in a or 'Trump' not in a or a[dem] + a['Trump'] <= 0: continue
+        st = 'US' if pd.isna(r0.state) else abbr.get(r0.state)
+        if st is None: continue                                                  # Maine and Nebraska district polls
+        out.append({'year': int(r0.cycle), 'state': st, 'poll_id': r0.poll_id, 'question_id': qid, 'pollster': r0.pollster, 'end': r0.end_date, 'n': r0.sample_size,
+                    'population': r0.population, 'partisan': r0.partisan if isinstance(r0.partisan, str) else '', 'internal': bool(r0.internal) if not pd.isna(r0.internal) else False,
+                    'dem': dem, 'dem_pct': float(a[dem]), 'rep_pct': float(a['Trump']), 'dem2': round(100 * a[dem] / (a[dem] + a['Trump']), 3)})
+    return pd.DataFrame(out)
+
+
 def benchmark(races):
     b = pd.read_csv(os.path.join(RAW, '538_us_senate_forecasts.csv.gz'), low_memory=False)
     b = b[(b.office == 'Senate') & b.year.isin(YEARS) & b.party.isin(['D', 'R', 'I'])]
@@ -266,6 +287,7 @@ def main():
     p = polls(races); p.to_csv(os.path.join(OUT, 'polls.csv'), index=False)
     generic().to_csv(os.path.join(OUT, 'generic.csv'), index=False)
     nat.to_csv(os.path.join(OUT, 'national.csv'), index=False)
+    president_polls().to_csv(os.path.join(OUT, 'president_polls.csv'), index=False)
     benchmark(races).to_csv(os.path.join(OUT, 'benchmark_538.csv.gz'), index=False, compression='gzip')
     print(f'races {len(races)} (by year {races.groupby("year").size().to_dict()}), excluded {len(excluded)}; money matched {int(races.money_matched.sum())}; '
           f'incumbents {races.incumbent.value_counts().to_dict()}; polls {len(p)} questions in {p.groupby(["year", "state", "special"]).ngroups} races')
