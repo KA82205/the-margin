@@ -8,6 +8,8 @@ Inputs:
                                       offices, through Fox News's results pages, November 26, 2026; not all certified),
                                       and who held the seat and ran. Idaho, Montana and South Dakota are left out: no
                                       Democrat-side candidate was among the top two. All three went Republican.
+    data/senate/2026/wiki_polls_2026.csv  the race polls from Wikipedia's race pages (senate/wiki_polls.py; CC BY-SA 4.0),
+                                      used instead when SENATE_POLLS=wikipedia
     data/senate/2026_rcp/             the race polls and the weekly generic-ballot average, as RealClearPolling lists them.
                                       Kept out of the repository: they are RealClearPolling's compilation, not ours to
                                       republish. RealClearPolling's list is narrower than FiveThirtyEight's archive, which
@@ -38,8 +40,17 @@ def races():
     return BD.track_records(R)
 
 
+SOURCE = os.environ.get('SENATE_POLLS', 'rcp')      # 'rcp', or 'wikipedia' (data/senate/2026/wiki_polls_2026.csv, CC BY-SA)
+
+
+def poll_file():
+    if SOURCE == 'wikipedia':
+        return pd.read_csv(os.path.join(D26, 'wiki_polls_2026.csv'))
+    return pd.read_csv(os.path.join(RCP, 'senate_polls.psv'), sep='|')
+
+
 def features(R):
-    P = pd.read_csv(os.path.join(RCP, 'senate_polls.psv'), sep='|')
+    P = poll_file()
     P['dem2'] = 100 * P.dem_pct / (P.dem_pct + P.rep_pct); P['population'] = P.population.str.lower()
     G = pd.read_csv(os.path.join(RCP, 'generic_weekly.csv'), parse_dates=['date']); G['dem2'] = 100 * G.dem / (G.dem + G.rep)
     rows = []
@@ -59,7 +70,7 @@ def features(R):
 def polls_only(R):
     """The last RealClearPolling-listed polls as a plain benchmark: the simple average of each race's polls in its final 30
     days (or its last poll), as a Democratic two-party share."""
-    P = pd.read_csv(os.path.join(RCP, 'senate_polls.psv'), sep='|', parse_dates=['end']); P['dem2'] = 100 * P.dem_pct / (P.dem_pct + P.rep_pct)
+    P = poll_file(); P['end'] = pd.to_datetime(P.end); P['dem2'] = 100 * P.dem_pct / (P.dem_pct + P.rep_pct)
     out = {}
     for st, g in P.groupby('state'):
         last = g[g.end >= ELECTION - pd.Timedelta(days=30)]
@@ -109,7 +120,7 @@ def main():
                   'model_miss_same_races': round(float(np.sqrt(np.mean(f ** 2))), 2), 'model_bias_same_races': round(float(f.mean()), 2),
                   'polls_only_called': int(((pm.polls_only_margin > 0) == (pm.result_margin > 0)).sum())}
     print(summary_po)
-    with open(os.path.join(D26, 'test_2026.json'), 'w') as fh:
+    with open(os.path.join(D26, 'test_2026.json' if SOURCE == 'rcp' else f'test_2026_{SOURCE}.json'), 'w') as fh:
         json.dump({'note': 'The 2026 Senate elections forecast by the working version fitted on 2018-2024 only. Margins are Democratic-side minus Republican, in points.',
                    'by_distance': Rs.to_dict('records'), 'by_race': Br.to_dict('records'), 'polls_only_last_day': summary_po}, fh, indent=1)
     return Rs, Br
