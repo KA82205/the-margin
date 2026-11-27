@@ -316,6 +316,18 @@ scored (`national_ideas.json`).
 - **Trusting approval more when it and the generic ballot disagree (Algara et al.)** cannot help here: the national
   error of a blend is about the same at a third, half or two thirds on the fundamentals (1.84, 1.74, 1.72 points across
   2018-2026, all distances), and in 2026 the two agreed (within a point) and were both short. Half and half stays.
+- **Tien and Lewis-Beck's own variables** ("Political Economy Forecasts: The 2026 Midterms"), tested afterwards with
+  their definitions: their cost of ruling is a count of midterms in a row under the same president or party, not years
+  in power, and "seats exposed" is the president's party's House seats above its average. On the vote, the midterm
+  count ties approval and the midterm (2.7 points) and seats exposed is worse (3.5); their full equation 5 is worse
+  everywhere out of sample (3.8 on the vote, 17.7 House seats against 17.0). Seats exposed does help forecast House
+  seat change (16.0 against 17.0 seats, 1978-2026): it is about how votes turn into seats, so it belongs in a House
+  seat-count benchmark, not in the race model's national vote.
+- **Why the papers find the economy significant and this test does not:** they fit every year at once and report how
+  well the equation fits those same years; here each year is forecast only from the years before it. With 39 elections
+  and four or five inputs, a term can fit the past and still not help forecast. Income is also fragile to measure:
+  for the same months Quinn, Brush and Smith used -0.3% and Tien and Lewis-Beck +2.4%, and Tien and Lewis-Beck's own
+  2022 forecast (made out of sample) missed by 35 seats.
 - The national input stays as step 8 left it. The one idea left with a real chance is the special elections (Hunt):
   they read the national mood from votes, not from polls or approval.
 

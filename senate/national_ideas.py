@@ -13,6 +13,9 @@ were set before any was scored:
                                           the White House without a break
     + inflation + years in power          the two new ideas together
 
+and, added after reading Tien and Lewis-Beck's paper, their own variables: the midterm count (their cost of ruling),
+seats exposed, and their equation 5 with both and income.
+
     python senate/national_ideas.py       writes data/senate/national_ideas.json
 """
 import json, os, sys
@@ -31,7 +34,15 @@ CANDIDATES = {'approval, midterm': ['approval', 'midterm'],
               '+ inflation': ['approval', 'inflation', 'midterm'],
               '+ GDP': ['approval', 'gdp', 'midterm'],
               '+ years in power': ['approval', 'years', 'midterm'],
-              '+ inflation + years in power': ['approval', 'inflation', 'years', 'midterm']}
+              '+ inflation + years in power': ['approval', 'inflation', 'years', 'midterm'],
+              # added after reading Tien and Lewis-Beck's paper (their own variables, so not set before scoring like the rest)
+              'midterm count (Tien and Lewis-Beck)': ['approval', 'midterm_count'],
+              '+ seats exposed (Tien and Lewis-Beck)': ['approval', 'midterm', 'exposed'],
+              'Tien and Lewis-Beck eq. 5 (income, midterm count, exposed)': ['approval', 'income', 'midterm_count', 'exposed']}
+# Tien and Lewis-Beck's adjusted midterm ("cost of ruling", after Paldam): 0 in a presidential year, otherwise which midterm
+# this is under the same president or the same party without a break. 2026 is coded 2, as they code it (Trump's second).
+MIDTERM_COUNT = {1950: 5, 1954: 1, 1958: 2, 1962: 1, 1966: 2, 1970: 1, 1974: 2, 1978: 1, 1982: 1, 1986: 2, 1990: 3, 1994: 1,
+                 1998: 2, 2002: 1, 2006: 2, 2010: 1, 2014: 2, 2018: 1, 2022: 1, 2026: 2}
 
 
 def series(name):
@@ -47,6 +58,7 @@ def years_in_power(y):
 def inputs(N, A, when):
     """The inputs for each year as known in June of the election year ('june') or in November of the year before ('year')."""
     inc, gdp, cpi = NA.income(), series('A191RL1Q225SBEA'), series('CPIAUCSL')
+    H, _ = NA.seats()
     rows = []
     for y in N.index:
         if when == 'june':
@@ -63,7 +75,10 @@ def inputs(N, A, when):
             asof_cpi = pd.Timestamp(f'{y - 1}-09-01')
         c = cpi[cpi.index <= asof_cpi]; c0 = cpi[cpi.index <= asof_cpi - pd.DateOffset(months=12)]
         rows.append({'year': y, 'approval': appr, 'income': income, 'gdp': float(g), 'inflation': float((c.iloc[-1] / c0.iloc[-1] - 1) * 100) if len(c0) else np.nan,
-                     'years': years_in_power(y), 'midterm': N.loc[y, 'midterm'], 'vote': N.loc[y, 'house_vote_pres'],
+                     'years': years_in_power(y), 'midterm': N.loc[y, 'midterm'], 'midterm_count': MIDTERM_COUNT.get(y, 0),
+                     # seats exposed: the president's party's House seats from the election before, less its average in the
+                     # elections before that (Tien and Lewis-Beck take the whole-sample average; this uses only the past)
+                     'exposed': float(H.loc[y - 2, N.loc[y, 'pres_party'] + '_after'] - H.loc[H.index < y - 2, N.loc[y, 'pres_party'] + '_after'].mean()), 'vote': N.loc[y, 'house_vote_pres'],
                      'house_change': N.loc[y, 'house_change'], 'senate_change': N.loc[y, 'senate_change'], 'senate_up': N.loc[y, 'senate_up']})
     return pd.DataFrame(rows).set_index('year')
 
