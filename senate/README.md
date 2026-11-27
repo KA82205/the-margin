@@ -311,7 +311,8 @@ scored (`national_ideas.json`).
 
 - **Nothing beats approval and the midterm alone.** Every economic measure swings wildly in some year (income +22% in
   2020, -7% in 2022; GDP -8 points of vote error in 2020 in June), and the cost of ruling adds nothing a fit can use.
-  The seat-change checks agree. The inflation idea fixes 2020 and 2022 but costs elsewhere.
+  The seat-change checks agree. Inflation undoes the income model's 2020 and 2022 misses, but approval alone
+  never made them, and inflation costs elsewhere.
 - **Trusting approval more when it and the generic ballot disagree (Algara et al.)** cannot help here: the national
   error of a blend is about the same at a third, half or two thirds on the fundamentals (1.84, 1.74, 1.72 points across
   2018-2026, all distances), and in 2026 the two agreed (within a point) and were both short. Half and half stays.
