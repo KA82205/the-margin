@@ -5,11 +5,11 @@
  "office": "president",
  "status": "published",
  "forecast": {
-  "as_of": "2026-11-26",
+  "as_of": "2026-11-27",
   "file": "api/forecast.json",
-  "hash": "fdfebd0ed954fd47",
-  "last_kept": "2026-11-26T0514Z.json",
-  "kept": 6
+  "hash": "0b05593c2e346918",
+  "last_kept": "2026-11-27T0515Z.json",
+  "kept": 7
  },
  "units": {
   "shares": "Democratic share of the two-party vote, in percent (0 to 100)",
@@ -39,8 +39,8 @@
    "hash": "92eeedb5b62dc78c"
   },
   "tipping_point": {
-   "as_of": "2026-11-26",
-   "generated_at": "2026-11-26T22:25:32Z",
+   "as_of": "2026-11-27",
+   "generated_at": "2026-11-27T05:13:20Z",
    "mode": "nowcast",
    "frozen": false,
    "fixed": false,
@@ -51,15 +51,15 @@
     "desart": "site run"
    },
    "models": {
-    "enns": 52.091,
+    "enns": 52.142,
     "desart": 49.846
    },
-   "combined": 50.958,
-   "hash": "e1182d0608609f24"
+   "combined": 50.983,
+   "hash": "dd283dc6ab7ce5c2"
   },
   "tipping_point_live": {
-   "as_of": "2026-11-26",
-   "generated_at": "2026-11-26T18:43:23Z",
+   "as_of": "2026-11-27",
+   "generated_at": "2026-11-27T05:13:20Z",
    "academic": {
     "fixed": false,
     "since": null,
@@ -70,18 +70,18 @@
     }
    },
    "polls": 28,
-   "hash": "0b634f88e97e46a0"
+   "hash": "8e81e6ac0c7a64ac"
   }
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-26T23:35Z",
- "commit": "60455420cf97",
- "markets_read": "2026-11-26T23:34Z",
+ "made": "2026-11-27T05:15Z",
+ "commit": "329b9d45fa3f",
+ "markets_read": "2026-11-27T05:14Z",
  "markets": {
   "counts": {
    "Polymarket": 51,
-   "Kalshi": 62,
+   "Kalshi": 60,
    "Manifold": 61
   },
   "failed": {}

@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-25T17:56Z",
+ "fetched": "2026-11-26T20:48Z",
  "sources": {
   "PollResults.org": {
    "pages": 3,
@@ -84,8 +84,13 @@
    "rep_pct": 44,
    "usable": false,
    "why_not": "no named candidates (a generic ballot)",
+   "why_all": [
+    "no named candidates (a generic ballot)"
+   ],
    "url": "https://www.highpoint.edu/blog/2026/08/hpu-poll-126-majority-of-north-carolina-voters-say-country-headed-in-wrong-direction/",
-   "place_read_from": "the state field"
+   "place_read_from": "the state field",
+   "source": "PollResults.org",
+   "poll_id": "f6b07086-4cb6-46d6-9b3b-19e75f3c66d7"
   },
   {
    "place": "NC",
@@ -102,8 +107,13 @@
    "rep_pct": 47,
    "usable": false,
    "why_not": "no named candidates (a generic ballot)",
+   "why_all": [
+    "no named candidates (a generic ballot)"
+   ],
    "url": "https://www.highpoint.edu/blog/2026/08/hpu-poll-126-majority-of-north-carolina-voters-say-country-headed-in-wrong-direction/",
-   "place_read_from": "the state field"
+   "place_read_from": "the state field",
+   "source": "PollResults.org",
+   "poll_id": "f6b07086-4cb6-46d6-9b3b-19e75f3c66d7"
   },
   {
    "place": "NV",
@@ -120,8 +130,13 @@
    "rep_pct": 47,
    "usable": false,
    "why_not": "paid for by a party or a campaign",
+   "why_all": [
+    "paid for by a party or a campaign"
+   ],
    "url": "https://www.politico.com/newsletters/california-playbook/2026/07/10/newsoms-polling-slip-00992754",
-   "place_read_from": "the state field"
+   "place_read_from": "the state field",
+   "source": "PollResults.org",
+   "poll_id": "e0abf232-f0bd-4c48-be4e-471ce1acbd79"
   },
   {
    "place": "NC",
@@ -138,8 +153,14 @@
    "rep_pct": 42,
    "usable": false,
    "why_not": "no named candidates (a generic ballot)",
+   "why_all": [
+    "no named candidates (a generic ballot)",
+    "paid for by a party or a campaign"
+   ],
    "url": "https://changeresearch.com/north-carolina-voters-february-2026/",
-   "place_read_from": "the state field"
+   "place_read_from": "the state field",
+   "source": "PollResults.org",
+   "poll_id": "392456df-676f-485b-9887-b0b0c1565c50"
   },
   {
    "place": "NC",
@@ -156,8 +177,15 @@
    "rep_pct": 41,
    "usable": false,
    "why_not": "Barack Obama cannot be elected again",
+   "why_all": [
+    "Barack Obama cannot be elected again",
+    "Donald Trump cannot be elected again",
+    "paid for by a party or a campaign"
+   ],
    "url": "https://changeresearch.com/north-carolina-voters-february-2026/",
-   "place_read_from": "the state field"
+   "place_read_from": "the state field",
+   "source": "PollResults.org",
+   "poll_id": "392456df-676f-485b-9887-b0b0c1565c50"
   },
   {
    "place": "AK",
@@ -174,8 +202,13 @@
    "rep_pct": 43,
    "usable": false,
    "why_not": "Donald Trump cannot be elected again",
+   "why_all": [
+    "Donald Trump cannot be elected again"
+   ],
    "url": "https://bsky.app/profile/alaskasurvey.bsky.social/post/3m3xffoyvx22i",
-   "place_read_from": "the state field"
+   "place_read_from": "the state field",
+   "source": "PollResults.org",
+   "poll_id": "bead79ec-0db6-40f9-8af4-a01f7fad2d7f"
   },
   {
    "place": "AK",
@@ -192,8 +225,11 @@
    "rep_pct": 44,
    "usable": true,
    "why_not": "",
+   "why_all": [],
    "url": "https://bsky.app/profile/alaskasurvey.bsky.social/post/3m3xffoyvx22i",
-   "place_read_from": "the state field"
+   "place_read_from": "the state field",
+   "source": "PollResults.org",
+   "poll_id": "bead79ec-0db6-40f9-8af4-a01f7fad2d7f"
   },
   {
    "place": "PA",
@@ -210,8 +246,13 @@
    "rep_pct": 43,
    "usable": false,
    "why_not": "Josh Shapiro's own state, while the nominees are not known",
+   "why_all": [
+    "Josh Shapiro's own state, while the nominees are not known"
+   ],
    "url": "https://poll.qu.edu/poll-release?releaseid=3933",
-   "place_read_from": "the state field"
+   "place_read_from": "the state field",
+   "source": "PollResults.org",
+   "poll_id": "1a6fabc3-ebbb-4d4f-9cfc-34699a67b0a9"
   }
  ],
  "nominees": null

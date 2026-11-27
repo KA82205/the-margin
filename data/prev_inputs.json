@@ -1,20 +1,21 @@
 {
- "as_of": "2026-11-25",
+ "as_of": "2026-11-26",
  "net_approval": -30.8,
  "approval_note": "Tipping Point Nowcast's pooled average of presidential approval among adults, last 30 days",
- "market_dem": 0.6758,
- "market_note": "electionbettingodds.com, party to win the presidency, November 25, 2026: Democrats 66.9%, Republicans 32.1%",
+ "market_dem": 0.6771,
+ "market_note": "electionbettingodds.com, party to win the presidency, November 26, 2026: Democrats 66.9%, Republicans 31.9%",
  "keys": 0.381,
  "keys_sd": 0.133,
- "keys_note": "Fifty-Two Keys, November 25, 2026: 25 of 52 keys in the Republicans' favor if each open key lands the way it leans",
+ "keys_note": "Fifty-Two Keys, November 26, 2026: 25 of 52 keys in the Republicans' favor if each open key lands the way it leans",
  "approval_drift": 15.0,
  "keys_mean": 0.375,
  "read": {
-  "nowcast": "2026-11-25",
-  "odds": "2026-11-25",
-  "keys": "2026-11-25",
-  "state_polls": "2026-11-25",
-  "markets": "2026-11-26T03:18Z"
+  "nowcast": "2026-11-26",
+  "odds": "2026-11-26",
+  "keys": "2026-11-26",
+  "state_polls": "2026-11-26",
+  "markets": "2026-11-26T23:34Z",
+  "live": "2026-11-26"
  },
  "keys_dist": [
   [
@@ -83,11 +84,11 @@
   ],
   [
    0.19,
-   0.01515
+   0.01516
   ],
   [
    0.2,
-   0.01258
+   0.01259
   ],
   [
    0.21,
@@ -99,7 +100,7 @@
   ],
   [
    0.23,
-   0.02065
+   0.02064
   ],
   [
    0.24,
@@ -107,11 +108,11 @@
   ],
   [
    0.25,
-   0.01803
+   0.01805
   ],
   [
    0.26,
-   0.02438
+   0.02439
   ],
   [
    0.27,
@@ -119,19 +120,19 @@
   ],
   [
    0.28,
-   0.01869
+   0.0187
   ],
   [
    0.29,
-   0.02967
+   0.02966
   ],
   [
    0.3,
-   0.01914
+   0.01913
   ],
   [
    0.31,
-   0.02712
+   0.02713
   ],
   [
    0.32,
@@ -143,7 +144,7 @@
   ],
   [
    0.34,
-   0.02209
+   0.02208
   ],
   [
    0.35,
@@ -151,11 +152,11 @@
   ],
   [
    0.36,
-   0.0251
+   0.02511
   ],
   [
    0.37,
-   0.02763
+   0.02764
   ],
   [
    0.38,
@@ -163,7 +164,7 @@
   ],
   [
    0.39,
-   0.03206
+   0.03204
   ],
   [
    0.4,
@@ -171,15 +172,15 @@
   ],
   [
    0.41,
-   0.03081
+   0.03079
   ],
   [
    0.42,
-   0.02992
+   0.02995
   ],
   [
    0.43,
-   0.032
+   0.03202
   ],
   [
    0.44,
@@ -187,23 +188,23 @@
   ],
   [
    0.45,
-   0.03522
+   0.03523
   ],
   [
    0.46,
-   0.02822
+   0.02819
   ],
   [
    0.47,
-   0.02907
+   0.02908
   ],
   [
    0.48,
-   0.02698
+   0.027
   ],
   [
    0.49,
-   0.02892
+   0.02894
   ],
   [
    0.5,
@@ -219,15 +220,15 @@
   ],
   [
    0.53,
-   0.01784
+   0.01783
   ],
   [
    0.54,
-   0.01453
+   0.01455
   ],
   [
    0.55,
-   0.01777
+   0.01775
   ],
   [
    0.56,
@@ -239,11 +240,11 @@
   ],
   [
    0.58,
-   0.00914
+   0.00915
   ],
   [
    0.59,
-   0.00602
+   0.00601
   ],
   [
    0.6,
@@ -251,7 +252,7 @@
   ],
   [
    0.61,
-   0.00348
+   0.00347
   ],
   [
    0.62,
@@ -308,8 +309,8 @@
  ],
  "upstream": {
   "fifty_two_keys": {
-   "date": "2026-11-25",
-   "as_of": "November 25, 2026",
+   "date": "2026-11-26",
+   "as_of": "November 26, 2026",
    "engine": "2026.11e",
    "format": 2,
    "settled": 8,
@@ -318,19 +319,41 @@
    "held": 0,
    "closed": false,
    "approval_in": false,
-   "hash": "3be76b5558146727"
+   "hash": "92eeedb5b62dc78c"
   },
   "tipping_point": {
-   "as_of": "2026-11-25",
-   "generated_at": "2026-11-26T03:03:10Z",
+   "as_of": "2026-11-26",
+   "generated_at": "2026-11-26T22:25:32Z",
    "mode": "nowcast",
    "frozen": false,
+   "fixed": false,
+   "fixed_since": null,
+   "redone": null,
+   "sources": {
+    "enns": "site run",
+    "desart": "site run"
+   },
    "models": {
-    "enns": 52.068,
+    "enns": 52.091,
     "desart": 49.846
    },
-   "combined": 50.946,
-   "hash": "9b45039074513e64"
+   "combined": 50.958,
+   "hash": "e1182d0608609f24"
+  },
+  "tipping_point_live": {
+   "as_of": "2026-11-26",
+   "generated_at": "2026-11-26T18:43:23Z",
+   "academic": {
+    "fixed": false,
+    "since": null,
+    "updated": null,
+    "sources": {
+     "enns": "site run",
+     "desart": "site run"
+    }
+   },
+   "polls": 28,
+   "hash": "0b634f88e97e46a0"
   }
  }
 }
