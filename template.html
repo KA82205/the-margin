@@ -576,7 +576,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   // ---- map, snake, state panel
   const BINS = [[0.95, 'Safe D'], [0.8, 'Likely D'], [0.65, 'Lean D'], [0.55, 'Tilt D'], [0.45, 'Toss-up'], [0.35, 'Tilt R'], [0.2, 'Lean R'], [0.05, 'Likely R'], [-1, 'Safe R']];
   const bin = x => BINS.findIndex(b => x >= b[0]), COL = BINS.map((b, i) => 'var(--k' + i + ')');
-  const tipS = s => '<b>' + esc(s.name) + '</b> · ' + s.ev + (s.ev === 1 ? ' vote' : ' votes') + '<br>Chance of winning: ' + bothTxt(s.p_dem) + '<br>Projected ' + mg(s.mean) + '<br>80% prediction interval: ' + rangeOf(s);
+  const tipS = s => '<b>' + esc(s.name) + '</b> · ' + s.ev + (s.ev === 1 ? ' vote' : ' votes') + '<br>Chance of winning: ' + bothTxt(s.p_dem) + '<br>Projected ' + mg(s.mean);
   let sel = F.tipping_point;
   let m = '<svg viewBox="0 0 975 610" role="img" aria-label="Map of the states shaded by the chance the Democratic nominee wins each">';
   F.states.forEach(s => { const sh = window.US_STATES[s.state]; if (sh) m += '<path data-s="' + s.state + '" d="' + sh.d + '" fill="' + COL[bin(s.p_dem)] + '"/>'; });
