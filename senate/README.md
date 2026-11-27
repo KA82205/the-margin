@@ -551,7 +551,8 @@ the forecast. `senate/fec_live.py` still reads each candidate's FEC totals once 
 
 ## What runs on its own
 
-Every hour (`senate.yml`), `senate/live.py`:
+After each run of the presidential forecast, so every hour (`senate.yml`; GitHub's own schedule, which starts runs late or
+not at all, is only a second way in), `senate/live.py`:
 
 - **works out the election:** the next one still to come, so from the day after an election it moves to the one two
   years on (each cycle's files in `data/senate/<year>/`); the president, their party and their approval page are
@@ -581,6 +582,17 @@ side with no candidate by September, polls of the nominees (one paid for by a ca
 summary that must not be read, and a page too short to trust. `senate/site_data.py` makes the back-test figures the
 Back-tests tab shows (`data/senate/site_backtests.json`), each year forecast with that year left out, as the live
 forecast reports races (after the pull toward the national seat model).
+
+The same job starts the daily money job (`senate-money.yml`, `senate/fec_live.py`) once its last run is a day old, and the
+weekly after-election job (step 19) once its last run is a week old. The money job keeps a candidate's last totals when
+the FEC cannot give new ones, looks again each day for a candidate it has not found yet, and stops, changing nothing,
+when the FEC cannot be reached (`tests/test_fec_live.py`).
+
+Each job records its health in `docs/api/health/<job>.json` (`senate/health.py`, `tests/test_senate_health.py`), on the
+site at `https://ka82205.github.io/the-margin/api/health/senate-forecast.json`, `senate-money.json` and
+`senate-after.json`: whether its last run worked, the day it last ran and last worked, the day after which no new success
+means it has stopped (`overdue_after`), and the error when it failed. An election due to be added that could not be counts
+as a failure. RUNBOOK.md says what each error means and what to do.
 
 ## Step 19: after each election, on its own
 

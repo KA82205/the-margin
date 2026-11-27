@@ -1,7 +1,10 @@
 name: Senate after the election
 # Once a week: once an election's results have settled (seven weeks after election day), its races are added to the
 # Senate model's training data, the model is refitted for the next cycle and the back-test figures are made again
-# (senate/after_election.py). Until then, and once an election is in, the run finds nothing to do.
+# (senate/after_election.py). Until then, and once an election is in, the run finds nothing to do. The hourly Senate
+# forecast job starts this one when its last run is a week old, since GitHub's own schedule, below, starts runs late or
+# not at all (RUNBOOK.md). Each run records the job's health in docs/api/health/senate-after.json: a due election that
+# could not be added counts as a failure there.
 on:
   schedule:
     - cron: "47 15 * * 1"
@@ -31,18 +34,30 @@ jobs:
       - name: Add the last election, if it is due
         id: run
         continue-on-error: true
-        run: python senate/after_election.py
+        run: |
+          set -o pipefail
+          python senate/after_election.py 2>&1 | tee "$RUNNER_TEMP/run.log"
+
+      - name: Record the job's health
+        if: always()
+        run: python senate/health.py senate-after "${{ steps.run.outcome }}" "$RUNNER_TEMP/run.log"
 
       - name: Save
-        if: steps.run.outcome == 'success'
+        if: always()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "forecast-bot"
           git config user.email "forecast-bot@users.noreply.github.com"
-          git add -A data/senate/          # the raw sources are kept out by .gitignore
-          if git diff --cached --quiet; then echo "Nothing new."; exit 0; fi
-          git commit -m "Senate: the last election added to the training data, and the model refitted"
+          msg="Senate after-election job: health $(TZ=America/New_York date '+%Y-%m-%d')"
+          if [ "${{ steps.run.outcome }}" = "success" ]; then
+            git add -A data/senate/          # the raw sources are kept out by .gitignore
+            git diff --cached --quiet || msg="Senate: the last election added to the training data, and the model refitted"
+          fi
+          git add docs/api/health/senate-after.json || true
+          if git diff --cached --quiet; then echo "Nothing new, and the job's health is the same."; exit 0; fi
+          git commit -q -m "$msg"
+          git checkout -q -- .
           for i in $(seq 1 40); do
             busy=0
             for s in in_progress queued; do
@@ -56,8 +71,8 @@ jobs:
             git pull --rebase -q origin main && git push -q && exit 0
             sleep 10
           done
-          echo "::warning::The repository kept changing while this run saved; next week's run tries again."
+          echo "::warning::The repository kept changing while this run saved; the next run tries again."
 
       - name: Flag a failed run
         if: steps.run.outcome == 'failure'
-        run: echo "::warning::The after-election step failed this week; nothing was changed, and next week's run tries again."
+        run: echo "::warning::The after-election step failed this time (docs/api/health/senate-after.json says why); nothing was changed, and the next run tries again."

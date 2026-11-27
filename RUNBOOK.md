@@ -91,9 +91,38 @@ job, after the word `Bearer` and a space. Use each job's test run: the answer sh
 
 **To stop it:** delete the three jobs, then delete the token on GitHub.
 
+## The Senate jobs (The Margin)
+
+| Job | Workflow | What it does | What starts it |
+|---|---|---|---|
+| The Senate forecast | `Senate forecast` (`senate.yml`) | reads Wikipedia and reruns the Senate forecast (`senate/live.py`) | the end of each run of `Forecast` (so every hour, through the outside clock), GitHub's schedule (minute 55), a run started by hand |
+| Money raised | `Senate money` (`senate-money.yml`) | the FEC totals shown on the Senate tab, not used in the forecast (`senate/fec_live.py`, with the `FEC_API_KEY` secret) | the Senate forecast job, once its last run is a day old; GitHub's schedule (10:23 UTC); by hand |
+| After each election | `Senate after the election` (`senate-after.yml`) | adds the election's races to the training data and refits the model (`senate/after_election.py`); does nothing between elections | the Senate forecast job, once its last run is a week old; GitHub's schedule (Mondays, 15:47 UTC); by hand |
+
+The Senate forecast hangs on the presidential run, not on GitHub's schedule: on November 27, 2026, its first day, GitHub's
+schedule did not start it once in four hours, and started one presidential run in fifteen.
+
+**Each job's health** is a small file on the site that anyone, or any program, can read without signing in:
+[senate-forecast.json](https://ka82205.github.io/the-margin/api/health/senate-forecast.json),
+[senate-money.json](https://ka82205.github.io/the-margin/api/health/senate-money.json),
+[senate-after.json](https://ka82205.github.io/the-margin/api/health/senate-after.json) (`senate/health.py`). Each gives
+`ok`, `last_run`, `last_success`, `overdue_after`, `failing_since` and `error`. Something needs a look when `ok` is false,
+or when today is later than `overdue_after` (the job has stopped running). A failed Senate run is listed on GitHub with a
+green check and a warning, not as failed, so the health file is the place to look. The site keeps the last good figures
+meanwhile.
+
+| `error` says | What it means | What to do |
+|---|---|---|
+| What was read does not look right | A Wikipedia page the forecast reads changed shape or was vandalized, and the run's checks stopped it | Usually passes when the page is put right. If it lasts, the reader in `senate/` needs to learn the new layout |
+| Wikipedia could not be read; a page could not be read | Wikipedia did not answer, or a page moved | Nothing if it passes. If it lasts, check that the page named still exists |
+| The FEC could not be reached; stopped answering; failed N of M calls | The FEC's API was down, or refused the key | Nothing if it passes. If it lasts, check the key at api.data.gov and save a new one as `FEC_API_KEY` |
+| FEC_API_KEY is not set | The secret is missing | Save it under Settings, Secrets and variables, Actions |
+| not added yet | Seven weeks after an election some of its results could not be read | The message says what is missing; each week's run tries again |
+| The run was stopped before it finished | It ran past its time limit | If it lasts, the run's log on GitHub says where it stopped |
+
 ## Secrets
 
-Three secrets, all optional, set under each repository's Settings, Secrets and variables, Actions. Never put one in a file,
+Four secrets, all optional, set under each repository's Settings, Secrets and variables, Actions. Never put one in a file,
 a commit, a message or a chat. The outside clock's token (above) is not a secret of any repository: it lives only in the
 scheduling service.
 
@@ -113,6 +142,10 @@ write; then save it as `DISPATCH_TOKEN` under Settings, Secrets and
 variables, Actions in `tipping-point` and in `fifty-two-keys`, and delete the old token.
 
 Without the token nothing breaks. The Margin's own scheduled run is the fallback.
+
+**`FEC_API_KEY`** (The Margin). A free key from api.data.gov, for the money each Senate candidate has raised, shown on
+the Senate tab and not used in the forecast. Without it the money job stops, its health file says `FEC_API_KEY is not
+set`, and the Senate tab keeps the last totals.
 
 **`BLS_API_KEY`** (Fifty-Two Keys). Not needed. The second-source check asks the Bureau of Labor Statistics without a key,
 which allows a few requests a day from each address; GitHub's servers share addresses, so on some days the Bureau may
@@ -191,6 +224,8 @@ authors' published methods and are not adjusted.
 ## Checking that everything still works
 
     the-margin        python -m pytest tests && node tests/test_page.js && node tests/browser_hover.js && node tests/browser_page.js
+                      (the Senate, each on its own: python tests/test_senate_live.py, test_after_election.py,
+                      test_fec_live.py, test_senate_health.py)
                       (the studies: python interval_study.py, market_study.py, method_change.py, keys_study.py, state_trend_study.py)
     fifty-two-keys    python -m pytest tests
     tipping-point     python pipeline/tests/test_runs.py && python pipeline/tests/test_civiqs.py

@@ -1,14 +1,22 @@
 name: Senate forecast
-# The 2028 Senate forecast (senate/live.py): it writes data/senate/2028/ and the Senate tab's data, docs/api/senate.json. Runs
-# every hour after the presidential forecast's run (:37), so it draws from the presidential forecast just published.
+# The Senate forecast (senate/live.py): it writes data/senate/<year>/ and the Senate tab's data, docs/api/senate.json.
+# Runs after each run of the presidential forecast, which the outside clock starts every hour (RUNBOOK.md), so it draws
+# from the presidential forecast just published. GitHub's own schedule, below, starts runs late or not at all; it is only
+# a second way in. Each run records the job's health in docs/api/health/senate-forecast.json, and starts the daily and
+# weekly Senate jobs when they are due.
+run-name: "${{ github.event_name == 'workflow_run' && 'Senate: after the presidential forecast' || github.event_name == 'schedule' && 'Senate: schedule' || 'Senate: by hand' }}"
 on:
+  workflow_run:
+    workflows: [Forecast]
+    types: [completed]
+    branches: [main]
   schedule:
     - cron: "55 * * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
-  actions: read
+  actions: write
 
 # Its own group: sharing the presidential run's group would let a queued Senate run cancel a queued presidential one.
 concurrency:
@@ -31,22 +39,35 @@ jobs:
       - name: Read the sources and run the Senate forecast
         id: run
         continue-on-error: true
-        run: python senate/live.py
+        run: |
+          set -o pipefail
+          python senate/live.py 2>&1 | tee "$RUNNER_TEMP/run.log"
 
-      # Saved only when a number moved: page versions alone (sources.json) are not a change.
+      - name: Record the job's health
+        if: always()
+        run: python senate/health.py senate-forecast "${{ steps.run.outcome }}" "$RUNNER_TEMP/run.log"
+
+      # The forecast is saved only when a number moved (page versions alone, sources.json, are not a change), and only
+      # from a run that worked; the job's health whenever it changed.
       - name: Save
-        if: steps.run.outcome == 'success'
+        if: always()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "forecast-bot"
           git config user.email "forecast-bot@users.noreply.github.com"
-          if [ -z "$(git status --porcelain data/senate/20*/forecast.json data/senate/20*/history.csv docs/api/senate.json)" ]; then
-            echo "The Senate forecast came out the same: nothing to save."
+          msg="Senate forecast job: health $(TZ=America/New_York date '+%Y-%m-%d %H:%M')"
+          if [ "${{ steps.run.outcome }}" = "success" ] && [ -n "$(git status --porcelain data/senate/20*/forecast.json data/senate/20*/history.csv docs/api/senate.json)" ]; then
+            git add data/senate/20*/forecast.json data/senate/20*/history.csv data/senate/20*/sources.json docs/api/senate.json
+            msg="Senate forecast $(TZ=America/New_York date '+%Y-%m-%d %H:%M')"
+          fi
+          git add docs/api/health/senate-forecast.json || true
+          if git diff --cached --quiet; then
+            echo "The Senate forecast and the job's health came out the same: nothing to save."
             exit 0
           fi
-          git add data/senate/20*/forecast.json data/senate/20*/history.csv data/senate/20*/sources.json docs/api/senate.json
-          git commit -m "Senate forecast $(TZ=America/New_York date '+%Y-%m-%d %H:%M')"
+          git commit -q -m "$msg"
+          git checkout -q -- .          # what was not saved is dropped, so it cannot stop the pull below
           # never push while the presidential forecast is running or waiting: its save would then be refused
           for i in $(seq 1 40); do
             busy=0
@@ -61,8 +82,26 @@ jobs:
             git pull --rebase -q origin main && git push -q && exit 0
             sleep 10
           done
-          echo "::warning::The repository kept changing while this run saved; the next hourly run tries again."
+          echo "::warning::The repository kept changing while this run saved; the next run tries again."
+
+      # GitHub's schedule cannot be counted on to start the daily and weekly jobs either (RUNBOOK.md), so this job starts
+      # each one when its last run is a day (money) or a week (after the election) old. Their own schedules stay.
+      - name: Start the daily and weekly Senate jobs when due
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for job in senate-money senate-after; do
+            python senate/health.py --due "$job" || continue
+            busy=0
+            for s in in_progress queued pending; do
+              n=$(gh api "repos/${{ github.repository }}/actions/workflows/$job.yml/runs?status=$s&per_page=1" --jq '.total_count' 2>/dev/null || echo 0)
+              busy=$((busy + n))
+            done
+            if [ "$busy" != "0" ]; then echo "$job is running already."; continue; fi
+            gh workflow run "$job.yml" --ref main && echo "Started $job." || echo "::warning::$job could not be started."
+          done
 
       - name: Flag a failed run
         if: steps.run.outcome == 'failure'
-        run: echo "::warning::The Senate forecast could not be made this hour (see the step above); the one in place is the last good one."
+        run: echo "::warning::The Senate forecast could not be made this time (see the step above and docs/api/health/senate-forecast.json); the one in place is the last good one."
