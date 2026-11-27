@@ -30,14 +30,20 @@ def get(params, tries=6):
     log.append({'params': params, 'error': err}); return None
 
 
+def pages(titles):
+    """Up to 50 pages a request (the API's limit for page content)."""
+    out = {}
+    for i in range(0, len(titles), 40):
+        j = get({'action': 'query', 'prop': 'revisions', 'rvprop': 'content|timestamp', 'rvslots': 'main', 'titles': '|'.join(titles[i:i + 40]), 'redirects': '1'})
+        time.sleep(1.0)
+        for p in (j or {}).get('query', {}).get('pages', []):
+            if p.get('missing') or 'revisions' not in p: continue
+            out[p['title']] = {'title': p['title'], 'timestamp': p['revisions'][0]['timestamp'], 'text': p['revisions'][0]['slots']['main']['content']}
+    return out
+
+
 def page(title):
-    j = get({'action': 'query', 'prop': 'revisions', 'rvprop': 'content|timestamp', 'rvslots': 'main', 'titles': title, 'redirects': '1'})
-    time.sleep(1.5)
-    try:
-        p = j['query']['pages'][0]
-        return {'title': p['title'], 'timestamp': p['revisions'][0]['timestamp'], 'text': p['revisions'][0]['slots']['main']['content']}
-    except Exception:                                              # noqa: BLE001 - a missing page
-        return None
+    return pages([title]).get(title) or next(iter(pages([title]).values()), None)
 
 
 def polling_links(text):
@@ -46,15 +52,9 @@ def polling_links(text):
 
 
 def senate(year):
-    out = {}
-    for st in STATES:
-        for kind in ('election', 'special election'):
-            p = page(f'{year} United States Senate {kind} in {st}')
-            if p is None: continue
-            out[p['title']] = p
-            for t in polling_links(p['text']):
-                q = page(t)
-                if q: out[q['title']] = q
+    out = pages([f'{year} United States Senate {kind} in {st}' for st in STATES for kind in ('election', 'special election')])
+    links = sorted(set(t for p in list(out.values()) for t in polling_links(p['text'])))
+    out.update(pages(links))
     return out
 
 
