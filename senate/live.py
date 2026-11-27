@@ -244,6 +244,7 @@ def build_races(pages, seats, model, today, days):
         dem, rep, fixed = ballot(text, st, s, today) if own else (None, None, None)
         if not own and today >= pd.Timestamp(f'{YEAR}-09-01'):
             dem, rep, fixed = ballot('', st, s, today)
+        dem_party = 'I' if dem and own and any(x['party'] in ('I', 'O') and same_person(x['name'], dem) for x in WC.race(text)['nominees']) else 'D'
         party = s['incumbent_party'] if s['incumbent'] else None
         side = 'dem' if party in ('D', 'I') else 'rep' if party == 'R' else None      # independents sit with the Democrats now
         nominee = dem if side == 'dem' else rep if side == 'rep' else None
@@ -288,7 +289,7 @@ def build_races(pages, seats, model, today, days):
             else: why = 'Not read as the nominees\' matchup'
             listed.append({**q, 'special': bool(s['special']), 'counted': why is None, 'why': why})
         rows.append({'state': st, 'special': bool(s['special']), 'incumbent': s['incumbent'], 'incumbent_party': party, 'status': s['status'], 'short': short,
-                     'incumbent_runs': round(runs, 4), 'dem': dem, 'rep': rep, 'fixed': fixed, 'declared': s['declared'],
+                     'incumbent_runs': round(runs, 4), 'dem': dem, 'dem_party': dem_party, 'rep': rep, 'fixed': fixed, 'declared': s['declared'],
                      'page': page['title'] if own else None, 'revision': page['timestamp'] if own else None,
                      'lean': lean(YEAR, st), 'inc_d': runs if side == 'dem' else 0.0, 'inc_r': runs if side == 'rep' else 0.0,
                      'track': round(float(track), 4), 'poll': poll, 'poll_w': pw, 'polls': n_polls,
@@ -464,7 +465,7 @@ def main(saved=None):
     for j, r in enumerate(R.itertuples()):
         x = X[:, j]; lo_j, hi_j = np.percentile(x, [10, 90]); fx = txt(r.fixed)
         races.append({'state': r.state, 'special': r.special, 'incumbent': txt(r.incumbent), 'incumbent_party': txt(r.incumbent_party), 'status': r.status, 'short': r.short,
-                      'incumbent_runs': r.incumbent_runs, 'dem': txt(r.dem), 'rep': txt(r.rep), 'fixed': fx, 'declared': r.declared,
+                      'incumbent_runs': r.incumbent_runs, 'dem': txt(r.dem), 'dem_party': r.dem_party, 'rep': txt(r.rep), 'fixed': fx, 'declared': r.declared,
                       'margin': None if fx else round(2 * float(np.mean(x)) - 100, 2), 'low80': None if fx else round(2 * lo_j - 100, 2), 'high80': None if fx else round(2 * hi_j - 100, 2),
                       'p_dem': round(float((x > 50).mean()), 4),
                       'p_dem_if_dem_president': round(float((x[pres['dem_win']] > 50).mean()), 4) if pres and pres['dem_win'].any() else None,
@@ -526,7 +527,7 @@ def page(out, H, model):
                 seen.add(surname(nm)); c = cash(r['state'], nm, pt)
                 if c: money_rows.append(c)
         races.append({'state': r['state'], 'name': W28.NAMES[r['state']], 'special': r['special'], 'incumbent': r['incumbent'], 'party': r['incumbent_party'],
-                      'status': r['short'], 'dem': r['dem'], 'rep': r['rep'], 'fixed': r['fixed'],
+                      'status': r['short'], 'dem': r['dem'], 'dem_party': r['dem_party'], 'rep': r['rep'], 'fixed': r['fixed'],
                       'declared': [{'name': x['name'], 'party': x['party']} for x in r['declared'] if not same_person(x['name'], r['incumbent'])],
                       'p_dem': r['p_dem'], 'margin': r['margin'], 'low80': r['low80'], 'high80': r['high80'],
                       'p_dem_if_dem_president': r['p_dem_if_dem_president'], 'p_dem_if_rep_president': r['p_dem_if_rep_president'],
@@ -542,7 +543,7 @@ def page(out, H, model):
     P = {'as_of': out['as_of'], 'year': out['year'], 'days_out': out['days_out'], 'election': out['election'], 'president': out['president'], 'president_party': out['president_party'],
          'chamber_now': out['chamber_now'], 'summary': out['summary'], 'distribution': out['caucus_distribution'], 'races': races, 'polls': polls,
          'national': {'approval': (out['national']['approval'] or {}).get('median'), 'environment': out['national']['blend'], 'generic': out['national']['generic'],
-                      'fundamentals': out['national']['fundamentals'], 'seat_model': out['national']['seat_model_dem_caucus']},
+                      'fundamentals': out['national']['fundamentals'], 'seat_model': out['national']['seat_model_dem_caucus'], 'races_own': out['national']['races_own_dem_caucus']},
          'presidential_forecast': out['presidential_forecast'], 'check_2026': check, 'money_as_of': money.get('as_of'),
          'model': mdl, 'backtests': json.load(open(bp)) if os.path.exists(bp) else None,
          'history': [{'date': r.date, 'p': r.p_dem_control, 'mean': r.dem_caucus_mean} for r in H.itertuples()]}

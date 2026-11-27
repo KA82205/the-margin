@@ -681,13 +681,13 @@
    "step": 4,
    "idea": "Starting each race from the presidential forecast of its state",
    "adopted": false,
-   "result": "Worse than the state's lean in 2020 and 2024 at every distance tried."
+   "result": "Three forms tried on 2020 and 2024; none beat the current version overall, and the best did better only two months out."
   },
   {
    "step": 5,
    "idea": "Each candidate's record in earlier Senate races",
    "adopted": true,
-   "result": "How far a candidate ran ahead of their state and year before; it narrowed the misses at every distance."
+   "result": "How far a candidate ran ahead of their state and year before: the chances got sharper at every distance; the typical miss barely moved."
   },
   {
    "step": 6,
@@ -711,7 +711,7 @@
    "step": 10,
    "idea": "Pulling the seat total toward a national model of seat change",
    "adopted": true,
-   "result": "A quarter of the way: better seat totals and chances over the five years."
+   "result": "A quarter of the way: the seat totals and the race chances improved over the five years."
   },
   {
    "step": 13,

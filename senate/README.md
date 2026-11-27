@@ -489,8 +489,9 @@ as half.
 
 `senate/live.py`, run every hour by `.github/workflows/senate.yml` after the presidential forecast's run, writes
 `data/senate/2028/forecast.json` (the chance of control, the caucus range, each race), `history.csv` (a line a day),
-`sources.json` (the page versions read) and `docs/api/senate.json`, which the site's Senate tab reads when it opens (so
-the tab is as fresh as the Senate run, whatever the presidential page's last build). Each run:
+`sources.json` (the page versions read) and `docs/api/senate.json`, which the site reads when a Senate part opens (so
+it is as fresh as the Senate run, whatever the presidential page's last build). Each run (more in "What runs on its
+own" below):
 
 1. reads Wikipedia's 2028 Senate page: the 35 seats up (34 of Class 3 and Tennessee's special), who holds each, whether
    they are running, the declared candidates, and the chamber as it stands (56 in the Democratic caucus, 40 of them not
@@ -539,6 +540,53 @@ points of margin to most of these senators, and no single retirement decides the
 So the 99% stands on the model's record. It rests mostly on the map: the Democrats hold 56 seats, 16 of them up, with a
 national environment from Trump's approval about four points their way.
 
+## Step 18: money by date again, with 2026 in the fit (not adopted)
+
+Step 13 left money out after a test fitted on 2018-2024; with 2026 a fitting year (step 15), it was run again: each of
+the five years left out and forecast from the other four, with and without money raised by each date. Money made the
+chances worse at every distance (log loss 0.250 against 0.254 a year out, 0.164 against 0.170 on the last day) and the
+margins worse at seven of eight distances (6.3 against 6.4 points on the last day, root mean square). It stays out of
+the forecast. `senate/fec_live.py` still reads each candidate's FEC totals once a day (`senate-money.yml`, with the
+`FEC_API_KEY` secret, never printed), for the Senate tab, where money is shown as context and labelled as not used.
+
+## What runs on its own
+
+Every hour (`senate.yml`), `senate/live.py`:
+
+- **works out the election:** the next one still to come, so from the day after an election it moves to the one two
+  years on (each cycle's files in `data/senate/<year>/`); the president, their party and their approval page are
+  written down through January 2029 and read from Wikipedia after that (the office's page, the president's own page,
+  a search for the approval page);
+- **reads the seats** from the "Race summary" section of the year's Wikipedia page, and only from it: regular and special
+  elections, who holds each seat (a vacancy is open until an appointee is named), whether they are running (running
+  again; retiring, running for another office, resigned or beaten in a primary; or not known), the declared candidates,
+  and the chamber as it stands;
+- **reads each race's own pages** (and the polling pages they link to): the nominees once Wikipedia's box names them. A
+  senator whose party has chosen runs only if they are its nominee; a nominee's own record counts once chosen; with no
+  Democrat on the ballot, an independent running against the Republican stands as the Democratic side; two nominees of
+  one party, or from September a side with no candidate at all, decide the seat outside the simulation;
+- **lists every general-election poll** on those pages (`senate/poll_list.py`), and counts the nominees' own matchup
+  once both are chosen, polls marked as paid for by a party or a campaign left out;
+- **draws** whether a senator who has not said they will run runs, in each simulated election (79%), and in a
+  presidential year the races inside the presidential forecast's simulated elections (a midterm's 50-50 Senate goes to
+  the sitting vice president's party);
+- **checks** what it read (30 to 40 seats, no seat twice, a chamber of 95 to 100 that adds up, a lean for every race,
+  approval and the national mood in range) and stops if anything is off, leaving the last forecast in place;
+- **writes** `forecast.json`, `history.csv`, `sources.json` and `docs/api/senate.json`, which the site's Senate tab, the
+  Senate side of the Polls, Model and Back-tests tabs read when they open, and saves them only when a number moved.
+
+`tests/test_senate_live.py` runs each of these cases on made-up pages: a senator who has not said, one running for
+governor, one retiring, a vacancy, a primary lost, two nominees of one party, an independent against a Republican, a
+side with no candidate by September, polls of the nominees (one paid for by a campaign), a table outside the race
+summary that must not be read, and a page too short to trust. `senate/site_data.py` makes the back-test figures the
+Back-tests tab shows (`data/senate/site_backtests.json`), each year forecast with that year left out, as the live
+forecast reports races (after the pull toward the national seat model).
+
+What still needs a hand after an election: the cycle's results added to the training data and `live_fit.py` run again
+(the fit needs the raw returns kept out of the repository), and the presidential results added to `data/results.csv`
+before the next cycle's state leans can be worked out (a cycle without them stops at the check, with the last forecast
+in place).
+
 ## The 2026 academic forecasts, for reference
 
 `data/senate/2026/academic_forecasts_2026.csv` holds the forecasts in the *PS: Political Science & Politics* special
@@ -560,5 +608,4 @@ Senate seats and a 63% chance of control 60 days out, and about 53 seats and 82%
 - An approval average the pipeline collects itself, to replace Gallup in the national fundamentals.
 - The national seat-change model as a benchmark beside the Senate and House forecasts.
 - Records from House and statewide races, for candidates who have run for those offices.
-- Money by date again once 2026 is a fitting year (step 13), and the reports of the two 2026 nominees not yet found.
 - The Manifold race markets of 2022 and 2024, tested in the research section only, with no weight in the forecast.
