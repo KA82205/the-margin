@@ -54,7 +54,7 @@ def polling_links(text):
 
 
 def senate(year):
-    out = pages([f'{year} United States Senate {kind} in {st}' for st in STATES for kind in ('election', 'special election')])
+    out = pages([f'{year} United States Senate {kind} in {st}' for st in STATES for kind in ('election', 'special election', 'elections')])
     links = sorted(set(t for p in list(out.values()) for t in polling_links(p['text'])))
     out.update(pages(links))
     return out

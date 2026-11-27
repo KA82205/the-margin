@@ -40,19 +40,22 @@ def races():
     return BD.track_records(R)
 
 
-SOURCE = os.environ.get('SENATE_POLLS', 'rcp')      # 'rcp', or 'wikipedia' (data/senate/2026/wiki_polls_2026.csv, CC BY-SA)
+SOURCE = os.environ.get('SENATE_POLLS', 'wikipedia')   # 'wikipedia' (data/senate/2026/, CC BY-SA), or 'rcp' (kept out of the repository)
 
 
 def poll_file():
-    if SOURCE == 'wikipedia':
-        return pd.read_csv(os.path.join(D26, 'wiki_polls_2026.csv'))
+    if SOURCE == 'wikipedia':                                  # partisan polls out, as in training (backtest.build)
+        P = pd.read_csv(os.path.join(D26, 'wiki_polls_2026.csv')); return P[P.partisan.fillna('') == '']
     return pd.read_csv(os.path.join(RCP, 'senate_polls.psv'), sep='|')
 
 
 def features(R):
     P = poll_file()
     P['dem2'] = 100 * P.dem_pct / (P.dem_pct + P.rep_pct); P['population'] = P.population.str.lower()
-    G = pd.read_csv(os.path.join(RCP, 'generic_weekly.csv'), parse_dates=['date']); G['dem2'] = 100 * G.dem / (G.dem + G.rep)
+    if SOURCE == 'wikipedia':
+        G = pd.read_csv(os.path.join(D26, 'wiki_generic_2026.csv'), parse_dates=['date']).rename(columns={'dem2_median': 'dem2'})
+    else:
+        G = pd.read_csv(os.path.join(RCP, 'generic_weekly.csv'), parse_dates=['date']); G['dem2'] = 100 * G.dem / (G.dem + G.rep)
     rows = []
     for r in R.itertuples():
         pr = P[P.state == r.state]
@@ -120,7 +123,7 @@ def main():
                   'model_miss_same_races': round(float(np.sqrt(np.mean(f ** 2))), 2), 'model_bias_same_races': round(float(f.mean()), 2),
                   'polls_only_called': int(((pm.polls_only_margin > 0) == (pm.result_margin > 0)).sum())}
     print(summary_po)
-    with open(os.path.join(D26, 'test_2026.json' if SOURCE == 'rcp' else f'test_2026_{SOURCE}.json'), 'w') as fh:
+    with open(os.path.join(D26, 'test_2026.json' if SOURCE == 'wikipedia' else f'test_2026_{SOURCE}.json'), 'w') as fh:
         json.dump({'note': 'The 2026 Senate elections forecast by the working version fitted on 2018-2024 only. Margins are Democratic-side minus Republican, in points.',
                    'by_distance': Rs.to_dict('records'), 'by_race': Br.to_dict('records'), 'polls_only_last_day': summary_po}, fh, indent=1)
     return Rs, Br

@@ -111,8 +111,13 @@ class National:
         self.rcp = pd.read_csv(RCP_APPROVAL, parse_dates=['date']) if os.path.exists(RCP_APPROVAL) else None
 
     def approval(self, y, asof):
+        """Gallup's, while it polled; after, the aggregators' median on Wikipedia less Gallup's 2025 offset
+        (wiki_national.py), or with SENATE_POLLS=rcp RealClearPolling's average by the paper's proxy."""
         pres = PRESIDENT[y][1]
         if asof < pd.Timestamp('2026-01-01'): return approval_on(self.A, pres, asof)
+        if os.environ.get('SENATE_POLLS', 'wikipedia') == 'wikipedia':
+            w = pd.read_csv(os.path.join(ROOT, 'data', 'senate', '2026', 'wiki_approval_2026.csv'), parse_dates=['date'])
+            return float(w[w.date <= asof].approve_median.iloc[-1]) - 3.35
         r = self.rcp[self.rcp.date <= asof].approve.iloc[-1]
         return PROXY[0] + PROXY[1] * r + PROXY[2]
 

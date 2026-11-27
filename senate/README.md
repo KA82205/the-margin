@@ -34,6 +34,9 @@ nation's in the last presidential election (three quarters) and the one before (
 
 ## Sources
 
+- Wikipedia, each Senate race's page, the second Trump presidency's opinion-polling page and the 2026 House
+  elections page, with their histories (CC BY-SA 4.0); the tables derived from them carry the same licence
+
 - MIT Election Data and Science Lab, "U.S. Senate 1976-2024", doi:10.7910/DVN/PEJ5QU (CC0)
 - Federal Election Commission, "All candidates" summary files, 2018-2026 (public domain)
 - FiveThirtyEight polls and forecasts (CC BY 4.0), from the archived copy in github.com/jcervas/data
@@ -356,6 +359,41 @@ races still decide which seats. Weights of 0, a quarter, a half, three quarters 
   32 races called right and a 77% chance of control; a year out, 15.8 seats and 33%.
 - The simulation and 2026 figures in steps 6 and 7 were made before this step; `simulation.json` and `test_2026.json`
   now hold the combined version.
+
+## Step 11: Wikipedia as the poll feed (adopted)
+
+FiveThirtyEight's archive has closed and RealClearPolling's data can be read here but not by the automated runs, so
+the forecast needs a source it can collect itself. Wikipedia's pages serve, under CC BY-SA 4.0:
+
+- **Race polls:** each race page's tables of general-election polls (`senate/wiki_polls.py`; built into
+  `polls_wikipedia.csv` for 2018-2024 and `2026/wiki_polls_2026.csv` by `senate/wiki_build.py`). A table is read when
+  its heading names both nominees (surname, given name or a common nickname, and party, so that Lindsey Graham is not
+  taken for Darline Graham); tables of averages are skipped; a poll asked several ways keeps the version with the most
+  voters choosing between the two nominees; polls Wikipedia marks with a party are left out, as in training.
+- **Approval and the generic ballot:** the median of the aggregators the pages list (`senate/wiki_national.py`), read
+  from the pages' history for past dates. Approval becomes a Gallup equivalent by Gallup's 2025 offset from that median:
+  3.35 points below (spread 2.0, 22 half-monthly readings); for June 2026 that gives 34.95, against the paper's 34.5.
+  The generic-ballot median tracks RealClearPolling's within about 0.3 points.
+
+| Coverage | Wikipedia | FiveThirtyEight / RealClearPolling |
+|---|---|---|
+| 2018-2024 polls of the nominees (one per poll and population) | 634, 919, 685, 997 | 821, 925, 706, 1,001 questions |
+| 2026 polls / races with polls in the last 30 days | 651 / 22 | 471 / 19 (RealClearPolling) |
+
+| Back-test, leave one year out, miss on the margin (log loss) | A year out | 60 days | Last day |
+|---|---|---|---|
+| Trained on FiveThirtyEight's polls | 7.09 (0.229) | 6.19 (0.135) | 6.11 (0.144) |
+| Trained on Wikipedia's polls | 7.03 (0.224) | 6.23 (0.134) | 5.98 (0.146) |
+
+| 2026, out of sample, last day | Races called | Miss on the margin | Log loss | Democratic seats (80% range) | Control |
+|---|---|---|---|---|---|
+| FiveThirtyEight training, RealClearPolling inputs | 30 | 6.46 | 0.252 | 18.3 (15-22) | 77% |
+| Wikipedia training and inputs | 30 | 6.31 | 0.235 | 18.7 (15-22) | 82% |
+
+Wikipedia is now the default everywhere (`backtest.py`, `simulate.py`, `test_2026.py`; `SENATE_TRAIN_POLLS=538` and
+`SENATE_POLLS=rcp` bring back the earlier sources, whose 2026 run is kept in `2026/test_2026_rcp.json`). Figures in
+steps 2-10 were made with FiveThirtyEight's polls. Gaps that remain: California's 2024 pages were not fetched under
+the name used, and the 2018 count is lower mostly because FiveThirtyEight counted each version of a poll.
 
 ## The 2026 academic forecasts, for reference
 

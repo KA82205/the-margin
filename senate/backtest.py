@@ -61,7 +61,10 @@ def average(t, asof, d_out, floor=1.0):
 
 
 def build():
-    R = pd.read_csv(os.path.join(D, 'races.csv')); P = pd.read_csv(os.path.join(D, 'polls.csv')); G = pd.read_csv(os.path.join(D, 'generic.csv'))
+    # the race polls: Wikipedia's race pages (polls_wikipedia.csv, senate/wiki_build.py), the source the forecast will
+    # read live (step 11); FiveThirtyEight's archive (polls.csv) when SENATE_TRAIN_POLLS=538, as in steps 2-10
+    pf = 'polls.csv' if os.environ.get('SENATE_TRAIN_POLLS') == '538' else 'polls_wikipedia.csv'
+    R = pd.read_csv(os.path.join(D, 'races.csv')); P = pd.read_csv(os.path.join(D, pf)); G = pd.read_csv(os.path.join(D, 'generic.csv'))
     P = P[(P.partisan.fillna('') == '') & ~P.internal.astype(bool)]                       # as the presidential model does
     G = G[(G.partisan.fillna('') == '') & ~G.internal.fillna(False).astype(bool)]
     gen = {y: table(G[G.cycle == y], {'end': 'end_date', 'n': 'sample_size', 'pop': 'population', 'pollster': 'pollster', 'x': 'dem2'}) for y in YEARS}

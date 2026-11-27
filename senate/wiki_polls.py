@@ -117,18 +117,45 @@ def plain(s):
     return unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().upper()
 
 
-def surname_in(header, name, side=None):
-    """The header names this candidate: the surname, a word before it in the same heading starting like the first name
-    (Ed for Edward, Mike for Michael; middle initials allowed), and, when the heading shows a party, the candidate's own
-    (so Lindsey Graham is not taken for Darline Graham, nor Dan J. Sullivan (I) for Dan S. Sullivan (R))."""
-    h = plain(clean(header)); words = re.findall(r"[A-Z][A-Z'.-]*", h)
-    toks = plain(name).split(); last, first = toks[-1], toks[0]
+SUFFIX = ('JR', 'SR', 'II', 'III', 'IV', 'MR', 'MRS', 'MS', 'DR', 'SEN', 'HON')
+NICKNAMES = {'ROBERT': ('BOB', 'BOBBY', 'ROB'), 'WILLIAM': ('BILL', 'WILL', 'BILLY'), 'JAMES': ('JIM', 'JIMMY', 'JAMIE'), 'JOSEPH': ('JOE',),
+             'RICHARD': ('DICK', 'RICK', 'RICH'), 'EDWARD': ('TED', 'ED', 'EDDIE'), 'CHARLES': ('CHUCK', 'CHARLIE'), 'THOMAS': ('TOM',),
+             'MICHAEL': ('MIKE',), 'CHRISTOPHER': ('CHRIS',), 'DAVID': ('DAVE',), 'DANIEL': ('DAN',), 'MARGARET': ('MAGGIE', 'PEGGY'),
+             'ELIZABETH': ('LIZ', 'BETH', 'BETSY'), 'KATHERINE': ('KATE', 'KATIE', 'KAT'), 'JOHN': ('JACK',), 'ANTHONY': ('TONY',),
+             'GERALD': ('JERRY',), 'LAWRENCE': ('LARRY',), 'RAYMOND': ('RAY',), 'ADDISON': ('MITCH',), 'TIMOTHY': ('TIM',)}
+
+
+def name_parts(name):
+    """(given names, surname) from either 'FIRST MIDDLE LAST' or 'LAST, FIRST', suffixes and initials dropped."""
+    n = plain(str(name)).replace("'", '').replace('"', ' ').replace('\\', ' ').replace('.', ' ')
+    words = lambda x: [w for w in re.findall(r'[A-Z][A-Z-]*', x) if w not in SUFFIX and len(w) > 1]
+    if ',' in n:
+        last, given = n.split(',', 1); lw = words(last)
+        return words(given), (lw[-1] if lw else '')
+    w = words(n)
+    return w[:-1], (w[-1] if w else '')
+
+
+def given_before(header, last):
+    h = re.sub(r'-\s+', '-', plain(clean(header)).replace("'", '').replace('.', ' ')); words = re.findall(r'[A-Z][A-Z-]*', h)
+    return {words[i - 1] for i, w in enumerate(words) if w == last and i > 0 and len(words[i - 1]) > 1}
+
+
+def surname_in(header, name, side=None, loose=False):
+    """The header names this candidate: the surname, a word before it in the same heading starting like a given name
+    (Ed for Edward, Bob for Robert is not caught, so nicknames that share no start rely on the other given names),
+    and, when the heading shows a party, the candidate's own (so Lindsey Graham is not taken for Darline Graham, nor
+    Dan J. Sullivan (I) for Dan S. Sullivan (R))."""
+    h = re.sub(r'-\s+', '-', plain(clean(header)).replace("'", '').replace('.', ' '))   # a name broken over two lines
+    words = re.findall(r'[A-Z][A-Z-]*', h)
+    given, last = name_parts(name)
     party = re.search(r'\(([A-Z])\)', h)
     if side and party and party.group(1) != side and not (side == 'D' and party.group(1) == 'I'): return False
     for i, w in enumerate(words):
         if w == last:
-            before = words[max(0, i - 3):i]
-            return i == 0 or any(x[:2] == first[:2] for x in before) or (len(toks) > 2 and any(x in toks for x in before))
+            before = [x for x in words[max(0, i - 3):i] if x not in SUFFIX]
+            alias = set(given) | {n for g in given for n in NICKNAMES.get(g, ())} | {k for g in given for k, v in NICKNAMES.items() if g in v}
+            return loose or i == 0 or not before or any(x[:2] == g[:2] for x in before for g in given[:1]) or any(x in alias for x in before)
     return False
 
 
@@ -143,7 +170,15 @@ def dedupe(polls):
 
 
 def parse(text, dem, rep, state, year):
+    """A candidate whose given name the page writes differently (Bryant for Corky Messner) is matched on surname and
+    party alone, but only when no other person with that surname appears in the page's poll headings."""
     polls = []
+    heads_all = re.findall(r'\n!([^\n]*)', text)
+    loose = {}
+    for side, nm in (('D', dem), ('R', rep)):
+        last = name_parts(nm)[1]
+        firsts = set().union(*[given_before(h, last) for h in heads_all]) if heads_all else set()
+        loose[side] = len(firsts) <= 1
     for table in re.findall(r'\{\|.*?\n\|\}', text, flags=re.S):
         rows = rows_of(table)
         if not rows: continue
@@ -151,7 +186,8 @@ def parse(text, dem, rep, state, year):
         heads = [clean(c[2]) for c in head]
         if any(AGGREGATORS.search(h) for h in heads): continue
         if not heads or 'poll' not in heads[0].lower(): continue
-        di = [i for i, h in enumerate(heads) if surname_in(h, dem, 'D')]; ri = [i for i, h in enumerate(heads) if surname_in(h, rep, 'R')]
+        di = [i for i, h in enumerate(heads) if surname_in(h, dem, 'D')] or [i for i, h in enumerate(heads) if loose['D'] and surname_in(h, dem, 'D', True)]
+        ri = [i for i, h in enumerate(heads) if surname_in(h, rep, 'R')] or [i for i, h in enumerate(heads) if loose['R'] and surname_in(h, rep, 'R', True)]
         if not di or not ri: continue
         di, ri = di[0], ri[0]
         si = next((i for i, h in enumerate(heads) if 'sample' in h.lower()), 2); dt = next((i for i, h in enumerate(heads) if 'date' in h.lower()), 1)
