@@ -1359,7 +1359,7 @@ const DATA = {"f":{"as_of":"2026-11-27","days_out":711,"p_dem":0.698175,"p_model
     const snCell = (q, r) => { if (r.fixed) return '<span class="' + (r.fixed === 'D' ? 'dem' : 'rep') + '">' + r.fixed + ' decided</span>';
       if (q < 0.995 && q > 0.005) return aheadCell(q); const dd = q >= 0.5; return '<span class="' + (dd ? 'dem' : 'rep') + '">' + (dd ? 'D' : 'R') + ' >99%</span> <span class="chance-o">' + (dd ? 'R' : 'D') + ' <1%</span>'; };
     const others = r => r.declared.length ? '<small>Declared: ' + r.declared.slice(0, 4).map(x => esc(x.name) + (x.party ? ' (' + x.party + ')' : '')).join(', ') + (r.declared.length > 4 ? ' and ' + (r.declared.length - 4) + ' more' : '') + '</small>' : '';
-    const cash = r => r.money && r.money.length ? '<small>Raised: ' + r.money.slice(0, 3).map(x => esc(x.name.split(' ').slice(-1)[0]) + ' ' + money(x.raised)).join(', ') + '</small>' : '';
+    const cash = r => r.money && r.money.length ? '<small>Raised: ' + r.money.slice(0, 3).map(x => esc(x.name) + ' ' + money(x.raised)).join(', ') + '</small>' : '';          // full names: a surname can be two words (Van Hollen)
     const rows = S.races.slice().sort((a, b) => (b.p_dem - a.p_dem) || ((b.margin || 0) - (a.margin || 0)));
     $('sn-t').innerHTML = '<thead><tr><th>State</th><th>Senator</th><th class="n">Chance of winning</th><th class="n">Projected margin</th><th class="n">80% prediction interval</th></tr></thead><tbody>' +
       rows.map(r => '<tr id="sn-r-' + r.state + (r.special ? 's' : '') + '"><td>' + esc(r.name) + (r.special ? ' <small>Special election</small>' : '') + (r.dem && r.rep ? '<small>' + esc(r.dem) + ' vs ' + esc(r.rep) + '</small>' : '') + '</td>' +
