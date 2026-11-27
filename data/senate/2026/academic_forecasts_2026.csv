@@ -1,0 +1,16 @@
+model,authors,approach,house_dem_seats,house_low95,house_high95,senate_dem_seats,senate_low,senate_high,p_dem_house,p_dem_senate,house_dem_vote,note
+Structural model,Algara et al.,generic ballot + net approval + midterm + median seat,239,214,275,49,39,58,0.90,0.45,,published as Republican seats 196 [160-221] and 51 [42-61]
+Nationalized-weighted model,Carson and Whitford,coefficients varying with nationalization,230,201,260,50.6,43,62,0.801,0.41,,Senate offered as illustrative; 41% for 51 seats and 49% for 50
+State-level forecasting model,DeSart,state level with district dissimilarity,241,227,253,,,,,,,
+State Level Forecasting Model,Enns Farah Miner and Gareau-Paquette,district level,235,209,279,,,,0.90,,,
+CASM-inspired LLM personae,Jonaitis et al.,synthetic survey with MRP,292,266,307,,,,,,58.4,published as 292 [266-307] Democratic and 143 [128-169] Republican; Republican vote 39.8
+Structural historical model,Quinlan and Lewis-Beck,national and local party standing,231,,,51,,,0.783,0.657,,
+Structural model,Quinn Brush and Smith,approval + income + midterm (+ seats up),258,221,294,56,49,63,,,,published as Republican seats 177 [141-214] and 44 [37-51]
+Structural and polling state model,Rametta and Hare,state level Senate with polls,,,,50.5,45,56,,0.506,,90% interval
+Structure-X,Tien and Lewis-Beck,approval + economy + midterm + expert judgment,233,,,54,,,,,,published as Republican seats 202 and 46
+Cost of Ruling,Tien and Lewis-Beck,cost of ruling,249,,,53,,,,,,published as Republican seats 186 and 47
+Structural historical model,Whiteley,political economy without polls,237,221,253,47,44,50,,,,
+Economy,Fair,economy,,,,,,,,,50.89,two-party Democratic House vote
+Prediction market IEM,Gruca and Rietz,market,,,,,,,0.60,0.441,,
+Prediction market Kalshi,Gruca and Rietz,market,,,,,,,0.896,0.586,,
+Citizen forecasts,Leiter Lewis-Beck and Stegmaier,wisdom of crowds,,,,,,,0.55,0.493,,published as Republican Senate 50.7%

@@ -293,6 +293,21 @@ it:
   paper's proxy (in `data/senate/2026_rcp/`, kept out of the repository). Running this in 2028 needs an approval
   average the pipeline can collect itself; Fifty-Two Keys' own list of approval polls is too thin for it so far.
 
+## The 2026 academic forecasts, for reference
+
+`data/senate/2026/academic_forecasts_2026.csv` holds the forecasts in the *PS: Political Science & Politics* special
+issue on the 2026 midterms (Kenny and Leiter's introduction, Tables 1-3), turned into Democratic seats where a paper
+gave Republican ones. Against the result as reported on November 26 (Democrats 259 House seats with three undecided,
+a 56-seat Senate caucus, about 57 percent of the two-party House vote): Quinn, Brush and Smith were closest on both
+chambers (258 and 56); Tien and Lewis-Beck next on the Senate (54 and 53); every other House forecast but one was 18 to
+29 seats short. Of those giving chances for both chambers, Quinlan and Lewis-Beck (78% House, 66% Senate) and Kalshi
+(90%, 59%) scored best. The models built on approval and the midterm did best; those leaning on the generic ballot or
+polls understated the Democrats, as this model's race polls did. One election cannot rank models: Quinn, Brush and
+Smith's own record misses the Senate by about 3 seats in a typical year.
+
+For comparison, this model (working version) gave the Democrats about 50 Senate seats and a 40% chance of control 60
+days out, and about 51 seats and 64% on the last day.
+
 ## What comes next
 
 - Add 2026 to the fitting years and size the shared error again.
