@@ -12,6 +12,8 @@ Versions, each built on the one before:
     +polls by volume             the polls' weight rises with the amount of polling, between a floor and a cap
     +polls by volume, race sd    the same, with the error sized for each race (tested and not adopted, see README)
     +track, +polls by volume     each candidate's record in earlier Senate races added to the fundamentals (adopted, step 5)
+    +national, +polls by volume  the national input half the generic ballot, half the approval-and-midterm fundamentals
+                                 (national.py; adopted, step 8)
     president, our president, ticket ...   presidential years started from the presidential polls or from The Margin's own
                                  presidential forecast of the state (tested and not adopted, see README, step 4)
 
@@ -26,6 +28,7 @@ import numpy as np, pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE); sys.path.insert(0, ROOT)
 import model as M                                                    # the presidential model's poll weights, reused as they are
+import national as NA                                                # the national fundamentals (step 8)
 
 D = os.path.join(ROOT, 'data', 'senate')
 YEARS = (2018, 2020, 2022, 2024)
@@ -97,7 +100,8 @@ def build():
     X = X.merge(PF, on=['year', 'state', 'days'], how='left')
     X['our_env'] = X.margin_pres.where(X.margin_pres.notna(), X.fund_env)
     X['our_gap'] = X.our_env - X.fund_env
-    return X
+    # the national fundamentals (national.py): approval and the midterm, averaged half and half with the generic ballot
+    return NA.add(X)
 
 
 def split(cols):
@@ -168,11 +172,12 @@ VERSIONS = {'lean': ['lean', 'generic'], '+incumbent': ['lean', 'generic', 'inc_
             # the Senate result as the state's presidential forecast plus how far the party's candidate runs ahead of the top
             # of the ticket, which depends on who holds the seat: the forecast is taken as it is, with no coefficient fitted on it
             'ticket': ['@our_env', 'inc_d', 'inc_r'],
-            '+track': ['lean', 'generic', 'inc_d', 'inc_r', 'track']}
+            '+track': ['lean', 'generic', 'inc_d', 'inc_r', 'track'],
+            '+national': ['lean', 'blend_approval', 'inc_d', 'inc_r', 'track']}
 # the race-poll blend by volume, on each starting point: the fundamentals with incumbency, and the two presidential ones
 BLENDS = {'+polls by volume': '+incumbent', 'president, +polls by volume': 'president', 'president gap, +polls by volume': 'president gap',
           'our president, +polls by volume': 'our president', 'our president gap, +polls by volume': 'our president gap', 'ticket, +polls by volume': 'ticket',
-          '+track, +polls by volume': '+track'}
+          '+track, +polls by volume': '+track', '+national, +polls by volume': '+national'}
 
 
 def run(X):
@@ -232,7 +237,7 @@ def score(F):
     return F, S
 
 
-OURS = ('+polls by volume', '+track, +polls by volume')
+OURS = ('+track, +polls by volume', '+national, +polls by volume')
 
 
 def benchmark(F):

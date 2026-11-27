@@ -1,0 +1,3213 @@
+{
+ "note": "Senate race model with the national fundamentals as its national input; margins in points, Democratic side minus Republican.",
+ "loyo_2018_2024": [
+  {
+   "version": "blend",
+   "days": 1,
+   "margin_miss": 5.8514,
+   "log_loss": 0.1402,
+   "called": 128.0
+  },
+  {
+   "version": "blend",
+   "days": 7,
+   "margin_miss": 5.7141,
+   "log_loss": 0.1345,
+   "called": 127.0
+  },
+  {
+   "version": "blend",
+   "days": 14,
+   "margin_miss": 6.1758,
+   "log_loss": 0.1642,
+   "called": 126.0
+  },
+  {
+   "version": "blend",
+   "days": 30,
+   "margin_miss": 6.2375,
+   "log_loss": 0.1696,
+   "called": 127.0
+  },
+  {
+   "version": "blend",
+   "days": 60,
+   "margin_miss": 6.2144,
+   "log_loss": 0.1455,
+   "called": 131.0
+  },
+  {
+   "version": "blend",
+   "days": 120,
+   "margin_miss": 7.2055,
+   "log_loss": 0.1985,
+   "called": 127.0
+  },
+  {
+   "version": "blend",
+   "days": 250,
+   "margin_miss": 7.6314,
+   "log_loss": 0.2401,
+   "called": 128.0
+  },
+  {
+   "version": "blend",
+   "days": 365,
+   "margin_miss": 7.6785,
+   "log_loss": 0.2409,
+   "called": 127.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 1,
+   "margin_miss": 6.1087,
+   "log_loss": 0.1438,
+   "called": 127.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 7,
+   "margin_miss": 6.0134,
+   "log_loss": 0.1368,
+   "called": 127.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 14,
+   "margin_miss": 6.3582,
+   "log_loss": 0.1653,
+   "called": 127.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 30,
+   "margin_miss": 6.1121,
+   "log_loss": 0.1574,
+   "called": 126.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 60,
+   "margin_miss": 6.1921,
+   "log_loss": 0.1349,
+   "called": 130.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 120,
+   "margin_miss": 6.9815,
+   "log_loss": 0.1937,
+   "called": 128.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 250,
+   "margin_miss": 7.4318,
+   "log_loss": 0.2353,
+   "called": 128.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 365,
+   "margin_miss": 7.0921,
+   "log_loss": 0.2286,
+   "called": 128.0
+  },
+  {
+   "version": "fund",
+   "days": 1,
+   "margin_miss": 6.8223,
+   "log_loss": 0.1789,
+   "called": 127.0
+  },
+  {
+   "version": "fund",
+   "days": 7,
+   "margin_miss": 6.504,
+   "log_loss": 0.1536,
+   "called": 127.0
+  },
+  {
+   "version": "fund",
+   "days": 14,
+   "margin_miss": 7.0293,
+   "log_loss": 0.1964,
+   "called": 127.0
+  },
+  {
+   "version": "fund",
+   "days": 30,
+   "margin_miss": 6.9117,
+   "log_loss": 0.189,
+   "called": 126.0
+  },
+  {
+   "version": "fund",
+   "days": 60,
+   "margin_miss": 6.9973,
+   "log_loss": 0.1739,
+   "called": 130.0
+  },
+  {
+   "version": "fund",
+   "days": 120,
+   "margin_miss": 7.4266,
+   "log_loss": 0.2061,
+   "called": 127.0
+  },
+  {
+   "version": "fund",
+   "days": 250,
+   "margin_miss": 7.9652,
+   "log_loss": 0.2532,
+   "called": 127.0
+  },
+  {
+   "version": "fund",
+   "days": 365,
+   "margin_miss": 8.3492,
+   "log_loss": 0.2595,
+   "called": 127.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 1,
+   "margin_miss": 6.1068,
+   "log_loss": 0.1449,
+   "called": 127.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 7,
+   "margin_miss": 5.9518,
+   "log_loss": 0.1383,
+   "called": 127.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 14,
+   "margin_miss": 6.3651,
+   "log_loss": 0.1676,
+   "called": 127.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 30,
+   "margin_miss": 6.1624,
+   "log_loss": 0.1608,
+   "called": 126.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 60,
+   "margin_miss": 6.2038,
+   "log_loss": 0.1353,
+   "called": 131.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 120,
+   "margin_miss": 6.9633,
+   "log_loss": 0.1948,
+   "called": 128.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 250,
+   "margin_miss": 7.5479,
+   "log_loss": 0.242,
+   "called": 127.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 365,
+   "margin_miss": 7.2856,
+   "log_loss": 0.2347,
+   "called": 128.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 1,
+   "margin_miss": 6.216,
+   "log_loss": 0.1444,
+   "called": 129.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 7,
+   "margin_miss": 6.2376,
+   "log_loss": 0.1378,
+   "called": 128.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 14,
+   "margin_miss": 6.5819,
+   "log_loss": 0.1672,
+   "called": 126.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 30,
+   "margin_miss": 6.1185,
+   "log_loss": 0.1548,
+   "called": 127.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 60,
+   "margin_miss": 6.3437,
+   "log_loss": 0.138,
+   "called": 130.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 120,
+   "margin_miss": 7.0703,
+   "log_loss": 0.1909,
+   "called": 128.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 250,
+   "margin_miss": 7.496,
+   "log_loss": 0.2332,
+   "called": 127.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 365,
+   "margin_miss": 6.9463,
+   "log_loss": 0.2244,
+   "called": 128.0
+  }
+ ],
+ "test_2026": [
+  {
+   "version": "generic (current)",
+   "days": 365,
+   "margin_miss": 12.1181,
+   "bias": -10.8475,
+   "log_loss": 0.7998,
+   "called": 24
+  },
+  {
+   "version": "generic (current)",
+   "days": 250,
+   "margin_miss": 11.0593,
+   "bias": -9.7278,
+   "log_loss": 0.6504,
+   "called": 25
+  },
+  {
+   "version": "generic (current)",
+   "days": 120,
+   "margin_miss": 10.5935,
+   "bias": -9.1914,
+   "log_loss": 0.5172,
+   "called": 25
+  },
+  {
+   "version": "generic (current)",
+   "days": 60,
+   "margin_miss": 9.9485,
+   "bias": -8.6865,
+   "log_loss": 0.5131,
+   "called": 25
+  },
+  {
+   "version": "generic (current)",
+   "days": 30,
+   "margin_miss": 8.6174,
+   "bias": -7.2029,
+   "log_loss": 0.3725,
+   "called": 25
+  },
+  {
+   "version": "generic (current)",
+   "days": 14,
+   "margin_miss": 8.3446,
+   "bias": -7.1491,
+   "log_loss": 0.3975,
+   "called": 26
+  },
+  {
+   "version": "generic (current)",
+   "days": 7,
+   "margin_miss": 8.3981,
+   "bias": -7.1538,
+   "log_loss": 0.3563,
+   "called": 26
+  },
+  {
+   "version": "generic (current)",
+   "days": 1,
+   "margin_miss": 7.795,
+   "bias": -6.5552,
+   "log_loss": 0.319,
+   "called": 26
+  },
+  {
+   "version": "fund",
+   "days": 365,
+   "margin_miss": 10.5566,
+   "bias": -9.0386,
+   "log_loss": 0.6407,
+   "called": 24
+  },
+  {
+   "version": "fund",
+   "days": 250,
+   "margin_miss": 9.3329,
+   "bias": -7.7189,
+   "log_loss": 0.5144,
+   "called": 25
+  },
+  {
+   "version": "fund",
+   "days": 120,
+   "margin_miss": 9.6757,
+   "bias": -8.1427,
+   "log_loss": 0.4538,
+   "called": 25
+  },
+  {
+   "version": "fund",
+   "days": 60,
+   "margin_miss": 8.3939,
+   "bias": -6.8071,
+   "log_loss": 0.386,
+   "called": 25
+  },
+  {
+   "version": "fund",
+   "days": 30,
+   "margin_miss": 8.176,
+   "bias": -6.6976,
+   "log_loss": 0.3299,
+   "called": 25
+  },
+  {
+   "version": "fund",
+   "days": 14,
+   "margin_miss": 7.6927,
+   "bias": -6.4615,
+   "log_loss": 0.3387,
+   "called": 27
+  },
+  {
+   "version": "fund",
+   "days": 7,
+   "margin_miss": 7.4017,
+   "bias": -6.0598,
+   "log_loss": 0.2999,
+   "called": 28
+  },
+  {
+   "version": "fund",
+   "days": 1,
+   "margin_miss": 7.4276,
+   "bias": -6.1487,
+   "log_loss": 0.29,
+   "called": 26
+  },
+  {
+   "version": "blend",
+   "days": 365,
+   "margin_miss": 10.78,
+   "bias": -9.3124,
+   "log_loss": 0.6641,
+   "called": 24
+  },
+  {
+   "version": "blend",
+   "days": 250,
+   "margin_miss": 9.9772,
+   "bias": -8.4842,
+   "log_loss": 0.5639,
+   "called": 25
+  },
+  {
+   "version": "blend",
+   "days": 120,
+   "margin_miss": 9.9388,
+   "bias": -8.4483,
+   "log_loss": 0.4708,
+   "called": 25
+  },
+  {
+   "version": "blend",
+   "days": 60,
+   "margin_miss": 7.9023,
+   "bias": -6.2266,
+   "log_loss": 0.3577,
+   "called": 25
+  },
+  {
+   "version": "blend",
+   "days": 30,
+   "margin_miss": 7.4658,
+   "bias": -5.8375,
+   "log_loss": 0.2978,
+   "called": 25
+  },
+  {
+   "version": "blend",
+   "days": 14,
+   "margin_miss": 6.7968,
+   "bias": -5.3811,
+   "log_loss": 0.3042,
+   "called": 27
+  },
+  {
+   "version": "blend",
+   "days": 7,
+   "margin_miss": 6.6678,
+   "bias": -5.2095,
+   "log_loss": 0.2749,
+   "called": 28
+  },
+  {
+   "version": "blend",
+   "days": 1,
+   "margin_miss": 6.3348,
+   "bias": -4.8154,
+   "log_loss": 0.2565,
+   "called": 29
+  },
+  {
+   "version": "fund, approval only",
+   "days": 365,
+   "margin_miss": 9.6474,
+   "bias": -7.9338,
+   "log_loss": 0.5708,
+   "called": 24
+  },
+  {
+   "version": "fund, approval only",
+   "days": 250,
+   "margin_miss": 8.6073,
+   "bias": -6.8316,
+   "log_loss": 0.4645,
+   "called": 25
+  },
+  {
+   "version": "fund, approval only",
+   "days": 120,
+   "margin_miss": 8.8908,
+   "bias": -7.1702,
+   "log_loss": 0.4127,
+   "called": 25
+  },
+  {
+   "version": "fund, approval only",
+   "days": 60,
+   "margin_miss": 8.2177,
+   "bias": -6.6516,
+   "log_loss": 0.386,
+   "called": 25
+  },
+  {
+   "version": "fund, approval only",
+   "days": 30,
+   "margin_miss": 8.0089,
+   "bias": -6.4913,
+   "log_loss": 0.3386,
+   "called": 25
+  },
+  {
+   "version": "fund, approval only",
+   "days": 14,
+   "margin_miss": 7.5568,
+   "bias": -6.2646,
+   "log_loss": 0.3511,
+   "called": 27
+  },
+  {
+   "version": "fund, approval only",
+   "days": 7,
+   "margin_miss": 7.2192,
+   "bias": -5.8537,
+   "log_loss": 0.3017,
+   "called": 26
+  },
+  {
+   "version": "fund, approval only",
+   "days": 1,
+   "margin_miss": 7.2442,
+   "bias": -5.9497,
+   "log_loss": 0.2932,
+   "called": 26
+  },
+  {
+   "version": "blend, approval only",
+   "days": 365,
+   "margin_miss": 10.5835,
+   "bias": -9.0793,
+   "log_loss": 0.653,
+   "called": 24
+  },
+  {
+   "version": "blend, approval only",
+   "days": 250,
+   "margin_miss": 9.7681,
+   "bias": -8.2429,
+   "log_loss": 0.5488,
+   "called": 25
+  },
+  {
+   "version": "blend, approval only",
+   "days": 120,
+   "margin_miss": 9.654,
+   "bias": -8.1001,
+   "log_loss": 0.4567,
+   "called": 25
+  },
+  {
+   "version": "blend, approval only",
+   "days": 60,
+   "margin_miss": 8.8493,
+   "bias": -7.4174,
+   "log_loss": 0.4304,
+   "called": 25
+  },
+  {
+   "version": "blend, approval only",
+   "days": 30,
+   "margin_miss": 8.2001,
+   "bias": -6.7172,
+   "log_loss": 0.3487,
+   "called": 25
+  },
+  {
+   "version": "blend, approval only",
+   "days": 14,
+   "margin_miss": 7.8253,
+   "bias": -6.5686,
+   "log_loss": 0.3673,
+   "called": 26
+  },
+  {
+   "version": "blend, approval only",
+   "days": 7,
+   "margin_miss": 7.7378,
+   "bias": -6.4357,
+   "log_loss": 0.3255,
+   "called": 26
+  },
+  {
+   "version": "blend, approval only",
+   "days": 1,
+   "margin_miss": 7.4498,
+   "bias": -6.1773,
+   "log_loss": 0.303,
+   "called": 26
+  }
+ ],
+ "all_five": [
+  {
+   "version": "blend",
+   "days": 1,
+   "margin_miss": 5.946,
+   "log_loss": 0.1622,
+   "called": 157.0
+  },
+  {
+   "version": "blend",
+   "days": 7,
+   "margin_miss": 5.9065,
+   "log_loss": 0.1611,
+   "called": 155.0
+  },
+  {
+   "version": "blend",
+   "days": 14,
+   "margin_miss": 6.2981,
+   "log_loss": 0.1907,
+   "called": 153.0
+  },
+  {
+   "version": "blend",
+   "days": 30,
+   "margin_miss": 6.488,
+   "log_loss": 0.1938,
+   "called": 152.0
+  },
+  {
+   "version": "blend",
+   "days": 60,
+   "margin_miss": 6.5673,
+   "log_loss": 0.1856,
+   "called": 156.0
+  },
+  {
+   "version": "blend",
+   "days": 120,
+   "margin_miss": 7.797,
+   "log_loss": 0.2501,
+   "called": 152.0
+  },
+  {
+   "version": "blend",
+   "days": 250,
+   "margin_miss": 8.1277,
+   "log_loss": 0.3014,
+   "called": 153.0
+  },
+  {
+   "version": "blend",
+   "days": 365,
+   "margin_miss": 8.3546,
+   "log_loss": 0.321,
+   "called": 151.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 1,
+   "margin_miss": 6.3843,
+   "log_loss": 0.1739,
+   "called": 153.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 7,
+   "margin_miss": 6.3758,
+   "log_loss": 0.1725,
+   "called": 153.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 14,
+   "margin_miss": 6.6609,
+   "log_loss": 0.2035,
+   "called": 153.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 30,
+   "margin_miss": 6.5587,
+   "log_loss": 0.1936,
+   "called": 151.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 60,
+   "margin_miss": 6.7757,
+   "log_loss": 0.1909,
+   "called": 155.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 120,
+   "margin_miss": 7.5604,
+   "log_loss": 0.2435,
+   "called": 153.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 250,
+   "margin_miss": 7.9272,
+   "log_loss": 0.2947,
+   "called": 153.0
+  },
+  {
+   "version": "blend, approval only",
+   "days": 365,
+   "margin_miss": 7.8729,
+   "log_loss": 0.3089,
+   "called": 152.0
+  },
+  {
+   "version": "fund",
+   "days": 1,
+   "margin_miss": 6.941,
+   "log_loss": 0.1999,
+   "called": 153.0
+  },
+  {
+   "version": "fund",
+   "days": 7,
+   "margin_miss": 6.6832,
+   "log_loss": 0.1813,
+   "called": 155.0
+  },
+  {
+   "version": "fund",
+   "days": 14,
+   "margin_miss": 7.1597,
+   "log_loss": 0.2234,
+   "called": 154.0
+  },
+  {
+   "version": "fund",
+   "days": 30,
+   "margin_miss": 7.1683,
+   "log_loss": 0.2157,
+   "called": 151.0
+  },
+  {
+   "version": "fund",
+   "days": 60,
+   "margin_miss": 7.2824,
+   "log_loss": 0.214,
+   "called": 155.0
+  },
+  {
+   "version": "fund",
+   "days": 120,
+   "margin_miss": 7.9017,
+   "log_loss": 0.253,
+   "called": 152.0
+  },
+  {
+   "version": "fund",
+   "days": 250,
+   "margin_miss": 8.2416,
+   "log_loss": 0.3026,
+   "called": 152.0
+  },
+  {
+   "version": "fund",
+   "days": 365,
+   "margin_miss": 8.8097,
+   "log_loss": 0.3317,
+   "called": 151.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 1,
+   "margin_miss": 6.3378,
+   "log_loss": 0.1729,
+   "called": 153.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 7,
+   "margin_miss": 6.2117,
+   "log_loss": 0.1692,
+   "called": 153.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 14,
+   "margin_miss": 6.6073,
+   "log_loss": 0.2024,
+   "called": 154.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 30,
+   "margin_miss": 6.5521,
+   "log_loss": 0.1945,
+   "called": 151.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 60,
+   "margin_miss": 6.6322,
+   "log_loss": 0.1828,
+   "called": 156.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 120,
+   "margin_miss": 7.3671,
+   "log_loss": 0.2361,
+   "called": 153.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 250,
+   "margin_miss": 7.7596,
+   "log_loss": 0.2841,
+   "called": 152.0
+  },
+  {
+   "version": "fund, approval only",
+   "days": 365,
+   "margin_miss": 7.788,
+   "log_loss": 0.2983,
+   "called": 152.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 1,
+   "margin_miss": 6.5443,
+   "log_loss": 0.1775,
+   "called": 155.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 7,
+   "margin_miss": 6.7004,
+   "log_loss": 0.1791,
+   "called": 154.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 14,
+   "margin_miss": 6.9501,
+   "log_loss": 0.2108,
+   "called": 152.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 30,
+   "margin_miss": 6.6639,
+   "log_loss": 0.196,
+   "called": 152.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 60,
+   "margin_miss": 7.1668,
+   "log_loss": 0.209,
+   "called": 155.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 120,
+   "margin_miss": 7.8596,
+   "log_loss": 0.2527,
+   "called": 153.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 250,
+   "margin_miss": 8.2891,
+   "log_loss": 0.3122,
+   "called": 152.0
+  },
+  {
+   "version": "generic (current)",
+   "days": 365,
+   "margin_miss": 8.1805,
+   "log_loss": 0.3334,
+   "called": 152.0
+  }
+ ],
+ "by_year": [
+  {
+   "version": "generic (current)",
+   "days": 365,
+   "year": 2018,
+   "margin_miss": 6.7682,
+   "bias": -3.2544,
+   "called": 31,
+   "log_loss": 0.3949,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 365,
+   "year": 2020,
+   "margin_miss": 6.7794,
+   "bias": 2.6401,
+   "called": 31,
+   "log_loss": 0.1158,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 365,
+   "year": 2022,
+   "margin_miss": 7.4606,
+   "bias": -0.0972,
+   "called": 33,
+   "log_loss": 0.0647,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 365,
+   "year": 2024,
+   "margin_miss": 6.7564,
+   "bias": 1.698,
+   "called": 33,
+   "log_loss": 0.3194,
+   "races": 35
+  },
+  {
+   "version": "generic (current)",
+   "days": 365,
+   "year": 2026,
+   "margin_miss": 12.1181,
+   "bias": -10.8475,
+   "called": 24,
+   "log_loss": 0.7998,
+   "races": 32
+  },
+  {
+   "version": "generic (current)",
+   "days": 250,
+   "year": 2018,
+   "margin_miss": 8.0917,
+   "bias": -4.2329,
+   "called": 30,
+   "log_loss": 0.4186,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 250,
+   "year": 2020,
+   "margin_miss": 8.2666,
+   "bias": 3.4502,
+   "called": 31,
+   "log_loss": 0.3144,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 250,
+   "year": 2022,
+   "margin_miss": 7.5098,
+   "bias": -0.8906,
+   "called": 33,
+   "log_loss": 0.0844,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 250,
+   "year": 2024,
+   "margin_miss": 5.9302,
+   "bias": 1.1907,
+   "called": 33,
+   "log_loss": 0.1187,
+   "races": 35
+  },
+  {
+   "version": "generic (current)",
+   "days": 250,
+   "year": 2026,
+   "margin_miss": 11.0593,
+   "bias": -9.7278,
+   "called": 25,
+   "log_loss": 0.6504,
+   "races": 32
+  },
+  {
+   "version": "generic (current)",
+   "days": 120,
+   "year": 2018,
+   "margin_miss": 6.4458,
+   "bias": -3.6254,
+   "called": 31,
+   "log_loss": 0.3013,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 120,
+   "year": 2020,
+   "margin_miss": 8.2676,
+   "bias": 4.5587,
+   "called": 30,
+   "log_loss": 0.3088,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 120,
+   "year": 2022,
+   "margin_miss": 7.1633,
+   "bias": -0.8271,
+   "called": 33,
+   "log_loss": 0.0519,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 120,
+   "year": 2024,
+   "margin_miss": 6.2501,
+   "bias": 2.3587,
+   "called": 34,
+   "log_loss": 0.1043,
+   "races": 35
+  },
+  {
+   "version": "generic (current)",
+   "days": 120,
+   "year": 2026,
+   "margin_miss": 10.5935,
+   "bias": -9.1914,
+   "called": 25,
+   "log_loss": 0.5172,
+   "races": 32
+  },
+  {
+   "version": "generic (current)",
+   "days": 60,
+   "year": 2018,
+   "margin_miss": 5.0832,
+   "bias": -2.1462,
+   "called": 31,
+   "log_loss": 0.2788,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 60,
+   "year": 2020,
+   "margin_miss": 7.7077,
+   "bias": 5.3468,
+   "called": 31,
+   "log_loss": 0.1362,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 60,
+   "year": 2022,
+   "margin_miss": 6.8918,
+   "bias": 0.2513,
+   "called": 34,
+   "log_loss": 0.0415,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 60,
+   "year": 2024,
+   "margin_miss": 5.3447,
+   "bias": 1.7505,
+   "called": 34,
+   "log_loss": 0.0966,
+   "races": 35
+  },
+  {
+   "version": "generic (current)",
+   "days": 60,
+   "year": 2026,
+   "margin_miss": 9.9485,
+   "bias": -8.6865,
+   "called": 25,
+   "log_loss": 0.5131,
+   "races": 32
+  },
+  {
+   "version": "generic (current)",
+   "days": 30,
+   "year": 2018,
+   "margin_miss": 5.2127,
+   "bias": -1.4029,
+   "called": 30,
+   "log_loss": 0.3011,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 30,
+   "year": 2020,
+   "margin_miss": 7.3751,
+   "bias": 4.9461,
+   "called": 30,
+   "log_loss": 0.1621,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 30,
+   "year": 2022,
+   "margin_miss": 6.5142,
+   "bias": 0.552,
+   "called": 33,
+   "log_loss": 0.0643,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 30,
+   "year": 2024,
+   "margin_miss": 5.1064,
+   "bias": 2.3078,
+   "called": 34,
+   "log_loss": 0.0934,
+   "races": 35
+  },
+  {
+   "version": "generic (current)",
+   "days": 30,
+   "year": 2026,
+   "margin_miss": 8.6174,
+   "bias": -7.2029,
+   "called": 25,
+   "log_loss": 0.3725,
+   "races": 32
+  },
+  {
+   "version": "generic (current)",
+   "days": 14,
+   "year": 2018,
+   "margin_miss": 5.6514,
+   "bias": -2.8697,
+   "called": 29,
+   "log_loss": 0.3378,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 14,
+   "year": 2020,
+   "margin_miss": 8.2068,
+   "bias": 5.8926,
+   "called": 30,
+   "log_loss": 0.1771,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 14,
+   "year": 2022,
+   "margin_miss": 6.4659,
+   "bias": 0.0414,
+   "called": 33,
+   "log_loss": 0.0626,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 14,
+   "year": 2024,
+   "margin_miss": 5.7013,
+   "bias": 2.6141,
+   "called": 34,
+   "log_loss": 0.0933,
+   "races": 35
+  },
+  {
+   "version": "generic (current)",
+   "days": 14,
+   "year": 2026,
+   "margin_miss": 8.3446,
+   "bias": -7.1491,
+   "called": 26,
+   "log_loss": 0.3975,
+   "races": 32
+  },
+  {
+   "version": "generic (current)",
+   "days": 7,
+   "year": 2018,
+   "margin_miss": 4.9941,
+   "bias": -2.3988,
+   "called": 30,
+   "log_loss": 0.2333,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 7,
+   "year": 2020,
+   "margin_miss": 8.3847,
+   "bias": 6.2491,
+   "called": 31,
+   "log_loss": 0.155,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 7,
+   "year": 2022,
+   "margin_miss": 6.1637,
+   "bias": -0.1762,
+   "called": 33,
+   "log_loss": 0.0699,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 7,
+   "year": 2024,
+   "margin_miss": 4.7819,
+   "bias": 2.6184,
+   "called": 34,
+   "log_loss": 0.0941,
+   "races": 35
+  },
+  {
+   "version": "generic (current)",
+   "days": 7,
+   "year": 2026,
+   "margin_miss": 8.3981,
+   "bias": -7.1538,
+   "called": 26,
+   "log_loss": 0.3563,
+   "races": 32
+  },
+  {
+   "version": "generic (current)",
+   "days": 1,
+   "year": 2018,
+   "margin_miss": 5.0069,
+   "bias": -2.3577,
+   "called": 30,
+   "log_loss": 0.2456,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 1,
+   "year": 2020,
+   "margin_miss": 8.1898,
+   "bias": 6.0685,
+   "called": 32,
+   "log_loss": 0.1566,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 1,
+   "year": 2022,
+   "margin_miss": 6.2694,
+   "bias": -0.8906,
+   "called": 33,
+   "log_loss": 0.0813,
+   "races": 34
+  },
+  {
+   "version": "generic (current)",
+   "days": 1,
+   "year": 2024,
+   "margin_miss": 4.8529,
+   "bias": 2.3,
+   "called": 34,
+   "log_loss": 0.0957,
+   "races": 35
+  },
+  {
+   "version": "generic (current)",
+   "days": 1,
+   "year": 2026,
+   "margin_miss": 7.795,
+   "bias": -6.5552,
+   "called": 26,
+   "log_loss": 0.319,
+   "races": 32
+  },
+  {
+   "version": "fund",
+   "days": 365,
+   "year": 2018,
+   "margin_miss": 7.9669,
+   "bias": -5.2535,
+   "called": 30,
+   "log_loss": 0.4304,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 365,
+   "year": 2020,
+   "margin_miss": 6.769,
+   "bias": 2.4632,
+   "called": 31,
+   "log_loss": 0.1343,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 365,
+   "year": 2022,
+   "margin_miss": 10.3264,
+   "bias": -6.6,
+   "called": 33,
+   "log_loss": 0.1522,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 365,
+   "year": 2024,
+   "margin_miss": 7.944,
+   "bias": 4.811,
+   "called": 33,
+   "log_loss": 0.3196,
+   "races": 35
+  },
+  {
+   "version": "fund",
+   "days": 365,
+   "year": 2026,
+   "margin_miss": 10.5566,
+   "bias": -9.0386,
+   "called": 24,
+   "log_loss": 0.6407,
+   "races": 32
+  },
+  {
+   "version": "fund",
+   "days": 250,
+   "year": 2018,
+   "margin_miss": 8.3611,
+   "bias": -4.7583,
+   "called": 30,
+   "log_loss": 0.431,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 250,
+   "year": 2020,
+   "margin_miss": 7.852,
+   "bias": 2.2134,
+   "called": 31,
+   "log_loss": 0.3197,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 250,
+   "year": 2022,
+   "margin_miss": 8.9383,
+   "bias": -4.9062,
+   "called": 32,
+   "log_loss": 0.1497,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 250,
+   "year": 2024,
+   "margin_miss": 6.5515,
+   "bias": 3.0091,
+   "called": 34,
+   "log_loss": 0.1163,
+   "races": 35
+  },
+  {
+   "version": "fund",
+   "days": 250,
+   "year": 2026,
+   "margin_miss": 9.3329,
+   "bias": -7.7189,
+   "called": 25,
+   "log_loss": 0.5144,
+   "races": 32
+  },
+  {
+   "version": "fund",
+   "days": 120,
+   "year": 2018,
+   "margin_miss": 6.6897,
+   "bias": -4.0559,
+   "called": 30,
+   "log_loss": 0.307,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 120,
+   "year": 2020,
+   "margin_miss": 7.7277,
+   "bias": 3.5207,
+   "called": 30,
+   "log_loss": 0.3254,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 120,
+   "year": 2022,
+   "margin_miss": 8.3684,
+   "bias": -4.4152,
+   "called": 33,
+   "log_loss": 0.0855,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 120,
+   "year": 2024,
+   "margin_miss": 6.8098,
+   "bias": 3.6178,
+   "called": 34,
+   "log_loss": 0.1095,
+   "races": 35
+  },
+  {
+   "version": "fund",
+   "days": 120,
+   "year": 2026,
+   "margin_miss": 9.6757,
+   "bias": -8.1427,
+   "called": 25,
+   "log_loss": 0.4538,
+   "races": 32
+  },
+  {
+   "version": "fund",
+   "days": 60,
+   "year": 2018,
+   "margin_miss": 8.0367,
+   "bias": -6.4045,
+   "called": 29,
+   "log_loss": 0.3862,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 60,
+   "year": 2020,
+   "margin_miss": 5.3198,
+   "bias": -0.92,
+   "called": 33,
+   "log_loss": 0.159,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 60,
+   "year": 2022,
+   "margin_miss": 7.174,
+   "bias": 0.9797,
+   "called": 34,
+   "log_loss": 0.0456,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 60,
+   "year": 2024,
+   "margin_miss": 7.1711,
+   "bias": 4.8219,
+   "called": 34,
+   "log_loss": 0.1066,
+   "races": 35
+  },
+  {
+   "version": "fund",
+   "days": 60,
+   "year": 2026,
+   "margin_miss": 8.3939,
+   "bias": -6.8071,
+   "called": 25,
+   "log_loss": 0.386,
+   "races": 32
+  },
+  {
+   "version": "fund",
+   "days": 30,
+   "year": 2018,
+   "margin_miss": 7.8143,
+   "bias": -5.7875,
+   "called": 29,
+   "log_loss": 0.4107,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 30,
+   "year": 2020,
+   "margin_miss": 5.3136,
+   "bias": 0.4076,
+   "called": 30,
+   "log_loss": 0.1802,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 30,
+   "year": 2022,
+   "margin_miss": 6.9052,
+   "bias": 1.3309,
+   "called": 33,
+   "log_loss": 0.0624,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 30,
+   "year": 2024,
+   "margin_miss": 7.3436,
+   "bias": 5.3906,
+   "called": 34,
+   "log_loss": 0.1052,
+   "races": 35
+  },
+  {
+   "version": "fund",
+   "days": 30,
+   "year": 2026,
+   "margin_miss": 8.176,
+   "bias": -6.6976,
+   "called": 25,
+   "log_loss": 0.3299,
+   "races": 32
+  },
+  {
+   "version": "fund",
+   "days": 14,
+   "year": 2018,
+   "margin_miss": 8.3002,
+   "bias": -6.6547,
+   "called": 29,
+   "log_loss": 0.4506,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 14,
+   "year": 2020,
+   "margin_miss": 5.3489,
+   "bias": 0.0713,
+   "called": 31,
+   "log_loss": 0.1746,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 14,
+   "year": 2022,
+   "margin_miss": 6.6231,
+   "bias": 0.6145,
+   "called": 33,
+   "log_loss": 0.0614,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 14,
+   "year": 2024,
+   "margin_miss": 7.4886,
+   "bias": 5.1322,
+   "called": 34,
+   "log_loss": 0.1018,
+   "races": 35
+  },
+  {
+   "version": "fund",
+   "days": 14,
+   "year": 2026,
+   "margin_miss": 7.6927,
+   "bias": -6.4615,
+   "called": 27,
+   "log_loss": 0.3387,
+   "races": 32
+  },
+  {
+   "version": "fund",
+   "days": 7,
+   "year": 2018,
+   "margin_miss": 7.4831,
+   "bias": -5.7023,
+   "called": 29,
+   "log_loss": 0.291,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 7,
+   "year": 2020,
+   "margin_miss": 5.5569,
+   "bias": 0.7925,
+   "called": 31,
+   "log_loss": 0.1566,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 7,
+   "year": 2022,
+   "margin_miss": 6.3682,
+   "bias": 0.3291,
+   "called": 33,
+   "log_loss": 0.0701,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 7,
+   "year": 2024,
+   "margin_miss": 6.4646,
+   "bias": 4.7624,
+   "called": 34,
+   "log_loss": 0.0983,
+   "races": 35
+  },
+  {
+   "version": "fund",
+   "days": 7,
+   "year": 2026,
+   "margin_miss": 7.4017,
+   "bias": -6.0598,
+   "called": 28,
+   "log_loss": 0.2999,
+   "races": 32
+  },
+  {
+   "version": "fund",
+   "days": 1,
+   "year": 2018,
+   "margin_miss": 8.5181,
+   "bias": -7.0466,
+   "called": 29,
+   "log_loss": 0.3935,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 1,
+   "year": 2020,
+   "margin_miss": 5.9959,
+   "bias": 1.078,
+   "called": 31,
+   "log_loss": 0.1595,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 1,
+   "year": 2022,
+   "margin_miss": 6.4913,
+   "bias": 0.8522,
+   "called": 33,
+   "log_loss": 0.0702,
+   "races": 34
+  },
+  {
+   "version": "fund",
+   "days": 1,
+   "year": 2024,
+   "margin_miss": 5.9869,
+   "bias": 3.8688,
+   "called": 34,
+   "log_loss": 0.0948,
+   "races": 35
+  },
+  {
+   "version": "fund",
+   "days": 1,
+   "year": 2026,
+   "margin_miss": 7.4276,
+   "bias": -6.1487,
+   "called": 26,
+   "log_loss": 0.29,
+   "races": 32
+  },
+  {
+   "version": "blend",
+   "days": 365,
+   "year": 2018,
+   "margin_miss": 7.56,
+   "bias": -4.6174,
+   "called": 30,
+   "log_loss": 0.4172,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 365,
+   "year": 2020,
+   "margin_miss": 6.9395,
+   "bias": 2.8158,
+   "called": 31,
+   "log_loss": 0.1242,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 365,
+   "year": 2022,
+   "margin_miss": 8.5692,
+   "bias": -3.7684,
+   "called": 33,
+   "log_loss": 0.1024,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 365,
+   "year": 2024,
+   "margin_miss": 7.5597,
+   "bias": 4.1059,
+   "called": 33,
+   "log_loss": 0.3175,
+   "races": 35
+  },
+  {
+   "version": "blend",
+   "days": 365,
+   "year": 2026,
+   "margin_miss": 10.78,
+   "bias": -9.3124,
+   "called": 24,
+   "log_loss": 0.6641,
+   "races": 32
+  },
+  {
+   "version": "blend",
+   "days": 250,
+   "year": 2018,
+   "margin_miss": 8.1666,
+   "bias": -4.3928,
+   "called": 30,
+   "log_loss": 0.4224,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 250,
+   "year": 2020,
+   "margin_miss": 8.0322,
+   "bias": 2.8152,
+   "called": 31,
+   "log_loss": 0.3167,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 250,
+   "year": 2022,
+   "margin_miss": 7.9586,
+   "bias": -2.7703,
+   "called": 33,
+   "log_loss": 0.1088,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 250,
+   "year": 2024,
+   "margin_miss": 6.2425,
+   "bias": 2.2731,
+   "called": 34,
+   "log_loss": 0.1162,
+   "races": 35
+  },
+  {
+   "version": "blend",
+   "days": 250,
+   "year": 2026,
+   "margin_miss": 9.9772,
+   "bias": -8.4842,
+   "called": 25,
+   "log_loss": 0.5639,
+   "races": 32
+  },
+  {
+   "version": "blend",
+   "days": 120,
+   "year": 2018,
+   "margin_miss": 6.5713,
+   "bias": -3.8514,
+   "called": 30,
+   "log_loss": 0.304,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 120,
+   "year": 2020,
+   "margin_miss": 7.9676,
+   "bias": 3.9886,
+   "called": 30,
+   "log_loss": 0.3196,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 120,
+   "year": 2022,
+   "margin_miss": 7.6051,
+   "bias": -2.7169,
+   "called": 33,
+   "log_loss": 0.066,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 120,
+   "year": 2024,
+   "margin_miss": 6.5898,
+   "bias": 3.1768,
+   "called": 34,
+   "log_loss": 0.1073,
+   "races": 35
+  },
+  {
+   "version": "blend",
+   "days": 120,
+   "year": 2026,
+   "margin_miss": 9.9388,
+   "bias": -8.4483,
+   "called": 25,
+   "log_loss": 0.4708,
+   "races": 32
+  },
+  {
+   "version": "blend",
+   "days": 60,
+   "year": 2018,
+   "margin_miss": 5.8644,
+   "bias": -3.6383,
+   "called": 31,
+   "log_loss": 0.3052,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 60,
+   "year": 2020,
+   "margin_miss": 5.3295,
+   "bias": 0.7426,
+   "called": 32,
+   "log_loss": 0.1359,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 60,
+   "year": 2022,
+   "margin_miss": 7.0736,
+   "bias": -0.4786,
+   "called": 34,
+   "log_loss": 0.0463,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 60,
+   "year": 2024,
+   "margin_miss": 6.4464,
+   "bias": 3.7105,
+   "called": 34,
+   "log_loss": 0.0959,
+   "races": 35
+  },
+  {
+   "version": "blend",
+   "days": 60,
+   "year": 2026,
+   "margin_miss": 7.9023,
+   "bias": -6.2266,
+   "called": 25,
+   "log_loss": 0.3577,
+   "races": 32
+  },
+  {
+   "version": "blend",
+   "days": 30,
+   "year": 2018,
+   "margin_miss": 6.0787,
+   "bias": -3.4323,
+   "called": 29,
+   "log_loss": 0.3447,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 30,
+   "year": 2020,
+   "margin_miss": 5.5199,
+   "bias": 1.6003,
+   "called": 31,
+   "log_loss": 0.1679,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 30,
+   "year": 2022,
+   "margin_miss": 6.7141,
+   "bias": 0.0969,
+   "called": 33,
+   "log_loss": 0.0707,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 30,
+   "year": 2024,
+   "margin_miss": 6.5579,
+   "bias": 4.3653,
+   "called": 34,
+   "log_loss": 0.0971,
+   "races": 35
+  },
+  {
+   "version": "blend",
+   "days": 30,
+   "year": 2026,
+   "margin_miss": 7.4658,
+   "bias": -5.8375,
+   "called": 25,
+   "log_loss": 0.2978,
+   "races": 32
+  },
+  {
+   "version": "blend",
+   "days": 14,
+   "year": 2018,
+   "margin_miss": 5.6311,
+   "bias": -3.0758,
+   "called": 29,
+   "log_loss": 0.3255,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 14,
+   "year": 2020,
+   "margin_miss": 5.6239,
+   "bias": 1.7241,
+   "called": 30,
+   "log_loss": 0.1646,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 14,
+   "year": 2022,
+   "margin_miss": 6.6569,
+   "bias": -1.1387,
+   "called": 33,
+   "log_loss": 0.0735,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 14,
+   "year": 2024,
+   "margin_miss": 6.687,
+   "bias": 3.9423,
+   "called": 34,
+   "log_loss": 0.0951,
+   "races": 35
+  },
+  {
+   "version": "blend",
+   "days": 14,
+   "year": 2026,
+   "margin_miss": 6.7968,
+   "bias": -5.3811,
+   "called": 27,
+   "log_loss": 0.3042,
+   "races": 32
+  },
+  {
+   "version": "blend",
+   "days": 7,
+   "year": 2018,
+   "margin_miss": 4.5719,
+   "bias": -1.7104,
+   "called": 30,
+   "log_loss": 0.2175,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 7,
+   "year": 2020,
+   "margin_miss": 5.9703,
+   "bias": 2.6497,
+   "called": 30,
+   "log_loss": 0.147,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 7,
+   "year": 2022,
+   "margin_miss": 6.5402,
+   "bias": -1.4082,
+   "called": 33,
+   "log_loss": 0.0825,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 7,
+   "year": 2024,
+   "margin_miss": 5.5965,
+   "bias": 3.589,
+   "called": 34,
+   "log_loss": 0.0923,
+   "races": 35
+  },
+  {
+   "version": "blend",
+   "days": 7,
+   "year": 2026,
+   "margin_miss": 6.6678,
+   "bias": -5.2095,
+   "called": 28,
+   "log_loss": 0.2749,
+   "races": 32
+  },
+  {
+   "version": "blend",
+   "days": 1,
+   "year": 2018,
+   "margin_miss": 5.1494,
+   "bias": -2.8061,
+   "called": 30,
+   "log_loss": 0.2431,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 1,
+   "year": 2020,
+   "margin_miss": 6.1837,
+   "bias": 2.7974,
+   "called": 31,
+   "log_loss": 0.1482,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 1,
+   "year": 2022,
+   "margin_miss": 6.4438,
+   "bias": -0.6186,
+   "called": 33,
+   "log_loss": 0.0795,
+   "races": 34
+  },
+  {
+   "version": "blend",
+   "days": 1,
+   "year": 2024,
+   "margin_miss": 5.5481,
+   "bias": 3.042,
+   "called": 34,
+   "log_loss": 0.0914,
+   "races": 35
+  },
+  {
+   "version": "blend",
+   "days": 1,
+   "year": 2026,
+   "margin_miss": 6.3348,
+   "bias": -4.8154,
+   "called": 29,
+   "log_loss": 0.2565,
+   "races": 32
+  },
+  {
+   "version": "fund, approval only",
+   "days": 365,
+   "year": 2018,
+   "margin_miss": 7.0756,
+   "bias": -3.7687,
+   "called": 31,
+   "log_loss": 0.4025,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 365,
+   "year": 2020,
+   "margin_miss": 6.7216,
+   "bias": 2.2217,
+   "called": 31,
+   "log_loss": 0.1329,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 365,
+   "year": 2022,
+   "margin_miss": 7.9875,
+   "bias": -2.4569,
+   "called": 33,
+   "log_loss": 0.0859,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 365,
+   "year": 2024,
+   "margin_miss": 7.2985,
+   "bias": 3.5033,
+   "called": 33,
+   "log_loss": 0.3153,
+   "races": 35
+  },
+  {
+   "version": "fund, approval only",
+   "days": 365,
+   "year": 2026,
+   "margin_miss": 9.6474,
+   "bias": -7.9338,
+   "called": 24,
+   "log_loss": 0.5708,
+   "races": 32
+  },
+  {
+   "version": "fund, approval only",
+   "days": 250,
+   "year": 2018,
+   "margin_miss": 7.8333,
+   "bias": -3.8118,
+   "called": 30,
+   "log_loss": 0.4101,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 250,
+   "year": 2020,
+   "margin_miss": 7.6217,
+   "bias": 1.4345,
+   "called": 30,
+   "log_loss": 0.3219,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 250,
+   "year": 2022,
+   "margin_miss": 8.2608,
+   "bias": -3.5354,
+   "called": 33,
+   "log_loss": 0.1265,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 250,
+   "year": 2024,
+   "margin_miss": 6.3772,
+   "bias": 2.5291,
+   "called": 34,
+   "log_loss": 0.1133,
+   "races": 35
+  },
+  {
+   "version": "fund, approval only",
+   "days": 250,
+   "year": 2026,
+   "margin_miss": 8.6073,
+   "bias": -6.8316,
+   "called": 25,
+   "log_loss": 0.4645,
+   "races": 32
+  },
+  {
+   "version": "fund, approval only",
+   "days": 120,
+   "year": 2018,
+   "margin_miss": 6.25,
+   "bias": -3.3146,
+   "called": 31,
+   "log_loss": 0.2917,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 120,
+   "year": 2020,
+   "margin_miss": 7.5471,
+   "bias": 3.2506,
+   "called": 30,
+   "log_loss": 0.3218,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 120,
+   "year": 2022,
+   "margin_miss": 7.513,
+   "bias": -2.5247,
+   "called": 33,
+   "log_loss": 0.0648,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 120,
+   "year": 2024,
+   "margin_miss": 6.4563,
+   "bias": 2.8152,
+   "called": 34,
+   "log_loss": 0.1036,
+   "races": 35
+  },
+  {
+   "version": "fund, approval only",
+   "days": 120,
+   "year": 2026,
+   "margin_miss": 8.8908,
+   "bias": -7.1702,
+   "called": 25,
+   "log_loss": 0.4127,
+   "races": 32
+  },
+  {
+   "version": "fund, approval only",
+   "days": 60,
+   "year": 2018,
+   "margin_miss": 4.9346,
+   "bias": -1.8565,
+   "called": 31,
+   "log_loss": 0.2714,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 60,
+   "year": 2020,
+   "margin_miss": 6.5507,
+   "bias": 3.676,
+   "called": 32,
+   "log_loss": 0.1249,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 60,
+   "year": 2022,
+   "margin_miss": 7.2823,
+   "bias": -2.0904,
+   "called": 34,
+   "log_loss": 0.0502,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 60,
+   "year": 2024,
+   "margin_miss": 5.8133,
+   "bias": 2.7972,
+   "called": 34,
+   "log_loss": 0.0959,
+   "races": 35
+  },
+  {
+   "version": "fund, approval only",
+   "days": 60,
+   "year": 2026,
+   "margin_miss": 8.2177,
+   "bias": -6.6516,
+   "called": 25,
+   "log_loss": 0.386,
+   "races": 32
+  },
+  {
+   "version": "fund, approval only",
+   "days": 30,
+   "year": 2018,
+   "margin_miss": 5.2205,
+   "bias": -1.5353,
+   "called": 30,
+   "log_loss": 0.3015,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 30,
+   "year": 2020,
+   "margin_miss": 6.8394,
+   "bias": 4.1884,
+   "called": 29,
+   "log_loss": 0.1627,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 30,
+   "year": 2022,
+   "margin_miss": 6.6745,
+   "bias": -1.4765,
+   "called": 33,
+   "log_loss": 0.0843,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 30,
+   "year": 2024,
+   "margin_miss": 5.7841,
+   "bias": 3.4969,
+   "called": 34,
+   "log_loss": 0.0966,
+   "races": 35
+  },
+  {
+   "version": "fund, approval only",
+   "days": 30,
+   "year": 2026,
+   "margin_miss": 8.0089,
+   "bias": -6.4913,
+   "called": 25,
+   "log_loss": 0.3386,
+   "races": 32
+  },
+  {
+   "version": "fund, approval only",
+   "days": 14,
+   "year": 2018,
+   "margin_miss": 5.4677,
+   "bias": -2.6124,
+   "called": 30,
+   "log_loss": 0.3246,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 14,
+   "year": 2020,
+   "margin_miss": 6.7353,
+   "bias": 3.9212,
+   "called": 30,
+   "log_loss": 0.1657,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 14,
+   "year": 2022,
+   "margin_miss": 7.0004,
+   "bias": -2.5067,
+   "called": 33,
+   "log_loss": 0.0884,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 14,
+   "year": 2024,
+   "margin_miss": 6.1538,
+   "bias": 3.4577,
+   "called": 34,
+   "log_loss": 0.0941,
+   "races": 35
+  },
+  {
+   "version": "fund, approval only",
+   "days": 14,
+   "year": 2026,
+   "margin_miss": 7.5568,
+   "bias": -6.2646,
+   "called": 27,
+   "log_loss": 0.3511,
+   "races": 32
+  },
+  {
+   "version": "fund, approval only",
+   "days": 7,
+   "year": 2018,
+   "margin_miss": 4.7344,
+   "bias": -1.9467,
+   "called": 30,
+   "log_loss": 0.2267,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 7,
+   "year": 2020,
+   "margin_miss": 6.8832,
+   "bias": 4.2485,
+   "called": 30,
+   "log_loss": 0.1463,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 7,
+   "year": 2022,
+   "margin_miss": 6.6962,
+   "bias": -2.1822,
+   "called": 33,
+   "log_loss": 0.0883,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 7,
+   "year": 2024,
+   "margin_miss": 5.2253,
+   "bias": 3.1866,
+   "called": 34,
+   "log_loss": 0.093,
+   "races": 35
+  },
+  {
+   "version": "fund, approval only",
+   "days": 7,
+   "year": 2026,
+   "margin_miss": 7.2192,
+   "bias": -5.8537,
+   "called": 26,
+   "log_loss": 0.3017,
+   "races": 32
+  },
+  {
+   "version": "fund, approval only",
+   "days": 1,
+   "year": 2018,
+   "margin_miss": 4.8431,
+   "bias": -2.0246,
+   "called": 30,
+   "log_loss": 0.2399,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 1,
+   "year": 2020,
+   "margin_miss": 7.401,
+   "bias": 5.0526,
+   "called": 31,
+   "log_loss": 0.152,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 1,
+   "year": 2022,
+   "margin_miss": 6.7236,
+   "bias": -2.3133,
+   "called": 32,
+   "log_loss": 0.095,
+   "races": 34
+  },
+  {
+   "version": "fund, approval only",
+   "days": 1,
+   "year": 2024,
+   "margin_miss": 5.1053,
+   "bias": 2.6838,
+   "called": 34,
+   "log_loss": 0.094,
+   "races": 35
+  },
+  {
+   "version": "fund, approval only",
+   "days": 1,
+   "year": 2026,
+   "margin_miss": 7.2442,
+   "bias": -5.9497,
+   "called": 26,
+   "log_loss": 0.2932,
+   "races": 32
+  },
+  {
+   "version": "blend, approval only",
+   "days": 365,
+   "year": 2018,
+   "margin_miss": 6.8917,
+   "bias": -3.4033,
+   "called": 31,
+   "log_loss": 0.3976,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 365,
+   "year": 2020,
+   "margin_miss": 6.7628,
+   "bias": 2.4622,
+   "called": 31,
+   "log_loss": 0.1243,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 365,
+   "year": 2022,
+   "margin_miss": 7.6463,
+   "bias": -1.3424,
+   "called": 33,
+   "log_loss": 0.0743,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 365,
+   "year": 2024,
+   "margin_miss": 7.0368,
+   "bias": 2.8284,
+   "called": 33,
+   "log_loss": 0.3157,
+   "races": 35
+  },
+  {
+   "version": "blend, approval only",
+   "days": 365,
+   "year": 2026,
+   "margin_miss": 10.5835,
+   "bias": -9.0793,
+   "called": 24,
+   "log_loss": 0.653,
+   "races": 32
+  },
+  {
+   "version": "blend, approval only",
+   "days": 250,
+   "year": 2018,
+   "margin_miss": 7.8765,
+   "bias": -3.8518,
+   "called": 30,
+   "log_loss": 0.4107,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 250,
+   "year": 2020,
+   "margin_miss": 7.8707,
+   "bias": 2.4164,
+   "called": 31,
+   "log_loss": 0.3165,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 250,
+   "year": 2022,
+   "margin_miss": 7.7593,
+   "bias": -2.2014,
+   "called": 33,
+   "log_loss": 0.1022,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 250,
+   "year": 2024,
+   "margin_miss": 6.1041,
+   "bias": 1.8085,
+   "called": 34,
+   "log_loss": 0.1153,
+   "races": 35
+  },
+  {
+   "version": "blend, approval only",
+   "days": 250,
+   "year": 2026,
+   "margin_miss": 9.7681,
+   "bias": -8.2429,
+   "called": 25,
+   "log_loss": 0.5488,
+   "races": 32
+  },
+  {
+   "version": "blend, approval only",
+   "days": 120,
+   "year": 2018,
+   "margin_miss": 6.3252,
+   "bias": -3.4323,
+   "called": 31,
+   "log_loss": 0.2956,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 120,
+   "year": 2020,
+   "margin_miss": 7.8584,
+   "bias": 3.8342,
+   "called": 30,
+   "log_loss": 0.3206,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 120,
+   "year": 2022,
+   "margin_miss": 7.2924,
+   "bias": -1.707,
+   "called": 33,
+   "log_loss": 0.0576,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 120,
+   "year": 2024,
+   "margin_miss": 6.3463,
+   "bias": 2.5768,
+   "called": 34,
+   "log_loss": 0.1037,
+   "races": 35
+  },
+  {
+   "version": "blend, approval only",
+   "days": 120,
+   "year": 2026,
+   "margin_miss": 9.654,
+   "bias": -8.1001,
+   "called": 25,
+   "log_loss": 0.4567,
+   "races": 32
+  },
+  {
+   "version": "blend, approval only",
+   "days": 60,
+   "year": 2018,
+   "margin_miss": 4.9586,
+   "bias": -1.8838,
+   "called": 31,
+   "log_loss": 0.273,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 60,
+   "year": 2020,
+   "margin_miss": 6.976,
+   "bias": 4.3351,
+   "called": 31,
+   "log_loss": 0.1281,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 60,
+   "year": 2022,
+   "margin_miss": 7.0041,
+   "bias": -1.0572,
+   "called": 34,
+   "log_loss": 0.0443,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 60,
+   "year": 2024,
+   "margin_miss": 5.5918,
+   "bias": 2.3458,
+   "called": 34,
+   "log_loss": 0.0955,
+   "races": 35
+  },
+  {
+   "version": "blend, approval only",
+   "days": 60,
+   "year": 2026,
+   "margin_miss": 8.8493,
+   "bias": -7.4174,
+   "called": 25,
+   "log_loss": 0.4304,
+   "races": 32
+  },
+  {
+   "version": "blend, approval only",
+   "days": 30,
+   "year": 2018,
+   "margin_miss": 5.1883,
+   "bias": -1.3795,
+   "called": 30,
+   "log_loss": 0.2997,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 30,
+   "year": 2020,
+   "margin_miss": 7.0788,
+   "bias": 4.5505,
+   "called": 29,
+   "log_loss": 0.1633,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 30,
+   "year": 2022,
+   "margin_miss": 6.5142,
+   "bias": -0.5385,
+   "called": 33,
+   "log_loss": 0.0736,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 30,
+   "year": 2024,
+   "margin_miss": 5.4937,
+   "bias": 3.0271,
+   "called": 34,
+   "log_loss": 0.0949,
+   "races": 35
+  },
+  {
+   "version": "blend, approval only",
+   "days": 30,
+   "year": 2026,
+   "margin_miss": 8.2001,
+   "bias": -6.7172,
+   "called": 25,
+   "log_loss": 0.3487,
+   "races": 32
+  },
+  {
+   "version": "blend, approval only",
+   "days": 14,
+   "year": 2018,
+   "margin_miss": 5.4816,
+   "bias": -2.5697,
+   "called": 30,
+   "log_loss": 0.3287,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 14,
+   "year": 2020,
+   "margin_miss": 7.3163,
+   "bias": 4.7634,
+   "called": 30,
+   "log_loss": 0.169,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 14,
+   "year": 2022,
+   "margin_miss": 6.6018,
+   "bias": -1.2402,
+   "called": 33,
+   "log_loss": 0.0725,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 14,
+   "year": 2024,
+   "margin_miss": 5.8921,
+   "bias": 2.9967,
+   "called": 34,
+   "log_loss": 0.093,
+   "races": 35
+  },
+  {
+   "version": "blend, approval only",
+   "days": 14,
+   "year": 2026,
+   "margin_miss": 7.8253,
+   "bias": -6.5686,
+   "called": 26,
+   "log_loss": 0.3673,
+   "races": 32
+  },
+  {
+   "version": "blend, approval only",
+   "days": 7,
+   "year": 2018,
+   "margin_miss": 4.8284,
+   "bias": -2.1082,
+   "called": 30,
+   "log_loss": 0.2293,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 7,
+   "year": 2020,
+   "margin_miss": 7.5299,
+   "bias": 5.163,
+   "called": 30,
+   "log_loss": 0.1488,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 7,
+   "year": 2022,
+   "margin_miss": 6.3532,
+   "bias": -1.15,
+   "called": 33,
+   "log_loss": 0.0771,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 7,
+   "year": 2024,
+   "margin_miss": 4.9607,
+   "bias": 2.7916,
+   "called": 34,
+   "log_loss": 0.0933,
+   "races": 35
+  },
+  {
+   "version": "blend, approval only",
+   "days": 7,
+   "year": 2026,
+   "margin_miss": 7.7378,
+   "bias": -6.4357,
+   "called": 26,
+   "log_loss": 0.3255,
+   "races": 32
+  },
+  {
+   "version": "blend, approval only",
+   "days": 1,
+   "year": 2018,
+   "margin_miss": 4.9012,
+   "bias": -2.1434,
+   "called": 30,
+   "log_loss": 0.242,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 1,
+   "year": 2020,
+   "margin_miss": 7.6592,
+   "bias": 5.371,
+   "called": 31,
+   "log_loss": 0.1519,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 1,
+   "year": 2022,
+   "margin_miss": 6.498,
+   "bias": -1.7461,
+   "called": 32,
+   "log_loss": 0.0881,
+   "races": 34
+  },
+  {
+   "version": "blend, approval only",
+   "days": 1,
+   "year": 2024,
+   "margin_miss": 4.9726,
+   "bias": 2.4796,
+   "called": 34,
+   "log_loss": 0.0946,
+   "races": 35
+  },
+  {
+   "version": "blend, approval only",
+   "days": 1,
+   "year": 2026,
+   "margin_miss": 7.4498,
+   "bias": -6.1773,
+   "called": 26,
+   "log_loss": 0.303,
+   "races": 32
+  }
+ ],
+ "national": [
+  {
+   "year": 2018,
+   "days": 365,
+   "fund": 53.31,
+   "fund_approval": 53.45,
+   "generic": 54.372,
+   "actual_house_vote": 54.379
+  },
+  {
+   "year": 2018,
+   "days": 250,
+   "fund": 53.57,
+   "fund_approval": 53.29,
+   "generic": 54.598,
+   "actual_house_vote": 54.379
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "fund": 53.11,
+   "fund_approval": 53.05,
+   "generic": 54.387,
+   "actual_house_vote": 54.379
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "fund": 52.96,
+   "fund_approval": 53.16,
+   "generic": 54.344,
+   "actual_house_vote": 54.379
+  },
+  {
+   "year": 2018,
+   "days": 30,
+   "fund": 52.97,
+   "fund_approval": 53.17,
+   "generic": 54.629,
+   "actual_house_vote": 54.379
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "fund": 52.83,
+   "fund_approval": 52.98,
+   "generic": 54.007,
+   "actual_house_vote": 54.379
+  },
+  {
+   "year": 2018,
+   "days": 7,
+   "fund": 52.85,
+   "fund_approval": 53.01,
+   "generic": 54.349,
+   "actual_house_vote": 54.379
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "fund": 52.88,
+   "fund_approval": 53.05,
+   "generic": 54.05,
+   "actual_house_vote": 54.379
+  },
+  {
+   "year": 2020,
+   "days": 365,
+   "fund": 52.34,
+   "fund_approval": 51.56,
+   "generic": 53.17,
+   "actual_house_vote": 51.59
+  },
+  {
+   "year": 2020,
+   "days": 250,
+   "fund": 51.82,
+   "fund_approval": 50.88,
+   "generic": 53.82,
+   "actual_house_vote": 51.59
+  },
+  {
+   "year": 2020,
+   "days": 120,
+   "fund": 52.52,
+   "fund_approval": 51.71,
+   "generic": 54.211,
+   "actual_house_vote": 51.59
+  },
+  {
+   "year": 2020,
+   "days": 60,
+   "fund": 44.25,
+   "fund_approval": 51.41,
+   "generic": 54.137,
+   "actual_house_vote": 51.59
+  },
+  {
+   "year": 2020,
+   "days": 30,
+   "fund": 44.14,
+   "fund_approval": 51.25,
+   "generic": 53.799,
+   "actual_house_vote": 51.59
+  },
+  {
+   "year": 2020,
+   "days": 14,
+   "fund": 44.11,
+   "fund_approval": 51.22,
+   "generic": 54.099,
+   "actual_house_vote": 51.59
+  },
+  {
+   "year": 2020,
+   "days": 7,
+   "fund": 44.08,
+   "fund_approval": 51.18,
+   "generic": 54.61,
+   "actual_house_vote": 51.59
+  },
+  {
+   "year": 2020,
+   "days": 1,
+   "fund": 44.11,
+   "fund_approval": 51.22,
+   "generic": 53.88,
+   "actual_house_vote": 51.59
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "fund": 42.29,
+   "fund_approval": 46.84,
+   "generic": 50.414,
+   "actual_house_vote": 48.613
+  },
+  {
+   "year": 2022,
+   "days": 250,
+   "fund": 45.02,
+   "fund_approval": 46.77,
+   "generic": 49.202,
+   "actual_house_vote": 48.613
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "fund": 44.09,
+   "fund_approval": 46.77,
+   "generic": 49.72,
+   "actual_house_vote": 48.613
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "fund": 44.53,
+   "fund_approval": 46.99,
+   "generic": 51.071,
+   "actual_house_vote": 48.613
+  },
+  {
+   "year": 2022,
+   "days": 30,
+   "fund": 44.39,
+   "fund_approval": 46.84,
+   "generic": 50.917,
+   "actual_house_vote": 48.613
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "fund": 44.24,
+   "fund_approval": 46.69,
+   "generic": 50.075,
+   "actual_house_vote": 48.613
+  },
+  {
+   "year": 2022,
+   "days": 7,
+   "fund": 44.24,
+   "fund_approval": 46.69,
+   "generic": 49.597,
+   "actual_house_vote": 48.613
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "fund": 46.26,
+   "fund_approval": 46.69,
+   "generic": 49.717,
+   "actual_house_vote": 48.613
+  },
+  {
+   "year": 2024,
+   "days": 365,
+   "fund": 48.04,
+   "fund_approval": 48.26,
+   "generic": 49.885,
+   "actual_house_vote": 48.66
+  },
+  {
+   "year": 2024,
+   "days": 250,
+   "fund": 48.25,
+   "fund_approval": 48.55,
+   "generic": 49.291,
+   "actual_house_vote": 48.66
+  },
+  {
+   "year": 2024,
+   "days": 120,
+   "fund": 48.11,
+   "fund_approval": 48.33,
+   "generic": 50.231,
+   "actual_house_vote": 48.66
+  },
+  {
+   "year": 2024,
+   "days": 60,
+   "fund": 48.34,
+   "fund_approval": 48.69,
+   "generic": 51.05,
+   "actual_house_vote": 48.66
+  },
+  {
+   "year": 2024,
+   "days": 30,
+   "fund": 48.28,
+   "fund_approval": 48.62,
+   "generic": 50.901,
+   "actual_house_vote": 48.66
+  },
+  {
+   "year": 2024,
+   "days": 14,
+   "fund": 48.28,
+   "fund_approval": 48.62,
+   "generic": 50.119,
+   "actual_house_vote": 48.66
+  },
+  {
+   "year": 2024,
+   "days": 7,
+   "fund": 48.14,
+   "fund_approval": 48.48,
+   "generic": 49.706,
+   "actual_house_vote": 48.66
+  },
+  {
+   "year": 2024,
+   "days": 1,
+   "fund": 48.14,
+   "fund_approval": 48.48,
+   "generic": 50.348,
+   "actual_house_vote": 48.66
+  },
+  {
+   "year": 2026,
+   "days": 365,
+   "fund": 53.29,
+   "fund_approval": 53.1,
+   "generic": 51.914,
+   "actual_house_vote": 57.157
+  },
+  {
+   "year": 2026,
+   "days": 250,
+   "fund": 53.76,
+   "fund_approval": 53.4,
+   "generic": 52.497,
+   "actual_house_vote": 57.157
+  },
+  {
+   "year": 2026,
+   "days": 120,
+   "fund": 53.8,
+   "fund_approval": 53.56,
+   "generic": 53.311,
+   "actual_house_vote": 57.157
+  },
+  {
+   "year": 2026,
+   "days": 60,
+   "fund": 53.94,
+   "fund_approval": 53.62,
+   "generic": 53.532,
+   "actual_house_vote": 57.157
+  },
+  {
+   "year": 2026,
+   "days": 30,
+   "fund": 54.05,
+   "fund_approval": 53.74,
+   "generic": 54.526,
+   "actual_house_vote": 57.157
+  },
+  {
+   "year": 2026,
+   "days": 14,
+   "fund": 54.01,
+   "fund_approval": 53.69,
+   "generic": 54.458,
+   "actual_house_vote": 57.157
+  },
+  {
+   "year": 2026,
+   "days": 7,
+   "fund": 54.03,
+   "fund_approval": 53.72,
+   "generic": 54.42,
+   "actual_house_vote": 57.157
+  },
+  {
+   "year": 2026,
+   "days": 1,
+   "fund": 54.0,
+   "fund_approval": 53.69,
+   "generic": 54.612,
+   "actual_house_vote": 57.157
+  }
+ ]
+}

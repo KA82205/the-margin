@@ -21,7 +21,7 @@ import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE); sys.path.insert(0, HERE)
-import backtest as B, build_data as BD, simulate as S
+import backtest as B, build_data as BD, national as NA, simulate as S
 
 D26 = os.path.join(ROOT, 'data', 'senate', '2026'); RCP = os.path.join(ROOT, 'data', 'senate', '2026_rcp')
 ELECTION = pd.Timestamp('2026-11-03')
@@ -53,7 +53,7 @@ def features(R):
             rows.append({'year': 2026, 'state': r.state, 'special': bool(r.special), 'days': d, 'dem2': r.dem2, 'lean': r.lean, 'generic': gen,
                          'inc_d': int(r.incumbent == 'D'), 'inc_r': int(r.incumbent == 'R'), 'poll': pa, 'poll_w': pw,
                          'track': (r.dem_track if r.dem_track == r.dem_track else 0.0) - (r.rep_track if r.rep_track == r.rep_track else 0.0)})
-    return pd.DataFrame(rows)
+    return NA.add(pd.DataFrame(rows))
 
 
 def polls_only(R):

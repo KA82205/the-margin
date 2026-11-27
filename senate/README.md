@@ -245,9 +245,59 @@ draw, not 32. It argues for a larger shared error (2026 can now join the years i
 midterm term on the long record of Senate results since 1978. A presidential year such as 2028 has no midterm swing, so
 for 2028 the first lesson is the one that applies.
 
+## Step 8: the national fundamentals (adopted)
+
+Quinn, Brush and Smith's update of the Lewis-Beck and Rice model ("Updating the Fundamentals: Forecasting the 2026
+Midterm Election Post-Gallup", *PS: Political Science & Politics*, 2026) forecast, from June 2026's approval, income
+growth and the midterm, that the Republicans would lose 8.9 Senate seats; they lost 9. Its forecast was the same a year
+out, when this model saw almost nothing coming.
+
+`senate/national.py` rebuilds its inputs for 1948-2026 from public sources (Gallup approval from the American
+Presidency Project, real disposable income from the BEA via FRED, and each election's seats and national House vote;
+`tools/fetch_fundamentals.py` fetches them through the "Source samples" workflow) and refits its equations
+(`national_check.json`). They come out close to the paper's: House seat change = -38.9 + 0.77 approval + 1.39 income
+- 28.9 midterm (paper: -38.6, 0.78, 1.39, -29.7); Senate = 2.6 + 0.14 approval + 0.26 income - 2.1 midterm
+- 0.65 seats up (paper: 3.7, 0.14, 0.23, -2.9, -0.72); the 2026 Senate forecast -8.8 (paper -8.9).
+
+For the race model the same inputs forecast the national House vote instead of seats, from what was known on each date
+(the latest approval; the latest income growth then published, in revised figures; the equation fitted only on the
+elections before). `senate/national_test.py` tried it in place of the generic ballot, and averaged half and half with
+it:
+
+| All five years (2018-2024 left out in turn, 2026 fitted on 2018-2024) | A year out | 120 days | 30 days | Last day |
+|---|---|---|---|---|
+| Miss on the margin, generic ballot (before) | 8.2 | 7.9 | 6.7 | 6.5 |
+| Fundamentals with income, alone | 8.8 | 7.9 | 7.2 | 6.9 |
+| Half generic ballot, half fundamentals with income | 8.4 | 7.8 | 6.5 | 5.9 |
+| Approval and midterm only, alone | 7.8 | 7.4 | 6.6 | 6.3 |
+| **Half generic ballot, half approval and midterm** | 7.9 | 7.6 | 6.6 | 6.4 |
+| Log loss, before | 0.333 | 0.253 | 0.196 | 0.177 |
+| **Log loss, half generic ballot, half approval and midterm** | 0.309 | 0.244 | 0.194 | 0.174 |
+
+- **Income is the weak part:** the 2020 stimulus (income up 22% a year) and 2022's inflation (down 7%) threw the
+  fundamentals off by about 5 points of the House vote. Approval and the midterm alone hold up better.
+- **Half and half, approval and midterm, is adopted** (`+national` in `backtest.py`, now the working version in
+  `simulate.py` and `test_2026.py`): it is better than before at every distance across the five years, on both the
+  margin and log loss, and it is the plainest choice, with no weight fitted. Choosing it after seeing 2026 is itself
+  a choice made on the data; the other forms tried are kept in `national_test.json`.
+- **Against FiveThirtyEight (competitive races, 2018-2022),** log loss a week out is now 0.240, against its deluxe
+  0.244; on the last day 0.260, against 0.232 (deluxe), 0.263 (classic) and 0.265 (lite).
+- **2026:** the miss on the margin on the last day falls from 7.8 to 7.5 and a year out from 12.1 to 10.6; the
+  expected Democratic seats among the 32 rise from 17.2 to 17.4 on the last day (14.5 a year out), against the 22 they
+  won, and the chance of Democratic control from 61% to 64% (13% a year out). Most of 2026's miss was the polls'.
+- **The chance of control in 2018-2024 got slightly worse** (log loss 0.27 against 0.22 on the last day), from 2020
+  (78% for the Democrats, who won) and 2022 (45%, who won). Four outcomes; read it as noise either way.
+- **The paper's own seat forecast is worth showing beside ours,** as a separate benchmark, as Tipping Point shows its
+  academic models: its national seat count was nearer the 2026 result than the total of this model's race forecasts.
+- **Approval after Gallup:** for 2026 the inputs use RealClearPolling's average turned into a Gallup equivalent by the
+  paper's proxy (in `data/senate/2026_rcp/`, kept out of the repository). Running this in 2028 needs an approval
+  average the pipeline can collect itself; Fifty-Two Keys' own list of approval polls is too thin for it so far.
+
 ## What comes next
 
-- Add 2026 to the fitting years and size the shared error again; test a midterm term on 1978-2024 Senate results.
+- Add 2026 to the fitting years and size the shared error again.
+- An approval average the pipeline collects itself, to replace Gallup in the national fundamentals.
+- The national seat-change model as a benchmark beside the Senate and House forecasts.
 - Records from House and statewide races, for candidates who have run for those offices.
 - Link the simulation to the presidential one's draws in 2028: each state's Senate race moving with its presidential vote, and the tie-breaking vice president.
 - Replace the cycle's money totals with money raised by each date (the FEC's quarterly filings).

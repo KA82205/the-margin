@@ -1,0 +1,50 @@
+{
+ "house_pi": {
+  "ours": {
+   "const": -38.897,
+   "june_approval": 0.772,
+   "income_growth": 1.393,
+   "midterm": -28.854
+  },
+  "see": 18.83,
+  "paper": {
+   "const": -38.58,
+   "approval": 0.78,
+   "income": 1.39,
+   "midterm": -29.73
+  },
+  "forecast_2026": -39.7,
+  "result_2026": -47.0
+ },
+ "senate_pi": {
+  "ours": {
+   "const": 2.565,
+   "june_approval": 0.14,
+   "income_growth": 0.264,
+   "midterm": -2.114,
+   "senate_up": -0.652
+  },
+  "see": 3.32,
+  "paper": {
+   "const": 3.69,
+   "approval": 0.14,
+   "income": 0.23,
+   "midterm": -2.94,
+   "seats_up": -0.72
+  },
+  "forecast_2026": -8.8,
+  "result_2026": -9.0
+ },
+ "inputs_2026": {
+  "year": 2026.0,
+  "pres_party": "R",
+  "midterm": 1.0,
+  "june_approval": 34.68,
+  "income_growth": 0.928,
+  "house_change": -47.0,
+  "senate_change": -9.0,
+  "senate_up": 22.0,
+  "house_vote_pres": 42.843,
+  "house_vote_dem": 57.157
+ }
+}

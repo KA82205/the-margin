@@ -1,7 +1,7 @@
 """Senate back-test, step 6: the races simulated together, for the number of seats each party wins and the chance of
 control. Research only: nothing here feeds the presidential forecast or appears on the site.
 
-Each race's forecast is the working version of backtest.py (+track, +polls by volume), made as before from the other three
+Each race's forecast is the working version of backtest.py (+national, +polls by volume), made as before from the other three
 years. Its error is split in two, both sized from those other years:
 
     shared     one draw per simulated election, the same for every race: how far a year's races missed together (the 2020
@@ -22,7 +22,7 @@ import pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE); sys.path.insert(0, HERE)
 import backtest as B
 
-WORKING = '+track'                    # the fundamentals of the working version; its polls are blended by volume
+WORKING = '+national'                 # the fundamentals of the working version; its polls are blended by volume
 SIMS = 40000
 T_DF = 5
 SHARED_FLOOR = 0.5                    # points of two-party share: the shared error is never taken as none at all
