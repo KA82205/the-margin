@@ -1,0 +1,260 @@
+{
+ "note": "The live Senate forecast's fitted pieces (senate/live_fit.py): the working version (+national, polls by volume) fitted on 2018, 2020, 2022, 2024, 2026. Shares are the Democratic side's two-party share, in points.",
+ "years": [
+  2018,
+  2020,
+  2022,
+  2024,
+  2026
+ ],
+ "version": "+national",
+ "columns": [
+  "lean",
+  "blend_approval",
+  "inc_d",
+  "inc_r",
+  "track"
+ ],
+ "distances": {
+  "365": {
+   "coef": {
+    "const": 5.52259,
+    "lean": 0.83835,
+    "blend_approval": 0.92268,
+    "inc_d": 1.86148,
+    "inc_r": -1.48453,
+    "track": 0.17909
+   },
+   "blend": [
+    0.0,
+    0.5,
+    0.07987
+   ],
+   "sd_total": {
+    "polls": 3.004,
+    "no_polls": 3.5853
+   },
+   "sd_own": {
+    "polls": 1.7509,
+    "no_polls": 2.6259
+   },
+   "shared_sd": 2.441,
+   "races": 169,
+   "with_polls": 41
+  },
+  "250": {
+   "coef": {
+    "const": 8.45769,
+    "lean": 0.83749,
+    "blend_approval": 0.86444,
+    "inc_d": 1.9901,
+    "inc_r": -1.38654,
+    "track": 0.17461
+   },
+   "blend": [
+    0.15,
+    1.0,
+    6.07737
+   ],
+   "sd_total": {
+    "polls": 2.9257,
+    "no_polls": 3.6555
+   },
+   "sd_own": {
+    "polls": 1.6128,
+    "no_polls": 2.721
+   },
+   "shared_sd": 2.441,
+   "races": 169,
+   "with_polls": 57
+  },
+  "120": {
+   "coef": {
+    "const": 7.83505,
+    "lean": 0.83522,
+    "blend_approval": 0.87197,
+    "inc_d": 2.09624,
+    "inc_r": -1.46348,
+    "track": 0.1691
+   },
+   "blend": [
+    0.3,
+    1.0,
+    19.59703
+   ],
+   "sd_total": {
+    "polls": 2.9725,
+    "no_polls": 3.8018
+   },
+   "sd_own": {
+    "polls": 1.6963,
+    "no_polls": 2.9147
+   },
+   "shared_sd": 2.441,
+   "races": 169,
+   "with_polls": 86
+  },
+  "60": {
+   "coef": {
+    "const": -2.59167,
+    "lean": 0.83592,
+    "blend_approval": 1.06769,
+    "inc_d": 2.11846,
+    "inc_r": -1.37623,
+    "track": 0.17104
+   },
+   "blend": [
+    0.0,
+    0.45,
+    0.07987
+   ],
+   "sd_total": {
+    "polls": 2.7482,
+    "no_polls": 3.6761
+   },
+   "sd_own": {
+    "polls": 1.524,
+    "no_polls": 2.8781
+   },
+   "shared_sd": 2.287,
+   "races": 169,
+   "with_polls": 108
+  },
+  "30": {
+   "coef": {
+    "const": -1.40389,
+    "lean": 0.83547,
+    "blend_approval": 1.04282,
+    "inc_d": 2.20318,
+    "inc_r": -1.25465,
+    "track": 0.17294
+   },
+   "blend": [
+    0.15,
+    0.7,
+    0.83044
+   ],
+   "sd_total": {
+    "polls": 2.6046,
+    "no_polls": 3.8693
+   },
+   "sd_own": {
+    "polls": 1.4628,
+    "no_polls": 3.2137
+   },
+   "shared_sd": 2.155,
+   "races": 169,
+   "with_polls": 126
+  },
+  "14": {
+   "coef": {
+    "const": 3.03536,
+    "lean": 0.83352,
+    "blend_approval": 0.96121,
+    "inc_d": 2.29863,
+    "inc_r": -1.33496,
+    "track": 0.16769
+   },
+   "blend": [
+    0.25,
+    0.75,
+    1.49124
+   ],
+   "sd_total": {
+    "polls": 2.582,
+    "no_polls": 3.8453
+   },
+   "sd_own": {
+    "polls": 1.4222,
+    "no_polls": 3.1847
+   },
+   "shared_sd": 2.155,
+   "races": 169,
+   "with_polls": 127
+  },
+  "7": {
+   "coef": {
+    "const": 7.7889,
+    "lean": 0.83421,
+    "blend_approval": 0.87023,
+    "inc_d": 2.24025,
+    "inc_r": -1.39235,
+    "track": 0.16765
+   },
+   "blend": [
+    0.3,
+    0.8,
+    0.73869
+   ],
+   "sd_total": {
+    "polls": 2.5807,
+    "no_polls": 3.4013
+   },
+   "sd_own": {
+    "polls": 1.4717,
+    "no_polls": 2.6597
+   },
+   "shared_sd": 2.12,
+   "races": 169,
+   "with_polls": 131
+  },
+  "1": {
+   "coef": {
+    "const": 3.97087,
+    "lean": 0.83331,
+    "blend_approval": 0.94282,
+    "inc_d": 2.3146,
+    "inc_r": -1.28571,
+    "track": 0.16763
+   },
+   "blend": [
+    0.45,
+    1.0,
+    3.80475
+   ],
+   "sd_total": {
+    "polls": 2.6757,
+    "no_polls": 3.2748
+   },
+   "sd_own": {
+    "polls": 1.7254,
+    "no_polls": 2.5578
+   },
+   "shared_sd": 2.045,
+   "races": 169,
+   "with_polls": 134
+  }
+ },
+ "national": {
+  "house_vote": {
+   "note": "the president's party's two-party House vote from June approval (Gallup equivalent) and the midterm, 1948-2026",
+   "coef": [
+    45.20514,
+    0.08056,
+    -1.86756
+   ],
+   "years": [
+    1948,
+    2026
+   ]
+  },
+  "senate_seats": {
+   "note": "the president's party's change in Senate seats from June approval, the midterm and its seats up, 1948-2026",
+   "coef": [
+    1.90455,
+    0.14957,
+    -2.76852,
+    -0.55699
+   ]
+  },
+  "gallup_offset": -3.35,
+  "combine": 0.25
+ },
+ "simulation": {
+  "t_df": 5,
+  "shared_floor": 0.5,
+  "own_floor": 1.0,
+  "pres_link": 0.5
+ },
+ "incumbent_ran_share": 0.787
+}

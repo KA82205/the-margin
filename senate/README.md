@@ -471,6 +471,48 @@ One year cannot settle it either way. A forecast that leaves out the latest and 
 of itself in 2028, so the live forecast is fitted on all five years (`LIVE_YEARS` in `simulate.py`), with the shared
 error from all five. The back-tests keep leaving each year out.
 
+## Step 16: the link to the presidential forecast (adopted for 2028)
+
+In a presidential year a state's Senate race and its presidential vote miss together. Measured on 2020 and 2024 (the
+Senate forecast of each race, each year left out, against The Margin's own presidential forecast of the same state at
+the same distance): within a year, a state's Senate miss moves 0.34 to 0.63 points with each point of its presidential
+miss, around 0.5 at every distance (correlation 0.12 to 0.45). Both years' Senate and presidential misses leaned the same
+way (2020: Senate 3.2 points too Democratic on the last day, presidential 1.6; 2024: 1.5 and 1.0).
+
+So in 2028 the Senate races are simulated inside the presidential forecast's own simulated elections: each race moves
+half a point with each point its state's presidential vote moves in that election, and the rest of its error (the part
+the races share and its own) is drawn as before, sized so that each race's whole spread is what the fit gives it. A 50-50
+Senate goes to the party of the vice president elected in the same simulated election; an Electoral College tie counts
+as half.
+
+## The live 2028 forecast (backend only)
+
+`senate/live.py`, run every hour by `.github/workflows/senate.yml` after the presidential forecast's run, writes
+`data/senate/2028/forecast.json` (the chance of control, the caucus range, each race), `history.csv` (a line a day)
+and `sources.json` (the page versions read). Nothing is on the site. Each run:
+
+1. reads Wikipedia's 2028 Senate page: the 35 seats up (34 of Class 3 and Tennessee's special), who holds each, whether
+   they are running, the declared candidates, and the chamber as it stands (56 in the Democratic caucus, 40 of them not
+   up); each race's own page for its nominees and polls once chosen; the approval polls; the generic ballot once Wikipedia
+   has a page for it;
+2. builds each race's inputs as the back-test did; polls count once the race's page names both nominees, and until then
+   the race runs on its fundamentals. A senator whose plans are not known counts as running with the share of
+   incumbents who ran again in 2018-2026 (79%);
+3. applies the fitted pieces in `data/senate/2028/model.json`, made by `senate/live_fit.py` from 2018-2026 (step 15),
+   at the nearest distance tested at or beyond the day. More than a year out, the shared error keeps growing at the rate
+   it grows within the year;
+4. pulls the expected caucus a quarter of the way to the national seat-change model;
+5. simulates the races inside the presidential forecast's 40,000 elections, drawn again from its published states with
+   its own seed (step 16); the draw reproduces the published presidential chance to within rounding.
+
+The fit needs the raw sources kept out of the repository, so `live_fit.py` is run by hand when the training data change,
+and its output committed; the hourly run only applies it. `data/senate/past_races.csv` (1978-2026, from the MIT
+Election Lab's returns and the 2026 results) gives the candidates' records.
+
+First run, November 27, 2026, 711 days out: Democrats 99% to control the Senate, a caucus of about 58 (80% range 54-62),
+with the national environment from Trump's approval alone (about 36% approve, a Democratic House vote of 52.2%). The
+Democrats hold 56 seats and only 16 of them are up, so losing control would take a net loss of six.
+
 ## The 2026 academic forecasts, for reference
 
 `data/senate/2026/academic_forecasts_2026.csv` holds the forecasts in the *PS: Political Science & Politics* special
@@ -492,6 +534,5 @@ Senate seats and a 63% chance of control 60 days out, and about 53 seats and 82%
 - An approval average the pipeline collects itself, to replace Gallup in the national fundamentals.
 - The national seat-change model as a benchmark beside the Senate and House forecasts.
 - Records from House and statewide races, for candidates who have run for those offices.
-- Link the simulation to the presidential one's draws in 2028: each state's Senate race moving with its presidential vote, and the tie-breaking vice president.
 - Money by date again once 2026 is a fitting year (step 13), and the reports of the two 2026 nominees not yet found.
 - The Manifold race markets of 2022 and 2024, tested in the research section only, with no weight in the forecast.

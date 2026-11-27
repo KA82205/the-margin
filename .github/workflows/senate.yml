@@ -1,0 +1,68 @@
+name: Senate forecast
+# The 2028 Senate forecast (senate/live.py), backend only: it writes data/senate/2028/ and nothing on the site. Runs
+# every hour after the presidential forecast's run (:37), so it draws from the presidential forecast just published.
+on:
+  schedule:
+    - cron: "55 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+# Its own group: sharing the presidential run's group would let a queued Senate run cancel a queued presidential one.
+concurrency:
+  group: senate
+  cancel-in-progress: false
+
+jobs:
+  senate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy pandas
+
+      - name: Read the sources and run the Senate forecast
+        id: run
+        continue-on-error: true
+        run: python senate/live.py
+
+      # Saved only when a number moved: page versions alone (sources.json) are not a change.
+      - name: Save
+        if: steps.run.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "forecast-bot"
+          git config user.email "forecast-bot@users.noreply.github.com"
+          if git diff --quiet -- data/senate/2028/forecast.json data/senate/2028/history.csv && [ -z "$(git status --porcelain data/senate/2028/forecast.json data/senate/2028/history.csv)" ]; then
+            echo "The Senate forecast came out the same: nothing to save."
+            exit 0
+          fi
+          git add data/senate/2028/forecast.json data/senate/2028/history.csv data/senate/2028/sources.json
+          git commit -m "Senate forecast $(TZ=America/New_York date '+%Y-%m-%d %H:%M') (backend)"
+          # never push while the presidential forecast is running or waiting: its save would then be refused
+          for i in $(seq 1 40); do
+            busy=0
+            for s in in_progress queued; do
+              n=$(gh api "repos/${{ github.repository }}/actions/workflows/update.yml/runs?status=$s&per_page=1" --jq '.total_count' 2>/dev/null || echo 0)
+              busy=$((busy + n))
+            done
+            [ "$busy" = "0" ] && break
+            sleep 15
+          done
+          for i in 1 2 3; do
+            git pull --rebase -q origin main && git push -q && exit 0
+            sleep 10
+          done
+          echo "::warning::The repository kept changing while this run saved; the next hourly run tries again."
+
+      - name: Flag a failed run
+        if: steps.run.outcome == 'failure'
+        run: echo "::warning::The Senate forecast could not be made this hour (see the step above); the one in place is the last good one."

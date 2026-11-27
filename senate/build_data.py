@@ -127,8 +127,9 @@ def results(t):
 
 
 # ------------------------------------------------------------------------------------------------------- track records
-def past_races():
-    """Every Senate general election of 1978-2024 between a Democrat (or an independent the Democrats backed) and a
+def past_races(extra=None):
+    """Every Senate general election of 1978-2024 (and the rows of extra, a later year's races in the same columns, when
+    given) between a Democrat (or an independent the Democrats backed) and a
     Republican, with how far the Democratic side ran ahead of what the state's lean and that year's national mood would give:
     the result, less what the state's lean and the year give (a line fitted across all the races). Whether each
     candidate had won a Senate election in the state before is taken out too, so that a record is not just incumbency."""
@@ -149,7 +150,9 @@ def past_races():
         try: ln = lean(int(year), st)
         except KeyError: continue
         rows.append({'year': int(year), 'state': st, 'special': bool(special), 'dem': dd.candidate, 'rep': rr.candidate, 'dem2': 100 * dv / (dv + rv), 'lean': ln})
-    P = pd.DataFrame(rows).sort_values(['year', 'state', 'special']).reset_index(drop=True)
+    P = pd.DataFrame(rows)
+    if extra is not None: P = pd.concat([P, extra], ignore_index=True)
+    P = P.sort_values(['year', 'state', 'special']).reset_index(drop=True)
     key = lambda c, st, side: (st, side, surname(c), (tokens(c) or [''])[0][:1])
     won = set(); P['dem_had_won'] = 0; P['rep_had_won'] = 0
     for y, g in P.groupby('year', sort=True):               # had the candidate won a Senate election in the state before this year

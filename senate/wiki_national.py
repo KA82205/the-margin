@@ -20,6 +20,7 @@ HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE);
 import wiki_polls as WP
 
 GALLUP_OFFSET = -3.35
+SECTIONS_APPROVAL = r'===\s*Aggregate polls\s*==='           # the approval page's table of aggregators
 
 
 def table_rows(section):
