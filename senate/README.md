@@ -485,11 +485,12 @@ the races share and its own) is drawn as before, sized so that each race's whole
 Senate goes to the party of the vice president elected in the same simulated election; an Electoral College tie counts
 as half.
 
-## The live 2028 forecast (backend only)
+## The live 2028 forecast, and the Senate tab
 
 `senate/live.py`, run every hour by `.github/workflows/senate.yml` after the presidential forecast's run, writes
-`data/senate/2028/forecast.json` (the chance of control, the caucus range, each race), `history.csv` (a line a day)
-and `sources.json` (the page versions read). Nothing is on the site. Each run:
+`data/senate/2028/forecast.json` (the chance of control, the caucus range, each race), `history.csv` (a line a day),
+`sources.json` (the page versions read) and `docs/api/senate.json`, which the site's Senate tab reads when it opens (so
+the tab is as fresh as the Senate run, whatever the presidential page's last build). Each run:
 
 1. reads Wikipedia's 2028 Senate page: the 35 seats up (34 of Class 3 and Tennessee's special), who holds each, whether
    they are running, the declared candidates, and the chamber as it stands (56 in the Democratic caucus, 40 of them not

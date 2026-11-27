@@ -218,7 +218,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 
   .inrow{grid-template-columns:1fr auto}.inrow p{grid-column:1/-1}
   .mix{grid-template-columns:1fr 1fr;gap:16px}.mix div:last-child{grid-column:1/-1}
-  nav .wide{height:auto;flex-direction:column;align-items:flex-start;gap:0;padding-top:12px}.tabs{align-self:auto;width:100%;gap:20px}.tabs a{height:40px;padding:0}
+  nav .wide{height:auto;flex-direction:column;align-items:flex-start;gap:0;padding-top:12px}.tabs{align-self:auto;width:100%;gap:20px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.tabs::-webkit-scrollbar{display:none}.tabs a{height:40px;padding:0;flex:none}
   .r-w{display:none}.r-s{display:block}
 }
 
@@ -227,6 +227,14 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 .st-pick{display:flex;align-items:center;gap:12px;margin-bottom:16px;font-size:14px;line-height:20px}
 .st-pick label{color:var(--ink2)}
 .st-pick select{font:500 16px/24px var(--sans);color:var(--ink);background:var(--bg);border:1px solid var(--ink);border-radius:8px;padding:8px 12px;max-width:100%}
+.map path.none{fill:var(--raised);cursor:default}
+.sn-note{margin-top:24px;padding:16px;border-radius:12px;background:var(--raised);font-size:14px;line-height:20px;color:var(--ink2)}
+.sn-dist svg{display:block;width:100%;height:auto}
+.sn-dist .ax{fill:var(--muted);font:400 12px var(--sans)}.sn-dist .lb{fill:var(--ink);font:500 12px var(--sans)}
+#sn-t{min-width:600px}#sn-t td small{display:block;color:var(--muted);font-size:12px;line-height:16px}
+#sn-t tr{scroll-margin-top:calc(var(--navh,56px) + 16px)}#sn-t tr.on td{background:var(--raised)}
+#sn-t .who i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.sn-line svg{display:block;width:100%;height:auto}
 .st-hint{margin-top:32px;border:1px dashed var(--line);border-radius:12px;padding:40px 24px;text-align:center}
 .st-hint h3{font:500 28px/32px var(--serif);margin:0 0 8px}
 .st-hint p{color:var(--ink2);font-size:15px;line-height:24px;margin:0 auto;max-width:46ch}
@@ -282,7 +290,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 <div id="tip" hidden></div>
 <div class="stripe" aria-hidden="true"></div>
 <nav><div class="wide"><a class="brand" href="#forecast"><svg aria-hidden="true"><use href="#logo"/></svg>{{TITLE}}</a>
-  <div class="tabs" id="tabs"><a href="#forecast">Forecast</a><a href="#states">States</a><a href="#polls">Polls</a><a href="#model">Model</a><a href="#backtests">Back-tests</a><a href="#research">Research</a></div></div></nav>
+  <div class="tabs" id="tabs"><a href="#forecast">Forecast</a><a href="#states">States</a><a href="#senate">Senate</a><a href="#polls">Polls</a><a href="#model">Model</a><a href="#backtests">Back-tests</a><a href="#research">Research</a></div></div></nav>
 
 <main>
 <section class="tab" id="t-forecast">
@@ -356,6 +364,30 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   <div id="st-prof" aria-live="polite"></div>
 </div>
 <div class="mid"><h2>Every state and district</h2><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="st-all"></table></div><p class="fine" style="margin-top:12px">"Decides the election" is how often a state is the one that carries the winner past 270 electoral votes, across 40,000 simulated elections. The 80% prediction interval is where the margin falls in 80% of simulated elections</p></div>
+</section>
+
+<section class="tab" id="t-senate" hidden>
+<header class="wide hero">
+  <div>
+    <p class="kicker">2028 Senate forecast</p>
+    <h1 id="sn-head">The Senate</h1>
+    <p class="stand" id="sn-stand"></p>
+    <p class="dateline" id="sn-date"></p>
+    <div class="top" id="sn-top"></div>
+    <div class="bar" id="sn-odds"></div>
+    <div class="keys" id="sn-keys"></div>
+  </div>
+  <div class="mapbox">
+    <div class="map" id="sn-map"></div>
+    <div class="legend" id="sn-leg"></div>
+    <p class="sn-note" id="sn-note"></p>
+  </div>
+</header>
+<figure class="mid"><h2>How many seats</h2><p class="sub" id="sn-dist-sub"></p><div class="sn-dist" id="sn-dist"></div><figcaption id="sn-dist-cap"></figcaption></figure>
+<figure class="mid"><h2>With the White House</h2><p class="sub" id="sn-wh-sub"></p><div class="mix" id="sn-wh"></div><figcaption id="sn-wh-cap"></figcaption></figure>
+<figure class="mid" id="sn-hist-f" hidden><h2>The chance over time</h2><div class="sn-line" id="sn-hist"></div></figure>
+<figure class="mid"><h2>Every race</h2><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="sn-t"></table></div><figcaption id="sn-t-cap"></figcaption></figure>
+<div class="col"><h2>How the Senate forecast works</h2><div id="sn-how"></div></div>
 </section>
 
 <section class="tab" id="t-polls" hidden>
@@ -1228,10 +1260,96 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
       ' elections since 1976, each estimated only from the elections before it, an equation on the primary gap and first term missed the vote by ' + P.walk.primary.toFixed(1) + ' points in a typical year. Approval and first term missed by ' + P.walk.approval.toFixed(1) + '. Putting all three together missed by ' + P.walk.both.toFixed(1) +
       ', worse than leaving the primary out. A weak primary is a sharp warning for a sitting president. Beyond that it adds little to what approval already says.'; })();
 
+  // ---- the Senate: its own data file (api/senate.json), written every hour by the Senate forecast and read when the tab
+  // first opens, so the tab is as fresh as the Senate forecast whatever the presidential page's last build
+  let SN = null, snBusy = false;
+  function senate() {
+    if (SN || snBusy) return; snBusy = true;
+    fetch('api/senate.json', {cache: 'no-cache'}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(d => { SN = d; drawSenate(d); })
+      .catch(() => { $('sn-head').textContent = 'The Senate forecast could not be loaded'; $('sn-stand').textContent = 'Reload the page to try again.'; })
+      .finally(() => { snBusy = false; });
+  }
+  function drawSenate(S) {
+    const sm = S.summary, cn = S.chamber_now, p = sm.p_dem_control;
+    const shown = x => Math.min(99, Math.max(1, Math.round(100 * x)));          // never 0% or 100%: neither is ever certain
+    const hd = shown(p), hr = 100 - hd, q = Math.max(hd, hr) / 100, lead = hd >= hr ? 'Democrats' : 'Republicans';
+    const held = cn.dem_caucus >= 51 ? 'Democrats' : cn.rep >= 51 ? 'Republicans' : null;
+    const word = q >= 0.9 ? 'are strong favorites' : q >= 0.75 ? 'are favored' : q >= 0.6 ? 'are modest favorites' : q >= 0.55 ? 'have a slight edge' : null;
+    $('sn-head').textContent = word ? lead + ' ' + word + ' to ' + (lead === held ? 'keep' : 'win') + ' the Senate in 2028' : 'Control of the Senate in 2028 is a toss-up';
+    const need = 51 - cn.dem_not_up, up = S.races.length;
+    $('sn-stand').textContent = up + ' of the 100 seats are up: ' + cn.dem_up + ' held by Democrats and ' + cn.rep_up + ' by Republicans. Democrats, with the independents who sit with them, hold ' + cn.dem_caucus +
+      ' seats now and ' + cn.dem_not_up + ' of them are not up, so they need ' + need + ' of the ' + up + ' for a majority, or ' + (need - 1) + ' if their party also wins the vice presidency, which breaks a 50-50 tie.';
+    $('sn-date').textContent = 'Updated ' + longDate(S.as_of) + ' · ' + S.days_out + ' days to the election';
+    $('sn-top').innerHTML = '<div class="dn"><span>Democrats control</span><strong>' + hd + '%</strong></div><div class="rn"><span>Republicans control</span><strong>' + hr + '%</strong></div>';
+    $('sn-odds').innerHTML = '<i class="bd" style="flex:' + hd + '"></i><i class="br" style="flex:' + hr + '"></i>';
+    $('sn-odds').setAttribute('role', 'img'); $('sn-odds').setAttribute('aria-label', 'Democrats ' + hd + '%, Republicans ' + hr + '%');
+    const tieP = sm.p_50_50 < 0.005 ? 'under 1%' : in100(sm.p_50_50);
+    $('sn-keys').innerHTML = [[Math.round(sm.dem_caucus_mean) + ' to ' + (100 - Math.round(sm.dem_caucus_mean)), 'seats on average, Democrats to Republicans'],
+      [sm.low80 + ' to ' + sm.high80, 'Democratic seats in 80% of simulated elections'], [tieP, 'chance of a 50-50 Senate, settled by the vice president']]
+      .map(k => '<div><strong>' + k[0] + '</strong><span>' + k[1] + '</span></div>').join('');
+    // the map: the states with a race, shaded by the Democratic chance as on the Forecast tab; the rest left blank
+    const by = {}; S.races.forEach(r => (by[r.state] = by[r.state] || []).push(r));
+    const pick = rs => rs.slice().sort((a, b) => Math.abs(a.p_dem - 0.5) - Math.abs(b.p_dem - 0.5))[0];      // two races in a state: the closer one
+    let m = '<svg viewBox="0 0 975 610" role="img" aria-label="Map of the states with a Senate race in 2028, shaded by the chance the Democratic side wins it">';
+    Object.keys(window.US_STATES).forEach(st => { const sh = window.US_STATES[st], rs = by[st]; if (!sh) return;
+      m += '<path data-s="' + st + '" d="' + sh.d + '"' + (rs ? ' fill="' + COL[bin(pick(rs).p_dem)] + '"' : ' class="none"') + '/>'; });
+    $('sn-map').innerHTML = m + '</svg>';
+    $('sn-leg').innerHTML = BINS.map((b, i) => '<span><i class="dot c' + i + '" style="display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px"></i>' + b[1] + '</span>').join('') +
+      '<span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;background:var(--raised)"></i>No race</span>';
+    const heldTxt = r => r.incumbent ? esc(r.incumbent) + ' (' + r.party + ')' : 'Vacant until an appointment';
+    const raceTip = r => '<b>' + esc(r.name) + (r.special ? ' (special)' : '') + '</b><br>' + (r.dem && r.rep ? esc(r.dem) + ' (D) vs ' + esc(r.rep) + ' (R)' : 'Held by ' + heldTxt(r) + ' · ' + r.status.toLowerCase()) +
+      '<br>Chance of winning: ' + (r.p_dem >= 0.995 ? 'Democrats over 99%' : r.p_dem <= 0.005 ? 'Republicans over 99%' : bothTxt(r.p_dem)) + '<br>Projected ' + pts(r.margin);
+    document.querySelectorAll('#sn-map path').forEach(el => { const rs = by[el.dataset.s];
+      hover(el, () => rs ? rs.map(raceTip).join('<br><br>') : '<b>' + esc((F.states.find(x => x.state === el.dataset.s) || {}).name || el.dataset.s) + '</b><br>No Senate race in 2028');
+      if (rs) el.addEventListener('click', () => { const row = document.getElementById('sn-r-' + rs[0].state + (rs[0].special ? 's' : ''));
+        document.querySelectorAll('#sn-t tr.on').forEach(x => x.classList.remove('on')); if (row) { row.classList.add('on'); row.scrollIntoView({behavior: 'smooth', block: 'center'}); } }); });
+    const noPolls = S.races.every(r => !r.polls);
+    $('sn-note').textContent = noPolls ? 'Two years out there are no nominees and no polls yet. Each race rests on how its state votes, the national mood read from the president\'s approval, and the sitting senator. A race\'s polls count once both nominees are chosen.'
+      : S.races.filter(r => r.polls).length + ' of the ' + up + ' races have nominees and polls counted; the rest rest on how their states vote, the national mood and the sitting senator.';
+    // how many seats: every caucus size the simulations reach
+    const D = S.distribution, ks = Object.keys(D).map(Number).filter(k => D[k] >= 0.0005).sort((a, b) => a - b);
+    const lo = Math.min(ks[0], 49), hi = Math.max(ks[ks.length - 1], 52), W = 760, H = 220, pl = 8, pr = 8, pt = 24, pb = 28, bw = (W - pl - pr) / (hi - lo + 1), mx = Math.max(...ks.map(k => D[k]));
+    let d = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Chance of each number of Democratic seats">';
+    for (let k = lo; k <= hi; k++) { const v = D[k] || 0, h = (H - pt - pb) * v / mx, x = pl + (k - lo) * bw;
+      d += '<g><title>' + k + ' Democratic seats: ' + (v < 0.001 ? 'under 0.1%' : pc(v, 1)) + '</title><rect x="' + (x + 1) + '" y="' + (H - pb - h) + '" width="' + Math.max(bw - 2, 1) + '" height="' + h + '" rx="2" fill="' + (k >= 51 ? 'var(--d)' : k === 50 ? 'var(--k4)' : 'var(--r)') + '"/>';
+      if ((k - lo) % (bw < 22 ? 2 : 1) === 0 || k === 50) d += '<text class="ax" x="' + (x + bw / 2) + '" y="' + (H - 8) + '" text-anchor="middle">' + k + '</text>'; d += '</g>'; }
+    const xm = pl + (51 - lo) * bw; d += '<line x1="' + xm + '" x2="' + xm + '" y1="' + (pt - 14) + '" y2="' + (H - pb) + '" stroke="var(--ink)" stroke-dasharray="3 3"/><text class="lb" x="' + (xm + 6) + '" y="' + (pt - 4) + '">51: a majority</text>';
+    $('sn-dist').innerHTML = d + '</svg>';
+    $('sn-dist-sub').textContent = 'Democratic seats after the election, across 40,000 simulated elections. The middle is ' + sm.dem_caucus_median + '; in 80% of them Democrats hold ' + sm.low80 + ' to ' + sm.high80 + '.';
+    $('sn-dist-cap').textContent = 'Blue: a Democratic majority. Red: a Republican one. Yellow: 50-50, where the vice president elected in 2028 breaks ties. Seats count the independents who sit with the Democrats.';
+    // with the White House
+    $('sn-wh-sub').textContent = 'The Senate races are simulated inside the presidential forecast\'s own simulated elections, so the two move together.';
+    $('sn-wh').innerHTML = [[in100(sm.p_dem_control_if_dem_president), 'Democrats control the Senate if they win the White House'], [in100(sm.p_dem_control_if_rep_president), 'Democrats control the Senate if Republicans win the White House'],
+      [in100(sm.p_dem_both), 'chance Democrats win both; Republicans ' + (sm.p_rep_both < 0.01 ? 'under 1%' : in100(sm.p_rep_both))]].map(k => '<div><strong>' + k[0] + '</strong><span>' + k[1] + '</span></div>').join('');
+    $('sn-wh-cap').textContent = 'A state\'s Senate race moves about half a point with each point its presidential vote moves in the same election, as in 2020 and 2024. The presidential chance used is the Forecast tab\'s ' + in100(sm.p_dem_president) + ' for the Democrats.';
+    // the chance over time, once there is more than one day
+    if (S.history.length > 1) { $('sn-hist-f').hidden = false; const Hs = S.history, w = 760, h = 160, x = i => 40 + i * (w - 56) / (Hs.length - 1), y = v => 12 + (1 - v) * (h - 36);
+      let g = '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="Chance Democrats control the Senate, day by day">';
+      [0, 0.5, 1].forEach(v => { g += '<line x1="40" x2="' + (w - 16) + '" y1="' + y(v) + '" y2="' + y(v) + '" stroke="var(--line)"/><text class="ax" x="34" y="' + (y(v) + 4) + '" text-anchor="end">' + in100(v) + '</text>'; });
+      g += '<polyline fill="none" stroke="var(--d)" stroke-width="2" points="' + Hs.map((r, i) => x(i) + ',' + y(r.p)).join(' ') + '"/><text class="ax" x="40" y="' + (h - 4) + '">' + longDate(Hs[0].date) + '</text><text class="ax" x="' + (w - 16) + '" y="' + (h - 4) + '" text-anchor="end">' + longDate(Hs[Hs.length - 1].date) + '</text>';
+      $('sn-hist').innerHTML = g + '</svg>'; }
+    // every race, from the most Democratic chance to the least
+    const rows = S.races.slice().sort((a, b) => (b.p_dem - a.p_dem) || (b.margin - a.margin));
+    // a race's chance never shows as 100% or 0%: past 99.5% it reads "over 99%"
+    const snCell = q => { if (q < 0.995 && q > 0.005) return aheadCell(q); const d = q >= 0.5; return '<span class="' + (d ? 'dem' : 'rep') + '">' + (d ? 'D' : 'R') + ' >99%</span> <span class="chance-o">' + (d ? 'R' : 'D') + ' <1%</span>'; };
+    $('sn-t').innerHTML = '<thead><tr><th>State</th><th>Senator</th><th class="n">Chance of winning</th><th class="n">Projected margin</th><th class="n">80% prediction interval</th></tr></thead><tbody>' +
+      rows.map(r => '<tr id="sn-r-' + r.state + (r.special ? 's' : '') + '"><td>' + esc(r.name) + (r.special ? ' <small>Special election</small>' : '') + (r.dem && r.rep ? '<small>' + esc(r.dem) + ' (D) vs ' + esc(r.rep) + ' (R)</small>' : '') + '</td>' +
+        '<td class="who">' + (r.incumbent ? '<i style="background:var(--' + (r.party === 'R' ? 'r' : 'd') + ')"></i>' + esc(r.incumbent) : 'Vacant') + '<small>' + esc(r.status) + '</small></td>' +
+        '<td class="n">' + snCell(r.p_dem) + '</td><td class="n ' + pcl(r.margin) + '">' + pts(r.margin) + '</td><td class="n">' + pts(r.high80) + ' to ' + pts(r.low80) + '</td></tr>').join('') + '</tbody>';
+    $('sn-t-cap').textContent = 'Margins are in points: the Democratic side\'s share less the Republican\'s. The 80% prediction interval is where the margin falls in 80% of simulated elections. "Has not said" senators run in 79% of simulated elections, the share of senators who ran again from 2018 to 2026, and the seat is open in the rest.';
+    const c = S.check_2026;
+    $('sn-how').innerHTML = '<p>Each race starts from how its state votes: its lean against the nation in the last two presidential elections. To that the forecast adds the national mood, read from the president\'s approval and, once there are polls of it, the generic congressional ballot; whether the senator is running again; and the candidates\' records in earlier Senate races. Once both nominees are chosen the race\'s polls are blended in, with more weight the more polls there are and the nearer the election.</p>' +
+      '<p>The weights come from every Senate race of 2018 to 2026. The forecast simulates all the races 40,000 times together with the presidential forecast, so a national swing moves every race at once, and the expected number of seats is pulled a quarter of the way toward a national model of how many seats the president\'s party gains or loses, from approval and the seats each side has up.</p>' +
+      '<p>Run on 2026 without having seen that year, the same method called ' + c.called + ' of ' + c.races + ' races on the final day, missing ' + c.missed.join(' and ') + '. It expected about ' + Math.round(c.dem_caucus_expected) + ' Democratic seats; they won ' + c.dem_caucus_actual + '. Its typical miss on a race\'s margin was ' + c.avg_miss.toFixed(1) + ' points.</p>' +
+      '<p class="fine">Seats, senators, candidates, polls and approval are read from Wikipedia (CC BY-SA 4.0) every hour. Prediction markets are not part of the forecast.</p>';
+  }
+
   // ---- tabs
-  (function () { const T = ['forecast', 'states', 'polls', 'model', 'backtests', 'research'];
+  (function () { const T = ['forecast', 'states', 'senate', 'polls', 'model', 'backtests', 'research'];
     const go = () => { const parts = (location.hash || '#forecast').slice(1).split('/'), cur = T.indexOf(parts[0]) >= 0 ? parts[0] : 'forecast';
       T.forEach(k => { $('t-' + k).hidden = k !== cur; }); document.querySelectorAll('#tabs a').forEach(a => { if (a.getAttribute('href') === '#' + cur) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+      if (cur === 'senate') senate();
       if (cur === 'states') { const want = parts[1] && ST[parts[1]] ? parts[1] : stSel; if (want) showState(want); else stHint(); }          // #states/PA opens a state
       const to = parts[1] && document.getElementById(parts[1]);          // a section inside the tab, as in #model/narrow
       if (to && $('t-' + cur).contains(to)) to.scrollIntoView({behavior: 'instant', block: 'start'}); else window.scrollTo({top: 0, behavior: 'instant'});

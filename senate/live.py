@@ -1,4 +1,4 @@
-"""The Senate forecast for the coming election (2028), made by the hourly job. Backend only: nothing here is on the site.
+"""The Senate forecast for the coming election (2028), made by the hourly job, and the data of the site's Senate tab.
 
 Each run:
   1. reads Wikipedia (CC BY-SA 4.0): the year's overview page (the seats up, who holds each, whether they are running,
@@ -23,7 +23,7 @@ Rules for what is not known yet:
     python senate/live.py --pages FILE.json    reads pages saved before (tools/fetch_wiki_polls.py's shape), for testing
 
 Writes data/senate/2028/forecast.json (the forecast, its inputs and each race), history.csv (one line a day) and
-sources.json (the versions of the pages read).
+sources.json (the versions of the pages read), and docs/api/senate.json, what the site's Senate tab shows.
 """
 import json, math, os, re, sys, time, urllib.parse, urllib.request
 import numpy as np
@@ -320,18 +320,19 @@ def main(saved=None):
     races = []
     for j, r in enumerate(R.itertuples()):
         x = X[:, j]; lo_j, hi_j = np.percentile(x, [10, 90])
-        races.append({'state': r.state, 'special': r.special, 'incumbent': r.incumbent, 'incumbent_party': r.incumbent_party, 'status': r.status,
-                      'incumbent_runs': r.incumbent_runs, 'dem': r.dem, 'rep': r.rep, 'declared': r.declared,
+        txt = lambda v: v if isinstance(v, str) and v else None          # a missing name is null, never NaN
+        races.append({'state': r.state, 'special': r.special, 'incumbent': txt(r.incumbent), 'incumbent_party': txt(r.incumbent_party), 'status': r.status,
+                      'incumbent_runs': r.incumbent_runs, 'dem': txt(r.dem), 'rep': txt(r.rep), 'declared': r.declared,
                       'margin': round(2 * float(np.mean(x)) - 100, 2), 'low80': round(2 * lo_j - 100, 2), 'high80': round(2 * hi_j - 100, 2),
                       'p_dem': round(float((x > 50).mean()), 4),
                       'p_dem_if_dem_president': round(float((x[pres['dem_win']] > 50).mean()), 4) if pres and pres['dem_win'].any() else None,
                       'p_dem_if_rep_president': round(float((x[~pres['dem_win']] > 50).mean()), 4) if pres and (~pres['dem_win']).any() else None,
                       'fundamentals_margin': round(2 * r.f - 100, 2), 'polls_margin': round(2 * r.poll - 100, 2) if r.poll == r.poll and r.poll is not None else None,
-                      'polls': r.polls, 'lean': r.lean, 'track': r.track, 'page': r.page,
+                      'polls': r.polls, 'lean': r.lean, 'track': r.track, 'page': txt(r.page),
                       'pres_link': links['link'][j], 'sd_own': links['own_sd'][j], 'sd_total': links['sd_total'][j],
                       'run_gap_margin': round(2 * float(r.run_gap), 2) if r.unknown_intent else None})
     out = {'as_of': str(today.date()), 'election': str(ELECTION.date()), 'days_out': days, 'distance_used': d,
-           'note': ('Backend only. ' + ('Further out than the furthest distance tested (a year): the year-out fit is used. ' if days > max(int(k) for k in model['distances']) else '')
+           'note': (('Further out than the furthest distance tested (a year): the year-out fit is used. ' if days > max(int(k) for k in model['distances']) else '')
                     + ('The shared error is widened past a year at the rate it grows within the year. ' if days > max(int(k) for k in model['distances']) else '')
                     + 'Margins are the Democratic side minus the Republican, in points; the caucus counts the independents who sit with the Democrats.'),
            'chamber_now': {'dem_caucus': caucus_dem, 'rep': caucus_rep, 'seats_up': len(seats), 'dem_up': up_dem, 'rep_up': up_rep, 'vacant_up': vacant_up, 'dem_not_up': holdover},
@@ -346,7 +347,7 @@ def main(saved=None):
     sources = {'read': str(pd.Timestamp.now(tz='UTC')), 'overview': pages[OVERVIEW]['timestamp'], 'approval': (appr or {}).get('revision'), 'generic': (gen or {}).get('revision'),
                'races': {r.state + (' special' if r.special else ''): r.revision for r in R.itertuples() if isinstance(r.revision, str)}}
     os.makedirs(OUT, exist_ok=True)
-    with open(os.path.join(OUT, 'forecast.json'), 'w') as f: json.dump(out, f, indent=1, default=lambda o: o.item() if hasattr(o, 'item') else str(o))
+    with open(os.path.join(OUT, 'forecast.json'), 'w') as f: json.dump(out, f, indent=1, allow_nan=False, default=lambda o: o.item() if hasattr(o, 'item') else str(o))
     with open(os.path.join(OUT, 'sources.json'), 'w') as f: json.dump(sources, f, indent=1)
     hp = os.path.join(OUT, 'history.csv')
     H = pd.read_csv(hp) if os.path.exists(hp) else pd.DataFrame()
@@ -354,8 +355,35 @@ def main(saved=None):
            'low80': summ['low80'], 'high80': summ['high80'], 'p_dem_president': summ.get('p_dem_president'), 'national': round(nat['blend'], 3)}
     H = pd.concat([H[H.date != row['date']] if len(H) else H, pd.DataFrame([row])], ignore_index=True).sort_values('date')
     H.to_csv(hp, index=False)
+    page(out, H)
     print(json.dumps({k: out[k] for k in ('as_of', 'days_out', 'distance_used', 'chamber_now', 'national', 'president', 'summary')}, indent=1, default=str))
     return out
+
+
+def short_status(r):
+    if r['status'] == 'nominees chosen': return 'Nominees chosen'
+    if not r['incumbent']: return 'Appointee not yet named'
+    return {1.0: 'Running again', 0.0: 'Not running'}.get(r['incumbent_runs'], 'Has not said')
+
+
+def page(out, H):
+    """The Senate tab's data (docs/api/senate.json): what the page shows, and nothing it does not."""
+    t26 = json.load(open(os.path.join(ROOT, 'data', 'senate', '2026', 'test_2026.json')))
+    last = next(d for d in t26['by_distance'] if d['days'] == 1); br = [r for r in t26['by_race'] if r['days'] == 1]
+    check = {'called': last['called'], 'races': last['races'], 'dem_caucus_expected': round(last['dem_seats_mean'] + 34, 1), 'dem_caucus_actual': last['actual'] + 34,
+             'avg_miss': round(float(np.mean([abs(r['forecast_margin'] - r['result_margin']) for r in br])), 1),
+             'missed': sorted(W28.NAMES[r['state']] for r in br if (r['forecast_margin'] > 0) != (r['result_margin'] > 0))}
+    races = [{'state': r['state'], 'name': W28.NAMES[r['state']], 'special': r['special'], 'incumbent': r['incumbent'], 'party': r['incumbent_party'],
+              'status': short_status(r), 'dem': r['dem'], 'rep': r['rep'], 'declared': len(r['declared']), 'p_dem': r['p_dem'], 'margin': r['margin'],
+              'low80': r['low80'], 'high80': r['high80'], 'p_dem_if_dem_president': r['p_dem_if_dem_president'], 'p_dem_if_rep_president': r['p_dem_if_rep_president'],
+              'polls': r['polls']} for r in out['races']]
+    P = {'as_of': out['as_of'], 'days_out': out['days_out'], 'election': out['election'], 'chamber_now': out['chamber_now'], 'summary': out['summary'],
+         'distribution': out['caucus_distribution'], 'races': races,
+         'national': {'approval': (out['national']['approval'] or {}).get('median'), 'environment': out['national']['blend'], 'generic': out['national']['generic']},
+         'president': out['president'], 'check_2026': check,
+         'history': [{'date': r.date, 'p': r.p_dem_control, 'mean': r.dem_caucus_mean} for r in H.itertuples()]}
+    os.makedirs(os.path.join(ROOT, 'docs', 'api'), exist_ok=True)
+    with open(os.path.join(ROOT, 'docs', 'api', 'senate.json'), 'w') as f: json.dump(P, f, separators=(',', ':'), allow_nan=False, default=lambda o: o.item() if hasattr(o, 'item') else str(o))
 
 
 if __name__ == '__main__':

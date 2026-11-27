@@ -1,5 +1,5 @@
 name: Senate forecast
-# The 2028 Senate forecast (senate/live.py), backend only: it writes data/senate/2028/ and nothing on the site. Runs
+# The 2028 Senate forecast (senate/live.py): it writes data/senate/2028/ and the Senate tab's data, docs/api/senate.json. Runs
 # every hour after the presidential forecast's run (:37), so it draws from the presidential forecast just published.
 on:
   schedule:
@@ -45,8 +45,8 @@ jobs:
             echo "The Senate forecast came out the same: nothing to save."
             exit 0
           fi
-          git add data/senate/2028/forecast.json data/senate/2028/history.csv data/senate/2028/sources.json
-          git commit -m "Senate forecast $(TZ=America/New_York date '+%Y-%m-%d %H:%M') (backend)"
+          git add data/senate/2028/forecast.json data/senate/2028/history.csv data/senate/2028/sources.json docs/api/senate.json
+          git commit -m "Senate forecast $(TZ=America/New_York date '+%Y-%m-%d %H:%M')"
           # never push while the presidential forecast is running or waiting: its save would then be refused
           for i in $(seq 1 40); do
             busy=0
