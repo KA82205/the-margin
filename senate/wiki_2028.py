@@ -26,15 +26,16 @@ def party_code(v):
 
 
 def tables(text):
-    """The wikitables after the 'Race summary' heading, special elections first: (is_special, table text)."""
-    i = text.find('Race summary')
-    if i < 0: return []
+    """The wikitables of the 'Race summary' section, and only of it (to the next heading of its level): (is_special,
+    table text), a table counting as special when the nearest heading above it says so."""
+    m = re.search(r'\n(=+)\s*Race summary\s*=+', text)
+    if not m: return []
+    level = len(m.group(1)); end = re.search(r'\n={1,%d}\s*[^=\n]+?\s*={1,%d}\s*\n' % (level, level), text[m.end():])
+    sec = text[m.end(): m.end() + end.start()] if end else text[m.end():]
     out = []
-    for m in re.finditer(r'\{\|.*?\n\|\}', text[i:], flags=re.S):
-        head = text[i:i + m.start()]
-        special = head.rfind('Special election') > head.rfind('Elections leading')
-        out.append((special, m.group(0)))
-        if len(out) == 2: break
+    for t in re.finditer(r'\{\|.*?\n\|\}', sec, flags=re.S):
+        heads = re.findall(r'\n=+\s*([^=\n]+?)\s*=+', sec[:t.start()])
+        out.append((bool(heads) and 'special' in heads[-1].lower(), t.group(0)))
     return out
 
 
@@ -68,9 +69,13 @@ def declared(v):
 
 
 def status_of(v):
+    """(the status as written, running): True for a senator running again, False for one who is not (retiring, running
+    for another office, beaten in the primary, resigned, died), None when the page says it is not known."""
     s = WP.clean(v or '').strip(); low = s.lower()
-    running = True if re.search(r'\brunning\b', low) and 'not running' not in low else False if re.search(r'retir|not running|not seek|declin|lost|defeat|resign|term.limited|running for (?:governor|president|another)', low) else None
-    return s, running
+    if re.search(r'intent unknown|undecided|not yet (?:announced|decided)|unknown', low): return s, None
+    if re.search(r'retir|not running|not seek|declin|lost|defeat|resign|died|death|term.limited|withdr|running for (?!re-?election\b|a (?:second|third|fourth|fifth|full) term|another term)\w', low): return s, False
+    if re.search(r'\brunning\b|seeking re-?election|seeking a (?:second|third|fourth|fifth|full) term', low): return s, True
+    return s, None
 
 
 def seats(text):

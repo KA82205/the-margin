@@ -1,0 +1,747 @@
+{
+ "note": "Each Senate election of 2018-2026 forecast by the working version fitted on the other four years. Misses are in points of margin; the caucus counts the independents who sit with the Democrats. Calibration pools every race at every distance.",
+ "years": [
+  2018,
+  2020,
+  2022,
+  2024,
+  2026
+ ],
+ "days": [
+  1,
+  7,
+  14,
+  30,
+  60,
+  120,
+  250,
+  365
+ ],
+ "by_year": [
+  {
+   "year": 2018,
+   "days": 1,
+   "races": 34,
+   "called": 31,
+   "avg_miss": 3.8,
+   "bias": 1.6,
+   "log_loss": 0.181,
+   "missed": [
+    "FL",
+    "IN",
+    "WV"
+   ],
+   "caucus_mean": 47.5,
+   "caucus_low": 44,
+   "caucus_high": 51,
+   "caucus_actual": 47,
+   "inside80": true,
+   "p_dem_control": 0.134,
+   "dem_won_control": 0
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "races": 34,
+   "called": 31,
+   "avg_miss": 4.1,
+   "bias": 2.2,
+   "log_loss": 0.225,
+   "missed": [
+    "FL",
+    "IN",
+    "WV"
+   ],
+   "caucus_mean": 47.2,
+   "caucus_low": 44,
+   "caucus_high": 50,
+   "caucus_actual": 47,
+   "inside80": true,
+   "p_dem_control": 0.081,
+   "dem_won_control": 0
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "races": 34,
+   "called": 31,
+   "avg_miss": 4.4,
+   "bias": 2.8,
+   "log_loss": 0.238,
+   "missed": [
+    "FL",
+    "IN",
+    "WV"
+   ],
+   "caucus_mean": 48.0,
+   "caucus_low": 44,
+   "caucus_high": 51,
+   "caucus_actual": 47,
+   "inside80": true,
+   "p_dem_control": 0.169,
+   "dem_won_control": 0
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "races": 34,
+   "called": 31,
+   "avg_miss": 5.1,
+   "bias": 2.4,
+   "log_loss": 0.295,
+   "missed": [
+    "FL",
+    "MT",
+    "WV"
+   ],
+   "caucus_mean": 47.3,
+   "caucus_low": 45,
+   "caucus_high": 50,
+   "caucus_actual": 47,
+   "inside80": true,
+   "p_dem_control": 0.073,
+   "dem_won_control": 0
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "races": 34,
+   "called": 29,
+   "avg_miss": 6.4,
+   "bias": 4.6,
+   "log_loss": 0.295,
+   "missed": [
+    "FL",
+    "IN",
+    "MO",
+    "MT",
+    "WV"
+   ],
+   "caucus_mean": 48.2,
+   "caucus_low": 45,
+   "caucus_high": 52,
+   "caucus_actual": 47,
+   "inside80": true,
+   "p_dem_control": 0.179,
+   "dem_won_control": 0
+  },
+  {
+   "year": 2020,
+   "days": 1,
+   "races": 34,
+   "called": 31,
+   "avg_miss": 6.8,
+   "bias": 6.3,
+   "log_loss": 0.184,
+   "missed": [
+    "IA",
+    "ME",
+    "NC"
+   ],
+   "caucus_mean": 51.8,
+   "caucus_low": 49,
+   "caucus_high": 55,
+   "caucus_actual": 50,
+   "inside80": true,
+   "p_dem_control": 0.852,
+   "dem_won_control": 1
+  },
+  {
+   "year": 2020,
+   "days": 14,
+   "races": 34,
+   "called": 31,
+   "avg_miss": 7.1,
+   "bias": 6.5,
+   "log_loss": 0.195,
+   "missed": [
+    "IA",
+    "ME",
+    "NC"
+   ],
+   "caucus_mean": 51.7,
+   "caucus_low": 49,
+   "caucus_high": 55,
+   "caucus_actual": 50,
+   "inside80": true,
+   "p_dem_control": 0.818,
+   "dem_won_control": 1
+  },
+  {
+   "year": 2020,
+   "days": 60,
+   "races": 34,
+   "called": 32,
+   "avg_miss": 6.9,
+   "bias": 6.4,
+   "log_loss": 0.16,
+   "missed": [
+    "ME",
+    "NC"
+   ],
+   "caucus_mean": 52.0,
+   "caucus_low": 49,
+   "caucus_high": 55,
+   "caucus_actual": 50,
+   "inside80": true,
+   "p_dem_control": 0.889,
+   "dem_won_control": 1
+  },
+  {
+   "year": 2020,
+   "days": 120,
+   "races": 34,
+   "called": 30,
+   "avg_miss": 8.3,
+   "bias": 7.3,
+   "log_loss": 0.267,
+   "missed": [
+    "GA",
+    "IA",
+    "ME",
+    "NC"
+   ],
+   "caucus_mean": 51.7,
+   "caucus_low": 49,
+   "caucus_high": 55,
+   "caucus_actual": 50,
+   "inside80": true,
+   "p_dem_control": 0.817,
+   "dem_won_control": 1
+  },
+  {
+   "year": 2020,
+   "days": 365,
+   "races": 34,
+   "called": 33,
+   "avg_miss": 6.8,
+   "bias": 6.1,
+   "log_loss": 0.127,
+   "missed": [
+    "NC"
+   ],
+   "caucus_mean": 50.8,
+   "caucus_low": 47,
+   "caucus_high": 55,
+   "caucus_actual": 50,
+   "inside80": true,
+   "p_dem_control": 0.626,
+   "dem_won_control": 1
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "races": 34,
+   "called": 32,
+   "avg_miss": 5.0,
+   "bias": -3.3,
+   "log_loss": 0.115,
+   "missed": [
+    "NV",
+    "PA"
+   ],
+   "caucus_mean": 48.7,
+   "caucus_low": 46,
+   "caucus_high": 52,
+   "caucus_actual": 51,
+   "inside80": true,
+   "p_dem_control": 0.368,
+   "dem_won_control": 1
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "races": 34,
+   "called": 32,
+   "avg_miss": 4.7,
+   "bias": -3.0,
+   "log_loss": 0.109,
+   "missed": [
+    "GA",
+    "PA"
+   ],
+   "caucus_mean": 48.8,
+   "caucus_low": 46,
+   "caucus_high": 51,
+   "caucus_actual": 51,
+   "inside80": true,
+   "p_dem_control": 0.378,
+   "dem_won_control": 1
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "races": 34,
+   "called": 34,
+   "avg_miss": 5.4,
+   "bias": -3.0,
+   "log_loss": 0.076,
+   "missed": [],
+   "caucus_mean": 49.5,
+   "caucus_low": 46,
+   "caucus_high": 52,
+   "caucus_actual": 51,
+   "inside80": true,
+   "p_dem_control": 0.581,
+   "dem_won_control": 1
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "races": 34,
+   "called": 32,
+   "avg_miss": 6.1,
+   "bias": -3.0,
+   "log_loss": 0.104,
+   "missed": [
+    "AZ",
+    "PA"
+   ],
+   "caucus_mean": 48.9,
+   "caucus_low": 45,
+   "caucus_high": 52,
+   "caucus_actual": 51,
+   "inside80": true,
+   "p_dem_control": 0.443,
+   "dem_won_control": 1
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "races": 34,
+   "called": 33,
+   "avg_miss": 5.5,
+   "bias": -2.3,
+   "log_loss": 0.103,
+   "missed": [
+    "PA"
+   ],
+   "caucus_mean": 49.3,
+   "caucus_low": 46,
+   "caucus_high": 52,
+   "caucus_actual": 51,
+   "inside80": true,
+   "p_dem_control": 0.49,
+   "dem_won_control": 1
+  },
+  {
+   "year": 2024,
+   "days": 1,
+   "races": 35,
+   "called": 34,
+   "avg_miss": 4.6,
+   "bias": 3.3,
+   "log_loss": 0.092,
+   "missed": [
+    "PA"
+   ],
+   "caucus_mean": 47.7,
+   "caucus_low": 45,
+   "caucus_high": 50,
+   "caucus_actual": 47,
+   "inside80": true,
+   "p_dem_control": 0.069,
+   "dem_won_control": 0
+  },
+  {
+   "year": 2024,
+   "days": 14,
+   "races": 35,
+   "called": 34,
+   "avg_miss": 5.0,
+   "bias": 3.5,
+   "log_loss": 0.098,
+   "missed": [
+    "PA"
+   ],
+   "caucus_mean": 47.7,
+   "caucus_low": 45,
+   "caucus_high": 50,
+   "caucus_actual": 47,
+   "inside80": true,
+   "p_dem_control": 0.082,
+   "dem_won_control": 0
+  },
+  {
+   "year": 2024,
+   "days": 60,
+   "races": 35,
+   "called": 34,
+   "avg_miss": 5.4,
+   "bias": 3.5,
+   "log_loss": 0.098,
+   "missed": [
+    "PA"
+   ],
+   "caucus_mean": 47.8,
+   "caucus_low": 45,
+   "caucus_high": 50,
+   "caucus_actual": 47,
+   "inside80": true,
+   "p_dem_control": 0.074,
+   "dem_won_control": 0
+  },
+  {
+   "year": 2024,
+   "days": 120,
+   "races": 35,
+   "called": 34,
+   "avg_miss": 5.6,
+   "bias": 3.3,
+   "log_loss": 0.103,
+   "missed": [
+    "PA"
+   ],
+   "caucus_mean": 47.5,
+   "caucus_low": 44,
+   "caucus_high": 50,
+   "caucus_actual": 47,
+   "inside80": true,
+   "p_dem_control": 0.072,
+   "dem_won_control": 0
+  },
+  {
+   "year": 2024,
+   "days": 365,
+   "races": 35,
+   "called": 33,
+   "avg_miss": 6.3,
+   "bias": 3.2,
+   "log_loss": 0.214,
+   "missed": [
+    "OH",
+    "PA"
+   ],
+   "caucus_mean": 48.0,
+   "caucus_low": 45,
+   "caucus_high": 50,
+   "caucus_actual": 47,
+   "inside80": true,
+   "p_dem_control": 0.085,
+   "dem_won_control": 0
+  },
+  {
+   "year": 2026,
+   "days": 1,
+   "races": 32,
+   "called": 30,
+   "avg_miss": 5.3,
+   "bias": -4.8,
+   "log_loss": 0.239,
+   "missed": [
+    "MS",
+    "SC"
+   ],
+   "caucus_mean": 52.7,
+   "caucus_low": 49,
+   "caucus_high": 56,
+   "caucus_actual": 56,
+   "inside80": true,
+   "p_dem_control": 0.804,
+   "dem_won_control": 1
+  },
+  {
+   "year": 2026,
+   "days": 14,
+   "races": 32,
+   "called": 28,
+   "avg_miss": 5.8,
+   "bias": -5.1,
+   "log_loss": 0.304,
+   "missed": [
+    "AK",
+    "KS",
+    "MS",
+    "SC"
+   ],
+   "caucus_mean": 51.9,
+   "caucus_low": 49,
+   "caucus_high": 55,
+   "caucus_actual": 56,
+   "inside80": false,
+   "p_dem_control": 0.692,
+   "dem_won_control": 1
+  },
+  {
+   "year": 2026,
+   "days": 60,
+   "races": 32,
+   "called": 27,
+   "avg_miss": 6.3,
+   "bias": -5.8,
+   "log_loss": 0.371,
+   "missed": [
+    "AK",
+    "IA",
+    "KS",
+    "MS",
+    "SC"
+   ],
+   "caucus_mean": 51.3,
+   "caucus_low": 49,
+   "caucus_high": 54,
+   "caucus_actual": 56,
+   "inside80": false,
+   "p_dem_control": 0.615,
+   "dem_won_control": 1
+  },
+  {
+   "year": 2026,
+   "days": 120,
+   "races": 32,
+   "called": 25,
+   "avg_miss": 6.7,
+   "bias": -6.1,
+   "log_loss": 0.389,
+   "missed": [
+    "AK",
+    "IA",
+    "KS",
+    "MS",
+    "OH",
+    "SC",
+    "TX"
+   ],
+   "caucus_mean": 50.7,
+   "caucus_low": 48,
+   "caucus_high": 54,
+   "caucus_actual": 56,
+   "inside80": false,
+   "p_dem_control": 0.494,
+   "dem_won_control": 1
+  },
+  {
+   "year": 2026,
+   "days": 365,
+   "races": 32,
+   "called": 25,
+   "avg_miss": 7.3,
+   "bias": -6.9,
+   "log_loss": 0.439,
+   "missed": [
+    "AK",
+    "IA",
+    "KS",
+    "MS",
+    "OH",
+    "SC",
+    "TX"
+   ],
+   "caucus_mean": 50.5,
+   "caucus_low": 48,
+   "caucus_high": 54,
+   "caucus_actual": 56,
+   "inside80": false,
+   "p_dem_control": 0.456,
+   "dem_won_control": 1
+  }
+ ],
+ "by_days": [
+  {
+   "days": 365,
+   "races": 169,
+   "called": 153,
+   "avg_miss": 6.5,
+   "close_miss": 4.3,
+   "log_loss": 0.233,
+   "seats_inside80": 4,
+   "years": 5,
+   "control_called": 3
+  },
+  {
+   "days": 250,
+   "races": 169,
+   "called": 150,
+   "avg_miss": 6.3,
+   "close_miss": 4.7,
+   "log_loss": 0.26,
+   "seats_inside80": 4,
+   "years": 5,
+   "control_called": 3
+  },
+  {
+   "days": 120,
+   "races": 169,
+   "called": 152,
+   "avg_miss": 6.4,
+   "close_miss": 4.8,
+   "log_loss": 0.229,
+   "seats_inside80": 4,
+   "years": 5,
+   "control_called": 3
+  },
+  {
+   "days": 60,
+   "races": 169,
+   "called": 158,
+   "avg_miss": 5.7,
+   "close_miss": 3.7,
+   "log_loss": 0.186,
+   "seats_inside80": 4,
+   "years": 5,
+   "control_called": 5
+  },
+  {
+   "days": 30,
+   "races": 169,
+   "called": 157,
+   "avg_miss": 5.6,
+   "close_miss": 4.3,
+   "log_loss": 0.183,
+   "seats_inside80": 4,
+   "years": 5,
+   "control_called": 4
+  },
+  {
+   "days": 14,
+   "races": 169,
+   "called": 156,
+   "avg_miss": 5.3,
+   "close_miss": 3.9,
+   "log_loss": 0.184,
+   "seats_inside80": 4,
+   "years": 5,
+   "control_called": 4
+  },
+  {
+   "days": 7,
+   "races": 169,
+   "called": 157,
+   "avg_miss": 5.0,
+   "close_miss": 4.2,
+   "log_loss": 0.162,
+   "seats_inside80": 5,
+   "years": 5,
+   "control_called": 4
+  },
+  {
+   "days": 1,
+   "races": 169,
+   "called": 158,
+   "avg_miss": 5.1,
+   "close_miss": 3.9,
+   "log_loss": 0.161,
+   "seats_inside80": 5,
+   "years": 5,
+   "control_called": 4
+  }
+ ],
+ "calibration": [
+  {
+   "low": 0.5,
+   "high": 0.65,
+   "races": 96,
+   "forecast": 0.584,
+   "won": 0.615
+  },
+  {
+   "low": 0.65,
+   "high": 0.8,
+   "races": 83,
+   "forecast": 0.733,
+   "won": 0.711
+  },
+  {
+   "low": 0.8,
+   "high": 0.9,
+   "races": 104,
+   "forecast": 0.857,
+   "won": 0.769
+  },
+  {
+   "low": 0.9,
+   "high": 0.97,
+   "races": 173,
+   "forecast": 0.939,
+   "won": 0.873
+  },
+  {
+   "low": 0.97,
+   "high": 1.0,
+   "races": 896,
+   "forecast": 0.995,
+   "won": 0.996
+  }
+ ],
+ "calibration_races": 1352,
+ "tested": [
+  {
+   "step": 2,
+   "idea": "Race polls added to the state's lean and the national mood",
+   "adopted": true,
+   "result": "The typical miss on the margin of competitive races fell from 7.4 to 5.3 points on the last day."
+  },
+  {
+   "step": 3,
+   "idea": "The polls' weight growing with the amount of polling, up to a cap",
+   "adopted": true,
+   "result": "Competitive races, last day: 4.9 points against 5.3 with one weight for every race."
+  },
+  {
+   "step": 4,
+   "idea": "Starting each race from the presidential forecast of its state",
+   "adopted": false,
+   "result": "Worse than the state's lean in 2020 and 2024 at every distance tried."
+  },
+  {
+   "step": 5,
+   "idea": "Each candidate's record in earlier Senate races",
+   "adopted": true,
+   "result": "How far a candidate ran ahead of their state and year before; it narrowed the misses at every distance."
+  },
+  {
+   "step": 6,
+   "idea": "The races simulated together, with an error they share",
+   "adopted": true,
+   "result": "Measured on misses made out of sample; it keeps the seat ranges honest when polls miss everywhere at once."
+  },
+  {
+   "step": 8,
+   "idea": "The national mood from the president's approval as well as the generic ballot",
+   "adopted": true,
+   "result": "Half and half: the five-year miss fell at every distance."
+  },
+  {
+   "step": 9,
+   "idea": "Income growth, inflation, GDP and years in power in the national model",
+   "adopted": false,
+   "result": "None beat approval and the midterm out of sample, 1978-2026."
+  },
+  {
+   "step": 10,
+   "idea": "Pulling the seat total toward a national model of seat change",
+   "adopted": true,
+   "result": "A quarter of the way: better seat totals and chances over the five years."
+  },
+  {
+   "step": 13,
+   "idea": "Money raised by each date (FEC reports)",
+   "adopted": false,
+   "result": "Tested twice, the second time with 2026 in the fit: the chances got worse at every distance."
+  },
+  {
+   "step": 14,
+   "idea": "A smaller edge for senators appointed to the seat",
+   "adopted": false,
+   "result": "Appointees do run worse, but nine races are too few: no better overall."
+  },
+  {
+   "step": 15,
+   "idea": "2026 as a fitting year",
+   "adopted": true,
+   "result": "The national mood now counts fully in every race, and the error races share is wider."
+  },
+  {
+   "step": 16,
+   "idea": "The Senate simulated inside the presidential forecast's elections",
+   "adopted": true,
+   "result": "A state's Senate race moves about half a point with each point of its presidential vote, as in 2020 and 2024."
+  },
+  {
+   "step": 17,
+   "idea": "Wider errors two years out",
+   "adopted": false,
+   "result": "Four checks of the record found no case for them; senators' retirements are now drawn in each simulated election."
+  }
+ ]
+}

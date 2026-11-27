@@ -41,11 +41,11 @@ jobs:
         run: |
           git config user.name "forecast-bot"
           git config user.email "forecast-bot@users.noreply.github.com"
-          if git diff --quiet -- data/senate/2028/forecast.json data/senate/2028/history.csv && [ -z "$(git status --porcelain data/senate/2028/forecast.json data/senate/2028/history.csv)" ]; then
+          if [ -z "$(git status --porcelain data/senate/20*/forecast.json data/senate/20*/history.csv docs/api/senate.json)" ]; then
             echo "The Senate forecast came out the same: nothing to save."
             exit 0
           fi
-          git add data/senate/2028/forecast.json data/senate/2028/history.csv data/senate/2028/sources.json docs/api/senate.json
+          git add data/senate/20*/forecast.json data/senate/20*/history.csv data/senate/20*/sources.json docs/api/senate.json
           git commit -m "Senate forecast $(TZ=America/New_York date '+%Y-%m-%d %H:%M')"
           # never push while the presidential forecast is running or waiting: its save would then be refused
           for i in $(seq 1 40); do
