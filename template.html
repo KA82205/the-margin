@@ -1292,21 +1292,21 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
   const days2 = d => d === 1 ? 'The last day' : d === 7 ? 'A week out' : d === 14 ? 'Two weeks out' : d === 30 ? 'A month out' : d === 60 ? 'Two months out' : d === 120 ? 'Four months out' : d === 250 ? 'Eight months out' : d === 365 ? 'A year out' : d + ' days out';
   const money = v => v == null ? '' : v >= 1e6 ? '$' + (v / 1e6).toFixed(v >= 1e7 ? 0 : 1) + ' million' : '$' + Math.round(v / 1e3) + ',000';
   function drawSenate(S) {
+    // the headline is the seat count the forecast expects (its average across the simulated elections); the chance of
+    // control stays on the tab, beside it, and is no longer the headline: far from 50%, it says less than the seats do
     const sm = S.summary, cn = S.chamber_now, p = sm.p_dem_control;
     const shown = x => Math.min(99, Math.max(1, Math.round(100 * x)));          // never 0% or 100%: neither is ever certain
-    const hd = shown(p), hr = 100 - hd, q = Math.max(hd, hr) / 100, lead = hd >= hr ? 'Democrats' : 'Republicans';
-    const held = cn.dem_caucus >= 51 ? 'Democrats' : cn.rep >= 51 ? 'Republicans' : null;
-    const word = q >= 0.9 ? 'are strong favorites' : q >= 0.75 ? 'are favored' : q >= 0.6 ? 'are modest favorites' : q >= 0.55 ? 'have a slight edge' : null;
+    const dS = Math.round(sm.dem_caucus_mean), rS = 100 - dS, held = cn.dem_caucus >= 51 ? 'Democrats' : cn.rep >= 51 ? 'Republicans' : null;
     $('sn-kick').textContent = S.year + ' Senate forecast';
-    $('sn-head').textContent = word ? lead + ' ' + word + ' to ' + (lead === held ? 'keep' : 'win') + ' the Senate in ' + S.year : 'Control of the Senate in ' + S.year + ' is a toss-up';
-    const need = 51 - cn.dem_not_up, up = S.races.length;
-    $('sn-stand').textContent = up + ' of the 100 seats are up: ' + cn.dem_up + ' held by Democrats and ' + cn.rep_up + ' by Republicans' + (cn.vacant_up.length ? ', ' + cn.vacant_up.length + ' of them vacant for now' : '') + '. Democrats, with the independents who sit with them, hold ' + cn.dem_caucus +
-      ' seats now and ' + cn.dem_not_up + ' of them are not up, so they need ' + need + ' of the ' + up + ' for a majority' + (S.year % 4 ? ', or ' + (need - 1) + ' while their party holds the vice presidency.' : ', or ' + (need - 1) + ' if their party also wins the vice presidency, which breaks a 50-50 tie.');
+    $('sn-head').textContent = dS > 50 ? 'Democrats are forecast to hold ' + dS + ' Senate seats' : dS < 50 ? 'Republicans are forecast to hold ' + rS + ' Senate seats' : 'The Senate is forecast to split 50-50';
+    const up = S.races.length, ind = cn.independents || 0;
+    $('sn-stand').textContent = (held === 'Democrats' ? 'Democrats hold ' + cn.dem_caucus + ' of the 100 seats' + (ind ? ', counting the ' + (ind === 1 ? 'independent who votes' : ind + ' independents who vote') + ' with them' : '') + '.'
+      : held === 'Republicans' ? 'Republicans hold ' + cn.rep + ' of the 100 seats.' : 'The Senate is split 50-50.') + ' ' + up + ' seats are up in ' + S.year + ': ' + cn.dem_up + ' held by Democrats and ' + cn.rep_up + ' by Republicans.';
     $('sn-date').textContent = 'Updated ' + longDate(S.as_of) + ' · ' + S.days_out + ' days to the election';
-    $('sn-top').innerHTML = '<div class="dn"><span>Democrats control</span><strong>' + hd + '%</strong></div><div class="rn"><span>Republicans control</span><strong>' + hr + '%</strong></div>';
-    $('sn-odds').innerHTML = '<i class="bd" style="flex:' + hd + '"></i><i class="br" style="flex:' + hr + '"></i>';
-    $('sn-odds').setAttribute('role', 'img'); $('sn-odds').setAttribute('aria-label', 'Democrats ' + hd + '%, Republicans ' + hr + '%');
-    $('sn-keys').innerHTML = [[Math.round(sm.dem_caucus_mean) + ' to ' + (100 - Math.round(sm.dem_caucus_mean)), 'seats on average, Democrats to Republicans'],
+    $('sn-top').innerHTML = '<div class="dn"><span>Democratic seats</span><strong>' + dS + '</strong></div><div class="rn"><span>Republican seats</span><strong>' + rS + '</strong></div>';
+    $('sn-odds').innerHTML = '<i class="bd" style="flex:' + dS + '"></i><i class="br" style="flex:' + rS + '"></i>';
+    $('sn-odds').setAttribute('role', 'img'); $('sn-odds').setAttribute('aria-label', 'Democrats ' + dS + ' seats, Republicans ' + rS + '; the line marks 50');
+    $('sn-keys').innerHTML = [[shown(p) + '%', 'chance Democrats ' + (held === 'Democrats' ? 'keep' : 'win') + ' control of the Senate'],
       [sm.low80 + ' to ' + sm.high80, 'Democratic seats in 80% of simulated elections'], [snPct(sm.p_50_50), 'chance of a 50-50 Senate, settled by the vice president']]
       .map(k => '<div><strong>' + k[0] + '</strong><span>' + k[1] + '</span></div>').join('');
     // the map: the states with a race, shaded by the Democratic chance as on the Presidency tab; the rest left blank
@@ -1327,7 +1327,7 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
         document.querySelectorAll('#sn-t tr.on').forEach(x => x.classList.remove('on')); if (row) { row.classList.add('on'); row.scrollIntoView({behavior: 'smooth', block: 'center'}); } }); });
     const withPolls = S.races.filter(r => r.polls).length;
     $('sn-note').textContent = withPolls ? withPolls + ' of the ' + up + ' races have both nominees chosen and polls counted; the rest rest on how their states vote, the national mood and the sitting senator.'
-      : 'No race has both nominees chosen yet, so none of its polls count. Each race rests on how its state votes, the national mood read from the president\'s approval, and the sitting senator.';
+      : 'No race has both nominees chosen yet, so no polls count so far. Each race rests on how its state votes, the national mood read from the president\'s approval, and the sitting senator.';
     // how many seats: every caucus size the simulations reach
     const D = S.distribution, ks = Object.keys(D).map(Number).filter(k => D[k] >= 0.0005).sort((a, b) => a - b);
     const lo = Math.min(ks[0], 49), hi = Math.max(ks[ks.length - 1], 52), W = 760, H = 220, pl = 8, pr = 8, pt = 24, pb = 28, bw = (W - pl - pr) / (hi - lo + 1), mx = Math.max(...ks.map(k => D[k]));

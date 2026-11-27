@@ -173,12 +173,13 @@ def gather(today, saved=None):
 # ------------------------------------------------------------------------------------------------------------- inputs
 def chamber(text):
     """The Democratic caucus and the Republicans as the chamber stands, from the overview's box: Democrats plus the
-    independents (all of whom sit with the Democrats now), and the seats each side has up."""
+    independents (all of whom sit with the Democrats now), the Republicans, and the independents among the caucus."""
     box = WC.infobox(text); num = lambda k: WC.number(WC.field(box, k)) or 0
     parties = {i: WC.field(box, f'party{i}') or '' for i in range(1, 6)}
     dem = sum(num(f'seats_before{i}') for i, p in parties.items() if 'Democratic' in p or 'Independent' in p)
     rep = sum(num(f'seats_before{i}') for i, p in parties.items() if 'Republican' in p)
-    return int(dem), int(rep)
+    ind = sum(num(f'seats_before{i}') for i, p in parties.items() if 'Independent' in p)
+    return int(dem), int(rep), int(ind)
 
 
 def approval_now(pages, today):
@@ -419,7 +420,7 @@ def main(saved=None):
         mp = sorted(p for p in (os.path.join(ROOT, 'data', 'senate', d, 'model.json') for d in os.listdir(os.path.join(ROOT, 'data', 'senate'))) if os.path.exists(p))[-1]
     model = json.load(open(mp))
     pages, seats = gather(today, saved)
-    caucus_dem, caucus_rep = chamber(pages[OVERVIEW]['text'])
+    caucus_dem, caucus_rep, caucus_ind = chamber(pages[OVERVIEW]['text'])
     # seats up by the party that holds them, a vacant seat by the party it was held by (as the overview lists it)
     up_dem = sum(1 for s in seats if s['incumbent_party'] in ('D', 'I')); up_rep = sum(1 for s in seats if s['incumbent_party'] == 'R')
     vacant_up = [s['state'] for s in seats if not s['incumbent']]
@@ -479,7 +480,7 @@ def main(saved=None):
            'president': PRES['name'], 'president_party': PRES['party'],
            'note': (('Further out than the furthest distance tested (a year): the year-out fit is used, and the shared error widened past a year at the rate it grows within the year. ' if long_out else '')
                     + 'Margins are the Democratic side minus the Republican, in points; the caucus counts the independents who sit with the Democrats.'),
-           'chamber_now': {'dem_caucus': caucus_dem, 'rep': caucus_rep, 'seats_up': len(seats), 'dem_up': up_dem, 'rep_up': up_rep, 'vacant_up': vacant_up, 'dem_not_up': holdover},
+           'chamber_now': {'dem_caucus': caucus_dem, 'rep': caucus_rep, 'independents': caucus_ind, 'seats_up': len(seats), 'dem_up': up_dem, 'rep_up': up_rep, 'vacant_up': vacant_up, 'dem_not_up': holdover},
            'national': {**{k: (round(v, 3) if isinstance(v, float) else v) for k, v in nat.items()},
                         'approval': {k: v for k, v in (appr or {}).items() if k != 'revision'} or None, 'generic_ballot': {k: v for k, v in (gen or {}).items() if k != 'revision'} or None,
                         'seat_model_dem_caucus': round(ns, 2) if ns is not None else None, 'races_own_dem_caucus': round(own_total, 2), 'shift_to_seat_model': round(shift, 3)},

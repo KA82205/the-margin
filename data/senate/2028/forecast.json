@@ -10,6 +10,7 @@
  "chamber_now": {
   "dem_caucus": 56,
   "rep": 44,
+  "independents": 2,
   "seats_up": 35,
   "dem_up": 16,
   "rep_up": 19,

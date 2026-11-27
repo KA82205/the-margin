@@ -74,7 +74,7 @@ def main():
     with tempfile.TemporaryDirectory() as d:
         out, R, page = run('2028-10-10', pages(), d)
         check(out['year'] == 2028 and out['chamber_now']['seats_up'] == 36, f"36 seats up in 2028, not {out['chamber_now']['seats_up']}: the table under Predictions must not be read")
-        check(out['chamber_now']['dem_caucus'] == 56 and out['chamber_now']['vacant_up'] == ['TN'], f"chamber {out['chamber_now']}")
+        check(out['chamber_now']['dem_caucus'] == 56 and out['chamber_now']['independents'] == 2 and out['chamber_now']['vacant_up'] == ['TN'], f"chamber {out['chamber_now']}")
         check(R['GA']['short'] == 'Has not said' and 0.7 < R['GA']['incumbent_runs'] < 0.85, f"Georgia: {R['GA']['short']} {R['GA']['incumbent_runs']}")
         check(R['CO']['short'] == 'Not running' and R['CO']['incumbent_runs'] == 0, f"Colorado (running for governor): {R['CO']['short']}")
         check(R['AZ']['short'] == 'Not running', f"Arizona (retiring): {R['AZ']['short']}")
