@@ -260,7 +260,7 @@ def build_races(pages, seats, model, today, days):
         # to run as they are)
         hold = {'dem': dem or (s['incumbent'] if side == 'dem' else None), 'rep': rep or (s['incumbent'] if side == 'rep' else None)}
         placeholder = side if side and not nominee else None
-        tr = BD.track_records(pd.DataFrame([{'year': YEAR, 'state': st, 'dem': (hold['dem'] or '').upper(), 'rep': (hold['rep'] or '').upper()}]), P=past).iloc[0]
+        tr = BD.track_records(pd.DataFrame([{'year': YEAR, 'state': st, 'dem': WP.plain(hold['dem'] or '').upper(), 'rep': WP.plain(hold['rep'] or '').upper()}]), P=past).iloc[0]
         dt = float(tr.dem_track) if pd.notna(tr.dem_track) and hold['dem'] else 0.0; rt = float(tr.rep_track) if pd.notna(tr.rep_track) and hold['rep'] else 0.0
         track_full = dt - rt; track_open = (0.0 if placeholder == 'dem' else dt) - (0.0 if placeholder == 'rep' else rt)
         track = track_open + runs * (track_full - track_open) if placeholder else track_full
@@ -496,8 +496,12 @@ def main(saved=None):
     with open(os.path.join(OUT, 'sources.json'), 'w') as f: json.dump(sources, f, indent=1)
     hp = os.path.join(OUT, 'history.csv')
     H = pd.read_csv(hp) if os.path.exists(hp) else pd.DataFrame()
+    # with the day's inputs that the training data will need once the election is held (after_election.py): the national
+    # mood and its two halves, approval (for June's reading) and the national seat model
     row = {'date': str(today.date()), 'days_out': days, 'p_dem_control': summ['p_dem_control'], 'dem_caucus_mean': summ['dem_caucus_mean'],
-           'low80': summ['low80'], 'high80': summ['high80'], 'p_dem_president': summ.get('p_dem_president'), 'national': round(nat['blend'], 3)}
+           'low80': summ['low80'], 'high80': summ['high80'], 'p_dem_president': summ.get('p_dem_president'), 'national': round(nat['blend'], 3),
+           'fundamentals': round(nat['fundamentals'], 3) if nat['fundamentals'] is not None else None, 'generic': round(nat['generic'], 3) if nat['generic'] is not None else None,
+           'approval': round(appr['median'], 2) if appr else None, 'seat_model': round(ns, 3) if ns is not None else None}
     H = pd.concat([H[H.date != row['date']] if len(H) else H, pd.DataFrame([row])], ignore_index=True).sort_values('date')
     H.to_csv(hp, index=False)
     page(out, H, model)

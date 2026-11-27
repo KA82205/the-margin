@@ -6,14 +6,16 @@ forecast is fitted on all five), at each distance from a year out to the last da
 (with_2026.py's simulation: the races drawn together, the seat total pulled toward the national seat model), and each
 race scored as it came out of that simulation, as the live forecast reports it.
 
-    python senate/site_data.py        writes data/senate/site_backtests.json
+    python senate/site_data.py        writes data/senate/site_backtests.json, from the training table (table.py) alone
 """
 import json, os, sys
 import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE); sys.path.insert(0, HERE)
-import simulate as S, with_2026 as W
+import simulate as S, table as TB, with_2026 as W
+
+YEARS = W.FIVE
 
 DAYS_SHOWN = (365, 120, 60, 14, 1)
 
@@ -55,7 +57,7 @@ def scored(X5):
     def keep(bf, sn, rng, joint=True):
         X = orig(bf, sn, rng, joint); kept.append((bf.copy(), X)); return X
     S.simulate = keep
-    try: sm = W.seats(X5, W.FIVE)
+    try: sm = W.seats(X5, YEARS, TB.chamber(), TB.seat_models())
     finally: S.simulate = orig
     rows = []
     for (bf, X), (_, r) in zip(kept, sm.iterrows()):                # seats() simulates in the order of its rows
@@ -69,10 +71,11 @@ def scored(X5):
 
 
 def main():
-    X4, X5 = W.data(); S.WORKING = '+national'
+    global YEARS
+    X5 = TB.load(); YEARS = tuple(sorted(int(y) for y in X5.year.unique())); S.WORKING = '+national'
     F, sm = scored(X5)
     F['miss'] = F.err.abs(); F['called'] = (F.p > 0.5) == (F.won == 1)
-    after = {**S.CAUCUS_AFTER, 2026: 56}
+    after = {y: c['after'] for y, c in TB.chamber().items()}
     sm['caucus_actual'] = sm.year.map(after); off = sm.caucus_actual - sm.actual
     sm['caucus_mean'] = (sm.dem_seats_mean + off).round(1); sm['caucus_low'] = sm.low80 + off; sm['caucus_high'] = sm.high80 + off
     by_year = []
@@ -96,7 +99,7 @@ def main():
         if k.sum(): cal.append({'low': lo, 'high': min(hi, 1.0), 'races': int(k.sum()), 'forecast': round(float(fav[k].mean()), 3), 'won': round(float(won[k].mean()), 3)})
     out = {'note': 'Each Senate election of 2018-2026 forecast by the working version fitted on the other four years. Misses are in points of margin; '
                    'the caucus counts the independents who sit with the Democrats. Calibration pools every race at every distance.',
-           'years': list(W.FIVE), 'days': sorted(int(d) for d in F.days.unique()), 'by_year': by_year, 'by_days': sorted(by_days, key=lambda r: -r['days']),
+           'years': list(YEARS), 'days': sorted(int(d) for d in F.days.unique()), 'by_year': by_year, 'by_days': sorted(by_days, key=lambda r: -r['days']),
            'calibration': cal, 'calibration_races': int(len(F)), 'tested': TESTED}
     with open(os.path.join(ROOT, 'data', 'senate', 'site_backtests.json'), 'w') as f: json.dump(out, f, indent=1)
     print(pd.DataFrame(by_days).to_string(index=False)); print(pd.DataFrame([r for r in by_year if r['days'] == 1]).drop(columns=['missed']).to_string(index=False)); print(cal)

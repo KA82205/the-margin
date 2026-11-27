@@ -1,2 +1,2 @@
-date,days_out,p_dem_control,dem_caucus_mean,low80,high80,p_dem_president,national
-2026-11-27,711,0.9927,58.07,54,62,0.6982,52.173
+date,days_out,p_dem_control,dem_caucus_mean,low80,high80,p_dem_president,national,fundamentals,generic,approval,seat_model
+2026-11-27,711,0.9927,58.07,54,62,0.6982,52.173,52.173,,35.9,59.81

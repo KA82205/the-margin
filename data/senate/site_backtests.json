@@ -447,7 +447,7 @@
    "called": 28,
    "avg_miss": 5.8,
    "bias": -5.1,
-   "log_loss": 0.304,
+   "log_loss": 0.305,
    "missed": [
     "AK",
     "KS",
@@ -459,7 +459,7 @@
    "caucus_high": 55,
    "caucus_actual": 56,
    "inside80": false,
-   "p_dem_control": 0.692,
+   "p_dem_control": 0.693,
    "dem_won_control": 1
   },
   {
@@ -467,7 +467,7 @@
    "days": 60,
    "races": 32,
    "called": 27,
-   "avg_miss": 6.3,
+   "avg_miss": 6.4,
    "bias": -5.8,
    "log_loss": 0.371,
    "missed": [
@@ -482,7 +482,7 @@
    "caucus_high": 54,
    "caucus_actual": 56,
    "inside80": false,
-   "p_dem_control": 0.615,
+   "p_dem_control": 0.616,
    "dem_won_control": 1
   },
   {
@@ -507,7 +507,7 @@
    "caucus_high": 54,
    "caucus_actual": 56,
    "inside80": false,
-   "p_dem_control": 0.494,
+   "p_dem_control": 0.493,
    "dem_won_control": 1
   },
   {
@@ -532,7 +532,7 @@
    "caucus_high": 54,
    "caucus_actual": 56,
    "inside80": false,
-   "p_dem_control": 0.456,
+   "p_dem_control": 0.457,
    "dem_won_control": 1
   }
  ],
@@ -651,14 +651,14 @@
   {
    "low": 0.9,
    "high": 0.97,
-   "races": 173,
+   "races": 174,
    "forecast": 0.939,
-   "won": 0.873
+   "won": 0.874
   },
   {
    "low": 0.97,
    "high": 1.0,
-   "races": 896,
+   "races": 895,
    "forecast": 0.995,
    "won": 0.996
   }

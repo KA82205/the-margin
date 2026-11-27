@@ -12,7 +12,12 @@ made here and its results committed:
                                    ran ahead of the state's lean and the year (build_data.past_races), for candidates'
                                    records
 
-    python senate/live_fit.py
+    python senate/live_fit.py                       fits on the training table (table.py) into data/senate/2028/model.json
+    python senate/live_fit.py --out PATH            the same, into PATH (after_election.py, for the next cycle)
+    python senate/live_fit.py --raw                 first remakes the table and past_races.csv from the raw sources
+
+The fit itself needs only the training table, data/senate/national_fundamentals.csv and past_races.csv, all in the
+repository, so the scheduled job that adds each election (after_election.py) refits on its own.
 """
 import json, math, os, sys
 import numpy as np
@@ -35,8 +40,12 @@ def past_races():
     return BD.past_races(extra=extra)
 
 
-def main():
-    X4, X5 = W.data(); years = S.LIVE_YEARS; cols = B.VERSIONS[S.WORKING]
+def main(out_path=None, raw=False):
+    import table as TB
+    if raw:
+        TB.export()
+        P = past_races(); P[['year', 'state', 'special', 'dem', 'rep', 'dem2', 'lean', 'dem_over']].to_csv(os.path.join(ROOT, 'data', 'senate', 'past_races.csv'), index=False)
+    X5 = TB.load(); years = tuple(sorted(int(y) for y in X5.year.unique())); cols = B.VERSIONS[S.WORKING]
     shared = W.live_shared(X5, years)
     dist = {}
     for d in B.DAYS:
@@ -53,10 +62,9 @@ def main():
     N = pd.read_csv(os.path.join(ROOT, 'data', 'senate', 'national_fundamentals.csv'))
     house = np.linalg.lstsq(np.column_stack([np.ones(len(N)), N.june_approval, N.midterm]), N.house_vote_pres.values, rcond=None)[0]
     seats = np.linalg.lstsq(np.column_stack([np.ones(len(N)), N.june_approval, N.midterm, N.senate_up]), N.senate_change.values, rcond=None)[0]
-    P = past_races(); P[['year', 'state', 'special', 'dem', 'rep', 'dem2', 'lean', 'dem_over']].to_csv(os.path.join(ROOT, 'data', 'senate', 'past_races.csv'), index=False)
-    # how often an incumbent eligible to run did run, 2018-2026: the incumbency counted for a senator whose plans are not known
-    R5 = pd.concat([pd.read_csv(os.path.join(ROOT, 'data', 'senate', 'races.csv'))[['year', 'incumbent']], T.races()[['year', 'incumbent']]])
-    ran = float((R5.incumbent != 'open').mean())
+    # how often a race had its senator running, in every year of the fit: the incumbency counted for a senator whose plans
+    # are not known
+    last = X5[X5.days == min(X5.days)]; ran = float(((last.inc_d + last.inc_r) > 0).mean())
     model = {'note': 'The live Senate forecast\'s fitted pieces (senate/live_fit.py): the working version (+national, polls by volume) fitted on '
                      + ', '.join(map(str, years)) + '. Shares are the Democratic side\'s two-party share, in points.',
              'years': list(years), 'version': S.WORKING, 'columns': cols, 'distances': dist,
@@ -67,9 +75,11 @@ def main():
                           'gallup_offset': -3.35, 'combine': S.COMBINE},
              'simulation': {'t_df': S.T_DF, 'shared_floor': S.SHARED_FLOOR, 'own_floor': S.OWN_FLOOR, 'pres_link': PRES_LINK},
              'incumbent_ran_share': round(ran, 4)}
-    with open(os.path.join(OUT, 'model.json'), 'w') as f: json.dump(model, f, indent=1)
+    out_path = out_path or os.path.join(OUT, 'model.json'); os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    with open(out_path, 'w') as f: json.dump(model, f, indent=1)
     print(json.dumps({d: (v['coef'], v['blend'], v['sd_total'], v['shared_sd']) for d, v in dist.items()}, indent=0)[:2500]); print('ran', ran, 'house', house, 'seats', seats)
 
 
 if __name__ == '__main__':
-    main()
+    a = sys.argv[1:]
+    main(a[a.index('--out') + 1] if '--out' in a else None, '--raw' in a)

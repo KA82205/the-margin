@@ -53,14 +53,23 @@ def summary(F, by):
                                include_groups=False).reset_index()
 
 
-def seats(X, years):
+def seats(X, years, chamber=None, seat_model=None):
     """The simulation of simulate.py ('together', shared error never smaller further out, the national pull), for each
-    year left out, its shared error measured on the other years' out-of-sample misses."""
-    import national as NA
-    nat = NA.National(); rng = np.random.default_rng(2028)
-    ex_dem = {2018: 1, 2020: 0, 2022: 0, 2024: 0, 2026: T.LEFT_OUT_DEM}
-    after = {**S.CAUCUS_AFTER, 2026: T.HOLDOVER_DEM + T.LEFT_OUT_DEM + int((X[(X.year == 2026) & (X.days == 1)].dem2 > 50).sum())}
-    tie = {**S.TIE_GOES_TO, 2026: T.TIE_GOES_TO}
+    year left out, its shared error measured on the other years' out-of-sample misses. chamber ({year: before, after,
+    left_out_dem, tie}) and seat_model ({(year, days): caucus}) come from the training table (table.py) when given;
+    otherwise from the raw sources."""
+    rng = np.random.default_rng(2028)
+    if chamber is None:
+        ex_dem = {2018: 1, 2020: 0, 2022: 0, 2024: 0, 2026: T.LEFT_OUT_DEM}
+        after = {**S.CAUCUS_AFTER, 2026: T.HOLDOVER_DEM + T.LEFT_OUT_DEM + int((X[(X.year == 2026) & (X.days == 1)].dem2 > 50).sum())}
+        tie = {**S.TIE_GOES_TO, 2026: T.TIE_GOES_TO}
+    else:
+        ex_dem = {y: c['left_out_dem'] for y, c in chamber.items()}; after = {y: c['after'] for y, c in chamber.items()}; tie = {y: c['tie'] for y, c in chamber.items()}
+    if seat_model is None:
+        import national as NA
+        nat = NA.National(); seat_of = lambda y, d: S.national_seats(nat, y, d)
+    else:
+        seat_of = lambda y, d: seat_model[(y, d)]
     oos = {(y, d): S.forecast(X[(X.year != y) & X.year.isin(years) & (X.days == d)], X[(X.year == y) & (X.days == d)])[1] for y in years for d in B.DAYS}
     rows = []
     for y in years:
@@ -74,7 +83,7 @@ def seats(X, years):
             fits[d] = (bf, sn2)
         for d in B.DAYS:
             bf, sn = fits[d]; actual = int((bf.dem2 > 50).sum()); holdover = after[y] - actual - ex_dem[y]
-            bf = S.combine(bf, holdover + ex_dem[y], S.national_seats(nat, y, d))
+            bf = S.combine(bf, holdover + ex_dem[y], seat_of(y, d))
             sim = S.simulate(bf, sn, rng, True); n = (sim > 50).sum(axis=1); total = n + holdover + ex_dem[y]
             control = np.where(total > 50, 1.0, np.where(total == 50, 1.0 if tie[y] == 'D' else 0.0, 0.0))
             lo, hi = np.percentile(n, [10, 90]); won = int(after[y] > 50 or (after[y] == 50 and tie[y] == 'D'))

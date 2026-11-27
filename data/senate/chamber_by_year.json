@@ -1,0 +1,32 @@
+{
+ "2018": {
+  "before": 49,
+  "after": 47,
+  "left_out_dem": 1,
+  "tie": "R"
+ },
+ "2020": {
+  "before": 47,
+  "after": 50,
+  "left_out_dem": 0,
+  "tie": "D"
+ },
+ "2022": {
+  "before": 50,
+  "after": 51,
+  "left_out_dem": 0,
+  "tie": "D"
+ },
+ "2024": {
+  "before": 51,
+  "after": 47,
+  "left_out_dem": 0,
+  "tie": "R"
+ },
+ "2026": {
+  "before": 47,
+  "after": 56,
+  "left_out_dem": 0,
+  "tie": "R"
+ }
+}

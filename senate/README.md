@@ -507,8 +507,8 @@ own" below):
 5. simulates the races inside the presidential forecast's 40,000 elections, drawn again from its published states with
    its own seed (step 16); the draw reproduces the published presidential chance to within rounding.
 
-The fit needs the raw sources kept out of the repository, so `live_fit.py` is run by hand when the training data change,
-and its output committed; the hourly run only applies it. `data/senate/past_races.csv` (1978-2026, from the MIT
+The fit reads the training table in the repository (`senate/table.py`); after each election `after_election.py` adds
+the election and refits on its own (step 19). The hourly run only applies the fit. `data/senate/past_races.csv` (1978-2026, from the MIT
 Election Lab's returns and the 2026 results) gives the candidates' records.
 
 First run, November 27, 2026, 711 days out: Democrats 99% to control the Senate, a caucus of about 58 (80% range 54-62),
@@ -582,10 +582,47 @@ summary that must not be read, and a page too short to trust. `senate/site_data.
 Back-tests tab shows (`data/senate/site_backtests.json`), each year forecast with that year left out, as the live
 forecast reports races (after the pull toward the national seat model).
 
-What still needs a hand after an election: the cycle's results added to the training data and `live_fit.py` run again
-(the fit needs the raw returns kept out of the repository), and the presidential results added to `data/results.csv`
-before the next cycle's state leans can be worked out (a cycle without them stops at the check, with the last forecast
-in place).
+## Step 19: after each election, on its own
+
+The model learns from each Senate election as it is held, with no step by hand. The Senate's general elections come
+every two years (the next on November 7, 2028); once a week `.github/workflows/senate-after.yml` runs
+`senate/after_election.py`, which does nothing until an election's results have settled (seven weeks after election day,
+past Georgia's runoffs and the states' certification), and then:
+
+1. reads each race's result from its Wikipedia page: the deciding round (Georgia's runoff, a ranked-choice final round),
+   the right column where one page holds a regular and a special election (California's), and an independent standing
+   for the Democrats where no Democrat ran; a race not between the Democratic side and a Republican (two Democrats in
+   a top-two general) is left out of the table, as in training, and counted in the chamber;
+2. builds each race's rows at the eight distances the model is fitted at, from what the live forecast recorded as the
+   cycle went (`history.csv`: the national mood and its two halves, approval, the national seat model) and from the
+   race pages (whether the senator ran, the nominees' records, their polls finished by each date, partisan ones left
+   out), and adds them to the training table;
+3. adds the chamber after the election, the national seat model's readings, the candidates' records (scored as
+   `build_data.past_races` scores them, with its 1978-2016 slope and incumbency terms kept in `past_races_fit.json`),
+   the year's national record (June's approval, the national House vote, the change in the president's party's Senate
+   seats) and, in a presidential year, each state's presidential vote (`pres_results.csv`, which the state leans read
+   beside `data/results.csv`, so the presidential model's own files are not touched);
+4. refits the model into the next cycle's `model.json` and makes the back-test figures again.
+
+It checks what it read before writing (results for at least seven races in ten, shares in range, a national reading at
+every distance, the chamber, the national record, all 51 presidential results), and if anything is missing it writes
+nothing and tries again the next week.
+
+The model's training data now lives in the repository, so this needs none of the raw sources: `senate/table.py` keeps
+every race of 2018-2026 at each distance (`training_rows.csv`, 1,352 rows), each year's chamber and the national seat
+model's readings, exported once from the raw build. Fitted from the table, the model is identical to the one fitted
+from the raw sources; the back-test figures move by a tenth at most, only because the simulation's draws fall on the
+races in another order.
+
+**Run on 2026 as if it had just been held** (its race pages, the 2026 Senate and House pages, and the national readings
+the table holds for each distance), the job rebuilt all 32 races: the state leans, who ran, the candidates' records, the
+poll averages and the national mood exactly as in the table; the results within 0.25 points (Wikipedia now has the
+certified counts); the chamber after (56), the change in Republican seats (-9), the seats they had up (22) and the
+House vote (57.2%) as recorded. Refitted with those rows in place of the table's, every weight moved by less than a
+hundredth. The run found one fault, now fixed in both the job and the live forecast: a name written with an accent on
+Wikipedia (Ben Ray Luján) did not match the record (LUJAN), losing his record. `tests/test_after_election.py` checks the
+readers on each layout they meet (a runoff, a regular and a special election in one box, two Democrats, an independent,
+the presidential results table, the House vote, the Senate's seats, the scoring of a new year's records).
 
 ## The 2026 academic forecasts, for reference
 

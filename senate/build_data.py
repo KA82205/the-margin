@@ -256,6 +256,9 @@ def leans():
     """A state's lean in a given year, as The Margin reads it for the presidency: its Democratic two-party share against the
     nation's in the last presidential election (three quarters) and the one before (one quarter)."""
     r = pd.read_csv(os.path.join(ROOT, 'data', 'results.csv')); r = r[r.state.str.len() == 2]
+    extra = os.path.join(ROOT, 'data', 'senate', 'pres_results.csv')          # presidential results added after each election (after_election.py)
+    if os.path.exists(extra):
+        e = pd.read_csv(extra); r = pd.concat([r, e[~e.year.isin(r.year.unique())]], ignore_index=True)
     rel = r.assign(rel=r.dem2 - r.nat2).set_index(['year', 'state']).rel
     def lean(year, st):
         last = year - (year % 4) if year % 4 else year - 4                  # 2018 -> 2016, 2020 -> 2016, 2022 -> 2020, 2024 -> 2020
