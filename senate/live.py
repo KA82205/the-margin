@@ -16,8 +16,8 @@ Each run:
 
 Rules for what is not known yet:
   - Polls count once both nominees are on the race's page. Before the primaries the race runs on its fundamentals.
-  - A senator whose plans are not known counts as running with the share of incumbents who ran again in 2018-2026
-    (model.json, incumbent_ran_share), toward both incumbency and their record; one retiring counts as an open seat.
+  - A senator whose plans are not known runs in each simulated election with the share of incumbents who ran again in
+    2018-2026 (model.json, incumbent_ran_share), and the seat is open in the rest; one retiring counts as an open seat.
 
     python senate/live.py                      fetches the pages and writes data/senate/2028/
     python senate/live.py --pages FILE.json    reads pages saved before (tools/fetch_wiki_polls.py's shape), for testing
@@ -164,7 +164,7 @@ def build_races(pages, seats, model, today, days):
         if not (dem and rep) and side: names = {'dem': s['incumbent'] if side == 'dem' else None, 'rep': s['incumbent'] if side == 'rep' else None}
         tr = BD.track_records(pd.DataFrame([{'year': YEAR, 'state': st, 'dem': (names['dem'] or '').upper(), 'rep': (names['rep'] or '').upper()}]), P=past).iloc[0]
         dt = float(tr.dem_track) if pd.notna(tr.dem_track) and names['dem'] else 0.0; rt = float(tr.rep_track) if pd.notna(tr.rep_track) and names['rep'] else 0.0
-        track = dt - rt
+        track = dt - rt; track_full = float(track)
         if not (dem and rep): track *= runs
         # polls, once both nominees are known; partisan polls left out, as in training
         poll, pw, n_polls = None, 0.0, 0
@@ -179,7 +179,9 @@ def build_races(pages, seats, model, today, days):
                      'incumbent_runs': round(runs, 4), 'dem': dem, 'rep': rep, 'declared': s['declared'],
                      'page': page['title'] if own else None, 'revision': page['timestamp'] if own else None,
                      'lean': lean(YEAR, st), 'inc_d': runs if side == 'dem' else 0.0, 'inc_r': runs if side == 'rep' else 0.0,
-                     'track': round(float(track), 4), 'poll': poll, 'poll_w': pw, 'polls': n_polls})
+                     'track': round(float(track), 4), 'poll': poll, 'poll_w': pw, 'polls': n_polls,
+                     # a senator whose plans are not known: whether they run is drawn in each simulated election
+                     'unknown_intent': bool(side and not (dem and rep) and s['running'] is None), 'side': side, 'track_full': round(track_full, 4)})
     return pd.DataFrame(rows)
 
 
@@ -257,6 +259,12 @@ def simulate(R, dist, model, pres):
     own = np.sqrt(np.maximum(sd_tot ** 2 - Lj ** 2 * v - rs ** 2, sim['own_floor'] ** 2))
     shared = rng.standard_t(tdf, size=(n, 1)) * rs * math.sqrt((tdf - 2) / tdf)
     X = R.m.values[None, :] + (Lj[:, None] * dev).T + shared + rng.standard_normal((n, len(R))) * own[None, :]
+    # a senator whose plans are not known runs in each simulated election with the share of incumbents who ran again; the
+    # race's centre is the average of the two, so each draw moves it by the gap between running and an open seat
+    gap = R.run_gap.values; p = R.incumbent_runs.values; u = R.unknown_intent.values
+    if u.any():
+        runs = rng.random((n, len(R))) < p[None, :]
+        X = X + np.where(u[None, :], (runs - p[None, :]) * gap[None, :], 0.0)
     return X, {'shared_sd_rest': round(rs, 4), 'link': [round(float(x), 4) for x in Lj], 'own_sd': [round(float(x), 4) for x in own], 'sd_total': [round(float(x), 4) for x in sd_tot]}
 
 
@@ -277,6 +285,9 @@ def main(saved=None):
     R['blend_approval'] = nat['blend']
     coef = dist['coef']; R['f'] = coef['const'] + sum(coef[c] * R[c].values for c in model['columns'])
     R['m'] = B.blend(R, tuple(dist['blend']))
+    # the gap between a senator running and an open seat, for those whose plans are not known (no polls yet: fundamentals only)
+    R['run_gap'] = [(coef['inc_d'] if sd == 'dem' else coef['inc_r']) + coef['track'] * tf if u else 0.0
+                    for sd, tf, u in zip(R.side, R.track_full, R.unknown_intent)]
     R['sd_total'] = np.where(R.poll.notna(), dist['sd_total']['polls'], dist['sd_total']['no_polls'])
     ns = seat_model(model, appr, up_rep if PRES_PARTY == 'R' else up_dem, caucus_dem)
     own_total = holdover + float(sum(0.5 * (1 + math.erf((m - 50) / (s * math.sqrt(2)))) for m, s in zip(R.m, R.sd_total)))
@@ -317,7 +328,8 @@ def main(saved=None):
                       'p_dem_if_rep_president': round(float((x[~pres['dem_win']] > 50).mean()), 4) if pres and (~pres['dem_win']).any() else None,
                       'fundamentals_margin': round(2 * r.f - 100, 2), 'polls_margin': round(2 * r.poll - 100, 2) if r.poll == r.poll and r.poll is not None else None,
                       'polls': r.polls, 'lean': r.lean, 'track': r.track, 'page': r.page,
-                      'pres_link': links['link'][j], 'sd_own': links['own_sd'][j], 'sd_total': links['sd_total'][j]})
+                      'pres_link': links['link'][j], 'sd_own': links['own_sd'][j], 'sd_total': links['sd_total'][j],
+                      'run_gap_margin': round(2 * float(r.run_gap), 2) if r.unknown_intent else None})
     out = {'as_of': str(today.date()), 'election': str(ELECTION.date()), 'days_out': days, 'distance_used': d,
            'note': ('Backend only. ' + ('Further out than the furthest distance tested (a year): the year-out fit is used. ' if days > max(int(k) for k in model['distances']) else '')
                     + ('The shared error is widened past a year at the rate it grows within the year. ' if days > max(int(k) for k in model['distances']) else '')

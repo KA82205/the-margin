@@ -513,6 +513,31 @@ First run, November 27, 2026, 711 days out: Democrats 99% to control the Senate,
 with the national environment from Trump's approval alone (about 36% approve, a Democratic House vote of 52.2%). The
 Democrats hold 56 seats and only 16 of them are up, so losing control would take a net loss of six.
 
+## Step 17: is 99% too sure? (four checks, one change)
+
+The first live run gave the Democrats a 99% chance of control two years out, against 89% on Polymarket. Four reasons it
+might be too sure were tested on the 2018-2026 record:
+
+1. Time. A forecast of the national House vote from approval alone missed by 3.5 points made two years out and 4.0 made a
+   year out, 1952-2024 (in presidential years 3.5 and 4.2): approval moves slowly and moves the forecast little, so the
+   national input is no worse two years out. No change.
+2. No generic ballot yet. Fitted on approval alone, the model misses races by as much as with the generic ballot (4.0
+   points a year out either way) and the races miss together a little less (2.2 against 2.4). No change.
+3. No polls and no challengers yet. Forecasts made with every race's polls removed miss together by 2.4 points a year
+   out, as with them; with only the incumbents' records known and not the challengers', 4.04 against 4.05. No change.
+4. Five years to measure the shared error on. Drawing it from the spread a sample of five allows (a t with as many
+   degrees of freedom as years, scaled by the spread measured), not the spread itself, made the chance of control worse
+   at every distance (log loss 0.48 against 0.45 a year out, 0.35 against 0.32 on the last day), and the seat counts
+   already fall a little nearer the middle of their ranges than a well-sized range would put them. No change.
+
+One gap the back-test cannot show, since it always knew who ran: a senator whose plans are not known was counted as 79%
+of an incumbent in every simulated election. Now whether they run is drawn in each simulated election (79% run), and the
+seat is open in the rest (`live.py`). It moves the chance of control from 99.3% to 99.3%: running is worth 2 to 5
+points of margin to most of these senators, and no single retirement decides the chamber.
+
+So the 99% stands on the model's record. It rests mostly on the map: the Democrats hold 56 seats, 16 of them up, with a
+national environment from Trump's approval about four points their way.
+
 ## The 2026 academic forecasts, for reference
 
 `data/senate/2026/academic_forecasts_2026.csv` holds the forecasts in the *PS: Political Science & Politics* special
