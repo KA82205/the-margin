@@ -427,8 +427,8 @@ Added to the working version, its weight is positive and steady in every left-ou
 | 2026, last day | 6.32 to 6.49 | 0.240 to 0.240 | 5.97 to 6.35 |
 
 Money narrows the margin misses in the years it was fitted on, most in the summer, but the chances it gives are no
-better (log loss worse at 120, 30, 14, 7 and 1 days), and in 2026, the year it never saw, it is worse at every distance
-but a year out. Not adopted. The table and the code stay, and the test is run again once 2026 is a fitting year.
+better (log loss worse at 120, 30, 14, 7 and 1 days), and in 2026, the year it never saw, its margin misses are wider at
+every distance but a year out. Not adopted. The table and the code stay, and the test is run again once 2026 is a fitting year.
 
 ## The 2026 academic forecasts, for reference
 
