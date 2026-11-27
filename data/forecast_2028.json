@@ -183,7 +183,7 @@
  },
  "national_from_states": {
   "mean": 52.00325536962124,
-  "lo": 48.07466886960392,
+  "lo": 48.07466886960393,
   "hi": 55.92369027709112,
   "p_popular": 0.759175,
   "of_means": 52.0198191796836,
@@ -196,7 +196,7 @@
  "p_vote_not_college": 0.07345,
  "p_college_not_vote": 0.016375,
  "national": 52.047817698557886,
- "national_sd": 3.3239290452257277,
+ "national_sd": 3.323929045225722,
  "ev_mean": 302.13805,
  "ev_median": 301.0,
  "ev_lo": 223.0,
@@ -748,7 +748,7 @@
   "polls_n": 28,
   "poll_share": 0.02607308439096129,
   "fundamentals": 52.13428553338922,
-  "fundamentals_sd": 2.2341149109319143,
+  "fundamentals_sd": 2.2341149109319036,
   "approval_model": 52.12700381122897,
   "approval_and_economy": 52.14156725554947,
   "long_range": 49.84646304548628,
@@ -765,9 +765,9 @@
   "prior_moves_with_polls": 0.0,
   "national_start": 52.047817698557886,
   "equation": {
-   "intercept": 49.81486161060663,
-   "approval": 0.14839425331457257,
-   "first_term": 2.6880352815790665,
+   "intercept": 49.8148616106066,
+   "approval": 0.14839425331457134,
+   "first_term": 2.6880352815790616,
    "elections": 20,
    "first": 1948,
    "last": 2024,
@@ -776,7 +776,7 @@
    "party_in_office_share": 47.87299618877103
   },
   "june_approval": null,
-  "allowance_today": 2.2341149109319143,
+  "allowance_today": 2.2341149109319036,
   "approval_allowance": 15.0,
   "lean_weights": [
    0.75,
@@ -795,8 +795,8 @@
   "region_share": 0.4,
   "long_range_polls": 0.522
  },
- "national_lo": 48.22800014357542,
- "national_hi": 55.845168476011025,
+ "national_lo": 48.22800014357543,
+ "national_hi": 55.84516847601102,
  "states": [
   {
    "state": "AK",
@@ -2153,7 +2153,7 @@
   "p_model": 0.716675,
   "p_popular": 0.77605,
   "national": 52.359618778599604,
-  "national_sd": 3.667730397941312,
+  "national_sd": 3.667730397941313,
   "ev_median": 305.0,
   "ev_lo": 222.0,
   "ev_hi": 406.0,
@@ -2487,8 +2487,8 @@
    "p_popular": 0.765875,
    "national_from_states": {
     "mean": 52.20728982984708,
-    "lo": 48.02549779026826,
-    "hi": 56.37234090024098,
+    "lo": 48.025497790268254,
+    "hi": 56.37234090024097,
     "p_popular": 0.765875,
     "of_means": 52.225322611310126,
     "gap": -0.027998518874284173,
@@ -2496,15 +2496,15 @@
     "p_college_not_vote": 0.015375
    },
    "national": 52.25332113018441,
-   "national_sd": 3.5463796937108585,
-   "national_lo": 48.1778660809476,
-   "national_hi": 56.30480583513016,
+   "national_sd": 3.5463796937108545,
+   "national_lo": 48.17786608094761,
+   "national_hi": 56.30480583513015,
    "ev_median": 304.0,
    "ev_lo": 222.0,
    "ev_hi": 399.0,
    "tipping_point": "PA",
    "prior": 52.34529051572716,
-   "drift": 2.569532671828376,
+   "drift": 2.569532671828369,
    "long_range_weight": 0.0,
    "parts": {
     "approval_and_economy": 52.14156725554947,
@@ -2868,7 +2868,7 @@
    "p_popular": 0.759175,
    "national_from_states": {
     "mean": 52.00325536962124,
-    "lo": 48.07466886960392,
+    "lo": 48.07466886960393,
     "hi": 55.92369027709112,
     "p_popular": 0.759175,
     "of_means": 52.0198191796836,
@@ -2877,15 +2877,15 @@
     "p_college_not_vote": 0.016375
    },
    "national": 52.047817698557886,
-   "national_sd": 3.3239290452257277,
-   "national_lo": 48.22800014357542,
-   "national_hi": 55.845168476011025,
+   "national_sd": 3.323929045225722,
+   "national_lo": 48.22800014357543,
+   "national_hi": 55.84516847601102,
    "ev_median": 301.0,
    "ev_lo": 223.0,
    "ev_hi": 390.0,
    "tipping_point": "PA",
    "prior": 52.13428553338922,
-   "drift": 2.2341149109319143,
+   "drift": 2.2341149109319036,
    "long_range_weight": 0.0,
    "parts": {
     "approval_and_economy": 52.14156725554947,
@@ -3324,7 +3324,7 @@
   }
  ],
  "markets": {
-  "read": "2026-11-27T19:22Z",
+  "read": "2026-11-27T19:26Z",
   "counts": {
    "Polymarket": 51,
    "Kalshi": 60,
@@ -3466,7 +3466,7 @@
    },
    "AK": {
     "p": 0.2499,
-    "quality": 0.821,
+    "quality": 0.8209,
     "real_money": true,
     "providers": [
      {
@@ -3484,7 +3484,7 @@
      {
       "provider": "Kalshi",
       "p": 0.2315,
-      "quality": 0.4937,
+      "quality": 0.4936,
       "real_money": true,
       "volume": 1606,
       "traders": null,
@@ -3656,7 +3656,7 @@
      {
       "provider": "Kalshi",
       "p": 0.8935,
-      "quality": 0.3069,
+      "quality": 0.3068,
       "real_money": true,
       "volume": 216,
       "traders": null,
@@ -3922,7 +3922,7 @@
    },
    "IA": {
     "p": 0.309,
-    "quality": 0.8001,
+    "quality": 0.8,
     "real_money": true,
     "providers": [
      {
@@ -3940,7 +3940,7 @@
      {
       "provider": "Kalshi",
       "p": 0.2878,
-      "quality": 0.353,
+      "quality": 0.3529,
       "real_money": true,
       "volume": 195,
       "traders": null,
@@ -4042,7 +4042,7 @@
    },
    "MD": {
     "p": 0.9249,
-    "quality": 0.7023,
+    "quality": 0.7022,
     "real_money": true,
     "providers": [
      {
@@ -4060,7 +4060,7 @@
      {
       "provider": "Kalshi",
       "p": 0.9493,
-      "quality": 0.4906,
+      "quality": 0.4905,
       "real_money": true,
       "volume": 1060,
       "traders": null,
@@ -4092,7 +4092,7 @@
      {
       "provider": "Kalshi",
       "p": 0.0945,
-      "quality": 0.4383,
+      "quality": 0.4382,
       "real_money": true,
       "volume": 1600,
       "traders": null,
@@ -4118,7 +4118,7 @@
    },
    "KY": {
     "p": 0.1068,
-    "quality": 0.6466,
+    "quality": 0.6465,
     "real_money": true,
     "providers": [
      {
@@ -4136,7 +4136,7 @@
      {
       "provider": "Kalshi",
       "p": 0.0959,
-      "quality": 0.4283,
+      "quality": 0.4282,
       "real_money": true,
       "volume": 1122,
       "traders": null,
@@ -4194,13 +4194,13 @@
    },
    "IN": {
     "p": 0.1052,
-    "quality": 0.7108,
+    "quality": 0.7107,
     "real_money": true,
     "providers": [
      {
       "provider": "Kalshi",
       "p": 0.0923,
-      "quality": 0.5479,
+      "quality": 0.5478,
       "real_money": true,
       "volume": 4876,
       "traders": null,
@@ -4288,7 +4288,7 @@
      {
       "provider": "Kalshi",
       "p": 0.6212,
-      "quality": 0.6064,
+      "quality": 0.6063,
       "real_money": true,
       "volume": 5238,
       "traders": null,
@@ -4528,7 +4528,7 @@
      {
       "provider": "Kalshi",
       "p": 0.0564,
-      "quality": 0.2946,
+      "quality": 0.2945,
       "real_money": true,
       "volume": 800,
       "traders": null,
@@ -4758,13 +4758,13 @@
    },
    "TX": {
     "p": 0.3968,
-    "quality": 0.9076,
+    "quality": 0.9075,
     "real_money": true,
     "providers": [
      {
       "provider": "Kalshi",
       "p": 0.3881,
-      "quality": 0.7067,
+      "quality": 0.7066,
       "real_money": true,
       "volume": 21591,
       "traders": null,
@@ -4866,7 +4866,7 @@
    },
    "VT": {
     "p": 0.9339,
-    "quality": 0.7145,
+    "quality": 0.7144,
     "real_money": true,
     "providers": [
      {
@@ -4884,7 +4884,7 @@
      {
       "provider": "Kalshi",
       "p": 0.9392,
-      "quality": 0.3641,
+      "quality": 0.364,
       "real_money": true,
       "volume": 948,
       "traders": null,
@@ -5188,7 +5188,7 @@
      {
       "provider": "Kalshi",
       "p": 0.6717,
-      "quality": 0.9627,
+      "quality": 0.9626,
       "real_money": true,
       "volume": 946974,
       "traders": null,
@@ -5595,8 +5595,8 @@
    "ev_median": 304.0,
    "ev_lo": 217.0,
    "ev_hi": 411.0,
-   "ev_mean": 306.954,
-   "national": 52.1985,
+   "ev_mean": 306.9535,
+   "national": 52.1984,
    "national_lo": 47.6867,
    "national_hi": 56.7431,
    "p_popular": 0.7575,
@@ -5799,7 +5799,7 @@
      "event": "winner:KY",
      "simulation": 0.0039,
      "markets": 0.1068,
-     "quality": 0.647,
+     "quality": 0.646,
      "aimed_at": 0.0116,
      "reached": 0.0091
     },
@@ -5927,7 +5927,7 @@
      "event": "winner:TX",
      "simulation": 0.1567,
      "markets": 0.3968,
-     "quality": 0.908,
+     "quality": 0.907,
      "aimed_at": 0.248,
      "reached": 0.2367
     },
@@ -6080,8 +6080,8 @@
     "ev_median": 304.0,
     "ev_lo": 216.0,
     "ev_hi": 411.0,
-    "ev_mean": 306.9872,
-    "national": 52.1865,
+    "ev_mean": 306.9867,
+    "national": 52.1864,
     "national_lo": 47.6511,
     "national_hi": 56.7347,
     "p_popular": 0.7502
@@ -6096,7 +6096,7 @@
     "ev_median": 303.0,
     "ev_lo": 221.0,
     "ev_hi": 399.0,
-    "ev_mean": 304.3827,
+    "ev_mean": 304.3825,
     "national": 52.0929,
     "national_lo": 47.8978,
     "national_hi": 56.3061,
@@ -6109,7 +6109,7 @@
    "p_tie": 0.00515
   }
  },
- "equation_error": 2.5311906632519685,
+ "equation_error": 2.5311906632519694,
  "settings": {
   "half_life": [
    7,
