@@ -61,6 +61,24 @@ def average(t, asof, d_out, floor=1.0):
     return float((w * t.x.values).sum() / w.sum()), float(w.sum())
 
 
+# incumbents running for a seat they were appointed to, never having won it: (year, state, special) -> party. They are
+# entered by hand; a senator appointed and later elected is not on the list for the races after.
+APPOINTED = {(2018, 'MN', True): 'D',   # Tina Smith
+             (2018, 'MS', True): 'R',   # Cindy Hyde-Smith
+             (2020, 'AZ', True): 'R',   # Martha McSally
+             (2020, 'GA', True): 'R',   # Kelly Loeffler
+             (2022, 'CA', False): 'D', (2022, 'CA', True): 'D',   # Alex Padilla, both races
+             (2024, 'NE', True): 'R',   # Pete Ricketts
+             (2026, 'FL', True): 'R',   # Ashley Moody
+             (2026, 'OH', True): 'R',   # Jon Husted
+             (2026, 'SC', False): 'R'}  # Darline Graham
+
+
+def appointed(year, state, special):
+    """+1 for an appointed Democratic-side incumbent, -1 for an appointed Republican, 0 otherwise."""
+    return {'D': 1, 'R': -1}.get(APPOINTED.get((int(year), state, bool(special))), 0)
+
+
 def build():
     # the race polls: Wikipedia's race pages (polls_wikipedia.csv, senate/wiki_build.py), the source the forecast will
     # read live (step 11); FiveThirtyEight's archive (polls.csv) when SENATE_TRAIN_POLLS=538, as in steps 2-10
@@ -87,6 +105,7 @@ def build():
             mt = FM.money_feature(*FM.raised(MT, r.year, r.state, bool(r.special), asof)) if MT is not None else 0.0
             rows.append({'year': r.year, 'state': r.state, 'special': bool(r.special), 'days': d, 'dem2': r.dem2, 'lean': r.lean,
                          'generic': g, 'inc_d': int(r.incumbent == 'D'), 'inc_r': int(r.incumbent == 'R'),
+                         'appointed': appointed(r.year, r.state, r.special),
                          'money': math.log((md + 1e5) / (mr + 1e5)), 'money_t': mt, 'poll': pa, 'poll_w': pw, 'indep': bool(r.dem_independent),
                          'pres_state': hs, 'pres_nat': hn,
                          # each candidate's record in earlier Senate races in the state (build_data.track_records), Democratic side
@@ -180,11 +199,13 @@ VERSIONS = {'lean': ['lean', 'generic'], '+incumbent': ['lean', 'generic', 'inc_
             'ticket': ['@our_env', 'inc_d', 'inc_r'],
             '+track': ['lean', 'generic', 'inc_d', 'inc_r', 'track'],
             '+national': ['lean', 'blend_approval', 'inc_d', 'inc_r', 'track'],
-            '+national +money': ['lean', 'blend_approval', 'inc_d', 'inc_r', 'track', 'money_t']}
+            '+national +money': ['lean', 'blend_approval', 'inc_d', 'inc_r', 'track', 'money_t'],
+            '+national +appointed': ['lean', 'blend_approval', 'inc_d', 'inc_r', 'track', 'appointed']}
 # the race-poll blend by volume, on each starting point: the fundamentals with incumbency, and the two presidential ones
 BLENDS = {'+polls by volume': '+incumbent', 'president, +polls by volume': 'president', 'president gap, +polls by volume': 'president gap',
           'our president, +polls by volume': 'our president', 'our president gap, +polls by volume': 'our president gap', 'ticket, +polls by volume': 'ticket',
-          '+track, +polls by volume': '+track', '+national, +polls by volume': '+national', '+national +money, +polls by volume': '+national +money'}
+          '+track, +polls by volume': '+track', '+national, +polls by volume': '+national', '+national +money, +polls by volume': '+national +money',
+          '+national +appointed, +polls by volume': '+national +appointed'}
 
 
 def run(X):

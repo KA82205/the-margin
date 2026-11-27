@@ -66,7 +66,7 @@ def features(R):
             pa, pw = B.average(pt, asof, d) if pt is not None else (None, 0.0)
             mt = FM.money_feature(*FM.raised(MT, 2026, r.state, bool(r.special), asof)) if MT is not None else 0.0
             rows.append({'year': 2026, 'state': r.state, 'special': bool(r.special), 'days': d, 'dem2': r.dem2, 'lean': r.lean, 'generic': gen,
-                         'inc_d': int(r.incumbent == 'D'), 'inc_r': int(r.incumbent == 'R'), 'poll': pa, 'poll_w': pw,
+                         'inc_d': int(r.incumbent == 'D'), 'inc_r': int(r.incumbent == 'R'), 'appointed': B.appointed(2026, r.state, r.special), 'poll': pa, 'poll_w': pw,
                          'track': (r.dem_track if r.dem_track == r.dem_track else 0.0) - (r.rep_track if r.rep_track == r.rep_track else 0.0),
                          'money_t': mt})
     return NA.add(pd.DataFrame(rows))

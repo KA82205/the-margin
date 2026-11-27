@@ -430,6 +430,21 @@ Money narrows the margin misses in the years it was fitted on, most in the summe
 better (log loss worse at 120, 30, 14, 7 and 1 days), and in 2026, the year it never saw, its margin misses are wider at
 every distance but a year out. Not adopted. The table and the code stay, and the test is run again once 2026 is a fitting year.
 
+## Step 14: appointed incumbents (tested, not adopted)
+
+A senator appointed to a seat and running for it for the first time is counted as an incumbent like any other. Nine
+such races are entered by hand in `APPOINTED` in `backtest.py`: Smith and Hyde-Smith (2018), McSally and Loeffler
+(2020), Padilla's two races (2022), Ricketts (2024), and Moody, Husted and Darline Graham (2026). Added as one term
+(+1 for an appointed Democrat, -1 for an appointed Republican), its weight comes out at 1 to 2.7 points of the
+two-party vote against the appointed incumbent in every left-out year, so they did do worse than elected ones.
+
+But nine races are too few for it to change much. In 2018-2024 the margin miss and log loss are within 0.05 of the
+working version's at every distance, slightly worse at most; it helps Padilla's races and hurts Smith's and Ricketts'.
+In 2026 on the last day it moves the three appointed Republicans 1 to 1.2 points toward the Democrats (South Carolina
+from R+3.5 to R+2.3, against a Democratic win by 4.6), leaves the calls unchanged at 30 of 32 and the average miss at
+5.3. Not adopted. South Carolina's miss comes mostly from the step back from its polls (R+0.7 on their own) toward the
+state's lean, not from incumbency.
+
 ## The 2026 academic forecasts, for reference
 
 `data/senate/2026/academic_forecasts_2026.csv` holds the forecasts in the *PS: Political Science & Politics* special
