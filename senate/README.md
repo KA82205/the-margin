@@ -378,7 +378,7 @@ the forecast needs a source it can collect itself. Wikipedia's pages serve, unde
 | Coverage | Wikipedia | FiveThirtyEight / RealClearPolling |
 |---|---|---|
 | 2018-2024 polls of the nominees (one per poll and population) | 634, 919, 685, 997 | 821, 925, 706, 1,001 questions |
-| 2026 polls / races with polls in the last 30 days | 651 / 22 | 471 / 19 (RealClearPolling) |
+| 2026 polls / races with polls in the last 30 days | 651, 346 without a party mark / 22 | 471 / 19 (RealClearPolling) |
 
 | Back-test, leave one year out, miss on the margin (log loss) | A year out | 60 days | Last day |
 |---|---|---|---|
