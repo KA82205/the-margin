@@ -227,6 +227,9 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 .st-pick{display:flex;align-items:center;gap:12px;margin-bottom:16px;font-size:14px;line-height:20px}
 .st-pick label{color:var(--ink2)}
 .st-pick select{font:500 16px/24px var(--sans);color:var(--ink);background:var(--bg);border:1px solid var(--ink);border-radius:8px;padding:8px 12px;max-width:100%}
+.st-hint{margin-top:32px;border:1px dashed var(--line);border-radius:12px;padding:40px 24px;text-align:center}
+.st-hint h3{font:500 28px/32px var(--serif);margin:0 0 8px}
+.st-hint p{color:var(--ink2);font-size:15px;line-height:24px;margin:0 auto;max-width:46ch}
 .st-strip{display:flex;gap:1px;height:36px}
 .st-strip button{min-width:3px;border:0;padding:0;cursor:pointer;border-radius:1px}
 .st-strip button.on{outline:3px solid var(--ink);outline-offset:1px;position:relative;z-index:1}
@@ -1045,7 +1048,11 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   const evs = n => n + (n === 1 ? ' electoral vote' : ' electoral votes');
   // ordered as on the Forecast tab: by the chance of a Democratic win, then the margin, so the colours run in order
   const byMargin = F.states.slice().sort((a, b) => (b.p_dem - a.p_dem) || (b.mean - a.mean)), tipRank = F.states.slice().sort((a, b) => b.tip - a.tip).map(x => x.state);
-  $('st-sel').innerHTML = F.states.slice().sort((a, b) => a.name.localeCompare(b.name)).map(x => '<option value="' + x.state + '">' + esc(x.name) + '</option>').join('');
+  // nothing is chosen when the tab first opens: a prompt stands in for the profile until the first choice, and does not
+  // come back after it (the last place chosen stays chosen)
+  $('st-sel').innerHTML = '<option value="" disabled selected>Choose a state or district</option>' + F.states.slice().sort((a, b) => a.name.localeCompare(b.name)).map(x => '<option value="' + x.state + '">' + esc(x.name) + '</option>').join('');
+  const stHint = () => { $('st-sel').value = ''; document.querySelectorAll('#st-strip button,#st-all tr').forEach(el => el.classList.remove('on'));
+    $('st-prof').innerHTML = '<div class="st-hint"><h3>Pick a state to begin</h3><p>Select a block on the strip, choose from the menu or open a row in the table below to see how that state has voted, how it leans against the nation and what the forecast expects of it in 2028.</p></div>'; };
   $('st-strip').innerHTML = byMargin.map(x => '<button type="button" data-st="' + x.state + '" style="flex:' + x.ev + ' 0 0;background:' + COL[bin(x.p_dem)] + '" aria-label="' + esc(x.name) + ', ' + RATE(bin(x.p_dem)) + '"></button>').join('');
   $('st-all').innerHTML = '<thead><tr><th>State</th><th class="n">Electoral votes</th><th>Rating</th><th class="n">Chance of winning</th><th class="n">Projected margin</th><th class="n">80% prediction interval</th><th class="n">Decides the election</th></tr></thead><tbody>' +
     byMargin.map(x => '<tr data-st="' + x.state + '"><td><a href="#states/' + x.state + '">' + esc(x.name) + '</a></td><td class="n">' + x.ev + '</td><td><i class="dot" style="background:' + COL[bin(x.p_dem)] + '"></i>' + RATE(bin(x.p_dem)) + '</td><td class="n">' + aheadCell(x.p_dem) +
@@ -1225,7 +1232,7 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   (function () { const T = ['forecast', 'states', 'polls', 'model', 'backtests', 'research'];
     const go = () => { const parts = (location.hash || '#forecast').slice(1).split('/'), cur = T.indexOf(parts[0]) >= 0 ? parts[0] : 'forecast';
       T.forEach(k => { $('t-' + k).hidden = k !== cur; }); document.querySelectorAll('#tabs a').forEach(a => { if (a.getAttribute('href') === '#' + cur) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
-      if (cur === 'states') showState(parts[1] && ST[parts[1]] ? parts[1] : (stSel || F.tipping_point));          // #states/PA opens a state
+      if (cur === 'states') { const want = parts[1] && ST[parts[1]] ? parts[1] : stSel; if (want) showState(want); else stHint(); }          // #states/PA opens a state
       const to = parts[1] && document.getElementById(parts[1]);          // a section inside the tab, as in #model/narrow
       if (to && $('t-' + cur).contains(to)) to.scrollIntoView({behavior: 'instant', block: 'start'}); else window.scrollTo({top: 0, behavior: 'instant'});
       tipHide(); };
