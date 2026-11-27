@@ -5,6 +5,8 @@ nothing here runs on the site. Wikipedia's text is CC BY-SA 4.0.
     senate2026     each 2026 Senate race's page, and any separate polling page it points to
     senate2018 ... senate2024  the same for earlier years (to compare with the FiveThirtyEight archive)
     national2026   the 2026 generic-ballot polls and the second Trump term's approval polls
+    history2026    the aggregate tables of approval and the generic ballot as they stood on the 1st and 15th of each
+                   month, February 2025 to November 2026, from the pages' history
 """
 import json, os, re, sys, time, urllib.parse, urllib.request
 
@@ -72,9 +74,38 @@ def national2026():
     return out
 
 
+def revision_at(title, ts):
+    j = get({'action': 'query', 'prop': 'revisions', 'rvprop': 'content|timestamp', 'rvslots': 'main', 'titles': title,
+             'rvlimit': '1', 'rvdir': 'older', 'rvstart': ts})
+    time.sleep(1.0)
+    try:
+        p = j['query']['pages'][0]; r = p['revisions'][0]
+        return r['timestamp'], r['slots']['main']['content']
+    except Exception:                                              # noqa: BLE001
+        return None, None
+
+
+SECTIONS = {'Opinion polling on the second Trump presidency': r'===\s*Aggregate polls\s*===',
+            '2026 United States House of Representatives elections': r'===\s*Generic (?:congressional )?ballot[^=]*===|==\s*Polls and ratings\s*=='}
+
+
+def history2026():
+    import datetime as dt
+    out = {}
+    days = [dt.date(y, m, d) for y in (2025, 2026) for m in range(1, 13) for d in (1, 15)]
+    days = [d for d in days if dt.date(2025, 2, 1) <= d <= dt.date(2026, 11, 3)] + [dt.date(2026, 11, 3)]
+    for title, head in SECTIONS.items():
+        for d in days:
+            ts, text = revision_at(title, f'{d.isoformat()}T12:00:00Z')
+            if text is None: continue
+            m = re.search(head, text)
+            out[f'{title}|{d.isoformat()}'] = {'revision': ts, 'section': text[m.start():m.start() + 12000] if m else None}
+    return out
+
+
 if __name__ == '__main__':
     for g in sys.argv[2:] or ['senate2026', 'national2026']:
-        data = senate(int(g[-4:])) if g.startswith('senate') else national2026()
+        data = senate(int(g[-4:])) if g.startswith('senate') else history2026() if g == 'history2026' else national2026()
         with open(os.path.join(OUT, f'wiki_{g}.json'), 'w') as f: json.dump(data, f)
         log.append({'group': g, 'pages': len(data), 'titles': sorted(data)[:80]})
     with open(os.path.join(OUT, 'fetch_log.json'), 'w') as f: json.dump(log, f, indent=1)
