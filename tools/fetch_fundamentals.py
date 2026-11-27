@@ -34,19 +34,28 @@ def fred():
         save(f'fred_{s}.csv', get(f'https://fred.stlouisfed.org/graph/fredgraph.csv?id={s}'))
 
 
+def rows_of(t):
+    out = []
+    for tr in re.findall(r'<tr[^>]*>(.*?)</tr>', t, flags=re.S | re.I):
+        cells = [re.sub(r'<[^>]+>', '', c) for c in re.findall(r'<t[dh][^>]*>(.*?)</t[dh]>', tr, flags=re.S | re.I)]
+        cells = [re.sub(r'\s+', ' ', c.replace('&nbsp;', ' ')).strip() for c in cells]
+        if cells: out.append(cells)
+    return out
+
+
 def gallup():
+    """The index page links one page per president; each holds a table of readings (start, end, approve, disapprove,
+    no opinion). Through January 2026 every reading is Gallup's."""
     html = get('https://www.presidency.ucsb.edu/statistics/data/presidential-job-approval-all-data')
     if html is None: return
-    t = html.decode('utf-8', 'replace')
-    with open(os.path.join(OUT, 'gallup_page.txt'), 'w') as f:          # the page as text, tags stripped, for checking the parse
-        f.write(re.sub(r'\s+', ' ', re.sub(r'<script.*?</script>|<style.*?</style>', ' ', t, flags=re.S)))
-    rows = []
-    for tr in re.findall(r'<tr[^>]*>(.*?)</tr>', t, flags=re.S):
-        cells = [re.sub(r'<[^>]+>', '', c).strip() for c in re.findall(r'<t[dh][^>]*>(.*?)</t[dh]>', tr, flags=re.S)]
-        cells = [re.sub(r'\s+', ' ', c.replace('&nbsp;', ' ')).strip() for c in cells]
-        if cells: rows.append(cells)
-    with open(os.path.join(OUT, 'gallup_approval_rows.json'), 'w') as f: json.dump(rows, f)
-    log.append({'saved': 'gallup_approval_rows.json', 'rows': len(rows)})
+    links = sorted(set(re.findall(r'href="(https://www\.presidency\.ucsb\.edu/statistics/data/[a-z0-9-]+-public-approval)"', html.decode('utf-8', 'replace'))))
+    out = {}
+    for u in links:
+        page = get(u)
+        if page is None: continue
+        out[u.rsplit('/', 1)[1]] = rows_of(page.decode('utf-8', 'replace')); time.sleep(1.0)
+    with open(os.path.join(OUT, 'gallup_approval_rows.json'), 'w') as f: json.dump(out, f)
+    log.append({'saved': 'gallup_approval_rows.json', 'pages': len(out), 'rows': sum(len(v) for v in out.values())})
 
 
 def wiki():
@@ -70,6 +79,7 @@ def wiki():
 
 
 if __name__ == '__main__':
-    fred(); gallup(); wiki()
+    which = sys.argv[2:] or ['fred', 'gallup', 'wiki']
+    for w in which: globals()[w]()
     with open(os.path.join(OUT, 'fetch_log.json'), 'w') as f: json.dump(log, f, indent=1)
     print(json.dumps(log, indent=1)[:4000])
