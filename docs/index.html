@@ -588,7 +588,9 @@ const DATA = {"f":{"as_of":"2026-11-27","days_out":711,"p_dem":0.698175,"p_model
   const BINS = [[0.95, 'Safe D'], [0.8, 'Likely D'], [0.65, 'Lean D'], [0.55, 'Tilt D'], [0.45, 'Toss-up'], [0.35, 'Tilt R'], [0.2, 'Lean R'], [0.05, 'Likely R'], [-1, 'Safe R']];
   const bin = x => BINS.findIndex(b => x >= b[0]), COL = BINS.map((b, i) => 'var(--k' + i + ')');
   const tipS = s => '<b>' + esc(s.name) + '</b> · ' + s.ev + (s.ev === 1 ? ' vote' : ' votes') + '<br>Chance of winning: ' + bothTxt(s.p_dem) + '<br>Projected ' + mg(s.mean);
-  let sel = F.tipping_point;
+  // no place is selected when the page opens: the readout and the panel show the nation until one is picked, and picking the
+  // selected place again goes back to the nation
+  let sel = null;
   let m = '<svg viewBox="0 0 975 610" role="img" aria-label="Map of the states shaded by the chance the Democratic nominee wins each">';
   F.states.forEach(s => { const sh = window.US_STATES[s.state]; if (sh) m += '<path data-s="' + s.state + '" d="' + sh.d + '" fill="' + COL[bin(s.p_dem)] + '"/>'; });
   $('map-svg').innerHTML = m + '</svg>';
@@ -601,7 +603,19 @@ const DATA = {"f":{"as_of":"2026-11-27","days_out":711,"p_dem":0.698175,"p_model
     document.documentElement.style.setProperty('--stripe', 'linear-gradient(90deg,' + stops.join(',') + ')'); })();
   $('legend').innerHTML = BINS.map((b, i) => '<span><i class="c' + i + '"></i>' + b[1] + ' <b>' + F.states.filter(s => bin(s.p_dem) === i).reduce((a, s) => a + s.ev, 0) + '</b></span>').join('');
   const all = () => document.querySelectorAll('[data-s]');
-  const paint = () => { all().forEach(el => el.classList.toggle('sel', el.dataset.s === sel)); const s = ST[sel];
+  const NX = F.national_from_states ? { mean: F.national_from_states.mean, lo: F.national_from_states.lo, hi: F.national_from_states.hi, p_pop: F.national_from_states.p_popular }
+                                     : { mean: F.national, lo: F.national_lo, hi: F.national_hi, p_pop: F.p_popular };
+  const nationPanel = () => { const a = ahead(F.p_dem);
+    return '<h4>The nation</h4><div class="ev">538 electoral votes · 270 to win</div>' +
+      '<div class="big ' + (a.side === 'even' ? 'even' : a.side) + '">' + a.pct + '%<small>' + (a.side === 'even' ? 'each' : 'for the ' + a.who) + '</small></div>' +
+      '<dl><dt>Projected national margin</dt><dd class="' + cls(NX.mean) + '">' + mg(NX.mean) + '</dd><dt>80% prediction interval</dt><dd>' + mg(NX.hi) + ' to ' + mg(NX.lo) + '</dd>' +
+      '<dt>Chance of winning the most votes</dt><dd>' + bothTxt(NX.p_pop != null ? NX.p_pop : (NX.mean >= 50 ? 1 : 0)) + '</dd>' +
+      '<dt>Democratic electoral votes, on average</dt><dd>' + Math.round(F.ev_mean) + '</dd><dt>80% prediction interval</dt><dd>' + Math.round(F.ev_lo) + ' to ' + Math.round(F.ev_hi) + '</dd>' +
+      (ST[F.tipping_point] ? '<dt>Likeliest tipping point</dt><dd>' + esc(ST[F.tipping_point].name) + '</dd>' : '') + '</dl>' +
+      '<p>Select a state on the map, the strip or the list for its forecast. Select it again to come back to the nation.</p>'; };
+  const paint = () => { all().forEach(el => el.classList.toggle('sel', el.dataset.s === sel));
+    if (!sel) { $('sp').innerHTML = nationPanel(); return; }
+    const s = ST[sel];
     $('sp').innerHTML = '<h4>' + esc(s.name) + '</h4><div class="ev">' + s.ev + (s.ev === 1 ? ' electoral vote' : ' electoral votes') + ' · ' + BINS[bin(s.p_dem)][1].replace(' D', ' Democratic').replace(' R', ' Republican') + '</div>' +
       '<div class="big ' + (s.p_dem >= 0.5 ? 'dem' : 'rep') + '">' + Math.round(100 * Math.max(s.p_dem, 1 - s.p_dem)) + '%<small>for the ' + (s.p_dem >= 0.5 ? 'Democrats' : 'Republicans') + '</small></div>' +
       '<dl><dt>Projected margin</dt><dd class="' + cls(s.mean) + '">' + mg(s.mean) + '</dd><dt>80% prediction interval</dt><dd>' + rangeOf(s) + '</dd><dt>2024 result</dt><dd>' + mg(s.r2024) + '</dd><dt>2020 result</dt><dd>' + mg(s.r2020) +
@@ -609,8 +623,9 @@ const DATA = {"f":{"as_of":"2026-11-27","days_out":711,"p_dem":0.698175,"p_model
       '<p>The projection is the average of two starting points: the national number plus this state\'s lean, and the Tipping Point model. State polls will pull it from there once there are any.</p>' +
       '<p><a href="#states/' + s.state + '">Full profile of ' + esc(s.name) + '</a></p>'; };
   // three lines of fixed height, the same for every place, so nothing around the readout moves when its text changes
-  const ro = st => { const s = ST[st]; $('ro').innerHTML = '<b>' + esc(s.name) + '</b><span>' + s.ev + (s.ev === 1 ? ' electoral vote' : ' electoral votes') + ' · ' + bothTxt(s.p_dem) + '</span><span>Projected <i class="' + cls(s.mean) + '">' + mg(s.mean) + '</i> · range ' + rangeOf(s) + '</span>'; };
-  const pick = st => { sel = st; paint(); ro(st); document.querySelectorAll('[data-r]').forEach(el => el.classList.toggle('on', el.dataset.r === st)); };
+  const ro = st => { if (!st) { $('ro').innerHTML = '<b>The nation</b><span>538 electoral votes · ' + bothTxt(F.p_dem) + '</span><span>Projected <i class="' + cls(NX.mean) + '">' + mg(NX.mean) + '</i> nationally · range ' + mg(NX.hi) + ' to ' + mg(NX.lo) + '</span>'; return; }
+    const s = ST[st]; $('ro').innerHTML = '<b>' + esc(s.name) + '</b><span>' + s.ev + (s.ev === 1 ? ' electoral vote' : ' electoral votes') + ' · ' + bothTxt(s.p_dem) + '</span><span>Projected <i class="' + cls(s.mean) + '">' + mg(s.mean) + '</i> · range ' + rangeOf(s) + '</span>'; };
+  const pick = st => { sel = st && st !== sel ? st : null; paint(); ro(sel); document.querySelectorAll('[data-r]').forEach(el => el.classList.toggle('on', el.dataset.r === sel)); };
   all().forEach(el => { hover(el, () => tipS(ST[el.dataset.s])); el.addEventListener('click', () => pick(el.dataset.s));
     el.addEventListener('pointerenter', () => { ro(el.dataset.s); $('map-svg').classList.add('dim'); document.querySelectorAll('#map-svg [data-s="' + el.dataset.s + '"]').forEach(x => x.classList.add('hot')); });
     el.addEventListener('pointerleave', () => { ro(sel); $('map-svg').classList.remove('dim'); document.querySelectorAll('#map-svg .hot').forEach(x => x.classList.remove('hot')); }); });
@@ -633,7 +648,7 @@ const DATA = {"f":{"as_of":"2026-11-27","days_out":711,"p_dem":0.698175,"p_model
   $('xp-q').addEventListener('input', e => { XP.q = e.target.value.trim().toLowerCase(); drawList(); });
   $('xp-sort').addEventListener('change', e => { XP.sort = e.target.value; drawList(); });
   $('xp-only').addEventListener('click', e => { if (e.target.dataset.only) { XP.only = e.target.dataset.only; drawList(); } });
-  drawList(); pick(sel);
+  drawList(); pick(null);
 
   // ---- paths: counted from the simulated elections themselves
   (function () { const P = F.paths; if (!P || !P.places.length) { $('paths-fig').hidden = true; return; }
