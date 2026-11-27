@@ -33,7 +33,7 @@ def top_split(s, sep='|'):
 
 def clean(v):
     v = re.sub(r'<ref[^>]*/>', '', v); v = re.sub(r'<ref[^>]*>.*?</ref>', '', v, flags=re.S)
-    v = re.sub(r'\{\{\s*(?:efn|Efn|efn-ua|efn-lr|refn)[^{}]*(?:\{\{[^{}]*\}\}[^{}]*)*\}\}', '', v)
+    v = re.sub(r'\{\{\s*(?:efn|Efn|efn-ua|efn-lr|refn|notetag|NoteTag|Notetag|sfn)[^{}]*(?:\{\{[^{}]*\}\}[^{}]*)*\}\}', '', v)
     v = re.sub(r'\{\{\s*party shading[^}]*\}\}', '', v, flags=re.I); v = re.sub(r'\{\{\s*(?:nbsp|sdash|ndash|mdash)\s*\}\}', ' ', v, flags=re.I)
     v = re.sub(r'\{\{\s*nowrap\s*\|([^}]*)\}\}', r'\1', v, flags=re.I)
     v = re.sub(r'\[\[(?:[^|\]]*\|)?([^\]]*)\]\]', r'\1', v); v = re.sub(r'\[https?://\S+\s+([^\]]*)\]', r'\1', v)

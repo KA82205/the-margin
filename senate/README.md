@@ -395,6 +395,16 @@ Wikipedia is now the default everywhere (`backtest.py`, `simulate.py`, `test_202
 steps 2-10 were made with FiveThirtyEight's polls. Gaps that remain: California's 2024 pages were not fetched under
 the name used, and the 2018 count is lower mostly because FiveThirtyEight counted each version of a poll.
 
+## Step 12: candidates and results from Wikipedia
+
+`senate/wiki_candidates.py` reads each race page's summary box: the nominees and their parties, their votes once
+counted, and who held the seat. The Democratic side is the Democrat, or an independent the Democrats back
+(`DEM_ALIGNED` in `build_data.py`, by hand) when one is running, as King in Maine. Checked against the 167 races of
+2018-2026 already in the data, it names the same two nominees and the same incumbency in 165; the other two are
+California pages filed under a name the fetch now also tries. The check also found an error in `races_2026.csv`:
+South Carolina's Darline Graham, appointed after Lindsey Graham's death, ran as the incumbent; the 2026 figures above
+are rerun with that corrected (last day: 30 of 32 called, log loss 0.240, 18.7 seats, 82% control).
+
 ## The 2026 academic forecasts, for reference
 
 `data/senate/2026/academic_forecasts_2026.csv` holds the forecasts in the *PS: Political Science & Politics* special
