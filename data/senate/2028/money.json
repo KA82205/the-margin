@@ -1,0 +1,263 @@
+{
+ "as_of": "2026-11-27",
+ "year": 2028,
+ "note": "FEC totals for this election: receipts, and cash at the latest report. Shown on the Senate tab; not part of the forecast.",
+ "candidates": {
+  "AK|Lisa Murkowski": {
+   "name": "Lisa Murkowski",
+   "party": "R",
+   "fec_id": "S4AK00099",
+   "raised": 2069260.97,
+   "cash": 1564309.85,
+   "through": "2026-09-30"
+  },
+  "AL|Katie Britt": {
+   "name": "Katie Britt",
+   "party": "R",
+   "fec_id": "S2AL00145",
+   "raised": 6885246.9,
+   "cash": 5134688.53,
+   "through": "2026-09-30"
+  },
+  "AR|John Boozman": {
+   "name": "John Boozman",
+   "party": "R",
+   "fec_id": "S0AR00150",
+   "raised": 1306075.65,
+   "cash": 1387943.15,
+   "through": "2026-09-30"
+  },
+  "AZ|Mark Kelly": {
+   "name": "Mark Kelly",
+   "party": "D",
+   "fec_id": "S0AZ00350",
+   "raised": 58403855.56,
+   "cash": 26498148.59,
+   "through": "2026-09-30"
+  },
+  "CA|Alex Padilla": {
+   "name": "Alex Padilla",
+   "party": "D",
+   "fec_id": "S2CA00955",
+   "raised": 2378141.03,
+   "cash": 7312467.54,
+   "through": "2026-09-30"
+  },
+  "CO|Michael Bennet": {
+   "name": "Michael Bennet",
+   "party": "D",
+   "fec_id": "S0CO00211",
+   "raised": 1407776.36,
+   "cash": 192712.12,
+   "through": "2026-09-30"
+  },
+  "CT|Richard Blumenthal": {
+   "name": "Richard Blumenthal",
+   "party": "D",
+   "fec_id": "S0CT00177",
+   "raised": 1170004.6,
+   "cash": 1533368.3,
+   "through": "2026-09-30"
+  },
+  "GA|Raphael Warnock": {
+   "name": "Raphael Warnock",
+   "party": "D",
+   "fec_id": "S0GA00559",
+   "raised": 8379240.06,
+   "cash": 4104890.59,
+   "through": "2026-09-30"
+  },
+  "HI|Brian Schatz": {
+   "name": "Brian Schatz",
+   "party": "D",
+   "fec_id": "S4HI00136",
+   "raised": 2319782.8,
+   "cash": 2727357.78,
+   "through": "2026-09-30"
+  },
+  "IA|Chuck Grassley": {
+   "name": "Chuck Grassley",
+   "party": "R",
+   "fec_id": "S0IA00028",
+   "raised": 1298098.57,
+   "cash": 487400.19,
+   "through": "2026-09-30"
+  },
+  "ID|Mike Crapo": {
+   "name": "Mike Crapo",
+   "party": "R",
+   "fec_id": "S8ID00027",
+   "raised": 2438411.51,
+   "cash": 3063123.96,
+   "through": "2026-09-30"
+  },
+  "IL|Tammy Duckworth": {
+   "name": "Tammy Duckworth",
+   "party": "D",
+   "fec_id": "S6IL00292",
+   "raised": 10626288.52,
+   "cash": 4229806.34,
+   "through": "2026-09-30"
+  },
+  "IN|Todd Young": {
+   "name": "Todd Young",
+   "party": "R",
+   "fec_id": "S6IN00191",
+   "raised": 6833127.47,
+   "cash": 7416630.15,
+   "through": "2026-09-30"
+  },
+  "KS|Jerry Moran": {
+   "name": "Jerry Moran",
+   "party": "R",
+   "fec_id": "S0KS00091",
+   "raised": 3364862.72,
+   "cash": 5960785.54,
+   "through": "2026-09-30"
+  },
+  "KY|Rand Paul": {
+   "name": "Rand Paul",
+   "party": "R",
+   "fec_id": "S0KY00156",
+   "raised": 13061462.55,
+   "cash": 6775333.25,
+   "through": "2026-09-30"
+  },
+  "LA|John Kennedy": {
+   "name": "John Kennedy",
+   "party": "R",
+   "fec_id": "S4LA00065",
+   "raised": 27509059.08,
+   "cash": 19528264.98,
+   "through": "2026-09-30"
+  },
+  "MD|Chris Van Hollen": {
+   "name": "Chris Van Hollen",
+   "party": "D",
+   "fec_id": "S6MD03441",
+   "raised": 2833694.92,
+   "cash": 3641970.0,
+   "through": "2026-09-30"
+  },
+  "MO|Eric Schmitt": {
+   "name": "Eric Schmitt",
+   "party": "R",
+   "fec_id": "S2MO00544",
+   "raised": 6138586.91,
+   "cash": 1811713.22,
+   "through": "2026-09-30"
+  },
+  "NC|Ted Budd": {
+   "name": "Ted Budd",
+   "party": "R",
+   "fec_id": "S2NC00505",
+   "raised": 3939076.26,
+   "cash": 728188.68,
+   "through": "2026-09-30"
+  },
+  "ND|John Hoeven": {
+   "name": "John Hoeven",
+   "party": "R",
+   "fec_id": "S0ND00093",
+   "raised": 1053944.8,
+   "cash": 725400.84,
+   "through": "2026-09-30"
+  },
+  "NH|Maggie Hassan": {
+   "name": "Maggie Hassan",
+   "party": "D",
+   "fec_id": "S6NH00091",
+   "raised": 6079447.88,
+   "cash": 2003014.48,
+   "through": "2026-09-30"
+  },
+  "NV|Catherine Cortez Masto": {
+   "name": "Catherine Cortez Masto",
+   "party": "D",
+   "fec_id": "S6NV00200",
+   "raised": 5907386.58,
+   "cash": 3483496.23,
+   "through": "2026-09-30"
+  },
+  "NY|Chuck Schumer": {
+   "name": "Chuck Schumer",
+   "party": "D",
+   "fec_id": "S8NY00082",
+   "raised": 3950604.4,
+   "cash": 7853430.04,
+   "through": "2026-09-30"
+  },
+  "OK|James Lankford": {
+   "name": "James Lankford",
+   "party": "R",
+   "fec_id": "S4OK00232",
+   "raised": 2083214.79,
+   "cash": 2844001.87,
+   "through": "2026-09-30"
+  },
+  "OR|Ron Wyden": {
+   "name": "Ron Wyden",
+   "party": "D",
+   "fec_id": "S6OR00110",
+   "raised": 3457176.63,
+   "cash": 1522558.58,
+   "through": "2026-09-30"
+  },
+  "PA|John Fetterman": {
+   "name": "John Fetterman",
+   "party": "D",
+   "fec_id": "S6PA00274",
+   "raised": 10403670.23,
+   "cash": 2254397.6,
+   "through": "2026-09-30"
+  },
+  "SC|Tim Scott": {
+   "name": "Tim Scott",
+   "party": "R",
+   "fec_id": "S4SC00240",
+   "raised": 25539977.99,
+   "cash": 4855184.01,
+   "through": "2026-09-30"
+  },
+  "SD|John Thune": {
+   "name": "John Thune",
+   "party": "R",
+   "fec_id": "S2SD00068",
+   "raised": 8843018.94,
+   "cash": 17917154.51,
+   "through": "2026-09-30"
+  },
+  "UT|Mike Lee": {
+   "name": "Mike Lee",
+   "party": "R",
+   "fec_id": "S0UT00165",
+   "raised": 7668836.39,
+   "cash": 712113.69,
+   "through": "2026-09-30"
+  },
+  "VT|Peter Welch": {
+   "name": "Peter Welch",
+   "party": "D",
+   "fec_id": "S2VT00235",
+   "raised": 579721.35,
+   "cash": 1605729.82,
+   "through": "2026-09-30"
+  },
+  "WA|Patty Murray": {
+   "name": "Patty Murray",
+   "party": "D",
+   "fec_id": "S2WA00189",
+   "raised": 5687205.21,
+   "cash": 2170413.17,
+   "through": "2026-09-30"
+  },
+  "WI|Ron Johnson": {
+   "name": "Ron Johnson",
+   "party": "R",
+   "fec_id": "S0WI00197",
+   "raised": 6601850.37,
+   "cash": 1067075.58,
+   "through": "2026-09-30"
+  }
+ }
+}
