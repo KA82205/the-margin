@@ -80,8 +80,10 @@ def main():
     S.SIMS = SIMS
     po = polls_only(R)
     rows, by_race = [], []
+    nat = NA.National()
     for d in B.DAYS:
         bf, sn = fits[d]
+        bf = S.combine(bf, HOLDOVER_DEM + LEFT_OUT_DEM, S.national_seats(nat, 2026, d))
         sim = S.simulate(bf, sn, rng, True); seats = (sim > 50).sum(axis=1); total = seats + HOLDOVER_DEM + LEFT_OUT_DEM
         control = np.where(total > 50, 1.0, np.where(total == 50, 1.0 if TIE_GOES_TO == 'D' else 0.0, 0.0))
         p = np.clip((sim > 50).mean(axis=0), 0.001, 0.999); won = (bf.dem2.values > 50).astype(float); err = 2 * (bf.m.values - bf.dem2.values)

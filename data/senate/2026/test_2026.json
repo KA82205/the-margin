@@ -4,162 +4,162 @@
   {
    "days": 365,
    "shared_sd": 1.564,
-   "margin_miss": 10.58,
-   "bias_margin": -9.08,
-   "margin_miss_competitive": 10.75,
-   "bias_competitive": -9.08,
+   "margin_miss": 8.83,
+   "bias_margin": -6.95,
+   "margin_miss_competitive": 9.03,
+   "bias_competitive": -6.95,
    "called": 24,
    "races": 32,
-   "log_loss": 0.661,
-   "brier": 0.207,
-   "inside80": 0.344,
-   "inside50": 0.25,
-   "dem_seats_mean": 14.5,
-   "low80": 12,
-   "high80": 17,
+   "log_loss": 0.488,
+   "brier": 0.17,
+   "inside80": 0.438,
+   "inside50": 0.312,
+   "dem_seats_mean": 15.81,
+   "low80": 13,
+   "high80": 19,
    "actual": 22,
-   "p_actual_or_more": 0.0088,
-   "p_dem_control": 0.1325
+   "p_actual_or_more": 0.024,
+   "p_dem_control": 0.3255
   },
   {
    "days": 250,
    "shared_sd": 1.564,
-   "margin_miss": 9.77,
-   "bias_margin": -8.24,
-   "margin_miss_competitive": 9.93,
-   "bias_competitive": -8.22,
+   "margin_miss": 7.95,
+   "bias_margin": -5.98,
+   "margin_miss_competitive": 8.16,
+   "bias_competitive": -5.96,
    "called": 25,
    "races": 32,
-   "log_loss": 0.549,
-   "brier": 0.175,
-   "inside80": 0.406,
-   "inside50": 0.25,
-   "dem_seats_mean": 15.43,
-   "low80": 13,
-   "high80": 18,
+   "log_loss": 0.416,
+   "brier": 0.144,
+   "inside80": 0.594,
+   "inside50": 0.344,
+   "dem_seats_mean": 16.68,
+   "low80": 14,
+   "high80": 20,
    "actual": 22,
-   "p_actual_or_more": 0.0084,
-   "p_dem_control": 0.2572
+   "p_actual_or_more": 0.0246,
+   "p_dem_control": 0.4975
   },
   {
    "days": 120,
    "shared_sd": 1.564,
-   "margin_miss": 9.65,
-   "bias_margin": -8.1,
-   "margin_miss_competitive": 9.51,
-   "bias_competitive": -7.72,
+   "margin_miss": 8.15,
+   "bias_margin": -6.23,
+   "margin_miss_competitive": 8.06,
+   "bias_competitive": -5.85,
    "called": 25,
    "races": 32,
-   "log_loss": 0.458,
-   "brier": 0.153,
-   "inside80": 0.406,
-   "inside50": 0.219,
-   "dem_seats_mean": 15.87,
-   "low80": 13,
-   "high80": 19,
+   "log_loss": 0.358,
+   "brier": 0.123,
+   "inside80": 0.656,
+   "inside50": 0.312,
+   "dem_seats_mean": 17.1,
+   "low80": 14,
+   "high80": 20,
    "actual": 22,
-   "p_actual_or_more": 0.0136,
-   "p_dem_control": 0.3627
+   "p_actual_or_more": 0.0374,
+   "p_dem_control": 0.5861
   },
   {
    "days": 60,
    "shared_sd": 1.564,
-   "margin_miss": 8.85,
-   "bias_margin": -7.42,
-   "margin_miss_competitive": 8.58,
-   "bias_competitive": -6.97,
-   "called": 25,
+   "margin_miss": 7.47,
+   "bias_margin": -5.7,
+   "margin_miss_competitive": 7.26,
+   "bias_competitive": -5.26,
+   "called": 27,
    "races": 32,
-   "log_loss": 0.433,
-   "brier": 0.145,
-   "inside80": 0.406,
-   "inside50": 0.188,
-   "dem_seats_mean": 16.18,
-   "low80": 14,
-   "high80": 19,
+   "log_loss": 0.335,
+   "brier": 0.116,
+   "inside80": 0.656,
+   "inside50": 0.312,
+   "dem_seats_mean": 17.36,
+   "low80": 15,
+   "high80": 21,
    "actual": 22,
-   "p_actual_or_more": 0.0217,
-   "p_dem_control": 0.4053
+   "p_actual_or_more": 0.0527,
+   "p_dem_control": 0.6207
   },
   {
    "days": 30,
    "shared_sd": 1.564,
-   "margin_miss": 8.2,
-   "bias_margin": -6.72,
-   "margin_miss_competitive": 8.01,
-   "bias_competitive": -6.44,
-   "called": 25,
+   "margin_miss": 7.08,
+   "bias_margin": -5.29,
+   "margin_miss_competitive": 6.91,
+   "bias_competitive": -5.01,
+   "called": 27,
    "races": 32,
-   "log_loss": 0.352,
-   "brier": 0.122,
-   "inside80": 0.5,
-   "inside50": 0.344,
-   "dem_seats_mean": 16.77,
-   "low80": 14,
-   "high80": 20,
+   "log_loss": 0.28,
+   "brier": 0.097,
+   "inside80": 0.719,
+   "inside50": 0.312,
+   "dem_seats_mean": 17.87,
+   "low80": 15,
+   "high80": 21,
    "actual": 22,
-   "p_actual_or_more": 0.0444,
-   "p_dem_control": 0.5194
+   "p_actual_or_more": 0.091,
+   "p_dem_control": 0.6929
   },
   {
    "days": 14,
    "shared_sd": 1.564,
-   "margin_miss": 7.83,
-   "bias_margin": -6.57,
-   "margin_miss_competitive": 7.77,
-   "bias_competitive": -6.38,
-   "called": 26,
+   "margin_miss": 6.58,
+   "bias_margin": -5.03,
+   "margin_miss_competitive": 6.56,
+   "bias_competitive": -4.84,
+   "called": 27,
    "races": 32,
-   "log_loss": 0.372,
-   "brier": 0.124,
-   "inside80": 0.5,
+   "log_loss": 0.294,
+   "brier": 0.099,
+   "inside80": 0.75,
    "inside50": 0.344,
-   "dem_seats_mean": 16.67,
-   "low80": 14,
-   "high80": 20,
+   "dem_seats_mean": 17.77,
+   "low80": 15,
+   "high80": 21,
    "actual": 22,
-   "p_actual_or_more": 0.0319,
-   "p_dem_control": 0.5174
+   "p_actual_or_more": 0.0698,
+   "p_dem_control": 0.6993
   },
   {
    "days": 7,
    "shared_sd": 1.564,
-   "margin_miss": 7.74,
-   "bias_margin": -6.44,
-   "margin_miss_competitive": 7.47,
-   "bias_competitive": -6.0,
-   "called": 26,
+   "margin_miss": 6.68,
+   "bias_margin": -5.12,
+   "margin_miss_competitive": 6.46,
+   "bias_competitive": -4.69,
+   "called": 28,
    "races": 32,
-   "log_loss": 0.328,
-   "brier": 0.107,
-   "inside80": 0.562,
-   "inside50": 0.281,
-   "dem_seats_mean": 17.22,
-   "low80": 14,
+   "log_loss": 0.267,
+   "brier": 0.086,
+   "inside80": 0.625,
+   "inside50": 0.312,
+   "dem_seats_mean": 18.21,
+   "low80": 15,
    "high80": 21,
    "actual": 22,
-   "p_actual_or_more": 0.0508,
-   "p_dem_control": 0.6061
+   "p_actual_or_more": 0.0986,
+   "p_dem_control": 0.7543
   },
   {
    "days": 1,
    "shared_sd": 1.564,
-   "margin_miss": 7.45,
-   "bias_margin": -6.18,
-   "margin_miss_competitive": 7.25,
-   "bias_competitive": -5.71,
-   "called": 26,
+   "margin_miss": 6.46,
+   "bias_margin": -4.93,
+   "margin_miss_competitive": 6.32,
+   "bias_competitive": -4.46,
+   "called": 30,
    "races": 32,
-   "log_loss": 0.305,
-   "brier": 0.1,
-   "inside80": 0.562,
-   "inside50": 0.344,
-   "dem_seats_mean": 17.43,
-   "low80": 14,
-   "high80": 21,
+   "log_loss": 0.252,
+   "brier": 0.081,
+   "inside80": 0.688,
+   "inside50": 0.375,
+   "dem_seats_mean": 18.33,
+   "low80": 15,
+   "high80": 22,
    "actual": 22,
-   "p_actual_or_more": 0.0568,
-   "p_dem_control": 0.6418
+   "p_actual_or_more": 0.1048,
+   "p_dem_control": 0.7718
   }
  ],
  "by_race": [
@@ -167,23 +167,23 @@
    "days": 365,
    "state": "AL",
    "special": false,
-   "forecast_margin": -20.71,
+   "forecast_margin": -18.58,
    "result_margin": -9.49,
-   "p_dem": 0.001
+   "p_dem": 0.003
   },
   {
    "days": 365,
    "state": "AK",
    "special": false,
-   "forecast_margin": -3.1,
+   "forecast_margin": -0.97,
    "result_margin": 4.54,
-   "p_dem": 0.206
+   "p_dem": 0.399
   },
   {
    "days": 365,
    "state": "AR",
    "special": false,
-   "forecast_margin": -26.17,
+   "forecast_margin": -24.05,
    "result_margin": -12.16,
    "p_dem": 0.001
   },
@@ -191,7 +191,7 @@
    "days": 365,
    "state": "CO",
    "special": false,
-   "forecast_margin": 24.51,
+   "forecast_margin": 26.64,
    "result_margin": 26.73,
    "p_dem": 0.999
   },
@@ -199,7 +199,7 @@
    "days": 365,
    "state": "DE",
    "special": false,
-   "forecast_margin": 21.8,
+   "forecast_margin": 23.93,
    "result_margin": 27.15,
    "p_dem": 0.999
   },
@@ -207,1863 +207,1863 @@
    "days": 365,
    "state": "FL",
    "special": true,
-   "forecast_margin": -6.83,
+   "forecast_margin": -4.7,
    "result_margin": -2.89,
-   "p_dem": 0.154
+   "p_dem": 0.242
   },
   {
    "days": 365,
    "state": "GA",
    "special": false,
-   "forecast_margin": 6.85,
+   "forecast_margin": 8.98,
    "result_margin": 18.06,
-   "p_dem": 0.959
-  },
-  {
-   "days": 365,
-   "state": "IL",
-   "special": false,
-   "forecast_margin": 14.46,
-   "result_margin": 26.15,
-   "p_dem": 0.983
-  },
-  {
-   "days": 365,
-   "state": "IA",
-   "special": false,
-   "forecast_margin": -6.21,
-   "result_margin": 4.34,
-   "p_dem": 0.18
-  },
-  {
-   "days": 365,
-   "state": "KS",
-   "special": false,
-   "forecast_margin": -11.26,
-   "result_margin": 5.56,
-   "p_dem": 0.049
-  },
-  {
-   "days": 365,
-   "state": "KY",
-   "special": false,
-   "forecast_margin": -18.38,
-   "result_margin": -12.35,
-   "p_dem": 0.004
-  },
-  {
-   "days": 365,
-   "state": "LA",
-   "special": false,
-   "forecast_margin": -13.97,
-   "result_margin": -1.77,
-   "p_dem": 0.02
-  },
-  {
-   "days": 365,
-   "state": "ME",
-   "special": false,
-   "forecast_margin": 6.73,
-   "result_margin": 6.2,
-   "p_dem": 0.842
-  },
-  {
-   "days": 365,
-   "state": "MA",
-   "special": false,
-   "forecast_margin": 31.99,
-   "result_margin": 33.5,
-   "p_dem": 0.999
-  },
-  {
-   "days": 365,
-   "state": "MI",
-   "special": false,
-   "forecast_margin": -6.78,
-   "result_margin": 7.23,
-   "p_dem": 0.041
-  },
-  {
-   "days": 365,
-   "state": "MN",
-   "special": false,
-   "forecast_margin": 8.13,
-   "result_margin": 10.43,
-   "p_dem": 0.887
-  },
-  {
-   "days": 365,
-   "state": "MS",
-   "special": false,
-   "forecast_margin": -13.66,
-   "result_margin": 0.84,
-   "p_dem": 0.023
-  },
-  {
-   "days": 365,
-   "state": "NE",
-   "special": false,
-   "forecast_margin": -4.76,
-   "result_margin": -6.06,
-   "p_dem": 0.107
-  },
-  {
-   "days": 365,
-   "state": "NH",
-   "special": false,
-   "forecast_margin": 6.37,
-   "result_margin": 14.03,
-   "p_dem": 0.948
-  },
-  {
-   "days": 365,
-   "state": "NJ",
-   "special": false,
-   "forecast_margin": 17.17,
-   "result_margin": 28.67,
-   "p_dem": 0.993
-  },
-  {
-   "days": 365,
-   "state": "NM",
-   "special": false,
-   "forecast_margin": 16.14,
-   "result_margin": 26.53,
-   "p_dem": 0.991
-  },
-  {
-   "days": 365,
-   "state": "NC",
-   "special": false,
-   "forecast_margin": 3.74,
-   "result_margin": 20.14,
-   "p_dem": 0.84
-  },
-  {
-   "days": 365,
-   "state": "OH",
-   "special": true,
-   "forecast_margin": -4.63,
-   "result_margin": 5.42,
-   "p_dem": 0.111
-  },
-  {
-   "days": 365,
-   "state": "OK",
-   "special": false,
-   "forecast_margin": -24.92,
-   "result_margin": -18.56,
-   "p_dem": 0.001
-  },
-  {
-   "days": 365,
-   "state": "OR",
-   "special": false,
-   "forecast_margin": 21.95,
-   "result_margin": 19.93,
-   "p_dem": 0.999
-  },
-  {
-   "days": 365,
-   "state": "RI",
-   "special": false,
-   "forecast_margin": 24.71,
-   "result_margin": 39.07,
-   "p_dem": 0.999
-  },
-  {
-   "days": 365,
-   "state": "SC",
-   "special": false,
-   "forecast_margin": -9.85,
-   "result_margin": 4.6,
-   "p_dem": 0.074
-  },
-  {
-   "days": 365,
-   "state": "TN",
-   "special": false,
-   "forecast_margin": -27.06,
-   "result_margin": -12.42,
-   "p_dem": 0.001
-  },
-  {
-   "days": 365,
-   "state": "TX",
-   "special": false,
-   "forecast_margin": -4.57,
-   "result_margin": 12.34,
-   "p_dem": 0.115
-  },
-  {
-   "days": 365,
-   "state": "VA",
-   "special": false,
-   "forecast_margin": 13.49,
-   "result_margin": 23.27,
-   "p_dem": 0.977
-  },
-  {
-   "days": 365,
-   "state": "WV",
-   "special": false,
-   "forecast_margin": -33.57,
-   "result_margin": -21.14,
-   "p_dem": 0.001
-  },
-  {
-   "days": 365,
-   "state": "WY",
-   "special": false,
-   "forecast_margin": -34.72,
-   "result_margin": -30.47,
-   "p_dem": 0.001
-  },
-  {
-   "days": 250,
-   "state": "AL",
-   "special": false,
-   "forecast_margin": -20.24,
-   "result_margin": -9.49,
-   "p_dem": 0.002
-  },
-  {
-   "days": 250,
-   "state": "AK",
-   "special": false,
-   "forecast_margin": -4.57,
-   "result_margin": 4.54,
-   "p_dem": 0.208
-  },
-  {
-   "days": 250,
-   "state": "AR",
-   "special": false,
-   "forecast_margin": -25.6,
-   "result_margin": -12.16,
-   "p_dem": 0.001
-  },
-  {
-   "days": 250,
-   "state": "CO",
-   "special": false,
-   "forecast_margin": 25.0,
-   "result_margin": 26.73,
-   "p_dem": 0.999
-  },
-  {
-   "days": 250,
-   "state": "DE",
-   "special": false,
-   "forecast_margin": 22.34,
-   "result_margin": 27.15,
-   "p_dem": 0.999
-  },
-  {
-   "days": 250,
-   "state": "FL",
-   "special": true,
-   "forecast_margin": -6.29,
-   "result_margin": -2.89,
-   "p_dem": 0.174
-  },
-  {
-   "days": 250,
-   "state": "GA",
-   "special": false,
-   "forecast_margin": 10.29,
-   "result_margin": 18.06,
-   "p_dem": 0.965
-  },
-  {
-   "days": 250,
-   "state": "IL",
-   "special": false,
-   "forecast_margin": 14.9,
-   "result_margin": 26.15,
    "p_dem": 0.986
   },
   {
-   "days": 250,
-   "state": "IA",
-   "special": false,
-   "forecast_margin": -5.21,
-   "result_margin": 4.34,
-   "p_dem": 0.18
-  },
-  {
-   "days": 250,
-   "state": "KS",
-   "special": false,
-   "forecast_margin": -10.02,
-   "result_margin": 5.56,
-   "p_dem": 0.042
-  },
-  {
-   "days": 250,
-   "state": "KY",
-   "special": false,
-   "forecast_margin": -17.93,
-   "result_margin": -12.35,
-   "p_dem": 0.005
-  },
-  {
-   "days": 250,
-   "state": "LA",
-   "special": false,
-   "forecast_margin": -13.5,
-   "result_margin": -1.77,
-   "p_dem": 0.023
-  },
-  {
-   "days": 250,
-   "state": "ME",
-   "special": false,
-   "forecast_margin": 7.26,
-   "result_margin": 6.2,
-   "p_dem": 0.862
-  },
-  {
-   "days": 250,
-   "state": "MA",
-   "special": false,
-   "forecast_margin": 32.97,
-   "result_margin": 33.5,
-   "p_dem": 0.999
-  },
-  {
-   "days": 250,
-   "state": "MI",
-   "special": false,
-   "forecast_margin": 2.76,
-   "result_margin": 7.23,
-   "p_dem": 0.69
-  },
-  {
-   "days": 250,
-   "state": "MN",
-   "special": false,
-   "forecast_margin": 8.11,
-   "result_margin": 10.43,
-   "p_dem": 0.925
-  },
-  {
-   "days": 250,
-   "state": "MS",
-   "special": false,
-   "forecast_margin": -13.14,
-   "result_margin": 0.84,
-   "p_dem": 0.027
-  },
-  {
-   "days": 250,
-   "state": "NE",
-   "special": false,
-   "forecast_margin": -5.6,
-   "result_margin": -6.06,
-   "p_dem": 0.16
-  },
-  {
-   "days": 250,
-   "state": "NH",
-   "special": false,
-   "forecast_margin": 7.75,
-   "result_margin": 14.03,
-   "p_dem": 0.914
-  },
-  {
-   "days": 250,
-   "state": "NJ",
-   "special": false,
-   "forecast_margin": 17.7,
-   "result_margin": 28.67,
-   "p_dem": 0.995
-  },
-  {
-   "days": 250,
-   "state": "NM",
-   "special": false,
-   "forecast_margin": 16.68,
-   "result_margin": 26.53,
-   "p_dem": 0.993
-  },
-  {
-   "days": 250,
-   "state": "NC",
-   "special": false,
-   "forecast_margin": 6.76,
-   "result_margin": 20.14,
-   "p_dem": 0.884
-  },
-  {
-   "days": 250,
-   "state": "OH",
-   "special": true,
-   "forecast_margin": -6.77,
-   "result_margin": 5.42,
-   "p_dem": 0.115
-  },
-  {
-   "days": 250,
-   "state": "OK",
-   "special": false,
-   "forecast_margin": -24.44,
-   "result_margin": -18.56,
-   "p_dem": 0.001
-  },
-  {
-   "days": 250,
-   "state": "OR",
-   "special": false,
-   "forecast_margin": 22.49,
-   "result_margin": 19.93,
-   "p_dem": 0.999
-  },
-  {
-   "days": 250,
-   "state": "RI",
-   "special": false,
-   "forecast_margin": 25.23,
-   "result_margin": 39.07,
-   "p_dem": 0.999
-  },
-  {
-   "days": 250,
-   "state": "SC",
-   "special": false,
-   "forecast_margin": -9.39,
-   "result_margin": 4.6,
-   "p_dem": 0.08
-  },
-  {
-   "days": 250,
-   "state": "TN",
-   "special": false,
-   "forecast_margin": -26.46,
-   "result_margin": -12.42,
-   "p_dem": 0.001
-  },
-  {
-   "days": 250,
-   "state": "TX",
-   "special": false,
-   "forecast_margin": -4.22,
-   "result_margin": 12.34,
-   "p_dem": 0.224
-  },
-  {
-   "days": 250,
-   "state": "VA",
-   "special": false,
-   "forecast_margin": 14.05,
-   "result_margin": 23.27,
-   "p_dem": 0.981
-  },
-  {
-   "days": 250,
-   "state": "WV",
-   "special": false,
-   "forecast_margin": -33.01,
-   "result_margin": -21.14,
-   "p_dem": 0.001
-  },
-  {
-   "days": 250,
-   "state": "WY",
-   "special": false,
-   "forecast_margin": -34.23,
-   "result_margin": -30.47,
-   "p_dem": 0.001
-  },
-  {
-   "days": 120,
-   "state": "AL",
-   "special": false,
-   "forecast_margin": -20.05,
-   "result_margin": -9.49,
-   "p_dem": 0.004
-  },
-  {
-   "days": 120,
-   "state": "AK",
-   "special": false,
-   "forecast_margin": -3.14,
-   "result_margin": 4.54,
-   "p_dem": 0.257
-  },
-  {
-   "days": 120,
-   "state": "AR",
-   "special": false,
-   "forecast_margin": -25.43,
-   "result_margin": -12.16,
-   "p_dem": 0.001
-  },
-  {
-   "days": 120,
-   "state": "CO",
-   "special": false,
-   "forecast_margin": 25.22,
-   "result_margin": 26.73,
-   "p_dem": 0.999
-  },
-  {
-   "days": 120,
-   "state": "DE",
-   "special": false,
-   "forecast_margin": 22.7,
-   "result_margin": 27.15,
-   "p_dem": 0.999
-  },
-  {
-   "days": 120,
-   "state": "FL",
-   "special": true,
-   "forecast_margin": -8.16,
-   "result_margin": -2.89,
-   "p_dem": 0.049
-  },
-  {
-   "days": 120,
-   "state": "GA",
-   "special": false,
-   "forecast_margin": 10.79,
-   "result_margin": 18.06,
-   "p_dem": 0.984
-  },
-  {
-   "days": 120,
+   "days": 365,
    "state": "IL",
    "special": false,
-   "forecast_margin": 14.99,
+   "forecast_margin": 16.59,
    "result_margin": 26.15,
-   "p_dem": 0.98
+   "p_dem": 0.992
   },
   {
-   "days": 120,
+   "days": 365,
    "state": "IA",
    "special": false,
-   "forecast_margin": -2.54,
+   "forecast_margin": -4.08,
    "result_margin": 4.34,
-   "p_dem": 0.302
+   "p_dem": 0.273
   },
   {
-   "days": 120,
+   "days": 365,
    "state": "KS",
    "special": false,
-   "forecast_margin": -10.66,
+   "forecast_margin": -9.14,
    "result_margin": 5.56,
-   "p_dem": 0.071
+   "p_dem": 0.089
   },
   {
-   "days": 120,
+   "days": 365,
    "state": "KY",
    "special": false,
-   "forecast_margin": -17.81,
-   "result_margin": -12.35,
-   "p_dem": 0.008
-  },
-  {
-   "days": 120,
-   "state": "LA",
-   "special": false,
-   "forecast_margin": -13.33,
-   "result_margin": -1.77,
-   "p_dem": 0.035
-  },
-  {
-   "days": 120,
-   "state": "ME",
-   "special": false,
-   "forecast_margin": 6.59,
-   "result_margin": 6.2,
-   "p_dem": 0.91
-  },
-  {
-   "days": 120,
-   "state": "MA",
-   "special": false,
-   "forecast_margin": 28.95,
-   "result_margin": 33.5,
-   "p_dem": 0.999
-  },
-  {
-   "days": 120,
-   "state": "MI",
-   "special": false,
-   "forecast_margin": 3.64,
-   "result_margin": 7.23,
-   "p_dem": 0.777
-  },
-  {
-   "days": 120,
-   "state": "MN",
-   "special": false,
-   "forecast_margin": 8.68,
-   "result_margin": 10.43,
-   "p_dem": 0.885
-  },
-  {
-   "days": 120,
-   "state": "MS",
-   "special": false,
-   "forecast_margin": -13.12,
-   "result_margin": 0.84,
-   "p_dem": 0.036
-  },
-  {
-   "days": 120,
-   "state": "NE",
-   "special": false,
-   "forecast_margin": -3.64,
-   "result_margin": -6.06,
-   "p_dem": 0.227
-  },
-  {
-   "days": 120,
-   "state": "NH",
-   "special": false,
-   "forecast_margin": 7.04,
-   "result_margin": 14.03,
-   "p_dem": 0.926
-  },
-  {
-   "days": 120,
-   "state": "NJ",
-   "special": false,
-   "forecast_margin": 18.05,
-   "result_margin": 28.67,
-   "p_dem": 0.993
-  },
-  {
-   "days": 120,
-   "state": "NM",
-   "special": false,
-   "forecast_margin": 17.02,
-   "result_margin": 26.53,
-   "p_dem": 0.99
-  },
-  {
-   "days": 120,
-   "state": "NC",
-   "special": false,
-   "forecast_margin": 4.8,
-   "result_margin": 20.14,
-   "p_dem": 0.836
-  },
-  {
-   "days": 120,
-   "state": "OH",
-   "special": true,
-   "forecast_margin": -3.57,
-   "result_margin": 5.42,
-   "p_dem": 0.232
-  },
-  {
-   "days": 120,
-   "state": "OK",
-   "special": false,
-   "forecast_margin": -24.24,
-   "result_margin": -18.56,
-   "p_dem": 0.001
-  },
-  {
-   "days": 120,
-   "state": "OR",
-   "special": false,
-   "forecast_margin": 22.83,
-   "result_margin": 19.93,
-   "p_dem": 0.999
-  },
-  {
-   "days": 120,
-   "state": "RI",
-   "special": false,
-   "forecast_margin": 23.23,
-   "result_margin": 39.07,
-   "p_dem": 0.999
-  },
-  {
-   "days": 120,
-   "state": "SC",
-   "special": false,
-   "forecast_margin": -9.23,
-   "result_margin": 4.6,
-   "p_dem": 0.103
-  },
-  {
-   "days": 120,
-   "state": "TN",
-   "special": false,
-   "forecast_margin": -26.23,
-   "result_margin": -12.42,
-   "p_dem": 0.001
-  },
-  {
-   "days": 120,
-   "state": "TX",
-   "special": false,
-   "forecast_margin": -2.74,
-   "result_margin": 12.34,
-   "p_dem": 0.288
-  },
-  {
-   "days": 120,
-   "state": "VA",
-   "special": false,
-   "forecast_margin": 14.45,
-   "result_margin": 23.27,
-   "p_dem": 0.977
-  },
-  {
-   "days": 120,
-   "state": "WV",
-   "special": false,
-   "forecast_margin": -32.86,
-   "result_margin": -21.14,
-   "p_dem": 0.001
-  },
-  {
-   "days": 120,
-   "state": "WY",
-   "special": false,
-   "forecast_margin": -34.0,
-   "result_margin": -30.47,
-   "p_dem": 0.001
-  },
-  {
-   "days": 60,
-   "state": "AL",
-   "special": false,
-   "forecast_margin": -19.65,
-   "result_margin": -9.49,
-   "p_dem": 0.004
-  },
-  {
-   "days": 60,
-   "state": "AK",
-   "special": false,
-   "forecast_margin": -2.98,
-   "result_margin": 4.54,
-   "p_dem": 0.253
-  },
-  {
-   "days": 60,
-   "state": "AR",
-   "special": false,
-   "forecast_margin": -18.37,
-   "result_margin": -12.16,
-   "p_dem": 0.001
-  },
-  {
-   "days": 60,
-   "state": "CO",
-   "special": false,
-   "forecast_margin": 25.62,
-   "result_margin": 26.73,
-   "p_dem": 0.999
-  },
-  {
-   "days": 60,
-   "state": "DE",
-   "special": false,
-   "forecast_margin": 23.02,
-   "result_margin": 27.15,
-   "p_dem": 0.999
-  },
-  {
-   "days": 60,
-   "state": "FL",
-   "special": true,
-   "forecast_margin": -6.93,
-   "result_margin": -2.89,
-   "p_dem": 0.06
-  },
-  {
-   "days": 60,
-   "state": "GA",
-   "special": false,
-   "forecast_margin": 11.26,
-   "result_margin": 18.06,
-   "p_dem": 0.991
-  },
-  {
-   "days": 60,
-   "state": "IL",
-   "special": false,
-   "forecast_margin": 15.44,
-   "result_margin": 26.15,
-   "p_dem": 0.983
-  },
-  {
-   "days": 60,
-   "state": "IA",
-   "special": false,
-   "forecast_margin": -3.48,
-   "result_margin": 4.34,
-   "p_dem": 0.22
-  },
-  {
-   "days": 60,
-   "state": "KS",
-   "special": false,
-   "forecast_margin": -6.8,
-   "result_margin": 5.56,
-   "p_dem": 0.067
-  },
-  {
-   "days": 60,
-   "state": "KY",
-   "special": false,
-   "forecast_margin": -17.37,
+   "forecast_margin": -16.25,
    "result_margin": -12.35,
    "p_dem": 0.009
   },
   {
-   "days": 60,
+   "days": 365,
    "state": "LA",
    "special": false,
-   "forecast_margin": -12.92,
-   "result_margin": -1.77,
-   "p_dem": 0.039
-  },
-  {
-   "days": 60,
-   "state": "ME",
-   "special": false,
-   "forecast_margin": 7.18,
-   "result_margin": 6.2,
-   "p_dem": 0.943
-  },
-  {
-   "days": 60,
-   "state": "MA",
-   "special": false,
-   "forecast_margin": 29.73,
-   "result_margin": 33.5,
-   "p_dem": 0.999
-  },
-  {
-   "days": 60,
-   "state": "MI",
-   "special": false,
-   "forecast_margin": 4.07,
-   "result_margin": 7.23,
-   "p_dem": 0.82
-  },
-  {
-   "days": 60,
-   "state": "MN",
-   "special": false,
-   "forecast_margin": 6.72,
-   "result_margin": 10.43,
-   "p_dem": 0.935
-  },
-  {
-   "days": 60,
-   "state": "MS",
-   "special": false,
-   "forecast_margin": -12.62,
-   "result_margin": 0.84,
-   "p_dem": 0.041
-  },
-  {
-   "days": 60,
-   "state": "NE",
-   "special": false,
-   "forecast_margin": -4.1,
-   "result_margin": -6.06,
-   "p_dem": 0.178
-  },
-  {
-   "days": 60,
-   "state": "NH",
-   "special": false,
-   "forecast_margin": 6.4,
-   "result_margin": 14.03,
-   "p_dem": 0.923
-  },
-  {
-   "days": 60,
-   "state": "NJ",
-   "special": false,
-   "forecast_margin": 18.37,
-   "result_margin": 28.67,
-   "p_dem": 0.995
-  },
-  {
-   "days": 60,
-   "state": "NM",
-   "special": false,
-   "forecast_margin": 17.0,
-   "result_margin": 26.53,
-   "p_dem": 0.999
-  },
-  {
-   "days": 60,
-   "state": "NC",
-   "special": false,
-   "forecast_margin": 5.51,
-   "result_margin": 20.14,
-   "p_dem": 0.89
-  },
-  {
-   "days": 60,
-   "state": "OH",
-   "special": true,
-   "forecast_margin": -1.53,
-   "result_margin": 5.42,
-   "p_dem": 0.365
-  },
-  {
-   "days": 60,
-   "state": "OK",
-   "special": false,
-   "forecast_margin": -23.84,
-   "result_margin": -18.56,
-   "p_dem": 0.001
-  },
-  {
-   "days": 60,
-   "state": "OR",
-   "special": false,
-   "forecast_margin": 23.16,
-   "result_margin": 19.93,
-   "p_dem": 0.999
-  },
-  {
-   "days": 60,
-   "state": "RI",
-   "special": false,
-   "forecast_margin": 25.28,
-   "result_margin": 39.07,
-   "p_dem": 0.999
-  },
-  {
-   "days": 60,
-   "state": "SC",
-   "special": false,
-   "forecast_margin": -8.81,
-   "result_margin": 4.6,
-   "p_dem": 0.114
-  },
-  {
-   "days": 60,
-   "state": "TN",
-   "special": false,
-   "forecast_margin": -26.5,
-   "result_margin": -12.42,
-   "p_dem": 0.001
-  },
-  {
-   "days": 60,
-   "state": "TX",
-   "special": false,
-   "forecast_margin": -1.46,
-   "result_margin": 12.34,
-   "p_dem": 0.373
-  },
-  {
-   "days": 60,
-   "state": "VA",
-   "special": false,
-   "forecast_margin": 14.75,
-   "result_margin": 23.27,
-   "p_dem": 0.979
-  },
-  {
-   "days": 60,
-   "state": "WV",
-   "special": false,
-   "forecast_margin": -32.43,
-   "result_margin": -21.14,
-   "p_dem": 0.001
-  },
-  {
-   "days": 60,
-   "state": "WY",
-   "special": false,
-   "forecast_margin": -33.62,
-   "result_margin": -30.47,
-   "p_dem": 0.001
-  },
-  {
-   "days": 30,
-   "state": "AL",
-   "special": false,
-   "forecast_margin": -20.92,
-   "result_margin": -9.49,
-   "p_dem": 0.001
-  },
-  {
-   "days": 30,
-   "state": "AK",
-   "special": false,
-   "forecast_margin": -1.83,
-   "result_margin": 4.54,
-   "p_dem": 0.347
-  },
-  {
-   "days": 30,
-   "state": "AR",
-   "special": false,
-   "forecast_margin": -24.12,
-   "result_margin": -12.16,
-   "p_dem": 0.001
-  },
-  {
-   "days": 30,
-   "state": "CO",
-   "special": false,
-   "forecast_margin": 26.48,
-   "result_margin": 26.73,
-   "p_dem": 0.999
-  },
-  {
-   "days": 30,
-   "state": "DE",
-   "special": false,
-   "forecast_margin": 23.8,
-   "result_margin": 27.15,
-   "p_dem": 0.999
-  },
-  {
-   "days": 30,
-   "state": "FL",
-   "special": true,
-   "forecast_margin": -6.01,
-   "result_margin": -2.89,
-   "p_dem": 0.103
-  },
-  {
-   "days": 30,
-   "state": "GA",
-   "special": false,
-   "forecast_margin": 11.76,
-   "result_margin": 18.06,
-   "p_dem": 0.99
-  },
-  {
-   "days": 30,
-   "state": "IL",
-   "special": false,
-   "forecast_margin": 16.34,
-   "result_margin": 26.15,
-   "p_dem": 0.984
-  },
-  {
-   "days": 30,
-   "state": "IA",
-   "special": false,
-   "forecast_margin": -1.33,
-   "result_margin": 4.34,
-   "p_dem": 0.385
-  },
-  {
-   "days": 30,
-   "state": "KS",
-   "special": false,
-   "forecast_margin": -4.24,
-   "result_margin": 5.56,
-   "p_dem": 0.186
-  },
-  {
-   "days": 30,
-   "state": "KY",
-   "special": false,
-   "forecast_margin": -16.47,
-   "result_margin": -12.35,
-   "p_dem": 0.016
-  },
-  {
-   "days": 30,
-   "state": "LA",
-   "special": false,
-   "forecast_margin": -12.05,
-   "result_margin": -1.77,
-   "p_dem": 0.058
-  },
-  {
-   "days": 30,
-   "state": "ME",
-   "special": false,
-   "forecast_margin": 5.01,
-   "result_margin": 6.2,
-   "p_dem": 0.855
-  },
-  {
-   "days": 30,
-   "state": "MA",
-   "special": false,
-   "forecast_margin": 32.23,
-   "result_margin": 33.5,
-   "p_dem": 0.999
-  },
-  {
-   "days": 30,
-   "state": "MI",
-   "special": false,
-   "forecast_margin": 5.28,
-   "result_margin": 7.23,
-   "p_dem": 0.868
-  },
-  {
-   "days": 30,
-   "state": "MN",
-   "special": false,
-   "forecast_margin": 6.03,
-   "result_margin": 10.43,
-   "p_dem": 0.899
-  },
-  {
-   "days": 30,
-   "state": "MS",
-   "special": false,
-   "forecast_margin": -11.65,
-   "result_margin": 0.84,
-   "p_dem": 0.062
-  },
-  {
-   "days": 30,
-   "state": "NE",
-   "special": false,
-   "forecast_margin": -3.71,
-   "result_margin": -6.06,
-   "p_dem": 0.215
-  },
-  {
-   "days": 30,
-   "state": "NH",
-   "special": false,
-   "forecast_margin": 8.46,
-   "result_margin": 14.03,
-   "p_dem": 0.96
-  },
-  {
-   "days": 30,
-   "state": "NJ",
-   "special": false,
-   "forecast_margin": 19.17,
-   "result_margin": 28.67,
-   "p_dem": 0.994
-  },
-  {
-   "days": 30,
-   "state": "NM",
-   "special": false,
-   "forecast_margin": 18.89,
-   "result_margin": 26.53,
-   "p_dem": 0.999
-  },
-  {
-   "days": 30,
-   "state": "NC",
-   "special": false,
-   "forecast_margin": 6.43,
-   "result_margin": 20.14,
-   "p_dem": 0.91
-  },
-  {
-   "days": 30,
-   "state": "OH",
-   "special": true,
-   "forecast_margin": -1.57,
-   "result_margin": 5.42,
-   "p_dem": 0.371
-  },
-  {
-   "days": 30,
-   "state": "OK",
-   "special": false,
-   "forecast_margin": -22.98,
-   "result_margin": -18.56,
-   "p_dem": 0.002
-  },
-  {
-   "days": 30,
-   "state": "OR",
-   "special": false,
-   "forecast_margin": 23.94,
-   "result_margin": 19.93,
-   "p_dem": 0.999
-  },
-  {
-   "days": 30,
-   "state": "RI",
-   "special": false,
-   "forecast_margin": 25.45,
-   "result_margin": 39.07,
-   "p_dem": 0.999
-  },
-  {
-   "days": 30,
-   "state": "SC",
-   "special": false,
-   "forecast_margin": -4.99,
-   "result_margin": 4.6,
-   "p_dem": 0.145
-  },
-  {
-   "days": 30,
-   "state": "TN",
-   "special": false,
-   "forecast_margin": -25.37,
-   "result_margin": -12.42,
-   "p_dem": 0.001
-  },
-  {
-   "days": 30,
-   "state": "TX",
-   "special": false,
-   "forecast_margin": -0.73,
-   "result_margin": 12.34,
-   "p_dem": 0.439
-  },
-  {
-   "days": 30,
-   "state": "VA",
-   "special": false,
-   "forecast_margin": 15.5,
-   "result_margin": 23.27,
-   "p_dem": 0.98
-  },
-  {
-   "days": 30,
-   "state": "WV",
-   "special": false,
-   "forecast_margin": -31.52,
-   "result_margin": -21.14,
-   "p_dem": 0.001
-  },
-  {
-   "days": 30,
-   "state": "WY",
-   "special": false,
-   "forecast_margin": -32.77,
-   "result_margin": -30.47,
-   "p_dem": 0.001
-  },
-  {
-   "days": 14,
-   "state": "AL",
-   "special": false,
-   "forecast_margin": -20.36,
-   "result_margin": -9.49,
-   "p_dem": 0.001
-  },
-  {
-   "days": 14,
-   "state": "AK",
-   "special": false,
-   "forecast_margin": -2.35,
-   "result_margin": 4.54,
-   "p_dem": 0.314
-  },
-  {
-   "days": 14,
-   "state": "AR",
-   "special": false,
-   "forecast_margin": -19.53,
-   "result_margin": -12.16,
-   "p_dem": 0.001
-  },
-  {
-   "days": 14,
-   "state": "CO",
-   "special": false,
-   "forecast_margin": 23.81,
-   "result_margin": 26.73,
-   "p_dem": 0.999
-  },
-  {
-   "days": 14,
-   "state": "DE",
-   "special": false,
-   "forecast_margin": 23.83,
-   "result_margin": 27.15,
-   "p_dem": 0.999
-  },
-  {
-   "days": 14,
-   "state": "FL",
-   "special": true,
-   "forecast_margin": -6.29,
-   "result_margin": -2.89,
-   "p_dem": 0.103
-  },
-  {
-   "days": 14,
-   "state": "GA",
-   "special": false,
-   "forecast_margin": 11.54,
-   "result_margin": 18.06,
-   "p_dem": 0.988
-  },
-  {
-   "days": 14,
-   "state": "IL",
-   "special": false,
-   "forecast_margin": 16.14,
-   "result_margin": 26.15,
-   "p_dem": 0.988
-  },
-  {
-   "days": 14,
-   "state": "IA",
-   "special": false,
-   "forecast_margin": -1.96,
-   "result_margin": 4.34,
-   "p_dem": 0.345
-  },
-  {
-   "days": 14,
-   "state": "KS",
-   "special": false,
-   "forecast_margin": -5.4,
-   "result_margin": 5.56,
-   "p_dem": 0.137
-  },
-  {
-   "days": 14,
-   "state": "KY",
-   "special": false,
-   "forecast_margin": -16.64,
-   "result_margin": -12.35,
-   "p_dem": 0.011
-  },
-  {
-   "days": 14,
-   "state": "LA",
-   "special": false,
-   "forecast_margin": -12.18,
-   "result_margin": -1.77,
-   "p_dem": 0.043
-  },
-  {
-   "days": 14,
-   "state": "ME",
-   "special": false,
-   "forecast_margin": 4.41,
-   "result_margin": 6.2,
-   "p_dem": 0.812
-  },
-  {
-   "days": 14,
-   "state": "MA",
-   "special": false,
-   "forecast_margin": 33.5,
-   "result_margin": 33.5,
-   "p_dem": 0.999
-  },
-  {
-   "days": 14,
-   "state": "MI",
-   "special": false,
-   "forecast_margin": 4.09,
-   "result_margin": 7.23,
-   "p_dem": 0.8
-  },
-  {
-   "days": 14,
-   "state": "MN",
-   "special": false,
-   "forecast_margin": 6.72,
-   "result_margin": 10.43,
-   "p_dem": 0.913
-  },
-  {
-   "days": 14,
-   "state": "MS",
-   "special": false,
-   "forecast_margin": -11.94,
-   "result_margin": 0.84,
-   "p_dem": 0.044
-  },
-  {
-   "days": 14,
-   "state": "NE",
-   "special": false,
-   "forecast_margin": -4.72,
-   "result_margin": -6.06,
-   "p_dem": 0.169
-  },
-  {
-   "days": 14,
-   "state": "NH",
-   "special": false,
-   "forecast_margin": 8.54,
-   "result_margin": 14.03,
-   "p_dem": 0.954
-  },
-  {
-   "days": 14,
-   "state": "NJ",
-   "special": false,
-   "forecast_margin": 19.18,
-   "result_margin": 28.67,
-   "p_dem": 0.996
-  },
-  {
-   "days": 14,
-   "state": "NM",
-   "special": false,
-   "forecast_margin": 18.65,
-   "result_margin": 26.53,
-   "p_dem": 0.999
-  },
-  {
-   "days": 14,
-   "state": "NC",
-   "special": false,
-   "forecast_margin": 8.06,
-   "result_margin": 20.14,
-   "p_dem": 0.946
-  },
-  {
-   "days": 14,
-   "state": "OH",
-   "special": true,
-   "forecast_margin": -0.18,
-   "result_margin": 5.42,
-   "p_dem": 0.485
-  },
-  {
-   "days": 14,
-   "state": "OK",
-   "special": false,
-   "forecast_margin": -23.09,
-   "result_margin": -18.56,
-   "p_dem": 0.001
-  },
-  {
-   "days": 14,
-   "state": "OR",
-   "special": false,
-   "forecast_margin": 23.96,
-   "result_margin": 19.93,
-   "p_dem": 0.999
-  },
-  {
-   "days": 14,
-   "state": "RI",
-   "special": false,
-   "forecast_margin": 29.16,
-   "result_margin": 39.07,
-   "p_dem": 0.999
-  },
-  {
-   "days": 14,
-   "state": "SC",
-   "special": false,
-   "forecast_margin": -5.99,
-   "result_margin": 4.6,
-   "p_dem": 0.114
-  },
-  {
-   "days": 14,
-   "state": "TN",
-   "special": false,
-   "forecast_margin": -25.1,
-   "result_margin": -12.42,
-   "p_dem": 0.001
-  },
-  {
-   "days": 14,
-   "state": "TX",
-   "special": false,
-   "forecast_margin": 0.39,
-   "result_margin": 12.34,
-   "p_dem": 0.531
-  },
-  {
-   "days": 14,
-   "state": "VA",
-   "special": false,
-   "forecast_margin": 15.57,
-   "result_margin": 23.27,
-   "p_dem": 0.986
-  },
-  {
-   "days": 14,
-   "state": "WV",
-   "special": false,
-   "forecast_margin": -31.71,
-   "result_margin": -21.14,
-   "p_dem": 0.001
-  },
-  {
-   "days": 14,
-   "state": "WY",
-   "special": false,
-   "forecast_margin": -32.85,
-   "result_margin": -30.47,
-   "p_dem": 0.001
-  },
-  {
-   "days": 7,
-   "state": "AL",
-   "special": false,
-   "forecast_margin": -20.61,
-   "result_margin": -9.49,
-   "p_dem": 0.001
-  },
-  {
-   "days": 7,
-   "state": "AK",
-   "special": false,
-   "forecast_margin": -2.22,
-   "result_margin": 4.54,
-   "p_dem": 0.319
-  },
-  {
-   "days": 7,
-   "state": "AR",
-   "special": false,
-   "forecast_margin": -19.92,
-   "result_margin": -12.16,
-   "p_dem": 0.001
-  },
-  {
-   "days": 7,
-   "state": "CO",
-   "special": false,
-   "forecast_margin": 23.38,
-   "result_margin": 26.73,
-   "p_dem": 0.999
-  },
-  {
-   "days": 7,
-   "state": "DE",
-   "special": false,
-   "forecast_margin": 23.49,
-   "result_margin": 27.15,
-   "p_dem": 0.999
-  },
-  {
-   "days": 7,
-   "state": "FL",
-   "special": true,
-   "forecast_margin": -6.01,
-   "result_margin": -2.89,
-   "p_dem": 0.1
-  },
-  {
-   "days": 7,
-   "state": "GA",
-   "special": false,
-   "forecast_margin": 12.69,
-   "result_margin": 18.06,
-   "p_dem": 0.994
-  },
-  {
-   "days": 7,
-   "state": "IL",
-   "special": false,
-   "forecast_margin": 15.79,
-   "result_margin": 26.15,
-   "p_dem": 0.988
-  },
-  {
-   "days": 7,
-   "state": "IA",
-   "special": false,
-   "forecast_margin": -1.75,
-   "result_margin": 4.34,
-   "p_dem": 0.355
-  },
-  {
-   "days": 7,
-   "state": "KS",
-   "special": false,
-   "forecast_margin": -0.67,
-   "result_margin": 5.56,
-   "p_dem": 0.447
-  },
-  {
-   "days": 7,
-   "state": "KY",
-   "special": false,
-   "forecast_margin": -17.0,
-   "result_margin": -12.35,
-   "p_dem": 0.008
-  },
-  {
-   "days": 7,
-   "state": "LA",
-   "special": false,
-   "forecast_margin": -12.53,
-   "result_margin": -1.77,
-   "p_dem": 0.034
-  },
-  {
-   "days": 7,
-   "state": "ME",
-   "special": false,
-   "forecast_margin": 4.72,
-   "result_margin": 6.2,
-   "p_dem": 0.843
-  },
-  {
-   "days": 7,
-   "state": "MA",
-   "special": false,
-   "forecast_margin": 33.28,
-   "result_margin": 33.5,
-   "p_dem": 0.999
-  },
-  {
-   "days": 7,
-   "state": "MI",
-   "special": false,
-   "forecast_margin": 5.32,
-   "result_margin": 7.23,
-   "p_dem": 0.87
-  },
-  {
-   "days": 7,
-   "state": "MN",
-   "special": false,
-   "forecast_margin": 7.64,
-   "result_margin": 10.43,
-   "p_dem": 0.945
-  },
-  {
-   "days": 7,
-   "state": "MS",
-   "special": false,
-   "forecast_margin": -12.34,
-   "result_margin": 0.84,
-   "p_dem": 0.035
-  },
-  {
-   "days": 7,
-   "state": "NE",
-   "special": false,
-   "forecast_margin": -3.86,
-   "result_margin": -6.06,
-   "p_dem": 0.209
-  },
-  {
-   "days": 7,
-   "state": "NH",
-   "special": false,
-   "forecast_margin": 8.09,
-   "result_margin": 14.03,
-   "p_dem": 0.954
-  },
-  {
-   "days": 7,
-   "state": "NJ",
-   "special": false,
-   "forecast_margin": 18.83,
-   "result_margin": 28.67,
-   "p_dem": 0.996
-  },
-  {
-   "days": 7,
-   "state": "NM",
-   "special": false,
-   "forecast_margin": 18.1,
-   "result_margin": 26.53,
-   "p_dem": 0.999
-  },
-  {
-   "days": 7,
-   "state": "NC",
-   "special": false,
-   "forecast_margin": 7.88,
-   "result_margin": 20.14,
-   "p_dem": 0.948
-  },
-  {
-   "days": 7,
-   "state": "OH",
-   "special": true,
-   "forecast_margin": -0.42,
-   "result_margin": 5.42,
-   "p_dem": 0.469
-  },
-  {
-   "days": 7,
-   "state": "OK",
-   "special": false,
-   "forecast_margin": -23.44,
-   "result_margin": -18.56,
-   "p_dem": 0.001
-  },
-  {
-   "days": 7,
-   "state": "OR",
-   "special": false,
-   "forecast_margin": 23.62,
-   "result_margin": 19.93,
-   "p_dem": 0.999
-  },
-  {
-   "days": 7,
-   "state": "RI",
-   "special": false,
-   "forecast_margin": 29.05,
-   "result_margin": 39.07,
-   "p_dem": 0.999
-  },
-  {
-   "days": 7,
-   "state": "SC",
-   "special": false,
-   "forecast_margin": -5.02,
-   "result_margin": 4.6,
-   "p_dem": 0.143
-  },
-  {
-   "days": 7,
-   "state": "TN",
-   "special": false,
-   "forecast_margin": -25.47,
-   "result_margin": -12.42,
-   "p_dem": 0.001
-  },
-  {
-   "days": 7,
-   "state": "TX",
-   "special": false,
-   "forecast_margin": 0.94,
-   "result_margin": 12.34,
-   "p_dem": 0.579
-  },
-  {
-   "days": 7,
-   "state": "VA",
-   "special": false,
-   "forecast_margin": 15.23,
-   "result_margin": 23.27,
-   "p_dem": 0.985
-  },
-  {
-   "days": 7,
-   "state": "WV",
-   "special": false,
-   "forecast_margin": -32.09,
-   "result_margin": -21.14,
-   "p_dem": 0.001
-  },
-  {
-   "days": 7,
-   "state": "WY",
-   "special": false,
-   "forecast_margin": -33.21,
-   "result_margin": -30.47,
-   "p_dem": 0.001
-  },
-  {
-   "days": 1,
-   "state": "AL",
-   "special": false,
-   "forecast_margin": -20.28,
-   "result_margin": -9.49,
-   "p_dem": 0.001
-  },
-  {
-   "days": 1,
-   "state": "AK",
-   "special": false,
-   "forecast_margin": -1.03,
-   "result_margin": 4.54,
-   "p_dem": 0.414
-  },
-  {
-   "days": 1,
-   "state": "AR",
-   "special": false,
-   "forecast_margin": -19.78,
-   "result_margin": -12.16,
-   "p_dem": 0.001
-  },
-  {
-   "days": 1,
-   "state": "CO",
-   "special": false,
-   "forecast_margin": 23.72,
-   "result_margin": 26.73,
-   "p_dem": 0.999
-  },
-  {
-   "days": 1,
-   "state": "DE",
-   "special": false,
-   "forecast_margin": 23.88,
-   "result_margin": 27.15,
-   "p_dem": 0.999
-  },
-  {
-   "days": 1,
-   "state": "FL",
-   "special": true,
-   "forecast_margin": -5.96,
-   "result_margin": -2.89,
-   "p_dem": 0.114
-  },
-  {
-   "days": 1,
-   "state": "GA",
-   "special": false,
-   "forecast_margin": 11.4,
-   "result_margin": 18.06,
-   "p_dem": 0.987
-  },
-  {
-   "days": 1,
-   "state": "IL",
-   "special": false,
-   "forecast_margin": 16.21,
-   "result_margin": 26.15,
-   "p_dem": 0.99
-  },
-  {
-   "days": 1,
-   "state": "IA",
-   "special": false,
-   "forecast_margin": -1.11,
-   "result_margin": 4.34,
-   "p_dem": 0.409
-  },
-  {
-   "days": 1,
-   "state": "KS",
-   "special": false,
-   "forecast_margin": -0.54,
-   "result_margin": 5.56,
-   "p_dem": 0.451
-  },
-  {
-   "days": 1,
-   "state": "KY",
-   "special": false,
-   "forecast_margin": -16.58,
-   "result_margin": -12.35,
-   "p_dem": 0.008
-  },
-  {
-   "days": 1,
-   "state": "LA",
-   "special": false,
-   "forecast_margin": -12.12,
+   "forecast_margin": -11.84,
    "result_margin": -1.77,
    "p_dem": 0.04
   },
   {
+   "days": 365,
+   "state": "ME",
+   "special": false,
+   "forecast_margin": 8.85,
+   "result_margin": 6.2,
+   "p_dem": 0.906
+  },
+  {
+   "days": 365,
+   "state": "MA",
+   "special": false,
+   "forecast_margin": 34.12,
+   "result_margin": 33.5,
+   "p_dem": 0.999
+  },
+  {
+   "days": 365,
+   "state": "MI",
+   "special": false,
+   "forecast_margin": -4.65,
+   "result_margin": 7.23,
+   "p_dem": 0.11
+  },
+  {
+   "days": 365,
+   "state": "MN",
+   "special": false,
+   "forecast_margin": 10.26,
+   "result_margin": 10.43,
+   "p_dem": 0.935
+  },
+  {
+   "days": 365,
+   "state": "MS",
+   "special": false,
+   "forecast_margin": -11.53,
+   "result_margin": 0.84,
+   "p_dem": 0.047
+  },
+  {
+   "days": 365,
+   "state": "NE",
+   "special": false,
+   "forecast_margin": -2.63,
+   "result_margin": -6.06,
+   "p_dem": 0.242
+  },
+  {
+   "days": 365,
+   "state": "NH",
+   "special": false,
+   "forecast_margin": 8.5,
+   "result_margin": 14.03,
+   "p_dem": 0.981
+  },
+  {
+   "days": 365,
+   "state": "NJ",
+   "special": false,
+   "forecast_margin": 19.3,
+   "result_margin": 28.67,
+   "p_dem": 0.997
+  },
+  {
+   "days": 365,
+   "state": "NM",
+   "special": false,
+   "forecast_margin": 18.27,
+   "result_margin": 26.53,
+   "p_dem": 0.996
+  },
+  {
+   "days": 365,
+   "state": "NC",
+   "special": false,
+   "forecast_margin": 5.87,
+   "result_margin": 20.14,
+   "p_dem": 0.936
+  },
+  {
+   "days": 365,
+   "state": "OH",
+   "special": true,
+   "forecast_margin": -2.5,
+   "result_margin": 5.42,
+   "p_dem": 0.251
+  },
+  {
+   "days": 365,
+   "state": "OK",
+   "special": false,
+   "forecast_margin": -22.79,
+   "result_margin": -18.56,
+   "p_dem": 0.001
+  },
+  {
+   "days": 365,
+   "state": "OR",
+   "special": false,
+   "forecast_margin": 24.08,
+   "result_margin": 19.93,
+   "p_dem": 0.999
+  },
+  {
+   "days": 365,
+   "state": "RI",
+   "special": false,
+   "forecast_margin": 26.84,
+   "result_margin": 39.07,
+   "p_dem": 0.999
+  },
+  {
+   "days": 365,
+   "state": "SC",
+   "special": false,
+   "forecast_margin": -7.72,
+   "result_margin": 4.6,
+   "p_dem": 0.127
+  },
+  {
+   "days": 365,
+   "state": "TN",
+   "special": false,
+   "forecast_margin": -24.93,
+   "result_margin": -12.42,
+   "p_dem": 0.001
+  },
+  {
+   "days": 365,
+   "state": "TX",
+   "special": false,
+   "forecast_margin": -2.44,
+   "result_margin": 12.34,
+   "p_dem": 0.257
+  },
+  {
+   "days": 365,
+   "state": "VA",
+   "special": false,
+   "forecast_margin": 15.62,
+   "result_margin": 23.27,
+   "p_dem": 0.989
+  },
+  {
+   "days": 365,
+   "state": "WV",
+   "special": false,
+   "forecast_margin": -31.45,
+   "result_margin": -21.14,
+   "p_dem": 0.001
+  },
+  {
+   "days": 365,
+   "state": "WY",
+   "special": false,
+   "forecast_margin": -32.59,
+   "result_margin": -30.47,
+   "p_dem": 0.001
+  },
+  {
+   "days": 250,
+   "state": "AL",
+   "special": false,
+   "forecast_margin": -17.98,
+   "result_margin": -9.49,
+   "p_dem": 0.005
+  },
+  {
+   "days": 250,
+   "state": "AK",
+   "special": false,
+   "forecast_margin": -2.3,
+   "result_margin": 4.54,
+   "p_dem": 0.343
+  },
+  {
+   "days": 250,
+   "state": "AR",
+   "special": false,
+   "forecast_margin": -23.34,
+   "result_margin": -12.16,
+   "p_dem": 0.001
+  },
+  {
+   "days": 250,
+   "state": "CO",
+   "special": false,
+   "forecast_margin": 27.26,
+   "result_margin": 26.73,
+   "p_dem": 0.999
+  },
+  {
+   "days": 250,
+   "state": "DE",
+   "special": false,
+   "forecast_margin": 24.6,
+   "result_margin": 27.15,
+   "p_dem": 0.999
+  },
+  {
+   "days": 250,
+   "state": "FL",
+   "special": true,
+   "forecast_margin": -4.03,
+   "result_margin": -2.89,
+   "p_dem": 0.273
+  },
+  {
+   "days": 250,
+   "state": "GA",
+   "special": false,
+   "forecast_margin": 12.56,
+   "result_margin": 18.06,
+   "p_dem": 0.985
+  },
+  {
+   "days": 250,
+   "state": "IL",
+   "special": false,
+   "forecast_margin": 17.16,
+   "result_margin": 26.15,
+   "p_dem": 0.994
+  },
+  {
+   "days": 250,
+   "state": "IA",
+   "special": false,
+   "forecast_margin": -2.95,
+   "result_margin": 4.34,
+   "p_dem": 0.3
+  },
+  {
+   "days": 250,
+   "state": "KS",
+   "special": false,
+   "forecast_margin": -7.76,
+   "result_margin": 5.56,
+   "p_dem": 0.086
+  },
+  {
+   "days": 250,
+   "state": "KY",
+   "special": false,
+   "forecast_margin": -15.67,
+   "result_margin": -12.35,
+   "p_dem": 0.011
+  },
+  {
+   "days": 250,
+   "state": "LA",
+   "special": false,
+   "forecast_margin": -11.24,
+   "result_margin": -1.77,
+   "p_dem": 0.048
+  },
+  {
+   "days": 250,
+   "state": "ME",
+   "special": false,
+   "forecast_margin": 9.52,
+   "result_margin": 6.2,
+   "p_dem": 0.924
+  },
+  {
+   "days": 250,
+   "state": "MA",
+   "special": false,
+   "forecast_margin": 35.23,
+   "result_margin": 33.5,
+   "p_dem": 0.999
+  },
+  {
+   "days": 250,
+   "state": "MI",
+   "special": false,
+   "forecast_margin": 5.02,
+   "result_margin": 7.23,
+   "p_dem": 0.814
+  },
+  {
+   "days": 250,
+   "state": "MN",
+   "special": false,
+   "forecast_margin": 10.37,
+   "result_margin": 10.43,
+   "p_dem": 0.966
+  },
+  {
+   "days": 250,
+   "state": "MS",
+   "special": false,
+   "forecast_margin": -10.88,
+   "result_margin": 0.84,
+   "p_dem": 0.055
+  },
+  {
+   "days": 250,
+   "state": "NE",
+   "special": false,
+   "forecast_margin": -3.34,
+   "result_margin": -6.06,
+   "p_dem": 0.275
+  },
+  {
+   "days": 250,
+   "state": "NH",
+   "special": false,
+   "forecast_margin": 10.01,
+   "result_margin": 14.03,
+   "p_dem": 0.96
+  },
+  {
+   "days": 250,
+   "state": "NJ",
+   "special": false,
+   "forecast_margin": 19.96,
+   "result_margin": 28.67,
+   "p_dem": 0.998
+  },
+  {
+   "days": 250,
+   "state": "NM",
+   "special": false,
+   "forecast_margin": 18.94,
+   "result_margin": 26.53,
+   "p_dem": 0.997
+  },
+  {
+   "days": 250,
+   "state": "NC",
+   "special": false,
+   "forecast_margin": 9.02,
+   "result_margin": 20.14,
+   "p_dem": 0.943
+  },
+  {
+   "days": 250,
+   "state": "OH",
+   "special": true,
+   "forecast_margin": -4.51,
+   "result_margin": 5.42,
+   "p_dem": 0.211
+  },
+  {
+   "days": 250,
+   "state": "OK",
+   "special": false,
+   "forecast_margin": -22.18,
+   "result_margin": -18.56,
+   "p_dem": 0.001
+  },
+  {
+   "days": 250,
+   "state": "OR",
+   "special": false,
+   "forecast_margin": 24.75,
+   "result_margin": 19.93,
+   "p_dem": 0.999
+  },
+  {
+   "days": 250,
+   "state": "RI",
+   "special": false,
+   "forecast_margin": 27.49,
+   "result_margin": 39.07,
+   "p_dem": 0.999
+  },
+  {
+   "days": 250,
+   "state": "SC",
+   "special": false,
+   "forecast_margin": -7.13,
+   "result_margin": 4.6,
+   "p_dem": 0.144
+  },
+  {
+   "days": 250,
+   "state": "TN",
+   "special": false,
+   "forecast_margin": -24.2,
+   "result_margin": -12.42,
+   "p_dem": 0.001
+  },
+  {
+   "days": 250,
+   "state": "TX",
+   "special": false,
+   "forecast_margin": -1.96,
+   "result_margin": 12.34,
+   "p_dem": 0.361
+  },
+  {
+   "days": 250,
+   "state": "VA",
+   "special": false,
+   "forecast_margin": 16.31,
+   "result_margin": 23.27,
+   "p_dem": 0.992
+  },
+  {
+   "days": 250,
+   "state": "WV",
+   "special": false,
+   "forecast_margin": -30.75,
+   "result_margin": -21.14,
+   "p_dem": 0.001
+  },
+  {
+   "days": 250,
+   "state": "WY",
+   "special": false,
+   "forecast_margin": -31.97,
+   "result_margin": -30.47,
+   "p_dem": 0.001
+  },
+  {
+   "days": 120,
+   "state": "AL",
+   "special": false,
+   "forecast_margin": -18.18,
+   "result_margin": -9.49,
+   "p_dem": 0.007
+  },
+  {
+   "days": 120,
+   "state": "AK",
+   "special": false,
+   "forecast_margin": -1.27,
+   "result_margin": 4.54,
+   "p_dem": 0.392
+  },
+  {
+   "days": 120,
+   "state": "AR",
+   "special": false,
+   "forecast_margin": -23.56,
+   "result_margin": -12.16,
+   "p_dem": 0.001
+  },
+  {
+   "days": 120,
+   "state": "CO",
+   "special": false,
+   "forecast_margin": 27.1,
+   "result_margin": 26.73,
+   "p_dem": 0.999
+  },
+  {
+   "days": 120,
+   "state": "DE",
+   "special": false,
+   "forecast_margin": 24.58,
+   "result_margin": 27.15,
+   "p_dem": 0.999
+  },
+  {
+   "days": 120,
+   "state": "FL",
+   "special": true,
+   "forecast_margin": -6.28,
+   "result_margin": -2.89,
+   "p_dem": 0.099
+  },
+  {
+   "days": 120,
+   "state": "GA",
+   "special": false,
+   "forecast_margin": 12.67,
+   "result_margin": 18.06,
+   "p_dem": 0.993
+  },
+  {
+   "days": 120,
+   "state": "IL",
+   "special": false,
+   "forecast_margin": 16.86,
+   "result_margin": 26.15,
+   "p_dem": 0.99
+  },
+  {
+   "days": 120,
+   "state": "IA",
+   "special": false,
+   "forecast_margin": -0.66,
+   "result_margin": 4.34,
+   "p_dem": 0.448
+  },
+  {
+   "days": 120,
+   "state": "KS",
+   "special": false,
+   "forecast_margin": -8.79,
+   "result_margin": 5.56,
+   "p_dem": 0.116
+  },
+  {
+   "days": 120,
+   "state": "KY",
+   "special": false,
+   "forecast_margin": -15.93,
+   "result_margin": -12.35,
+   "p_dem": 0.015
+  },
+  {
+   "days": 120,
+   "state": "LA",
+   "special": false,
+   "forecast_margin": -11.46,
+   "result_margin": -1.77,
+   "p_dem": 0.057
+  },
+  {
+   "days": 120,
+   "state": "ME",
+   "special": false,
+   "forecast_margin": 8.47,
+   "result_margin": 6.2,
+   "p_dem": 0.955
+  },
+  {
+   "days": 120,
+   "state": "MA",
+   "special": false,
+   "forecast_margin": 30.83,
+   "result_margin": 33.5,
+   "p_dem": 0.999
+  },
+  {
+   "days": 120,
+   "state": "MI",
+   "special": false,
+   "forecast_margin": 5.51,
+   "result_margin": 7.23,
+   "p_dem": 0.873
+  },
+  {
+   "days": 120,
+   "state": "MN",
+   "special": false,
+   "forecast_margin": 10.56,
+   "result_margin": 10.43,
+   "p_dem": 0.928
+  },
+  {
+   "days": 120,
+   "state": "MS",
+   "special": false,
+   "forecast_margin": -11.24,
+   "result_margin": 0.84,
+   "p_dem": 0.062
+  },
+  {
+   "days": 120,
+   "state": "NE",
+   "special": false,
+   "forecast_margin": -1.76,
+   "result_margin": -6.06,
+   "p_dem": 0.355
+  },
+  {
+   "days": 120,
+   "state": "NH",
+   "special": false,
+   "forecast_margin": 8.92,
+   "result_margin": 14.03,
+   "p_dem": 0.964
+  },
+  {
+   "days": 120,
+   "state": "NJ",
+   "special": false,
+   "forecast_margin": 19.92,
+   "result_margin": 28.67,
+   "p_dem": 0.997
+  },
+  {
+   "days": 120,
+   "state": "NM",
+   "special": false,
+   "forecast_margin": 18.9,
+   "result_margin": 26.53,
+   "p_dem": 0.995
+  },
+  {
+   "days": 120,
+   "state": "NC",
+   "special": false,
+   "forecast_margin": 6.68,
+   "result_margin": 20.14,
+   "p_dem": 0.914
+  },
+  {
+   "days": 120,
+   "state": "OH",
+   "special": true,
+   "forecast_margin": -1.69,
+   "result_margin": 5.42,
+   "p_dem": 0.363
+  },
+  {
+   "days": 120,
+   "state": "OK",
+   "special": false,
+   "forecast_margin": -22.37,
+   "result_margin": -18.56,
+   "p_dem": 0.002
+  },
+  {
+   "days": 120,
+   "state": "OR",
+   "special": false,
+   "forecast_margin": 24.71,
+   "result_margin": 19.93,
+   "p_dem": 0.999
+  },
+  {
+   "days": 120,
+   "state": "RI",
+   "special": false,
+   "forecast_margin": 25.1,
+   "result_margin": 39.07,
+   "p_dem": 0.999
+  },
+  {
+   "days": 120,
+   "state": "SC",
+   "special": false,
+   "forecast_margin": -7.36,
+   "result_margin": 4.6,
+   "p_dem": 0.156
+  },
+  {
+   "days": 120,
+   "state": "TN",
+   "special": false,
+   "forecast_margin": -24.36,
+   "result_margin": -12.42,
+   "p_dem": 0.001
+  },
+  {
+   "days": 120,
+   "state": "TX",
+   "special": false,
+   "forecast_margin": -0.86,
+   "result_margin": 12.34,
+   "p_dem": 0.433
+  },
+  {
+   "days": 120,
+   "state": "VA",
+   "special": false,
+   "forecast_margin": 16.33,
+   "result_margin": 23.27,
+   "p_dem": 0.987
+  },
+  {
+   "days": 120,
+   "state": "WV",
+   "special": false,
+   "forecast_margin": -30.99,
+   "result_margin": -21.14,
+   "p_dem": 0.001
+  },
+  {
+   "days": 120,
+   "state": "WY",
+   "special": false,
+   "forecast_margin": -32.13,
+   "result_margin": -30.47,
+   "p_dem": 0.001
+  },
+  {
+   "days": 60,
+   "state": "AL",
+   "special": false,
+   "forecast_margin": -17.93,
+   "result_margin": -9.49,
+   "p_dem": 0.007
+  },
+  {
+   "days": 60,
+   "state": "AK",
+   "special": false,
+   "forecast_margin": -1.27,
+   "result_margin": 4.54,
+   "p_dem": 0.386
+  },
+  {
+   "days": 60,
+   "state": "AR",
+   "special": false,
+   "forecast_margin": -16.66,
+   "result_margin": -12.16,
+   "p_dem": 0.001
+  },
+  {
+   "days": 60,
+   "state": "CO",
+   "special": false,
+   "forecast_margin": 27.33,
+   "result_margin": 26.73,
+   "p_dem": 0.999
+  },
+  {
+   "days": 60,
+   "state": "DE",
+   "special": false,
+   "forecast_margin": 24.73,
+   "result_margin": 27.15,
+   "p_dem": 0.999
+  },
+  {
+   "days": 60,
+   "state": "FL",
+   "special": true,
+   "forecast_margin": -5.22,
+   "result_margin": -2.89,
+   "p_dem": 0.12
+  },
+  {
+   "days": 60,
+   "state": "GA",
+   "special": false,
+   "forecast_margin": 12.97,
+   "result_margin": 18.06,
+   "p_dem": 0.995
+  },
+  {
+   "days": 60,
+   "state": "IL",
+   "special": false,
+   "forecast_margin": 17.15,
+   "result_margin": 26.15,
+   "p_dem": 0.991
+  },
+  {
+   "days": 60,
+   "state": "IA",
+   "special": false,
+   "forecast_margin": -1.76,
+   "result_margin": 4.34,
+   "p_dem": 0.348
+  },
+  {
+   "days": 60,
+   "state": "KS",
+   "special": false,
+   "forecast_margin": -5.09,
+   "result_margin": 5.56,
+   "p_dem": 0.129
+  },
+  {
+   "days": 60,
+   "state": "KY",
+   "special": false,
+   "forecast_margin": -15.66,
+   "result_margin": -12.35,
+   "p_dem": 0.016
+  },
+  {
+   "days": 60,
+   "state": "LA",
+   "special": false,
+   "forecast_margin": -11.2,
+   "result_margin": -1.77,
+   "p_dem": 0.062
+  },
+  {
+   "days": 60,
+   "state": "ME",
+   "special": false,
+   "forecast_margin": 8.89,
+   "result_margin": 6.2,
+   "p_dem": 0.972
+  },
+  {
+   "days": 60,
+   "state": "MA",
+   "special": false,
+   "forecast_margin": 31.44,
+   "result_margin": 33.5,
+   "p_dem": 0.999
+  },
+  {
+   "days": 60,
+   "state": "MI",
+   "special": false,
+   "forecast_margin": 5.78,
+   "result_margin": 7.23,
+   "p_dem": 0.901
+  },
+  {
+   "days": 60,
+   "state": "MN",
+   "special": false,
+   "forecast_margin": 8.43,
+   "result_margin": 10.43,
+   "p_dem": 0.97
+  },
+  {
+   "days": 60,
+   "state": "MS",
+   "special": false,
+   "forecast_margin": -10.91,
+   "result_margin": 0.84,
+   "p_dem": 0.066
+  },
+  {
+   "days": 60,
+   "state": "NE",
+   "special": false,
+   "forecast_margin": -2.39,
+   "result_margin": -6.06,
+   "p_dem": 0.295
+  },
+  {
+   "days": 60,
+   "state": "NH",
+   "special": false,
+   "forecast_margin": 8.12,
+   "result_margin": 14.03,
+   "p_dem": 0.962
+  },
+  {
+   "days": 60,
+   "state": "NJ",
+   "special": false,
+   "forecast_margin": 20.09,
+   "result_margin": 28.67,
+   "p_dem": 0.998
+  },
+  {
+   "days": 60,
+   "state": "NM",
+   "special": false,
+   "forecast_margin": 18.72,
+   "result_margin": 26.53,
+   "p_dem": 0.999
+  },
+  {
+   "days": 60,
+   "state": "NC",
+   "special": false,
+   "forecast_margin": 7.22,
+   "result_margin": 20.14,
+   "p_dem": 0.944
+  },
+  {
+   "days": 60,
+   "state": "OH",
+   "special": true,
+   "forecast_margin": 0.18,
+   "result_margin": 5.42,
+   "p_dem": 0.52
+  },
+  {
+   "days": 60,
+   "state": "OK",
+   "special": false,
+   "forecast_margin": -22.13,
+   "result_margin": -18.56,
+   "p_dem": 0.002
+  },
+  {
+   "days": 60,
+   "state": "OR",
+   "special": false,
+   "forecast_margin": 24.87,
+   "result_margin": 19.93,
+   "p_dem": 0.999
+  },
+  {
+   "days": 60,
+   "state": "RI",
+   "special": false,
+   "forecast_margin": 26.99,
+   "result_margin": 39.07,
+   "p_dem": 0.999
+  },
+  {
+   "days": 60,
+   "state": "SC",
+   "special": false,
+   "forecast_margin": -7.1,
+   "result_margin": 4.6,
+   "p_dem": 0.165
+  },
+  {
+   "days": 60,
+   "state": "TN",
+   "special": false,
+   "forecast_margin": -24.79,
+   "result_margin": -12.42,
+   "p_dem": 0.001
+  },
+  {
+   "days": 60,
+   "state": "TX",
+   "special": false,
+   "forecast_margin": 0.25,
+   "result_margin": 12.34,
+   "p_dem": 0.524
+  },
+  {
+   "days": 60,
+   "state": "VA",
+   "special": false,
+   "forecast_margin": 16.46,
+   "result_margin": 23.27,
+   "p_dem": 0.988
+  },
+  {
+   "days": 60,
+   "state": "WV",
+   "special": false,
+   "forecast_margin": -30.72,
+   "result_margin": -21.14,
+   "p_dem": 0.001
+  },
+  {
+   "days": 60,
+   "state": "WY",
+   "special": false,
+   "forecast_margin": -31.91,
+   "result_margin": -30.47,
+   "p_dem": 0.001
+  },
+  {
+   "days": 30,
+   "state": "AL",
+   "special": false,
+   "forecast_margin": -19.49,
+   "result_margin": -9.49,
+   "p_dem": 0.001
+  },
+  {
+   "days": 30,
+   "state": "AK",
+   "special": false,
+   "forecast_margin": -0.4,
+   "result_margin": 4.54,
+   "p_dem": 0.464
+  },
+  {
+   "days": 30,
+   "state": "AR",
+   "special": false,
+   "forecast_margin": -22.69,
+   "result_margin": -12.16,
+   "p_dem": 0.002
+  },
+  {
+   "days": 30,
+   "state": "CO",
+   "special": false,
+   "forecast_margin": 27.91,
+   "result_margin": 26.73,
+   "p_dem": 0.999
+  },
+  {
+   "days": 30,
+   "state": "DE",
+   "special": false,
+   "forecast_margin": 25.23,
+   "result_margin": 27.15,
+   "p_dem": 0.999
+  },
+  {
+   "days": 30,
+   "state": "FL",
+   "special": true,
+   "forecast_margin": -4.58,
+   "result_margin": -2.89,
+   "p_dem": 0.167
+  },
+  {
+   "days": 30,
+   "state": "GA",
+   "special": false,
+   "forecast_margin": 13.19,
+   "result_margin": 18.06,
+   "p_dem": 0.995
+  },
+  {
+   "days": 30,
+   "state": "IL",
+   "special": false,
+   "forecast_margin": 17.77,
+   "result_margin": 26.15,
+   "p_dem": 0.99
+  },
+  {
+   "days": 30,
+   "state": "IA",
+   "special": false,
+   "forecast_margin": 0.1,
+   "result_margin": 4.34,
+   "p_dem": 0.507
+  },
+  {
+   "days": 30,
+   "state": "KS",
+   "special": false,
+   "forecast_margin": -2.81,
+   "result_margin": 5.56,
+   "p_dem": 0.275
+  },
+  {
+   "days": 30,
+   "state": "KY",
+   "special": false,
+   "forecast_margin": -15.04,
+   "result_margin": -12.35,
+   "p_dem": 0.024
+  },
+  {
+   "days": 30,
+   "state": "LA",
+   "special": false,
+   "forecast_margin": -10.62,
+   "result_margin": -1.77,
+   "p_dem": 0.083
+  },
+  {
+   "days": 30,
+   "state": "ME",
+   "special": false,
+   "forecast_margin": 6.44,
+   "result_margin": 6.2,
+   "p_dem": 0.911
+  },
+  {
+   "days": 30,
+   "state": "MA",
+   "special": false,
+   "forecast_margin": 33.66,
+   "result_margin": 33.5,
+   "p_dem": 0.999
+  },
+  {
+   "days": 30,
+   "state": "MI",
+   "special": false,
+   "forecast_margin": 6.71,
+   "result_margin": 7.23,
+   "p_dem": 0.921
+  },
+  {
+   "days": 30,
+   "state": "MN",
+   "special": false,
+   "forecast_margin": 7.46,
+   "result_margin": 10.43,
+   "p_dem": 0.94
+  },
+  {
+   "days": 30,
+   "state": "MS",
+   "special": false,
+   "forecast_margin": -10.22,
+   "result_margin": 0.84,
+   "p_dem": 0.09
+  },
+  {
+   "days": 30,
+   "state": "NE",
+   "special": false,
+   "forecast_margin": -2.28,
+   "result_margin": -6.06,
+   "p_dem": 0.312
+  },
+  {
+   "days": 30,
+   "state": "NH",
+   "special": false,
+   "forecast_margin": 9.89,
+   "result_margin": 14.03,
+   "p_dem": 0.979
+  },
+  {
+   "days": 30,
+   "state": "NJ",
+   "special": false,
+   "forecast_margin": 20.6,
+   "result_margin": 28.67,
+   "p_dem": 0.997
+  },
+  {
+   "days": 30,
+   "state": "NM",
+   "special": false,
+   "forecast_margin": 20.32,
+   "result_margin": 26.53,
+   "p_dem": 0.999
+  },
+  {
+   "days": 30,
+   "state": "NC",
+   "special": false,
+   "forecast_margin": 7.86,
+   "result_margin": 20.14,
+   "p_dem": 0.949
+  },
+  {
+   "days": 30,
+   "state": "OH",
+   "special": true,
+   "forecast_margin": -0.14,
+   "result_margin": 5.42,
+   "p_dem": 0.49
+  },
+  {
+   "days": 30,
+   "state": "OK",
+   "special": false,
+   "forecast_margin": -21.55,
+   "result_margin": -18.56,
+   "p_dem": 0.003
+  },
+  {
+   "days": 30,
+   "state": "OR",
+   "special": false,
+   "forecast_margin": 25.38,
+   "result_margin": 19.93,
+   "p_dem": 0.999
+  },
+  {
+   "days": 30,
+   "state": "RI",
+   "special": false,
+   "forecast_margin": 26.88,
+   "result_margin": 39.07,
+   "p_dem": 0.999
+  },
+  {
+   "days": 30,
+   "state": "SC",
+   "special": false,
+   "forecast_margin": -3.56,
+   "result_margin": 4.6,
+   "p_dem": 0.225
+  },
+  {
+   "days": 30,
+   "state": "TN",
+   "special": false,
+   "forecast_margin": -23.94,
+   "result_margin": -12.42,
+   "p_dem": 0.001
+  },
+  {
+   "days": 30,
+   "state": "TX",
+   "special": false,
+   "forecast_margin": 0.7,
+   "result_margin": 12.34,
+   "p_dem": 0.563
+  },
+  {
+   "days": 30,
+   "state": "VA",
+   "special": false,
+   "forecast_margin": 16.93,
+   "result_margin": 23.27,
+   "p_dem": 0.987
+  },
+  {
+   "days": 30,
+   "state": "WV",
+   "special": false,
+   "forecast_margin": -30.09,
+   "result_margin": -21.14,
+   "p_dem": 0.001
+  },
+  {
+   "days": 30,
+   "state": "WY",
+   "special": false,
+   "forecast_margin": -31.34,
+   "result_margin": -30.47,
+   "p_dem": 0.001
+  },
+  {
+   "days": 14,
+   "state": "AL",
+   "special": false,
+   "forecast_margin": -18.82,
+   "result_margin": -9.49,
+   "p_dem": 0.001
+  },
+  {
+   "days": 14,
+   "state": "AK",
+   "special": false,
+   "forecast_margin": -0.81,
+   "result_margin": 4.54,
+   "p_dem": 0.432
+  },
+  {
+   "days": 14,
+   "state": "AR",
+   "special": false,
+   "forecast_margin": -17.99,
+   "result_margin": -12.16,
+   "p_dem": 0.001
+  },
+  {
+   "days": 14,
+   "state": "CO",
+   "special": false,
+   "forecast_margin": 25.35,
+   "result_margin": 26.73,
+   "p_dem": 0.999
+  },
+  {
+   "days": 14,
+   "state": "DE",
+   "special": false,
+   "forecast_margin": 25.37,
+   "result_margin": 27.15,
+   "p_dem": 0.999
+  },
+  {
+   "days": 14,
+   "state": "FL",
+   "special": true,
+   "forecast_margin": -4.75,
+   "result_margin": -2.89,
+   "p_dem": 0.17
+  },
+  {
+   "days": 14,
+   "state": "GA",
+   "special": false,
+   "forecast_margin": 13.08,
+   "result_margin": 18.06,
+   "p_dem": 0.994
+  },
+  {
+   "days": 14,
+   "state": "IL",
+   "special": false,
+   "forecast_margin": 17.68,
+   "result_margin": 26.15,
+   "p_dem": 0.993
+  },
+  {
+   "days": 14,
+   "state": "IA",
+   "special": false,
+   "forecast_margin": -0.42,
+   "result_margin": 4.34,
+   "p_dem": 0.463
+  },
+  {
+   "days": 14,
+   "state": "KS",
+   "special": false,
+   "forecast_margin": -3.85,
+   "result_margin": 5.56,
+   "p_dem": 0.217
+  },
+  {
+   "days": 14,
+   "state": "KY",
+   "special": false,
+   "forecast_margin": -15.1,
+   "result_margin": -12.35,
+   "p_dem": 0.017
+  },
+  {
+   "days": 14,
+   "state": "LA",
+   "special": false,
+   "forecast_margin": -10.64,
+   "result_margin": -1.77,
+   "p_dem": 0.066
+  },
+  {
+   "days": 14,
+   "state": "ME",
+   "special": false,
+   "forecast_margin": 5.95,
+   "result_margin": 6.2,
+   "p_dem": 0.883
+  },
+  {
+   "days": 14,
+   "state": "MA",
+   "special": false,
+   "forecast_margin": 35.04,
+   "result_margin": 33.5,
+   "p_dem": 0.999
+  },
+  {
+   "days": 14,
+   "state": "MI",
+   "special": false,
+   "forecast_margin": 5.63,
+   "result_margin": 7.23,
+   "p_dem": 0.872
+  },
+  {
+   "days": 14,
+   "state": "MN",
+   "special": false,
+   "forecast_margin": 8.26,
+   "result_margin": 10.43,
+   "p_dem": 0.951
+  },
+  {
+   "days": 14,
+   "state": "MS",
+   "special": false,
+   "forecast_margin": -10.4,
+   "result_margin": 0.84,
+   "p_dem": 0.069
+  },
+  {
+   "days": 14,
+   "state": "NE",
+   "special": false,
+   "forecast_margin": -3.17,
+   "result_margin": -6.06,
+   "p_dem": 0.258
+  },
+  {
+   "days": 14,
+   "state": "NH",
+   "special": false,
+   "forecast_margin": 10.09,
+   "result_margin": 14.03,
+   "p_dem": 0.976
+  },
+  {
+   "days": 14,
+   "state": "NJ",
+   "special": false,
+   "forecast_margin": 20.72,
+   "result_margin": 28.67,
+   "p_dem": 0.998
+  },
+  {
+   "days": 14,
+   "state": "NM",
+   "special": false,
+   "forecast_margin": 20.19,
+   "result_margin": 26.53,
+   "p_dem": 0.999
+  },
+  {
+   "days": 14,
+   "state": "NC",
+   "special": false,
+   "forecast_margin": 9.61,
+   "result_margin": 20.14,
+   "p_dem": 0.971
+  },
+  {
+   "days": 14,
+   "state": "OH",
+   "special": true,
+   "forecast_margin": 1.36,
+   "result_margin": 5.42,
+   "p_dem": 0.61
+  },
+  {
+   "days": 14,
+   "state": "OK",
+   "special": false,
+   "forecast_margin": -21.55,
+   "result_margin": -18.56,
+   "p_dem": 0.002
+  },
+  {
+   "days": 14,
+   "state": "OR",
+   "special": false,
+   "forecast_margin": 25.5,
+   "result_margin": 19.93,
+   "p_dem": 0.999
+  },
+  {
+   "days": 14,
+   "state": "RI",
+   "special": false,
+   "forecast_margin": 30.7,
+   "result_margin": 39.07,
+   "p_dem": 0.999
+  },
+  {
+   "days": 14,
+   "state": "SC",
+   "special": false,
+   "forecast_margin": -4.44,
+   "result_margin": 4.6,
+   "p_dem": 0.184
+  },
+  {
+   "days": 14,
+   "state": "TN",
+   "special": false,
+   "forecast_margin": -23.56,
+   "result_margin": -12.42,
+   "p_dem": 0.001
+  },
+  {
+   "days": 14,
+   "state": "TX",
+   "special": false,
+   "forecast_margin": 1.93,
+   "result_margin": 12.34,
+   "p_dem": 0.651
+  },
+  {
+   "days": 14,
+   "state": "VA",
+   "special": false,
+   "forecast_margin": 17.11,
+   "result_margin": 23.27,
+   "p_dem": 0.992
+  },
+  {
+   "days": 14,
+   "state": "WV",
+   "special": false,
+   "forecast_margin": -30.17,
+   "result_margin": -21.14,
+   "p_dem": 0.001
+  },
+  {
+   "days": 14,
+   "state": "WY",
+   "special": false,
+   "forecast_margin": -31.31,
+   "result_margin": -30.47,
+   "p_dem": 0.001
+  },
+  {
+   "days": 7,
+   "state": "AL",
+   "special": false,
+   "forecast_margin": -19.29,
+   "result_margin": -9.49,
+   "p_dem": 0.001
+  },
+  {
+   "days": 7,
+   "state": "AK",
+   "special": false,
+   "forecast_margin": -0.9,
+   "result_margin": 4.54,
+   "p_dem": 0.425
+  },
+  {
+   "days": 7,
+   "state": "AR",
+   "special": false,
+   "forecast_margin": -18.6,
+   "result_margin": -12.16,
+   "p_dem": 0.001
+  },
+  {
+   "days": 7,
+   "state": "CO",
+   "special": false,
+   "forecast_margin": 24.7,
+   "result_margin": 26.73,
+   "p_dem": 0.999
+  },
+  {
+   "days": 7,
+   "state": "DE",
+   "special": false,
+   "forecast_margin": 24.81,
+   "result_margin": 27.15,
+   "p_dem": 0.999
+  },
+  {
+   "days": 7,
+   "state": "FL",
+   "special": true,
+   "forecast_margin": -4.69,
+   "result_margin": -2.89,
+   "p_dem": 0.158
+  },
+  {
+   "days": 7,
+   "state": "GA",
+   "special": false,
+   "forecast_margin": 14.01,
+   "result_margin": 18.06,
+   "p_dem": 0.997
+  },
+  {
+   "days": 7,
+   "state": "IL",
+   "special": false,
+   "forecast_margin": 17.11,
+   "result_margin": 26.15,
+   "p_dem": 0.992
+  },
+  {
+   "days": 7,
+   "state": "IA",
+   "special": false,
+   "forecast_margin": -0.43,
+   "result_margin": 4.34,
+   "p_dem": 0.466
+  },
+  {
+   "days": 7,
+   "state": "KS",
+   "special": false,
+   "forecast_margin": 0.65,
+   "result_margin": 5.56,
+   "p_dem": 0.557
+  },
+  {
+   "days": 7,
+   "state": "KY",
+   "special": false,
+   "forecast_margin": -15.68,
+   "result_margin": -12.35,
+   "p_dem": 0.012
+  },
+  {
+   "days": 7,
+   "state": "LA",
+   "special": false,
+   "forecast_margin": -11.21,
+   "result_margin": -1.77,
+   "p_dem": 0.051
+  },
+  {
+   "days": 7,
+   "state": "ME",
+   "special": false,
+   "forecast_margin": 6.04,
+   "result_margin": 6.2,
+   "p_dem": 0.898
+  },
+  {
+   "days": 7,
+   "state": "MA",
+   "special": false,
+   "forecast_margin": 34.6,
+   "result_margin": 33.5,
+   "p_dem": 0.999
+  },
+  {
+   "days": 7,
+   "state": "MI",
+   "special": false,
+   "forecast_margin": 6.64,
+   "result_margin": 7.23,
+   "p_dem": 0.918
+  },
+  {
+   "days": 7,
+   "state": "MN",
+   "special": false,
+   "forecast_margin": 8.96,
+   "result_margin": 10.43,
+   "p_dem": 0.967
+  },
+  {
+   "days": 7,
+   "state": "MS",
+   "special": false,
+   "forecast_margin": -11.02,
+   "result_margin": 0.84,
+   "p_dem": 0.052
+  },
+  {
+   "days": 7,
+   "state": "NE",
+   "special": false,
+   "forecast_margin": -2.54,
+   "result_margin": -6.06,
+   "p_dem": 0.297
+  },
+  {
+   "days": 7,
+   "state": "NH",
+   "special": false,
+   "forecast_margin": 9.4,
+   "result_margin": 14.03,
+   "p_dem": 0.973
+  },
+  {
+   "days": 7,
+   "state": "NJ",
+   "special": false,
+   "forecast_margin": 20.15,
+   "result_margin": 28.67,
+   "p_dem": 0.998
+  },
+  {
+   "days": 7,
+   "state": "NM",
+   "special": false,
+   "forecast_margin": 19.42,
+   "result_margin": 26.53,
+   "p_dem": 0.999
+  },
+  {
+   "days": 7,
+   "state": "NC",
+   "special": false,
+   "forecast_margin": 9.2,
+   "result_margin": 20.14,
+   "p_dem": 0.97
+  },
+  {
+   "days": 7,
+   "state": "OH",
+   "special": true,
+   "forecast_margin": 0.9,
+   "result_margin": 5.42,
+   "p_dem": 0.581
+  },
+  {
+   "days": 7,
+   "state": "OK",
+   "special": false,
+   "forecast_margin": -22.12,
+   "result_margin": -18.56,
+   "p_dem": 0.001
+  },
+  {
+   "days": 7,
+   "state": "OR",
+   "special": false,
+   "forecast_margin": 24.94,
+   "result_margin": 19.93,
+   "p_dem": 0.999
+  },
+  {
+   "days": 7,
+   "state": "RI",
+   "special": false,
+   "forecast_margin": 30.36,
+   "result_margin": 39.07,
+   "p_dem": 0.999
+  },
+  {
+   "days": 7,
+   "state": "SC",
+   "special": false,
+   "forecast_margin": -3.7,
+   "result_margin": 4.6,
+   "p_dem": 0.215
+  },
+  {
+   "days": 7,
+   "state": "TN",
+   "special": false,
+   "forecast_margin": -24.15,
+   "result_margin": -12.42,
+   "p_dem": 0.001
+  },
+  {
+   "days": 7,
+   "state": "TX",
+   "special": false,
+   "forecast_margin": 2.26,
+   "result_margin": 12.34,
+   "p_dem": 0.687
+  },
+  {
+   "days": 7,
+   "state": "VA",
+   "special": false,
+   "forecast_margin": 16.55,
+   "result_margin": 23.27,
+   "p_dem": 0.991
+  },
+  {
+   "days": 7,
+   "state": "WV",
+   "special": false,
+   "forecast_margin": -30.78,
+   "result_margin": -21.14,
+   "p_dem": 0.001
+  },
+  {
+   "days": 7,
+   "state": "WY",
+   "special": false,
+   "forecast_margin": -31.89,
+   "result_margin": -30.47,
+   "p_dem": 0.001
+  },
+  {
+   "days": 1,
+   "state": "AL",
+   "special": false,
+   "forecast_margin": -19.03,
+   "result_margin": -9.49,
+   "p_dem": 0.001
+  },
+  {
+   "days": 1,
+   "state": "AK",
+   "special": false,
+   "forecast_margin": 0.21,
+   "result_margin": 4.54,
+   "p_dem": 0.514
+  },
+  {
+   "days": 1,
+   "state": "AR",
+   "special": false,
+   "forecast_margin": -18.53,
+   "result_margin": -12.16,
+   "p_dem": 0.001
+  },
+  {
+   "days": 1,
+   "state": "CO",
+   "special": false,
+   "forecast_margin": 24.96,
+   "result_margin": 26.73,
+   "p_dem": 0.999
+  },
+  {
+   "days": 1,
+   "state": "DE",
+   "special": false,
+   "forecast_margin": 25.12,
+   "result_margin": 27.15,
+   "p_dem": 0.999
+  },
+  {
+   "days": 1,
+   "state": "FL",
+   "special": true,
+   "forecast_margin": -4.71,
+   "result_margin": -2.89,
+   "p_dem": 0.168
+  },
+  {
+   "days": 1,
+   "state": "GA",
+   "special": false,
+   "forecast_margin": 12.64,
+   "result_margin": 18.06,
+   "p_dem": 0.992
+  },
+  {
+   "days": 1,
+   "state": "IL",
+   "special": false,
+   "forecast_margin": 17.45,
+   "result_margin": 26.15,
+   "p_dem": 0.993
+  },
+  {
+   "days": 1,
+   "state": "IA",
+   "special": false,
+   "forecast_margin": 0.14,
+   "result_margin": 4.34,
+   "p_dem": 0.508
+  },
+  {
+   "days": 1,
+   "state": "KS",
+   "special": false,
+   "forecast_margin": 0.7,
+   "result_margin": 5.56,
+   "p_dem": 0.553
+  },
+  {
+   "days": 1,
+   "state": "KY",
+   "special": false,
+   "forecast_margin": -15.33,
+   "result_margin": -12.35,
+   "p_dem": 0.013
+  },
+  {
+   "days": 1,
+   "state": "LA",
+   "special": false,
+   "forecast_margin": -10.87,
+   "result_margin": -1.77,
+   "p_dem": 0.058
+  },
+  {
    "days": 1,
    "state": "ME",
    "special": false,
-   "forecast_margin": 6.05,
+   "forecast_margin": 7.29,
    "result_margin": 6.2,
-   "p_dem": 0.89
+   "p_dem": 0.93
   },
   {
    "days": 1,
    "state": "MA",
    "special": false,
-   "forecast_margin": 30.49,
+   "forecast_margin": 31.74,
    "result_margin": 33.5,
    "p_dem": 0.999
   },
@@ -2071,55 +2071,55 @@
    "days": 1,
    "state": "MI",
    "special": false,
-   "forecast_margin": 6.02,
+   "forecast_margin": 7.26,
    "result_margin": 7.23,
-   "p_dem": 0.886
+   "p_dem": 0.926
   },
   {
    "days": 1,
    "state": "MN",
    "special": false,
-   "forecast_margin": 6.8,
+   "forecast_margin": 8.04,
    "result_margin": 10.43,
-   "p_dem": 0.911
+   "p_dem": 0.944
   },
   {
    "days": 1,
    "state": "MS",
    "special": false,
-   "forecast_margin": -11.82,
+   "forecast_margin": -10.57,
    "result_margin": 0.84,
-   "p_dem": 0.044
+   "p_dem": 0.063
   },
   {
    "days": 1,
    "state": "NE",
    "special": false,
-   "forecast_margin": -3.91,
+   "forecast_margin": -2.67,
    "result_margin": -6.06,
-   "p_dem": 0.21
+   "p_dem": 0.291
   },
   {
    "days": 1,
    "state": "NH",
    "special": false,
-   "forecast_margin": 9.52,
+   "forecast_margin": 10.76,
    "result_margin": 14.03,
-   "p_dem": 0.97
+   "p_dem": 0.982
   },
   {
    "days": 1,
    "state": "NJ",
    "special": false,
-   "forecast_margin": 19.23,
+   "forecast_margin": 20.47,
    "result_margin": 28.67,
-   "p_dem": 0.997
+   "p_dem": 0.998
   },
   {
    "days": 1,
    "state": "NM",
    "special": false,
-   "forecast_margin": 18.38,
+   "forecast_margin": 19.63,
    "result_margin": 26.53,
    "p_dem": 0.999
   },
@@ -2127,23 +2127,23 @@
    "days": 1,
    "state": "NC",
    "special": false,
-   "forecast_margin": 8.52,
+   "forecast_margin": 9.77,
    "result_margin": 20.14,
-   "p_dem": 0.955
+   "p_dem": 0.974
   },
   {
    "days": 1,
    "state": "OH",
    "special": true,
-   "forecast_margin": -0.68,
+   "forecast_margin": 0.57,
    "result_margin": 5.42,
-   "p_dem": 0.442
+   "p_dem": 0.541
   },
   {
    "days": 1,
    "state": "OK",
    "special": false,
-   "forecast_margin": -23.03,
+   "forecast_margin": -21.78,
    "result_margin": -18.56,
    "p_dem": 0.001
   },
@@ -2151,7 +2151,7 @@
    "days": 1,
    "state": "OR",
    "special": false,
-   "forecast_margin": 24.01,
+   "forecast_margin": 25.26,
    "result_margin": 19.93,
    "p_dem": 0.999
   },
@@ -2159,7 +2159,7 @@
    "days": 1,
    "state": "RI",
    "special": false,
-   "forecast_margin": 30.15,
+   "forecast_margin": 31.39,
    "result_margin": 39.07,
    "p_dem": 0.999
   },
@@ -2167,15 +2167,15 @@
    "days": 1,
    "state": "SC",
    "special": false,
-   "forecast_margin": -4.76,
+   "forecast_margin": -3.51,
    "result_margin": 4.6,
-   "p_dem": 0.166
+   "p_dem": 0.234
   },
   {
    "days": 1,
    "state": "TN",
    "special": false,
-   "forecast_margin": -24.98,
+   "forecast_margin": -23.74,
    "result_margin": -12.42,
    "p_dem": 0.001
   },
@@ -2183,23 +2183,23 @@
    "days": 1,
    "state": "TX",
    "special": false,
-   "forecast_margin": 0.73,
+   "forecast_margin": 1.97,
    "result_margin": 12.34,
-   "p_dem": 0.561
+   "p_dem": 0.656
   },
   {
    "days": 1,
    "state": "VA",
    "special": false,
-   "forecast_margin": 15.62,
+   "forecast_margin": 16.87,
    "result_margin": 23.27,
-   "p_dem": 0.986
+   "p_dem": 0.991
   },
   {
    "days": 1,
    "state": "WV",
    "special": false,
-   "forecast_margin": -31.59,
+   "forecast_margin": -30.34,
    "result_margin": -21.14,
    "p_dem": 0.001
   },
@@ -2207,7 +2207,7 @@
    "days": 1,
    "state": "WY",
    "special": false,
-   "forecast_margin": -32.79,
+   "forecast_margin": -31.55,
    "result_margin": -30.47,
    "p_dem": 0.001
   }
@@ -2216,8 +2216,8 @@
   "races": 21,
   "polls_only_miss": 6.82,
   "polls_only_bias": -5.28,
-  "model_miss_same_races": 7.18,
-  "model_bias_same_races": -6.05,
+  "model_miss_same_races": 6.17,
+  "model_bias_same_races": -4.8,
   "polls_only_called": 20
  }
 }

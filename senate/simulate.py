@@ -32,6 +32,10 @@ OWN_FLOOR = 1.0
 # simulation.
 CAUCUS_AFTER = {2018: 47, 2020: 50, 2022: 51, 2024: 47}
 TIE_GOES_TO = {2018: 'R', 2020: 'D', 2022: 'D', 2024: 'R'}
+CAUCUS_BEFORE = {2018: 49, 2020: 47, 2022: 50, 2024: 51, 2026: 47}
+# step 10: every race is moved by one shared amount so the expected seats land a quarter of the way from the races' own
+# total to the national seat-change model's (combine_test.py); 0 switches it off
+COMBINE = 0.25
 
 
 def shared_sd(e, years):
@@ -79,6 +83,40 @@ def fold(a, b, oos, how='others'):
     return bf, sn
 
 
+def national_seats(nat, y, days):
+    """The national seat-change model's forecast of the Democratic caucus after the election: Quinn, Brush and Smith's
+    Senate equation without income (approval, midterm, seats up), fitted on 1948 up to the election before."""
+    import national as NA
+    N = nat.N; fit = N[N.index < y]
+    X = np.column_stack([np.ones(len(fit)), fit.june_approval, fit.midterm, fit.senate_up]); b = np.linalg.lstsq(X, fit.senate_change.values, rcond=None)[0]
+    asof = pd.Timestamp(NA.ELECTION[y]) - pd.Timedelta(days=days)
+    change = float(b @ [1, nat.approval(y, asof), int(y % 4 == 2), N.loc[y, 'senate_up']])
+    return CAUCUS_BEFORE[y] + (change if NA.PRESIDENT[y][0] == 'D' else -change)
+
+
+def expected_seats(m, sd, delta=0.0):
+    return float(sum(0.5 * (1 + math.erf((mm + delta - 50) / (s * math.sqrt(2)))) for mm, s in zip(m, sd)))
+
+
+def shift_for(m, sd, target):
+    """The shared move of every race that brings the expected seats to the target."""
+    lo, hi = -15.0, 15.0
+    for _ in range(60):
+        mid = (lo + hi) / 2
+        if expected_seats(m, sd, mid) < target: lo = mid
+        else: hi = mid
+    return (lo + hi) / 2
+
+
+def combine(bf, base, ns, w=None):
+    """Move the races so the expected Democratic caucus (base + the races' expected wins) is a weight w of the way to
+    the national model's ns."""
+    w = COMBINE if w is None else w
+    if not w: return bf
+    own = base + expected_seats(bf.m.values, bf.sd_total.values)
+    return bf.assign(m=bf.m + shift_for(bf.m.values, bf.sd_total.values, (1 - w) * own + w * ns - base))
+
+
 def simulate(bf, sn, rng, joint=True):
     """Simulated Democratic two-party shares, SIMS x races. The t draw is scaled so that its spread matches sn."""
     n = len(bf)
@@ -94,7 +132,8 @@ HOW = {'others': 'together', 'others, both': 'together, both from out of sample'
 
 
 def main():
-    X = B.build(); rng = np.random.default_rng(2028)
+    import national as NA
+    X = B.build(); rng = np.random.default_rng(2028); nat = NA.National()
     ex = pd.read_csv(os.path.join(ROOT, 'data', 'senate', 'excluded.csv'))
     # the races left out of the test all went one way, and are counted as such: California 2018 to a Democrat; Arkansas 2020
     # and Alaska 2022 to Republicans
@@ -117,6 +156,7 @@ def main():
                 bf, sn = fits[d]
                 actual = int((bf.dem2 > 50).sum())
                 holdover = CAUCUS_AFTER[y] - actual - ex_dem[y]
+                bf = combine(bf, holdover + ex_dem[y], national_seats(nat, y, d))
                 for joint in ((True, False) if how == 'others' else (True,)):
                     S = simulate(bf, sn, rng, joint)
                     seats = (S > 50).sum(axis=1)

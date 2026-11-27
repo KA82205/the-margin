@@ -331,6 +331,32 @@ scored (`national_ideas.json`).
 - The national input stays as step 8 left it. The one idea left with a real chance is the special elections (Hunt):
   they read the national mood from votes, not from polls or approval.
 
+## Step 10: pulling the seat total toward the national seat model (adopted, a quarter of the way)
+
+`senate/combine_test.py` takes the national seat-change model (Quinn, Brush and Smith's Senate equation without income:
+approval, the midterm and seats up, fitted on 1948 up to the election before) and moves every race by one shared
+amount so that the simulation's expected seats land part of the way from its own total to the national model's. The
+races still decide which seats. Weights of 0, a quarter, a half, three quarters and all were set before scoring.
+
+| | Race model alone | A quarter of the way | Half way |
+|---|---|---|---|
+| Seat total, typical miss, all five years: a year out / last day | 3.7 / 2.3 | 3.0 / 2.0 | 2.4 / 1.9 |
+| Same, 2018-2024 only | 1.6 / 1.2 | 1.1 / 1.3 | 1.2 / 1.6 |
+| Race log loss, all five years: a year out / last day | 0.296 / 0.174 | 0.256 / 0.166 | 0.237 / 0.165 |
+| Control log loss, all five years: a year out / last day | 0.77 / 0.30 | 0.50 / 0.33 | 0.39 / 0.38 |
+
+- **It helps where the polls and the race model lagged the national mood:** 2018 and 2026. It hurts in 2022, when the
+  national model expected the usual midterm loss for the president's party and the Democrats beat it; 2020 and 2024
+  hardly change.
+- **A quarter of the way is adopted** (`COMBINE` in `simulate.py`, used by `test_2026.py`): over the five years it is
+  better than the race model alone at every distance on the seat total, the margins and the races' chances, and costs
+  little in 2022. Half way gains more, but mostly from 2026, one year. The chance of control near the election gets
+  slightly worse (0.33 against 0.30 on the last day), from 2022.
+- **2026 now:** the last day gives the Democrats 18.3 seats of the 32 (80% range 15-22, against the 22 they won), 30 of
+  32 races called right and a 77% chance of control; a year out, 15.8 seats and 33%.
+- The simulation and 2026 figures in steps 6 and 7 were made before this step; `simulation.json` and `test_2026.json`
+  now hold the combined version.
+
 ## The 2026 academic forecasts, for reference
 
 `data/senate/2026/academic_forecasts_2026.csv` holds the forecasts in the *PS: Political Science & Politics* special
