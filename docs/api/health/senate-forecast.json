@@ -1,0 +1,13 @@
+{
+ "job": "senate-forecast",
+ "ok": true,
+ "last_run": "2026-11-27",
+ "last_success": "2026-11-27",
+ "overdue_after": "2026-11-28",
+ "failing_since": null,
+ "error": null,
+ "runs": "every hour, after each run of the presidential forecast",
+ "what": "The Senate forecast: reads Wikipedia, reruns the forecast and writes data/senate/<year>/ and docs/api/senate.json, which the Senate tab reads. A run whose readings look wrong stops and leaves the last forecast in place.",
+ "workflow": "https://github.com/KA82205/the-margin/actions/workflows/senate.yml",
+ "how_to_read": "ok false: the last run failed, error says why, and the site keeps the last good figures. ok true but today later than overdue_after: the job has stopped running. The workflow link lists every run."
+}
