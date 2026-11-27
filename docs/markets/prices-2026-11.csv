@@ -647,3 +647,7 @@ time,provider,id,kind,place,dem,rep,p,quality,volume,liquidity,traders,spread
 2026-11-27T19:22Z,Polymarket,2028-presidential-election-new-jersey-winner,winner,NJ,0.875,0.0825,0.9138,0.3967,10092,102881,,0.093
 2026-11-27T19:22Z,Kalshi,KXPRESSTATE-DE-28,winner,DE,0.969,0.043,0.9575,0.2188,30,20,,0.038
 2026-11-27T19:22Z,Kalshi,KXPRESSTATE-VT-28,winner,VT,0.935,0.0605,0.9392,0.3641,948,730,,0.065
+2026-11-27T19:41Z,Polymarket,2028-presidential-election-delaware-winner,winner,DE,0.935,0.047,0.9521,0.3718,404,72829,,0.046
+2026-11-27T19:41Z,Polymarket,2028-presidential-election-california-winner,winner,CA,0.945,0.05,0.9497,0.42,330,86283,,0.02
+2026-11-27T19:41Z,Polymarket,2028-presidential-election-massachusetts-winner,winner,MA,0.915,0.075,0.9242,0.4291,531,68851,,0.03
+2026-11-27T19:41Z,Polymarket,2028-presidential-election-new-jersey-winner,winner,NJ,0.875,0.0845,0.9119,0.3967,10092,102599,,0.093
