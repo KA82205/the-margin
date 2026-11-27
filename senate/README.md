@@ -206,8 +206,48 @@ the Democrats won control in 2020 and 2022.
   similar states. Both need the 2028 presidential simulation's draws; they would widen the seat ranges further in a
   year with a presidential polling miss.
 
+## Step 7: 2026, a year the model never saw
+
+`python senate/test_2026.py` forecasts the 2026 elections with the working version fitted on 2018-2024 only, and writes
+`data/senate/2026/test_2026.json`. The 32 races between a Democrat (or Osborn, the Democrats' choice in Nebraska) and a
+Republican are in `data/senate/2026/races_2026.csv`, with the vote counts reported after the election (state election
+offices via Fox News's results pages, November 26, 2026; not all certified). Idaho, Montana and South Dakota are left
+out: no Democrat-side candidate was among the top two, and all three went Republican.
+
+The race polls and the generic-ballot average are RealClearPolling's (kept out of the repository in
+`data/senate/2026_rcp/`, which is RealClearPolling's compilation, not ours to republish). Its list is narrower than the
+FiveThirtyEight archive the model was fitted on, and its generic-ballot average stands in for the model's own.
+
+| 2026 | A year out | 60 days | 30 days | Last day |
+|---|---|---|---|---|
+| Races called right (of 32) | 24 | 25 | 25 | 26 |
+| Miss on the margin | 12.1 | 10.0 | 8.6 | 7.8 |
+| Average miss (negative: Democrats understated) | -10.9 | -8.7 | -7.2 | -6.6 |
+| Democratic seats among the 32 (80% range) | 14 (11-16) | 15 (13-18) | 16 (13-20) | 17 (14-21) |
+| Chance of Democratic control | 8% | 28% | 46% | 60% |
+
+The Democrats won 22 of the 32 and control of the Senate (56 seats). The six races called wrong on the last day were all
+Democratic wins the model had narrowly against them: Iowa, Alaska, South Carolina, Ohio, Kansas and Mississippi.
+
+- **The polls missed together, by a lot.** In the 21 races with polls in RealClearPolling's list, a plain average of each
+  race's polls in the last 30 days understated the Democrats by 5.3 points of margin on average. A shared miss of that
+  size is about twice the shared error the simulation allows (about 3.4 points of margin), so the result fell outside
+  the 80% range for seats, and only 56% of races fell inside their own 80% ranges on the last day.
+- **The fundamentals made it worse, not better.** On the same 21 races the model's average miss was 6.3, against the
+  polls' 5.3. The generic ballot (Democrats ahead by about 9 on election eve, by 3 a year before) understated the year,
+  and the model takes only about two thirds to four fifths of any generic-ballot lead, because 2018-2024 had no wave
+  larger than 2018's. 2026's (the Democratic side's average share less each state's lean) was larger than 2018's.
+- **A year out the model had no way to see it coming:** it knows nothing of the regular swing against the president's
+  party in a midterm, only the generic ballot of the day.
+
+What this does and does not say. One year is one national environment, and the polls' miss was shared, so 2026 is one
+draw, not 32. It argues for a larger shared error (2026 can now join the years it is measured on) and for testing a
+midterm term on the long record of Senate results since 1978. A presidential year such as 2028 has no midterm swing, so
+for 2028 the first lesson is the one that applies.
+
 ## What comes next
 
+- Add 2026 to the fitting years and size the shared error again; test a midterm term on 1978-2024 Senate results.
 - Records from House and statewide races, for candidates who have run for those offices.
 - Link the simulation to the presidential one's draws in 2028: each state's Senate race moving with its presidential vote, and the tie-breaking vice president.
 - Replace the cycle's money totals with money raised by each date (the FEC's quarterly filings).
