@@ -30,7 +30,7 @@ def save(name, data):
 
 
 def fred():
-    for s in ('DPIC96', 'A191RL1Q225SBEA', 'A229RX0Q048SBEA'):
+    for s in ('DPIC96', 'A191RL1Q225SBEA', 'A229RX0Q048SBEA', 'CPIAUCSL', 'UNRATE', 'PCEPI'):
         save(f'fred_{s}.csv', get(f'https://fred.stlouisfed.org/graph/fredgraph.csv?id={s}'))
 
 
