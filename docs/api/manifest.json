@@ -7,7 +7,7 @@
  "forecast": {
   "as_of": "2026-11-27",
   "file": "api/forecast.json",
-  "hash": "79d780a0a2c70253",
+  "hash": "ee907305aeb15cee",
   "last_kept": "2026-11-27T0515Z.json",
   "kept": 7
  },
@@ -75,9 +75,9 @@
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-27T15:31Z",
- "commit": "fbf34483f050",
- "markets_read": "2026-11-27T15:30Z",
+ "made": "2026-11-27T15:34Z",
+ "commit": "929ec7747247",
+ "markets_read": "2026-11-27T15:33Z",
  "markets": {
   "counts": {
    "Polymarket": 51,

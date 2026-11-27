@@ -1,5 +1,5 @@
 {
-"read": "2026-11-27T15:30Z",
+"read": "2026-11-27T15:33Z",
 "counts": {
 "Polymarket": 51,
 "Kalshi": 60,
@@ -27,7 +27,7 @@
 {
 "provider": "Kalshi",
 "p": 0.645,
-"quality": 0.4687,
+"quality": 0.4686,
 "real_money": true,
 "volume": 1081,
 "traders": null,
@@ -52,7 +52,7 @@
 },
 "winner:AZ": {
 "p": 0.6399,
-"quality": 0.7594,
+"quality": 0.7593,
 "real_money": true,
 "providers": [
 {
@@ -70,7 +70,7 @@
 {
 "provider": "Kalshi",
 "p": 0.6119,
-"quality": 0.4093,
+"quality": 0.4092,
 "real_money": true,
 "volume": 317,
 "traders": null,
@@ -274,13 +274,13 @@
 },
 "winner:CT": {
 "p": 0.9527,
-"quality": 0.5907,
+"quality": 0.5906,
 "real_money": true,
 "providers": [
 {
 "provider": "Kalshi",
 "p": 0.9455,
-"quality": 0.4856,
+"quality": 0.4855,
 "real_money": true,
 "volume": 3110,
 "traders": null,
@@ -348,13 +348,13 @@
 },
 "winner:CA": {
 "p": 0.9604,
-"quality": 0.8144,
+"quality": 0.8143,
 "real_money": true,
 "providers": [
 {
 "provider": "Kalshi",
 "p": 0.9599,
-"quality": 0.6877,
+"quality": 0.6876,
 "real_money": true,
 "volume": 16022,
 "traders": null,
@@ -582,7 +582,7 @@
 },
 "winner:IA": {
 "p": 0.3185,
-"quality": 0.7974,
+"quality": 0.7973,
 "real_money": true,
 "providers": [
 {
@@ -600,7 +600,7 @@
 {
 "provider": "Kalshi",
 "p": 0.2878,
-"quality": 0.3541,
+"quality": 0.354,
 "real_money": true,
 "volume": 195,
 "traders": null,
@@ -656,7 +656,7 @@
 },
 "winner:MA": {
 "p": 0.94,
-"quality": 0.2896,
+"quality": 0.2895,
 "real_money": true,
 "providers": [
 {
@@ -674,7 +674,7 @@
 {
 "provider": "Kalshi",
 "p": 0.968,
-"quality": 0.1486,
+"quality": 0.1485,
 "real_money": true,
 "volume": 10,
 "traders": null,
@@ -835,13 +835,13 @@
 },
 "winner:IN": {
 "p": 0.1052,
-"quality": 0.7125,
+"quality": 0.7124,
 "real_money": true,
 "providers": [
 {
 "provider": "Kalshi",
 "p": 0.0923,
-"quality": 0.5496,
+"quality": 0.5495,
 "real_money": true,
 "volume": 4876,
 "traders": null,
@@ -927,7 +927,7 @@
 {
 "provider": "Kalshi",
 "p": 0.6212,
-"quality": 0.6083,
+"quality": 0.6082,
 "real_money": true,
 "volume": 5238,
 "traders": null,
@@ -1192,7 +1192,7 @@
 {
 "provider": "Kalshi",
 "p": 0.0756,
-"quality": 0.2521,
+"quality": 0.252,
 "real_money": true,
 "volume": 146,
 "traders": null,
@@ -1384,13 +1384,13 @@
 },
 "winner:TX": {
 "p": 0.3947,
-"quality": 0.8815,
+"quality": 0.8814,
 "real_money": true,
 "providers": [
 {
 "provider": "Kalshi",
 "p": 0.3881,
-"quality": 0.7089,
+"quality": 0.7088,
 "real_money": true,
 "volume": 21591,
 "traders": null,
@@ -1803,7 +1803,7 @@
 {
 "provider": "Kalshi",
 "p": 0.6717,
-"quality": 0.9657,
+"quality": 0.9656,
 "real_money": true,
 "volume": 946820,
 "traders": null,
