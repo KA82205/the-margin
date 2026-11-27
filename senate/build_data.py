@@ -126,6 +126,67 @@ def results(t):
     return pd.DataFrame(races), pd.DataFrame(out)
 
 
+# ------------------------------------------------------------------------------------------------------- track records
+def past_races():
+    """Every Senate general election of 1978-2024 between a Democrat (or an independent the Democrats backed) and a
+    Republican, with how far the Democratic side ran ahead of what the state's lean and that year's national mood would give:
+    the result, less what the state's lean and the year give (a line fitted across all the races). Whether each
+    candidate had won a Senate election in the state before is taken out too, so that a record is not just incumbency."""
+    d = pd.read_csv(os.path.join(RAW, 'mit_senate_1976_2024.tab'), sep='\t', low_memory=False)
+    d = d[(d.year >= 1978) & (d['mode'].astype(str).str.lower() == 'total') & ~d.writein.astype(str).str.lower().eq('true') & (d.stage.astype(str).str.lower() == 'gen')]
+    d = d[d.candidate.notna()]
+    det = d.party_detailed.astype(str).str.upper()
+    d['side'] = np.where(d.party_simplified.eq('DEMOCRAT') | det.str.startswith('DEMOCRAT') | np.array([(st, surname(c)) in DEM_ALIGNED for st, c in zip(d.state_po, d.candidate)]), 'D',
+                         np.where(d.party_simplified.eq('REPUBLICAN') | det.str.startswith('REPUBLICAN'), 'R', 'O'))
+    d['special'] = d.special.astype(str).str.lower().eq('true')
+    lean = leans(); rows = []
+    for (year, st, special), g in d.groupby(['year', 'state_po', 'special']):
+        top = g.sort_values('candidatevotes', ascending=False)
+        if sorted(top.head(2).side.tolist()) != ['D', 'R']: continue
+        dd, rr = top[top.side == 'D'].iloc[0], top[top.side == 'R'].iloc[0]
+        dv, rv = float(dd.candidatevotes), float(rr.candidatevotes)
+        if dv <= 1 or rv <= 1: continue
+        try: ln = lean(int(year), st)
+        except KeyError: continue
+        rows.append({'year': int(year), 'state': st, 'special': bool(special), 'dem': dd.candidate, 'rep': rr.candidate, 'dem2': 100 * dv / (dv + rv), 'lean': ln})
+    P = pd.DataFrame(rows).sort_values(['year', 'state', 'special']).reset_index(drop=True)
+    key = lambda c, st, side: (st, side, surname(c), (tokens(c) or [''])[0][:1])
+    won = set(); P['dem_had_won'] = 0; P['rep_had_won'] = 0
+    for y, g in P.groupby('year', sort=True):               # had the candidate won a Senate election in the state before this year
+        for i in g.index:
+            P.at[i, 'dem_had_won'] = int(key(P.at[i, 'dem'], P.at[i, 'state'], 'D') in won); P.at[i, 'rep_had_won'] = int(key(P.at[i, 'rep'], P.at[i, 'state'], 'R') in won)
+        for i in g.index:
+            w = ('D', P.at[i, 'dem']) if P.at[i, 'dem2'] > 50 else ('R', P.at[i, 'rep']); won.add(key(w[1], P.at[i, 'state'], w[0]))
+    # the expected share: a line in the state's lean (Senate results are less lopsided than presidential ones, so its slope is
+    # fitted, not taken as one), one level for each year, and the two had-won flags; the record is what is left over. The
+    # slope and the flags are fitted on 1978-2016 only, so that nothing in the back-test years shapes them.
+    early = (P.year < min(YEARS)).values
+    Y = pd.get_dummies(P.year).astype(float).values
+    A = np.column_stack([Y, P.lean, P.dem_had_won, P.rep_had_won]); b = np.linalg.lstsq(A[early], P.dem2.values[early], rcond=None)[0]
+    x = P.dem2.values - A[:, -3:] @ b[-3:]
+    P['dem_over'] = (x - pd.Series(x).groupby(P.year.values).transform('mean').values).round(3)     # in points of the Democratic side's two-party share
+    return P
+
+
+def track_records(races, P=None):
+    """For each race, each candidate's record in earlier Senate elections in the state: the average of how far they ran
+    ahead of their party's expected share (their last two races at most), and how many races that is. A candidate with no
+    earlier Senate race has no record (0 races)."""
+    P = past_races() if P is None else P
+    key = lambda c, st, side: (st, side, surname(c), (tokens(c) or [''])[0][:1])
+    hist = {}
+    for r in P.itertuples():
+        hist.setdefault(key(r.dem, r.state, 'D'), []).append((r.year, r.dem_over)); hist.setdefault(key(r.rep, r.state, 'R'), []).append((r.year, -r.dem_over))
+    out = []
+    for r in races.itertuples():
+        row = {}
+        for side, c in (('dem', r.dem), ('rep', r.rep)):
+            h = sorted(x for x in hist.get(key(c, r.state, side[0].upper()), []) if x[0] < r.year)[-2:]
+            row[side + '_track'] = round(float(np.mean([v for _, v in h])), 3) if h else None; row[side + '_track_races'] = len(h)
+        out.append(row)
+    return pd.concat([races.reset_index(drop=True), pd.DataFrame(out)], axis=1)
+
+
 # ------------------------------------------------------------------------------------------------------------- seats
 def winners():
     """{(state, year, special): (winner's surname, party D/R/O)} for every Senate election in the source since 2010, from
@@ -280,6 +341,7 @@ def main():
                          dem_receipts=md.get('receipts'), rep_receipts=mr.get('receipts'), dem_indiv=md.get('indiv'), rep_indiv=mr.get('indiv'),
                          dem_self=md.get('self'), rep_self=mr.get('self'), money_matched=bool(md['match'] and mr['match'])))
     races = pd.DataFrame(rows).merge(nat, on='year', how='left')
+    races = track_records(races)
     races['dem2_vs_nation'] = (races.dem2 - races.house_dem2).round(3)
     os.makedirs(OUT, exist_ok=True)
     races.sort_values(['year', 'state', 'special']).to_csv(os.path.join(OUT, 'races.csv'), index=False)

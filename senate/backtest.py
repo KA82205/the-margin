@@ -11,6 +11,7 @@ Versions, each built on the one before:
     +money       the two candidates' fundraising (last day only: the FEC's totals are for the whole cycle, see README)
     +polls by volume             the polls' weight rises with the amount of polling, between a floor and a cap
     +polls by volume, race sd    the same, with the error sized for each race (tested and not adopted, see README)
+    +track, +polls by volume     each candidate's record in earlier Senate races added to the fundamentals (adopted, step 5)
     president, our president, ticket ...   presidential years started from the presidential polls or from The Margin's own
                                  presidential forecast of the state (tested and not adopted, see README, step 4)
 
@@ -78,7 +79,10 @@ def build():
             rows.append({'year': r.year, 'state': r.state, 'special': bool(r.special), 'days': d, 'dem2': r.dem2, 'lean': r.lean,
                          'generic': g, 'inc_d': int(r.incumbent == 'D'), 'inc_r': int(r.incumbent == 'R'),
                          'money': math.log((md + 1e5) / (mr + 1e5)), 'poll': pa, 'poll_w': pw, 'indep': bool(r.dem_independent),
-                         'pres_state': hs, 'pres_nat': hn})
+                         'pres_state': hs, 'pres_nat': hn,
+                         # each candidate's record in earlier Senate races in the state (build_data.track_records), Democratic side
+                         # less Republican, 0 for a candidate without one
+                         'track': (r.dem_track if r.dem_track == r.dem_track else 0.0) - (r.rep_track if r.rep_track == r.rep_track else 0.0)})
     X = pd.DataFrame(rows)
     X['generic'] = X.groupby(['year', 'days']).generic.transform(lambda s: s.fillna(s.mean()))
     # the state's presidential environment in a presidential year: its own presidential polling average, or failing that the
@@ -163,10 +167,12 @@ VERSIONS = {'lean': ['lean', 'generic'], '+incumbent': ['lean', 'generic', 'inc_
             'our president': ['our_env', 'inc_d', 'inc_r'], 'our president gap': ['lean', 'generic', 'inc_d', 'inc_r', 'our_gap'],
             # the Senate result as the state's presidential forecast plus how far the party's candidate runs ahead of the top
             # of the ticket, which depends on who holds the seat: the forecast is taken as it is, with no coefficient fitted on it
-            'ticket': ['@our_env', 'inc_d', 'inc_r']}
+            'ticket': ['@our_env', 'inc_d', 'inc_r'],
+            '+track': ['lean', 'generic', 'inc_d', 'inc_r', 'track']}
 # the race-poll blend by volume, on each starting point: the fundamentals with incumbency, and the two presidential ones
 BLENDS = {'+polls by volume': '+incumbent', 'president, +polls by volume': 'president', 'president gap, +polls by volume': 'president gap',
-          'our president, +polls by volume': 'our president', 'our president gap, +polls by volume': 'our president gap', 'ticket, +polls by volume': 'ticket'}
+          'our president, +polls by volume': 'our president', 'our president gap, +polls by volume': 'our president gap', 'ticket, +polls by volume': 'ticket',
+          '+track, +polls by volume': '+track'}
 
 
 def run(X):
@@ -226,7 +232,7 @@ def score(F):
     return F, S
 
 
-OURS = ('+polls', '+polls by volume', '+polls by volume, race sd')
+OURS = ('+polls by volume', '+track, +polls by volume')
 
 
 def benchmark(F):

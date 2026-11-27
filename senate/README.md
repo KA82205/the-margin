@@ -130,8 +130,43 @@ common lowers the miss only from 7.0 to 6.8 at 365 days, though from 6.2 to 5.2 
 What the link is still good for is not accuracy but correlation: a joint simulation of president, Senate and House should
 move a state's Senate race with its presidential vote, so that the chance of one party winning all three is right.
 
+## Step 5: each candidate's track record (adopted)
+
+`build_data.past_races()` scores every Senate general election of 1978-2024 for how far the Democratic side ran ahead of
+what the state's lean and the year's national mood would give, with whether each candidate had won a Senate race in the
+state before taken out (the slope on lean and those terms are fitted on 1978-2016 only). `track_records()` gives each
+2018-2024 candidate the average of their own last two such races in the state, if they have any: 61 Democrats and 50
+Republicans do. The input is the Democrat's record less the Republican's, 0 for a candidate without one.
+
+FiveThirtyEight used a cruder form of this (an incumbent's previous margin, and whether a candidate had held office);
+this is a measured figure for each candidate, against what their state and year would have given anyone.
+
+| Competitive races | Last day | 7 days | 60 days | 365 days |
+|---|---|---|---|---|
+| Log loss, +polls by volume | 0.250 | 0.242 | 0.256 | 0.381 |
+| Log loss, + track record | 0.237 | 0.226 | 0.226 | 0.367 |
+| Miss on the margin, +polls by volume | 4.9 | 4.7 | 5.0 | 6.3 |
+| Miss on the margin, + track record | 4.9 | 4.7 | 5.1 | 6.2 |
+
+- **The chances get sharper at every distance,** in 30 of the 32 year-and-distance cells (all races), and the Brier score
+  improves at every distance. The typical miss on the margin barely moves: the record helps most in deciding close races,
+  not in the size of misses in lopsided ones.
+- **Against FiveThirtyEight (competitive races, 2018-2022),** log loss a week out is now 0.247 against its deluxe 0.244,
+  classic 0.272 and lite 0.278; on the last day 0.264 against 0.232, 0.263 and 0.265.
+- **The fitted weight is small and steady:** 0.15 to 0.26 of a candidate's past over- or under-performance carries into the
+  next race, rising as more recent years are in the fit.
+- **The ranges are now slightly narrow across all races** (41% of results inside the 50% interval on the last day, 77%
+  inside the 80%), mostly in lopsided ones; in competitive races they are about right (48% and 82%). The joint
+  simulation, with its shared national error, will set the ranges again.
+- **What it does not yet cover:** House members, governors and other statewide officeholders running for the Senate have
+  no record here, because only Senate races are in the data. Two people with the same name, initial and state are taken
+  as one (Connie Mack III and IV, Florida).
+
+The working version is now **+track, +polls by volume**.
+
 ## What comes next
 
+- Records from House and statewide races, for candidates who have run for those offices.
 - Simulate the races together, with a shared national error, for the chance of each party controlling the Senate.
 - Replace the cycle's money totals with money raised by each date (the FEC's quarterly filings).
 - The Manifold race markets of 2022 and 2024, tested in the research section only, with no weight in the forecast.
