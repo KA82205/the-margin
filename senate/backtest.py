@@ -29,6 +29,7 @@ import numpy as np, pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE); sys.path.insert(0, ROOT)
 import model as M                                                    # the presidential model's poll weights, reused as they are
 import national as NA                                                # the national fundamentals (step 8)
+import fec_money as FM                                               # money raised by each date (step 13)
 
 D = os.path.join(ROOT, 'data', 'senate')
 YEARS = (2018, 2020, 2022, 2024)
@@ -64,6 +65,7 @@ def build():
     # the race polls: Wikipedia's race pages (polls_wikipedia.csv, senate/wiki_build.py), the source the forecast will
     # read live (step 11); FiveThirtyEight's archive (polls.csv) when SENATE_TRAIN_POLLS=538, as in steps 2-10
     pf = 'polls.csv' if os.environ.get('SENATE_TRAIN_POLLS') == '538' else 'polls_wikipedia.csv'
+    MT = FM.table()
     R = pd.read_csv(os.path.join(D, 'races.csv')); P = pd.read_csv(os.path.join(D, pf)); G = pd.read_csv(os.path.join(D, 'generic.csv'))
     P = P[(P.partisan.fillna('') == '') & ~P.internal.astype(bool)]                       # as the presidential model does
     G = G[(G.partisan.fillna('') == '') & ~G.internal.fillna(False).astype(bool)]
@@ -82,9 +84,10 @@ def build():
             hs = average(pres[(r.year, r.state)], asof, d)[0] if (r.year, r.state) in pres else None
             hn = average(pres[(r.year, 'US')], asof, d)[0] if (r.year, 'US') in pres else None
             md, mr = (r.dem_receipts if r.dem_receipts == r.dem_receipts else 0.0), (r.rep_receipts if r.rep_receipts == r.rep_receipts else 0.0)
+            mt = FM.money_feature(*FM.raised(MT, r.year, r.state, bool(r.special), asof)) if MT is not None else 0.0
             rows.append({'year': r.year, 'state': r.state, 'special': bool(r.special), 'days': d, 'dem2': r.dem2, 'lean': r.lean,
                          'generic': g, 'inc_d': int(r.incumbent == 'D'), 'inc_r': int(r.incumbent == 'R'),
-                         'money': math.log((md + 1e5) / (mr + 1e5)), 'poll': pa, 'poll_w': pw, 'indep': bool(r.dem_independent),
+                         'money': math.log((md + 1e5) / (mr + 1e5)), 'money_t': mt, 'poll': pa, 'poll_w': pw, 'indep': bool(r.dem_independent),
                          'pres_state': hs, 'pres_nat': hn,
                          # each candidate's record in earlier Senate races in the state (build_data.track_records), Democratic side
                          # less Republican, 0 for a candidate without one
@@ -176,11 +179,12 @@ VERSIONS = {'lean': ['lean', 'generic'], '+incumbent': ['lean', 'generic', 'inc_
             # of the ticket, which depends on who holds the seat: the forecast is taken as it is, with no coefficient fitted on it
             'ticket': ['@our_env', 'inc_d', 'inc_r'],
             '+track': ['lean', 'generic', 'inc_d', 'inc_r', 'track'],
-            '+national': ['lean', 'blend_approval', 'inc_d', 'inc_r', 'track']}
+            '+national': ['lean', 'blend_approval', 'inc_d', 'inc_r', 'track'],
+            '+national +money': ['lean', 'blend_approval', 'inc_d', 'inc_r', 'track', 'money_t']}
 # the race-poll blend by volume, on each starting point: the fundamentals with incumbency, and the two presidential ones
 BLENDS = {'+polls by volume': '+incumbent', 'president, +polls by volume': 'president', 'president gap, +polls by volume': 'president gap',
           'our president, +polls by volume': 'our president', 'our president gap, +polls by volume': 'our president gap', 'ticket, +polls by volume': 'ticket',
-          '+track, +polls by volume': '+track', '+national, +polls by volume': '+national'}
+          '+track, +polls by volume': '+track', '+national, +polls by volume': '+national', '+national +money, +polls by volume': '+national +money'}
 
 
 def run(X):

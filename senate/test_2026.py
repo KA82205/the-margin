@@ -23,7 +23,7 @@ import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE); sys.path.insert(0, HERE)
-import backtest as B, build_data as BD, national as NA, simulate as S
+import backtest as B, build_data as BD, fec_money as FM, national as NA, simulate as S
 
 D26 = os.path.join(ROOT, 'data', 'senate', '2026'); RCP = os.path.join(ROOT, 'data', 'senate', '2026_rcp')
 ELECTION = pd.Timestamp('2026-11-03')
@@ -56,7 +56,7 @@ def features(R):
         G = pd.read_csv(os.path.join(D26, 'wiki_generic_2026.csv'), parse_dates=['date']).rename(columns={'dem2_median': 'dem2'})
     else:
         G = pd.read_csv(os.path.join(RCP, 'generic_weekly.csv'), parse_dates=['date']); G['dem2'] = 100 * G.dem / (G.dem + G.rep)
-    rows = []
+    rows = []; MT = FM.table()
     for r in R.itertuples():
         pr = P[P.state == r.state]
         pt = B.table(pr, {'end': 'end', 'n': 'n', 'pop': 'population', 'pollster': 'pollster', 'x': 'dem2'}) if len(pr) else None
@@ -64,9 +64,11 @@ def features(R):
             asof = ELECTION - pd.Timedelta(days=d)
             g = G[G.date <= asof]; gen = float(g.dem2.iloc[-1]) if len(g) else float(G.dem2.iloc[0])
             pa, pw = B.average(pt, asof, d) if pt is not None else (None, 0.0)
+            mt = FM.money_feature(*FM.raised(MT, 2026, r.state, bool(r.special), asof)) if MT is not None else 0.0
             rows.append({'year': 2026, 'state': r.state, 'special': bool(r.special), 'days': d, 'dem2': r.dem2, 'lean': r.lean, 'generic': gen,
                          'inc_d': int(r.incumbent == 'D'), 'inc_r': int(r.incumbent == 'R'), 'poll': pa, 'poll_w': pw,
-                         'track': (r.dem_track if r.dem_track == r.dem_track else 0.0) - (r.rep_track if r.rep_track == r.rep_track else 0.0)})
+                         'track': (r.dem_track if r.dem_track == r.dem_track else 0.0) - (r.rep_track if r.rep_track == r.rep_track else 0.0),
+                         'money_t': mt})
     return NA.add(pd.DataFrame(rows))
 
 
