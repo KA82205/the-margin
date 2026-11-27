@@ -164,9 +164,51 @@ this is a measured figure for each candidate, against what their state and year 
 
 The working version is now **+track, +polls by volume**.
 
+## Step 6: the races simulated together (adopted)
+
+`python senate/simulate.py` simulates each year's races 40,000 times from the working version and writes
+`data/senate/simulation.json`: the Democratic side's seats among the races up, their 80% and 50% ranges, and the chance of
+control (seats not up, plus the races left out of the test, which all went one way; a 50-50 tie goes to the party of the
+vice president the new Congress had, which a 2028 forecast would take from the presidential simulation instead).
+
+Each race's error is split into a part shared by every race in the year and a part of its own, keeping each race's own
+spread as it was. The shared part is drawn from a t distribution with 5 degrees of freedom, as in the presidential
+simulation. Its size:
+
+- **is measured on misses made out of sample,** the other years' forecasts from when each was the year left out (the
+  test year's own miss is never used). Measured inside the fit it comes out at about half the size (0.5 to 1.3 points of
+  two-party share), because the fit bends toward each training year's national mood. Measured by forecasting each
+  training year from only the two others it comes out absurdly large (8 to 16), because two years cannot fit the generic
+  ballot's weight.
+- **never shrinks with distance:** the national mood is no easier to call a year out than a week out, so the shared part
+  at a distance is at least what it is nearer. It comes to about 1.6 to 1.7 points of two-party share, about 3.3 to 3.5
+  points of margin, close to what the races' misses had in common in 2018-2024 (the 2020 polling miss, the 2018 wave).
+
+| Democratic side's seats among the races up | A year out | 60 days | Last day | Result |
+|---|---|---|---|---|
+| 2018 | 21 (18 to 23) | 22 (19 to 24) | 21 (19 to 24) | 23 |
+| 2020 | 13 (12 to 15) | 16 (14 to 18) | 16 (14 to 18) | 15 |
+| 2022 | 14 (13 to 16) | 15 (13 to 17) | 13 (11 to 16) | 15 |
+| 2024 | 21 (18 to 23) | 20 (18 to 22) | 20 (17 to 22) | 20 |
+
+(average and 80% range). The result fell inside the 80% range in all four years at every distance but 250 days, where
+2018's 23 was just outside. The chance of Democratic control on the last day: 2018 2%, 2020 84%, 2022 51%, 2024 3%;
+the Democrats won control in 2020 and 2022.
+
+- **Four elections cannot show that moving the races together is better.** Simulated independently, the seat ranges
+  are narrower and, in these four years, scored slightly better (log score of the exact seat count 1.63 against 1.77 on
+  the last day), because no year's shared miss was big enough to break them. Moving them together is adopted anyway, as
+  in the presidential simulation, because a shared miss like 2020's is a matter of record and an independent simulation
+  treats it as impossible to repeat across many races at once.
+- Each race's own chance barely changes (log loss 0.145 either way on the last day); a year out it improves slightly
+  (0.217 to 0.198), from the t distribution's wider tails.
+- **Not yet in the simulation:** a link to the presidential vote in a presidential year, and closer ties between
+  similar states. Both need the 2028 presidential simulation's draws; they would widen the seat ranges further in a
+  year with a presidential polling miss.
+
 ## What comes next
 
 - Records from House and statewide races, for candidates who have run for those offices.
-- Simulate the races together, with a shared national error, for the chance of each party controlling the Senate.
+- Link the simulation to the presidential one's draws in 2028: each state's Senate race moving with its presidential vote, and the tie-breaking vice president.
 - Replace the cycle's money totals with money raised by each date (the FEC's quarterly filings).
 - The Manifold race markets of 2022 and 2024, tested in the research section only, with no weight in the forecast.
