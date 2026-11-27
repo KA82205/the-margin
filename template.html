@@ -167,6 +167,7 @@ details.more summary:focus-visible{outline:2px solid var(--line2);outline-offset
 .mix{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:12px 0 16px}
 .mix strong{display:block;font:500 24px/28px var(--sans);letter-spacing:-.01em}
 .mix span{display:block;color:var(--muted);font-size:13px;line-height:20px}
+#pv .pv-d{color:var(--d)}#pv .pv-r{color:var(--r)}
 .wbar{display:flex;height:28px;font-size:12px;font-weight:500;gap:2px;margin-bottom:16px}
 .wbar i{display:flex;align-items:center;padding-left:8px;font-style:normal;white-space:nowrap;overflow:hidden;border-radius:4px}
 .wbar .wp{background:var(--ink);color:var(--bg)}.wbar .wf{background:var(--raised);color:var(--ink)}
@@ -312,7 +313,8 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 </figure>
 
 <figure class="col">
-  <b>The national margin, and how sure the forecast is of it</b>
+  <b>The national popular vote</b>
+  <div class="mix" id="pv"></div>
   <div class="sub" id="ruler-sub"></div>
   <div id="ruler"></div>
   <figcaption>The yellow band is the 80% prediction interval: the final margin falls inside it in 80% of simulated elections. <a href="#model/narrow">How the interval will narrow</a></figcaption>
@@ -570,7 +572,13 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
       s += '<line class="rt" x1="' + L + '" x2="' + (W - R) + '" y1="' + y0 + '" y2="' + y0 + '"/>';
       return s + '<path d="M' + X(m0) + ' ' + (y0 - 3) + 'l-7 -14h14z" fill="' + c + '"/><text x="' + X(m0) + '" y="' + (y0 - 36) + '" text-anchor="middle" style="font:600 15px var(--sans);fill:' + c + '">' + mg(NV.national) + '</text></svg>'; };
     $('ruler').innerHTML = draw(680, 96, 4, 'r-w') + draw(360, 96, 8, 'r-s');
-    $('ruler-sub').textContent = (side(-m0) === 0 ? 'The national vote is projected to be even' : (NV.national > 50 ? 'Democrats' : 'Republicans') + ' are projected to win the national vote by ' + (Math.round(Math.abs(m0) * 10) / 10).toFixed(1) + ' points') + '. The 80% prediction interval runs from ' + mg(NV.national_hi) + ' to ' + mg(NV.national_lo) + '.';
+    // each party's share of the two-party vote, the side ahead first, and the chance of winning the most votes
+    const dS = NV.national, rS = 100 - NV.national, pPop = F.p_popular != null ? F.p_popular : (NV.national >= 50 ? 1 : 0);
+    const shares = dS >= rS ? [['Democrats', dS, 'pv-d'], ['Republicans', rS, 'pv-r']] : [['Republicans', rS, 'pv-r'], ['Democrats', dS, 'pv-d']];
+    const pa = ahead(pPop);
+    $('pv').innerHTML = shares.map(([who, v, k]) => '<div><strong class="' + k + '">' + v.toFixed(1) + '%</strong><span>' + who + ', share of the two-party vote</span></div>').join('') +
+      '<div><strong>' + (pa.who === 'Even' ? 'Even' : pa.who + ' ' + pa.pct + '%') + '</strong><span>Chance of winning the most votes' + (pa.who === 'Even' ? '' : ' (' + (pa.side === 'dem' ? 'Republicans' : 'Democrats') + ' ' + (100 - pa.pct) + '%)') + '</span></div>';
+    $('ruler-sub').textContent = (side(-m0) === 0 ? 'The national vote is projected to be even' : (NV.national > 50 ? 'Democrats' : 'Republicans') + ' are projected to win the national vote by ' + (Math.round(Math.abs(m0) * 10) / 10).toFixed(1) + ' points') + '. The 80% prediction interval of the margin runs from ' + mg(NV.national_hi) + ' to ' + mg(NV.national_lo) + '.';
   })();
 
   // ---- map, snake, state panel
