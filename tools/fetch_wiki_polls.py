@@ -85,7 +85,8 @@ def revision_at(title, ts):
         return None, None
 
 
-SECTIONS = {'Opinion polling on the second Trump presidency': r'===\s*Aggregate polls\s*===',
+SECTIONS = {'Opinion polling for the 2026 United States House of Representatives elections': r'==+\s*[^=\n]*(?:[Aa]ggregat|[Gg]eneric)[^=\n]*==+',
+            'Opinion polling on the second Trump presidency': r'===\s*Aggregate polls\s*===',
             '2026 United States House of Representatives elections': r'===\s*Generic (?:congressional )?ballot[^=]*===|==\s*Polls and ratings\s*=='}
 
 
@@ -99,7 +100,9 @@ def history2026():
             ts, text = revision_at(title, f'{d.isoformat()}T12:00:00Z')
             if text is None: continue
             m = re.search(head, text)
-            out[f'{title}|{d.isoformat()}'] = {'revision': ts, 'section': text[m.start():m.start() + 12000] if m else None}
+            out[f'{title}|{d.isoformat()}'] = {'revision': ts, 'section': text[m.start():m.start() + 12000] if m else None,
+                                               'headings': None if m else re.findall(r'\n(=+[^=\n]+=+)', text)[:80],
+                                               'chars': len(text), 'start': None if m else text[:300]}
     return out
 
 
