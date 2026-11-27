@@ -7,9 +7,9 @@
  "forecast": {
   "as_of": "2026-11-27",
   "file": "api/forecast.json",
-  "hash": "d320f1262c378524",
-  "last_kept": "2026-11-27T0515Z.json",
-  "kept": 7
+  "hash": "49c75304ddfa3b63",
+  "last_kept": "2026-11-27T2003Z.json",
+  "kept": 8
  },
  "units": {
   "shares": "Democratic share of the two-party vote, in percent (0 to 100)",
@@ -40,7 +40,7 @@
   },
   "tipping_point": {
    "as_of": "2026-11-27",
-   "generated_at": "2026-11-27T05:13:20Z",
+   "generated_at": "2026-11-27T20:01:48Z",
    "mode": "nowcast",
    "frozen": false,
    "fixed": false,
@@ -51,11 +51,11 @@
     "desart": "site run"
    },
    "models": {
-    "enns": 52.142,
+    "enns": 52.14,
     "desart": 49.846
    },
-   "combined": 50.983,
-   "hash": "dd283dc6ab7ce5c2"
+   "combined": 50.982,
+   "hash": "de4715f6424d47c5"
   },
   "tipping_point_live": {
    "as_of": "2026-11-27",
@@ -75,9 +75,9 @@
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-27T19:49Z",
- "commit": "364bbc5fb4e8",
- "markets_read": "2026-11-27T19:48Z",
+ "made": "2026-11-27T20:03Z",
+ "commit": "fe4033327be6",
+ "markets_read": "2026-11-27T20:03Z",
  "markets": {
   "counts": {
    "Polymarket": 51,

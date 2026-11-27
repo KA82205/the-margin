@@ -14,7 +14,7 @@
   "odds": "2026-11-27",
   "keys": "2026-11-27",
   "state_polls": "2026-11-27",
-  "markets": "2026-11-27T19:48Z",
+  "markets": "2026-11-27T20:03Z",
   "live": "2026-11-27"
  },
  "keys_dist": [
@@ -323,7 +323,7 @@
   },
   "tipping_point": {
    "as_of": "2026-11-27",
-   "generated_at": "2026-11-27T05:13:20Z",
+   "generated_at": "2026-11-27T20:01:48Z",
    "mode": "nowcast",
    "frozen": false,
    "fixed": false,
@@ -334,11 +334,11 @@
     "desart": "site run"
    },
    "models": {
-    "enns": 52.142,
+    "enns": 52.14,
     "desart": 49.846
    },
-   "combined": 50.983,
-   "hash": "dd283dc6ab7ce5c2"
+   "combined": 50.982,
+   "hash": "de4715f6424d47c5"
   },
   "tipping_point_live": {
    "as_of": "2026-11-27",

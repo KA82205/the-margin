@@ -76,5 +76,16 @@
 "approval"
 ],
 "file": "2026-11-27T0515Z.json"
+},
+{
+"made": "2026-11-27T20:03Z",
+"as_of": "2026-11-27",
+"p_dem": 0.6978,
+"national": 52.047,
+"ev_median": 301,
+"why": [
+"state forecasts"
+],
+"file": "2026-11-27T2003Z.json"
 }
 ]
