@@ -1028,7 +1028,8 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
   let stSel = null;
   const RATE = i => BINS[i][1].replace(' D', ' Democratic').replace(' R', ' Republican');
   const evs = n => n + (n === 1 ? ' electoral vote' : ' electoral votes');
-  const byMargin = F.states.slice().sort((a, b) => b.mean - a.mean), tipRank = F.states.slice().sort((a, b) => b.tip - a.tip).map(x => x.state);
+  // ordered as on the Forecast tab: by the chance of a Democratic win, then the margin, so the colours run in order
+  const byMargin = F.states.slice().sort((a, b) => (b.p_dem - a.p_dem) || (b.mean - a.mean)), tipRank = F.states.slice().sort((a, b) => b.tip - a.tip).map(x => x.state);
   $('st-sel').innerHTML = F.states.slice().sort((a, b) => a.name.localeCompare(b.name)).map(x => '<option value="' + x.state + '">' + esc(x.name) + '</option>').join('');
   $('st-strip').innerHTML = byMargin.map(x => '<button type="button" data-st="' + x.state + '" style="flex:' + x.ev + ' 0 0;background:' + COL[bin(x.p_dem)] + '" aria-label="' + esc(x.name) + ', ' + RATE(bin(x.p_dem)) + '"></button>').join('');
   $('st-all').innerHTML = '<thead><tr><th>State</th><th class="n">Electoral votes</th><th>Rating</th><th class="n">Chance of winning</th><th class="n">Projected margin</th><th class="n">80% prediction interval</th><th class="n">Decides the election</th></tr></thead><tbody>' +
