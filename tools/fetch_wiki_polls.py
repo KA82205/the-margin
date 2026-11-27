@@ -5,6 +5,8 @@ nothing here runs on the site. Wikipedia's text is CC BY-SA 4.0.
     senate2026     each 2026 Senate race's page, and any separate polling page it points to
     senate2018 ... senate2024  the same for earlier years (to compare with the FiveThirtyEight archive)
     national2026   the 2026 generic-ballot polls and the second Trump term's approval polls
+    overview2028   the 2028 Senate elections page (seats up, incumbents, retirements), the 2028 House and generic-ballot
+                   polling pages, and the approval polls
     history2026    the aggregate tables of approval and the generic ballot as they stood on the 1st and 15th of each
                    month, February 2025 to November 2026, from the pages' history
 """
@@ -74,6 +76,19 @@ def national2026():
     return out
 
 
+def overview2028():
+    out = {}
+    for q in ('2028 United States Senate elections', '2028 United States House of Representatives elections',
+              'Opinion polling for the 2028 United States House of Representatives elections', 'Opinion polling on the second Trump presidency'):
+        p = page(q)
+        if p is None:
+            s = get({'action': 'query', 'list': 'search', 'srsearch': q, 'srlimit': '3'})
+            out[f'search|{q}'] = {'hits': [h['title'] for h in (s or {}).get('query', {}).get('search', [])]}
+        else:
+            out[p['title']] = p
+    return out
+
+
 def revision_at(title, ts):
     j = get({'action': 'query', 'prop': 'revisions', 'rvprop': 'content|timestamp', 'rvslots': 'main', 'titles': title,
              'rvlimit': '1', 'rvdir': 'older', 'rvstart': ts})
@@ -108,7 +123,7 @@ def history2026(g_only=False):
 
 if __name__ == '__main__':
     for g in sys.argv[2:] or ['senate2026', 'national2026']:
-        data = senate(int(g[-4:])) if g.startswith('senate') else history2026(g_only=True) if g == 'generic2026' else history2026() if g == 'history2026' else national2026()
+        data = senate(int(g[-4:])) if g.startswith('senate') else history2026(g_only=True) if g == 'generic2026' else history2026() if g == 'history2026' else overview2028() if g == 'overview2028' else national2026()
         with open(os.path.join(OUT, f'wiki_{g}.json'), 'w') as f: json.dump(data, f)
         log.append({'group': g, 'pages': len(data), 'titles': sorted(data)[:80]})
     with open(os.path.join(OUT, 'fetch_log.json'), 'w') as f: json.dump(log, f, indent=1)
