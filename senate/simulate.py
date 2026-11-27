@@ -36,6 +36,9 @@ CAUCUS_BEFORE = {2018: 49, 2020: 47, 2022: 50, 2024: 51, 2026: 47}
 # step 10: every race is moved by one shared amount so the expected seats land a quarter of the way from the races' own
 # total to the national seat-change model's (combine_test.py); 0 switches it off
 COMBINE = 0.25
+# step 15: a live forecast (2028 on) is fitted on every year, 2026 included (with_2026.data() gives the five-year table),
+# and its shared error measured on all five years' out-of-sample misses; the back-tests here still leave each year out
+LIVE_YEARS = (2018, 2020, 2022, 2024, 2026)
 
 
 def shared_sd(e, years):

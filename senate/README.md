@@ -445,6 +445,32 @@ from R+3.5 to R+2.3, against a Democratic win by 4.6), leaves the calls unchange
 5.3. Not adopted. South Carolina's miss comes mostly from the step back from its polls (R+0.7 on their own) toward the
 state's lean, not from incumbency.
 
+## Step 15: 2026 as a fitting year (adopted for the live forecast)
+
+`senate/with_2026.py` adds 2026's 32 races to the four earlier years and asks two things.
+
+What the fit learns: the weight on the national environment rises from about 0.65 to about 1.0 at every distance (a
+point of national swing moves every race a full point, where the four years had damped it), and the incumbency terms
+shrink. The error the races share, measured on every year's out-of-sample misses, grows from 1.6 points of two-party
+share to 2.0 on the last day and 2.4 a year out: 2026's races missed together by more than any earlier year's.
+
+What it does to the other years, each left out and forecast from the rest with and without 2026:
+
+| | margin miss, 2018-2024 races | log loss | chance of control, log loss |
+|---|---|---|---|
+| a year out | 7.04 to 7.49 | 0.223 to 0.179 | 0.40 to 0.37 |
+| 60 days | 6.24 to 6.77 | 0.142 to 0.137 | 0.17 to 0.23 |
+| last day | 5.96 to 6.11 | 0.145 to 0.137 | 0.30 to 0.34 |
+
+The margins are a little worse (most in 2020, a year the polls overstated the Democrats, the opposite of 2026), the
+race chances better at every distance, and the chance of control less sure in years whose outcome the narrower range
+already covered. With 2026 in the fit, every 2018-2024 seat count stays inside its 80% range. Fitted on 2018-2024
+only, 2026's actual count fell outside the range until the last week.
+
+One year cannot settle it either way. A forecast that leaves out the latest and largest shared miss would be too sure
+of itself in 2028, so the live forecast is fitted on all five years (`LIVE_YEARS` in `simulate.py`), with the shared
+error from all five. The back-tests keep leaving each year out.
+
 ## The 2026 academic forecasts, for reference
 
 `data/senate/2026/academic_forecasts_2026.csv` holds the forecasts in the *PS: Political Science & Politics* special
@@ -462,7 +488,6 @@ Senate seats and a 63% chance of control 60 days out, and about 53 seats and 82%
 
 ## What comes next
 
-- Add 2026 to the fitting years and size the shared error again.
 - Special-election swings as an early national signal (Hunt), tested on 2018-2026 and the record since 2013.
 - An approval average the pipeline collects itself, to replace Gallup in the national fundamentals.
 - The national seat-change model as a benchmark beside the Senate and House forecasts.
