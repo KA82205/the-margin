@@ -293,6 +293,31 @@ it:
   paper's proxy (in `data/senate/2026_rcp/`, kept out of the repository). Running this in 2028 needs an approval
   average the pipeline can collect itself; Fifty-Two Keys' own list of approval polls is too thin for it so far.
 
+## Step 9: three more ideas from the 2026 papers (none adopted)
+
+`senate/national_ideas.py` tests them on the long national record: every election from 1978 to 2026 forecast from a fit
+on 1948 up to the election before it only, in June of the election year and a year out, for the president's party's
+share of the House vote (and, as a check, its House and Senate seat changes). The candidates were set before any was
+scored (`national_ideas.json`).
+
+| Typical miss, president's party's House vote, points | June, 1978-2026 | June, 2002-2026 | Year out, 1978-2026 | Year out, 2002-2026 |
+|---|---|---|---|---|
+| **Approval and the midterm (in use)** | **2.7** | **2.1** | **2.7** | **2.1** |
+| + income growth (Quinn, Brush and Smith) | 3.5 | 3.2 | 2.9 | 2.4 |
+| + inflation (Fair's point) | 3.0 | 2.1 | 3.4 | 2.5 |
+| + GDP growth | 3.4 | 3.1 | 2.8 | 2.4 |
+| + years in power (Tien and Lewis-Beck's cost of ruling) | 3.4 | 2.1 | 3.1 | 2.1 |
+| + inflation + years in power | 3.5 | 2.2 | 3.4 | 2.6 |
+
+- **Nothing beats approval and the midterm alone.** Every economic measure swings wildly in some year (income +22% in
+  2020, -7% in 2022; GDP -8 points of vote error in 2020 in June), and the cost of ruling adds nothing a fit can use.
+  The seat-change checks agree. The inflation idea fixes 2020 and 2022 but costs elsewhere.
+- **Trusting approval more when it and the generic ballot disagree (Algara et al.)** cannot help here: the national
+  error of a blend is about the same at a third, half or two thirds on the fundamentals (1.84, 1.74, 1.72 points across
+  2018-2026, all distances), and in 2026 the two agreed (within a point) and were both short. Half and half stays.
+- The national input stays as step 8 left it. The one idea left with a real chance is the special elections (Hunt):
+  they read the national mood from votes, not from polls or approval.
+
 ## The 2026 academic forecasts, for reference
 
 `data/senate/2026/academic_forecasts_2026.csv` holds the forecasts in the *PS: Political Science & Politics* special
@@ -311,6 +336,7 @@ days out, and about 51 seats and 64% on the last day.
 ## What comes next
 
 - Add 2026 to the fitting years and size the shared error again.
+- Special-election swings as an early national signal (Hunt), tested on 2018-2026 and the record since 2013.
 - An approval average the pipeline collects itself, to replace Gallup in the national fundamentals.
 - The national seat-change model as a benchmark beside the Senate and House forecasts.
 - Records from House and statewide races, for candidates who have run for those offices.
