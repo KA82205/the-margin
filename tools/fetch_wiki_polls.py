@@ -85,17 +85,17 @@ def revision_at(title, ts):
         return None, None
 
 
-SECTIONS = {'Opinion polling for the 2026 United States House of Representatives elections': r'==+\s*[^=\n]*(?:[Aa]ggregat|[Gg]eneric)[^=\n]*==+',
-            'Opinion polling on the second Trump presidency': r'===\s*Aggregate polls\s*===',
-            '2026 United States House of Representatives elections': r'===\s*Generic (?:congressional )?ballot[^=]*===|==\s*Polls and ratings\s*=='}
+SECTIONS = {'Opinion polling on the second Trump presidency': r'===\s*Aggregate polls\s*===',
+            '2026 United States House of Representatives elections': r'==+\s*(?:Generic[^=\n]*|Opinion polling|Polls and ratings)\s*==+'}
 
 
-def history2026():
+def history2026(g_only=False):
     import datetime as dt
     out = {}
     days = [dt.date(y, m, d) for y in (2025, 2026) for m in range(1, 13) for d in (1, 15)]
     days = [d for d in days if dt.date(2025, 2, 1) <= d <= dt.date(2026, 11, 3)] + [dt.date(2026, 11, 3)]
     for title, head in SECTIONS.items():
+        if g_only and 'House' not in title: continue
         for d in days:
             ts, text = revision_at(title, f'{d.isoformat()}T12:00:00Z')
             if text is None: continue
@@ -108,7 +108,7 @@ def history2026():
 
 if __name__ == '__main__':
     for g in sys.argv[2:] or ['senate2026', 'national2026']:
-        data = senate(int(g[-4:])) if g.startswith('senate') else history2026() if g == 'history2026' else national2026()
+        data = senate(int(g[-4:])) if g.startswith('senate') else history2026(g_only=True) if g == 'generic2026' else history2026() if g == 'history2026' else national2026()
         with open(os.path.join(OUT, f'wiki_{g}.json'), 'w') as f: json.dump(data, f)
         log.append({'group': g, 'pages': len(data), 'titles': sorted(data)[:80]})
     with open(os.path.join(OUT, 'fetch_log.json'), 'w') as f: json.dump(log, f, indent=1)
