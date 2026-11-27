@@ -13,13 +13,13 @@ UA = {'User-Agent': 'election-research (github.com/KA82205)'}
 log = []
 
 
-def get(url, tries=3):
+def get(url, tries=6):
     for i in range(tries):
         try:
             with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=60) as r:
                 return r.read()
         except Exception as e:                                     # noqa: BLE001 - logged and retried
-            err = repr(e); time.sleep(3 * (i + 1))
+            err = repr(e); time.sleep(10 * (i + 1))
     log.append({'url': url, 'error': err}); return None
 
 
@@ -38,6 +38,8 @@ def gallup():
     html = get('https://www.presidency.ucsb.edu/statistics/data/presidential-job-approval-all-data')
     if html is None: return
     t = html.decode('utf-8', 'replace')
+    with open(os.path.join(OUT, 'gallup_page.txt'), 'w') as f:          # the page as text, tags stripped, for checking the parse
+        f.write(re.sub(r'\s+', ' ', re.sub(r'<script.*?</script>|<style.*?</style>', ' ', t, flags=re.S)))
     rows = []
     for tr in re.findall(r'<tr[^>]*>(.*?)</tr>', t, flags=re.S):
         cells = [re.sub(r'<[^>]+>', '', c).strip() for c in re.findall(r'<t[dh][^>]*>(.*?)</t[dh]>', tr, flags=re.S)]
@@ -62,7 +64,7 @@ def wiki():
                 log.append({'title': title, 'error': 'no content'}); continue
             m = re.search(r'\{\{\s*Infobox election(.*?)\n\}\}', text, flags=re.S | re.I)
             out[f'{y} {ch}'] = {'title': page.get('title'), 'infobox': m.group(1)[:20000] if m else None}
-            time.sleep(0.5)
+            time.sleep(2.0)
     with open(os.path.join(OUT, 'wiki_infoboxes.json'), 'w') as f: json.dump(out, f)
     log.append({'saved': 'wiki_infoboxes.json', 'pages': len(out)})
 
