@@ -33,12 +33,16 @@ def table():
 
 
 def raised(T, year, state, special, asof):
-    """(Democratic side, Republican side) receipts in reports the FEC had received by the date, this cycle."""
-    t = T[(T.year == year) & (T.state == state) & (T.special == special) & (T.received <= asof)]
-    return float(t[t.side == 'dem'].receipts.sum()), float(t[t.side == 'rep'].receipts.sum())
+    """(Democratic side, Republican side) receipts in reports the FEC had received by the date, this cycle; None for a
+    side whose committee was not found at all (so a missing record does not read as a candidate who raised nothing)."""
+    race = T[(T.year == year) & (T.state == state) & (T.special == special)]
+    t = race[race.received <= asof]
+    return tuple(float(t[t.side == s].receipts.sum()) if (race.side == s).any() else None for s in ('dem', 'rep'))
 
 
 def money_feature(md, mr):
+    """The log of the ratio of the two sides' money, each with $100,000 added; 0 when either side's record is missing."""
+    if md is None or mr is None: return 0.0
     return math.log((md + 1e5) / (mr + 1e5))
 
 

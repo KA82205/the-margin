@@ -405,6 +405,31 @@ California pages filed under a name the fetch now also tries. The check also fou
 South Carolina's Darline Graham, appointed after Lindsey Graham's death, ran as the incumbent; the 2026 figures above
 are rerun with that corrected (last day: 30 of 32 called, log loss 0.240, 18.7 seats, 82% control).
 
+## Step 13: money raised by each date (tested, not adopted)
+
+`tools/fetch_fec_reports.py` (run by the "Source samples" workflow with the free FEC key kept as a repository secret)
+fetched every report filed by the 334 nominees' campaign committees for 2018-2026: 4,179 reports, each dated by the
+day the FEC received it. `senate/fec_money.py` turns them into `data/senate/money_reports.csv` and gives what each side
+had raised by any date, so a forecast sees only the reports filed by then. On election day a side's total by that
+measure is a median 87% of the cycle total used before. The feature is the log of the ratio of the two sides' money
+(each with $100,000 added); a side with no committee found counts as even (2026: Hinson in Iowa and Graham Nordone in
+South Carolina were not found in the FEC's candidate search).
+
+Added to the working version, its weight is positive and steady in every left-out year (about 0.2 a year out, 0.6 to
+1.0 in the last two months). Against the working version:
+
+| | margin miss, all races | log loss, all races | margin miss, within 10 points |
+|---|---|---|---|
+| 2018-2024 left-out years, 120 days | 7.13 to 6.72 | 0.200 to 0.206 | 6.10 to 5.83 |
+| 2018-2024, 60 days | 6.24 to 5.93 | 0.142 to 0.140 | 4.98 to 4.78 |
+| 2018-2024, last day | 5.96 to 5.91 | 0.145 to 0.146 | 4.86 to 4.84 |
+| 2026, 60 days | 7.49 to 7.81 | 0.368 to 0.388 | 7.40 to 8.16 |
+| 2026, last day | 6.32 to 6.49 | 0.240 to 0.240 | 5.97 to 6.35 |
+
+Money narrows the margin misses in the years it was fitted on, most in the summer, but the chances it gives are no
+better (log loss worse at 120, 30, 14, 7 and 1 days), and in 2026, the year it never saw, it is worse at every distance
+but a year out. Not adopted. The table and the code stay, and the test is run again once 2026 is a fitting year.
+
 ## The 2026 academic forecasts, for reference
 
 `data/senate/2026/academic_forecasts_2026.csv` holds the forecasts in the *PS: Political Science & Politics* special
@@ -417,8 +442,8 @@ chambers (258 and 56); Tien and Lewis-Beck next (Senate 54 and 53; House 249 wit
 polls understated the Democrats, as this model's race polls did. One election cannot rank models: Quinn, Brush and
 Smith's own record misses the Senate by about 3 seats in a typical year.
 
-For comparison, this model (working version) gave the Democrats about 50 Senate seats and a 40% chance of control 60
-days out, and about 51 seats and 64% on the last day.
+For comparison, this model (working version, Wikipedia polls, South Carolina corrected) gave the Democrats about 51
+Senate seats and a 63% chance of control 60 days out, and about 53 seats and 82% on the last day.
 
 ## What comes next
 
@@ -428,5 +453,5 @@ days out, and about 51 seats and 64% on the last day.
 - The national seat-change model as a benchmark beside the Senate and House forecasts.
 - Records from House and statewide races, for candidates who have run for those offices.
 - Link the simulation to the presidential one's draws in 2028: each state's Senate race moving with its presidential vote, and the tie-breaking vice president.
-- Replace the cycle's money totals with money raised by each date (the FEC's quarterly filings).
+- Money by date again once 2026 is a fitting year (step 13), and the reports of the two 2026 nominees not yet found.
 - The Manifold race markets of 2022 and 2024, tested in the research section only, with no weight in the forecast.
