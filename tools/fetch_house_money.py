@@ -55,7 +55,22 @@ def main(out, cycles):
         print(cycle, len(ids), 'candidates,', len(got), 'reports,', failed, 'batches failed,', calls[0], 'calls so far')
 
 
+def links(out):
+    """The FEC's candidate-committee links for each cycle (public domain bulk files), since a report names its committee
+    and not always its candidate."""
+    import io, zipfile
+    d = os.path.join(out, 'house_money'); os.makedirs(d, exist_ok=True)
+    for y in range(2012, 2028, 2):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(f'https://www.fec.gov/files/bulk-downloads/{y}/ccl{str(y)[2:]}.zip', headers={'User-Agent': 'election-research'}), timeout=120) as r:
+                z = zipfile.ZipFile(io.BytesIO(r.read()))
+            open(os.path.join(d, f'ccl{str(y)[2:]}.txt'), 'wb').write(z.read(z.namelist()[0])); print('links', y)
+        except Exception as e:                                     # noqa: BLE001
+            print('links', y, 'could not be read:', type(e).__name__)
+
+
 if __name__ == '__main__':
     a = sys.argv[1:]
     if not KEY: print('FEC_API_KEY is not set'); sys.exit(1)
+    links(a[0] if a else 'samples')
     main(a[0] if a else 'samples', [int(x) for x in a[1:]] or [2012, 2014, 2016, 2018, 2020, 2022, 2024])
