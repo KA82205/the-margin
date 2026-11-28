@@ -15,7 +15,7 @@ R+7 is -7), pvi_stale (published before the map in use); inc_d, inc_r (a Democra
 November ballot here); moved (the member running here represented another district before the lines changed); redrawn
 (the state's map changed for this election); prev (the district's last result on the same lines, less that year's
 national vote); dem_money, rep_money (receipts of each side's candidate over the whole
-cycle); national (the Democratic share of the two-party House vote nationally, in contested districts).
+cycle) and dem_fec, rep_fec (their FEC numbers); national (the Democratic share of the two-party House vote nationally, in contested districts).
 
     python house/build_data.py <raw folder>      writes data/house/training.csv
 """
@@ -129,15 +129,15 @@ def main(raw):
         moved.append(int(any(i < len(mv) and mv[i] for _, _, i in on)))
     T['inc_d'], T['inc_r'], T['moved'] = inc_d, inc_r, moved
     T['redrawn'] = [int(y in (2012, 2022) and s not in AT_LARGE or s in REDRAWN.get(y, ())) for y, s in zip(T.year, T.state)]
-    for col in ('dem_money', 'rep_money'): T[col] = np.nan
+    for col in ('dem_money', 'rep_money', 'dem_fec', 'rep_fec'): T[col] = np.nan if 'money' in col else None
     for y in YEARS:
         F = money(raw, y)
         for i in T.index[T.year == y]:
-            for party, col in (('D', 'dem_money'), ('R', 'rep_money')):
+            for party, col, idc in (('D', 'dem_money', 'dem_fec'), ('R', 'rep_money', 'rep_fec')):
                 cand = [n for n, p in T.at[i, 'candidates'] if p == party]
                 if not cand: continue
                 g = F[(F.st == T.at[i, 'state']) & (F.district == T.at[i, 'district']) & (F.p == party) & F.sur.isin([surname(n) for n in cand])]
-                if len(g): T.at[i, col] = float(g.receipts.max())
+                if len(g): top = g.loc[g.receipts.idxmax()]; T.at[i, col] = float(top.receipts); T.at[i, idc] = top.id
     c = T[T.contested]; nat = c.groupby('year').apply(lambda g: 100 * g.dem.sum() / (g.dem.sum() + g.rep.sum())).rename('national')
     T = T.merge(nat, on='year')
     # the district's last result on the same lines, against the nation that year (not when the lines changed, or when
@@ -145,7 +145,7 @@ def main(raw):
     prev = T[['year', 'state', 'district', 'dem2', 'national']].assign(year=T.year + 2, prev=T.dem2 - T.national)[['year', 'state', 'district', 'prev']]
     T = T.merge(prev, on=['year', 'state', 'district'], how='left'); T.loc[T.redrawn == 1, 'prev'] = np.nan
     os.makedirs(os.path.join(ROOT, 'data', 'house'), exist_ok=True)
-    keep = ['year', 'state', 'district', 'dem', 'rep', 'dem2', 'contested', 'winner', 'pvi', 'pvi_stale', 'inc_d', 'inc_r', 'moved', 'redrawn', 'new_seat', 'prev', 'dem_money', 'rep_money', 'national']
+    keep = ['year', 'state', 'district', 'dem', 'rep', 'dem2', 'contested', 'winner', 'pvi', 'pvi_stale', 'inc_d', 'inc_r', 'moved', 'redrawn', 'new_seat', 'prev', 'dem_money', 'rep_money', 'dem_fec', 'rep_fec', 'national']
     T[keep].sort_values(['year', 'state', 'district']).to_csv(os.path.join(ROOT, 'data', 'house', 'training.csv'), index=False)
     return T
 
