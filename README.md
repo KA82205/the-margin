@@ -18,14 +18,12 @@ The election is 713 days away and neither party has a nominee. Read it as a lean
 
 ## The site
 
-One self-contained page, `docs/index.html`, with five tabs: **Forecast** (the map, the forecast day by day, the national
-margin, the closest states), **States** (a profile of every state and district: how it has voted since 1976, its lean
-against the nation, how its projection is built, every poll of it that the sources hold with the reason each is or is
-not usable, and how often it decides the election; `#states/PA` opens one directly), **Model** (what goes in, why each weight, how the range narrows, sources and limits),
-**Back-tests** (2008-2024 against the results, calibration, every distance from the election) and **Research** (a
-notebook of questions about elections that stands apart from the forecast: how good expert ratings are, how far off the
-polls have been, whether they miss everywhere at once, the Electoral College's tilt, approval and the vote, which states
-are moving, and the primaries). Section headings share one device: a dark band across the
+One self-contained page, `docs/index.html`, with seven tabs: **Presidency** (the map, the forecast day by day, the
+national margin, the closest states, and a profile of every state and district; `#states/PA` opens one directly),
+**Senate** (every race and the chamber, from `docs/api/senate.json`), **House** (all 435 districts and the chamber, from
+`docs/api/house.json`), **Polls** (every poll the sources hold, counted or not and why), **Model** (each of the three
+models in full), **Back-tests** (each model against past results) and **Research** (a notebook of questions about
+elections that stands apart from the forecast). Section headings share one device: a dark band across the
 whole screen with a blue-to-red stripe under it, each color as wide as its share of the 538 electoral votes on the map. To add a contact link, set `CONTACT` at the top of `make_page.py`.
 
 ## Updates
@@ -350,6 +348,10 @@ it finally stood or left out, and the results above should be read with that in 
 | What markets said of each state in 2024 (the market study only) | Polymarket's and Manifold's public price histories (`data/market_history_2024.csv`, read by `tools/market_history.py`) |
 | House vote by state, 1998-2024 (the trend study only) | FiveThirtyEight `election_results_house.csv` (`data/house_by_state.csv`: districts both parties contested) |
 | DeSart's long-range model, 1996-2024 (the Research tab's study of it only) | His replication data for the 2021 and 2025 papers in *PS: Political Science & Politics*, Harvard Dataverse doi:10.7910/DVN/6GWHQB and doi:10.7910/DVN/HZGLY9, CC0 (`data/desart.csv`, made by `tools/fetch_desart.py` and `tools/make_desart.py`) |
+| House forecast: districts, leans, members and their plans (`house/`) | Wikipedia's overview of each House election (CC BY-SA 4.0), read every hour; the leans are the Cook Political Report's PVI as listed there |
+| House back-tests: results 2012-2024 | FiveThirtyEight `election_results_house.csv` (CC BY 4.0), in `data/house/training.csv`; later elections from Wikipedia |
+| House back-tests: leans for lines Cook had not published | The Downballot's presidential results by congressional district (the-downballot.com/data), used with credit; only one number a district is kept (`data/house/leans_alt.csv`) |
+| House back-tests: money (tested, not used) | The FEC's candidate summaries and reports (public domain) |
 | Map | us-atlas 3.0.1 (ISC), Census cartographic boundaries |
 
 The Margin is not affiliated with or endorsed by VoteHub, PollResults.org or The New York Times.

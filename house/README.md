@@ -1,4 +1,4 @@
-# The House forecast (in progress)
+# The House forecast
 
 A forecast of every House race and of the seats each party wins, built the way the Senate forecast is (`senate/`), on
 the 435 districts as they are drawn when the forecast is made.
@@ -54,7 +54,7 @@ The leans of 2018 and 2020 worked out the way Cook has since 2022 (three parts t
 the one before) place the races better than the even split Cook published then (Brier 0.032 against 0.035, eight more
 races called), and they are the leans the live forecast reads, so the fit uses them.
 
-## Where it stands
+## The back-test as a forecast (step 4)
 
 `python house/simulate.py cook75`, 2018-2024, each election from the other three:
 
@@ -67,4 +67,26 @@ races called), and they are the leans the live forecast reads, so the fit uses t
 
 The misses come from the national level (2020 too Democratic, 2022 too Republican) and from the seats' spread: given the
 right level, the Democrats beat the forecast in toss-up races by half a point to a point in each of the four years, and
-won 6 to 12 more seats than the forecast gave them in three of them.
+won 6 to 12 more seats than the forecast gave them in three of them. That is not built in; the range holds it.
+
+## 2026, forecast without having seen it (step 5)
+
+`python house/after_election.py --year 2026 --pages FILE --test --save` reads 2026 from Wikipedia (the overview, the
+states' pages) and forecasts it from 2018-2024 alone, scored on the winners, since on November 28, 2026 Wikipedia had vote
+shares for only 227 of the 417 contested districts. Democrats won 260 seats (two Louisiana runoffs to come); the forecast
+expected 224 a year out and 236 on the last day, outside its 80% range at every distance. The districts did not miss:
+given the national House vote (57.2% for the Democrats), the equation gives 259 seats. The national mood did, pointing to
+54.1% on the last day. Its miss of 2026 is now part of the shared error (house/fit.py measures the mood's misses on every
+year it was read), which widens the 2028 ranges.
+
+## The live forecast (step 6)
+
+`house/fit.py` writes `data/house/model.json` (the weights, the gap, the errors at each distance, the members' rates, the
+redraw spreads) and `data/house/backtest.json`. `house/live.py`, run every hour after the Senate forecast by
+`.github/workflows/house.yml`, reads Wikipedia's overview of the coming election and writes `data/house/<year>/` and
+`docs/api/house.json`, which the site's House tab reads. Its docstring lists every case it handles on its own: members who
+have not said whether they run, primaries, open and vacant seats, new maps and stale leans, and the link to the
+presidential simulations. `house/after_election.py`, run every week by `.github/workflows/house-after.yml`, adds each
+election to the training table once its results settle and Wikipedia has them all, then refits the model.
+
+Tests: `python tests/test_house.py`.

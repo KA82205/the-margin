@@ -240,6 +240,13 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 #sn-t tr{scroll-margin-top:calc(var(--navh,56px) + 16px)}#sn-t tr.on td{background:var(--raised)}
 #sn-t .who i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
 .sn-line svg{display:block;width:100%;height:auto}
+.hemi svg{display:block;width:100%;height:auto}
+.hemi circle{cursor:pointer}.hemi circle:hover,.hemi circle:focus-visible{stroke:var(--ink);stroke-width:2;outline:none}
+.hemi .ax{fill:var(--muted);font:400 12px var(--sans)}.hemi .lb{fill:var(--ink);font:500 13px var(--sans)}
+#hs-t,#hs-close{min-width:640px}#hs-t td small,#hs-close td small{display:block;color:var(--muted);font-size:12px;line-height:16px}
+#hs-t .who i,#hs-close .who i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+#hs-t tr{scroll-margin-top:calc(var(--navh,56px) + 16px)}#hs-t tr.on td{background:var(--raised)}
+.hs-more{margin-top:12px}
 ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
 .st-hint{margin-top:32px;border:1px dashed var(--line);border-radius:12px;padding:40px 24px;text-align:center}
 .st-hint h3{font:500 28px/32px var(--serif);margin:0 0 8px}
@@ -296,7 +303,7 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
 <div id="tip" hidden></div>
 <div class="stripe" aria-hidden="true"></div>
 <nav><div class="wide"><a class="brand" href="#presidency"><svg aria-hidden="true"><use href="#logo"/></svg>{{TITLE}}</a>
-  <div class="tabs" id="tabs"><a href="#presidency">Presidency</a><a href="#senate">Senate</a><a href="#polls">Polls</a><a href="#model">Model</a><a href="#backtests">Back-tests</a><a href="#research">Research</a></div></div></nav>
+  <div class="tabs" id="tabs"><a href="#presidency">Presidency</a><a href="#senate">Senate</a><a href="#house">House</a><a href="#polls">Polls</a><a href="#model">Model</a><a href="#backtests">Back-tests</a><a href="#research">Research</a></div></div></nav>
 
 <main>
 <section class="tab" id="t-forecast">
@@ -395,6 +402,33 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
 <div class="col"><h2>How the Senate forecast works</h2><div id="sn-how"></div></div>
 </section>
 
+<section class="tab" id="t-house" hidden>
+<header class="wide hero">
+  <div>
+    <p class="kicker" id="hs-kick">House forecast</p>
+    <h1 id="hs-head">The House</h1>
+    <p class="stand" id="hs-stand"></p>
+    <p class="dateline" id="hs-date"></p>
+    <div class="top" id="hs-top"></div>
+    <div class="bar" id="hs-odds"></div>
+    <div class="keys" id="hs-keys"></div>
+  </div>
+  <div class="mapbox">
+    <div class="hemi" id="hs-hemi"></div>
+    <div class="legend" id="hs-leg"></div>
+    <p class="sn-note" id="hs-note"></p>
+  </div>
+</header>
+<figure class="mid"><h2>How many seats</h2><p class="sub" id="hs-dist-sub"></p><div class="sn-dist" id="hs-dist"></div><figcaption id="hs-dist-cap"></figcaption></figure>
+<figure class="mid" id="hs-wh-f" hidden><h2>With the White House</h2><p class="sub" id="hs-wh-sub"></p><div class="mix" id="hs-wh"></div><figcaption id="hs-wh-cap"></figcaption></figure>
+<figure class="mid" id="hs-hist-f" hidden><h2>The chance over time</h2><div class="sn-line" id="hs-hist"></div></figure>
+<figure class="mid"><h2>The closest districts</h2><p class="sub" id="hs-close-sub"></p><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="hs-close"></table></div></figure>
+<figure class="mid" id="hs-all"><h2>Every district</h2>
+  <div class="xp-ctl"><input id="hs-q" type="search" placeholder="Find a state, district or member" aria-label="Find a state, district or member"><select id="hs-sort" aria-label="Order of the list"><option value="close">Closest first</option><option value="state">By state</option><option value="dem">Most Democratic first</option></select><span class="xp-n" id="hs-n"></span></div>
+  <div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="hs-t"></table></div><div class="seg hs-more" id="hs-more-w" hidden><button type="button" id="hs-more"></button></div><figcaption id="hs-t-cap"></figcaption></figure>
+<div class="col"><h2>How the House forecast works</h2><div id="hs-how"></div></div>
+</section>
+
 <section class="tab" id="t-polls" hidden>
 <div class="col lead"><h1>The polls</h1><div class="ctl"><div class="seg" role="group" aria-label="Which forecast" data-sw="polls"><button type="button" data-v="pres" aria-pressed="true">President</button><button type="button" data-v="senate" aria-pressed="false">Senate</button></div></div><p class="stand" id="pl-stand" data-panel="polls:pres"></p><p class="stand" id="spl-stand" data-panel="polls:senate" hidden></p></div>
 <div class="mid" data-panel="polls:pres">
@@ -409,7 +443,7 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
 </div>
 </section>
 <section class="tab" id="t-model" hidden>
-<div class="col lead"><h1>How the forecasts are made</h1><p class="stand">The Margin runs two models, one for the presidency and one for the Senate. Each is explained here in full: what goes into it, how much each part counts and how it was tested.</p><div class="ctl"><div class="seg" role="group" aria-label="Which forecast" data-sw="model"><button type="button" data-v="pres" aria-pressed="true">The presidential model</button><button type="button" data-v="senate" aria-pressed="false">The Senate model</button></div></div></div>
+<div class="col lead"><h1>How the forecasts are made</h1><p class="stand">The Margin runs three models: one for the presidency, one for the Senate and one for the House. Each is explained here in full: what goes into it, how much each part counts and how it was tested.</p><div class="ctl"><div class="seg wrap" role="group" aria-label="Which forecast" data-sw="model"><button type="button" data-v="pres" aria-pressed="true">The presidential model</button><button type="button" data-v="senate" aria-pressed="false">The Senate model</button><button type="button" data-v="house" aria-pressed="false">The House model</button></div></div></div>
 <div data-panel="model:pres">
 <div class="col"><p class="stand">How the forecast is calculated, why each part counts as much as it does, and how the forecast will sharpen as the election gets closer.</p></div>
 <div class="col" id="calc"><h2>The presidential model</h2>
@@ -449,10 +483,11 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
 </div>
 </div>
 <div data-panel="model:senate" hidden><div class="col" id="sm-body"></div></div>
+<div data-panel="model:house" hidden><div class="col" id="hm-body"></div></div>
 </section>
 
 <section class="tab" id="t-backtests" hidden>
-<div class="col lead"><h1>Back-tests</h1><div class="ctl"><div class="seg" role="group" aria-label="Which forecast" data-sw="backtests"><button type="button" data-v="pres" aria-pressed="true">President</button><button type="button" data-v="senate" aria-pressed="false">Senate</button></div></div><p class="stand" id="p-record" data-panel="backtests:pres"></p><p class="stand" id="sb-stand" data-panel="backtests:senate" hidden></p></div>
+<div class="col lead"><h1>Back-tests</h1><div class="ctl"><div class="seg" role="group" aria-label="Which forecast" data-sw="backtests"><button type="button" data-v="pres" aria-pressed="true">President</button><button type="button" data-v="senate" aria-pressed="false">Senate</button><button type="button" data-v="house" aria-pressed="false">House</button></div></div><p class="stand" id="p-record" data-panel="backtests:pres"></p><p class="stand" id="sb-stand" data-panel="backtests:senate" hidden></p><p class="stand" id="hb-stand" data-panel="backtests:house" hidden></p></div>
 <div data-panel="backtests:pres">
 <figure class="mid">
   <b>Pick an election</b>
@@ -479,6 +514,15 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
 <figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="sb-cal"></table></div><figcaption id="sb-cal-cap"></figcaption></figure>
 <div class="col"><h2>Tried and kept, tried and left out</h2><p>Each idea tried while building the Senate model, what these tests showed when it was added, and whether it went in.</p></div>
 <figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="sb-tried"></table></div></figure>
+</div>
+<div data-panel="backtests:house" hidden>
+<figure class="wide" style="max-width:1000px"><b>Forecast against result, House</b><div class="sub">Pick how long before the election the forecast was made</div><div class="ctl"><div class="seg wrap" id="hb-days" role="group" aria-label="How long before the election"></div></div><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="hb-year"></table></div><figcaption id="hb-year-cap"></figcaption></figure>
+<div class="col"><h2>At every distance from the election</h2><p id="hb-dist-p"></p></div>
+<figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="hb-dist"></table></div><figcaption id="hb-dist-cap"></figcaption></figure>
+<div class="col" id="hb-26-c"><h2>2026, forecast without having seen it</h2><p id="hb-26-p"></p></div>
+<figure class="mid" id="hb-26-f"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="hb-26"></table></div><figcaption id="hb-26-cap"></figcaption></figure>
+<div class="col"><h2>Tried and kept, tried and left out</h2><p>Each idea tried while building the House model, what the tests showed when it was tried, and whether it went in.</p></div>
+<figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="hb-tried"></table></div></figure>
 </div>
 </section>
 
@@ -1486,27 +1530,193 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
       (B.tested || []).map(t => '<tr><td>' + esc(t.idea) + '</td><td>' + esc(t.result) + '</td><td>' + (t.adopted ? 'Kept' : 'Left out') + '</td></tr>').join('') + '</tbody>';
   }
 
-  // ---- tabs. #presidency (also #forecast, the old name), #senate, #polls, #model, #backtests, #research; #states/PA opens
-  // a state in the Presidency tab's State by state section; #polls/senate, #model/senate and #backtests/senate show the
-  // Senate side of those tabs; #model/narrow and the like go to a section inside a tab.
+  // ---- the House: its own data file (api/house.json), written every hour by the House forecast after the Senate's, and
+  // read when a tab that shows it first opens, as the Senate's is
+  let HSP = null; const hsDone = {};
+  const loadHouse = () => HSP || (HSP = fetch('api/house.json', {cache: 'no-cache'}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).catch(e => { HSP = null; throw e; }));
+  function houseInto(part) {
+    if (hsDone[part]) return; hsDone[part] = 'busy';
+    loadHouse().then(H => { hsDone[part] = true; ({house: drawHouse, model: drawHouseModel, backtests: drawHouseBack})[part](H); })
+      .catch(() => { hsDone[part] = false; const el = $({house: 'hs-head', model: 'hm-body', backtests: 'hb-stand'}[part]); if (el) el.textContent = 'The House forecast could not be loaded. Reload the page to try again.'; });
+  }
+  const ordW = n => { const v = n % 100; return n + (v >= 11 && v <= 13 ? 'th' : ({1: 'st', 2: 'nd', 3: 'rd'})[n % 10] || 'th'); };
+  const stName = st => (ST[st] || {}).name || st;
+  const dName = r => stName(r.state) + (r.district === 0 ? ' at-large' : '\'s ' + ordW(r.district));
+  const dCode = r => r.state + '-' + (r.district === 0 ? 'AL' : r.district);
+  const hsCell = q => q < 0.995 && q > 0.005 ? aheadCell(q) : (q >= 0.5 ? '<span class="dem">D >99%</span> <span class="chance-o">R <1%</span>' : '<span class="rep">R >99%</span> <span class="chance-o">D <1%</span>');
+  const leanTxt = v => v === 0 ? 'Even' : (v > 0 ? 'D+' : 'R+') + (Number.isInteger(v) ? Math.abs(v) : Math.abs(v).toFixed(1));
+  const hsList = a => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1];
+  const memberCell = r => { if (!r.members.length) return '<td class="who">No member listed<small>' + esc(r.plan) + '</small></td>';
+    const m = r.members.map(x => '<i style="background:var(--' + (x.party === 'R' ? 'r' : 'd') + ')"></i>' + esc(x.name)).join('<br>');
+    const runs = r.plan === 'Has not said' && r.p_member_runs != null ? ': runs in ' + in100(r.p_member_runs) + ' of simulated elections' : r.plan === 'Running' ? ': on the ballot unless beaten in the primary' : '';
+    return '<td class="who">' + m + '<small>' + esc(r.plan) + runs + '</small></td>'; };
+  const districtHead = '<thead><tr><th>District</th><th>Member</th><th class="n">Lean</th><th class="n">Chance of winning</th><th class="n">Projected margin</th><th class="n">80% prediction interval</th></tr></thead>';
+  const districtRow = (r, id) => '<tr' + (id ? ' id="hs-r-' + dCode(r) + '"' : '') + '><td>' + esc(dName(r)) + '<small>' + dCode(r) + (r.lean_note ? ' · ' + esc(r.lean_note) : '') + '</small></td>' + memberCell(r) +
+    '<td class="n">' + leanTxt(r.lean) + '</td><td class="n">' + hsCell(r.p_dem) + '</td><td class="n ' + pcl(r.margin) + '">' + pts(r.margin) + '</td><td class="n">' + pts(r.high80) + ' to ' + pts(r.low80) + '</td></tr>';
+  function drawHouse(H) {
+    // the headline is the seat count the forecast expects; the chance of control sits beside it, given for the side ahead
+    const sm = H.summary, now = H.house_now, p = sm.p_dem_majority, f1 = v => v.toFixed(1);
+    const shown = x => Math.min(99, Math.max(1, Math.round(100 * x)));          // never 0% or 100%: neither is ever certain
+    const dS = Math.round(sm.dem_seats_mean), rS = 435 - dS, held = now.dem >= 218 ? 'Democrats' : now.rep >= 218 ? 'Republicans' : null;
+    $('hs-kick').textContent = H.year + ' House forecast';
+    $('hs-head').textContent = dS >= rS ? 'Democrats are forecast to win ' + dS + ' House seats' : 'Republicans are forecast to win ' + rS + ' House seats';
+    const gone = now.vacant ? '; ' + (now.vacant === 1 ? 'one seat has' : (NUMW[now.vacant] || now.vacant) + ' seats have') + ' no member listed yet' : '';
+    $('hs-stand').textContent = (held === 'Democrats' ? 'Democrats hold ' + now.dem + ' of the 435 seats and Republicans ' + now.rep : held === 'Republicans' ? 'Republicans hold ' + now.rep + ' of the 435 seats and Democrats ' + now.dem : 'Democrats hold ' + now.dem + ' seats and Republicans ' + now.rep) +
+      gone + '. Every seat is up in ' + H.year + ', and 218 is a majority.';
+    $('hs-date').textContent = 'Updated ' + longDate(H.as_of) + ' · ' + H.days_out + ' days to the election';
+    $('hs-top').innerHTML = '<div class="dn"><span>Democratic seats</span><strong>' + dS + '</strong></div><div class="rn"><span>Republican seats</span><strong>' + rS + '</strong></div>';
+    $('hs-odds').innerHTML = '<i class="bd" style="flex:' + dS + '"></i><i class="br" style="flex:' + rS + '"></i>';
+    $('hs-odds').setAttribute('role', 'img'); $('hs-odds').setAttribute('aria-label', 'Democrats ' + dS + ' seats, Republicans ' + rS + '; the line marks a majority');
+    const lead = p >= 0.5 ? 'Democrats' : 'Republicans', lp = p >= 0.5 ? p : 1 - p;
+    const pivot = H.districts.slice().sort((a, b) => b.lean - a.lean)[217];
+    const range = dS >= rS ? [sm.low80, sm.high80, 'Democratic'] : [435 - sm.high80, 435 - sm.low80, 'Republican'];
+    $('hs-keys').innerHTML = [[shown(lp) + '%', lead + '\' chance of ' + (lead === held ? 'keeping' : 'winning') + ' control of the House'],
+      [range[0] + ' to ' + range[1], range[2] + ' seats in 80% of simulated elections'],
+      [leanTxt(pivot.lean), 'how the 218th most Democratic district leans: the seat a majority turns on']]
+      .map(k => '<div><strong>' + k[0] + '</strong><span>' + k[1] + '</span></div>').join('');
+    // the chamber: a dot for each district, from the most likely to elect a Democrat on the left to the most likely to
+    // elect a Republican on the right, in rows that hold seats in proportion to their length
+    const rowsN = 12, n = H.districts.length, Wv = 600, Hv = 318, cx = Wv / 2, cy = Hv - 10, R1 = 286, R0 = 118;
+    const radii = Array.from({length: rowsN}, (_, i) => R0 + (R1 - R0) * i / (rowsN - 1)), tot = radii.reduce((a, r) => a + r, 0);
+    const cnt = radii.map(r => Math.floor(n * r / tot)); let left = n - cnt.reduce((a, b) => a + b, 0);
+    for (let i = rowsN - 1; left > 0; i = (i + rowsN - 1) % rowsN) { cnt[i]++; left--; }
+    const spots = []; radii.forEach((r, i) => { for (let j = 0; j < cnt[i]; j++) { const a = Math.PI * (1 - (j + 0.5) / cnt[i]); spots.push({x: cx + r * Math.cos(a), y: cy - r * Math.sin(a), a}); } });
+    spots.sort((u, v) => v.a - u.a);
+    const order = H.districts.slice().sort((a, b) => (b.p_dem - a.p_dem) || (b.margin - a.margin));
+    const dot = 0.44 * Math.min((R1 - R0) / (rowsN - 1), ...radii.map((r, i) => Math.PI * r / cnt[i]));
+    let g = '<svg viewBox="0 0 ' + Wv + ' ' + Hv + '" role="img" aria-label="The 435 districts, from the most likely to elect a Democrat on the left to the most likely to elect a Republican on the right">';
+    order.forEach((r, i) => { const s = spots[i]; g += '<circle data-k="' + dCode(r) + '" cx="' + s.x.toFixed(1) + '" cy="' + s.y.toFixed(1) + '" r="' + dot.toFixed(1) + '" fill="' + COL[bin(r.p_dem)] + '"/>'; });
+    const a218 = (spots[217].a + spots[218].a) / 2;
+    g += '<line x1="' + (cx + (R0 - 16) * Math.cos(a218)).toFixed(1) + '" y1="' + (cy - (R0 - 16) * Math.sin(a218)).toFixed(1) + '" x2="' + (cx + (R1 + 12) * Math.cos(a218)).toFixed(1) + '" y2="' + (cy - (R1 + 12) * Math.sin(a218)).toFixed(1) + '" stroke="var(--ink)" stroke-dasharray="3 3"/>';
+    g += '<text class="lb" x="' + cx + '" y="' + (cy - 44) + '" text-anchor="middle">218</text><text class="ax" x="' + cx + '" y="' + (cy - 26) + '" text-anchor="middle">for a majority</text>';
+    $('hs-hemi').innerHTML = g + '</svg>';
+    const byK = {}; H.districts.forEach(r => { byK[dCode(r)] = r; });
+    const tipD = r => '<b>' + esc(dName(r)) + '</b> · ' + dCode(r) + '<br>' + (r.members.length ? r.members.map(m => esc(m.name) + ' (' + m.party + ')').join(', ') + ' · ' + esc(r.plan).toLowerCase() : 'No member listed') +
+      '<br>Lean ' + leanTxt(r.lean) + '<br>Chance of winning: ' + (r.p_dem >= 0.995 ? 'Democrats over 99%' : r.p_dem <= 0.005 ? 'Republicans over 99%' : bothTxt(r.p_dem)) + '<br>Projected ' + pts(r.margin);
+    document.querySelectorAll('#hs-hemi circle').forEach(el => { const r = byK[el.dataset.k]; hover(el, () => tipD(r));
+      el.addEventListener('click', () => { $('hs-q').value = dCode(r); drawAll(); tipHide(); $('hs-all').scrollIntoView({behavior: 'smooth', block: 'start'}); }); });
+    $('hs-leg').innerHTML = BINS.map((b, i) => '<span><i class="c' + i + '" style="display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px"></i>' + b[1] + '</span>').join('');
+    const Mb = H.members, mp = H.maps || {}, pend = Object.keys(mp).filter(k => mp[k] === 'pending').map(stName), made = Object.keys(mp).filter(k => mp[k] === 'enacted').map(stName);
+    $('hs-note').textContent = 'Each dot is a district, colored by its chance. ' +
+      (Mb.not_running ? (Mb.not_running === 1 ? 'One member has' : Mb.not_running + ' members have') + ' said they will not run again. ' : '') +
+      (Mb.unknown ? Mb.unknown + ' have not said, and each of them runs in ' + in100(Mb.p_unknown_runs) + ' of simulated elections. ' : '') +
+      (made.length ? hsList(made) + (made.length === 1 ? ' has a new map' : ' have new maps') + ' for ' + H.year + '. ' : '') +
+      (pend.length ? hsList(pend) + ' may redraw ' + (pend.length === 1 ? 'its map' : 'their maps') + ' before ' + H.year + '; until a new map is enacted, the forecast uses the current lines.' : '');
+    // how many seats
+    const Dd = H.seat_distribution, ks = Object.keys(Dd).map(Number).filter(k => Dd[k] >= 0.0005).sort((a, b) => a - b);
+    const lo = Math.min(ks[0], 208), hi = Math.max(ks[ks.length - 1], 228), Wd = 760, Hd = 220, pl = 8, pr = 8, pt = 24, pb = 28, bw = (Wd - pl - pr) / (hi - lo + 1), mx = Math.max(...ks.map(k => Dd[k]));
+    let d = '<svg viewBox="0 0 ' + Wd + ' ' + Hd + '" role="img" aria-label="Chance of each number of Democratic seats">';
+    for (let k = lo; k <= hi; k++) { const v = Dd[k] || 0, h = (Hd - pt - pb) * v / mx, x = pl + (k - lo) * bw;
+      d += '<g><title>' + k + ' Democratic seats: ' + (v < 0.001 ? 'under 0.1%' : pc(v, 1)) + '</title><rect x="' + (x + 0.5).toFixed(2) + '" y="' + (Hd - pb - h).toFixed(2) + '" width="' + Math.max(bw - 1, 1).toFixed(2) + '" height="' + h.toFixed(2) + '" fill="' + (k >= 218 ? 'var(--d)' : 'var(--r)') + '"/>';
+      if (k % 10 === 0) d += '<text class="ax" x="' + (x + bw / 2).toFixed(1) + '" y="' + (Hd - 8) + '" text-anchor="middle">' + k + '</text>'; d += '</g>'; }
+    const xm = pl + (218 - lo) * bw; d += '<line x1="' + xm + '" x2="' + xm + '" y1="' + (pt - 14) + '" y2="' + (Hd - pb) + '" stroke="var(--ink)" stroke-dasharray="3 3"/><text class="lb" x="' + (xm + 6) + '" y="' + (pt - 4) + '">218: a majority</text>';
+    $('hs-dist').innerHTML = d + '</svg>';
+    $('hs-dist-sub').textContent = 'Democratic seats after the election, across ' + H.sims.toLocaleString('en-US') + ' simulated elections. The middle is ' + sm.dem_seats_median + '; in 80% of them Democrats win ' + sm.low80 + ' to ' + sm.high80 + '.';
+    $('hs-dist-cap').textContent = 'Blue: a Democratic majority. Red: a Republican one.';
+    // with the White House (a presidential year only)
+    const wh = H.year % 4 === 0 && sm.p_dem_president != null; $('hs-wh-f').hidden = !wh;
+    if (wh) {
+      $('hs-wh-sub').textContent = 'The districts are simulated inside the presidential forecast\'s own simulated elections, so the two move together.';
+      $('hs-wh').innerHTML = [[snPct(sm.p_dem_majority_if_dem_president), 'Democrats win the House if they win the White House'], [snPct(sm.p_dem_majority_if_rep_president), 'Democrats win the House if Republicans win the White House'],
+        [snPct(sm.p_dem_both), 'chance Democrats win both; Republicans ' + snPct(sm.p_rep_both)]].map(k => '<div><strong>' + k[0] + '</strong><span>' + k[1] + '</span></div>').join('');
+      $('hs-wh-cap').textContent = 'A district moves about half a point with each point its state\'s presidential vote moves in the same simulated election, as the Senate races do. The presidential chance used is the Presidency tab\'s ' + in100(sm.p_dem_president) + ' for the Democrats.'; }
+    // the chance over time, once there is more than one day
+    if (H.history.length > 1) { $('hs-hist-f').hidden = false; const Hs = H.history, w = 760, h = 160, x = i => 40 + i * (w - 56) / (Hs.length - 1), y = v => 12 + (1 - v) * (h - 36);
+      let s = '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="Chance Democrats win the House, day by day">';
+      [0, 0.5, 1].forEach(v => { s += '<line x1="40" x2="' + (w - 16) + '" y1="' + y(v) + '" y2="' + y(v) + '" stroke="var(--line)"/><text class="ax" x="34" y="' + (y(v) + 4) + '" text-anchor="end">' + in100(v) + '</text>'; });
+      s += '<polyline fill="none" stroke="var(--d)" stroke-width="2" points="' + Hs.map((r, i) => x(i) + ',' + y(r.p)).join(' ') + '"/><text class="ax" x="40" y="' + (h - 4) + '">' + longDate(Hs[0].date) + '</text><text class="ax" x="' + (w - 16) + '" y="' + (h - 4) + '" text-anchor="end">' + longDate(Hs[Hs.length - 1].date) + '</text>';
+      $('hs-hist').innerHTML = s + '</svg>'; }
+    // the closest districts, and every district
+    const close = H.districts.slice().sort((a, b) => Math.abs(a.p_dem - 0.5) - Math.abs(b.p_dem - 0.5)).slice(0, 25).sort((a, b) => (b.p_dem - a.p_dem) || (b.margin - a.margin));
+    $('hs-close').innerHTML = districtHead + '<tbody>' + close.map(r => districtRow(r, false)).join('') + '</tbody>';
+    $('hs-close-sub').textContent = 'The 25 districts nearest an even chance, from the most Democratic to the most Republican.';
+    // forty rows at first, all of them on request or for a search
+    let showAll = false; const FIRST = 40;
+    const drawAll = () => { const q = $('hs-q').value.trim().toLowerCase(), how = $('hs-sort').value, code = /^[a-z]{2}-(\d+|al)$/.test(q);
+      let rs = H.districts.filter(r => !q || (code ? dCode(r).toLowerCase() === q : (dName(r) + ' ' + dCode(r) + ' ' + r.members.map(m => m.name).join(' ')).toLowerCase().indexOf(q) >= 0));
+      rs = rs.slice().sort(how === 'state' ? (a, b) => stName(a.state).localeCompare(stName(b.state)) || a.district - b.district
+        : how === 'dem' ? (a, b) => (b.p_dem - a.p_dem) || (b.margin - a.margin) : (a, b) => Math.abs(a.p_dem - 0.5) - Math.abs(b.p_dem - 0.5));
+      const cut = !q && !showAll && rs.length > FIRST;
+      $('hs-t').innerHTML = districtHead + '<tbody>' + (cut ? rs.slice(0, FIRST) : rs).map(r => districtRow(r, true)).join('') + '</tbody>';
+      $('hs-more-w').hidden = !cut; $('hs-more').textContent = 'Show all ' + rs.length + ' districts';
+      $('hs-n').textContent = q ? rs.length + ' of ' + n : cut ? 'The first ' + FIRST + ' of ' + n : n + ' districts'; };
+    $('hs-q').addEventListener('input', drawAll); $('hs-sort').addEventListener('change', drawAll);
+    $('hs-more').addEventListener('click', () => { showAll = true; drawAll(); }); drawAll();
+    $('hs-t-cap').textContent = 'Lean: the Cook Political Report\'s measure of how the district votes against the nation, from the last two presidential elections on its current lines, in points of the two-party vote (as Wikipedia lists it). Margins are in points: the Democrats\' share less the Republicans\'. The 80% prediction interval is where the margin falls in 80% of simulated elections.';
+    const B = H.backtests || {}, t = (B.tests || {})['2026'], yrs = H.model.years, last = t ? t.rows.find(r => r.days === 1) : null;
+    $('hs-how').innerHTML = '<p>Each district starts from how it votes: its lean against the nation in the last two presidential elections, on the lines in use. To that the forecast adds the national mood the Senate forecast reads, from the president\'s approval and, once there are polls of it, the generic congressional ballot, and whether the district\'s member is running again. The weights were fitted on every House race from ' + yrs[0] + ' to ' + yrs[yrs.length - 1] + '. All 435 seats are then simulated together, with an error every district shares and one of its own.</p>' +
+      (last ? '<p>Run on 2026 without having seen it, the method expected about ' + Math.round(last.seats_mid) + ' Democratic seats on the last day, with 80% of simulated elections between ' + Math.round(last.low80) + ' and ' + Math.round(last.high80) + '. Democrats won ' + t.dem_won + (t.undecided ? ', with ' + (NUMW[t.undecided] || t.undecided) + ' still to be decided' : '') + '. The districts were not where it missed: given the national House vote, ' + f1(t.given_vote.vote) + '% for the Democrats, the same equation gives them ' + t.given_vote.seats + ' seats. The miss came from the national mood, which pointed to about ' + f1(last.level - H.model.gap) + '% on the last day, three points short. That miss is now part of the error the forecast allows the national mood, which is one reason its range is wide.</p>' : '') +
+      '<p><a href="#model/house">How the House model works, in full</a> · <a href="#backtests/house">How it has done, ' + yrs[0] + ' to ' + yrs[yrs.length - 1] + ', and on 2026</a></p>';
+  }
+  function drawHouseModel(H) {
+    const Mo = H.model, N = H.national, c = Mo.coef, f1 = v => v.toFixed(1), f2 = v => v.toFixed(2), yrs = Mo.years, span = yrs[0] + ' to ' + yrs[yrs.length - 1], Dd = Mo.distances, mb = Mo.members;
+    const far = Dd['365'] || Dd[Object.keys(Dd)[0]], near = Dd['1'] || Dd[Object.keys(Dd).slice(-1)[0]];
+    $('hm-body').innerHTML = '<h2>The House model</h2>' +
+      '<p>The House model forecasts each of the 435 districts and then who controls the chamber. It reads the same national mood as the Senate model and, in a presidential year, runs inside the presidential model\'s simulated elections; everything else in it was fitted on the House races of ' + span + ' and tested on each of those years with that year left out (the Back-tests tab, which also lists the ideas tried and left out).</p>' +
+      '<h3 class="step">Step 1: The national mood</h3><p>The national mood is the Democratic share of the national House vote the year points to, read from the Senate forecast: a forecast from the president\'s approval, averaged half and half with the generic congressional ballot once there are polls of it. Today it is ' + f1(N.mood) + '%' +
+      (N.generic != null ? ' (the generic ballot ' + f1(N.generic) + '%, the approval forecast ' + f1(N.fundamentals) + '%).' : ', from approval alone: there are no generic-ballot polls yet.') +
+      ' A district with no lean and no member on the ballot lands ' + f1(Math.abs(Mo.gap)) + ' points ' + (Mo.gap >= 0 ? 'above' : 'below') + ' the national House vote, the average gap from ' + span + ' (the national vote counts seats one party leaves uncontested, and districts differ in turnout).</p>' +
+      '<h3 class="step">Step 2: Each district</h3><p>Each district starts from its lean: the Cook Political Report\'s measure of how it voted against the nation in the last two presidential elections, three parts the last one to one part the one before, on the lines in use, as Wikipedia lists it. Each point of lean counts ' + f2(c.lean) + ' points. A Democratic member on the ballot adds ' + f1(2 * c.inc_d) + ' points to the Democrats\' margin and a Republican member ' + f1(-2 * c.inc_r) + ' to the Republicans\'. Once the year\'s level is known, a district\'s own error has a spread (standard deviation) of ' + f1(2 * Mo.district_sd) + ' points of margin.</p>' +
+      '<h3 class="step">Step 3: Who runs</h3><p>From ' + mb.years[0] + ' to ' + mb.years[mb.years.length - 1] + ', ' + in100(mb.run_share) + ' of the seats with a member had that member on the November ballot. A member who has not said whether they will run is on it in each simulated election with the chance left once the members who have said are counted: today ' + in100(H.members.p_unknown_runs) + ' for each of the ' + H.members.unknown + ' who have not said. A member who has said they are running is on the ballot unless they lose the primary, as ' + pc(mb.primary_loss, 0) + ' of those who ran did; a member retiring, running for another office or beaten in the primary leaves the seat open.</p>' +
+      '<h3 class="step">Step 4: New maps</h3><p>The districts are those in use for the election, with the leans Wikipedia lists for them, so a redrawn district is forecast where it now is, not where it was. Where the page notes a lean was worked out on new lines before Cook published his, the spread such leans have had (' + f1(Mo.redraw_sd) + ' points of lean, 2024\'s redrawn states) is added to the district\'s error; while the page still gives the old lines\' leans after a new map, the spread a redraw has moved a district\'s lean by (' + f1(Mo.redraw_move_sd) + ' points, 2016 to 2024) is added until the leans are updated. A redraw still pending changes nothing until it is enacted.</p>' +
+      '<h3 class="step">Step 5: Simulating the election</h3><p>The 435 districts are simulated together ' + H.sims.toLocaleString('en-US') + ' times. Each district\'s error has a part every district shares, drawn from a t distribution with ' + Mo.t_df + ' degrees of freedom so that a large miss everywhere at once stays possible, and a part of its own. The shared part is as large as the national mood\'s misses of the House vote at the same distance from election day in every year it was read (' + hsList(far.mood_years.map(String)) + '), with the spread of the gap: ' + f1(2 * far.shared_sd) + ' points of margin a year out and ' + f1(2 * near.shared_sd) + ' on the last day. Further out than a year, it keeps growing at the rate it grows within the year (' + f1(2 * H.shared_sd) + ' today). ' +
+      (H.year % 4 === 0 ? 'In a presidential year the districts are drawn inside the presidential forecast\'s own simulated elections: each district moves about ' + f1(Mo.pres_link) + ' points with each point its state\'s presidential vote moves, as the Senate races do.' : '') + '</p>' +
+      '<h3 class="step">Sources and limits</h3><p class="fine">Districts, leans, members and their plans: Wikipedia (CC BY-SA 4.0), read every hour; the leans are the Cook Political Report\'s. Results of 2012 to 2024: FiveThirtyEight\'s results by candidate (CC BY 4.0); later elections from Wikipedia. Leans for lines Cook had not published, used in testing: worked out from <a href="https://www.the-downballot.com/data" rel="noopener">The Downballot</a>\'s presidential results by district. The national mood: the Senate model. Money, tested and left out: the Federal Election Commission.</p>' +
+      '<p class="fine">Limits worth knowing: the model has ' + (NUMW[yrs.length] || yrs.length) + ' elections to learn from; it reads no district polls and nothing about the candidates beyond whether the member runs; a district with a strong independent or third-party candidate is forecast as a two-party race; and the national mood missed 2026 by about three points, the most of any year it has been read.</p>';
+  }
+  function drawHouseBack(H) {
+    const B = H.backtests; if (!B) { $('hb-stand').textContent = 'The House back-tests are not available.'; return; }
+    const yrs = B.years, rows = B.rows, ld = rows.filter(r => r.days === 1), S1 = B.summary['1'];
+    const ins = ld.filter(r => r.actual >= r.low80 && r.actual <= r.high80).length, called = ld.reduce((a, r) => a + r.called, 0), races = ld.reduce((a, r) => a + r.races, 0);
+    $('hb-stand').textContent = 'Every House election from ' + yrs[0] + ' to ' + yrs[yrs.length - 1] + ', forecast by the House model with that year left out of its fit and the national mood as it stood. On the last day it called ' + called.toLocaleString('en-US') + ' of ' + races.toLocaleString('en-US') + ' contested races, missed the number of Democratic seats by ' + S1.seat_miss.toFixed(1) + ' in a typical year, and the actual number fell inside its 80% range in ' + ins + ' of ' + yrs.length + ' years.';
+    const ds = [365, 120, 60, 14, 1].filter(d => rows.some(r => r.days === d)); let cur = 1;
+    const drawYear = () => { $('hb-days').innerHTML = ds.map(d => '<button type="button" aria-pressed="' + (d === cur) + '" data-d="' + d + '">' + days2(d) + '</button>').join('');
+      $('hb-year').innerHTML = '<thead><tr><th>Year</th><th class="n">Democratic seats forecast</th><th class="n">80% prediction interval</th><th class="n">Actual</th><th class="n">Chance Democrats win the House</th><th>The House went to</th><th class="n">Races called</th></tr></thead><tbody>' +
+        rows.filter(r => r.days === cur).map(r => '<tr><td>' + r.year + '</td><td class="n">' + Math.round(r.seats_mid) + '</td><td class="n">' + Math.round(r.low80) + ' to ' + Math.round(r.high80) + '</td><td class="n">' + r.actual + (r.actual >= r.low80 && r.actual <= r.high80 ? '' : ' (outside)') + '</td><td class="n">' + in100(r.p_majority) + '</td><td>' + (r.actual >= 218 ? 'Democrats' : 'Republicans') + '</td><td class="n">' + r.called + ' of ' + r.races + '</td></tr>').join('') + '</tbody>';
+      $('hb-year-cap').textContent = 'Seats forecast: the middle of the simulated elections. Races called: contested districts where the side the forecast favored won.'; };
+    $('hb-days').addEventListener('click', e => { const b = e.target.closest('button[data-d]'); if (b) { cur = +b.dataset.d; drawYear(); } }); drawYear();
+    const Sk = Object.keys(B.summary).map(Number).sort((a, b) => b - a), first = B.summary[String(Sk[0])];
+    $('hb-dist-p').textContent = 'The same test run from a year before each election to the last day. The House forecast reads no district polls, so it sharpens only as the national mood settles: the seat count\'s typical miss is ' + first.seat_miss.toFixed(1) + ' a year out and ' + S1.seat_miss.toFixed(1) + ' on the last day.' +
+      (S1.bias < -2 ? ' At every distance it gave the Democrats a few seats too few: they beat the forecast in the closest races by half a point to a point in each year. That has not been built in, since it may not last; the range is wide enough to hold it.' : '');
+    $('hb-dist').innerHTML = '<thead><tr><th>When</th><th class="n">Typical miss, seats</th><th class="n">Democrats, forecast less actual</th><th class="n">Seat count inside the 80% range</th><th class="n">Races called</th><th class="n">Brier score</th></tr></thead><tbody>' +
+      Sk.map(d => { const s = B.summary[String(d)]; return '<tr><td>' + days2(d) + '</td><td class="n">' + s.seat_miss.toFixed(1) + '</td><td class="n">' + signed(s.bias) + '</td><td class="n">' + Math.round(s.inside80 * yrs.length) + ' of ' + yrs.length + '</td><td class="n">' + Math.round(s.called).toLocaleString('en-US') + ' of ' + Math.round(s.races).toLocaleString('en-US') + '</td><td class="n">' + s.brier.toFixed(3) + '</td></tr>'; }).join('') + '</tbody>';
+    $('hb-dist-cap').textContent = 'Averages over the ' + (NUMW[yrs.length] || yrs.length) + ' elections. The Brier score is the average squared gap between each race\'s chance and what happened: 0 is perfect and 0.25 is a coin toss.';
+    const t = (B.tests || {})['2026']; $('hb-26-c').hidden = $('hb-26-f').hidden = !t;
+    if (t) { const l = t.rows.find(r => r.days === 1), far = t.rows.find(r => r.days === 365) || t.rows[0];
+      $('hb-26-p').textContent = '2026 joins the model\'s fit once Wikipedia has every district\'s vote share. Its winners are already known, so here is the forecast of 2026 made from ' + yrs[0] + ' to ' + yrs[yrs.length - 1] + ' alone. Democrats won ' + t.dem_won + ' seats' + (t.undecided ? ', with ' + (NUMW[t.undecided] || t.undecided) + ' still to be decided in runoffs' : '') +
+        '. The forecast expected ' + Math.round(far.seats_mid) + ' a year out and ' + Math.round(l.seats_mid) + ' on the last day, and the result was outside its 80% range at every distance. The districts were not where it missed: given the national House vote, ' + t.given_vote.vote.toFixed(1) + '% of the two-party vote for the Democrats, the same equation gives them ' + t.given_vote.seats + ' seats. The miss came from the national mood, which pointed to about ' + (l.level - H.model.gap).toFixed(1) + '% on the last day, three points short. That miss is now part of the error the forecast allows the national mood.';
+      $('hb-26').innerHTML = '<thead><tr><th>When</th><th class="n">Democratic seats forecast</th><th class="n">80% prediction interval</th><th class="n">Actual</th><th class="n">Chance Democrats win the House</th><th class="n">Races called</th></tr></thead><tbody>' +
+        t.rows.slice().sort((a, b) => b.days - a.days).map(r => '<tr><td>' + days2(r.days) + '</td><td class="n">' + Math.round(r.seats_mid) + '</td><td class="n">' + Math.round(r.low80) + ' to ' + Math.round(r.high80) + '</td><td class="n">' + r.actual + (r.actual >= r.low80 && r.actual <= r.high80 ? '' : ' (outside)') + '</td><td class="n">' + in100(r.p_majority) + '</td><td class="n">' + r.called + ' of ' + r.races + '</td></tr>').join('') + '</tbody>';
+      $('hb-26-cap').textContent = 'Winners as Wikipedia gave them on ' + longDate(t.read) + '. The national mood for 2026 is as it stood at each distance, from the approval and generic-ballot polls published by then.'; }
+    $('hb-tried').innerHTML = '<thead><tr><th>Idea</th><th>What the test showed</th><th>Verdict</th></tr></thead><tbody>' +
+      (B.tested || []).map(x => '<tr><td>' + esc(x.idea) + '</td><td>' + esc(x.result) + '</td><td>' + (x.adopted ? 'Kept' : 'Left out') + '</td></tr>').join('') + '</tbody>';
+  }
+
+  // ---- tabs. #presidency (also #forecast, the old name), #senate, #house, #polls, #model, #backtests, #research; #states/PA
+  // opens a state in the Presidency tab's State by state section; #polls/senate, #model/senate and #backtests/senate show
+  // the Senate side of those tabs, #model/house and #backtests/house the House side; #model/narrow and the like go to a
+  // section inside a tab.
   const SW = ['polls', 'model', 'backtests'];
   function showSide(tab, side) {
     document.querySelectorAll('[data-sw="' + tab + '"] button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === side)));
     document.querySelectorAll('[data-panel^="' + tab + ':"]').forEach(el => { el.hidden = el.dataset.panel !== tab + ':' + side; });
     if (side === 'senate') senateInto(tab);
+    if (side === 'house') houseInto(tab);
   }
-  document.querySelectorAll('[data-sw]').forEach(g => g.addEventListener('click', e => { const b = e.target.closest('button[data-v]'); if (b) location.hash = '#' + g.dataset.sw + (b.dataset.v === 'senate' ? '/senate' : ''); }));
+  const SIDES = {polls: ['senate'], model: ['senate', 'house'], backtests: ['senate', 'house']};
+  document.querySelectorAll('[data-sw]').forEach(g => g.addEventListener('click', e => { const b = e.target.closest('button[data-v]'); if (b) location.hash = '#' + g.dataset.sw + (b.dataset.v === 'pres' ? '' : '/' + b.dataset.v); }));
   let stQuiet = false;          // a state picked inside the State by state section: show it without jumping the page
   $('st-sel').addEventListener('change', () => { stQuiet = true; }, true); $('st-strip').addEventListener('click', () => { stQuiet = true; }, true);
   if (!stSel) stHint();
-  (function () { const TABS = {presidency: 't-forecast', senate: 't-senate', polls: 't-polls', model: 't-model', backtests: 't-backtests', research: 't-research'}, ALIAS = {forecast: 'presidency', states: 'presidency'};
+  (function () { const TABS = {presidency: 't-forecast', senate: 't-senate', house: 't-house', polls: 't-polls', model: 't-model', backtests: 't-backtests', research: 't-research'}, ALIAS = {forecast: 'presidency', states: 'presidency'};
     const go = () => { const parts = (location.hash || '#presidency').slice(1).split('/'), asked = ALIAS[parts[0]] || parts[0], cur = TABS[asked] ? asked : 'presidency';
       Object.keys(TABS).forEach(k => { $(TABS[k]).hidden = k !== cur; }); document.querySelectorAll('#tabs a').forEach(a => { if (a.getAttribute('href') === '#' + cur) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
       if (cur === 'senate') senateInto('senate');
-      if (SW.indexOf(cur) >= 0) showSide(cur, parts[1] === 'senate' ? 'senate' : 'pres');
+      if (cur === 'house') houseInto('house');
+      if (SW.indexOf(cur) >= 0) showSide(cur, (SIDES[cur] || []).indexOf(parts[1]) >= 0 ? parts[1] : 'pres');
       if (parts[0] === 'states') { const want = parts[1] && ST[parts[1]] ? parts[1] : stSel; if (want) showState(want); else stHint();
         if (!stQuiet) $('states').scrollIntoView({behavior: 'instant', block: 'start'}); stQuiet = false; tipHide(); return; }
-      const to = parts[1] && parts[1] !== 'senate' && document.getElementById(parts[1]);          // a section inside the tab, as in #model/narrow
+      const to = parts[1] && parts[1] !== 'senate' && parts[1] !== 'house' && document.getElementById(parts[1]);          // a section inside the tab, as in #model/narrow
       if (to && $(TABS[cur]).contains(to)) to.scrollIntoView({behavior: 'instant', block: 'start'}); else window.scrollTo({top: 0, behavior: 'instant'});
       tipHide(); };
     const navh = () => document.documentElement.style.setProperty('--navh', document.querySelector('nav').offsetHeight + 'px');

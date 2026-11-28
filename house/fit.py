@@ -66,13 +66,28 @@ def model(T, years):
             'simulation': {'t_df': S.T_DF, 'pres_link': sim['pres_link'], 'shared_floor': sim['shared_floor'], 'own_floor': sim['own_floor']}}
 
 
+# each idea tried while building the House model, what the tests showed when it was tried, and whether it went in
+# (house/backtest.py: each election placed from the others given its national vote; house/simulate.py: the forecast)
+TESTED = [
+    {'idea': 'Each district at the national vote plus its lean, nothing fitted', 'result': 'A typical contested race missed by 3.7 points, 2012-2024, even with the national vote known', 'adopted': False},
+    {'idea': 'The lean\'s weight fitted', 'result': 'A typical miss of 3.6 points', 'adopted': True},
+    {'idea': 'A member of either party on the November ballot', 'result': 'A typical miss of 3.2 points and 60 more races called, 2012-2024', 'adopted': True},
+    {'idea': 'Fitted on 2018 onward rather than 2012 onward', 'result': 'A member was worth about 4 to 7 points to their party in 2012-2016 and about 2 to 3 since 2018: the House has become national, so the older years would overstate it', 'adopted': True},
+    {'idea': 'Leans for 2018 and 2020 worked out the way Cook has since 2022 (three parts the last presidential election, one part the one before)', 'result': 'Brier score 0.032 against 0.035 with the even split Cook published then, and eight more races called; it is the lean the live forecast reads', 'adopted': True},
+    {'idea': 'The district\'s last House result on the same lines', 'result': 'Added nothing once the lean and the member were in (a typical miss of 3.3 points against 3.2)', 'adopted': False},
+    {'idea': 'A member running on lines new to them counting for less', 'result': 'A typical miss of 3.4 points against 3.2', 'adopted': False},
+    {'idea': 'Money raised over the whole cycle', 'result': 'A little help in close races, but a forecast cannot know the totals in advance, and the typical miss was 3.3 points against 3.2', 'adopted': False},
+    {'idea': 'Money as it stood on each day (every FEC report of both parties\' candidates, 2012-2024, about 70,000)', 'result': 'The forecasts of 2018-2024 barely moved: the seat count\'s typical miss fell by half a seat at some distances and not at others, and the races called and the chances stayed the same', 'adopted': False},
+]
+
+
 def backtest(T, years, keep):
     r = S.run(COLS, T0=T, tests=years, train=years)
     s = S.summary(r)
     rows = r[['year', 'days', 'seats_mid', 'actual', 'low80', 'high80', 'p_majority', 'called', 'races', 'brier', 'level']].round(4).to_dict('records')
     tests = {k: v for k, v in (keep or {}).items() if int(k) not in years}
     return {'note': 'Each election forecast from the other elections at each distance from election day; seats are the Democrats\'.',
-            'years': years, 'rows': rows, 'summary': {str(int(d)): {k: round(float(v), 4) for k, v in x.items()} for d, x in s.iterrows()}, 'tests': tests}
+            'years': years, 'rows': rows, 'summary': {str(int(d)): {k: round(float(v), 4) for k, v in x.items()} for d, x in s.iterrows()}, 'tests': tests, 'tested': TESTED}
 
 
 def main():

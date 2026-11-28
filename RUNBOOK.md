@@ -120,6 +120,28 @@ meanwhile.
 | not added yet | Seven weeks after an election some of its results could not be read | The message says what is missing; each week's run tries again |
 | The run was stopped before it finished | It ran past its time limit | If it lasts, the run's log on GitHub says where it stopped |
 
+## The House jobs (The Margin)
+
+| Job | Workflow | What it does | What starts it |
+|---|---|---|---|
+| The House forecast | `House forecast` (`house.yml`) | reads Wikipedia's overview of the election, takes the national mood from the Senate forecast and reruns the House forecast (`house/live.py`) | the end of each run of `Senate forecast` (so every hour, after the presidential and Senate runs), GitHub's schedule (minute 25), a run started by hand |
+| After each election | `House after the election` (`house-after.yml`) | once an election's results have settled (seven weeks) and Wikipedia has every district's result, adds its districts to the training data, refits the model and remakes the back-tests (`house/after_election.py`, `house/fit.py`); does nothing between elections | the House forecast job, once its last run is a week old; GitHub's schedule (Mondays, 16:17 UTC); by hand |
+
+**Each job's health**, read as the Senate's:
+[house-forecast.json](https://ka82205.github.io/the-margin/api/health/house-forecast.json),
+[house-after.json](https://ka82205.github.io/the-margin/api/health/house-after.json).
+
+| `error` says | What it means | What to do |
+|---|---|---|
+| What was read does not look right | The overview page changed shape, lost districts or was vandalized, and the run's checks stopped it | Usually passes when the page is put right. If it lasts, the reader in `house/wiki_house.py` needs to learn the new layout |
+| The Senate forecast's national mood is from ... days old | The Senate forecast has not worked for more than three days | Fix the Senate job first (its health file says why); the House recovers with it |
+| not added yet | Seven weeks after an election, Wikipedia still lacks some results (shares, a runoff, the final seat count) | The message lists what is missing; each week's run tries again. Wikipedia's overview usually fills in within a few weeks |
+
+2026 is not in the House model's fit yet: on November 28, 2026, Wikipedia's overview had vote shares for 227 of the 417
+contested districts. The after-election job adds it once the page is complete (no earlier than December 22). Until then the
+Back-tests tab shows 2026 forecast from 2018-2024 and scored on the winners (`python house/after_election.py --year 2026
+--pages FILE --test --save`, with the pages saved by `tools/fetch_house_pages.py` through the samples workflow).
+
 ## Secrets
 
 Four secrets, all optional, set under each repository's Settings, Secrets and variables, Actions. Never put one in a file,
@@ -225,7 +247,7 @@ authors' published methods and are not adjusted.
 
     the-margin        python -m pytest tests && node tests/test_page.js && node tests/browser_hover.js && node tests/browser_page.js
                       (the Senate, each on its own: python tests/test_senate_live.py, test_after_election.py,
-                      test_fec_live.py, test_senate_health.py)
+                      test_fec_live.py, test_senate_health.py; the House: python tests/test_house.py)
                       (the studies: python interval_study.py, market_study.py, method_change.py, keys_study.py, state_trend_study.py)
     fifty-two-keys    python -m pytest tests
     tipping-point     python pipeline/tests/test_runs.py && python pipeline/tests/test_civiqs.py
