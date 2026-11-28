@@ -11,7 +11,7 @@ Into <folder>/house_raw/:
     wiki/<year> <state>.wiki   with "states": each state's page of each election as well
     weball<yy>.txt             the FEC's summary of every candidate's money, each cycle 2012-2026 (public domain)
 """
-import io, json, os, sys, time, urllib.parse, urllib.request, zipfile
+import io, json, os, sys, time, urllib.error, urllib.parse, urllib.request, zipfile
 
 UA = {'User-Agent': 'election-research (github.com/KA82205/the-margin)'}
 YEARS = list(range(2012, 2030, 2))
@@ -26,6 +26,9 @@ def get(url):
         try:
             with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=120) as r:
                 return r.read()
+        except urllib.error.HTTPError as e:
+            if e.code in (400, 403, 404) or i == 3: raise
+            print('retry', url[:80], e.code); time.sleep(5 * (i + 1))
         except Exception as e:                                     # noqa: BLE001 - retried, then raised
             if i == 3: raise
             print('retry', url[:80], type(e).__name__); time.sleep(5 * (i + 1))
@@ -51,9 +54,19 @@ def main(out, states=False):
     meta = json.loads(get('https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/IG0UN2'))['data']['latestVersion']
     for f in meta['files']:
         df = f['dataFile']
-        if df['filename'].endswith('.tab'):
-            body = get(f'https://dataverse.harvard.edu/api/access/datafile/{df["id"]}')
-            open(os.path.join(d, 'house.tab'), 'wb').write(body); print('MIT', df['filename'], len(body), 'bytes, license', (meta.get('license') or {}).get('name'))
+        for url in (f'https://dataverse.harvard.edu/api/access/datafile/{df["id"]}?gbrecs=true', f'https://dataverse.harvard.edu/api/access/datafile/{df["id"]}?format=original&gbrecs=true',
+                    f'https://dataverse.harvard.edu/api/access/datafile/:persistentId?persistentId={df.get("persistentId", "")}'):
+            try:
+                body = get(url)
+            except urllib.error.HTTPError as e:
+                print('MIT', url[-60:], e.code, e.read()[:300]); continue
+            open(os.path.join(d, 'house.tab'), 'wb').write(body); print('MIT', df['filename'], len(body), 'bytes, license', (meta.get('license') or {}).get('name')); break
+    # FiveThirtyEight's results by candidate (CC BY 4.0), a second source of the same results
+    for name in ('election_results_house.csv',):
+        try:
+            body = get('https://raw.githubusercontent.com/fivethirtyeight/election-results/main/' + name); open(os.path.join(d, name), 'wb').write(body); print('538', name, len(body))
+        except Exception as e:                                     # noqa: BLE001
+            print('538', name, 'could not be read:', type(e).__name__, e)
     pages = wiki([f'{y} United States House of Representatives elections' for y in YEARS])
     for t, text in pages.items():
         open(os.path.join(w, t[:4] + '.wiki'), 'w').write(text); print('Wikipedia', t, len(text))
