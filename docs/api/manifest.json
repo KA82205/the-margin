@@ -7,7 +7,7 @@
  "forecast": {
   "as_of": "2026-11-27",
   "file": "api/forecast.json",
-  "hash": "fdf794801717592a",
+  "hash": "78363481f742c5c4",
   "last_kept": "2026-11-27T2003Z.json",
   "kept": 8
  },
@@ -75,13 +75,13 @@
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-27T20:49Z",
- "commit": "70c7da60ea2c",
- "markets_read": "2026-11-27T20:48Z",
+ "made": "2026-11-28T03:43Z",
+ "commit": "5459ec1a99f5",
+ "markets_read": "2026-11-28T03:42Z",
  "markets": {
   "counts": {
    "Polymarket": 51,
-   "Kalshi": 60,
+   "Kalshi": 61,
    "Manifold": 61
   },
   "failed": {}

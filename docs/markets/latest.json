@@ -1,15 +1,15 @@
 {
-"read": "2026-11-27T20:48Z",
+"read": "2026-11-28T03:42Z",
 "counts": {
 "Polymarket": 51,
-"Kalshi": 60,
+"Kalshi": 61,
 "Manifold": 61
 },
 "failed": {},
 "combined": {
 "winner:GA": {
 "p": 0.6499,
-"quality": 0.7945,
+"quality": 0.7938,
 "real_money": true,
 "providers": [
 {
@@ -20,14 +20,14 @@
 "volume": 6142,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-georgia-winner",
 "id": "2028-presidential-election-georgia-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.645,
-"quality": 0.4667,
+"quality": 0.4641,
 "real_money": true,
 "volume": 1081,
 "traders": null,
@@ -52,7 +52,7 @@
 },
 "winner:AZ": {
 "p": 0.64,
-"quality": 0.7589,
+"quality": 0.7584,
 "real_money": true,
 "providers": [
 {
@@ -63,14 +63,14 @@
 "volume": 5590,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-arizona-winner",
 "id": "2028-presidential-election-arizona-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.6119,
-"quality": 0.4075,
+"quality": 0.4053,
 "real_money": true,
 "volume": 317,
 "traders": null,
@@ -94,26 +94,26 @@
 ]
 },
 "winner:FL": {
-"p": 0.2052,
-"quality": 0.749,
+"p": 0.206,
+"quality": 0.7846,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
-"p": 0.2132,
-"quality": 0.6151,
+"p": 0.2143,
+"quality": 0.6513,
 "real_money": true,
 "volume": 8085,
 "traders": null,
-"spread": 0.030000000000000027,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"spread": 0.020000000000000018,
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-florida-winner",
 "id": "2028-presidential-election-florida-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.2118,
-"quality": 0.3765,
+"quality": 0.3744,
 "real_money": true,
 "volume": 204,
 "traders": null,
@@ -137,8 +137,8 @@
 ]
 },
 "winner:AK": {
-"p": 0.2499,
-"quality": 0.8208,
+"p": 0.25,
+"quality": 0.8198,
 "real_money": true,
 "providers": [
 {
@@ -146,17 +146,17 @@
 "p": 0.264,
 "quality": 0.6872,
 "real_money": true,
-"volume": 13282,
+"volume": 13284,
 "traders": null,
 "spread": 0.020000000000000018,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-alaska-winner",
 "id": "2028-presidential-election-alaska-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.2315,
-"quality": 0.4931,
+"quality": 0.4903,
 "real_money": true,
 "volume": 1606,
 "traders": null,
@@ -168,7 +168,7 @@
 {
 "provider": "Manifold",
 "p": 0.246,
-"quality": 0.0412,
+"quality": 0.0403,
 "real_money": false,
 "volume": 235,
 "traders": 7,
@@ -180,8 +180,8 @@
 ]
 },
 "winner:ID": {
-"p": 0.0826,
-"quality": 0.4928,
+"p": 0.0827,
+"quality": 0.4925,
 "real_money": true,
 "providers": [
 {
@@ -192,14 +192,14 @@
 "volume": 502,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-idaho-winner",
 "id": "2028-presidential-election-idaho-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.055,
-"quality": 0.1699,
+"quality": 0.169,
 "real_money": true,
 "volume": 50,
 "traders": null,
@@ -211,7 +211,7 @@
 ]
 },
 "winner:HI": {
-"p": 0.939,
+"p": 0.9387,
 "quality": 0.503,
 "real_money": true,
 "providers": [
@@ -223,18 +223,18 @@
 "volume": 788,
 "traders": null,
 "spread": 0.029999999999999916,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:37:21.125023Z",
 "url": "https://polymarket.com/event/2028-presidential-election-hawaii-winner",
 "id": "2028-presidential-election-hawaii-winner"
 },
 {
 "provider": "Kalshi",
-"p": 0.9686,
-"quality": 0.1878,
+"p": 0.9681,
+"quality": 0.188,
 "real_money": true,
 "volume": 20,
 "traders": null,
-"spread": 0.043,
+"spread": 0.041999999999999996,
 "last_trade": "2026-11-19T15:40:09.166514Z",
 "url": "https://kalshi.com/markets/kxpresstate",
 "id": "KXPRESSTATE-HI-28"
@@ -242,30 +242,30 @@
 ]
 },
 "winner:DE": {
-"p": 0.959,
-"quality": 0.4119,
+"p": 0.951,
+"quality": 0.6007,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
-"p": 0.96,
-"quality": 0.3573,
+"p": 0.9482,
+"quality": 0.5453,
 "real_money": true,
-"volume": 404,
+"volume": 6675,
 "traders": null,
-"spread": 0.052000000000000005,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"spread": 0.046,
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-delaware-winner",
 "id": "2028-presidential-election-delaware-winner"
 },
 {
 "provider": "Kalshi",
-"p": 0.9575,
-"quality": 0.2186,
+"p": 0.9574,
+"quality": 0.2214,
 "real_money": true,
 "volume": 30,
 "traders": null,
-"spread": 0.038000000000000034,
+"spread": 0.03500000000000003,
 "last_trade": "2026-11-19T15:39:59.436417Z",
 "url": "https://kalshi.com/markets/kxpresstate",
 "id": "KXPRESSTATE-DE-28"
@@ -273,30 +273,30 @@
 ]
 },
 "winner:CT": {
-"p": 0.9542,
-"quality": 0.5137,
+"p": 0.9534,
+"quality": 0.5239,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
-"p": 0.9605,
-"quality": 0.4173,
+"p": 0.9595,
+"quality": 0.4233,
 "real_money": true,
 "volume": 1745,
 "traders": null,
-"spread": 0.061000000000000006,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"spread": 0.059000000000000004,
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-connecticut-winner",
 "id": "2028-presidential-election-connecticut-winner"
 },
 {
 "provider": "Kalshi",
-"p": 0.9464,
-"quality": 0.3855,
+"p": 0.9462,
+"quality": 0.4022,
 "real_money": true,
 "volume": 3110,
 "traders": null,
-"spread": 0.07799999999999996,
+"spread": 0.07199999999999995,
 "last_trade": "2026-11-19T15:39:56.290095Z",
 "url": "https://kalshi.com/markets/kxpresstate",
 "id": "KXPRESSTATE-CT-28"
@@ -305,7 +305,7 @@
 },
 "winner:CO": {
 "p": 0.9088,
-"quality": 0.634,
+"quality": 0.6339,
 "real_money": true,
 "providers": [
 {
@@ -316,18 +316,18 @@
 "volume": 1672,
 "traders": null,
 "spread": 0.020000000000000018,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:39:21.162276Z",
 "url": "https://polymarket.com/event/2028-presidential-election-colorado-winner",
 "id": "2028-presidential-election-colorado-winner"
 },
 {
 "provider": "Kalshi",
-"p": 0.8935,
-"quality": 0.3065,
+"p": 0.8934,
+"quality": 0.3069,
 "real_money": true,
 "volume": 216,
 "traders": null,
-"spread": 0.05500000000000005,
+"spread": 0.05400000000000005,
 "last_trade": "2026-11-19T15:39:52.82452Z",
 "url": "https://kalshi.com/markets/kxpresstate",
 "id": "KXPRESSTATE-CO-28"
@@ -335,7 +335,7 @@
 {
 "provider": "Manifold",
 "p": 0.9328,
-"quality": 0.0806,
+"quality": 0.08,
 "real_money": false,
 "volume": 6088,
 "traders": 3,
@@ -347,14 +347,26 @@
 ]
 },
 "winner:CA": {
-"p": 0.9597,
-"quality": 0.8054,
+"p": 0.9501,
+"quality": 0.8789,
 "real_money": true,
 "providers": [
 {
+"provider": "Polymarket",
+"p": 0.925,
+"quality": 0.6872,
+"real_money": true,
+"volume": 13281,
+"traders": null,
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-28T03:41:21.374388Z",
+"url": "https://polymarket.com/event/2028-presidential-election-california-winner",
+"id": "2028-presidential-election-california-winner"
+},
+{
 "provider": "Kalshi",
 "p": 0.9604,
-"quality": 0.6847,
+"quality": 0.6809,
 "real_money": true,
 "volume": 16022,
 "traders": null,
@@ -364,21 +376,9 @@
 "id": "KXPRESSTATE-CA-28"
 },
 {
-"provider": "Polymarket",
-"p": 0.945,
-"quality": 0.3966,
-"real_money": true,
-"volume": 330,
-"traders": null,
-"spread": 0.030000000000000006,
-"last_trade": "2026-11-27T20:47:21.660082Z",
-"url": "https://polymarket.com/event/2028-presidential-election-california-winner",
-"id": "2028-presidential-election-california-winner"
-},
-{
 "provider": "Manifold",
 "p": 0.9892,
-"quality": 0.0864,
+"quality": 0.0859,
 "real_money": false,
 "volume": 107,
 "traders": 3,
@@ -391,13 +391,13 @@
 },
 "winner:AR": {
 "p": 0.0501,
-"quality": 0.6373,
+"quality": 0.6344,
 "real_money": true,
 "providers": [
 {
 "provider": "Kalshi",
 "p": 0.045,
-"quality": 0.5124,
+"quality": 0.5095,
 "real_money": true,
 "volume": 22732,
 "traders": null,
@@ -414,15 +414,15 @@
 "volume": 994,
 "traders": null,
 "spread": 0.019999999999999907,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-arkansas-winner",
 "id": "2028-presidential-election-arkansas-winner"
 }
 ]
 },
 "winner:AL": {
-"p": 0.1006,
-"quality": 0.6372,
+"p": 0.1007,
+"quality": 0.6366,
 "real_money": true,
 "providers": [
 {
@@ -433,14 +433,14 @@
 "volume": 1731,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-alabama-winner",
 "id": "2028-presidential-election-alabama-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.0773,
-"quality": 0.3895,
+"quality": 0.3873,
 "real_money": true,
 "volume": 598,
 "traders": null,
@@ -452,8 +452,8 @@
 ]
 },
 "winner:MI": {
-"p": 0.6965,
-"quality": 0.7484,
+"p": 0.6951,
+"quality": 0.7482,
 "real_money": true,
 "providers": [
 {
@@ -461,17 +461,17 @@
 "p": 0.702,
 "quality": 0.6812,
 "real_money": true,
-"volume": 12222,
+"volume": 12224,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-michigan-winner",
 "id": "2028-presidential-election-michigan-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.685,
-"quality": 0.1389,
+"quality": 0.1381,
 "real_money": true,
 "volume": 7,
 "traders": null,
@@ -482,56 +482,56 @@
 },
 {
 "provider": "Manifold",
-"p": 0.6792,
+"p": 0.6682,
 "quality": 0.1297,
 "real_money": false,
-"volume": 5727,
+"volume": 6064,
 "traders": 5,
 "spread": null,
-"last_trade": "2026-11-21T01:32:21Z",
+"last_trade": "2026-11-27T21:03:10Z",
 "url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-michigan-in-th",
 "id": "RZ9ISZCPIl"
 }
 ]
 },
 "winner:MN": {
-"p": 0.8632,
-"quality": 0.7091,
+"p": 0.858,
+"quality": 0.791,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
-"p": 0.8756,
-"quality": 0.6144,
+"p": 0.8711,
+"quality": 0.6912,
 "real_money": true,
 "volume": 14039,
 "traders": null,
-"spread": 0.04000000000000001,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-minnesota-winner",
 "id": "2028-presidential-election-minnesota-winner"
 },
 {
 "provider": "Kalshi",
-"p": 0.8492,
-"quality": 0.2381,
+"p": 0.8477,
+"quality": 0.2583,
 "real_money": true,
 "volume": 246,
 "traders": null,
-"spread": 0.08999999999999997,
+"spread": 0.08,
 "last_trade": "2026-11-19T15:40:44.650952Z",
 "url": "https://kalshi.com/markets/kxpresstate",
 "id": "KXPRESSTATE-MN-28"
 },
 {
 "provider": "Manifold",
-"p": 0.8256,
+"p": 0.8015,
 "quality": 0.1408,
 "real_money": false,
-"volume": 7007,
+"volume": 8715,
 "traders": 6,
 "spread": null,
-"last_trade": "2026-11-27T20:36:10Z",
+"last_trade": "2026-11-27T21:04:56Z",
 "url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-minnesota-in-t",
 "id": "tCz5c9ROSt"
 }
@@ -539,7 +539,7 @@
 },
 "winner:ME": {
 "p": 0.8141,
-"quality": 0.8192,
+"quality": 0.8186,
 "real_money": true,
 "providers": [
 {
@@ -550,14 +550,14 @@
 "volume": 11318,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:39:21.162276Z",
 "url": "https://polymarket.com/event/2028-presidential-election-maine-winner",
 "id": "2028-presidential-election-maine-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.803,
-"quality": 0.458,
+"quality": 0.4554,
 "real_money": true,
 "volume": 949,
 "traders": null,
@@ -582,7 +582,7 @@
 },
 "winner:IA": {
 "p": 0.309,
-"quality": 0.8,
+"quality": 0.7995,
 "real_money": true,
 "providers": [
 {
@@ -593,14 +593,14 @@
 "volume": 12470,
 "traders": null,
 "spread": 0.020000000000000018,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-iowa-winner",
 "id": "2028-presidential-election-iowa-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.2878,
-"quality": 0.3526,
+"quality": 0.3506,
 "real_money": true,
 "volume": 195,
 "traders": null,
@@ -624,30 +624,30 @@
 ]
 },
 "winner:MS": {
-"p": 0.1795,
-"quality": 0.7486,
+"p": 0.1728,
+"quality": 0.7522,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
-"p": 0.2216,
-"quality": 0.5943,
+"p": 0.2131,
+"quality": 0.6037,
 "real_money": true,
-"volume": 3678,
+"volume": 6840,
 "traders": null,
-"spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"spread": 0.03,
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-mississippi-winner",
 "id": "2028-presidential-election-mississippi-winner"
 },
 {
 "provider": "Kalshi",
-"p": 0.1481,
-"quality": 0.5064,
+"p": 0.1398,
+"quality": 0.4841,
 "real_money": true,
-"volume": 1287,
+"volume": 2307,
 "traders": null,
-"spread": 0.01999999999999999,
+"spread": 0.039999999999999994,
 "last_trade": "2026-11-19T15:40:49.966731Z",
 "url": "https://kalshi.com/markets/kxpresstate",
 "id": "KXPRESSTATE-MS-28"
@@ -655,7 +655,7 @@
 {
 "provider": "Manifold",
 "p": 0.1316,
-"quality": 0.1106,
+"quality": 0.1098,
 "real_money": false,
 "volume": 544,
 "traders": 7,
@@ -667,26 +667,26 @@
 ]
 },
 "winner:MA": {
-"p": 0.9379,
-"quality": 0.4661,
+"p": 0.94,
+"quality": 0.4911,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
-"p": 0.9224,
-"quality": 0.4291,
+"p": 0.9269,
+"quality": 0.4543,
 "real_money": true,
 "volume": 531,
 "traders": null,
-"spread": 0.030000000000000027,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"spread": 0.020000000000000004,
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-massachusetts-winner",
 "id": "2028-presidential-election-massachusetts-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.968,
-"quality": 0.1479,
+"quality": 0.1471,
 "real_money": true,
 "volume": 10,
 "traders": null,
@@ -698,26 +698,26 @@
 ]
 },
 "winner:MD": {
-"p": 0.9249,
-"quality": 0.7021,
+"p": 0.9246,
+"quality": 0.7014,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
-"p": 0.8963,
+"p": 0.8958,
 "quality": 0.5796,
 "real_money": true,
 "volume": 3002,
 "traders": null,
-"spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"spread": 0.020000000000000018,
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-maryland-winner",
 "id": "2028-presidential-election-maryland-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.9493,
-"quality": 0.49,
+"quality": 0.4873,
 "real_money": true,
 "volume": 1060,
 "traders": null,
@@ -730,7 +730,7 @@
 },
 "winner:LA": {
 "p": 0.0985,
-"quality": 0.6467,
+"quality": 0.6461,
 "real_money": true,
 "providers": [
 {
@@ -741,14 +741,14 @@
 "volume": 1182,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-louisiana-winner",
 "id": "2028-presidential-election-louisiana-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.0945,
-"quality": 0.4378,
+"quality": 0.4353,
 "real_money": true,
 "volume": 1600,
 "traders": null,
@@ -773,7 +773,7 @@
 },
 "winner:KY": {
 "p": 0.1068,
-"quality": 0.6464,
+"quality": 0.6459,
 "real_money": true,
 "providers": [
 {
@@ -784,14 +784,14 @@
 "volume": 1724,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-kentucky-winner",
 "id": "2028-presidential-election-kentucky-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.0959,
-"quality": 0.4278,
+"quality": 0.4254,
 "real_money": true,
 "volume": 1122,
 "traders": null,
@@ -803,26 +803,26 @@
 ]
 },
 "winner:KS": {
-"p": 0.1703,
-"quality": 0.7002,
+"p": 0.1722,
+"quality": 0.6996,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
-"p": 0.1759,
+"p": 0.18,
 "quality": 0.5499,
 "real_money": true,
 "volume": 1991,
 "traders": null,
-"spread": 0.019999999999999907,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"spread": 0.01999999999999999,
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-kansas-winner",
 "id": "2028-presidential-election-kansas-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.1845,
-"quality": 0.4346,
+"quality": 0.4322,
 "real_money": true,
 "volume": 1005,
 "traders": null,
@@ -846,14 +846,14 @@
 ]
 },
 "winner:IN": {
-"p": 0.1052,
-"quality": 0.7101,
+"p": 0.1053,
+"quality": 0.7071,
 "real_money": true,
 "providers": [
 {
 "provider": "Kalshi",
 "p": 0.0923,
-"quality": 0.5472,
+"quality": 0.5442,
 "real_money": true,
 "volume": 4876,
 "traders": null,
@@ -870,7 +870,7 @@
 "volume": 1623,
 "traders": null,
 "spread": 0.020000000000000018,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-indiana-winner",
 "id": "2028-presidential-election-indiana-winner"
 },
@@ -889,30 +889,30 @@
 ]
 },
 "winner:IL": {
-"p": 0.9316,
-"quality": 0.5642,
+"p": 0.9351,
+"quality": 0.587,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
-"p": 0.9296,
-"quality": 0.5041,
+"p": 0.935,
+"quality": 0.5338,
 "real_money": true,
 "volume": 1594,
 "traders": null,
-"spread": 0.029999999999999916,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"spread": 0.010000000000000009,
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-illinois-winner",
 "id": "2028-presidential-election-illinois-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.9355,
-"quality": 0.2404,
+"quality": 0.2129,
 "real_money": true,
 "volume": 118,
 "traders": null,
-"spread": 0.07199999999999995,
+"spread": 0.08599999999999997,
 "last_trade": "2026-11-19T15:40:17.42482Z",
 "url": "https://kalshi.com/markets/kxpresstate",
 "id": "KXPRESSTATE-IL-28"
@@ -920,8 +920,8 @@
 ]
 },
 "winner:NC": {
-"p": 0.6535,
-"quality": 0.869,
+"p": 0.6536,
+"quality": 0.8682,
 "real_money": true,
 "providers": [
 {
@@ -932,14 +932,14 @@
 "volume": 11090,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-north-carolina-winner",
 "id": "2028-presidential-election-north-carolina-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.6212,
-"quality": 0.6057,
+"quality": 0.6023,
 "real_money": true,
 "volume": 5238,
 "traders": null,
@@ -963,26 +963,26 @@
 ]
 },
 "winner:NV": {
-"p": 0.6661,
-"quality": 0.7509,
+"p": 0.6662,
+"quality": 0.7502,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
 "p": 0.6818,
-"quality": 0.5962,
+"quality": 0.5963,
 "real_money": true,
-"volume": 3778,
+"volume": 3780,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-nevada-winner",
 "id": "2028-presidential-election-nevada-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.6569,
-"quality": 0.5072,
+"quality": 0.5044,
 "real_money": true,
 "volume": 3190,
 "traders": null,
@@ -994,7 +994,7 @@
 {
 "provider": "Manifold",
 "p": 0.622,
-"quality": 0.1117,
+"quality": 0.111,
 "real_money": false,
 "volume": 4022,
 "traders": 5,
@@ -1007,7 +1007,7 @@
 },
 "winner:OH": {
 "p": 0.3741,
-"quality": 0.8708,
+"quality": 0.87,
 "real_money": true,
 "providers": [
 {
@@ -1018,14 +1018,14 @@
 "volume": 16448,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-ohio-winner",
 "id": "2028-presidential-election-ohio-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.365,
-"quality": 0.5314,
+"quality": 0.5284,
 "real_money": true,
 "volume": 1831,
 "traders": null,
@@ -1050,7 +1050,7 @@
 },
 "winner:NM": {
 "p": 0.8907,
-"quality": 0.7119,
+"quality": 0.7116,
 "real_money": true,
 "providers": [
 {
@@ -1061,14 +1061,14 @@
 "volume": 7627,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:39:21.162276Z",
 "url": "https://polymarket.com/event/2028-presidential-election-new-mexico-winner",
 "id": "2028-presidential-election-new-mexico-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.885,
-"quality": 0.2592,
+"quality": 0.2578,
 "real_money": true,
 "volume": 159,
 "traders": null,
@@ -1080,8 +1080,8 @@
 ]
 },
 "winner:NH": {
-"p": 0.7681,
-"quality": 0.8025,
+"p": 0.7692,
+"quality": 0.802,
 "real_money": true,
 "providers": [
 {
@@ -1092,14 +1092,14 @@
 "volume": 10792,
 "traders": null,
 "spread": 0.01999999999999999,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-new-hampshire-winner",
 "id": "2028-presidential-election-new-hampshire-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.7513,
-"quality": 0.4048,
+"quality": 0.4026,
 "real_money": true,
 "volume": 961,
 "traders": null,
@@ -1110,39 +1110,39 @@
 },
 {
 "provider": "Manifold",
-"p": 0.8275,
+"p": 0.8365,
 "quality": 0.1165,
 "real_money": false,
-"volume": 7053,
+"volume": 7403,
 "traders": 4,
 "spread": null,
-"last_trade": "2026-11-27T04:48:39Z",
+"last_trade": "2026-11-27T21:07:01Z",
 "url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-the-popular-vo-zn2gN6cp56",
 "id": "tEgss6dQZS"
 }
 ]
 },
 "winner:NJ": {
-"p": 0.9121,
-"quality": 0.4287,
+"p": 0.9114,
+"quality": 0.4877,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
 "p": 0.9044,
-"quality": 0.3819,
+"quality": 0.4412,
 "real_money": true,
 "volume": 10092,
 "traders": null,
-"spread": 0.09699999999999999,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"spread": 0.08100000000000002,
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-new-jersey-winner",
 "id": "2028-presidential-election-new-jersey-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.9262,
-"quality": 0.187,
+"quality": 0.1859,
 "real_money": true,
 "volume": 44,
 "traders": null,
@@ -1154,26 +1154,26 @@
 ]
 },
 "winner:OK": {
-"p": 0.0771,
-"quality": 0.6361,
+"p": 0.0769,
+"quality": 0.6358,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
-"p": 0.0905,
+"p": 0.09,
 "quality": 0.5626,
 "real_money": true,
 "volume": 2374,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-oklahoma-winner",
 "id": "2028-presidential-election-oklahoma-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.0564,
-"quality": 0.2942,
+"quality": 0.2926,
 "real_money": true,
 "volume": 800,
 "traders": null,
@@ -1186,7 +1186,7 @@
 },
 "winner:NE": {
 "p": 0.0858,
-"quality": 0.5645,
+"quality": 0.5652,
 "real_money": true,
 "providers": [
 {
@@ -1197,18 +1197,18 @@
 "volume": 1024,
 "traders": null,
 "spread": 0.020000000000000004,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:39:21.162276Z",
 "url": "https://polymarket.com/event/2028-presidential-election-nebraska-winner",
 "id": "2028-presidential-election-nebraska-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.0756,
-"quality": 0.251,
+"quality": 0.2535,
 "real_money": true,
 "volume": 146,
 "traders": null,
-"spread": 0.07199999999999995,
+"spread": 0.06999999999999995,
 "last_trade": "2026-11-19T15:41:01.431286Z",
 "url": "https://kalshi.com/markets/kxpresstate",
 "id": "KXPRESSTATE-NE-28"
@@ -1216,8 +1216,8 @@
 ]
 },
 "winner:MT": {
-"p": 0.1464,
-"quality": 0.6047,
+"p": 0.1454,
+"quality": 0.6096,
 "real_money": true,
 "providers": [
 {
@@ -1228,18 +1228,18 @@
 "volume": 2066,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-montana-winner",
 "id": "2028-presidential-election-montana-winner"
 },
 {
 "provider": "Kalshi",
-"p": 0.15,
-"quality": 0.2084,
+"p": 0.1465,
+"quality": 0.2279,
 "real_money": true,
 "volume": 200,
 "traders": null,
-"spread": 0.1,
+"spread": 0.09,
 "last_trade": "2026-11-19T15:40:52.563218Z",
 "url": "https://kalshi.com/markets/kxpresstate",
 "id": "KXPRESSTATE-MT-28"
@@ -1247,31 +1247,31 @@
 ]
 },
 "winner:NY": {
-"p": 0.9145,
-"quality": 0.8021,
+"p": 0.9196,
+"quality": 0.8025,
 "real_money": true,
 "providers": [
 {
 "provider": "Kalshi",
-"p": 0.9217,
-"quality": 0.691,
+"p": 0.9216,
+"quality": 0.6914,
 "real_money": true,
 "volume": 48517,
 "traders": null,
-"spread": 0.03699999999999992,
+"spread": 0.03599999999999992,
 "last_trade": "2026-11-19T15:36:04.808737Z",
 "url": "https://kalshi.com/markets/kxpresstate",
 "id": "KXPRESSTATE-NY-28"
 },
 {
 "provider": "Polymarket",
-"p": 0.9021,
+"p": 0.9162,
 "quality": 0.4444,
 "real_money": true,
 "volume": 463,
 "traders": null,
-"spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"spread": 0.01999999999999999,
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-new-york-winner",
 "id": "2028-presidential-election-new-york-winner"
 }
@@ -1279,7 +1279,7 @@
 },
 "winner:ND": {
 "p": 0.0679,
-"quality": 0.5885,
+"quality": 0.5879,
 "real_money": true,
 "providers": [
 {
@@ -1290,14 +1290,14 @@
 "volume": 997,
 "traders": null,
 "spread": 0.020000000000000004,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-north-dakota-winner",
 "id": "2028-presidential-election-north-dakota-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.0646,
-"quality": 0.3542,
+"quality": 0.3522,
 "real_money": true,
 "volume": 500,
 "traders": null,
@@ -1309,26 +1309,26 @@
 ]
 },
 "winner:MO": {
-"p": 0.0947,
-"quality": 0.7837,
+"p": 0.0937,
+"quality": 0.7829,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
-"p": 0.1061,
+"p": 0.1071,
 "quality": 0.6096,
 "real_money": true,
 "volume": 4547,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-missouri-winner",
 "id": "2028-presidential-election-missouri-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.0939,
-"quality": 0.5962,
+"quality": 0.5928,
 "real_money": true,
 "volume": 4578,
 "traders": null,
@@ -1339,21 +1339,21 @@
 },
 {
 "provider": "Manifold",
-"p": 0.0491,
+"p": 0.0396,
 "quality": 0.1003,
 "real_money": false,
-"volume": 163,
+"volume": 206,
 "traders": 3,
 "spread": null,
-"last_trade": "2026-11-27T04:46:46Z",
+"last_trade": "2026-11-28T03:40:03Z",
 "url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-missouri-in-th",
 "id": "cn8CPCzut0"
 }
 ]
 },
 "winner:PA": {
-"p": 0.6584,
-"quality": 0.7138,
+"p": 0.6575,
+"quality": 0.7135,
 "real_money": true,
 "providers": [
 {
@@ -1364,14 +1364,14 @@
 "volume": 5414,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-pennsylvania-winner",
 "id": "2028-presidential-election-pennsylvania-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.6567,
-"quality": 0.2253,
+"quality": 0.224,
 "real_money": true,
 "volume": 35,
 "traders": null,
@@ -1382,27 +1382,27 @@
 },
 {
 "provider": "Manifold",
-"p": 0.6466,
+"p": 0.6405,
 "quality": 0.1408,
 "real_money": false,
-"volume": 8844,
+"volume": 9005,
 "traders": 6,
 "spread": null,
-"last_trade": "2026-11-27T20:41:32Z",
+"last_trade": "2026-11-28T03:40:28Z",
 "url": "https://manifold.markets/ManifoldPolitics/which-party-will-win-pennsylvania-i",
 "id": "dtcNCqg09A"
 }
 ]
 },
 "winner:TX": {
-"p": 0.3983,
-"quality": 0.9067,
+"p": 0.3945,
+"quality": 0.8929,
 "real_money": true,
 "providers": [
 {
 "provider": "Kalshi",
 "p": 0.3881,
-"quality": 0.7058,
+"quality": 0.7019,
 "real_money": true,
 "volume": 21591,
 "traders": null,
@@ -1413,20 +1413,20 @@
 },
 {
 "provider": "Polymarket",
-"p": 0.4175,
-"quality": 0.5706,
+"p": 0.4082,
+"quality": 0.5326,
 "real_money": true,
 "volume": 12833,
 "traders": null,
-"spread": 0.04999999999999993,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"spread": 0.05999999999999994,
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-texas-winner",
 "id": "2028-presidential-election-texas-winner"
 },
 {
 "provider": "Manifold",
 "p": 0.3831,
-"quality": 0.2329,
+"quality": 0.2316,
 "real_money": false,
 "volume": 1498,
 "traders": 25,
@@ -1438,26 +1438,26 @@
 ]
 },
 "winner:VA": {
-"p": 0.8765,
-"quality": 0.6319,
+"p": 0.877,
+"quality": 0.6678,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
-"p": 0.8743,
-"quality": 0.6125,
+"p": 0.875,
+"quality": 0.6485,
 "real_money": true,
 "volume": 7778,
 "traders": null,
-"spread": 0.030000000000000027,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"spread": 0.020000000000000018,
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-virginia-winner",
 "id": "2028-presidential-election-virginia-winner"
 },
 {
 "provider": "Manifold",
 "p": 0.8926,
-"quality": 0.0777,
+"quality": 0.0772,
 "real_money": false,
 "volume": 10071,
 "traders": 3,
@@ -1470,7 +1470,7 @@
 },
 "winner:WA": {
 "p": 0.9248,
-"quality": 0.7616,
+"quality": 0.7611,
 "real_money": true,
 "providers": [
 {
@@ -1481,14 +1481,14 @@
 "volume": 11693,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-washington-winner",
 "id": "2028-presidential-election-washington-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.9416,
-"quality": 0.3344,
+"quality": 0.3325,
 "real_money": true,
 "volume": 1133,
 "traders": null,
@@ -1500,30 +1500,30 @@
 ]
 },
 "winner:VT": {
-"p": 0.9337,
-"quality": 0.7136,
+"p": 0.934,
+"quality": 0.7137,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
-"p": 0.91,
+"p": 0.9104,
 "quality": 0.6018,
 "real_money": true,
 "volume": 4083,
 "traders": null,
-"spread": 0.020000000000000018,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"spread": 0.020000000000000004,
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-vermont-winner",
 "id": "2028-presidential-election-vermont-winner"
 },
 {
 "provider": "Kalshi",
-"p": 0.9388,
-"quality": 0.3609,
+"p": 0.9392,
+"quality": 0.3616,
 "real_money": true,
 "volume": 948,
 "traders": null,
-"spread": 0.066,
+"spread": 0.065,
 "last_trade": "2026-11-19T15:41:51.110698Z",
 "url": "https://kalshi.com/markets/kxpresstate",
 "id": "KXPRESSTATE-VT-28"
@@ -1531,7 +1531,7 @@
 {
 "provider": "Manifold",
 "p": 0.99,
-"quality": 0.0864,
+"quality": 0.0859,
 "real_money": false,
 "volume": 203,
 "traders": 3,
@@ -1543,18 +1543,18 @@
 ]
 },
 "winner:WV": {
-"p": 0.1004,
-"quality": 0.6595,
+"p": 0.1001,
+"quality": 0.6529,
 "real_money": true,
 "providers": [
 {
 "provider": "Kalshi",
-"p": 0.09,
-"quality": 0.5541,
+"p": 0.0895,
+"quality": 0.5475,
 "real_money": true,
 "volume": 7957,
 "traders": null,
-"spread": 0.043,
+"spread": 0.044,
 "last_trade": "2026-11-19T15:42:08.185404Z",
 "url": "https://kalshi.com/markets/kxpresstate",
 "id": "KXPRESSTATE-WV-28"
@@ -1567,33 +1567,33 @@
 "volume": 338,
 "traders": null,
 "spread": 0.020000000000000018,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-west-virginia-winner",
 "id": "2028-presidential-election-west-virginia-winner"
 }
 ]
 },
 "winner:UT": {
-"p": 0.123,
-"quality": 0.7221,
+"p": 0.1228,
+"quality": 0.6893,
 "real_money": true,
 "providers": [
 {
 "provider": "Polymarket",
-"p": 0.1414,
-"quality": 0.5745,
+"p": 0.1421,
+"quality": 0.5426,
 "real_money": true,
 "volume": 2797,
 "traders": null,
-"spread": 0.020000000000000018,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"spread": 0.030000000000000027,
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-utah-winner",
 "id": "2028-presidential-election-utah-winner"
 },
 {
 "provider": "Kalshi",
-"p": 0.1009,
-"quality": 0.5414,
+"p": 0.1008,
+"quality": 0.5384,
 "real_money": true,
 "volume": 4687,
 "traders": null,
@@ -1605,7 +1605,7 @@
 {
 "provider": "Manifold",
 "p": 0.1998,
-"quality": 0.0491,
+"quality": 0.0484,
 "real_money": false,
 "volume": 265,
 "traders": 5,
@@ -1618,7 +1618,7 @@
 },
 "winner:TN": {
 "p": 0.0854,
-"quality": 0.711,
+"quality": 0.7105,
 "real_money": true,
 "providers": [
 {
@@ -1629,14 +1629,14 @@
 "volume": 3360,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-tennessee-winner",
 "id": "2028-presidential-election-tennessee-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.0776,
-"quality": 0.3768,
+"quality": 0.3747,
 "real_money": true,
 "volume": 1095,
 "traders": null,
@@ -1660,8 +1660,8 @@
 ]
 },
 "winner:SD": {
-"p": 0.0573,
-"quality": 0.532,
+"p": 0.0574,
+"quality": 0.5315,
 "real_money": true,
 "providers": [
 {
@@ -1672,14 +1672,14 @@
 "volume": 712,
 "traders": null,
 "spread": 0.03,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-south-dakota-winner",
 "id": "2028-presidential-election-south-dakota-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.0328,
-"quality": 0.3315,
+"quality": 0.3297,
 "real_money": true,
 "volume": 266,
 "traders": null,
@@ -1691,8 +1691,8 @@
 ]
 },
 "winner:RI": {
-"p": 0.9415,
-"quality": 0.5206,
+"p": 0.9413,
+"quality": 0.5197,
 "real_money": true,
 "providers": [
 {
@@ -1703,18 +1703,18 @@
 "volume": 469,
 "traders": null,
 "spread": 0.020000000000000004,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-rhode-island-winner",
 "id": "2028-presidential-election-rhode-island-winner"
 },
 {
 "provider": "Kalshi",
-"p": 0.9445,
-"quality": 0.3013,
+"p": 0.944,
+"quality": 0.2975,
 "real_money": true,
 "volume": 248,
 "traders": null,
-"spread": 0.061,
+"spread": 0.062,
 "last_trade": "2026-11-19T15:41:27.761318Z",
 "url": "https://kalshi.com/markets/kxpresstate",
 "id": "KXPRESSTATE-RI-28"
@@ -1722,8 +1722,8 @@
 ]
 },
 "winner:OR": {
-"p": 0.8998,
-"quality": 0.616,
+"p": 0.8996,
+"quality": 0.6161,
 "real_money": true,
 "providers": [
 {
@@ -1734,18 +1734,18 @@
 "volume": 1802,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-oregon-winner",
 "id": "2028-presidential-election-oregon-winner"
 },
 {
 "provider": "Kalshi",
-"p": 0.9228,
-"quality": 0.2931,
+"p": 0.9223,
+"quality": 0.2936,
 "real_money": true,
 "volume": 250,
 "traders": null,
-"spread": 0.065,
+"spread": 0.064,
 "last_trade": "2026-11-19T15:41:22.09099Z",
 "url": "https://kalshi.com/markets/kxpresstate",
 "id": "KXPRESSTATE-OR-28"
@@ -1754,7 +1754,7 @@
 },
 "winner:SC": {
 "p": 0.1829,
-"quality": 0.7384,
+"quality": 0.7379,
 "real_money": true,
 "providers": [
 {
@@ -1765,14 +1765,14 @@
 "volume": 4669,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-south-carolina-winner",
 "id": "2028-presidential-election-south-carolina-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.1981,
-"quality": 0.3776,
+"quality": 0.3755,
 "real_money": true,
 "volume": 405,
 "traders": null,
@@ -1805,19 +1805,19 @@
 "p": 0.6616,
 "quality": 1.0,
 "real_money": true,
-"volume": 3032629,
+"volume": 3034153,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/which-party-wins-2028-us-presidential-election",
 "id": "which-party-wins-2028-us-presidential-election"
 },
 {
 "provider": "Kalshi",
 "p": 0.6717,
-"quality": 0.9616,
+"quality": 0.9562,
 "real_money": true,
-"volume": 947263,
+"volume": 947446,
 "traders": null,
 "spread": 0.010000000000000009,
 "last_trade": "2026-11-19T00:43:38.66904Z",
@@ -1827,7 +1827,7 @@
 {
 "provider": "Manifold",
 "p": 0.6754,
-"quality": 0.3197,
+"quality": 0.3178,
 "real_money": false,
 "volume": 17915,
 "traders": 118,
@@ -1841,7 +1841,7 @@
 },
 "winner:WY": {
 "p": 0.0701,
-"quality": 0.5116,
+"quality": 0.5112,
 "real_money": true,
 "providers": [
 {
@@ -1852,14 +1852,14 @@
 "volume": 454,
 "traders": null,
 "spread": 0.020000000000000004,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-wyoming-winner",
 "id": "2028-presidential-election-wyoming-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.0702,
-"quality": 0.2744,
+"quality": 0.2729,
 "real_money": true,
 "volume": 101,
 "traders": null,
@@ -1872,7 +1872,7 @@
 },
 "winner:WI": {
 "p": 0.6376,
-"quality": 0.7285,
+"quality": 0.7279,
 "real_money": true,
 "providers": [
 {
@@ -1883,14 +1883,14 @@
 "volume": 6035,
 "traders": null,
 "spread": 0.010000000000000009,
-"last_trade": "2026-11-27T20:47:21.660082Z",
+"last_trade": "2026-11-28T03:41:21.374388Z",
 "url": "https://polymarket.com/event/2028-presidential-election-wisconsin-winner",
 "id": "2028-presidential-election-wisconsin-winner"
 },
 {
 "provider": "Kalshi",
 "p": 0.6256,
-"quality": 0.3935,
+"quality": 0.3914,
 "real_money": true,
 "volume": 793,
 "traders": null,
@@ -1901,34 +1901,15 @@
 }
 ]
 },
-"popular:US": {
-"p": 0.8069,
-"quality": 0.0899,
-"real_money": true,
-"providers": [
-{
-"provider": "Kalshi",
-"p": 0.8069,
-"quality": 0.0899,
-"real_money": true,
-"volume": 7,
-"traders": null,
-"spread": 0.09,
-"last_trade": "2026-11-19T15:39:16.116496Z",
-"url": "https://kalshi.com/markets/kxpopvote",
-"id": "KXPOPVOTE-28"
-}
-]
-},
 "winner:DC": {
 "p": 0.9736,
-"quality": 0.2801,
+"quality": 0.2787,
 "real_money": true,
 "providers": [
 {
 "provider": "Kalshi",
 "p": 0.9646,
-"quality": 0.2602,
+"quality": 0.2588,
 "real_money": true,
 "volume": 156,
 "traders": null,
@@ -1953,13 +1934,13 @@
 },
 "winner:ME1": {
 "p": 0.9899,
-"quality": 0.0369,
+"quality": 0.0366,
 "real_money": false,
 "providers": [
 {
 "provider": "Manifold",
 "p": 0.9899,
-"quality": 0.0369,
+"quality": 0.0366,
 "real_money": false,
 "volume": 2,
 "traders": 1,
@@ -1972,13 +1953,13 @@
 },
 "winner:ME2": {
 "p": 0.1766,
-"quality": 0.0585,
+"quality": 0.058,
 "real_money": false,
 "providers": [
 {
 "provider": "Manifold",
 "p": 0.1766,
-"quality": 0.0585,
+"quality": 0.058,
 "real_money": false,
 "volume": 253,
 "traders": 2,
@@ -1991,13 +1972,13 @@
 },
 "winner:NE1": {
 "p": 0.063,
-"quality": 0.0369,
+"quality": 0.0366,
 "real_money": false,
 "providers": [
 {
 "provider": "Manifold",
 "p": 0.063,
-"quality": 0.0369,
+"quality": 0.0366,
 "real_money": false,
 "volume": 3,
 "traders": 1,
@@ -2010,13 +1991,13 @@
 },
 "winner:NE2": {
 "p": 0.9097,
-"quality": 0.0585,
+"quality": 0.058,
 "real_money": false,
 "providers": [
 {
 "provider": "Manifold",
 "p": 0.9097,
-"quality": 0.0585,
+"quality": 0.058,
 "real_money": false,
 "volume": 18502,
 "traders": 2,
@@ -2029,13 +2010,13 @@
 },
 "winner:NE3": {
 "p": 0.0106,
-"quality": 0.0369,
+"quality": 0.0366,
 "real_money": false,
 "providers": [
 {
 "provider": "Manifold",
 "p": 0.0106,
-"quality": 0.0369,
+"quality": 0.0366,
 "real_money": false,
 "volume": 3,
 "traders": 1,
