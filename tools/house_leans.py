@@ -46,7 +46,7 @@ def main(out):
             share = {}
             for y, j in years.items():
                 dv, rv = num(r[j]) if j < len(r) else None, num(r[j + 1]) if j + 1 < len(r) else None
-                if dv is not None and rv is not None and dv + rv > 0: share[y] = 100 * dv / (dv + rv) - NATION[y]
+                if y in NATION and dv is not None and rv is not None and dv + rv > 0: share[y] = 100 * dv / (dv + rv) - NATION[y]
             if lines in (2018, 2020) and 2016 in share and 2012 in share:
                 lean, how = 0.75 * share[2016] + 0.25 * share[2012], '2016 and 2012, three to one'
             elif lines == 2024 and 2020 in share:
