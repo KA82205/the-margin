@@ -28,24 +28,24 @@ def get(url):
                 return r.read()
         except urllib.error.HTTPError as e:
             if e.code in (400, 403, 404) or i == 3: raise
-            print('retry', url[:80], e.code); time.sleep(5 * (i + 1))
+            print('retry', url[:80], e.code); time.sleep(60 * (i + 1) if e.code == 429 else 5 * (i + 1))
         except Exception as e:                                     # noqa: BLE001 - retried, then raised
             if i == 3: raise
             print('retry', url[:80], type(e).__name__); time.sleep(5 * (i + 1))
 
 
 def wiki(titles):
-    """{title: text} for up to 20 titles at a time, following redirects; a page that does not exist is left out."""
+    """{title: text} for five titles at a time, following redirects; a page that does not exist is left out."""
     out = {}
-    for i in range(0, len(titles), 20):
-        chunk = titles[i:i + 20]
+    for i in range(0, len(titles), 5):
+        chunk = titles[i:i + 5]
         q = urllib.parse.urlencode({'action': 'query', 'prop': 'revisions', 'rvprop': 'content', 'rvslots': 'main', 'format': 'json', 'formatversion': 2, 'redirects': 1, 'titles': '|'.join(chunk)})
         j = json.loads(get('https://en.wikipedia.org/w/api.php?' + q))['query']
         back = {r['to']: r['from'] for r in j.get('redirects', [])}
         for p in j['pages']:
             if p.get('missing') or 'revisions' not in p: continue
             out[back.get(p['title'], p['title'])] = p['revisions'][0]['slots']['main']['content']
-        time.sleep(1)
+        time.sleep(3)
     return out
 
 
