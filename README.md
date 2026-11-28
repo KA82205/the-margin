@@ -349,6 +349,7 @@ it finally stood or left out, and the results above should be read with that in 
 | Prediction markets (shown, not used) | Polymarket, Kalshi and Manifold, through their public services, and electionbettingodds.com; read every hour, kept in `docs/markets/` |
 | What markets said of each state in 2024 (the market study only) | Polymarket's and Manifold's public price histories (`data/market_history_2024.csv`, read by `tools/market_history.py`) |
 | House vote by state, 1998-2024 (the trend study only) | FiveThirtyEight `election_results_house.csv` (`data/house_by_state.csv`: districts both parties contested) |
+| DeSart's long-range model, 1996-2024 (the Research tab's study of it only) | His replication data for the 2021 and 2025 papers in *PS: Political Science & Politics*, Harvard Dataverse doi:10.7910/DVN/6GWHQB and doi:10.7910/DVN/HZGLY9, CC0 (`data/desart.csv`, made by `tools/fetch_desart.py` and `tools/make_desart.py`) |
 | Map | us-atlas 3.0.1 (ISC), Census cartographic boundaries |
 
 The Margin is not affiliated with or endorsed by VoteHub, PollResults.org or The New York Times.

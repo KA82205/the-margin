@@ -1225,5 +1225,210 @@
    ]
   },
   "r_approval": 0.82
+ },
+ "long_range": {
+  "published": [
+   {
+    "year": 2016,
+    "polls": "October 2015",
+    "call": "Clinton",
+    "ev": [
+     285,
+     253
+    ],
+    "share": 50.3,
+    "p_call": null,
+    "winner": "Trump",
+    "won_ev": [
+     306,
+     232
+    ],
+    "dem": "Clinton",
+    "result_share": 51.2,
+    "right": false
+   },
+   {
+    "year": 2020,
+    "polls": "October 2019",
+    "call": "Biden",
+    "ev": [
+     350,
+     188
+    ],
+    "share": 54.8,
+    "p_call": null,
+    "winner": "Biden",
+    "won_ev": [
+     306,
+     232
+    ],
+    "dem": "Biden",
+    "result_share": 52.3,
+    "right": true
+   },
+   {
+    "year": 2024,
+    "polls": "October 2023",
+    "call": "the Republican",
+    "ev": [
+     312,
+     226
+    ],
+    "share": 50.7,
+    "p_call": 0.74,
+    "winner": "Trump",
+    "won_ev": [
+     312,
+     226
+    ],
+    "dem": "Harris",
+    "result_share": 49.2,
+    "right": true
+   }
+  ],
+  "right": 2,
+  "years": [
+   {
+    "year": 2008,
+    "kind": "backtest",
+    "called": 46,
+    "miss": 2.77,
+    "wrong": [
+     "Indiana",
+     "Missouri",
+     "North Carolina",
+     "Virginia"
+    ],
+    "lean": -1.38,
+    "same_side": 0.7,
+    "last": {
+     "called": 41,
+     "miss": 5.48
+    },
+    "even": {
+     "called": 46,
+     "miss": 2.76
+    },
+    "site": {
+     "called": 48,
+     "miss": 1.96
+    }
+   },
+   {
+    "year": 2012,
+    "kind": "backtest",
+    "called": 48,
+    "miss": 2.58,
+    "wrong": [
+     "Indiana",
+     "North Carolina"
+    ],
+    "lean": 2.14,
+    "same_side": 0.84,
+    "last": {
+     "called": 48,
+     "miss": 2.49
+    },
+    "even": {
+     "called": 49,
+     "miss": 1.73
+    },
+    "site": {
+     "called": 49,
+     "miss": 1.62
+    }
+   },
+   {
+    "year": 2016,
+    "kind": "backtest",
+    "called": 46,
+    "miss": 2.58,
+    "wrong": [
+     "Iowa",
+     "Michigan",
+     "Pennsylvania",
+     "Wisconsin"
+    ],
+    "lean": 0.23,
+    "same_side": 0.56,
+    "last": {
+     "called": 44,
+     "miss": 3.32
+    },
+    "even": {
+     "called": 45,
+     "miss": 2.95
+    },
+    "site": {
+     "called": 45,
+     "miss": 2.44
+    }
+   },
+   {
+    "year": 2020,
+    "kind": "published",
+    "called": 48,
+    "miss": 2.02,
+    "wrong": [
+     "Florida",
+     "North Carolina"
+    ],
+    "lean": 1.98,
+    "same_side": 0.92,
+    "last": {
+     "called": 45,
+     "miss": 2.01
+    },
+    "even": {
+     "called": 47,
+     "miss": 1.33
+    },
+    "site": {
+     "called": 48,
+     "miss": 2.15
+    }
+   },
+   {
+    "year": 2024,
+    "kind": "published",
+    "called": 50,
+    "miss": 1.08,
+    "wrong": [],
+    "lean": 0.59,
+    "same_side": 0.54,
+    "last": {
+     "called": 44,
+     "miss": 2.21
+    },
+    "even": {
+     "called": 50,
+     "miss": 1.26
+    },
+    "site": {
+     "called": 47,
+     "miss": 1.11
+    }
+   }
+  ],
+  "model": {
+   "called": 238,
+   "of": 250,
+   "miss": 2.21
+  },
+  "last": {
+   "called": 222,
+   "of": 250,
+   "miss": 3.1
+  },
+  "even": {
+   "called": 237,
+   "of": 250,
+   "miss": 2.01
+  },
+  "site": {
+   "called": 237,
+   "of": 250,
+   "miss": 1.86
+  }
  }
 }

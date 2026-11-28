@@ -93,6 +93,52 @@ out['primary']['sitting'] = {'n': int(len(sit)), 'weak': int(len(weak)), 'weak_w
                              'strong_lost': [int(y) for y in strong.year[strong.won == 0]],
                              'points': [{'year': int(a.year), 'who': a.office_ran, 'share': int(a.office_share), 'won': int(a.won)} for a in sit.itertuples()]}
 out['primary']['r_approval'] = out['approval']['r']
+
+# 6 The states a year out: Jay DeSart's long-range model (data/desart.csv, from his replication data, tools/make_desart.py).
+# Each state from its last result, national head-to-head polls of the October before the election year, home states and
+# the consecutive terms of the party in the White House. Scored on the 50 states, 2008-2024, against the results here: his
+# published forecasts for 2020 and 2024; for 2008-2016 the model refitted on the elections before each one (his October
+# polls for those years are of the two eventual nominees, which no one knew a year out). Beside it: every state voting as
+# it did four years before; that map moved evenly by the national swing that happened (knowing the national vote in
+# advance); and this site's back-tested forecast on the last day (data/backtest_states.csv), states called by its chances
+# as the Back-tests tab counts them.
+dl = pd.read_csv('data/desart.csv')
+lrX = lambda q: np.column_stack([np.ones(len(q)), q.previous, q.polls, q.home, q.terms])
+lrfit = lambda q: np.linalg.lstsq(lrX(q), q.result.values, rcond=None)[0]
+assert np.allclose(lrfit(dl[dl.year <= 2020]), [-27.423, 1.017, 0.524, 2.544, -0.988], atol=5e-4), 'refitted on 1996-2020 it should give his Table 2'
+act = res.set_index(['year', 'state']).dem2; nat2 = res.groupby('year').nat2.first()
+lastday = pd.read_csv('data/backtest_states.csv').set_index(['year', 'state'])
+NAMES = {k: v['name'] for k, v in json.load(open('data/results_2024.json')).items() if len(k) == 2}
+lr_rows, lr_all = [], []
+for y in (2008, 2012, 2016, 2020, 2024):
+    q = dl[dl.year == y].copy(); q['refit'] = lrX(q) @ lrfit(dl[dl.year < y]); pub = bool(q.published.notna().all())
+    if y == 2020: assert (q.refit - q.published).abs().max() < 0.01, 'his 2020 forecast is the model fitted on 1996-2016'
+    q['fc'] = q.published.astype(float) if pub else q.refit
+    q['actual'] = [act[(y, s)] for s in q.state]; q['last'] = [act[(y - 4, s)] for s in q.state]; q['even'] = q['last'] + nat2[y] - nat2[y - 4]
+    m = lastday.loc[y].loc[list(q.state)]; won = q.actual.values > 50
+    score = lambda f, p=None: {'called': int(((f.values > 50 if p is None else p > 0.5) == won).sum()), 'miss': round(float(np.mean(np.abs(f.values - q.actual.values))), 2)}
+    e = q.fc - q.actual
+    lr_rows.append({'year': y, 'kind': 'published' if pub else 'backtest', **score(q.fc), 'wrong': sorted(NAMES[s] for s in q.state[(q.fc.values > 50) != won]),
+                    'lean': round(float(e.mean()), 2), 'same_side': round(float(max((e > 0).mean(), (e < 0).mean())), 2),
+                    'last': score(q['last']), 'even': score(q.even), 'site': score(m['mean'], m.p_dem.values)})
+    lr_all.append(q.assign(site=m['mean'].values, site_p=m.p_dem.values))
+A = pd.concat(lr_all); won = A.actual.values > 50
+total = lambda f, p=None: {'called': int(((A[f].values > 50 if p is None else A[p].values > 0.5) == won).sum()), 'of': int(len(A)), 'miss': round(float(np.mean(np.abs(A[f] - A.actual))), 2)}
+# his published forecasts, each from polls of the October before the election year (PS: Political Science & Politics,
+# 2021 and 2025; 2016 as his 2016 APSA paper published it, run on all of October 2015's polls; a first version, presented
+# in October 2015 before they were all in, had Donald Trump winning 305 to 233): who it had winning, the electoral votes
+# each way, his Democratic share of the two-party vote; for 2024 his simulations' chance for the Republican as well
+pub = [(2016, 'October 2015', 'Clinton', (285, 253), 50.3, None), (2020, 'October 2019', 'Biden', (350, 188), 54.8, None), (2024, 'October 2023', 'the Republican', (312, 226), 50.7, 0.74)]
+WHO = {2016: ('Clinton', 'Trump'), 2020: ('Biden', 'Trump'), 2024: ('Harris', 'Trump')}
+def won_ev(y):
+    g = res[res.year == y]; d = int(g.ev[g.dem2 > 50].sum()); return ('D', d, int(g.ev.sum()) - d) if d > g.ev.sum() / 2 else ('R', int(g.ev.sum()) - d, d)
+published = []
+for y, polls, call, ev, share, p in pub:
+    w, a, b = won_ev(y); call_party = 'R' if call in ('Trump', 'the Republican') else 'D'
+    published.append({'year': y, 'polls': polls, 'call': call, 'ev': list(ev), 'share': share, 'p_call': p, 'winner': WHO[y][0 if w == 'D' else 1], 'won_ev': [a, b],
+                      'dem': WHO[y][0], 'result_share': round(float(nat2[y]), 1), 'right': call_party == w})
+out['long_range'] = {'published': published, 'right': sum(x['right'] for x in published), 'years': lr_rows,
+                     'model': total('fc'), 'last': total('last'), 'even': total('even'), 'site': total('site', 'site_p')}
 json.dump(out, open('data/research.json', 'w'), indent=1)
 print('tilt', [(x['year'], x['state'], x['tilt']) for x in tilt], out['tilt']['toward_rep'], out['tilt']['toward_dem'], out['tilt']['typical'])
 print('approval', {k: v for k, v in out['approval'].items() if k != 'points'})
