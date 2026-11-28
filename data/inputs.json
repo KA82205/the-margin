@@ -1,21 +1,21 @@
 {
- "as_of": "2026-11-27",
+ "as_of": "2026-11-28",
  "net_approval": -31.2,
  "approval_note": "Tipping Point Nowcast's pooled average of presidential approval among adults, last 30 days",
- "market_dem": 0.6781,
- "market_note": "electionbettingodds.com, party to win the presidency, November 27, 2026: Democrats 67.0%, Republicans 31.8%",
+ "market_dem": 0.6761,
+ "market_note": "electionbettingodds.com, party to win the presidency, November 28, 2026: Democrats 66.6%, Republicans 31.9%",
  "keys": 0.381,
  "keys_sd": 0.133,
  "keys_note": "Fifty-Two Keys, November 27, 2026: 25 of 52 keys in the Republicans' favor if each open key lands the way it leans",
  "approval_drift": 15.0,
  "keys_mean": 0.375,
  "read": {
-  "nowcast": "2026-11-27",
-  "odds": "2026-11-27",
-  "keys": "2026-11-27",
-  "state_polls": "2026-11-27",
-  "markets": "2026-11-28T03:42Z",
-  "live": "2026-11-27"
+  "nowcast": "2026-11-28",
+  "odds": "2026-11-28",
+  "keys": "2026-11-28",
+  "state_polls": "2026-11-28",
+  "markets": "2026-11-28T05:14Z",
+  "live": "2026-11-28"
  },
  "keys_dist": [
   [
@@ -322,8 +322,8 @@
    "hash": "d25479c84f69bddb"
   },
   "tipping_point": {
-   "as_of": "2026-11-27",
-   "generated_at": "2026-11-27T20:01:48Z",
+   "as_of": "2026-11-28",
+   "generated_at": "2026-11-28T05:13:14Z",
    "mode": "nowcast",
    "frozen": false,
    "fixed": false,
@@ -338,11 +338,11 @@
     "desart": 49.846
    },
    "combined": 50.982,
-   "hash": "de4715f6424d47c5"
+   "hash": "acf3c1942bbfc92d"
   },
   "tipping_point_live": {
-   "as_of": "2026-11-27",
-   "generated_at": "2026-11-27T05:13:20Z",
+   "as_of": "2026-11-28",
+   "generated_at": "2026-11-28T05:13:14Z",
    "academic": {
     "fixed": false,
     "since": null,
@@ -353,7 +353,7 @@
     }
    },
    "polls": 28,
-   "hash": "8e81e6ac0c7a64ac"
+   "hash": "6986d6a790618a5f"
   }
  }
 }

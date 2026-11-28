@@ -5,9 +5,9 @@
  "office": "president",
  "status": "published",
  "forecast": {
-  "as_of": "2026-11-27",
+  "as_of": "2026-11-28",
   "file": "api/forecast.json",
-  "hash": "78363481f742c5c4",
+  "hash": "4d300157a59bbb6d",
   "last_kept": "2026-11-27T2003Z.json",
   "kept": 8
  },
@@ -39,8 +39,8 @@
    "hash": "d25479c84f69bddb"
   },
   "tipping_point": {
-   "as_of": "2026-11-27",
-   "generated_at": "2026-11-27T20:01:48Z",
+   "as_of": "2026-11-28",
+   "generated_at": "2026-11-28T05:13:14Z",
    "mode": "nowcast",
    "frozen": false,
    "fixed": false,
@@ -55,11 +55,11 @@
     "desart": 49.846
    },
    "combined": 50.982,
-   "hash": "de4715f6424d47c5"
+   "hash": "acf3c1942bbfc92d"
   },
   "tipping_point_live": {
-   "as_of": "2026-11-27",
-   "generated_at": "2026-11-27T05:13:20Z",
+   "as_of": "2026-11-28",
+   "generated_at": "2026-11-28T05:13:14Z",
    "academic": {
     "fixed": false,
     "since": null,
@@ -70,14 +70,14 @@
     }
    },
    "polls": 28,
-   "hash": "8e81e6ac0c7a64ac"
+   "hash": "6986d6a790618a5f"
   }
  },
  "archive": "archive/index.json",
  "history": "https://github.com/KA82205/the-margin/blob/main/data/history.csv",
- "made": "2026-11-28T03:43Z",
- "commit": "5459ec1a99f5",
- "markets_read": "2026-11-28T03:42Z",
+ "made": "2026-11-28T05:15Z",
+ "commit": "cfca19119950",
+ "markets_read": "2026-11-28T05:14Z",
  "markets": {
   "counts": {
    "Polymarket": 51,
