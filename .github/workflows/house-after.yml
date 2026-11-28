@@ -60,7 +60,7 @@ jobs:
           git checkout -q -- .
           for i in $(seq 1 40); do
             busy=0
-            for wf in update.yml senate.yml house.yml; do
+            for wf in update.yml senate.yml house.yml governor.yml; do
               for s in in_progress queued; do
                 n=$(gh api "repos/${{ github.repository }}/actions/workflows/$wf/runs?status=$s&per_page=1" --jq '.total_count' 2>/dev/null || echo 0)
                 busy=$((busy + n))

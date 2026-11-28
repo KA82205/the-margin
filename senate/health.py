@@ -1,4 +1,4 @@
-"""The health of each Senate and House job, for anyone watching from outside: docs/api/health/<job>.json, on the site at
+"""The health of each Senate, House and governor job, for anyone watching from outside: docs/api/health/<job>.json, on the site at
 https://ka82205.github.io/the-margin/api/health/<job>.json. Each says whether the job's last run worked, the day it last
 ran and last worked, the day after which no new success means the job has stopped, and, when the last run failed, why.
 A file is saved only when one of these changes, so a healthy job changes its file once a day.
@@ -8,7 +8,8 @@ A file is saved only when one of these changes, so a healthy job changes its fil
     python senate/health.py --due <job>             exits 0 if the hourly job should start this one now
 
 Jobs: senate-forecast (senate.yml), senate-money (senate-money.yml), senate-after (senate-after.yml), house-forecast
-(house.yml) and house-after (house-after.yml). The error kept is
+(house.yml), house-after (house-after.yml), governor-forecast (governor.yml) and governor-after (governor-after.yml). The
+error kept is
 the last one the run printed. An FEC key is masked before anything is saved, should one ever appear in what was printed.
 """
 import json, os, re, sys
@@ -38,11 +39,20 @@ JOBS = {
                     "After each House election, once its results have settled and Wikipedia has every district's result: "
                     'adds its districts to the training data, refits the model and remakes the back-tests. Between '
                     'elections it finds nothing to do, which counts as working.', 8),
+    'governor-forecast': ('every hour, after each run of the Senate forecast', 'governor.yml',
+                          "The governor forecast: reads Wikipedia's overviews and race pages of the coming governor races, "
+                          'takes the national mood from the Senate forecast, reruns the forecast and writes '
+                          'data/governor/<year>/ and docs/api/governor.json, which the Governors tab reads. A run whose '
+                          'readings look wrong stops and leaves the last forecast in place.', 1),
+    'governor-after': ('every week', 'governor-after.yml',
+                       "After each year's governor races, once their results have settled and Wikipedia has every race's "
+                       'result: adds them and their polls to the training data, refits the model and remakes the '
+                       'back-tests. Between elections it finds nothing to do, which counts as working.', 8),
 }
 # the hourly jobs start these when their last run is this many days old (their own schedules are a second way in)
-DUE_EVERY = {'senate-money': 1, 'senate-after': 7, 'house-after': 7}
+DUE_EVERY = {'senate-money': 1, 'senate-after': 7, 'house-after': 7, 'governor-after': 7}
 # a run that ended well but printed one of these did not do its job
-PROBLEMS = {'senate-after': r'not added yet', 'house-after': r'not added yet'}
+PROBLEMS = {'senate-after': r'not added yet', 'house-after': r'not added yet', 'governor-after': r'not added yet'}
 READ = ('ok false: the last run failed, error says why, and the site keeps the last good figures. ok true but today later '
         'than overdue_after: the job has stopped running. The workflow link lists every run.')
 

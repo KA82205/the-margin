@@ -1,0 +1,7189 @@
+{
+ "note": "Each election forecast from the other elections at each distance from election day; governorships are the Democrats' among the year's races.",
+ "years": [
+  2018,
+  2020,
+  2022,
+  2024
+ ],
+ "fit_years": [
+  2006,
+  2008,
+  2010,
+  2012,
+  2014,
+  2016,
+  2018,
+  2020,
+  2022,
+  2024
+ ],
+ "rows": [
+  {
+   "year": 2018,
+   "days": 365,
+   "races": 36,
+   "called": 31,
+   "avg_miss": 8.233,
+   "brier": 0.1183,
+   "dem_won_mean": 14.3305,
+   "dem_won_low": 10.0,
+   "dem_won_high": 19.0,
+   "dem_won": 16,
+   "inside": true
+  },
+  {
+   "year": 2020,
+   "days": 365,
+   "races": 11,
+   "called": 11,
+   "avg_miss": 11.3165,
+   "brier": 0.0339,
+   "dem_won_mean": 3.8992,
+   "dem_won_low": 3.0,
+   "dem_won_high": 5.0,
+   "dem_won": 3,
+   "inside": true
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "races": 36,
+   "called": 30,
+   "avg_miss": 10.1481,
+   "brier": 0.0973,
+   "dem_won_mean": 14.4598,
+   "dem_won_low": 10.0,
+   "dem_won_high": 19.0,
+   "dem_won": 19,
+   "inside": true
+  },
+  {
+   "year": 2024,
+   "days": 365,
+   "races": 11,
+   "called": 11,
+   "avg_miss": 13.1617,
+   "brier": 0.0778,
+   "dem_won_mean": 2.7431,
+   "dem_won_low": 1.0,
+   "dem_won_high": 5.0,
+   "dem_won": 3,
+   "inside": true
+  },
+  {
+   "year": 2018,
+   "days": 250,
+   "races": 36,
+   "called": 32,
+   "avg_miss": 7.6593,
+   "brier": 0.1018,
+   "dem_won_mean": 15.3755,
+   "dem_won_low": 11.0,
+   "dem_won_high": 20.0,
+   "dem_won": 16,
+   "inside": true
+  },
+  {
+   "year": 2020,
+   "days": 250,
+   "races": 11,
+   "called": 11,
+   "avg_miss": 9.3387,
+   "brier": 0.0197,
+   "dem_won_mean": 3.4929,
+   "dem_won_low": 2.0,
+   "dem_won_high": 5.0,
+   "dem_won": 3,
+   "inside": true
+  },
+  {
+   "year": 2022,
+   "days": 250,
+   "races": 36,
+   "called": 30,
+   "avg_miss": 10.2008,
+   "brier": 0.094,
+   "dem_won_mean": 15.1257,
+   "dem_won_low": 11.0,
+   "dem_won_high": 20.0,
+   "dem_won": 19,
+   "inside": true
+  },
+  {
+   "year": 2024,
+   "days": 250,
+   "races": 11,
+   "called": 10,
+   "avg_miss": 13.4546,
+   "brier": 0.0936,
+   "dem_won_mean": 2.8226,
+   "dem_won_low": 1.0,
+   "dem_won_high": 5.0,
+   "dem_won": 3,
+   "inside": true
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "races": 36,
+   "called": 29,
+   "avg_miss": 7.6645,
+   "brier": 0.1201,
+   "dem_won_mean": 16.0618,
+   "dem_won_low": 11.0,
+   "dem_won_high": 21.0,
+   "dem_won": 16,
+   "inside": true
+  },
+  {
+   "year": 2020,
+   "days": 120,
+   "races": 11,
+   "called": 11,
+   "avg_miss": 10.0324,
+   "brier": 0.0121,
+   "dem_won_mean": 3.4917,
+   "dem_won_low": 3.0,
+   "dem_won_high": 5.0,
+   "dem_won": 3,
+   "inside": true
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "races": 36,
+   "called": 33,
+   "avg_miss": 8.9385,
+   "brier": 0.0771,
+   "dem_won_mean": 15.7712,
+   "dem_won_low": 11.0,
+   "dem_won_high": 20.0,
+   "dem_won": 19,
+   "inside": true
+  },
+  {
+   "year": 2024,
+   "days": 120,
+   "races": 11,
+   "called": 10,
+   "avg_miss": 11.907,
+   "brier": 0.0976,
+   "dem_won_mean": 2.9329,
+   "dem_won_low": 1.0,
+   "dem_won_high": 5.0,
+   "dem_won": 3,
+   "inside": true
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "races": 36,
+   "called": 32,
+   "avg_miss": 7.333,
+   "brier": 0.0849,
+   "dem_won_mean": 16.6339,
+   "dem_won_low": 11.0,
+   "dem_won_high": 22.0,
+   "dem_won": 16,
+   "inside": true
+  },
+  {
+   "year": 2020,
+   "days": 60,
+   "races": 11,
+   "called": 11,
+   "avg_miss": 9.305,
+   "brier": 0.0193,
+   "dem_won_mean": 3.606,
+   "dem_won_low": 3.0,
+   "dem_won_high": 5.0,
+   "dem_won": 3,
+   "inside": true
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "races": 36,
+   "called": 34,
+   "avg_miss": 8.6409,
+   "brier": 0.0458,
+   "dem_won_mean": 18.1394,
+   "dem_won_low": 14.0,
+   "dem_won_high": 22.0,
+   "dem_won": 19,
+   "inside": true
+  },
+  {
+   "year": 2024,
+   "days": 60,
+   "races": 11,
+   "called": 11,
+   "avg_miss": 10.3926,
+   "brier": 0.0495,
+   "dem_won_mean": 3.1275,
+   "dem_won_low": 2.0,
+   "dem_won_high": 5.0,
+   "dem_won": 3,
+   "inside": true
+  },
+  {
+   "year": 2018,
+   "days": 30,
+   "races": 36,
+   "called": 33,
+   "avg_miss": 4.9422,
+   "brier": 0.0649,
+   "dem_won_mean": 16.9971,
+   "dem_won_low": 12.0,
+   "dem_won_high": 22.0,
+   "dem_won": 16,
+   "inside": true
+  },
+  {
+   "year": 2020,
+   "days": 30,
+   "races": 11,
+   "called": 11,
+   "avg_miss": 9.8692,
+   "brier": 0.0051,
+   "dem_won_mean": 3.2797,
+   "dem_won_low": 3.0,
+   "dem_won_high": 4.0,
+   "dem_won": 3,
+   "inside": true
+  },
+  {
+   "year": 2022,
+   "days": 30,
+   "races": 36,
+   "called": 33,
+   "avg_miss": 6.989,
+   "brier": 0.0462,
+   "dem_won_mean": 17.4126,
+   "dem_won_low": 14.0,
+   "dem_won_high": 21.0,
+   "dem_won": 19,
+   "inside": true
+  },
+  {
+   "year": 2024,
+   "days": 30,
+   "races": 11,
+   "called": 11,
+   "avg_miss": 9.9474,
+   "brier": 0.0245,
+   "dem_won_mean": 3.6062,
+   "dem_won_low": 2.0,
+   "dem_won_high": 5.0,
+   "dem_won": 3,
+   "inside": true
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "races": 36,
+   "called": 31,
+   "avg_miss": 4.9079,
+   "brier": 0.076,
+   "dem_won_mean": 16.6612,
+   "dem_won_low": 12.0,
+   "dem_won_high": 21.0,
+   "dem_won": 16,
+   "inside": true
+  },
+  {
+   "year": 2020,
+   "days": 14,
+   "races": 11,
+   "called": 11,
+   "avg_miss": 8.4445,
+   "brier": 0.0043,
+   "dem_won_mean": 3.2233,
+   "dem_won_low": 3.0,
+   "dem_won_high": 4.0,
+   "dem_won": 3,
+   "inside": true
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "races": 36,
+   "called": 33,
+   "avg_miss": 6.7135,
+   "brier": 0.0507,
+   "dem_won_mean": 17.0221,
+   "dem_won_low": 13.0,
+   "dem_won_high": 21.0,
+   "dem_won": 19,
+   "inside": true
+  },
+  {
+   "year": 2024,
+   "days": 14,
+   "races": 11,
+   "called": 10,
+   "avg_miss": 11.2508,
+   "brier": 0.0411,
+   "dem_won_mean": 4.0341,
+   "dem_won_low": 3.0,
+   "dem_won_high": 5.0,
+   "dem_won": 3,
+   "inside": true
+  },
+  {
+   "year": 2018,
+   "days": 7,
+   "races": 36,
+   "called": 31,
+   "avg_miss": 5.2068,
+   "brier": 0.0824,
+   "dem_won_mean": 17.7676,
+   "dem_won_low": 12.0,
+   "dem_won_high": 23.0,
+   "dem_won": 16,
+   "inside": true
+  },
+  {
+   "year": 2020,
+   "days": 7,
+   "races": 11,
+   "called": 11,
+   "avg_miss": 9.4431,
+   "brier": 0.0048,
+   "dem_won_mean": 3.2348,
+   "dem_won_low": 3.0,
+   "dem_won_high": 4.0,
+   "dem_won": 3,
+   "inside": true
+  },
+  {
+   "year": 2022,
+   "days": 7,
+   "races": 36,
+   "called": 34,
+   "avg_miss": 5.6625,
+   "brier": 0.042,
+   "dem_won_mean": 17.3005,
+   "dem_won_low": 14.0,
+   "dem_won_high": 21.0,
+   "dem_won": 19,
+   "inside": true
+  },
+  {
+   "year": 2024,
+   "days": 7,
+   "races": 11,
+   "called": 11,
+   "avg_miss": 9.6571,
+   "brier": 0.0194,
+   "dem_won_mean": 3.7729,
+   "dem_won_low": 3.0,
+   "dem_won_high": 5.0,
+   "dem_won": 3,
+   "inside": true
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "races": 36,
+   "called": 32,
+   "avg_miss": 4.3724,
+   "brier": 0.0737,
+   "dem_won_mean": 17.394,
+   "dem_won_low": 12.0,
+   "dem_won_high": 23.0,
+   "dem_won": 16,
+   "inside": true
+  },
+  {
+   "year": 2020,
+   "days": 1,
+   "races": 11,
+   "called": 11,
+   "avg_miss": 12.4196,
+   "brier": 0.0191,
+   "dem_won_mean": 3.7013,
+   "dem_won_low": 3.0,
+   "dem_won_high": 5.0,
+   "dem_won": 3,
+   "inside": true
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "races": 36,
+   "called": 35,
+   "avg_miss": 5.5658,
+   "brier": 0.0396,
+   "dem_won_mean": 17.3514,
+   "dem_won_low": 14.0,
+   "dem_won_high": 21.0,
+   "dem_won": 19,
+   "inside": true
+  },
+  {
+   "year": 2024,
+   "days": 1,
+   "races": 11,
+   "called": 10,
+   "avg_miss": 8.2058,
+   "brier": 0.0473,
+   "dem_won_mean": 3.2442,
+   "dem_won_low": 2.0,
+   "dem_won_high": 4.0,
+   "dem_won": 3,
+   "inside": true
+  }
+ ],
+ "races": [
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "AK",
+   "p_dem": 0.4271,
+   "margin": -3.2416,
+   "result": -7.3302,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "AL",
+   "p_dem": 0.0596,
+   "margin": -26.4677,
+   "result": -19.1014,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "AR",
+   "p_dem": 0.0586,
+   "margin": -26.5855,
+   "result": -34.5633,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "AZ",
+   "p_dem": 0.1365,
+   "margin": -18.7436,
+   "result": -14.4728,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "CA",
+   "p_dem": 0.7766,
+   "margin": 13.0179,
+   "result": 23.8971,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "CO",
+   "p_dem": 0.6068,
+   "margin": 4.3456,
+   "result": 11.0338,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "CT",
+   "p_dem": 0.6806,
+   "margin": 7.7472,
+   "result": 3.2999,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "FL",
+   "p_dem": 0.5483,
+   "margin": 2.2044,
+   "result": -0.3998,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "GA",
+   "p_dem": 0.5032,
+   "margin": 0.3584,
+   "result": -1.4024,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "HI",
+   "p_dem": 0.9564,
+   "margin": 29.2778,
+   "result": 30.0582,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "IA",
+   "p_dem": 0.1266,
+   "margin": -19.0852,
+   "result": -2.7952,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "ID",
+   "p_dem": 0.2789,
+   "margin": -10.0588,
+   "result": -22.0298,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "IL",
+   "p_dem": 0.2628,
+   "margin": -10.6914,
+   "result": 16.8177,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "KS",
+   "p_dem": 0.3732,
+   "margin": -5.3415,
+   "result": 5.5734,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "MA",
+   "p_dem": 0.0006,
+   "margin": -35.7198,
+   "result": -33.5783,
+   "won": false,
+   "poll": -42.858
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "MD",
+   "p_dem": 0.0375,
+   "margin": -17.0559,
+   "result": -11.9829,
+   "won": false,
+   "poll": -19.512
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "ME",
+   "p_dem": 0.6082,
+   "margin": 4.6703,
+   "result": 8.2004,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "MI",
+   "p_dem": 0.5637,
+   "margin": 1.4912,
+   "result": 9.8567,
+   "won": true,
+   "poll": 1.056
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "MN",
+   "p_dem": 0.5765,
+   "margin": 3.5804,
+   "result": 11.8593,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "NE",
+   "p_dem": 0.0648,
+   "margin": -26.0181,
+   "result": -18.0009,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "NH",
+   "p_dem": 0.1706,
+   "margin": -16.3394,
+   "result": -7.1498,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "NM",
+   "p_dem": 0.6352,
+   "margin": 5.8269,
+   "result": 14.3981,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "NV",
+   "p_dem": 0.5935,
+   "margin": 3.7298,
+   "result": 4.3123,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "NY",
+   "p_dem": 0.9384,
+   "margin": 26.1659,
+   "result": 24.4353,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "OH",
+   "p_dem": 0.0107,
+   "margin": -22.2303,
+   "result": -3.8158,
+   "won": false,
+   "poll": -27.906
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "OK",
+   "p_dem": 0.2587,
+   "margin": -10.643,
+   "result": -12.536,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "OR",
+   "p_dem": 0.7107,
+   "margin": 5.1143,
+   "result": 6.8311,
+   "won": true,
+   "poll": 1.234
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "PA",
+   "p_dem": 0.8394,
+   "margin": 16.5798,
+   "result": 17.339,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "RI",
+   "p_dem": 0.9169,
+   "margin": 23.1276,
+   "result": 17.2132,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "SC",
+   "p_dem": 0.1037,
+   "margin": -21.7952,
+   "result": -8.0421,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "SD",
+   "p_dem": 0.3236,
+   "margin": -7.5655,
+   "result": -3.4268,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "TN",
+   "p_dem": 0.3505,
+   "margin": -6.5296,
+   "result": -21.4107,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "TX",
+   "p_dem": 0.1037,
+   "margin": -20.8239,
+   "result": -13.5268,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "VT",
+   "p_dem": 0.3694,
+   "margin": -5.7524,
+   "result": -15.6447,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "WI",
+   "p_dem": 0.1679,
+   "margin": -16.5477,
+   "result": 1.1158,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "state": "WY",
+   "p_dem": 0.1911,
+   "margin": -14.7796,
+   "result": -41.8174,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 365,
+   "state": "DE",
+   "p_dem": 0.8833,
+   "margin": 19.5044,
+   "result": 21.2309,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 365,
+   "state": "IN",
+   "p_dem": 0.0673,
+   "margin": -23.7178,
+   "result": -27.6143,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 365,
+   "state": "MO",
+   "p_dem": 0.0329,
+   "margin": -16.55,
+   "result": -16.7833,
+   "won": false,
+   "poll": -14.698
+  },
+  {
+   "year": 2020,
+   "days": 365,
+   "state": "MT",
+   "p_dem": 0.3542,
+   "margin": -6.4589,
+   "result": -13.4082,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 365,
+   "state": "NC",
+   "p_dem": 0.9365,
+   "margin": 13.7198,
+   "result": 4.5779,
+   "won": true,
+   "poll": 13.914
+  },
+  {
+   "year": 2020,
+   "days": 365,
+   "state": "ND",
+   "p_dem": 0.0308,
+   "margin": -30.1752,
+   "result": -44.347,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 365,
+   "state": "NH",
+   "p_dem": 0.0295,
+   "margin": -16.9778,
+   "result": -32.2522,
+   "won": false,
+   "poll": -17.204
+  },
+  {
+   "year": 2020,
+   "days": 365,
+   "state": "UT",
+   "p_dem": 0.2631,
+   "margin": -10.5275,
+   "result": -34.9612,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 365,
+   "state": "VT",
+   "p_dem": 0.378,
+   "margin": -4.8382,
+   "result": -42.9191,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 365,
+   "state": "WA",
+   "p_dem": 0.9011,
+   "margin": 20.7486,
+   "result": 13.4834,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 365,
+   "state": "WV",
+   "p_dem": 0.0225,
+   "margin": -32.1932,
+   "result": -35.5009,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "AK",
+   "p_dem": 0.0011,
+   "margin": -30.9477,
+   "result": -38.6932,
+   "won": false,
+   "poll": -31.428
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "AL",
+   "p_dem": 0.0249,
+   "margin": -33.0872,
+   "result": -39.2657,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "AR",
+   "p_dem": 0.1556,
+   "margin": -16.7692,
+   "result": -28.2882,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "AZ",
+   "p_dem": 0.3336,
+   "margin": -7.4509,
+   "result": 0.669,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "CA",
+   "p_dem": 0.8681,
+   "margin": 18.7912,
+   "result": 18.359,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "CO",
+   "p_dem": 0.7684,
+   "margin": 12.5197,
+   "result": 19.8016,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "CT",
+   "p_dem": 0.4822,
+   "margin": -0.8785,
+   "result": 12.9794,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "FL",
+   "p_dem": 0.288,
+   "margin": -5.2127,
+   "result": -19.531,
+   "won": false,
+   "poll": -3.388
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "GA",
+   "p_dem": 0.0717,
+   "margin": -24.558,
+   "result": -7.5893,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "HI",
+   "p_dem": 0.5814,
+   "margin": 3.287,
+   "result": 26.3242,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "IA",
+   "p_dem": 0.0511,
+   "margin": -27.128,
+   "result": -18.9782,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "ID",
+   "p_dem": 0.0157,
+   "margin": -35.2415,
+   "result": -49.8034,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "IL",
+   "p_dem": 0.8048,
+   "margin": 14.4497,
+   "result": 12.8894,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "KS",
+   "p_dem": 0.3854,
+   "margin": -2.6363,
+   "result": 2.2772,
+   "won": true,
+   "poll": -4.762
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "MA",
+   "p_dem": 0.5883,
+   "margin": 3.8672,
+   "result": 29.5733,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "MD",
+   "p_dem": 0.5857,
+   "margin": 3.7175,
+   "result": 33.5378,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "ME",
+   "p_dem": 0.7441,
+   "margin": 11.1948,
+   "result": 13.4937,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "MI",
+   "p_dem": 0.7029,
+   "margin": 9.2668,
+   "result": 10.7004,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "MN",
+   "p_dem": 0.7391,
+   "margin": 10.5474,
+   "result": 7.9106,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "NE",
+   "p_dem": 0.1924,
+   "margin": -14.4148,
+   "result": -24.4133,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "NH",
+   "p_dem": 0.0922,
+   "margin": -22.2499,
+   "result": -15.7563,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "NM",
+   "p_dem": 0.7702,
+   "margin": 12.1349,
+   "result": 6.5432,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "NV",
+   "p_dem": 0.6205,
+   "margin": 2.9487,
+   "result": -1.571,
+   "won": false,
+   "poll": 0.56
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "NY",
+   "p_dem": 0.8394,
+   "margin": 16.7269,
+   "result": 6.4007,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "OH",
+   "p_dem": 0.0034,
+   "margin": -26.6131,
+   "result": -25.0838,
+   "won": false,
+   "poll": -26.496
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "OK",
+   "p_dem": 0.009,
+   "margin": -23.2517,
+   "result": -14.0522,
+   "won": false,
+   "poll": -19.512
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "OR",
+   "p_dem": 0.4441,
+   "margin": -1.9953,
+   "result": 3.7754,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "PA",
+   "p_dem": 0.3415,
+   "margin": -6.9788,
+   "result": 15.0421,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "RI",
+   "p_dem": 0.8194,
+   "margin": 15.308,
+   "result": 19.6914,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "SC",
+   "p_dem": 0.0475,
+   "margin": -28.4086,
+   "result": -17.5953,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "SD",
+   "p_dem": 0.0224,
+   "margin": -33.6191,
+   "result": -27.599,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "TN",
+   "p_dem": 0.0262,
+   "margin": -32.4157,
+   "result": -32.6971,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "TX",
+   "p_dem": 0.1105,
+   "margin": -11.5542,
+   "result": -11.0558,
+   "won": false,
+   "poll": -9.864
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "VT",
+   "p_dem": 0.232,
+   "margin": -12.4051,
+   "result": -49.5198,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "WI",
+   "p_dem": 0.6891,
+   "margin": 8.6664,
+   "result": 3.4347,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "state": "WY",
+   "p_dem": 0.0079,
+   "margin": -39.8093,
+   "result": -64.806,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 365,
+   "state": "DE",
+   "p_dem": 0.5362,
+   "margin": 1.5255,
+   "result": 12.1401,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 365,
+   "state": "IN",
+   "p_dem": 0.2425,
+   "margin": -11.3945,
+   "result": -13.9042,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 365,
+   "state": "MO",
+   "p_dem": 0.1578,
+   "margin": -8.1694,
+   "result": -20.871,
+   "won": false,
+   "poll": -7.042
+  },
+  {
+   "year": 2024,
+   "days": 365,
+   "state": "MT",
+   "p_dem": 0.0366,
+   "margin": -29.3553,
+   "result": -20.7633,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 365,
+   "state": "NC",
+   "p_dem": 0.5194,
+   "margin": 0.2479,
+   "result": 15.5944,
+   "won": true,
+   "poll": 2.398
+  },
+  {
+   "year": 2024,
+   "days": 365,
+   "state": "ND",
+   "p_dem": 0.1269,
+   "margin": -18.2191,
+   "result": -44.8588,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 365,
+   "state": "NH",
+   "p_dem": 0.1611,
+   "margin": -8.0219,
+   "result": -9.541,
+   "won": false,
+   "poll": -10.71
+  },
+  {
+   "year": 2024,
+   "days": 365,
+   "state": "UT",
+   "p_dem": 0.0284,
+   "margin": -30.8712,
+   "result": -30.0277,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 365,
+   "state": "VT",
+   "p_dem": 0.2723,
+   "margin": -9.6025,
+   "result": -54.1643,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 365,
+   "state": "WA",
+   "p_dem": 0.5563,
+   "margin": 2.2096,
+   "result": 11.2517,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 365,
+   "state": "WV",
+   "p_dem": 0.1056,
+   "margin": -20.0937,
+   "result": -32.5013,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "AK",
+   "p_dem": 0.2759,
+   "margin": -5.6023,
+   "result": -7.3302,
+   "won": false,
+   "poll": -6.376
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "AL",
+   "p_dem": 0.0008,
+   "margin": -29.7208,
+   "result": -19.1014,
+   "won": false,
+   "poll": -30.864
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "AR",
+   "p_dem": 0.0002,
+   "margin": -37.4369,
+   "result": -34.5633,
+   "won": false,
+   "poll": -44.828
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "AZ",
+   "p_dem": 0.3369,
+   "margin": -3.7726,
+   "result": -14.4728,
+   "won": false,
+   "poll": 1.204
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "CA",
+   "p_dem": 0.9922,
+   "margin": 24.2366,
+   "result": 23.8971,
+   "won": true,
+   "poll": 27.724
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "CO",
+   "p_dem": 0.5967,
+   "margin": 4.0679,
+   "result": 11.0338,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "CT",
+   "p_dem": 0.6696,
+   "margin": 7.4695,
+   "result": 3.2999,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "FL",
+   "p_dem": 0.6498,
+   "margin": 3.614,
+   "result": -0.3998,
+   "won": false,
+   "poll": 4.202
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "GA",
+   "p_dem": 0.592,
+   "margin": 2.249,
+   "result": -1.4024,
+   "won": false,
+   "poll": 3.896
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "HI",
+   "p_dem": 0.9994,
+   "margin": 33.1091,
+   "result": 30.0582,
+   "won": true,
+   "poll": 36.0
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "IA",
+   "p_dem": 0.1196,
+   "margin": -19.3629,
+   "result": -2.7952,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "ID",
+   "p_dem": 0.0607,
+   "margin": -14.6791,
+   "result": -22.0298,
+   "won": false,
+   "poll": -16.216
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "IL",
+   "p_dem": 0.8943,
+   "margin": 11.8589,
+   "result": 16.8177,
+   "won": true,
+   "poll": 18.624
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "KS",
+   "p_dem": 0.372,
+   "margin": -5.6192,
+   "result": 5.5734,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "MA",
+   "p_dem": 0.0006,
+   "margin": -34.0003,
+   "result": -33.5783,
+   "won": false,
+   "poll": -43.528
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "MD",
+   "p_dem": 0.0598,
+   "margin": -14.7134,
+   "result": -11.9829,
+   "won": false,
+   "poll": -17.092
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "ME",
+   "p_dem": 0.5941,
+   "margin": 4.3926,
+   "result": 8.2004,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "MI",
+   "p_dem": 0.7152,
+   "margin": 5.4711,
+   "result": 9.8567,
+   "won": true,
+   "poll": 6.306
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "MN",
+   "p_dem": 0.5725,
+   "margin": 3.3027,
+   "result": 11.8593,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "NE",
+   "p_dem": 0.0555,
+   "margin": -26.2958,
+   "result": -18.0009,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "NH",
+   "p_dem": 0.004,
+   "margin": -26.3583,
+   "result": -7.1498,
+   "won": false,
+   "poll": -31.006
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "NM",
+   "p_dem": 0.6283,
+   "margin": 5.5492,
+   "result": 14.3981,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "NV",
+   "p_dem": 0.4911,
+   "margin": -0.0033,
+   "result": 4.3123,
+   "won": true,
+   "poll": -1.19
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "NY",
+   "p_dem": 0.9949,
+   "margin": 24.7958,
+   "result": 24.4353,
+   "won": true,
+   "poll": 24.466
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "OH",
+   "p_dem": 0.5334,
+   "margin": 0.7913,
+   "result": -3.8158,
+   "won": false,
+   "poll": 0.97
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "OK",
+   "p_dem": 0.6784,
+   "margin": 4.6171,
+   "result": -12.536,
+   "won": false,
+   "poll": 11.816
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "OR",
+   "p_dem": 0.8829,
+   "margin": 20.358,
+   "result": 6.8311,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "PA",
+   "p_dem": 0.9656,
+   "margin": 18.0791,
+   "result": 17.339,
+   "won": true,
+   "poll": 18.658
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "RI",
+   "p_dem": 0.774,
+   "margin": 7.101,
+   "result": 17.2132,
+   "won": true,
+   "poll": 0.19
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "SC",
+   "p_dem": 0.0923,
+   "margin": -22.073,
+   "result": -8.0421,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "SD",
+   "p_dem": 0.3267,
+   "margin": -7.8432,
+   "result": -3.4268,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "TN",
+   "p_dem": 0.3324,
+   "margin": -6.8073,
+   "result": -21.4107,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "TX",
+   "p_dem": 0.0481,
+   "margin": -15.8969,
+   "result": -13.5268,
+   "won": false,
+   "poll": -14.382
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "VT",
+   "p_dem": 0.3621,
+   "margin": -6.0302,
+   "result": -15.6447,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "WI",
+   "p_dem": 0.2055,
+   "margin": -7.7601,
+   "result": 1.1158,
+   "won": true,
+   "poll": -4.348
+  },
+  {
+   "year": 2018,
+   "days": 120,
+   "state": "WY",
+   "p_dem": 0.1843,
+   "margin": -15.0574,
+   "result": -41.8174,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 120,
+   "state": "DE",
+   "p_dem": 0.8945,
+   "margin": 20.4332,
+   "result": 21.2309,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 120,
+   "state": "IN",
+   "p_dem": 0.0022,
+   "margin": -24.6362,
+   "result": -27.6143,
+   "won": false,
+   "poll": -28.572
+  },
+  {
+   "year": 2020,
+   "days": 120,
+   "state": "MO",
+   "p_dem": 0.1365,
+   "margin": -9.5303,
+   "result": -16.7833,
+   "won": false,
+   "poll": -6.518
+  },
+  {
+   "year": 2020,
+   "days": 120,
+   "state": "MT",
+   "p_dem": 0.15,
+   "margin": -8.9855,
+   "result": -13.4082,
+   "won": false,
+   "poll": -11.384
+  },
+  {
+   "year": 2020,
+   "days": 120,
+   "state": "NC",
+   "p_dem": 0.9656,
+   "margin": 15.3504,
+   "result": 4.5779,
+   "won": true,
+   "poll": 15.522
+  },
+  {
+   "year": 2020,
+   "days": 120,
+   "state": "ND",
+   "p_dem": 0.034,
+   "margin": -29.2464,
+   "result": -44.347,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 120,
+   "state": "NH",
+   "p_dem": 0.0,
+   "margin": -39.4346,
+   "result": -32.2522,
+   "won": false,
+   "poll": -47.288
+  },
+  {
+   "year": 2020,
+   "days": 120,
+   "state": "UT",
+   "p_dem": 0.2788,
+   "margin": -9.5986,
+   "result": -34.9612,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 120,
+   "state": "VT",
+   "p_dem": 0.0056,
+   "margin": -21.7626,
+   "result": -42.9191,
+   "won": false,
+   "poll": -41.176
+  },
+  {
+   "year": 2020,
+   "days": 120,
+   "state": "WA",
+   "p_dem": 0.9971,
+   "margin": 24.5767,
+   "result": 13.4834,
+   "won": true,
+   "poll": 28.736
+  },
+  {
+   "year": 2020,
+   "days": 120,
+   "state": "WV",
+   "p_dem": 0.0274,
+   "margin": -31.2643,
+   "result": -35.5009,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "AK",
+   "p_dem": 0.0006,
+   "margin": -30.9672,
+   "result": -38.6932,
+   "won": false,
+   "poll": -31.694
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "AL",
+   "p_dem": 0.022,
+   "margin": -33.649,
+   "result": -39.2657,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "AR",
+   "p_dem": 0.0063,
+   "margin": -21.7017,
+   "result": -28.2882,
+   "won": false,
+   "poll": -34.884
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "AZ",
+   "p_dem": 0.3172,
+   "margin": -8.0126,
+   "result": 0.669,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "CA",
+   "p_dem": 0.8601,
+   "margin": 18.2295,
+   "result": 18.359,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "CO",
+   "p_dem": 0.7632,
+   "margin": 11.958,
+   "result": 19.8016,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "CT",
+   "p_dem": 0.805,
+   "margin": 7.3652,
+   "result": 12.9794,
+   "won": true,
+   "poll": 12.068
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "FL",
+   "p_dem": 0.1294,
+   "margin": -9.6362,
+   "result": -19.531,
+   "won": false,
+   "poll": -0.822
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "GA",
+   "p_dem": 0.1543,
+   "margin": -8.8883,
+   "result": -7.5893,
+   "won": false,
+   "poll": -5.866
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "HI",
+   "p_dem": 0.563,
+   "margin": 2.7253,
+   "result": 26.3242,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "IA",
+   "p_dem": 0.0045,
+   "margin": -22.9677,
+   "result": -18.9782,
+   "won": false,
+   "poll": -8.51
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "ID",
+   "p_dem": 0.0166,
+   "margin": -35.8033,
+   "result": -49.8034,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "IL",
+   "p_dem": 0.795,
+   "margin": 13.888,
+   "result": 12.8894,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "KS",
+   "p_dem": 0.5574,
+   "margin": 2.3731,
+   "result": 2.2772,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "MA",
+   "p_dem": 0.9967,
+   "margin": 24.7221,
+   "result": 29.5733,
+   "won": true,
+   "poll": 33.432
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "MD",
+   "p_dem": 0.5773,
+   "margin": 3.1558,
+   "result": 33.5378,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "ME",
+   "p_dem": 0.7976,
+   "margin": 7.2015,
+   "result": 13.4937,
+   "won": true,
+   "poll": 4.692
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "MI",
+   "p_dem": 0.9644,
+   "margin": 16.3209,
+   "result": 10.7004,
+   "won": true,
+   "poll": 18.902
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "MN",
+   "p_dem": 0.7341,
+   "margin": 5.3356,
+   "result": 7.9106,
+   "won": true,
+   "poll": 3.194
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "NE",
+   "p_dem": 0.1821,
+   "margin": -14.9765,
+   "result": -24.4133,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "NH",
+   "p_dem": 0.0008,
+   "margin": -30.1281,
+   "result": -15.7563,
+   "won": false,
+   "poll": -37.592
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "NM",
+   "p_dem": 0.7711,
+   "margin": 6.3784,
+   "result": 6.5432,
+   "won": true,
+   "poll": 3.796
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "NV",
+   "p_dem": 0.7678,
+   "margin": 6.229,
+   "result": -1.571,
+   "won": false,
+   "poll": 5.532
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "NY",
+   "p_dem": 0.995,
+   "margin": 23.742,
+   "result": 6.4007,
+   "won": true,
+   "poll": 26.222
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "OH",
+   "p_dem": 0.0492,
+   "margin": -27.5023,
+   "result": -25.0838,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "OK",
+   "p_dem": 0.0014,
+   "margin": -28.4703,
+   "result": -14.0522,
+   "won": false,
+   "poll": -23.472
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "OR",
+   "p_dem": 0.3596,
+   "margin": -3.0382,
+   "result": 3.7754,
+   "won": true,
+   "poll": -3.508
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "PA",
+   "p_dem": 0.5344,
+   "margin": 0.956,
+   "result": 15.0421,
+   "won": true,
+   "poll": 3.534
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "RI",
+   "p_dem": 0.8116,
+   "margin": 14.7462,
+   "result": 19.6914,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "SC",
+   "p_dem": 0.0405,
+   "margin": -28.9703,
+   "result": -17.5953,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "SD",
+   "p_dem": 0.0213,
+   "margin": -34.1808,
+   "result": -27.599,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "TN",
+   "p_dem": 0.0219,
+   "margin": -32.9774,
+   "result": -32.6971,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "TX",
+   "p_dem": 0.1055,
+   "margin": -10.6032,
+   "result": -11.0558,
+   "won": false,
+   "poll": -7.788
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "VT",
+   "p_dem": 0.2151,
+   "margin": -12.9669,
+   "result": -49.5198,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "WI",
+   "p_dem": 0.8196,
+   "margin": 7.9508,
+   "result": 3.4347,
+   "won": true,
+   "poll": 7.866
+  },
+  {
+   "year": 2022,
+   "days": 120,
+   "state": "WY",
+   "p_dem": 0.0096,
+   "margin": -40.3711,
+   "result": -64.806,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 120,
+   "state": "DE",
+   "p_dem": 0.5424,
+   "margin": 1.8085,
+   "result": 12.1401,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 120,
+   "state": "IN",
+   "p_dem": 0.2442,
+   "margin": -11.1115,
+   "result": -13.9042,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 120,
+   "state": "MO",
+   "p_dem": 0.2518,
+   "margin": -10.856,
+   "result": -20.871,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 120,
+   "state": "MT",
+   "p_dem": 0.0015,
+   "margin": -28.3698,
+   "result": -20.7633,
+   "won": false,
+   "poll": -26.83
+  },
+  {
+   "year": 2024,
+   "days": 120,
+   "state": "NC",
+   "p_dem": 0.4822,
+   "margin": -0.3374,
+   "result": 15.5944,
+   "won": true,
+   "poll": 0.968
+  },
+  {
+   "year": 2024,
+   "days": 120,
+   "state": "ND",
+   "p_dem": 0.0006,
+   "margin": -34.4123,
+   "result": -44.8588,
+   "won": false,
+   "poll": -46.988
+  },
+  {
+   "year": 2024,
+   "days": 120,
+   "state": "NH",
+   "p_dem": 0.4357,
+   "margin": -2.543,
+   "result": -9.541,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 120,
+   "state": "UT",
+   "p_dem": 0.0266,
+   "margin": -30.5882,
+   "result": -30.0277,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 120,
+   "state": "VT",
+   "p_dem": 0.2811,
+   "margin": -9.3195,
+   "result": -54.1643,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 120,
+   "state": "WA",
+   "p_dem": 0.5611,
+   "margin": 2.4925,
+   "result": 11.2517,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 120,
+   "state": "WV",
+   "p_dem": 0.1057,
+   "margin": -19.8107,
+   "result": -32.5013,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "AK",
+   "p_dem": 0.4209,
+   "margin": -3.4733,
+   "result": -7.3302,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "AL",
+   "p_dem": 0.0155,
+   "margin": -18.7495,
+   "result": -19.1014,
+   "won": false,
+   "poll": -14.286
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "AR",
+   "p_dem": 0.0002,
+   "margin": -38.6572,
+   "result": -34.5633,
+   "won": false,
+   "poll": -41.176
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "AZ",
+   "p_dem": 0.2095,
+   "margin": -6.9439,
+   "result": -14.4728,
+   "won": false,
+   "poll": -4.29
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "CA",
+   "p_dem": 0.8482,
+   "margin": 8.8975,
+   "result": 23.8971,
+   "won": true,
+   "poll": 8.002
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "CO",
+   "p_dem": 0.6002,
+   "margin": 4.114,
+   "result": 11.0338,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "CT",
+   "p_dem": 0.8953,
+   "margin": 10.6712,
+   "result": 3.2999,
+   "won": true,
+   "poll": 11.358
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "FL",
+   "p_dem": 0.577,
+   "margin": 1.6153,
+   "result": -0.3998,
+   "won": false,
+   "poll": 1.546
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "GA",
+   "p_dem": 0.4942,
+   "margin": -0.2546,
+   "result": -1.4024,
+   "won": false,
+   "poll": -0.338
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "HI",
+   "p_dem": 0.9985,
+   "margin": 27.0467,
+   "result": 30.0582,
+   "won": true,
+   "poll": 25.274
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "IA",
+   "p_dem": 0.1287,
+   "margin": -19.3168,
+   "result": -2.7952,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "ID",
+   "p_dem": 0.0583,
+   "margin": -13.1854,
+   "result": -22.0298,
+   "won": false,
+   "poll": -16.216
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "IL",
+   "p_dem": 0.9358,
+   "margin": 13.1191,
+   "result": 16.8177,
+   "won": true,
+   "poll": 18.734
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "KS",
+   "p_dem": 0.4543,
+   "margin": -1.2716,
+   "result": 5.5734,
+   "won": true,
+   "poll": 1.408
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "MA",
+   "p_dem": 0.33,
+   "margin": -7.3987,
+   "result": -33.5783,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "MD",
+   "p_dem": 0.0403,
+   "margin": -15.0106,
+   "result": -11.9829,
+   "won": false,
+   "poll": -18.182
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "ME",
+   "p_dem": 0.6065,
+   "margin": 4.4387,
+   "result": 8.2004,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "MI",
+   "p_dem": 0.9351,
+   "margin": 12.8342,
+   "result": 9.8567,
+   "won": true,
+   "poll": 14.888
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "MN",
+   "p_dem": 0.7854,
+   "margin": 6.5576,
+   "result": 11.8593,
+   "won": true,
+   "poll": 7.446
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "NE",
+   "p_dem": 0.0601,
+   "margin": -26.2497,
+   "result": -18.0009,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "NH",
+   "p_dem": 0.0133,
+   "margin": -19.0992,
+   "result": -7.1498,
+   "won": false,
+   "poll": -20.0
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "NM",
+   "p_dem": 0.6231,
+   "margin": 2.8385,
+   "result": 14.3981,
+   "won": true,
+   "poll": 1.84
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "NV",
+   "p_dem": 0.5383,
+   "margin": 0.8538,
+   "result": 4.3123,
+   "won": true,
+   "poll": -0.726
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "NY",
+   "p_dem": 0.998,
+   "margin": 27.0355,
+   "result": 24.4353,
+   "won": true,
+   "poll": 27.748
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "OH",
+   "p_dem": 0.5079,
+   "margin": 0.2411,
+   "result": -3.8158,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "OK",
+   "p_dem": 0.395,
+   "margin": -2.0281,
+   "result": -12.536,
+   "won": false,
+   "poll": 1.692
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "OR",
+   "p_dem": 0.7547,
+   "margin": 5.672,
+   "result": 6.8311,
+   "won": true,
+   "poll": -0.928
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "PA",
+   "p_dem": 0.9826,
+   "margin": 18.3193,
+   "result": 17.339,
+   "won": true,
+   "poll": 18.8
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "RI",
+   "p_dem": 0.8925,
+   "margin": 10.3623,
+   "result": 17.2132,
+   "won": true,
+   "poll": 2.918
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "SC",
+   "p_dem": 0.0938,
+   "margin": -22.0269,
+   "result": -8.0421,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "SD",
+   "p_dem": 0.3305,
+   "margin": -7.7971,
+   "result": -3.4268,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "TN",
+   "p_dem": 0.0771,
+   "margin": -12.1698,
+   "result": -21.4107,
+   "won": false,
+   "poll": -13.408
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "TX",
+   "p_dem": 0.0072,
+   "margin": -21.7445,
+   "result": -13.5268,
+   "won": false,
+   "poll": -21.886
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "VT",
+   "p_dem": 0.3689,
+   "margin": -5.9841,
+   "result": -15.6447,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "WI",
+   "p_dem": 0.467,
+   "margin": -0.7646,
+   "result": 1.1158,
+   "won": true,
+   "poll": 2.722
+  },
+  {
+   "year": 2018,
+   "days": 60,
+   "state": "WY",
+   "p_dem": 0.19,
+   "margin": -15.0113,
+   "result": -41.8174,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 60,
+   "state": "DE",
+   "p_dem": 0.8955,
+   "margin": 20.1401,
+   "result": 21.2309,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 60,
+   "state": "IN",
+   "p_dem": 0.0745,
+   "margin": -23.0822,
+   "result": -27.6143,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 60,
+   "state": "MO",
+   "p_dem": 0.0414,
+   "margin": -13.8765,
+   "result": -16.7833,
+   "won": false,
+   "poll": -11.59
+  },
+  {
+   "year": 2020,
+   "days": 60,
+   "state": "MT",
+   "p_dem": 0.174,
+   "margin": -7.5156,
+   "result": -13.4082,
+   "won": false,
+   "poll": -8.356
+  },
+  {
+   "year": 2020,
+   "days": 60,
+   "state": "NC",
+   "p_dem": 0.9578,
+   "margin": 13.7006,
+   "result": 4.5779,
+   "won": true,
+   "poll": 13.712
+  },
+  {
+   "year": 2020,
+   "days": 60,
+   "state": "ND",
+   "p_dem": 0.0342,
+   "margin": -29.5395,
+   "result": -44.347,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 60,
+   "state": "NH",
+   "p_dem": 0.0012,
+   "margin": -24.9034,
+   "result": -32.2522,
+   "won": false,
+   "poll": -27.224
+  },
+  {
+   "year": 2020,
+   "days": 60,
+   "state": "UT",
+   "p_dem": 0.0,
+   "margin": -34.8033,
+   "result": -34.9612,
+   "won": false,
+   "poll": -48.484
+  },
+  {
+   "year": 2020,
+   "days": 60,
+   "state": "VT",
+   "p_dem": 0.4008,
+   "margin": -4.2025,
+   "result": -42.9191,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 60,
+   "state": "WA",
+   "p_dem": 0.9992,
+   "margin": 27.3194,
+   "result": 13.4834,
+   "won": true,
+   "poll": 31.182
+  },
+  {
+   "year": 2020,
+   "days": 60,
+   "state": "WV",
+   "p_dem": 0.0274,
+   "margin": -31.5575,
+   "result": -35.5009,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "AK",
+   "p_dem": 0.0019,
+   "margin": -28.5994,
+   "result": -38.6932,
+   "won": false,
+   "poll": -31.694
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "AL",
+   "p_dem": 0.0262,
+   "margin": -32.4978,
+   "result": -39.2657,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "AR",
+   "p_dem": 0.0013,
+   "margin": -29.9577,
+   "result": -28.2882,
+   "won": false,
+   "poll": -31.914
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "AZ",
+   "p_dem": 0.6445,
+   "margin": 3.3701,
+   "result": 0.669,
+   "won": true,
+   "poll": 3.662
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "CA",
+   "p_dem": 0.9991,
+   "margin": 28.3616,
+   "result": 18.359,
+   "won": true,
+   "poll": 30.128
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "CO",
+   "p_dem": 0.7796,
+   "margin": 13.1092,
+   "result": 19.8016,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "CT",
+   "p_dem": 0.8937,
+   "margin": 10.7583,
+   "result": 12.9794,
+   "won": true,
+   "poll": 11.622
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "FL",
+   "p_dem": 0.1932,
+   "margin": -7.6043,
+   "result": -19.531,
+   "won": false,
+   "poll": -7.16
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "GA",
+   "p_dem": 0.2817,
+   "margin": -4.8507,
+   "result": -7.5893,
+   "won": false,
+   "poll": -4.182
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "HI",
+   "p_dem": 0.5968,
+   "margin": 3.8765,
+   "result": 26.3242,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "IA",
+   "p_dem": 0.0034,
+   "margin": -25.2459,
+   "result": -18.9782,
+   "won": false,
+   "poll": -21.518
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "ID",
+   "p_dem": 0.0176,
+   "margin": -34.6521,
+   "result": -49.8034,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "IL",
+   "p_dem": 0.9815,
+   "margin": 18.4111,
+   "result": 12.8894,
+   "won": true,
+   "poll": 19.148
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "KS",
+   "p_dem": 0.9109,
+   "margin": 11.6298,
+   "result": 2.2772,
+   "won": true,
+   "poll": 12.766
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "MA",
+   "p_dem": 0.9881,
+   "margin": 20.5969,
+   "result": 29.5733,
+   "won": true,
+   "poll": 22.102
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "MD",
+   "p_dem": 0.6077,
+   "margin": 4.3069,
+   "result": 33.5378,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "ME",
+   "p_dem": 0.9219,
+   "margin": 12.3988,
+   "result": 13.4937,
+   "won": true,
+   "poll": 12.458
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "MI",
+   "p_dem": 0.9265,
+   "margin": 12.7835,
+   "result": 10.7004,
+   "won": true,
+   "poll": 12.984
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "MN",
+   "p_dem": 0.9891,
+   "margin": 20.1703,
+   "result": 7.9106,
+   "won": true,
+   "poll": 21.428
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "NE",
+   "p_dem": 0.1966,
+   "margin": -13.8253,
+   "result": -24.4133,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "NH",
+   "p_dem": 0.0054,
+   "margin": -23.8155,
+   "result": -15.7563,
+   "won": false,
+   "poll": -24.676
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "NM",
+   "p_dem": 0.845,
+   "margin": 9.0065,
+   "result": 6.5432,
+   "won": true,
+   "poll": 8.046
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "NV",
+   "p_dem": 0.5867,
+   "margin": 1.9664,
+   "result": -1.571,
+   "won": false,
+   "poll": 0.812
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "NY",
+   "p_dem": 0.9872,
+   "margin": 19.933,
+   "result": 6.4007,
+   "won": true,
+   "poll": 20.098
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "OH",
+   "p_dem": 0.0158,
+   "margin": -19.2787,
+   "result": -25.0838,
+   "won": false,
+   "poll": -18.95
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "OK",
+   "p_dem": 0.0629,
+   "margin": -13.1017,
+   "result": -14.0522,
+   "won": false,
+   "poll": -11.662
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "OR",
+   "p_dem": 0.4442,
+   "margin": -1.1953,
+   "result": 3.7754,
+   "won": true,
+   "poll": -1.078
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "PA",
+   "p_dem": 0.9237,
+   "margin": 12.3327,
+   "result": 15.0421,
+   "won": true,
+   "poll": 12.972
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "RI",
+   "p_dem": 0.9979,
+   "margin": 27.4534,
+   "result": 19.6914,
+   "won": true,
+   "poll": 29.114
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "SC",
+   "p_dem": 0.1326,
+   "margin": -9.7027,
+   "result": -17.5953,
+   "won": false,
+   "poll": -8.35
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "SD",
+   "p_dem": 0.024,
+   "margin": -33.0296,
+   "result": -27.599,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "TN",
+   "p_dem": 0.026,
+   "margin": -31.8262,
+   "result": -32.6971,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "TX",
+   "p_dem": 0.2534,
+   "margin": -5.7232,
+   "result": -11.0558,
+   "won": false,
+   "poll": -5.244
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "VT",
+   "p_dem": 0.2389,
+   "margin": -11.8157,
+   "result": -49.5198,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "WI",
+   "p_dem": 0.624,
+   "margin": 2.7566,
+   "result": 3.4347,
+   "won": true,
+   "poll": 2.132
+  },
+  {
+   "year": 2022,
+   "days": 60,
+   "state": "WY",
+   "p_dem": 0.0104,
+   "margin": -39.2199,
+   "result": -64.806,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 60,
+   "state": "DE",
+   "p_dem": 0.5604,
+   "margin": 2.6082,
+   "result": 12.1401,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 60,
+   "state": "IN",
+   "p_dem": 0.2559,
+   "margin": -10.3118,
+   "result": -13.9042,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 60,
+   "state": "MO",
+   "p_dem": 0.016,
+   "margin": -16.0511,
+   "result": -20.871,
+   "won": false,
+   "poll": -18.43
+  },
+  {
+   "year": 2024,
+   "days": 60,
+   "state": "MT",
+   "p_dem": 0.0048,
+   "margin": -21.373,
+   "result": -20.7633,
+   "won": false,
+   "poll": -17.392
+  },
+  {
+   "year": 2024,
+   "days": 60,
+   "state": "NC",
+   "p_dem": 0.8363,
+   "margin": 7.1063,
+   "result": 15.5944,
+   "won": true,
+   "poll": 9.904
+  },
+  {
+   "year": 2024,
+   "days": 60,
+   "state": "ND",
+   "p_dem": 0.1434,
+   "margin": -17.1365,
+   "result": -44.8588,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 60,
+   "state": "NH",
+   "p_dem": 0.4601,
+   "margin": -1.7433,
+   "result": -9.541,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 60,
+   "state": "UT",
+   "p_dem": 0.0003,
+   "margin": -32.0391,
+   "result": -30.0277,
+   "won": false,
+   "poll": -33.122
+  },
+  {
+   "year": 2024,
+   "days": 60,
+   "state": "VT",
+   "p_dem": 0.0026,
+   "margin": -23.3845,
+   "result": -54.1643,
+   "won": false,
+   "poll": -33.334
+  },
+  {
+   "year": 2024,
+   "days": 60,
+   "state": "WA",
+   "p_dem": 0.8373,
+   "margin": 7.1681,
+   "result": 11.2517,
+   "won": true,
+   "poll": 8.742
+  },
+  {
+   "year": 2024,
+   "days": 60,
+   "state": "WV",
+   "p_dem": 0.0104,
+   "margin": -17.6197,
+   "result": -32.5013,
+   "won": false,
+   "poll": -16.666
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "AK",
+   "p_dem": 0.2563,
+   "margin": -5.3146,
+   "result": -7.3302,
+   "won": false,
+   "poll": -5.74
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "AL",
+   "p_dem": 0.0006,
+   "margin": -31.1306,
+   "result": -19.1014,
+   "won": false,
+   "poll": -32.468
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "AR",
+   "p_dem": 0.0001,
+   "margin": -39.1815,
+   "result": -34.5633,
+   "won": false,
+   "poll": -42.858
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "AZ",
+   "p_dem": 0.0204,
+   "margin": -17.3902,
+   "result": -14.4728,
+   "won": false,
+   "poll": -16.87
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "CA",
+   "p_dem": 0.9763,
+   "margin": 16.4355,
+   "result": 23.8971,
+   "won": true,
+   "poll": 17.274
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "CO",
+   "p_dem": 0.873,
+   "margin": 9.4722,
+   "result": 11.0338,
+   "won": true,
+   "poll": 11.172
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "CT",
+   "p_dem": 0.7787,
+   "margin": 6.3724,
+   "result": 3.2999,
+   "won": true,
+   "poll": 6.142
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "FL",
+   "p_dem": 0.724,
+   "margin": 5.0151,
+   "result": -0.3998,
+   "won": false,
+   "poll": 5.502
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "GA",
+   "p_dem": 0.4573,
+   "margin": -0.8448,
+   "result": -1.4024,
+   "won": false,
+   "poll": -0.98
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "HI",
+   "p_dem": 0.9979,
+   "margin": 26.108,
+   "result": 30.0582,
+   "won": true,
+   "poll": 25.302
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "IA",
+   "p_dem": 0.5468,
+   "margin": 1.123,
+   "result": -2.7952,
+   "won": false,
+   "poll": 7.146
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "ID",
+   "p_dem": 0.2594,
+   "margin": -10.669,
+   "result": -22.0298,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "IL",
+   "p_dem": 0.9732,
+   "margin": 16.2445,
+   "result": 16.8177,
+   "won": true,
+   "poll": 24.724
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "KS",
+   "p_dem": 0.4166,
+   "margin": -1.5395,
+   "result": 5.5734,
+   "won": true,
+   "poll": -0.094
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "MA",
+   "p_dem": 0.0002,
+   "margin": -33.9084,
+   "result": -33.5783,
+   "won": false,
+   "poll": -42.214
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "MD",
+   "p_dem": 0.019,
+   "margin": -17.5804,
+   "result": -11.9829,
+   "won": false,
+   "poll": -20.652
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "ME",
+   "p_dem": 0.8143,
+   "margin": 7.2797,
+   "result": 8.2004,
+   "won": true,
+   "poll": 8.334
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "MI",
+   "p_dem": 0.8491,
+   "margin": 8.6213,
+   "result": 9.8567,
+   "won": true,
+   "poll": 10.152
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "MN",
+   "p_dem": 0.7788,
+   "margin": 6.4015,
+   "result": 11.8593,
+   "won": true,
+   "poll": 7.356
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "NE",
+   "p_dem": 0.0543,
+   "margin": -26.6283,
+   "result": -18.0009,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "NH",
+   "p_dem": 0.0472,
+   "margin": -14.0062,
+   "result": -7.1498,
+   "won": false,
+   "poll": -13.184
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "NM",
+   "p_dem": 0.8004,
+   "margin": 6.9501,
+   "result": 14.3981,
+   "won": true,
+   "poll": 7.526
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "NV",
+   "p_dem": 0.4753,
+   "margin": -0.4518,
+   "result": 4.3123,
+   "won": true,
+   "poll": -1.296
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "NY",
+   "p_dem": 0.9972,
+   "margin": 24.4049,
+   "result": 24.4353,
+   "won": true,
+   "poll": 24.054
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "OH",
+   "p_dem": 0.3893,
+   "margin": -2.2786,
+   "result": -3.8158,
+   "won": false,
+   "poll": -2.934
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "OK",
+   "p_dem": 0.164,
+   "margin": -7.9901,
+   "result": -12.536,
+   "won": false,
+   "poll": -7.044
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "OR",
+   "p_dem": 0.8741,
+   "margin": 9.4083,
+   "result": 6.8311,
+   "won": true,
+   "poll": 6.078
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "PA",
+   "p_dem": 0.981,
+   "margin": 17.5634,
+   "result": 17.339,
+   "won": true,
+   "poll": 18.072
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "RI",
+   "p_dem": 0.9695,
+   "margin": 15.6774,
+   "result": 17.2132,
+   "won": true,
+   "poll": 13.516
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "SC",
+   "p_dem": 0.091,
+   "margin": -22.4055,
+   "result": -8.0421,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "SD",
+   "p_dem": 0.4034,
+   "margin": -1.8835,
+   "result": -3.4268,
+   "won": false,
+   "poll": 0.0
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "TN",
+   "p_dem": 0.034,
+   "margin": -14.7928,
+   "result": -21.4107,
+   "won": false,
+   "poll": -16.862
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "TX",
+   "p_dem": 0.0124,
+   "margin": -19.3432,
+   "result": -13.5268,
+   "won": false,
+   "poll": -18.89
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "VT",
+   "p_dem": 0.0236,
+   "margin": -16.7167,
+   "result": -15.6447,
+   "won": false,
+   "poll": -20.0
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "WI",
+   "p_dem": 0.4214,
+   "margin": -1.4751,
+   "result": 1.1158,
+   "won": true,
+   "poll": 2.72
+  },
+  {
+   "year": 2018,
+   "days": 14,
+   "state": "WY",
+   "p_dem": 0.1811,
+   "margin": -15.3899,
+   "result": -41.8174,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 14,
+   "state": "DE",
+   "p_dem": 1.0,
+   "margin": 31.1551,
+   "result": 21.2309,
+   "won": true,
+   "poll": 35.802
+  },
+  {
+   "year": 2020,
+   "days": 14,
+   "state": "IN",
+   "p_dem": 0.0,
+   "margin": -33.6119,
+   "result": -27.6143,
+   "won": false,
+   "poll": -37.5
+  },
+  {
+   "year": 2020,
+   "days": 14,
+   "state": "MO",
+   "p_dem": 0.052,
+   "margin": -11.5494,
+   "result": -16.7833,
+   "won": false,
+   "poll": -7.854
+  },
+  {
+   "year": 2020,
+   "days": 14,
+   "state": "MT",
+   "p_dem": 0.2093,
+   "margin": -5.7367,
+   "result": -13.4082,
+   "won": false,
+   "poll": -5.678
+  },
+  {
+   "year": 2020,
+   "days": 14,
+   "state": "NC",
+   "p_dem": 0.9728,
+   "margin": 13.393,
+   "result": 4.5779,
+   "won": true,
+   "poll": 13.38
+  },
+  {
+   "year": 2020,
+   "days": 14,
+   "state": "ND",
+   "p_dem": 0.0,
+   "margin": -36.9328,
+   "result": -44.347,
+   "won": false,
+   "poll": -40.0
+  },
+  {
+   "year": 2020,
+   "days": 14,
+   "state": "NH",
+   "p_dem": 0.001,
+   "margin": -21.8799,
+   "result": -32.2522,
+   "won": false,
+   "poll": -23.666
+  },
+  {
+   "year": 2020,
+   "days": 14,
+   "state": "UT",
+   "p_dem": 0.0001,
+   "margin": -26.8448,
+   "result": -34.9612,
+   "won": false,
+   "poll": -32.212
+  },
+  {
+   "year": 2020,
+   "days": 14,
+   "state": "VT",
+   "p_dem": 0.0001,
+   "margin": -29.0686,
+   "result": -42.9191,
+   "won": false,
+   "poll": -39.564
+  },
+  {
+   "year": 2020,
+   "days": 14,
+   "state": "WA",
+   "p_dem": 0.9871,
+   "margin": 16.7386,
+   "result": 13.4834,
+   "won": true,
+   "poll": 15.036
+  },
+  {
+   "year": 2020,
+   "days": 14,
+   "state": "WV",
+   "p_dem": 0.0009,
+   "margin": -23.262,
+   "result": -35.5009,
+   "won": false,
+   "poll": -20.52
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "AK",
+   "p_dem": 0.0001,
+   "margin": -30.7879,
+   "result": -38.6932,
+   "won": false,
+   "poll": -31.462
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "AL",
+   "p_dem": 0.0201,
+   "margin": -33.4453,
+   "result": -39.2657,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "AR",
+   "p_dem": 0.0293,
+   "margin": -12.8847,
+   "result": -28.2882,
+   "won": false,
+   "poll": -11.556
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "AZ",
+   "p_dem": 0.266,
+   "margin": -4.1945,
+   "result": 0.669,
+   "won": true,
+   "poll": -3.344
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "CA",
+   "p_dem": 0.9977,
+   "margin": 20.9729,
+   "result": 18.359,
+   "won": true,
+   "poll": 21.712
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "CO",
+   "p_dem": 0.9857,
+   "margin": 15.9315,
+   "result": 19.8016,
+   "won": true,
+   "poll": 17.02
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "CT",
+   "p_dem": 0.9284,
+   "margin": 9.7866,
+   "result": 12.9794,
+   "won": true,
+   "poll": 12.722
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "FL",
+   "p_dem": 0.0194,
+   "margin": -14.3344,
+   "result": -19.531,
+   "won": false,
+   "poll": -11.674
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "GA",
+   "p_dem": 0.0533,
+   "margin": -11.1867,
+   "result": -7.5893,
+   "won": false,
+   "poll": -8.09
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "HI",
+   "p_dem": 0.5717,
+   "margin": 2.9289,
+   "result": 26.3242,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "IA",
+   "p_dem": 0.0074,
+   "margin": -17.5291,
+   "result": -18.9782,
+   "won": false,
+   "poll": -14.62
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "ID",
+   "p_dem": 0.0146,
+   "margin": -35.5996,
+   "result": -49.8034,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "IL",
+   "p_dem": 0.9848,
+   "margin": 15.3487,
+   "result": 12.8894,
+   "won": true,
+   "poll": 15.678
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "KS",
+   "p_dem": 0.6143,
+   "margin": 1.9262,
+   "result": 2.2772,
+   "won": true,
+   "poll": 1.71
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "MA",
+   "p_dem": 0.9993,
+   "margin": 25.0448,
+   "result": 29.5733,
+   "won": true,
+   "poll": 31.01
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "MD",
+   "p_dem": 0.9995,
+   "margin": 28.8087,
+   "result": 33.5378,
+   "won": true,
+   "poll": 36.464
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "ME",
+   "p_dem": 0.9474,
+   "margin": 11.4569,
+   "result": 13.4937,
+   "won": true,
+   "poll": 11.654
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "MI",
+   "p_dem": 0.8273,
+   "margin": 6.4732,
+   "result": 10.7004,
+   "won": true,
+   "poll": 5.942
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "MN",
+   "p_dem": 0.8595,
+   "margin": 7.5079,
+   "result": 7.9106,
+   "won": true,
+   "poll": 6.666
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "NE",
+   "p_dem": 0.1888,
+   "margin": -14.7728,
+   "result": -24.4133,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "NH",
+   "p_dem": 0.0072,
+   "margin": -17.7197,
+   "result": -15.7563,
+   "won": false,
+   "poll": -16.516
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "NM",
+   "p_dem": 0.9649,
+   "margin": 12.7556,
+   "result": 6.5432,
+   "won": true,
+   "poll": 13.072
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "NV",
+   "p_dem": 0.5747,
+   "margin": 1.3262,
+   "result": -1.571,
+   "won": false,
+   "poll": -0.298
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "NY",
+   "p_dem": 0.9436,
+   "margin": 11.0002,
+   "result": 6.4007,
+   "won": true,
+   "poll": 9.802
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "OH",
+   "p_dem": 0.0023,
+   "margin": -20.8067,
+   "result": -25.0838,
+   "won": false,
+   "poll": -19.494
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "OK",
+   "p_dem": 0.2047,
+   "margin": -5.5805,
+   "result": -14.0522,
+   "won": false,
+   "poll": 3.97
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "OR",
+   "p_dem": 0.4754,
+   "margin": -0.2244,
+   "result": 3.7754,
+   "won": true,
+   "poll": 0.36
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "PA",
+   "p_dem": 0.8865,
+   "margin": 8.4173,
+   "result": 15.0421,
+   "won": true,
+   "poll": 11.692
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "RI",
+   "p_dem": 0.9794,
+   "margin": 14.2034,
+   "result": 19.6914,
+   "won": true,
+   "poll": 13.96
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "SC",
+   "p_dem": 0.0389,
+   "margin": -28.7667,
+   "result": -17.5953,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "SD",
+   "p_dem": 0.0027,
+   "margin": -21.0629,
+   "result": -27.599,
+   "won": false,
+   "poll": -17.208
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "TN",
+   "p_dem": 0.0004,
+   "margin": -30.6625,
+   "result": -32.6971,
+   "won": false,
+   "poll": -30.0
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "TX",
+   "p_dem": 0.0452,
+   "margin": -11.522,
+   "result": -11.0558,
+   "won": false,
+   "poll": -8.146
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "VT",
+   "p_dem": 0.0047,
+   "margin": -19.3494,
+   "result": -49.5198,
+   "won": false,
+   "poll": -21.518
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "WI",
+   "p_dem": 0.5688,
+   "margin": 1.1879,
+   "result": 3.4347,
+   "won": true,
+   "poll": -0.582
+  },
+  {
+   "year": 2022,
+   "days": 14,
+   "state": "WY",
+   "p_dem": 0.0081,
+   "margin": -40.1674,
+   "result": -64.806,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 14,
+   "state": "DE",
+   "p_dem": 0.9976,
+   "margin": 22.6427,
+   "result": 12.1401,
+   "won": true,
+   "poll": 29.466
+  },
+  {
+   "year": 2024,
+   "days": 14,
+   "state": "IN",
+   "p_dem": 0.0885,
+   "margin": -9.5292,
+   "result": -13.9042,
+   "won": false,
+   "poll": -9.062
+  },
+  {
+   "year": 2024,
+   "days": 14,
+   "state": "MO",
+   "p_dem": 0.0289,
+   "margin": -13.5059,
+   "result": -20.871,
+   "won": false,
+   "poll": -14.384
+  },
+  {
+   "year": 2024,
+   "days": 14,
+   "state": "MT",
+   "p_dem": 0.0007,
+   "margin": -24.8639,
+   "result": -20.7633,
+   "won": false,
+   "poll": -23.67
+  },
+  {
+   "year": 2024,
+   "days": 14,
+   "state": "NC",
+   "p_dem": 0.9687,
+   "margin": 13.9146,
+   "result": 15.5944,
+   "won": true,
+   "poll": 16.218
+  },
+  {
+   "year": 2024,
+   "days": 14,
+   "state": "ND",
+   "p_dem": 0.0,
+   "margin": -33.369,
+   "result": -44.8588,
+   "won": false,
+   "poll": -38.462
+  },
+  {
+   "year": 2024,
+   "days": 14,
+   "state": "NH",
+   "p_dem": 0.5946,
+   "margin": 1.7476,
+   "result": -9.541,
+   "won": false,
+   "poll": 2.854
+  },
+  {
+   "year": 2024,
+   "days": 14,
+   "state": "UT",
+   "p_dem": 0.0,
+   "margin": -42.4073,
+   "result": -30.0277,
+   "won": false,
+   "poll": -45.802
+  },
+  {
+   "year": 2024,
+   "days": 14,
+   "state": "VT",
+   "p_dem": 0.2758,
+   "margin": -9.199,
+   "result": -54.1643,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 14,
+   "state": "WA",
+   "p_dem": 0.9708,
+   "margin": 14.0532,
+   "result": 11.2517,
+   "won": true,
+   "poll": 17.094
+  },
+  {
+   "year": 2024,
+   "days": 14,
+   "state": "WV",
+   "p_dem": 0.1085,
+   "margin": -19.6903,
+   "result": -32.5013,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "AK",
+   "p_dem": 0.3953,
+   "margin": -1.809,
+   "result": -7.3302,
+   "won": false,
+   "poll": -1.576
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "AL",
+   "p_dem": 0.0004,
+   "margin": -31.6969,
+   "result": -19.1014,
+   "won": false,
+   "poll": -32.468
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "AR",
+   "p_dem": 0.0006,
+   "margin": -29.9557,
+   "result": -34.5633,
+   "won": false,
+   "poll": -30.294
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "AZ",
+   "p_dem": 0.0132,
+   "margin": -15.7418,
+   "result": -14.4728,
+   "won": false,
+   "poll": -15.348
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "CA",
+   "p_dem": 0.9878,
+   "margin": 16.2586,
+   "result": 23.8971,
+   "won": true,
+   "poll": 16.68
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "CO",
+   "p_dem": 0.8609,
+   "margin": 7.5696,
+   "result": 11.0338,
+   "won": true,
+   "poll": 8.002
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "CT",
+   "p_dem": 0.7849,
+   "margin": 5.4921,
+   "result": 3.2999,
+   "won": true,
+   "poll": 5.296
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "FL",
+   "p_dem": 0.6794,
+   "margin": 3.1611,
+   "result": -0.3998,
+   "won": false,
+   "poll": 3.326
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "GA",
+   "p_dem": 0.4536,
+   "margin": -0.7841,
+   "result": -1.4024,
+   "won": false,
+   "poll": -0.854
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "HI",
+   "p_dem": 0.9991,
+   "margin": 25.7221,
+   "result": 30.0582,
+   "won": true,
+   "poll": 25.302
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "IA",
+   "p_dem": 0.4414,
+   "margin": -1.0377,
+   "result": -2.7952,
+   "won": false,
+   "poll": 1.056
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "ID",
+   "p_dem": 0.0106,
+   "margin": -16.353,
+   "result": -22.0298,
+   "won": false,
+   "poll": -17.022
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "IL",
+   "p_dem": 0.9893,
+   "margin": 16.9105,
+   "result": 16.8177,
+   "won": true,
+   "poll": 20.148
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "KS",
+   "p_dem": 0.5169,
+   "margin": 0.136,
+   "result": 5.5734,
+   "won": true,
+   "poll": 0.826
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "MA",
+   "p_dem": 0.0003,
+   "margin": -39.932,
+   "result": -33.5783,
+   "won": false,
+   "poll": -43.634
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "MD",
+   "p_dem": 0.0058,
+   "margin": -18.8184,
+   "result": -11.9829,
+   "won": false,
+   "poll": -20.366
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "ME",
+   "p_dem": 0.8851,
+   "margin": 8.2437,
+   "result": 8.2004,
+   "won": true,
+   "poll": 8.73
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "MI",
+   "p_dem": 0.8933,
+   "margin": 8.5113,
+   "result": 9.8567,
+   "won": true,
+   "poll": 9.162
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "MN",
+   "p_dem": 0.932,
+   "margin": 10.4069,
+   "result": 11.8593,
+   "won": true,
+   "poll": 11.236
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "NE",
+   "p_dem": 0.0549,
+   "margin": -26.5409,
+   "result": -18.0009,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "NH",
+   "p_dem": 0.202,
+   "margin": -5.8381,
+   "result": -7.1498,
+   "won": false,
+   "poll": -4.582
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "NM",
+   "p_dem": 0.9029,
+   "margin": 9.0634,
+   "result": 14.3981,
+   "won": true,
+   "poll": 9.488
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "NV",
+   "p_dem": 0.551,
+   "margin": 0.7623,
+   "result": 4.3123,
+   "won": true,
+   "poll": 0.488
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "NY",
+   "p_dem": 0.994,
+   "margin": 18.592,
+   "result": 24.4353,
+   "won": true,
+   "poll": 17.784
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "OH",
+   "p_dem": 0.6401,
+   "margin": 2.6036,
+   "result": -3.8158,
+   "won": false,
+   "poll": 2.902
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "OK",
+   "p_dem": 0.2191,
+   "margin": -5.2714,
+   "result": -12.536,
+   "won": false,
+   "poll": -4.588
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "OR",
+   "p_dem": 0.8145,
+   "margin": 6.2439,
+   "result": 6.8311,
+   "won": true,
+   "poll": 4.644
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "PA",
+   "p_dem": 0.989,
+   "margin": 17.3411,
+   "result": 17.339,
+   "won": true,
+   "poll": 17.486
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "RI",
+   "p_dem": 0.9812,
+   "margin": 14.7778,
+   "result": 17.2132,
+   "won": true,
+   "poll": 13.81
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "SC",
+   "p_dem": 0.0921,
+   "margin": -22.318,
+   "result": -8.0421,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "SD",
+   "p_dem": 0.535,
+   "margin": 0.5718,
+   "result": -3.4268,
+   "won": false,
+   "poll": 1.552
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "TN",
+   "p_dem": 0.0235,
+   "margin": -14.1894,
+   "result": -21.4107,
+   "won": false,
+   "poll": -14.99
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "TX",
+   "p_dem": 0.0069,
+   "margin": -18.3932,
+   "result": -13.5268,
+   "won": false,
+   "poll": -18.06
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "VT",
+   "p_dem": 0.0492,
+   "margin": -11.6958,
+   "result": -15.6447,
+   "won": false,
+   "poll": -12.328
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "WI",
+   "p_dem": 0.4884,
+   "margin": -0.2875,
+   "result": 1.1158,
+   "won": true,
+   "poll": 1.612
+  },
+  {
+   "year": 2018,
+   "days": 1,
+   "state": "WY",
+   "p_dem": 0.0003,
+   "margin": -36.2133,
+   "result": -41.8174,
+   "won": false,
+   "poll": -38.636
+  },
+  {
+   "year": 2020,
+   "days": 1,
+   "state": "DE",
+   "p_dem": 1.0,
+   "margin": 34.2016,
+   "result": 21.2309,
+   "won": true,
+   "poll": 35.802
+  },
+  {
+   "year": 2020,
+   "days": 1,
+   "state": "IN",
+   "p_dem": 0.0001,
+   "margin": -36.095,
+   "result": -27.6143,
+   "won": false,
+   "poll": -37.5
+  },
+  {
+   "year": 2020,
+   "days": 1,
+   "state": "MO",
+   "p_dem": 0.0839,
+   "margin": -8.2509,
+   "result": -16.7833,
+   "won": false,
+   "poll": -6.612
+  },
+  {
+   "year": 2020,
+   "days": 1,
+   "state": "MT",
+   "p_dem": 0.2283,
+   "margin": -4.3795,
+   "result": -13.4082,
+   "won": false,
+   "poll": -4.186
+  },
+  {
+   "year": 2020,
+   "days": 1,
+   "state": "NC",
+   "p_dem": 0.969,
+   "margin": 11.3757,
+   "result": 4.5779,
+   "won": true,
+   "poll": 11.184
+  },
+  {
+   "year": 2020,
+   "days": 1,
+   "state": "ND",
+   "p_dem": 0.0332,
+   "margin": -29.8865,
+   "result": -44.347,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 1,
+   "state": "NH",
+   "p_dem": 0.0008,
+   "margin": -20.3388,
+   "result": -32.2522,
+   "won": false,
+   "poll": -20.804
+  },
+  {
+   "year": 2020,
+   "days": 1,
+   "state": "UT",
+   "p_dem": 0.0003,
+   "margin": -27.3446,
+   "result": -34.9612,
+   "won": false,
+   "poll": -29.23
+  },
+  {
+   "year": 2020,
+   "days": 1,
+   "state": "VT",
+   "p_dem": 0.3864,
+   "margin": -4.5494,
+   "result": -42.9191,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2020,
+   "days": 1,
+   "state": "WA",
+   "p_dem": 0.998,
+   "margin": 18.0829,
+   "result": 13.4834,
+   "won": true,
+   "poll": 17.758
+  },
+  {
+   "year": 2020,
+   "days": 1,
+   "state": "WV",
+   "p_dem": 0.0013,
+   "margin": -21.6546,
+   "result": -35.5009,
+   "won": false,
+   "poll": -20.52
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "AK",
+   "p_dem": 0.0005,
+   "margin": -30.7985,
+   "result": -38.6932,
+   "won": false,
+   "poll": -31.462
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "AL",
+   "p_dem": 0.0002,
+   "margin": -39.021,
+   "result": -39.2657,
+   "won": false,
+   "poll": -40.33
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "AR",
+   "p_dem": 0.0052,
+   "margin": -18.7667,
+   "result": -28.2882,
+   "won": false,
+   "poll": -19.008
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "AZ",
+   "p_dem": 0.3344,
+   "margin": -2.7544,
+   "result": 0.669,
+   "won": true,
+   "poll": -2.694
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "CA",
+   "p_dem": 0.9977,
+   "margin": 21.5466,
+   "result": 18.359,
+   "won": true,
+   "poll": 21.696
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "CO",
+   "p_dem": 0.9743,
+   "margin": 13.4717,
+   "result": 19.8016,
+   "won": true,
+   "poll": 13.57
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "CT",
+   "p_dem": 0.9928,
+   "margin": 17.7232,
+   "result": 12.9794,
+   "won": true,
+   "poll": 20.164
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "FL",
+   "p_dem": 0.0539,
+   "margin": -11.2717,
+   "result": -19.531,
+   "won": false,
+   "poll": -11.032
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "GA",
+   "p_dem": 0.108,
+   "margin": -8.5343,
+   "result": -7.5893,
+   "won": false,
+   "poll": -8.364
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "HI",
+   "p_dem": 0.5689,
+   "margin": 2.6677,
+   "result": 26.3242,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "IA",
+   "p_dem": 0.0067,
+   "margin": -18.2714,
+   "result": -18.9782,
+   "won": false,
+   "poll": -17.22
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "ID",
+   "p_dem": 0.0144,
+   "margin": -35.8609,
+   "result": -49.8034,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "IL",
+   "p_dem": 0.9937,
+   "margin": 17.7268,
+   "result": 12.8894,
+   "won": true,
+   "poll": 18.056
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "KS",
+   "p_dem": 0.7564,
+   "margin": 4.5037,
+   "result": 2.2772,
+   "won": true,
+   "poll": 4.956
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "MA",
+   "p_dem": 0.9996,
+   "margin": 27.2561,
+   "result": 29.5733,
+   "won": true,
+   "poll": 30.592
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "MD",
+   "p_dem": 0.9996,
+   "margin": 28.758,
+   "result": 33.5378,
+   "won": true,
+   "poll": 36.464
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "ME",
+   "p_dem": 0.9163,
+   "margin": 9.0589,
+   "result": 13.4937,
+   "won": true,
+   "poll": 8.974
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "MI",
+   "p_dem": 0.7658,
+   "margin": 4.813,
+   "result": 10.7004,
+   "won": true,
+   "poll": 4.718
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "MN",
+   "p_dem": 0.9681,
+   "margin": 12.5657,
+   "result": 7.9106,
+   "won": true,
+   "poll": 12.904
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "NE",
+   "p_dem": 0.1833,
+   "margin": -15.0341,
+   "result": -24.4133,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "NH",
+   "p_dem": 0.0096,
+   "margin": -17.3217,
+   "result": -15.7563,
+   "won": false,
+   "poll": -17.216
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "NM",
+   "p_dem": 0.8424,
+   "margin": 6.6969,
+   "result": 6.5432,
+   "won": true,
+   "poll": 6.236
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "NV",
+   "p_dem": 0.3892,
+   "margin": -1.8701,
+   "result": -1.571,
+   "won": false,
+   "poll": -2.098
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "NY",
+   "p_dem": 0.9215,
+   "margin": 9.5613,
+   "result": 6.4007,
+   "won": true,
+   "poll": 9.384
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "OH",
+   "p_dem": 0.0021,
+   "margin": -22.4409,
+   "result": -25.0838,
+   "won": false,
+   "poll": -22.362
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "OK",
+   "p_dem": 0.2905,
+   "margin": -3.6547,
+   "result": -14.0522,
+   "won": false,
+   "poll": -2.386
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "OR",
+   "p_dem": 0.6726,
+   "margin": 2.8762,
+   "result": 3.7754,
+   "won": true,
+   "poll": 3.084
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "PA",
+   "p_dem": 0.9586,
+   "margin": 11.4833,
+   "result": 15.0421,
+   "won": true,
+   "poll": 11.732
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "RI",
+   "p_dem": 0.9791,
+   "margin": 14.2347,
+   "result": 19.6914,
+   "won": true,
+   "poll": 13.96
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "SC",
+   "p_dem": 0.0376,
+   "margin": -29.028,
+   "result": -17.5953,
+   "won": false,
+   "poll": null
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "SD",
+   "p_dem": 0.0037,
+   "margin": -20.995,
+   "result": -27.599,
+   "won": false,
+   "poll": -17.208
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "TN",
+   "p_dem": 0.0004,
+   "margin": -30.8834,
+   "result": -32.6971,
+   "won": false,
+   "poll": -30.0
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "TX",
+   "p_dem": 0.0935,
+   "margin": -9.0489,
+   "result": -11.0558,
+   "won": false,
+   "poll": -8.246
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "VT",
+   "p_dem": 0.0,
+   "margin": -38.1106,
+   "result": -49.5198,
+   "won": false,
+   "poll": -44.082
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "WI",
+   "p_dem": 0.5108,
+   "margin": 0.0614,
+   "result": 3.4347,
+   "won": true,
+   "poll": -0.104
+  },
+  {
+   "year": 2022,
+   "days": 1,
+   "state": "WY",
+   "p_dem": 0.0,
+   "margin": -50.5856,
+   "result": -64.806,
+   "won": false,
+   "poll": -52.562
+  },
+  {
+   "year": 2024,
+   "days": 1,
+   "state": "DE",
+   "p_dem": 0.5519,
+   "margin": 1.986,
+   "result": 12.1401,
+   "won": true,
+   "poll": null
+  },
+  {
+   "year": 2024,
+   "days": 1,
+   "state": "IN",
+   "p_dem": 0.0434,
+   "margin": -11.1003,
+   "result": -13.9042,
+   "won": false,
+   "poll": -11.142
+  },
+  {
+   "year": 2024,
+   "days": 1,
+   "state": "MO",
+   "p_dem": 0.0179,
+   "margin": -13.825,
+   "result": -20.871,
+   "won": false,
+   "poll": -14.284
+  },
+  {
+   "year": 2024,
+   "days": 1,
+   "state": "MT",
+   "p_dem": 0.0009,
+   "margin": -25.1334,
+   "result": -20.7633,
+   "won": false,
+   "poll": -23.67
+  },
+  {
+   "year": 2024,
+   "days": 1,
+   "state": "NC",
+   "p_dem": 0.9838,
+   "margin": 14.3061,
+   "result": 15.5944,
+   "won": true,
+   "poll": 16.582
+  },
+  {
+   "year": 2024,
+   "days": 1,
+   "state": "ND",
+   "p_dem": 0.0005,
+   "margin": -24.0276,
+   "result": -44.8588,
+   "won": false,
+   "poll": -38.462
+  },
+  {
+   "year": 2024,
+   "days": 1,
+   "state": "NH",
+   "p_dem": 0.5519,
+   "margin": 0.7834,
+   "result": -9.541,
+   "won": false,
+   "poll": 1.18
+  },
+  {
+   "year": 2024,
+   "days": 1,
+   "state": "UT",
+   "p_dem": 0.0002,
+   "margin": -31.458,
+   "result": -30.0277,
+   "won": false,
+   "poll": -31.658
+  },
+  {
+   "year": 2024,
+   "days": 1,
+   "state": "VT",
+   "p_dem": 0.0001,
+   "margin": -38.0654,
+   "result": -54.1643,
+   "won": false,
+   "poll": -42.858
+  },
+  {
+   "year": 2024,
+   "days": 1,
+   "state": "WA",
+   "p_dem": 0.9849,
+   "margin": 14.3001,
+   "result": 11.2517,
+   "won": true,
+   "poll": 16.062
+  },
+  {
+   "year": 2024,
+   "days": 1,
+   "state": "WV",
+   "p_dem": 0.1087,
+   "margin": -19.6333,
+   "result": -32.5013,
+   "won": false,
+   "poll": null
+  }
+ ],
+ "summary": {
+  "365": {
+   "called": 83.0,
+   "races": 94.0,
+   "avg_miss": 10.7148,
+   "brier": 0.0818,
+   "inside80": 1.0,
+   "years": 4.0
+  },
+  "250": {
+   "called": 83.0,
+   "races": 94.0,
+   "avg_miss": 10.1634,
+   "brier": 0.0773,
+   "inside80": 1.0,
+   "years": 4.0
+  },
+  "120": {
+   "called": 83.0,
+   "races": 94.0,
+   "avg_miss": 9.6356,
+   "brier": 0.0767,
+   "inside80": 1.0,
+   "years": 4.0
+  },
+  "60": {
+   "called": 88.0,
+   "races": 94.0,
+   "avg_miss": 8.9179,
+   "brier": 0.0499,
+   "inside80": 1.0,
+   "years": 4.0
+  },
+  "30": {
+   "called": 88.0,
+   "races": 94.0,
+   "avg_miss": 7.9369,
+   "brier": 0.0352,
+   "inside80": 1.0,
+   "years": 4.0
+  },
+  "14": {
+   "called": 85.0,
+   "races": 94.0,
+   "avg_miss": 7.8292,
+   "brier": 0.043,
+   "inside80": 1.0,
+   "years": 4.0
+  },
+  "7": {
+   "called": 87.0,
+   "races": 94.0,
+   "avg_miss": 7.4924,
+   "brier": 0.0371,
+   "inside80": 1.0,
+   "years": 4.0
+  },
+  "1": {
+   "called": 88.0,
+   "races": 94.0,
+   "avg_miss": 7.6409,
+   "brier": 0.0449,
+   "inside80": 1.0,
+   "years": 4.0
+  }
+ },
+ "summary_without_polls": {
+  "365": {
+   "called": 82.0,
+   "races": 94.0,
+   "avg_miss": 11.3529,
+   "brier": 0.0936,
+   "inside80": 1.0,
+   "years": 4.0
+  },
+  "250": {
+   "called": 82.0,
+   "races": 94.0,
+   "avg_miss": 11.3896,
+   "brier": 0.0952,
+   "inside80": 0.75,
+   "years": 4.0
+  },
+  "120": {
+   "called": 82.0,
+   "races": 94.0,
+   "avg_miss": 11.5362,
+   "brier": 0.0955,
+   "inside80": 0.75,
+   "years": 4.0
+  },
+  "60": {
+   "called": 82.0,
+   "races": 94.0,
+   "avg_miss": 11.4796,
+   "brier": 0.0931,
+   "inside80": 1.0,
+   "years": 4.0
+  },
+  "30": {
+   "called": 82.0,
+   "races": 94.0,
+   "avg_miss": 11.4091,
+   "brier": 0.0919,
+   "inside80": 1.0,
+   "years": 4.0
+  },
+  "14": {
+   "called": 84.0,
+   "races": 94.0,
+   "avg_miss": 11.4631,
+   "brier": 0.0945,
+   "inside80": 0.75,
+   "years": 4.0
+  },
+  "7": {
+   "called": 82.0,
+   "races": 94.0,
+   "avg_miss": 11.5246,
+   "brier": 0.0956,
+   "inside80": 0.75,
+   "years": 4.0
+  },
+  "1": {
+   "called": 84.0,
+   "races": 94.0,
+   "avg_miss": 11.4484,
+   "brier": 0.094,
+   "inside80": 0.75,
+   "years": 4.0
+  }
+ },
+ "tests": {
+  "2026": {
+   "note": "2026 forecast from the elections before it (2006, 2008, 2010, 2012, 2014, 2016, 2018, 2020, 2022, 2024), none of it fitted on 2026",
+   "read": "2026-11-28",
+   "dem_won": 24,
+   "rep_won": 12,
+   "races_n": 36,
+   "rows": [
+    {
+     "days": 365,
+     "races": 36,
+     "called": 30,
+     "avg_miss": 11.8333,
+     "brier": 0.1412,
+     "dem_won_mean": 17.7673,
+     "dem_won_low": 14.0,
+     "dem_won_high": 22.0,
+     "dem_won": 24,
+     "inside": false
+    },
+    {
+     "days": 250,
+     "races": 36,
+     "called": 29,
+     "avg_miss": 10.6064,
+     "brier": 0.1448,
+     "dem_won_mean": 18.4643,
+     "dem_won_low": 14.0,
+     "dem_won_high": 23.0,
+     "dem_won": 24,
+     "inside": false
+    },
+    {
+     "days": 120,
+     "races": 36,
+     "called": 31,
+     "avg_miss": 9.7373,
+     "brier": 0.1241,
+     "dem_won_mean": 19.0593,
+     "dem_won_low": 15.0,
+     "dem_won_high": 23.0,
+     "dem_won": 24,
+     "inside": false
+    },
+    {
+     "days": 60,
+     "races": 36,
+     "called": 31,
+     "avg_miss": 8.8296,
+     "brier": 0.1017,
+     "dem_won_mean": 19.8238,
+     "dem_won_low": 16.0,
+     "dem_won_high": 24.0,
+     "dem_won": 24,
+     "inside": true
+    },
+    {
+     "days": 30,
+     "races": 36,
+     "called": 31,
+     "avg_miss": 9.3874,
+     "brier": 0.1052,
+     "dem_won_mean": 19.7085,
+     "dem_won_low": 15.0,
+     "dem_won_high": 24.0,
+     "dem_won": 24,
+     "inside": true
+    },
+    {
+     "days": 14,
+     "races": 36,
+     "called": 32,
+     "avg_miss": 7.6296,
+     "brier": 0.0787,
+     "dem_won_mean": 21.0345,
+     "dem_won_low": 17.0,
+     "dem_won_high": 26.0,
+     "dem_won": 24,
+     "inside": true
+    },
+    {
+     "days": 7,
+     "races": 36,
+     "called": 33,
+     "avg_miss": 6.9852,
+     "brier": 0.064,
+     "dem_won_mean": 21.8224,
+     "dem_won_low": 18.0,
+     "dem_won_high": 26.0,
+     "dem_won": 24,
+     "inside": true
+    },
+    {
+     "days": 1,
+     "races": 36,
+     "called": 33,
+     "avg_miss": 6.625,
+     "brier": 0.0573,
+     "dem_won_mean": 22.5568,
+     "dem_won_low": 18.0,
+     "dem_won_high": 27.0,
+     "dem_won": 24,
+     "inside": true
+    }
+   ],
+   "races": [
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "AL",
+     "p_dem": 0.2736,
+     "margin": -9.7249,
+     "result": -4.0,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "AK",
+     "p_dem": 0.4184,
+     "margin": -3.5786,
+     "result": 0.4,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "AZ",
+     "p_dem": 0.7547,
+     "margin": 5.7052,
+     "result": 12.83,
+     "won": true,
+     "poll": 2.628
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "AR",
+     "p_dem": 0.04,
+     "margin": -28.3181,
+     "result": -16.54,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "CA",
+     "p_dem": 0.7208,
+     "margin": 9.6482,
+     "result": 29.2,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "CO",
+     "p_dem": 0.6357,
+     "margin": 5.5617,
+     "result": 28.95,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "CT",
+     "p_dem": 0.9057,
+     "margin": 20.7263,
+     "result": 18.6,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "FL",
+     "p_dem": 0.126,
+     "margin": -9.4864,
+     "result": -1.318,
+     "won": false,
+     "poll": -11.336
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "GA",
+     "p_dem": 0.5185,
+     "margin": 0.5836,
+     "result": 8.6,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "HI",
+     "p_dem": 0.9307,
+     "margin": 24.0433,
+     "result": 45.306,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "ID",
+     "p_dem": 0.0278,
+     "margin": -30.3286,
+     "result": -27.74,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "IL",
+     "p_dem": 0.8915,
+     "margin": 19.4448,
+     "result": 23.81,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "IA",
+     "p_dem": 0.4177,
+     "margin": -3.3087,
+     "result": 11.0,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "KS",
+     "p_dem": 0.3748,
+     "margin": -4.7395,
+     "result": 0.6,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "ME",
+     "p_dem": 0.5923,
+     "margin": 3.9808,
+     "result": 18.608,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "MD",
+     "p_dem": 0.9492,
+     "margin": 26.0494,
+     "result": 30.834,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "MA",
+     "p_dem": 0.999,
+     "margin": 27.6541,
+     "result": 28.646,
+     "won": true,
+     "poll": 32.468
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "MI",
+     "p_dem": 0.6685,
+     "margin": 3.7396,
+     "result": 10.886,
+     "won": true,
+     "poll": 7.042
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "MN",
+     "p_dem": 0.578,
+     "margin": 3.0348,
+     "result": 13.15,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "NE",
+     "p_dem": 0.0605,
+     "margin": -24.6068,
+     "result": -9.248,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "NV",
+     "p_dem": 0.2081,
+     "margin": -7.1174,
+     "result": 7.628,
+     "won": true,
+     "poll": -3.896
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "NH",
+     "p_dem": 0.1604,
+     "margin": -15.5908,
+     "result": -4.366,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "NM",
+     "p_dem": 0.5974,
+     "margin": 3.8771,
+     "result": 14.6,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "NY",
+     "p_dem": 0.9998,
+     "margin": 31.569,
+     "result": 19.438,
+     "won": true,
+     "poll": 39.682
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "OH",
+     "p_dem": 0.3,
+     "margin": -4.5101,
+     "result": 8.17,
+     "won": true,
+     "poll": -5.034
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "OK",
+     "p_dem": 0.2368,
+     "margin": -11.5854,
+     "result": -6.134,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "OR",
+     "p_dem": 0.898,
+     "margin": 20.4063,
+     "result": 8.342,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "PA",
+     "p_dem": 0.9703,
+     "margin": 16.4101,
+     "result": 22.392,
+     "won": true,
+     "poll": 17.022
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "RI",
+     "p_dem": 0.6663,
+     "margin": 7.0242,
+     "result": 62.764,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "SC",
+     "p_dem": 0.3794,
+     "margin": -4.9204,
+     "result": -4.56,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "SD",
+     "p_dem": 0.0402,
+     "margin": -27.7774,
+     "result": -27.0,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "TN",
+     "p_dem": 0.2746,
+     "margin": -9.3159,
+     "result": -2.824,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "TX",
+     "p_dem": 0.0883,
+     "margin": -21.4082,
+     "result": 7.208,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "VT",
+     "p_dem": 0.3811,
+     "margin": -4.6503,
+     "result": -7.128,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "WI",
+     "p_dem": 0.5231,
+     "margin": 0.9845,
+     "result": 8.0,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 365,
+     "state": "WY",
+     "p_dem": 0.1601,
+     "margin": -15.9205,
+     "result": -64.692,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "AL",
+     "p_dem": 0.2975,
+     "margin": -8.5962,
+     "result": -4.0,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "AK",
+     "p_dem": 0.1003,
+     "margin": -11.3078,
+     "result": 0.4,
+     "won": true,
+     "poll": -14.286
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "AZ",
+     "p_dem": 0.8769,
+     "margin": 9.8894,
+     "result": 12.83,
+     "won": true,
+     "poll": 5.378
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "AR",
+     "p_dem": 0.0409,
+     "margin": -27.1894,
+     "result": -16.54,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "CA",
+     "p_dem": 0.9965,
+     "margin": 23.4798,
+     "result": 29.2,
+     "won": true,
+     "poll": 26.016
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "CO",
+     "p_dem": 0.6687,
+     "margin": 6.6904,
+     "result": 28.95,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "CT",
+     "p_dem": 0.9776,
+     "margin": 17.3888,
+     "result": 18.6,
+     "won": true,
+     "poll": 15.294
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "FL",
+     "p_dem": 0.3023,
+     "margin": -4.5622,
+     "result": -1.318,
+     "won": false,
+     "poll": -7.016
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "GA",
+     "p_dem": 0.5222,
+     "margin": 0.4537,
+     "result": 8.6,
+     "won": true,
+     "poll": 0.0
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "HI",
+     "p_dem": 0.9425,
+     "margin": 25.172,
+     "result": 45.306,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "ID",
+     "p_dem": 0.0324,
+     "margin": -29.1999,
+     "result": -27.74,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "IL",
+     "p_dem": 0.9001,
+     "margin": 20.5735,
+     "result": 23.81,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "IA",
+     "p_dem": 0.5014,
+     "margin": -0.0018,
+     "result": 11.0,
+     "won": true,
+     "poll": 1.052
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "KS",
+     "p_dem": 0.4146,
+     "margin": -3.6107,
+     "result": 0.6,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "ME",
+     "p_dem": 0.9238,
+     "margin": 12.2721,
+     "result": 18.608,
+     "won": true,
+     "poll": 15.79
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "MD",
+     "p_dem": 0.9544,
+     "margin": 27.1781,
+     "result": 30.834,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "MA",
+     "p_dem": 0.9949,
+     "margin": 22.5584,
+     "result": 28.646,
+     "won": true,
+     "poll": 25.774
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "MI",
+     "p_dem": 0.8535,
+     "margin": 8.9309,
+     "result": 10.886,
+     "won": true,
+     "poll": 11.908
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "MN",
+     "p_dem": 0.8059,
+     "margin": 7.2278,
+     "result": 13.15,
+     "won": true,
+     "poll": 9.09
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "NE",
+     "p_dem": 0.0675,
+     "margin": -23.4781,
+     "result": -9.248,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "NV",
+     "p_dem": 0.1066,
+     "margin": -10.7202,
+     "result": 7.628,
+     "won": true,
+     "poll": -1.298
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "NH",
+     "p_dem": 0.1474,
+     "margin": -9.1638,
+     "result": -4.366,
+     "won": false,
+     "poll": -7.904
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "NM",
+     "p_dem": 0.6246,
+     "margin": 5.0058,
+     "result": 14.6,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "NY",
+     "p_dem": 0.9916,
+     "margin": 20.5412,
+     "result": 19.438,
+     "won": true,
+     "poll": 20.216
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "OH",
+     "p_dem": 0.4754,
+     "margin": -0.564,
+     "result": 8.17,
+     "won": true,
+     "poll": -0.124
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "OK",
+     "p_dem": 0.2586,
+     "margin": -10.4566,
+     "result": -6.134,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "OR",
+     "p_dem": 0.9098,
+     "margin": 21.535,
+     "result": 8.342,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "PA",
+     "p_dem": 0.9968,
+     "margin": 24.6716,
+     "result": 22.392,
+     "won": true,
+     "poll": 27.096
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "RI",
+     "p_dem": 0.9926,
+     "margin": 21.5821,
+     "result": 62.764,
+     "won": true,
+     "poll": 27.74
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "SC",
+     "p_dem": 0.4104,
+     "margin": -3.7917,
+     "result": -4.56,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "SD",
+     "p_dem": 0.0456,
+     "margin": -26.6487,
+     "result": -27.0,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "TN",
+     "p_dem": 0.0161,
+     "margin": -18.858,
+     "result": -2.824,
+     "won": false,
+     "poll": -30.77
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "TX",
+     "p_dem": 0.147,
+     "margin": -9.2474,
+     "result": 7.208,
+     "won": true,
+     "poll": -7.044
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "VT",
+     "p_dem": 0.0325,
+     "margin": -16.0163,
+     "result": -7.128,
+     "won": false,
+     "poll": -21.74
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "WI",
+     "p_dem": 0.5507,
+     "margin": 2.1133,
+     "result": 8.0,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 120,
+     "state": "WY",
+     "p_dem": 0.1797,
+     "margin": -14.7917,
+     "result": -64.692,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "AL",
+     "p_dem": 0.1344,
+     "margin": -8.525,
+     "result": -4.0,
+     "won": false,
+     "poll": -8.888
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "AK",
+     "p_dem": 0.1704,
+     "margin": -7.4423,
+     "result": 0.4,
+     "won": true,
+     "poll": -14.286
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "AZ",
+     "p_dem": 0.9719,
+     "margin": 14.8725,
+     "result": 12.83,
+     "won": true,
+     "poll": 14.896
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "AR",
+     "p_dem": 0.0638,
+     "margin": -12.1569,
+     "result": -16.54,
+     "won": false,
+     "poll": -5.882
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "CA",
+     "p_dem": 0.9853,
+     "margin": 17.504,
+     "result": 29.2,
+     "won": true,
+     "poll": 20.234
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "CO",
+     "p_dem": 0.668,
+     "margin": 7.062,
+     "result": 28.95,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "CT",
+     "p_dem": 0.9913,
+     "margin": 19.1225,
+     "result": 18.6,
+     "won": true,
+     "poll": 18.14
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "FL",
+     "p_dem": 0.2579,
+     "margin": -5.0236,
+     "result": -1.318,
+     "won": false,
+     "poll": -6.934
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "GA",
+     "p_dem": 0.6525,
+     "margin": 3.1372,
+     "result": 8.6,
+     "won": true,
+     "poll": 4.176
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "HI",
+     "p_dem": 0.9454,
+     "margin": 25.5436,
+     "result": 45.306,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "ID",
+     "p_dem": 0.0366,
+     "margin": -28.8283,
+     "result": -27.74,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "IL",
+     "p_dem": 0.905,
+     "margin": 20.9451,
+     "result": 23.81,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "IA",
+     "p_dem": 0.6205,
+     "margin": 2.5545,
+     "result": 11.0,
+     "won": true,
+     "poll": 3.634
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "KS",
+     "p_dem": 0.4241,
+     "margin": -3.2392,
+     "result": 0.6,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "ME",
+     "p_dem": 0.9327,
+     "margin": 11.662,
+     "result": 18.608,
+     "won": true,
+     "poll": 16.534
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "MD",
+     "p_dem": 0.9996,
+     "margin": 29.2647,
+     "result": 30.834,
+     "won": true,
+     "poll": 30.338
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "MA",
+     "p_dem": 0.9983,
+     "margin": 23.8275,
+     "result": 28.646,
+     "won": true,
+     "poll": 26.976
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "MI",
+     "p_dem": 0.7596,
+     "margin": 5.4343,
+     "result": 10.886,
+     "won": true,
+     "poll": 6.07
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "MN",
+     "p_dem": 0.9568,
+     "margin": 13.4117,
+     "result": 13.15,
+     "won": true,
+     "poll": 17.242
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "NE",
+     "p_dem": 0.075,
+     "margin": -23.1065,
+     "result": -9.248,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "NV",
+     "p_dem": 0.1637,
+     "margin": -16.2047,
+     "result": 7.628,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "NH",
+     "p_dem": 0.0625,
+     "margin": -12.3249,
+     "result": -4.366,
+     "won": false,
+     "poll": -11.876
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "NM",
+     "p_dem": 0.7893,
+     "margin": 6.232,
+     "result": 14.6,
+     "won": true,
+     "poll": 6.522
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "NY",
+     "p_dem": 0.9713,
+     "margin": 15.2896,
+     "result": 19.438,
+     "won": true,
+     "poll": 12.268
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "OH",
+     "p_dem": 0.4575,
+     "margin": -0.7168,
+     "result": 8.17,
+     "won": true,
+     "poll": 0.0
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "OK",
+     "p_dem": 0.2671,
+     "margin": -10.085,
+     "result": -6.134,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "OR",
+     "p_dem": 0.9169,
+     "margin": 21.9066,
+     "result": 8.342,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "PA",
+     "p_dem": 0.9987,
+     "margin": 24.9864,
+     "result": 22.392,
+     "won": true,
+     "poll": 27.174
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "RI",
+     "p_dem": 1.0,
+     "margin": 36.6892,
+     "result": 62.764,
+     "won": true,
+     "poll": 44.138
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "SC",
+     "p_dem": 0.414,
+     "margin": -3.4201,
+     "result": -4.56,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "SD",
+     "p_dem": 0.0497,
+     "margin": -26.2771,
+     "result": -27.0,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "TN",
+     "p_dem": 0.0125,
+     "margin": -17.9668,
+     "result": -2.824,
+     "won": false,
+     "poll": -20.856
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "TX",
+     "p_dem": 0.2025,
+     "margin": -6.4503,
+     "result": 7.208,
+     "won": true,
+     "poll": -3.564
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "VT",
+     "p_dem": 0.1217,
+     "margin": -9.0208,
+     "result": -7.128,
+     "won": false,
+     "poll": -14.286
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "WI",
+     "p_dem": 0.6622,
+     "margin": 3.3167,
+     "result": 8.0,
+     "won": true,
+     "poll": 3.572
+    },
+    {
+     "year": 2026,
+     "days": 60,
+     "state": "WY",
+     "p_dem": 0.1851,
+     "margin": -14.4202,
+     "result": -64.692,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "AL",
+     "p_dem": 0.0484,
+     "margin": -11.9896,
+     "result": -4.0,
+     "won": false,
+     "poll": -13.334
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "AK",
+     "p_dem": 0.8389,
+     "margin": 6.9456,
+     "result": 0.4,
+     "won": true,
+     "poll": 9.26
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "AZ",
+     "p_dem": 0.9952,
+     "margin": 18.0528,
+     "result": 12.83,
+     "won": true,
+     "poll": 18.902
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "AR",
+     "p_dem": 0.0019,
+     "margin": -23.6696,
+     "result": -16.54,
+     "won": false,
+     "poll": -22.892
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "CA",
+     "p_dem": 0.9979,
+     "margin": 22.3815,
+     "result": 29.2,
+     "won": true,
+     "poll": 24.942
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "CO",
+     "p_dem": 0.9933,
+     "margin": 18.2247,
+     "result": 28.95,
+     "won": true,
+     "poll": 21.276
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "CT",
+     "p_dem": 0.998,
+     "margin": 21.8426,
+     "result": 18.6,
+     "won": true,
+     "poll": 21.586
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "FL",
+     "p_dem": 0.2755,
+     "margin": -4.0644,
+     "result": -1.318,
+     "won": false,
+     "poll": -4.744
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "GA",
+     "p_dem": 0.448,
+     "margin": -1.0699,
+     "result": 8.6,
+     "won": true,
+     "poll": -2.096
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "HI",
+     "p_dem": 0.9492,
+     "margin": 26.1847,
+     "result": 45.306,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "ID",
+     "p_dem": 0.0061,
+     "margin": -18.754,
+     "result": -27.74,
+     "won": false,
+     "poll": -15.624
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "IL",
+     "p_dem": 0.9113,
+     "margin": 21.5862,
+     "result": 23.81,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "IA",
+     "p_dem": 0.8027,
+     "margin": 5.933,
+     "result": 11.0,
+     "won": true,
+     "poll": 7.67
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "KS",
+     "p_dem": 0.2819,
+     "margin": -3.8308,
+     "result": 0.6,
+     "won": true,
+     "poll": -4.216
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "ME",
+     "p_dem": 0.9469,
+     "margin": 11.524,
+     "result": 18.608,
+     "won": true,
+     "poll": 13.046
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "MD",
+     "p_dem": 0.9999,
+     "margin": 34.0709,
+     "result": 30.834,
+     "won": true,
+     "poll": 36.0
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "MA",
+     "p_dem": 0.9993,
+     "margin": 25.4049,
+     "result": 28.646,
+     "won": true,
+     "poll": 28.386
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "MI",
+     "p_dem": 0.887,
+     "margin": 8.4976,
+     "result": 10.886,
+     "won": true,
+     "poll": 9.7
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "MN",
+     "p_dem": 0.744,
+     "margin": 4.4394,
+     "result": 13.15,
+     "won": true,
+     "poll": 4.22
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "NE",
+     "p_dem": 0.2295,
+     "margin": -5.1101,
+     "result": -9.248,
+     "won": false,
+     "poll": 0.438
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "NV",
+     "p_dem": 0.2371,
+     "margin": -5.0625,
+     "result": 7.628,
+     "won": true,
+     "poll": -1.64
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "NH",
+     "p_dem": 0.0978,
+     "margin": -9.1592,
+     "result": -4.366,
+     "won": false,
+     "poll": -8.144
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "NM",
+     "p_dem": 0.8471,
+     "margin": 7.1479,
+     "result": 14.6,
+     "won": true,
+     "poll": 7.496
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "NY",
+     "p_dem": 0.9868,
+     "margin": 15.697,
+     "result": 19.438,
+     "won": true,
+     "poll": 13.88
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "OH",
+     "p_dem": 0.6725,
+     "margin": 3.3257,
+     "result": 8.17,
+     "won": true,
+     "poll": 4.158
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "OK",
+     "p_dem": 0.1995,
+     "margin": -5.8152,
+     "result": -6.134,
+     "won": false,
+     "poll": -4.652
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "OR",
+     "p_dem": 0.8172,
+     "margin": 6.3859,
+     "result": 8.342,
+     "won": true,
+     "poll": 1.152
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "PA",
+     "p_dem": 0.9998,
+     "margin": 24.7986,
+     "result": 22.392,
+     "won": true,
+     "poll": 27.034
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "RI",
+     "p_dem": 1.0,
+     "margin": 40.1885,
+     "result": 62.764,
+     "won": true,
+     "poll": 49.3
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "SC",
+     "p_dem": 0.0967,
+     "margin": -9.2654,
+     "result": -4.56,
+     "won": false,
+     "poll": -11.202
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "SD",
+     "p_dem": 0.0021,
+     "margin": -22.6659,
+     "result": -27.0,
+     "won": false,
+     "poll": -21.74
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "TN",
+     "p_dem": 0.3203,
+     "margin": -7.1745,
+     "result": -2.824,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "TX",
+     "p_dem": 0.2502,
+     "margin": -4.7601,
+     "result": 7.208,
+     "won": true,
+     "poll": -2.556
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "VT",
+     "p_dem": 0.3035,
+     "margin": -3.5954,
+     "result": -7.128,
+     "won": false,
+     "poll": -3.938
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "WI",
+     "p_dem": 0.6492,
+     "margin": 2.6351,
+     "result": 8.0,
+     "won": true,
+     "poll": 2.474
+    },
+    {
+     "year": 2026,
+     "days": 14,
+     "state": "WY",
+     "p_dem": 0.1998,
+     "margin": -13.7791,
+     "result": -64.692,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "AL",
+     "p_dem": 0.0312,
+     "margin": -12.1936,
+     "result": -4.0,
+     "won": false,
+     "poll": -13.334
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "AK",
+     "p_dem": 0.9924,
+     "margin": 16.2815,
+     "result": 0.4,
+     "won": true,
+     "poll": 17.554
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "AZ",
+     "p_dem": 0.9492,
+     "margin": 10.3361,
+     "result": 12.83,
+     "won": true,
+     "poll": 9.812
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "AR",
+     "p_dem": 0.0005,
+     "margin": -23.5481,
+     "result": -16.54,
+     "won": false,
+     "poll": -22.892
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "CA",
+     "p_dem": 0.9998,
+     "margin": 25.0991,
+     "result": 29.2,
+     "won": true,
+     "poll": 26.008
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "CO",
+     "p_dem": 0.9937,
+     "margin": 16.8863,
+     "result": 28.95,
+     "won": true,
+     "poll": 17.718
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "CT",
+     "p_dem": 0.9953,
+     "margin": 17.1701,
+     "result": 18.6,
+     "won": true,
+     "poll": 16.7
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "FL",
+     "p_dem": 0.2556,
+     "margin": -4.1257,
+     "result": -1.318,
+     "won": false,
+     "poll": -4.34
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "GA",
+     "p_dem": 0.5671,
+     "margin": 1.1164,
+     "result": 8.6,
+     "won": true,
+     "poll": 0.978
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "HI",
+     "p_dem": 0.949,
+     "margin": 26.3577,
+     "result": 45.306,
+     "won": true,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "ID",
+     "p_dem": 0.0391,
+     "margin": -28.0142,
+     "result": -27.74,
+     "won": false,
+     "poll": null
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "IL",
+     "p_dem": 0.9988,
+     "margin": 21.0799,
+     "result": 23.81,
+     "won": true,
+     "poll": 21.028
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "IA",
+     "p_dem": 0.8975,
+     "margin": 7.9817,
+     "result": 11.0,
+     "won": true,
+     "poll": 8.566
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "KS",
+     "p_dem": 0.5388,
+     "margin": 0.5286,
+     "result": 0.6,
+     "won": true,
+     "poll": 0.704
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "ME",
+     "p_dem": 0.9587,
+     "margin": 11.2386,
+     "result": 18.608,
+     "won": true,
+     "poll": 11.526
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "MD",
+     "p_dem": 1.0,
+     "margin": 33.4842,
+     "result": 30.834,
+     "won": true,
+     "poll": 36.0
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "MA",
+     "p_dem": 0.9994,
+     "margin": 23.072,
+     "result": 28.646,
+     "won": true,
+     "poll": 23.828
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "MI",
+     "p_dem": 0.93,
+     "margin": 9.2416,
+     "result": 10.886,
+     "won": true,
+     "poll": 9.584
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "MN",
+     "p_dem": 0.9692,
+     "margin": 11.8996,
+     "result": 13.15,
+     "won": true,
+     "poll": 12.31
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "NE",
+     "p_dem": 0.0836,
+     "margin": -8.7644,
+     "result": -9.248,
+     "won": false,
+     "poll": -7.702
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "NV",
+     "p_dem": 0.3742,
+     "margin": -1.8224,
+     "result": 7.628,
+     "won": true,
+     "poll": -0.076
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "NH",
+     "p_dem": 0.2186,
+     "margin": -4.9745,
+     "result": -4.366,
+     "won": false,
+     "poll": -4.414
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "NM",
+     "p_dem": 0.8827,
+     "margin": 7.282,
+     "result": 14.6,
+     "won": true,
+     "poll": 7.388
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "NY",
+     "p_dem": 0.9836,
+     "margin": 13.8888,
+     "result": 19.438,
+     "won": true,
+     "poll": 13.266
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "OH",
+     "p_dem": 0.776,
+     "margin": 4.6405,
+     "result": 8.17,
+     "won": true,
+     "poll": 4.93
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "OK",
+     "p_dem": 0.1797,
+     "margin": -5.8755,
+     "result": -6.134,
+     "won": false,
+     "poll": -4.652
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "OR",
+     "p_dem": 0.8763,
+     "margin": 7.4795,
+     "result": 8.342,
+     "won": true,
+     "poll": 1.224
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "PA",
+     "p_dem": 0.9997,
+     "margin": 25.5412,
+     "result": 22.392,
+     "won": true,
+     "poll": 26.282
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "RI",
+     "p_dem": 1.0,
+     "margin": 63.9834,
+     "result": 62.764,
+     "won": true,
+     "poll": 69.0
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "SC",
+     "p_dem": 0.0574,
+     "margin": -9.9372,
+     "result": -4.56,
+     "won": false,
+     "poll": -10.486
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "SD",
+     "p_dem": 0.0003,
+     "margin": -22.5495,
+     "result": -27.0,
+     "won": false,
+     "poll": -21.74
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "TN",
+     "p_dem": 0.0021,
+     "margin": -20.1062,
+     "result": -2.824,
+     "won": false,
+     "poll": -21.348
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "TX",
+     "p_dem": 0.3477,
+     "margin": -2.5478,
+     "result": 7.208,
+     "won": true,
+     "poll": -1.604
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "VT",
+     "p_dem": 0.714,
+     "margin": 3.3653,
+     "result": -7.128,
+     "won": false,
+     "poll": 3.808
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "WI",
+     "p_dem": 0.8045,
+     "margin": 5.3682,
+     "result": 8.0,
+     "won": true,
+     "poll": 5.55
+    },
+    {
+     "year": 2026,
+     "days": 1,
+     "state": "WY",
+     "p_dem": 0.1911,
+     "margin": -13.606,
+     "result": -64.692,
+     "won": false,
+     "poll": null
+    }
+   ]
+  }
+ },
+ "tested": [
+  {
+   "idea": "Race polls, blended in as the Senate's are: more of the weight the more polling there is, up to a cap, fitted at each distance",
+   "result": "On the last day, 88 of 94 races called against 84 without them, a typical miss of 7.6 points against 11.4, and a Brier score of 0.045 against 0.094",
+   "adopted": true
+  }
+ ]
+}

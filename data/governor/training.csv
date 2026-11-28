@@ -1,0 +1,264 @@
+year,state,special,dem,rep,dem2,contested,winner,lean,inc_d,inc_r,vote,governor,governor_party,status,dem_candidate,rep_candidate
+2006,AK,False,97238.0,114697.0,45.88104843466157,True,R,-13.517,0,0,54.141,Frank Murkowski,R,Incumbent lost renomination. New governor elected. Republican hold .,Tony Knowles,Sarah Palin
+2006,AL,False,519827.0,718327.0,41.984034296218404,True,R,-10.688,0,1,54.141,Bob Riley,R,Incumbent re-elected.,Lucy Baxley,Bob Riley
+2006,AR,False,430765.0,315040.0,57.758395290994294,True,D,-3.515,0,0,54.141,Mike Huckabee,R,Incumbent term-limited. New governor elected. Democratic gain .,Mike Beebe,Asa Hutchinson
+2006,AZ,False,959830.0,543528.0,63.845737342668876,True,D,-3.89,1,0,54.141,Janet Napolitano,D,Incumbent re-elected.,Janet Napolitano,Len Munsil
+2006,CA,False,3376732.0,4850157.0,41.045065759365414,True,R,6.219,0,1,54.141,Arnold Schwarzenegger,R,Incumbent re-elected.,Phil Angelides,Arnold Schwarzenegger
+2006,CO,False,887986.0,625886.0,58.6566103342951,True,D,-2.009,0,0,54.141,Bill Owens,R,Incumbent term-limited. New governor elected. Democratic gain .,Bill Ritter Jr.,Bob Beauprez
+2006,CT,False,398220.0,710048.0,35.93174214179242,True,R,7.157,0,0,54.141,Jodi Rell,R,Incumbent elected to full term.,John DeStefano Jr.,M. Jodi Rell
+2006,FL,False,2178289.0,2519845.0,46.36498235256806,True,R,-1.007,0,0,54.141,Jeb Bush,R,Incumbent term-limited. New governor elected. Republican hold .,Jim Davis,Charlie Crist
+2006,GA,False,811049.0,1229724.0,39.74224472785557,True,R,-6.875,0,1,54.141,Sonny Perdue,R,Incumbent re-elected.,Mark Taylor,Sonny Perdue
+2006,HI,False,121717.0,215313.0,36.11458920570869,True,R,6.647,0,1,54.141,Linda Lingle,R,Incumbent re-elected.,Randy Iwase,Linda Lingle
+2006,IA,False,569021.0,467425.0,54.90117188932178,True,D,0.675,0,0,54.141,Tom Vilsack,D,Incumbent retired. New governor elected. Democratic hold .,Chet Culver,Jim Nussle
+2006,ID,False,198845.0,237437.0,45.57717256270027,True,R,-18.817,0,0,54.141,Jim Risch,R,Incumbent retired. New governor elected. Republican hold .,Jerry Brady,C.L. 'Butch' Otter
+2006,IL,False,1736731.0,1369315.0,55.914529276127915,True,D,6.339,1,0,54.141,Rod Blagojevich,D,Incumbent re-elected.,Rod Blagojevich,Judy Baar Topinka
+2006,KS,False,491993.0,343586.0,58.88048885862378,True,D,-11.492,1,0,54.141,Kathleen Sebelius,D,Incumbent re-elected.,Kathleen Sebelius,Jim Barnett
+2006,MA,False,1234984.0,784342.0,61.15822804242604,True,D,14.142,0,0,54.141,Mitt Romney,R,Incumbent retired. New governor elected. Democratic gain .,Deval Patrick,Kerry Healey
+2006,MD,False,942279.0,825464.0,53.304071915431145,True,D,7.919,0,0,54.141,Bob Ehrlich,R,Incumbent lost re-election. New governor elected. Democratic gain .,Martin O'Malley,Robert Ehrlich Jr.
+2006,ME,False,209927.0,166425.0,55.77942989541705,True,D,5.011,1,0,54.141,John Baldacci,D,Incumbent re-elected.,John Baldacci,Chandler E. Woodcock
+2006,MI,False,2142513.0,1608086.0,57.12455530436605,True,D,2.84,1,0,54.141,Jennifer Granholm,D,Incumbent re-elected.,Jennifer Granholm,Dick DeVos
+2006,MN,False,1007460.0,1028568.0,49.48163777708361,True,R,2.529,0,1,54.141,Tim Pawlenty,R,Incumbent re-elected.,Mike Hatch,Tim Pawlenty
+2006,NE,False,145115.0,435507.0,24.993024721763902,True,R,-15.543,0,1,54.141,Dave Heineman,R,Incumbent elected to full term.,David Hahn,Dave Heineman
+2006,NH,False,298677.0,104223.0,74.13179448994788,True,D,1.238,1,0,54.141,John Lynch,D,Incumbent re-elected.,John Lynch,Jim Coburn
+2006,NM,False,384806.0,174364.0,68.81735429296994,True,D,0.595,1,0,54.141,Bill Richardson,D,Incumbent re-elected.,Bill Richardson,John Dendahl
+2006,NV,False,255684.0,279003.0,47.81937844009673,True,R,-0.565,0,0,54.141,Kenny Guinn,R,Incumbent term-limited. New governor elected. Republican hold .,Dina Titus,Jim Gibbons
+2006,NY,False,3086709.0,1274335.0,70.77912995145199,True,D,11.653,0,0,54.141,George Pataki,R,Incumbent retired. New governor elected. Democratic gain .,Eliot Spitzer,John J. Faso
+2006,OH,False,2435505.0,1474331.0,62.291743183090034,True,D,-0.367,0,0,54.141,Bob Taft,R,Incumbent term-limited. New governor elected. Democratic gain .,Ted Strickland,J. Kenneth Blackwell
+2006,OK,False,616135.0,310327.0,66.50407679969605,True,D,-13.561,1,0,54.141,Brad Henry,D,Incumbent re-elected.,Brad Henry,Ernest Istook
+2006,OR,False,699786.0,589748.0,54.26658002037946,True,D,2.528,1,0,54.141,Ted Kulongoski,D,Incumbent re-elected.,Ted Kulongoski,Ron Saxton
+2006,PA,False,2470517.0,1622135.0,60.36469751154019,True,D,2.368,1,0,54.141,Ed Rendell,D,Incumbent re-elected.,Ed Rendell,Lynn Swann
+2006,RI,False,189503.0,197306.0,48.99136266219245,True,R,12.733,0,1,54.141,Donald Carcieri,R,Incumbent re-elected.,Charlie Fogarty,Donald Carcieri
+2006,SC,False,489076.0,601868.0,44.830532089639796,True,R,-7.631,0,1,54.141,Mark Sanford,R,Incumbent re-elected.,Tommy Moore,Mark Sanford
+2006,SD,False,121226.0,206990.0,36.93482340897458,True,R,-10.202,0,1,54.141,Mike Rounds,R,Incumbent re-elected.,Jack Billion,M. Michael Rounds
+2006,TN,False,1247491.0,540853.0,69.75676939112385,True,D,-4.993,1,0,54.141,Phil Bredesen,D,Incumbent re-elected.,Phil Bredesen,Jim Bryson
+2006,TX,False,1310337.0,1716792.0,43.28646053736065,True,R,-10.485,0,1,54.141,Rick Perry,R,Incumbent re-elected.,Chris Bell,Rick Perry
+2006,VT,False,108090.0,148014.0,42.20551026145628,True,R,9.973,0,1,54.141,Jim Douglas,R,Incumbent re-elected.,Scudder Parker,Jim Douglas
+2006,WI,False,1139115.0,979427.0,53.76881836659363,True,D,1.06,1,0,54.141,Jim Doyle,D,Incumbent re-elected.,Jim Doyle,Mark A. Green
+2006,WY,False,135516.0,58100.0,69.99214940913974,True,D,-19.593,1,0,54.141,Dave Freudenthal,D,Incumbent re-elected.,Dave Freudenthal,Ray Hunkins
+2007,KY,False,619552.0,435773.0,58.70722289342146,True,D,-8.551,0,1,,Ernie Fletcher,R,Incumbent lost re-election. New governor elected. Democratic gain .,Steve Beshear,Ernest Lee Fletcher
+2007,LA,False,397755.0,699275.0,36.257440544014294,True,R,-5.596,0,0,,Kathleen Blanco,D,Incumbent retired. New governor elected. Republican gain .,Walter J. Boasso,Piyush Amrit Jindal
+2007,MS,False,313232.0,430807.0,42.09886847329239,True,R,-8.393,0,1,,Haley Barbour,R,Incumbent re-elected.,John Arthur Eaves,Haley Barbour
+2008,DE,False,266861.0,126662.0,67.81331713775306,True,D,5.446,0,0,55.509,Ruth Ann Minner,D,Incumbent term-limited. New governor elected. Democratic hold .,Jack Markell,William S. Lee
+2008,IN,False,1082463.0,1563885.0,40.904030762394065,True,R,-8.932,0,1,55.509,Mitch Daniels,R,Incumbent re-elected.,Jill Long Thompson,"Mitchell Daniels, Jr."
+2008,MO,False,1680611.0,1136364.0,59.66013187905466,True,D,-2.256,0,0,55.509,Matt Blunt,R,Incumbent retired. New governor elected. Democratic gain .,Jay Nixon,Kenny Hulshof
+2008,MT,False,318670.0,158268.0,66.81581253747866,True,D,-10.402,1,0,55.509,Brian Schweitzer,D,Incumbent re-elected.,Brian Schweitzer,Roy Brown
+2008,NC,False,2146189.0,2001168.0,51.748354433920206,True,D,-5.41,0,0,55.509,Mike Easley,D,Incumbent term-limited. New governor elected. Democratic hold .,Bev Perdue,Pat McCrory
+2008,ND,False,74279.0,235009.0,24.016127363492927,True,R,-13.227,0,1,55.509,John Hoeven,R,Incumbent re-elected.,Tim Mathern,John Hoeven
+2008,NH,False,479042.0,188555.0,71.75616427275737,True,D,1.238,1,0,55.509,John Lynch,D,Incumbent re-elected.,John Lynch,Joe Kenney
+2008,PR,False,,,,False,I,,0,0,55.509,,,,,
+2008,UT,False,186503.0,734049.0,20.259909271828207,True,R,-22.054,0,1,55.509,Jon Huntsman Jr.,R,Incumbent re-elected.,Bob Springmeyer,"Jon M. Huntsman, Jr."
+2008,VT,False,69534.0,170492.0,28.96936165248765,True,R,9.973,0,1,55.509,Jim Douglas,R,Incumbent re-elected.,Gaye Symington,Jim Douglas
+2008,WA,False,1598738.0,1404124.0,53.240475253275044,True,D,4.358,1,0,55.509,Christine Gregoire,D,Incumbent re-elected.,Christine Gregoire,Dino Rossi
+2008,WV,False,492697.0,181612.0,73.06694705246407,True,D,-4.783,1,0,55.509,Joe Manchin,D,Incumbent re-elected.,"Joe Manchin, III",Russ Weeks
+2009,NJ,False,1087731.0,1174445.0,48.0833940418429,True,R,4.23,1,0,,Jon Corzine,D,Incumbent lost re-election. New member elected. Republican gain .,Jon Stevens Corzine,Chris Christie
+2009,VA,False,818950.0,1163651.0,41.30684893228643,True,R,-1.157,0,0,,Tim Kaine,D,Incumbent term-limited. New member elected. Republican gain .,R. Creigh Deeds,Robert Francis McDonnell
+2010,AK,False,96519.0,151318.0,38.94454823129718,True,R,-14.116,0,1,46.48,Sean Parnell,R,Incumbent elected to full term.,Ethan Berkowitz,Sean R. Parnell
+2010,AL,False,625710.0,860472.0,42.10184217007069,True,R,-13.903,0,0,46.48,Bob Riley,R,Incumbent term-limited. New governor elected. Republican hold .,Ron Sparks,Robert Julian Bentley
+2010,AR,False,503336.0,262784.0,65.69936824518352,True,D,-11.373,1,0,46.48,Mike Beebe,D,Incumbent re-elected.,Mike Beebe,Jim H. Keet
+2010,AZ,False,733935.0,938934.0,43.87283164431883,True,R,-7.065,0,1,46.48,Jan Brewer,R,Incumbent elected to full term.,Samuel Pearson Goddard,Janice Kay Brewer
+2010,CA,False,5428149.0,4127391.0,56.80630294049316,True,D,7.958,0,0,46.48,Arnold Schwarzenegger,R,Incumbent term-limited. New governor elected. Democratic gain .,Jerry Brown,Meg Whitman
+2010,CO,False,915436.0,199792.0,82.0850982938018,True,D,0.311,0,0,46.48,Bill Ritter,D,Incumbent retired. New governor elected. Democratic hold .,John Wright Hickenlooper,Dan Maes
+2010,CT,False,567278.0,560874.0,50.28382700203519,True,D,7.297,0,0,46.48,Jodi Rell,R,Incumbent retired. New governor elected. Democratic gain .,Dannel P. Malloy,Thomas C. Foley
+2010,FL,False,2557785.0,2619335.0,49.40555753005532,True,R,-2.077,0,0,46.48,Charlie Crist,I,Incumbent retired to run for U.S. Senator. New governor elected. Republican gain .,Alex Sink,Rick Scott
+2010,GA,False,1107011.0,1365832.0,44.76673205698866,True,R,-6.571,0,0,46.48,Sonny Perdue,R,Incumbent term-limited. New governor elected. Republican hold .,Roy Barnes,J. Nathan Deal
+2010,HI,False,222724.0,157311.0,58.60618100964385,True,D,15.836,0,0,46.48,Linda Lingle,R,Incumbent term-limited. New governor elected. Democratic gain .,Neil Abercrombie,Duke Aiona
+2010,IA,False,484798.0,592494.0,45.00154090070287,True,R,1.042,1,0,46.48,Chet Culver,D,Incumbent lost re-election. New governor elected. Republican gain .,Chet Culver,Terry E. Branstad
+2010,ID,False,148680.0,267483.0,35.72638605546384,True,R,-17.11,0,0,46.48,Butch Otter,R,Incumbent re-elected.,Keith Allred,C.L. 'Butch' Otter
+2010,IL,False,1745219.0,1713385.0,50.460214583687524,True,D,8.342,1,0,46.48,Pat Quinn,D,Incumbent elected to full term.,Pat Quinn,William E. Brady
+2010,KS,False,270166.0,530760.0,33.73170555082492,True,R,-11.437,0,0,46.48,Mark Parkinson,D,Incumbent retired. New governor elected. Republican gain .,Tom Holland,Sam Brownback
+2010,MA,False,1112283.0,964866.0,53.54854177528911,True,D,10.573,1,0,46.48,Deval Patrick,D,Incumbent re-elected.,Deval Patrick,Charles D. Baker
+2010,MD,False,1044961.0,776319.0,57.37508785030308,True,D,8.828,1,0,46.48,Martin O'Malley,D,Incumbent re-elected.,Martin O'Malley,Robert Ehrlich Jr.
+2010,ME,False,6838.0,18007.0,27.522640370295836,True,R,5.257,0,0,46.48,John Baldacci,D,Incumbent term-limited. New governor elected. Republican gain .,Elizabeth H. Mitchell,Paul R. LePage
+2010,MI,False,1287320.0,1874834.0,40.71022473921258,True,R,4.199,0,0,46.48,Jennifer Granholm,D,Incumbent term-limited. New governor elected. Republican gain .,Virgil Bernero,Rick Snyder
+2010,MN,False,919232.0,910462.0,50.239657560225915,True,D,1.852,0,0,46.48,Tim Pawlenty,R,Incumbent retired. New governor elected. DFL gain .,Mark Dayton,Tom Emmer
+2010,NE,False,127343.0,360645.0,26.095518742264154,True,R,-12.429,0,1,46.48,Dave Heineman,R,Incumbent re-elected.,Mike Meister,Dave Heineman
+2010,NH,False,240346.0,205616.0,53.89382951910701,True,D,1.313,1,0,46.48,John Lynch,D,Incumbent re-elected.,John Lynch,John A. Stephen
+2010,NM,False,280614.0,321219.0,46.62655587181162,True,R,3.138,0,0,46.48,Bill Richardson,D,Incumbent term-limited. New governor elected. Republican gain .,Diane D. Denish,Susana Martinez
+2010,NV,False,298171.0,382350.0,43.81510636703349,True,R,1.95,0,0,46.48,Jim Gibbons,R,Incumbent lost renomination. New governor elected. Republican hold .,Rory Reid,Brian E. Sandoval
+2010,NY,False,2910876.0,1547857.0,65.2848241866019,True,D,11.77,0,0,46.48,David Paterson,D,Incumbent retired. New governor elected. Democratic hold .,Andrew Cuomo,Carl P. Paladino
+2010,OH,False,1812059.0,1889186.0,48.95809383058943,True,R,-1.025,1,0,46.48,Ted Strickland,D,Incumbent lost re-election. New governor elected. Republican gain .,Ted Strickland,John Richard Kasich
+2010,OK,False,409261.0,625506.0,39.551029362165586,True,R,-18.137,0,0,46.48,Brad Henry,D,Incumbent term-limited. New governor elected. Republican gain .,Jari Askins,Mary Fallin
+2010,OR,False,716525.0,694287.0,50.78812768816823,True,D,4.327,0,0,46.48,Ted Kulongoski,D,Incumbent term-limited. New governor elected. Democratic hold .,John Kitzhaber,Chris Dudley
+2010,PA,False,1814788.0,2172763.0,45.51134267624414,True,R,1.726,0,0,46.48,Ed Rendell,D,Incumbent term-limited. New governor elected. Republican gain .,Dan Onorato,Thomas W. Corbett
+2010,RI,False,78896.0,114911.0,40.70853993921788,True,I,10.782,0,0,46.48,Donald Carcieri,R,Incumbent term-limited. New governor elected. Independent gain .,Frank T. Caprio,John F. Robitaille
+2010,SC,False,630534.0,690525.0,47.72943524853924,True,R,-8.078,0,0,46.48,Mark Sanford,R,Incumbent term-limited. New governor elected. Republican hold .,Vincent A. Sheheen,Nikki Haley
+2010,SD,False,122037.0,195046.0,38.487399198317156,True,R,-8.461,0,0,46.48,Mike Rounds,R,Incumbent term-limited. New governor elected. Republican hold .,Scott N. Heidepriem,Dennis M. Daugaard
+2010,TN,False,529851.0,1041545.0,33.71848980142497,True,R,-10.031,0,0,46.48,Phil Bredesen,D,Incumbent term-limited. New governor elected. Republican gain .,Mike McWherter,William Edward Haslam
+2010,TX,False,2106395.0,2737481.0,43.48573332595632,True,R,-9.84,0,1,46.48,Rick Perry,R,Incumbent re-elected.,Bill White,Rick Perry
+2010,UT,True,205246.0,412151.0,33.243763737109184,True,R,-19.242,0,1,46.48,Gary Herbert,R,Incumbent elected to full term.,Peter Corroon,Gary Richard Herbert
+2010,VT,False,119543.0,115212.0,50.92245106600498,True,D,14.239,0,0,46.48,Jim Douglas,R,Incumbent retired. New governor elected. Democratic gain .,Peter Elliott Shumlin,Brian Dubie
+2010,WI,False,1004303.0,1128941.0,47.07867454449655,True,R,2.829,0,0,46.48,Jim Doyle,D,Incumbent retired. New governor elected. Republican gain .,Thomas M. Barrett,Scott Walker
+2010,WY,False,43240.0,123780.0,25.8891150760388,True,R,-20.01,0,0,46.48,Dave Freudenthal,D,Incumbent term-limited. New governor elected. Republican gain .,Leslie Petersen,Matt Hansen Mead
+2011,KY,False,464245.0,294034.0,61.22350744251126,True,D,-11.188,1,0,,Steve Beshear,D,Incumbent re-elected.,Steve Beshear,David L. Williams
+2011,LA,False,288161.0,673239.0,29.973060120657376,True,R,-11.436,0,0,,Bobby Jindal,R,Incumbent re-elected.,Tara Hollis,Piyush Amrit Jindal
+2011,MS,False,348617.0,544851.0,39.018409165185545,True,R,-9.868,0,0,,Haley Barbour,R,Incumbent term-limited. New governor elected. Republican hold .,Johnny L. DuPree,Phil Bryant
+2011,WV,True,149202.0,141656.0,51.297196570147634,True,D,-9.136,1,0,,Earl Ray Tomblin,D,Incumbent elected to full term.,Earl Ray Tomblin,Bill Maloney
+2012,DE,False,275993.0,113793.0,70.80628857886123,True,D,7.926,1,0,50.57,Jack Markell,D,Incumbent re-elected.,Jack Markell,Jeffrey E. Cragg
+2012,IN,False,1200016.0,1275424.0,48.47687683805707,True,R,-4.725,0,0,50.57,Mitch Daniels,R,Incumbent term-limited. New governor elected. Republican hold .,John R. Gregg,Mike Pence
+2012,MO,False,1494056.0,1160265.0,56.287690900987485,True,D,-3.466,1,0,50.57,Jay Nixon,D,Incumbent re-elected.,Jay Nixon,David Spence
+2012,MT,False,236450.0,228879.0,50.813510440999806,True,D,-6.013,0,0,50.57,Brian Schweitzer,D,Incumbent term-limited. New governor elected. Democratic hold .,Steve Bullock,Richard A. Hill
+2012,NC,False,1931580.0,2440707.0,44.17779528196571,True,R,-3.947,0,0,50.57,Bev Perdue,D,Incumbent retired. New governor elected. Republican gain .,Walter H. Dalton,Pat McCrory
+2012,ND,False,109048.0,200525.0,35.22529419555323,True,R,-9.295,0,1,50.57,Jack Dalrymple,R,Incumbent elected to a full term.,Ryan M. Taylor,Jack Dalrymple
+2012,NH,False,378934.0,295026.0,56.22499851623242,True,D,1.313,0,0,50.57,John Lynch,D,Incumbent retired. New governor elected. Democratic hold .,Maggie Hassan,Ovide Lamontagne
+2012,UT,False,277622.0,688592.0,28.73297219870546,True,R,-19.242,0,1,50.57,Gary Herbert,R,Incumbent re-elected.,Peter S. Cooke,Gary Richard Herbert
+2012,VT,False,170749.0,110940.0,60.61614049536901,True,D,14.239,1,0,50.57,Peter Shumlin,D,Incumbent re-elected.,Peter Elliott Shumlin,Randolph D. Brock
+2012,WA,False,1582802.0,1488245.0,51.539491254936834,True,D,4.965,0,0,50.57,Christine Gregoire,D,Incumbent retired. New governor elected. Democratic hold .,Jay Robert Inslee,Rob McKenna
+2012,WV,False,335468.0,303291.0,52.51871206511376,True,D,-9.136,1,0,50.57,Earl Ray Tomblin,D,Incumbent re-elected.,Earl Ray Tomblin,Bill Maloney
+2013,NJ,False,809978.0,1278932.0,38.775150676668694,True,R,6.301,0,1,,Chris Christie,R,Incumbent re-elected.,Barbara Buono,Chris Christie
+2013,VA,False,1069789.0,1013354.0,51.35456375294447,True,D,-0.108,0,0,,Bob McDonnell,R,Incumbent term-limited. New governor elected. Democratic gain .,Terry R. McAuliffe,Kenneth T. Cuccinelli
+2014,AK,False,,128435.0,,False,I,-10.632,0,1,47.053,Sean Parnell,R,Incumbent lost re-election. New governor elected. Independent gain .,,Sean R. Parnell
+2014,AL,False,427787.0,750231.0,36.31413102346484,True,R,-13.514,0,1,47.053,Robert J. Bentley,R,Incumbent re-elected.,Rolf Parker Griffith,Robert Julian Bentley
+2014,AR,False,352115.0,470429.0,42.808044311307356,True,R,-14.038,0,0,47.053,Mike Beebe,D,Incumbent term-limited. New governor elected. Republican gain .,Michael Avery Ross,Asa Hutchinson
+2014,AZ,False,626921.0,805062.0,43.77991917501814,True,R,-6.918,0,0,47.053,Jan Brewer,R,Incumbent term-limited. New governor elected. Republican hold .,Fred Duval,Doug Ducey
+2014,CA,False,4388368.0,2929213.0,59.97020053484888,True,D,9.595,1,0,47.053,Jerry Brown,D,1974 1982 (retired) 2010 Incumbent re-elected.,Jerry Brown,Neel Kashkari
+2014,CO,False,1006433.0,938195.0,51.75452580133578,True,D,0.82,1,0,47.053,John Hickenlooper,D,Incumbent re-elected.,John Wright Hickenlooper,Bob Beauprez
+2014,CT,False,554314.0,526295.0,51.296444875065816,True,D,7.03,1,0,47.053,Dannel Malloy,D,Incumbent re-elected.,Dannel P. Malloy,Thomas C. Foley
+2014,FL,False,2801198.0,2865343.0,49.43400215404777,True,R,-1.693,0,1,47.053,Rick Scott,R,Incumbent re-elected.,Charlie Crist,Rick Scott
+2014,GA,False,1144794.0,1345237.0,45.975090269960496,True,R,-6.004,0,0,47.053,Nathan Deal,R,Incumbent re-elected.,Jason J. Carter,J. Nathan Deal
+2014,HI,False,181106.0,135775.0,57.15268507736343,True,D,19.647,0,0,47.053,Neil Abercrombie,D,Incumbent lost renomination. New governor elected. Democratic hold .,David Y. Ige,Duke Aiona
+2014,IA,False,420787.0,666032.0,38.71730251311396,True,R,1.053,0,1,47.053,Terry Branstad,R,1982 1998 (retired) 2010 Incumbent re-elected.,Jack G. Hatch,Terry E. Branstad
+2014,ID,False,169556.0,235405.0,41.86971091043335,True,R,-17.951,0,0,47.053,Butch Otter,R,Incumbent re-elected.,AJ Balukoff,C.L. 'Butch' Otter
+2014,IL,False,1681343.0,1823627.0,47.97025366836235,True,R,7.238,1,0,47.053,Pat Quinn,D,Incumbent lost re-election. New governor elected. Republican gain .,Pat Quinn,Bruce Rauner
+2014,KS,False,401100.0,433196.0,48.07646207101556,True,R,-12.617,0,1,47.053,Sam Brownback,R,Incumbent re-elected.,Paul Davis,Sam Brownback
+2014,MA,False,1004408.0,1044573.0,49.01987866163717,True,R,9.759,0,0,47.053,Deval Patrick,D,Incumbent retired. New governor elected. Republican gain .,Martha Coakley,Charles D. Baker
+2014,MD,False,818890.0,884400.0,48.07695694802412,True,R,10.845,0,0,47.053,Martin O'Malley,D,Incumbent term-limited. New governor elected. Republican gain .,Anthony Brown,Larry Hogan
+2014,ME,False,265114.0,294519.0,47.372831838008125,True,R,5.723,0,1,47.053,Paul LePage,R,Incumbent re-elected.,Michael H. Michaud,Paul R. LePage
+2014,MI,False,1479057.0,1607399.0,47.9208840171381,True,R,3.314,0,1,47.053,Rick Snyder,R,Incumbent re-elected.,Mark Schauer,Rick Snyder
+2014,MN,False,989113.0,879257.0,52.939888780059626,True,D,1.884,1,0,47.053,Mark Dayton,D,Incumbent re-elected.,Mark Dayton,Jeff Johnson
+2014,NE,False,211905.0,308751.0,40.6996174057343,True,R,-12.628,0,0,47.053,Dave Heineman,R,Incumbent term-limited. New governor elected. Republican hold .,Chuck Hassebrook,Pete Ricketts
+2014,NH,False,254666.0,230610.0,52.47858950370511,True,D,0.963,1,0,47.053,Maggie Hassan,D,Incumbent re-elected.,Maggie Hassan,Walt Havenstein
+2014,NM,False,219362.0,293443.0,42.77688400074102,True,R,3.508,0,1,47.053,Susana Martinez,R,Incumbent re-elected.,Gary K. King,Susana Martinez
+2014,NV,False,130722.0,386340.0,25.281687689290646,True,R,1.773,0,1,47.053,Brian Sandoval,R,Incumbent re-elected.,Robert E. Goodman,Brian E. Sandoval
+2014,NY,False,2069480.0,1537077.0,57.38104236256352,True,D,13.594,1,0,47.053,Andrew Cuomo,D,Incumbent re-elected.,Andrew Cuomo,Robert P. Astorino
+2014,OH,False,1009359.0,1944848.0,34.16683394223898,True,R,-0.66,0,1,47.053,John Kasich,R,Incumbent re-elected.,Edward FitzGerald,John Richard Kasich
+2014,OK,False,338239.0,460298.0,42.35733597817008,True,R,-18.87,0,1,47.053,Mary Fallin,R,Incumbent re-elected.,Joe Dorman,Mary Fallin
+2014,OR,False,733230.0,648542.0,53.064470838893826,True,D,4.428,1,0,47.053,John Kitzhaber,D,1994 2002 (term-limited) 2010 Incumbent re-elected.,John Kitzhaber,Dennis Richardson
+2014,PA,False,1920355.0,1575511.0,54.93216845268097,True,D,0.977,0,1,47.053,Tom Corbett,R,Incumbent lost re-election. New governor elected. Democratic gain .,Thomas W. Wolf,Thomas W. Corbett
+2014,RI,False,131899.0,117428.0,52.90201221688786,True,D,11.683,0,0,47.053,Lincoln Chafee,D,Incumbent retired. New governor elected. Democratic hold .,Gina M. Raimondo,Allan W. Fung
+2014,SC,False,516166.0,696645.0,42.5594754664989,True,R,-7.496,0,1,47.053,Nikki Haley,R,Incumbent re-elected.,Vincent A. Sheheen,Nikki Haley
+2014,SD,False,70549.0,195477.0,26.519588310916976,True,R,-10.367,0,1,47.053,Dennis Daugaard,R,Incumbent re-elected.,Susan M. Wismer,Dennis M. Daugaard
+2014,TN,False,309237.0,951796.0,24.52251447820953,True,R,-12.05,0,0,47.053,Bill Haslam,R,Incumbent re-elected.,Charles V. Brown,William Edward Haslam
+2014,TX,False,1835596.0,2796547.0,39.62736038157717,True,R,-9.869,0,0,47.053,Rick Perry,R,Incumbent retired. New governor elected. Republican hold .,Wendy R. Davis,Greg Abbott
+2014,VT,False,89509.0,87075.0,50.68919041362751,True,D,16.031,1,0,47.053,Peter Shumlin,D,Incumbent re-elected.,Peter Elliott Shumlin,Scott Milne
+2014,WI,False,1122913.0,1259706.0,47.12935639311195,True,R,1.982,0,1,47.053,Scott Walker,R,Incumbent re-elected.,Mary Burke,Scott Walker
+2014,WY,False,45752.0,99700.0,31.45505046338311,True,R,-22.39,0,1,47.053,Matt Mead,R,Incumbent re-elected.,Pete Gosar,Matt Hansen Mead
+2015,KY,False,426620.0,511374.0,45.48216726333004,True,R,-13.095,0,0,,Steve Beshear,D,Incumbent term-limited. New governor elected. Republican gain .,Jack Conway,Matthew G. Bevin
+2015,LA,False,463700.0,637938.0,42.09186683828989,True,D,-11.304,0,0,,Bobby Jindal,R,Incumbent term-limited. New governor elected. Democratic gain .,John Bel Edwards,David Vitter
+2015,MS,False,234858.0,480399.0,32.83547032744873,True,R,-8.391,0,1,,Phil Bryant,R,Incumbent re-elected.,Robert Gray,Phil Bryant
+2016,DE,False,248404.0,166852.0,59.81948484790105,True,D,7.866,0,0,49.477,Jack Markell,D,Incumbent term-limited. New governor elected. Democratic hold,John C. Carney Jr.,Colin R. J. Bonini
+2016,IN,False,1235503.0,1397396.0,46.9255751929717,True,R,-6.149,0,0,49.477,Mike Pence,R,Incumbent renominated but withdrew. New governor elected. Republican hold .,John R. Gregg,Eric Joseph Holcomb
+2016,MO,False,1277360.0,1433397.0,47.121892519322095,True,R,-5.98,0,0,49.477,Jay Nixon,D,Incumbent term-limited. New governor elected. Republican gain,Chris Koster,Eric Greitens
+2016,MT,False,255933.0,236115.0,52.013827919227396,True,D,-7.947,1,0,49.477,Steve Bullock,D,Incumbent re-elected.,Steve Bullock,Greg Gianforte
+2016,NC,False,2309157.0,2298880.0,50.11151169142088,True,D,-3.113,0,1,49.477,Pat McCrory,R,Incumbent lost re-election. New governor elected. Democratic gain .,Roy A. Cooper,Pat McCrory
+2016,ND,False,65855.0,259863.0,20.2184097900638,True,R,-11.065,0,0,49.477,Jack Dalrymple,R,Incumbent retired. New governor elected. Republican hold .,Marvin E. Nelson,Doug Burgum
+2016,NH,False,337589.0,354040.0,48.81070631798262,True,R,0.963,0,0,49.477,Maggie Hassan,D,Incumbent retired to run in the U.S. Senate. New governor elected. Republican gain .,Colin Van Ostern,Chris Sununu
+2016,OR,True,985027.0,845609.0,53.807911567346,True,D,4.428,1,0,49.477,Kate Brown,D,Incumbent elected to finish term.,Kate Brown,William C. Pierce
+2016,UT,False,323349.0,750850.0,30.101405791664302,True,R,-24.48,0,1,49.477,Gary Herbert,R,Incumbent re-elected.,Mike Weinholtz,Gary Richard Herbert
+2016,VT,False,139253.0,166817.0,45.49710850459045,True,R,16.031,0,0,49.477,Peter Shumlin,D,Incumbent retired. New governor elected. Republican gain,Sue M. Minter,Phil Scott
+2016,WA,False,1760520.0,1476346.0,54.389647269920964,True,D,5.53,1,0,49.477,Jay Inslee,D,Incumbent re-elected.,Jay Robert Inslee,Bill Ray Bryant
+2016,WV,False,350408.0,301987.0,53.71101863135064,True,D,-14.303,0,0,49.477,Earl Ray Tomblin,D,Incumbent term-limited. New governor elected. Democratic hold,Jim Justice,William Paul Cole
+2017,NJ,False,1203110.0,899583.0,57.217577649233625,True,D,6.35,0,0,,Chris Christie,R,Incumbent term-limited. New governor elected. Democratic gain .,Philip Murphy,Kimberly Ann Guadagno
+2017,VA,False,1408818.0,1175732.0,54.509218239151885,True,D,1.261,0,0,,Terry McAuliffe,D,Incumbent term-limited. New governor elected. Democratic hold .,Ralph S. Northam,Ed W. Gillespie
+2018,AK,False,125739.0,145631.0,46.33489331908464,True,R,-9.469,0,0,54.379,Bill Walker,I,Incumbent retired. New governor elected. Republican gain .,Mark Begich,Mike Dunleavy
+2018,AL,False,694495.0,1022457.0,40.449296194651915,True,R,-14.935,0,1,54.379,Kay Ivey,R,Incumbent elected to full term.,Walter Maddox,Kay Ivey
+2018,AR,False,283218.0,582406.0,32.718362707133814,True,R,-15.103,0,1,54.379,Asa Hutchinson,R,Incumbent re-elected.,Jared K. Henderson,Asa Hutchinson
+2018,AZ,False,994341.0,1330863.0,42.76360267744249,True,R,-3.922,0,1,54.379,Doug Ducey,R,Incumbent re-elected.,David Garcia,Doug Ducey
+2018,CA,False,7721410.0,4742825.0,61.948527125812376,True,D,13.714,0,0,54.379,Jerry Brown,D,1974 1982 (retired) 2010 Incumbent term-limited. New governor elected. Democratic hold .,Gavin Newsom,John Cox
+2018,CO,False,1348888.0,1080801.0,55.51689948795916,True,D,1.349,0,0,54.379,John Hickenlooper,D,Incumbent term-limited. New governor elected. Democratic hold .,Jared Polis,Walker Stapleton
+2018,CT,False,694510.0,650138.0,51.64994853671742,True,D,6.199,0,0,54.379,Dannel Malloy,D,Incumbent retired. New governor elected. Democratic hold .,Edward Lamont,Robert Stefanowski
+2018,FL,False,4043723.0,4076186.0,49.800102439571674,True,R,-1.704,0,0,54.379,Rick Scott,R,Incumbent term-limited. New governor elected. Republican hold .,Andrew Gillum,Ron DeSantis
+2018,GA,False,1923685.0,1978408.0,49.29879938791823,True,R,-4.336,0,0,54.379,Nathan Deal,R,Incumbent term-limited. New governor elected. Republican hold .,Stacey Abrams,Brian Kemp
+2018,HI,False,244934.0,131719.0,65.0290851260975,True,D,17.156,1,0,54.379,David Ige,D,Incumbent re-elected.,David Y. Ige,Andria P. L. Tupola
+2018,IA,False,630986.0,667275.0,48.60239967156065,True,R,-4.409,0,1,54.379,Kim Reynolds,R,Incumbent elected to full term.,Fred Hubbell,Kim Reynolds
+2018,ID,False,231081.0,361661.0,38.98508963427596,True,R,-19.189,0,0,54.379,Butch Otter,R,Incumbent retired. New governor elected. Republican hold .,Paulette E. Jordan,Brad Little
+2018,IL,False,2479746.0,1765751.0,58.40885060100148,True,D,7.559,0,1,54.379,Bruce Rauner,R,Incumbent lost re-election. New governor elected. Democratic gain .,J.B. Pritzker,Bruce Rauner
+2018,KS,False,506509.0,453030.0,52.786702781231405,True,D,-12.463,0,0,54.379,Jeff Colyer,R,Incumbent lost nomination to full term. New governor elected. Democratic gain .,Laura Kelly,Kris W. Kobach
+2018,MA,False,885770.0,1781341.0,33.21084124357779,True,R,12.584,0,1,54.379,Charlie Baker,R,Incumbent re-elected.,Jay M. Gonzalez,Charles D. Baker
+2018,MD,False,1002639.0,1275644.0,44.00853625295892,True,R,12.492,0,1,54.379,Larry Hogan,R,Incumbent re-elected.,Ben Jealous,Larry Hogan
+2018,ME,False,320962.0,272311.0,54.1002203033005,True,D,1.812,0,0,54.379,Paul LePage,R,Incumbent term-limited. New governor elected. Democratic gain .,Janet T. Mills,Shawn H. Moody
+2018,MI,False,2266193.0,1859534.0,54.92833141892326,True,D,-0.239,0,0,54.379,Rick Snyder,R,Incumbent term-limited. New governor elected. Democratic gain .,Gretchen Whitmer,Bill Schuette
+2018,MN,False,1393096.0,1097705.0,55.9296386985552,True,D,0.258,0,0,54.379,Mark Dayton,D,Incumbent retired. New governor elected. Democratic–Farmer–Labor hold .,Tim Walz,Jeff Johnson
+2018,NE,False,286169.0,411812.0,40.99954010209447,True,R,-14.294,0,1,54.379,Pete Ricketts,R,Incumbent re-elected.,Robert Krist,Pete Ricketts
+2018,NH,False,262359.0,302764.0,46.42511453258848,True,R,-0.494,0,1,54.379,Chris Sununu,R,Incumbent re-elected.,Molly M. Kelly,Chris Sununu
+2018,NM,False,398368.0,298091.0,57.199059815437806,True,D,3.461,0,0,54.379,Susana Martinez,R,Incumbent term-limited. New governor elected. Democratic gain .,Michelle Lujan Grisham,Stevan Pearce
+2018,NV,False,480007.0,440320.0,52.15613580825076,True,D,0.471,0,0,54.379,Brian Sandoval,R,Incumbent term-limited. New governor elected. Democratic gain .,Steve Sisolak,Adam Paul Laxalt
+2018,NY,False,3635340.0,2207602.0,62.21762940655581,True,D,12.719,1,0,54.379,Andrew Cuomo,D,Incumbent re-elected.,Andrew Cuomo,Marcus Molinaro
+2018,OH,False,2067847.0,2231917.0,48.09210458992633,True,R,-4.173,0,0,54.379,John Kasich,R,Incumbent term-limited. New governor elected. Republican hold .,Richard Cordray,Mike DeWine
+2018,OK,False,500973.0,644579.0,43.73201740296381,True,R,-20.022,0,0,54.379,Mary Fallin,R,Incumbent term-limited. New governor elected. Republican hold .,Drew Edmondson,Kevin Stitt
+2018,OR,False,934498.0,814988.0,53.41557463163466,True,D,4.834,1,0,54.379,Kate Brown,D,Incumbent re-elected.,Kate Brown,Knute C. Buehler
+2018,PA,False,2895652.0,2039882.0,58.66947730478607,True,D,-0.949,1,0,54.379,Tom Wolf,D,Incumbent re-elected.,Thomas W. Wolf,Scott R. Wagner
+2018,RI,False,198122.0,139932.0,58.60661314464553,True,D,8.387,1,0,54.379,Gina Raimondo,D,Incumbent re-elected.,Gina M. Raimondo,Allan W. Fung
+2018,SC,False,784182.0,921342.0,45.978948405299484,True,R,-8.273,0,1,54.379,Henry McMaster,R,Incumbent elected to full term.,James Emerson Smith,Henry McMaster
+2018,SD,False,161454.0,172912.0,48.286608088142934,True,R,-15.634,0,0,54.379,Dennis Daugaard,R,Incumbent term-limited. New governor elected. Republican hold .,Billie H. Sutton,Kristi Noem
+2018,TN,False,864863.0,1336106.0,39.294647039553944,True,R,-14.157,0,0,54.379,Bill Haslam,R,Incumbent term-limited. New governor elected. Republican hold .,Karl F. Dean,Bill Lee
+2018,TX,False,3546615.0,4656196.0,43.2365807282406,True,R,-6.888,0,1,54.379,Greg Abbott,R,Incumbent re-elected.,Lupe Valdez,Greg Abbott
+2018,VT,False,110335.0,151261.0,42.17763268551507,True,R,14.601,0,1,54.379,Phil Scott,R,Incumbent re-elected.,Christine Hallquist,Phil Scott
+2018,WI,False,1324307.0,1295080.0,50.55789770660082,True,D,-0.791,0,1,54.379,Scott Walker,R,Incumbent lost re-election. New governor elected. Democratic gain .,Tony Evers,Scott Walker
+2018,WY,False,55965.0,136412.0,29.09131548989744,True,R,-25.92,0,0,54.379,Matt Mead,R,Incumbent term-limited. New governor elected. Republican hold .,Mary Throne,Mark Gordon
+2019,KY,False,709890.0,704754.0,50.18152977003402,True,D,-15.989,0,1,,Matt Bevin,R,Incumbent lost re-election. New governor elected. Democratic gain .,Andy Beshear,Matthew G. Bevin
+2019,LA,False,636963.0,696434.0,47.769943985174706,True,D,-11.166,1,0,,John Bel Edwards,D,Incumbent re-elected.,John Bel Edwards,Ralph Lee Abraham
+2019,MS,False,414368.0,459396.0,47.42333170055072,True,R,-9.619,0,0,,Phil Bryant,R,Incumbent term-limited. New governor elected. Republican hold .,Jim Hood,Tate Reeves
+2020,DE,False,292903.0,190312.0,60.61546102666515,True,D,5.51,1,0,51.59,John Carney,D,Incumbent re-elected.,John C. Carney Jr.,Julianne E. Murray
+2020,IN,False,968094.0,1706727.0,36.19285178335298,True,R,-10.239,0,1,51.59,Eric Holcomb,R,Incumbent re-elected.,Woody Myers,Eric Joseph Holcomb
+2020,MO,False,1225771.0,1720202.0,41.608358257187014,True,R,-9.909,0,1,51.59,Mike Parson,R,Incumbent elected to full term.,Nicole Galloway,Mike Parson
+2020,MT,False,250860.0,328548.0,43.29591583133129,True,R,-11.441,0,0,51.59,Steve Bullock,D,Incumbent term-limited. Republican gain .,Mike Cooney,Greg Gianforte
+2020,NC,False,2834790.0,2586604.0,52.288950037573365,True,D,-3.037,1,0,51.59,Roy Cooper,D,Incumbent re-elected.,Roy A. Cooper,Dan Forest
+2020,ND,False,90789.0,235479.0,27.826510721247562,True,R,-18.735,0,1,51.59,Doug Burgum,R,Incumbent re-elected.,Shelley Lenz,Doug Burgum
+2020,NH,False,264639.0,516609.0,33.873878717129514,True,R,-0.494,0,1,51.59,Chris Sununu,R,Incumbent re-elected.,Dan Feltes,Chris Sununu
+2020,PR,False,,,,False,I,,0,0,51.59,,,,,
+2020,UT,False,442754.0,918754.0,32.519382919527466,True,R,-16.794,0,0,51.59,Gary Herbert,R,Incumbent retired. Republican hold.,Chris Peterson,Spencer J. Cox
+2020,VT,False,99214.0,248412.0,28.54044288977234,True,R,14.601,0,1,51.59,Phil Scott,R,Incumbent re-elected.,David Zuckerman,Phil Scott
+2020,WA,False,2294243.0,1749066.0,56.741718231280366,True,D,7.147,1,0,51.59,Jay Inslee,D,Incumbent re-elected.,Jay Robert Inslee,Loren Culp
+2020,WV,False,237024.0,497944.0,32.24956732810136,True,R,-21.39,0,1,51.59,Jim Justice,R,Incumbent re-elected.,Ben Salango,Jim Justice
+2021,NJ,False,1339471.0,1255185.0,51.62422301838856,True,D,5.881,1,0,,Phil Murphy,D,Incumbent re-elected.,Philip Murphy,Jack M. Ciattarelli
+2021,VA,False,1600116.0,1663596.0,49.02748771950466,True,R,2.58,0,0,,Ralph Northam,D,Incumbent term-limited. Republican gain .,Terry R. McAuliffe,Glenn Youngkin
+2022,AK,False,63851.0,144449.0,30.653384541526645,True,R,-8.036,0,1,48.613,Mike Dunleavy,R,Incumbent re-elected.,Les Gara,Mike Dunleavy
+2022,AL,False,412961.0,946932.0,30.367168593411392,True,R,-15.27,0,1,48.613,Kay Ivey,R,Incumbent re-elected.,Yolanda Rochelle Flowers,Kay Ivey
+2022,AR,False,319242.0,571105.0,35.85590786513573,True,R,-16.224,0,0,48.613,Asa Hutchinson,R,Incumbent term-limited. Republican hold.,Chris Jones,Sarah Huckabee Sanders
+2022,AZ,False,1287891.0,1270774.0,50.334490837995595,True,D,-2.348,0,0,48.613,Doug Ducey,R,Incumbent term-limited. Democratic gain.,Katie Hobbs,Kari Lake
+2022,CA,False,6470099.0,4462910.0,59.1794902940261,True,D,13.221,1,0,48.613,Gavin Newsom,D,Incumbent re-elected.,Gavin Newsom,Brian Dahle
+2022,CO,False,1468481.0,983040.0,59.90081259756698,True,D,3.882,1,0,48.613,Jared Polis,D,Incumbent re-elected.,Jared Polis,Heidi Ganahl
+2022,CT,False,709147.0,546209.0,56.48971287825923,True,D,7.439,0,0,48.613,Ned Lamont,D,Incumbent re-elected.,Edward Lamont,Robert Stefanowski
+2022,FL,False,3106313.0,4614210.0,40.2344892956086,True,R,-3.419,0,1,48.613,Ron DeSantis,R,Incumbent re-elected.,Charlie Crist,Ron DeSantis
+2022,GA,False,1813673.0,2111572.0,46.20534514406107,True,R,-2.569,0,1,48.613,Brian Kemp,R,Incumbent re-elected.,Stacey Abrams,Brian Kemp
+2022,HI,False,261025.0,152237.0,63.162110235153484,True,D,13.642,0,0,48.613,David Ige,D,Incumbent term-limited. Democratic hold.,Josh Green,Duke Aiona
+2022,IA,False,482950.0,709198.0,40.51090971926305,True,R,-6.396,0,1,48.613,Kim Reynolds,R,Incumbent re-elected.,Deidre DeJear,Kim Reynolds
+2022,ID,False,120160.0,358598.0,25.098275120206868,True,R,-18.478,0,1,48.613,Brad Little,R,Incumbent re-elected.,Stephen Heidt,Brad Little
+2022,IL,False,2253748.0,1739095.0,56.44469366814573,True,D,6.756,1,0,48.613,J. B. Pritzker,D,Incumbent re-elected.,J.B. Pritzker,Darren Bailey
+2022,KS,False,499849.0,477591.0,51.13858651170404,True,D,-10.391,1,0,48.613,Laura Kelly,D,Incumbent re-elected.,Laura Kelly,Derek Schmidt
+2022,MA,False,1581214.0,859433.0,64.78667336980727,True,D,14.506,0,0,48.613,Charlie Baker,R,Incumbent retired. Democratic gain.,Maura Healey,Geoff Diehl
+2022,MD,False,1293944.0,644000.0,66.76890560305148,True,D,14.283,0,0,48.613,Larry Hogan,R,Incumbent term-limited. Democratic gain.,Wes Moore,Dan Cox
+2022,ME,False,376934.0,287304.0,56.74682869694296,True,D,1.909,1,0,48.613,Janet Mills,D,Incumbent re-elected.,Janet T. Mills,Paul R. LePage
+2022,MI,False,2430505.0,1960635.0,55.35020518589705,True,D,-0.962,1,0,48.613,Gretchen Whitmer,D,Incumbent re-elected.,Gretchen Whitmer,Tudor M. Dixon
+2022,MN,False,1312349.0,1119941.0,53.955284937240215,True,D,0.945,1,0,48.613,Tim Walz,D,Incumbent re-elected.,Tim Walz,Scott Jensen
+2022,NE,False,242006.0,398334.0,37.79335977761814,True,R,-12.718,0,0,48.613,Pete Ricketts,R,Incumbent term-limited. Republican hold.,Carol Blood,Jim Pillen
+2022,NH,False,256766.0,352813.0,42.12185787240046,True,R,0.868,0,1,48.613,Chris Sununu,R,Incumbent re-elected.,Tom Sherman,Chris Sununu
+2022,NM,False,370168.0,324701.0,53.271623860036925,True,D,3.309,1,0,48.613,Michelle Lujan Grisham,D,Incumbent re-elected.,Michelle Lujan Grisham,Mark V. Ronchetti
+2022,NV,False,481991.0,497377.0,49.21449342841506,True,R,-0.752,1,0,48.613,Steve Sisolak,D,Incumbent lost re-election. Republican gain.,Steve Sisolak,Joe Lombardo
+2022,NY,False,3140415.0,2762581.0,53.20035791994438,True,D,10.147,1,0,48.613,Kathy Hochul,D,Incumbent elected to full term.,Kathy C. Hochul,Lee M. Zeldin
+2022,OH,False,1545489.0,2580424.0,37.45810927181451,True,R,-6.117,0,1,48.613,Mike DeWine,R,Incumbent re-elected.,Nan Whaley,Mike DeWine
+2022,OK,False,481904.0,639484.0,42.973885934217236,True,R,-19.524,0,1,48.613,Kevin Stitt,R,Incumbent re-elected.,Joy Hofmeister,Kevin Stitt
+2022,OR,False,917074.0,850347.0,51.88769399028302,True,D,5.776,0,0,48.613,Kate Brown,D,Incumbent term-limited. Democratic hold.,Tina Kotek,Christine Drazan
+2022,PA,False,3031137.0,2238477.0,57.52104423587762,True,D,-1.645,0,0,48.613,Tom Wolf,D,Incumbent term-limited Democratic hold.,Josh Shapiro,Douglas V. Mastriano
+2022,RI,False,207166.0,139001.0,59.84568141966161,True,D,8.034,1,0,48.613,Dan McKee,D,Incumbent elected to full term.,Daniel J. McKee,Ashley Kalus
+2022,SC,False,692691.0,988501.0,41.202373078149314,True,R,-8.303,0,1,48.613,Henry McMaster,R,Incumbent re-elected.,Joe Cunningham,Henry McMaster
+2022,SD,False,123148.0,217035.0,36.20051560483622,True,R,-16.062,0,1,48.613,Kristi Noem,R,Incumbent re-elected.,Jamie Smith,Kristi Noem
+2022,TN,False,572818.0,1129390.0,33.65146915065609,True,R,-14.27,0,1,48.613,Bill Lee,R,Incumbent re-elected.,Jason Brantley Martin,Bill Lee
+2022,TX,False,3553656.0,4437099.0,44.472093062545405,True,R,-5.294,0,1,48.613,Greg Abbott,R,Incumbent re-elected.,Beto O'Rourke,Greg Abbott
+2022,VI,False,12157.0,,,False,D,,0,0,48.613,,,,Albert Bryan,
+2022,VT,False,68248.0,202147.0,25.240111688455777,True,R,15.528,0,1,48.613,Phil Scott,R,Incumbent re-elected.,Brenda Siegel,Phil Scott
+2022,WI,False,1358774.0,1268535.0,51.71732750125699,True,D,-1.856,1,0,48.613,Tony Evers,D,Incumbent re-elected.,Tony Evers,Tim Michels
+2022,WY,False,30686.0,143696.0,17.59699969033501,True,R,-25.28,0,1,48.613,Mark Gordon,R,Incumbent re-elected.,Theresa A. Livingston,Mark Gordon
+2023,LA,False,303187.0,696165.0,30.338359256798405,True,R,-11.634,0,0,,John Bel Edwards,D,Incumbent term-limited. Republican gain.,Shawn Wilson,Jeff Landry
+2024,DE,False,279585.0,219050.0,56.07007129463435,True,D,6.727,0,0,48.66,John Carney,D,Incumbent term-limited. Democratic hold.,Matthew Meyer,Michael J. Ramone
+2024,IN,False,1183741.0,1566081.0,43.04791364677423,True,R,-10.669,0,0,48.66,Eric Holcomb,R,Incumbent term-limited. Republican hold.,Jennifer McCormick,Mike Braun
+2024,MO,False,1146173.0,1750802.0,39.56447673866706,True,R,-10.325,0,0,48.66,Mike Parson,R,Incumbent term-limited. Republican hold.,Crystal Quade,Mike Kehoe
+2024,MT,False,232644.0,354569.0,39.618332700400025,True,R,-11.068,0,1,48.66,Greg Gianforte,R,Incumbent re-elected.,Ryan Busse,Greg Gianforte
+2024,NC,False,3069496.0,2241309.0,57.79718893840011,True,D,-2.982,0,0,48.66,Roy Cooper,D,Incumbent term-limited. Democratic hold.,Joshua Harold Stein,Mark Keith Robinson
+2024,ND,False,94043.0,247056.0,27.57058801110528,True,R,-19.858,0,0,48.66,Doug Burgum,R,Incumbent retired. Republican hold.,Merrill Piepkorn,Kelly Armstrong
+2024,NH,False,360157.0,436131.0,45.22948983282431,True,R,0.868,0,0,48.66,Chris Sununu,R,Incumbent retired. Republican hold.,Joyce Craig,Kelly Ayotte
+2024,PR,False,,,,False,I,,0,0,48.66,,,,,
+2024,UT,False,420514.0,781431.0,34.98612665304985,True,R,-13.109,0,1,48.66,Spencer Cox,R,Incumbent re-elected.,Brian S. King,Spencer J. Cox
+2024,VT,False,79217.0,266439.0,22.917872104057214,True,R,15.528,0,1,48.66,Phil Scott,R,Incumbent re-elected.,Esther Charlestin,Phil Scott
+2024,WA,False,2143368.0,1709818.0,55.625863895488045,True,D,7.648,0,0,48.66,Jay Inslee,D,Incumbent retired. Democratic hold.,Bob Ferguson,David G. Reichert
+2024,WV,False,233976.0,459300.0,33.74932927145898,True,R,-22.382,0,0,48.66,Jim Justice,R,Incumbent term-limited. Republican hold.,Steve Williams,Patrick Morrisey

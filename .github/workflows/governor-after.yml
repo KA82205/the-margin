@@ -1,0 +1,80 @@
+name: Governors after the election
+# Once a week: once a year's governor races have settled (seven weeks after election day) and Wikipedia has every race's
+# result, they are added to the governor model's training data with their polls, the model is refitted and the back-tests
+# made again (governor/gov_after.py). Until then, and once a year is in, the run finds nothing to do. The hourly governor
+# forecast job starts this one when its last run is a week old, since GitHub's own schedule, below, starts runs late or not
+# at all (RUNBOOK.md). Each run records the job's health in docs/api/health/governor-after.json: a due year that could not
+# be added yet counts as a failure there, with what is missing.
+on:
+  schedule:
+    - cron: "37 16 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: governor-after
+  cancel-in-progress: false
+
+jobs:
+  after:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy pandas
+
+      - name: Add the last election, if it is due
+        id: run
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          python governor/gov_after.py 2>&1 | tee "$RUNNER_TEMP/run.log"
+
+      - name: Record the job's health
+        if: always()
+        run: python senate/health.py governor-after "${{ steps.run.outcome }}" "$RUNNER_TEMP/run.log"
+
+      - name: Save
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "forecast-bot"
+          git config user.email "forecast-bot@users.noreply.github.com"
+          msg="Governor after-election job: health $(TZ=America/New_York date '+%Y-%m-%d')"
+          if [ "${{ steps.run.outcome }}" = "success" ]; then
+            git add data/governor/training.csv data/governor/model.json data/governor/backtest.json data/governor/polls_by_date.csv
+            git diff --cached --quiet || msg="Governors: the last races added to the training data, and the model refitted"
+          fi
+          git add docs/api/health/governor-after.json || true
+          if git diff --cached --quiet; then echo "Nothing new, and the job's health is the same."; exit 0; fi
+          git commit -q -m "$msg"
+          git checkout -q -- .
+          for i in $(seq 1 40); do
+            busy=0
+            for wf in update.yml senate.yml house.yml governor.yml; do
+              for s in in_progress queued; do
+                n=$(gh api "repos/${{ github.repository }}/actions/workflows/$wf/runs?status=$s&per_page=1" --jq '.total_count' 2>/dev/null || echo 0)
+                busy=$((busy + n))
+              done
+            done
+            [ "$busy" = "0" ] && break
+            sleep 15
+          done
+          for i in 1 2 3; do
+            git pull --rebase -q origin main && git push -q && exit 0
+            sleep 10
+          done
+          echo "::warning::The repository kept changing while this run saved; the next run tries again."
+
+      - name: Flag a failed run
+        if: steps.run.outcome == 'failure'
+        run: echo "::warning::The governor after-election step failed this time (docs/api/health/governor-after.json says why); nothing was changed, and the next run tries again."

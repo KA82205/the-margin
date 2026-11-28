@@ -72,10 +72,14 @@ def main():
     ha = HL.record('house-after', 'success', log('2026: not added yet: 190 contested districts without a share\n'))
     check(not ha['ok'] and 'not added yet' in ha['error'], f'the House after-election job, a due election not added: {ha}')
     check(not HL.due('house-after'), 'the House after-election job ran today: not due')
+    g = HL.record('governor-forecast', 'success', log('{"as_of": "2027-03-10"}\n'))
+    check(g['ok'] and g['overdue_after'] == '2027-03-11', f'the governor forecast: {g}')
+    ga = HL.record('governor-after', 'success', log('No governor election is due to be added.\n'))
+    check(ga['ok'] and not HL.due('governor-after'), f'the governor after-election job, nothing due: {ga}')
     for job in HL.JOBS:
         with open(HL.path(job)) as fh: j = json.load(fh)
         check(j['workflow'].endswith(HL.JOBS[job][1]) and j['how_to_read'], f'{job}: names its workflow and says how to read it')
-    print('FAIL: ' + '; '.join(bad) if bad else 'OK: the Senate and House jobs\' health files'); sys.exit(1 if bad else 0)
+    print('FAIL: ' + '; '.join(bad) if bad else 'OK: the Senate, House and governor jobs\' health files'); sys.exit(1 if bad else 0)
 
 
 if __name__ == '__main__':

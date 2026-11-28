@@ -1,0 +1,107 @@
+name: Governor forecast
+# The governor forecast (governor/gov_live.py): it writes data/governor/<year>/ and the Governors tab's data,
+# docs/api/governor.json. Runs after each run of the Senate forecast, whose national mood it uses, and so after each
+# presidential run, whose simulated elections it draws from. GitHub's own schedule, below, starts runs late or not at all;
+# it is only a second way in. Each run records the job's health in docs/api/health/governor-forecast.json, and starts the
+# weekly governor after-election job when it is due.
+run-name: "${{ github.event_name == 'workflow_run' && 'Governors: after the Senate forecast' || github.event_name == 'schedule' && 'Governors: schedule' || 'Governors: by hand' }}"
+on:
+  workflow_run:
+    workflows: [Senate forecast]
+    types: [completed]
+    branches: [main]
+  schedule:
+    - cron: "35 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: governor
+  cancel-in-progress: false
+
+jobs:
+  governor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy pandas
+
+      - name: Read the sources and run the governor forecast
+        id: run
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          python governor/gov_live.py 2>&1 | tee "$RUNNER_TEMP/run.log"
+
+      - name: Record the job's health
+        if: always()
+        run: python senate/health.py governor-forecast "${{ steps.run.outcome }}" "$RUNNER_TEMP/run.log"
+
+      # The forecast is saved only when a number moved (the page version alone, sources.json, is not a change), and only
+      # from a run that worked; the job's health whenever it changed.
+      - name: Save
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "forecast-bot"
+          git config user.email "forecast-bot@users.noreply.github.com"
+          msg="Governor forecast job: health $(TZ=America/New_York date '+%Y-%m-%d %H:%M')"
+          if [ "${{ steps.run.outcome }}" = "success" ] && [ -n "$(git status --porcelain data/governor/20*/forecast.json data/governor/20*/history.csv docs/api/governor.json)" ]; then
+            git add data/governor/20*/forecast.json data/governor/20*/history.csv data/governor/20*/sources.json docs/api/governor.json
+            msg="Governor forecast $(TZ=America/New_York date '+%Y-%m-%d %H:%M')"
+          fi
+          git add docs/api/health/governor-forecast.json || true
+          if git diff --cached --quiet; then
+            echo "The governor forecast and the job's health came out the same: nothing to save."
+            exit 0
+          fi
+          git commit -q -m "$msg"
+          git checkout -q -- .          # what was not saved is dropped, so it cannot stop the pull below
+          # never push while the presidential or the Senate forecast is running or waiting: its save would then be refused
+          for i in $(seq 1 40); do
+            busy=0
+            for wf in update.yml senate.yml; do
+              for s in in_progress queued; do
+                n=$(gh api "repos/${{ github.repository }}/actions/workflows/$wf/runs?status=$s&per_page=1" --jq '.total_count' 2>/dev/null || echo 0)
+                busy=$((busy + n))
+              done
+            done
+            [ "$busy" = "0" ] && break
+            sleep 15
+          done
+          for i in 1 2 3; do
+            git pull --rebase -q origin main && git push -q && exit 0
+            sleep 10
+          done
+          echo "::warning::The repository kept changing while this run saved; the next run tries again."
+
+      # GitHub's schedule cannot be counted on to start the weekly job either (RUNBOOK.md), so this job starts it when its
+      # last run is a week old. Its own schedule stays.
+      - name: Start the weekly governor job when due
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          job=governor-after
+          python senate/health.py --due "$job" || exit 0
+          busy=0
+          for s in in_progress queued pending; do
+            n=$(gh api "repos/${{ github.repository }}/actions/workflows/$job.yml/runs?status=$s&per_page=1" --jq '.total_count' 2>/dev/null || echo 0)
+            busy=$((busy + n))
+          done
+          if [ "$busy" != "0" ]; then echo "$job is running already."; exit 0; fi
+          gh workflow run "$job.yml" --ref main && echo "Started $job." || echo "::warning::$job could not be started."
+
+      - name: Flag a failed run
+        if: steps.run.outcome == 'failure'
+        run: echo "::warning::The governor forecast could not be made this time (see the step above and docs/api/health/governor-forecast.json); the one in place is the last good one."
