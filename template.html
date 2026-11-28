@@ -584,7 +584,11 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
   $('odds').innerHTML = '<i class="bd" style="flex:' + hd + '"></i><i class="br" style="flex:' + hr + '"></i>';
   $('odds').setAttribute('role', 'img'); $('odds').setAttribute('aria-label', 'Democrats ' + hd + '%, Republicans ' + hr + '%');
   const tp = ST[F.tipping_point];
-  $('keys').innerHTML = [[Math.round(F.ev_mean) + ' to ' + (538 - Math.round(F.ev_mean)), 'electoral votes on average, Democrats to Republicans'], [Math.round(100 * F.p_popular) + '% to ' + (100 - Math.round(100 * F.p_popular)) + '%', 'chance of winning the most votes nationally, Democrats to Republicans'], [tp.name, 'the state most likely to put the winner over 270']]
+  // the headline gives the side ahead on each count (both sides are in the nation's readout below the map)
+  const evD = Math.round(F.ev_mean), evR = 538 - evD, evAhead = evD > evR ? ['Democrats', evD] : evR > evD ? ['Republicans', evR] : null, popAhead = ahead(F.p_popular);
+  $('keys').innerHTML = [[evAhead ? String(evAhead[1]) : '269', evAhead ? 'electoral votes on average for ' + evAhead[0] : 'electoral votes on average for each party'],
+                         [popAhead.pct + '%', popAhead.who === 'Even' ? 'chance for each party of winning the most votes nationally' : popAhead.who + '\' chance of winning the most votes nationally'],
+                         [tp.name, 'the state most likely to put the winner over 270']]
     .map(k => '<div><strong>' + k[0] + '</strong><span>' + k[1] + '</span></div>').join('');
   // ---- the introduction: written from the day's inputs, never a fixed story. Margins are of the two-party national vote.
   function introText(F) {
@@ -672,7 +676,8 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
       '<div class="big ' + (a.side === 'even' ? 'even' : a.side) + '">' + a.pct + '%<small>' + (a.side === 'even' ? 'each' : 'for the ' + a.who) + '</small></div>' +
       '<dl><dt>Projected national margin</dt><dd class="' + cls(NX.mean) + '">' + mg(NX.mean) + '</dd><dt>80% prediction interval</dt><dd>' + mg(NX.hi) + ' to ' + mg(NX.lo) + '</dd>' +
       '<dt>Chance of winning the most votes</dt><dd>' + bothTxt(NX.p_pop != null ? NX.p_pop : (NX.mean >= 50 ? 1 : 0)) + '</dd>' +
-      '<dt>Democratic electoral votes, on average</dt><dd>' + Math.round(F.ev_mean) + '</dd><dt>80% prediction interval</dt><dd>' + Math.round(F.ev_lo) + ' to ' + Math.round(F.ev_hi) + '</dd>' +
+      '<dt>Electoral votes on average</dt><dd>' + (F.ev_mean >= 269 ? 'Democrats ' + Math.round(F.ev_mean) + ', Republicans ' + (538 - Math.round(F.ev_mean)) : 'Republicans ' + (538 - Math.round(F.ev_mean)) + ', Democrats ' + Math.round(F.ev_mean)) + '</dd>' +
+      '<dt>Democratic electoral votes, 80% prediction interval</dt><dd>' + Math.round(F.ev_lo) + ' to ' + Math.round(F.ev_hi) + '</dd>' +
       (ST[F.tipping_point] ? '<dt>Likeliest tipping point</dt><dd>' + esc(ST[F.tipping_point].name) + '</dd>' : '') + '</dl>' +
       '<p>Select a state on the map, the strip or the list for its forecast. Select it again to come back to the nation.</p>'; };
   const paint = () => { all().forEach(el => el.classList.toggle('sel', el.dataset.s === sel));
