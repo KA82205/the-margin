@@ -39,3 +39,32 @@ credit and a link; its spreadsheets are not copied into the repository, only the
 
 `python house/simulate.py`: the back-test as a forecast, at each distance from election day, every seat simulated
 together, the national level from the Senate model's national mood.
+
+## Money, tested the fair way (step 3)
+
+`tools/fetch_house_money.py` fetched every FEC report of both parties' candidates in each contested race, 2012-2024
+(about 70,000 reports), and the FEC's links from committees to candidates; `house/money.py` adds up each candidate's money
+in the reports the FEC had received by each distance from election day (`data/house/money_by_date.csv`).
+
+`python house/simulate.py cook75 money`: with money as it stood on each day, the forecasts of 2018-2024 barely move: the
+seat count's typical miss falls by half a seat at some distances and not at others, the races called and the chances
+stay the same. Money is left out of the forecast, as in the Senate, and is to be shown beside the races.
+
+The leans of 2018 and 2020 worked out the way Cook has since 2022 (three parts the last presidential election, one part
+the one before) place the races better than the even split Cook published then (Brier 0.032 against 0.035, eight more
+races called), and they are the leans the live forecast reads, so the fit uses them.
+
+## Where it stands
+
+`python house/simulate.py cook75`, 2018-2024, each election from the other three:
+
+| Distance | Seat count's typical miss | Races called | Seats inside the 80% range |
+|---|---|---|---|
+| 365 days | 9.3 | 1,533 of 1,599 | 4 of 4 |
+| 120 days | 11.3 | 1,531 | 4 of 4 |
+| 30 days | 8.3 | 1,534 | 4 of 4 |
+| Last day | 10.8 | 1,531 | 4 of 4 |
+
+The misses come from the national level (2020 too Democratic, 2022 too Republican) and from the seats' spread: given the
+right level, the Democrats beat the forecast in toss-up races by half a point to a point in each of the four years, and
+won 6 to 12 more seats than the forecast gave them in three of them.
