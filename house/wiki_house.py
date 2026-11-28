@@ -9,9 +9,12 @@ district is the number, or 0 for a state's single at-large seat. pvi_stale marks
 before the map in use was drawn (2024's redrawn states), so it describes other lines. members lists the members who
 held the seat (two when redistricting put two members in one district); status is what the page says became of the seat
 ("Incumbent re-elected.", "Incumbent retired. ...", "Incumbent's intent unknown"); candidates is the candidates' cell as
-text.
+text, and candidates_raw the cell as written (its winner marks and shares; candidates() reads them).
+
+Also: fetch() reads pages through Wikipedia's API; titles() names a year's overview and state pages; map_changes()
+reads the overview's table of the states whose maps changed for the election.
 """
-import re
+import json, re, time, urllib.error, urllib.parse, urllib.request
 
 STATES = {'Alabama': 'AL', 'Alaska': 'AK', 'Arizona': 'AZ', 'Arkansas': 'AR', 'California': 'CA', 'Colorado': 'CO', 'Connecticut': 'CT', 'Delaware': 'DE', 'Florida': 'FL',
           'Georgia': 'GA', 'Hawaii': 'HI', 'Idaho': 'ID', 'Illinois': 'IL', 'Indiana': 'IN', 'Iowa': 'IA', 'Kansas': 'KS', 'Kentucky': 'KY', 'Louisiana': 'LA', 'Maine': 'ME',
@@ -112,7 +115,129 @@ def rows(text, year):
                     cur['new_seat'] = True
                 elif k == 'candidates':
                     cur['candidates'] = (cur['candidates'] + '\n' + plain(c.replace('*', '\n*'))).strip()
+                    cur['candidates_raw'] = (cur.get('candidates_raw', '') + '\n' + c).strip()
     for r in out:
+        r.setdefault('candidates_raw', '')
         r['members'] = [tuple(m) for m in r['members']]
         if re.search(r'New seat|new district', r['status'], re.I) and not r['members']: r['new_seat'] = True
+    return out
+
+
+# ------------------------------------------------------------------------------------------------------------ the cells
+def party_code(s):
+    """D, R, I or L from a party as a cell or a party stripe writes it ("Republican/Cons.", "DFL", "Democratic Party (US)")."""
+    t = fold_plain(s)
+    if re.search(r'democratic|\bdfl\b|farmer', t): return 'D'
+    if re.search(r'republican|\bgop\b', t): return 'R'
+    if re.search(r'libertarian', t): return 'L'
+    if t: return 'I'
+    return None
+
+
+def fold_plain(s):
+    return plain(str(s or '')).lower()
+
+
+def number(s):
+    m = re.search(r'\d[\d,]*(?:\.\d+)?', plain(str(s or '')).replace(' ', ''))
+    return float(m.group(0).replace(',', '')) if m else None
+
+
+def candidates(raw):
+    """Each candidate in a district's candidates cell, as the overview writes them once the votes are in:
+    [{'name', 'party', 'share' (per cent, or None before the count), 'won' (marked as the winner), 'runoff' (marked as
+    going on to a runoff), 'round' ('general', or 'runoff' for those listed under a runoff)}]. One candidate a line, in
+    every form the overview uses (a plain list, a collapsible list); a cell that only says the seat is to be decided
+    gives []."""
+    out, rnd = [], 'general'
+    for line in (raw or '').split('\n'):
+        p = plain(line).strip(' *|')
+        if re.match(r'(?i)^(?:runoff|second round|general election runoff)\b', p): rnd = 'runoff'; continue
+        if re.match(r'(?i)^(?:general election|first round)\b', p): rnd = 'general'; continue
+        m = re.search(r'^(.*?)\(([^()]+)\)\s*(?:([\d.]+)\s*%)?', p)
+        if not m or not m.group(1).strip(): continue
+        stripe = re.search(r'[Pp]arty stripe\s*\|\s*([^}|]+)', line)
+        party = party_code(m.group(2).split('/')[0]) or (party_code(stripe.group(1)) if stripe else None)
+        out.append({'name': m.group(1).strip(' *'), 'party': party, 'share': float(m.group(3)) if m.group(3) else None,
+                    'won': bool(re.search(r'\{\{\s*[Aa]ye\s*\}\}', line)) or bool(re.search(r"'''\s*\[\[", line)),
+                    'runoff': bool(re.search(r'\{\{\s*mby\s*\}\}', line, re.I)), 'round': rnd})
+    return out
+
+
+def map_changes(text):
+    """The overview's table of the states' maps for the election ("Summary district map changes", "Summary of mid-decade
+    changes"): {state: 'enacted' | 'pending' | 'in place'}. A state the table does not list keeps its map."""
+    out = {}
+    for t in re.finditer(r'\n\{\|(.*?)\n\|\}', text or '', re.S):
+        body = t.group(1)
+        if not re.search(r'!\s*rowspan=\d\s*\|\s*Status', body) or not re.search(r'[Cc]hange in partisanship', body): continue
+        for row in re.split(r'\n\|-[^\n]*', body):
+            st = re.search(r'^!\s*\[\[#([^|\]]+)', row.strip(), re.M)
+            if not st or st.group(1).strip() not in STATES: continue
+            cells_ = [l for l in row.strip().split('\n') if l.startswith('|')]
+            raw = cells_[0][1:] if cells_ else ''
+            inner = re.findall(r'\{\{\s*[\w ]+\s*\|\s*(?:text\s*=)?((?:[^{}]|\{\{[^{}]*\}\})*)\}\}', raw)
+            words = ' '.join(plain(re.sub(r'\[\[[^\]|]*\|', '[[', x)) for x in inner) or plain(raw)
+            w = words.lower()
+            kind = ('in place' if re.search(r'left in place|no change|rejected|struck|blocked|failed|declined|kept', w) else
+                    'pending' if re.search(r'pending|proposed|in progress|tbd|awaiting|ongoing', w) else
+                    'enacted' if re.search(r'enacted|new (?:districts|map)|adopted|approved|redrawn|ordered', w) else 'in place')
+            out[STATES[st.group(1).strip()]] = kind
+    return out
+
+
+# ----------------------------------------------------------------------------------------------------------- fetching
+UA = {'User-Agent': 'election-research (github.com/KA82205/the-margin)'}
+API = 'https://en.wikipedia.org/w/api.php?'
+NAMES = {v: k for k, v in STATES.items()}
+ONE_SEAT = {'AK', 'DE', 'ND', 'SD', 'VT', 'WY'}                  # a single seat since 2022 (Montana has two)
+
+
+def overview(year):
+    return f'{year} United States House of Representatives elections'
+
+
+def state_title(year, st):
+    return f'{year} United States House of Representatives election{"" if st in ONE_SEAT else "s"} in {NAMES[st]}'
+
+
+def titles(year, states=True):
+    return [overview(year)] + ([state_title(year, st) for st in sorted(NAMES)] if states else [])
+
+
+def _api(params, tries=5):
+    url = API + urllib.parse.urlencode({**params, 'format': 'json', 'formatversion': '2'})
+    err = None
+    for i in range(tries):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=90) as r:
+                return json.loads(r.read())
+        except urllib.error.HTTPError as e:
+            err = f'HTTP {e.code}'; time.sleep(60 if e.code == 429 else 5 * (i + 1))
+        except Exception as e:                                     # noqa: BLE001 - retried, then reported
+            err = type(e).__name__; time.sleep(5 * (i + 1))
+    raise RuntimeError(f'Wikipedia could not be read: {err}')
+
+
+def fetch(titles_, chunk=5, pause=1.5):
+    """{requested title: {'title': the page it resolved to, 'timestamp', 'text'}}, redirects followed; a title with no
+    page is left out. Large pages come back over several calls (the API's continuation)."""
+    out = {}
+    for i in range(0, len(titles_), chunk):
+        part = titles_[i:i + chunk]; got, to, cont = {}, {}, {}
+        while True:
+            j = _api({'action': 'query', 'prop': 'revisions', 'rvprop': 'content|timestamp', 'rvslots': 'main', 'titles': '|'.join(part), 'redirects': '1', **cont})
+            q = j.get('query', {})
+            for r in q.get('normalized', []) + q.get('redirects', []): to[r['from']] = r['to']
+            for p in q.get('pages', []):
+                rv = (p.get('revisions') or [{}])[0]
+                if p.get('missing') or 'slots' not in rv: continue
+                got[p['title']] = {'title': p['title'], 'timestamp': rv['timestamp'], 'text': rv['slots']['main']['content']}
+            if 'continue' not in j: break
+            cont = j['continue']; time.sleep(pause)
+        for t in part:
+            f = t
+            for _ in range(3): f = to.get(f, f)
+            if f in got: out[t] = got[f]
+        time.sleep(pause)
     return out
