@@ -246,6 +246,9 @@ footer .wide{display:flex;flex-wrap:wrap;gap:4px 24px}
 #hs-t{min-width:640px}#hs-t td small{display:block;color:var(--muted);font-size:12px;line-height:16px}
 #hs-t .who i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
 #hs-t tr{scroll-margin-top:calc(var(--navh,56px) + 16px)}#hs-t tr.on td{background:var(--raised)}
+#gv-t{min-width:640px}#gv-t td small{display:block;color:var(--muted);font-size:12px;line-height:16px}
+#gv-t tr{scroll-margin-top:calc(var(--navh,56px) + 16px)}#gv-t tr.on td{background:var(--raised)}
+#gv-t .who i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
 ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
 .st-hint{margin-top:32px;border:1px dashed var(--line);border-radius:12px;padding:40px 24px;text-align:center}
 .st-hint h3{font:500 28px/32px var(--serif);margin:0 0 8px}
@@ -302,7 +305,7 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
 <div id="tip" hidden></div>
 <div class="stripe" aria-hidden="true"></div>
 <nav><div class="wide"><a class="brand" href="#presidency"><svg aria-hidden="true"><use href="#logo"/></svg>{{TITLE}}</a>
-  <div class="tabs" id="tabs"><a href="#presidency">Presidency</a><a href="#senate">Senate</a><a href="#house">House</a><a href="#polls">Polls</a><a href="#model">Model</a><a href="#backtests">Back-tests</a><a href="#research">Research</a></div></div></nav>
+  <div class="tabs" id="tabs"><a href="#presidency">Presidency</a><a href="#senate">Senate</a><a href="#house">House</a><a href="#governors">Governors</a><a href="#polls">Polls</a><a href="#model">Model</a><a href="#backtests">Back-tests</a><a href="#research">Research</a></div></div></nav>
 
 <main>
 <section class="tab" id="t-forecast">
@@ -427,6 +430,29 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
 <div class="col"><h2>How the House forecast works</h2><div id="hs-how"></div></div>
 </section>
 
+<section class="tab" id="t-governor" hidden>
+<header class="wide hero">
+  <div>
+    <p class="kicker" id="gv-kick">Governor forecasts</p>
+    <h1 id="gv-head">Governors</h1>
+    <p class="stand" id="gv-stand"></p>
+    <p class="dateline" id="gv-date"></p>
+    <div class="top" id="gv-top"></div>
+    <div class="bar" id="gv-odds"></div>
+    <div class="keys" id="gv-keys"></div>
+  </div>
+  <div class="mapbox">
+    <div class="map" id="gv-map"></div>
+    <div class="legend" id="gv-leg"></div>
+    <p class="sn-note" id="gv-note"></p>
+  </div>
+</header>
+<figure class="mid"><h2>How many governorships</h2><p class="sub" id="gv-dist-sub"></p><div class="sn-dist" id="gv-dist"></div><figcaption id="gv-dist-cap"></figcaption></figure>
+<figure class="mid" id="gv-hist-f" hidden><h2>The forecast over time</h2><div class="sn-line" id="gv-hist"></div></figure>
+<figure class="mid"><h2>Every race</h2><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="gv-t"></table></div><figcaption id="gv-t-cap"></figcaption></figure>
+<div class="col"><h2>How the governor forecast works</h2><div id="gv-how"></div></div>
+</section>
+
 <section class="tab" id="t-polls" hidden>
 <div class="col lead"><h1>The polls</h1><div class="ctl"><div class="seg" role="group" aria-label="Which forecast" data-sw="polls"><button type="button" data-v="pres" aria-pressed="true">President</button><button type="button" data-v="senate" aria-pressed="false">Senate</button></div></div><p class="stand" id="pl-stand" data-panel="polls:pres"></p><p class="stand" id="spl-stand" data-panel="polls:senate" hidden></p></div>
 <div class="mid" data-panel="polls:pres">
@@ -441,7 +467,7 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
 </div>
 </section>
 <section class="tab" id="t-model" hidden>
-<div class="col lead"><h1>How the forecasts are made</h1><p class="stand">The Margin runs three models: one for the presidency, one for the Senate and one for the House. Each is explained here in full: what goes into it, how much each part counts and how it was tested.</p><div class="ctl"><div class="seg wrap" role="group" aria-label="Which forecast" data-sw="model"><button type="button" data-v="pres" aria-pressed="true">The presidential model</button><button type="button" data-v="senate" aria-pressed="false">The Senate model</button><button type="button" data-v="house" aria-pressed="false">The House model</button></div></div></div>
+<div class="col lead"><h1>How the forecasts are made</h1><p class="stand">The Margin runs four models: for the presidency, the Senate, the House and the governors. Each is explained here in full: what goes into it, how much each part counts and how it was tested.</p><div class="ctl"><div class="seg wrap" role="group" aria-label="Which forecast" data-sw="model"><button type="button" data-v="pres" aria-pressed="true">The presidential model</button><button type="button" data-v="senate" aria-pressed="false">The Senate model</button><button type="button" data-v="house" aria-pressed="false">The House model</button><button type="button" data-v="governor" aria-pressed="false">The governor model</button></div></div></div>
 <div data-panel="model:pres">
 <div class="col"><p class="stand">How the forecast is calculated, why each part counts as much as it does, and how the forecast will sharpen as the election gets closer.</p></div>
 <div class="col" id="calc"><h2>The presidential model</h2>
@@ -482,10 +508,11 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
 </div>
 <div data-panel="model:senate" hidden><div class="col" id="sm-body"></div></div>
 <div data-panel="model:house" hidden><div class="col" id="hm-body"></div></div>
+<div data-panel="model:governor" hidden><div class="col" id="gm-body"></div></div>
 </section>
 
 <section class="tab" id="t-backtests" hidden>
-<div class="col lead"><h1>Back-tests</h1><div class="ctl"><div class="seg" role="group" aria-label="Which forecast" data-sw="backtests"><button type="button" data-v="pres" aria-pressed="true">President</button><button type="button" data-v="senate" aria-pressed="false">Senate</button><button type="button" data-v="house" aria-pressed="false">House</button></div></div><p class="stand" id="p-record" data-panel="backtests:pres"></p><p class="stand" id="sb-stand" data-panel="backtests:senate" hidden></p><p class="stand" id="hb-stand" data-panel="backtests:house" hidden></p></div>
+<div class="col lead"><h1>Back-tests</h1><div class="ctl"><div class="seg" role="group" aria-label="Which forecast" data-sw="backtests"><button type="button" data-v="pres" aria-pressed="true">President</button><button type="button" data-v="senate" aria-pressed="false">Senate</button><button type="button" data-v="house" aria-pressed="false">House</button><button type="button" data-v="governor" aria-pressed="false">Governors</button></div></div><p class="stand" id="p-record" data-panel="backtests:pres"></p><p class="stand" id="sb-stand" data-panel="backtests:senate" hidden></p><p class="stand" id="hb-stand" data-panel="backtests:house" hidden></p><p class="stand" id="gb-stand" data-panel="backtests:governor" hidden></p></div>
 <div data-panel="backtests:pres">
 <figure class="mid">
   <b>Pick an election</b>
@@ -521,6 +548,15 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
 <figure class="mid" id="hb-26-f"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="hb-26"></table></div><figcaption id="hb-26-cap"></figcaption></figure>
 <div class="col"><h2>Tried and kept, tried and left out</h2><p>Each idea tried while building the House model, what the tests showed when it was tried, and whether it went in.</p></div>
 <figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="hb-tried"></table></div></figure>
+</div>
+<div data-panel="backtests:governor" hidden>
+<figure class="wide" style="max-width:1000px"><b>Forecast against result, governors</b><div class="sub">Pick how long before the election the forecast was made</div><div class="ctl"><div class="seg wrap" id="gb-days" role="group" aria-label="How long before the election"></div></div><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="gb-year"></table></div><figcaption id="gb-year-cap"></figcaption></figure>
+<div class="col"><h2>At every distance from the election</h2><p id="gb-dist-p"></p></div>
+<figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="gb-dist"></table></div><figcaption id="gb-dist-cap"></figcaption></figure>
+<div class="col" id="gb-26-c"><h2>2026, forecast without having seen it</h2><p id="gb-26-p"></p></div>
+<figure class="mid" id="gb-26-f"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="gb-26"></table></div><figcaption id="gb-26-cap"></figcaption></figure>
+<div class="col"><h2>Tried and kept, tried and left out</h2><p>Each idea tried while building the governor model, what the tests showed, and whether it went in.</p></div>
+<figure class="mid"><div class="scroll" tabindex="0" role="region" aria-label="Table"><table id="gb-tried"></table></div></figure>
 </div>
 </section>
 
@@ -1694,31 +1730,153 @@ ul.plain{padding-left:20px}ul.plain li{margin:6px 0}
       (B.tested || []).map(x => '<tr><td>' + esc(x.idea) + '</td><td>' + esc(x.result) + '</td><td>' + (x.adopted ? 'Kept' : 'Left out') + '</td></tr>').join('') + '</tbody>';
   }
 
-  // ---- tabs. #presidency (also #forecast, the old name), #senate, #house, #polls, #model, #backtests, #research; #states/PA
-  // opens a state in the Presidency tab's State by state section; #polls/senate, #model/senate and #backtests/senate show
-  // the Senate side of those tabs, #model/house and #backtests/house the House side; #model/narrow and the like go to a
-  // section inside a tab.
+  // ---- the governors: their own data file (api/governor.json), written every hour by the governor forecast after the
+  // Senate's, and read when a tab that shows it first opens
+  let GVP = null; const gvDone = {};
+  const loadGov = () => GVP || (GVP = fetch('api/governor.json', {cache: 'no-cache'}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).catch(e => { GVP = null; throw e; }));
+  function govInto(part) {
+    if (gvDone[part]) return; gvDone[part] = 'busy';
+    loadGov().then(G => { gvDone[part] = true; ({governor: drawGov, model: drawGovModel, backtests: drawGovBack})[part](G); })
+      .catch(() => { gvDone[part] = false; const el = $({governor: 'gv-head', model: 'gm-body', backtests: 'gb-stand'}[part]); if (el) el.textContent = 'The governor forecast could not be loaded. Reload the page to try again.'; });
+  }
+  const gvLean = v => Math.abs(v) < 0.05 ? 'Even' : (v > 0 ? 'D+' : 'R+') + Math.abs(v).toFixed(1);
+  const gvYearTxt = r => r.year + (r.special ? ' special' : '');
+  function drawGov(G) {
+    const sm = G.summary, f1 = v => v.toFixed(1), shown = x => Math.min(99, Math.max(1, Math.round(100 * x)));
+    const dS = Math.round(sm.dem_mean), rS = 50 - dS, now = G.governors_now, last = G.cycle[G.cycle.length - 1];
+    const ys = G.cycle.map(c => c.year), span = ys.length > 1 ? ys[0] + ' and ' + ys[ys.length - 1] : String(ys[0]);
+    $('gv-kick').textContent = span + ' governor forecasts';
+    $('gv-head').textContent = dS >= rS ? 'Democrats are forecast to hold ' + dS + ' governorships' : 'Republicans are forecast to hold ' + rS + ' governorships';
+    $('gv-stand').textContent = 'With the governors elected so far, Democrats will hold ' + now.dem + ' of the 50 governorships and Republicans ' + now.rep + (now.other ? ', with ' + now.other + ' held by others' : '') + '. ' +
+      (t => t.charAt(0).toUpperCase() + t.slice(1))(G.cycle.map(c => (NUMW[c.races] || c.races) + (c.races === 1 ? ' race' : ' races') + ' in ' + c.year).join(' and ')) + ' decide the rest of the count through ' + last.year + '.';
+    $('gv-date').textContent = 'Updated ' + longDate(G.as_of) + ' · ' + G.cycle.map(c => c.days_out + ' days to the ' + c.year + ' races').join(', ');
+    $('gv-top').innerHTML = '<div class="dn"><span>Democratic governors</span><strong>' + dS + '</strong></div><div class="rn"><span>Republican governors</span><strong>' + rS + '</strong></div>';
+    $('gv-odds').innerHTML = '<i class="bd" style="flex:' + dS + '"></i><i class="br" style="flex:' + rS + '"></i>';
+    $('gv-odds').setAttribute('role', 'img'); $('gv-odds').setAttribute('aria-label', 'Democrats ' + dS + ' governorships, Republicans ' + rS + ' after the ' + last.year + ' races; the line marks 25');
+    const R = G.races, favD = R.filter(r => r.p_dem > 0.5).length, favR = R.length - favD;
+    const close = R.slice().sort((a, b) => Math.abs(a.p_dem - 0.5) - Math.abs(b.p_dem - 0.5))[0];
+    const range = dS >= rS ? [sm.low80, sm.high80, 'Democratic'] : [50 - sm.high80, 50 - sm.low80, 'Republican'];
+    $('gv-keys').innerHTML = [[range[0] + ' to ' + range[1], range[2] + ' governorships after the ' + last.year + ' races in 80% of simulated elections'],
+      [(favD >= favR ? favD : favR) + ' of ' + R.length, 'races where ' + (favD >= favR ? 'Democrats' : 'Republicans') + ' are favored'],
+      [esc(close.name), 'the closest race: ' + bothTxt(close.p_dem).replace(/(\d+)%/g, '$1%')]]
+      .map(k => '<div><strong>' + k[0] + '</strong><span>' + k[1] + '</span></div>').join('');
+    // the map: the states with a race, shaded by the Democratic chance; the rest left blank
+    const by = {}; R.forEach(r => (by[r.state] = by[r.state] || []).push(r));
+    let m = '<svg viewBox="0 0 975 610" role="img" aria-label="Map of the states with a governor race, shaded by the chance the Democrat wins it">';
+    Object.keys(window.US_STATES).forEach(st => { const sh = window.US_STATES[st], rs = by[st]; if (!sh) return;
+      m += '<path data-s="' + st + '" d="' + sh.d + '"' + (rs ? ' fill="' + COL[bin(rs[0].p_dem)] + '"' : ' class="none"') + '/>'; });
+    $('gv-map').innerHTML = m + '</svg>';
+    $('gv-leg').innerHTML = BINS.map((b, i) => '<span><i class="c' + i + '" style="display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px"></i>' + b[1] + '</span>').join('') +
+      '<span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;background:var(--raised)"></i>No race</span>';
+    const tipR = r => '<b>' + esc(r.name) + ' · ' + gvYearTxt(r) + '</b><br>' + (r.nominees ? esc(r.nominees[0]) + ' (D) against ' + esc(r.nominees[1]) + ' (R)' : (r.governor ? esc(r.governor) + ' (' + r.party + ') · ' + r.plan.toLowerCase() : 'No governor listed')) +
+      '<br>Chance of winning: ' + (r.p_dem >= 0.995 ? 'Democrats over 99%' : r.p_dem <= 0.005 ? 'Republicans over 99%' : bothTxt(r.p_dem)) + '<br>Projected ' + pts(r.margin);
+    document.querySelectorAll('#gv-map path').forEach(el => { const rs = by[el.dataset.s];
+      hover(el, () => rs ? rs.map(tipR).join('<br><br>') : '<b>' + esc(stName(el.dataset.s)) + '</b><br>No governor race through ' + last.year);
+      if (rs) el.addEventListener('click', () => { const row = document.getElementById('gv-r-' + rs[0].state + rs[0].year); document.querySelectorAll('#gv-t tr.on').forEach(x => x.classList.remove('on')); if (row) { row.classList.add('on'); row.scrollIntoView({behavior: 'smooth', block: 'center'}); } }); });
+    const withPolls = R.filter(r => r.polls).length, nomd = R.filter(r => r.nominees).length;
+    $('gv-note').textContent = (nomd ? nomd + ' of the ' + R.length + ' races have both nominees chosen and ' + (withPolls === 1 ? 'one has' : (withPolls || 'none') + ' have') + ' polls counted; the rest' : 'No race has both nominees chosen yet, so no polls count so far. Each race') +
+      ' rests on how its state votes, the national mood read from the president\'s approval, and whether its governor runs.';
+    // how many governorships
+    const Dd = G.distribution, ks = Object.keys(Dd).map(Number).filter(k => Dd[k] >= 0.0005).sort((a, b) => a - b);
+    const lo = Math.min(ks[0], 22), hi = Math.max(ks[ks.length - 1], 28), W = 760, H = 220, pl = 8, pr = 8, pt = 24, pb = 28, bw = (W - pl - pr) / (hi - lo + 1), mx = Math.max(...ks.map(k => Dd[k]));
+    let d = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Chance of each number of Democratic governors">';
+    for (let k = lo; k <= hi; k++) { const v = Dd[k] || 0, h = (H - pt - pb) * v / mx, x = pl + (k - lo) * bw;
+      d += '<g><title>' + k + ' Democratic governors: ' + (v < 0.001 ? 'under 0.1%' : pc(v, 1)) + '</title><rect x="' + (x + 1) + '" y="' + (H - pb - h) + '" width="' + Math.max(bw - 2, 1) + '" height="' + h + '" rx="2" fill="' + (k > 25 ? 'var(--d)' : k === 25 ? 'var(--k4)' : 'var(--r)') + '"/>';
+      d += '<text class="ax" x="' + (x + bw / 2) + '" y="' + (H - 8) + '" text-anchor="middle">' + k + '</text></g>'; }
+    $('gv-dist').innerHTML = d + '</svg>';
+    $('gv-dist-sub').textContent = 'Democratic governors after the ' + last.year + ' races, across ' + G.sims.toLocaleString('en-US') + ' simulated elections. The middle is ' + sm.dem_median + '; in 80% of them Democrats hold ' + sm.low80 + ' to ' + sm.high80 + '.';
+    $('gv-dist-cap').textContent = 'Blue: more than half of the 50. Red: fewer. Yellow: an even 25. The ' + (50 - R.length) + ' states with no race through ' + last.year + ' keep the governor their last election chose: ' + G.not_up.dem + ' Democrats and ' + G.not_up.rep + ' Republicans.';
+    if (G.history.length > 1) { $('gv-hist-f').hidden = false; const Hs = G.history, w = 760, h = 160, vals = Hs.map(r => r.mean), vlo = Math.floor(Math.min(...vals) - 1), vhi = Math.ceil(Math.max(...vals) + 1), x = i => 40 + i * (w - 56) / (Hs.length - 1), y = v => 12 + (vhi - v) / (vhi - vlo) * (h - 36);
+      let g = '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="Democratic governorships expected, day by day">';
+      [vlo, vhi].forEach(v => { g += '<line x1="40" x2="' + (w - 16) + '" y1="' + y(v) + '" y2="' + y(v) + '" stroke="var(--line)"/><text class="ax" x="34" y="' + (y(v) + 4) + '" text-anchor="end">' + v + '</text>'; });
+      g += '<polyline fill="none" stroke="var(--d)" stroke-width="2" points="' + Hs.map((r, i) => x(i) + ',' + y(r.mean)).join(' ') + '"/><text class="ax" x="40" y="' + (h - 4) + '">' + longDate(Hs[0].date) + '</text><text class="ax" x="' + (w - 16) + '" y="' + (h - 4) + '" text-anchor="end">' + longDate(Hs[Hs.length - 1].date) + '</text>';
+      $('gv-hist').innerHTML = g + '</svg>'; }
+    // every race
+    const runs = r => r.plan === 'Has not said' ? ': runs in ' + in100(r.p_runs) + ' of simulated elections' : '';
+    const cand = r => r.nominees ? '<small>D: ' + esc(r.nominees[0]) + ' · R: ' + esc(r.nominees[1]) + '</small>' : (r.declared && r.declared.length ? '<small>Declared: ' + r.declared.slice(0, 4).map(x => esc(x.name) + (x.party ? ' (' + x.party + ')' : '')).join(', ') + (r.declared.length > 4 ? ' and ' + (r.declared.length - 4) + ' more' : '') + '</small>' : '');
+    const pollTxt = r => r.polls ? '<small>' + (r.polls === 1 ? 'One poll' : r.polls + ' polls') + ' counted: ' + pts(r.poll_margin) + ', ' + Math.round(100 * r.poll_share) + '% of the forecast</small>' : '';
+    const rows = R.slice().sort((a, b) => (a.year - b.year) || (b.p_dem - a.p_dem));
+    $('gv-t').innerHTML = '<thead><tr><th>State</th><th>Governor</th><th class="n">Lean</th><th class="n">Chance of winning</th><th class="n">Projected margin</th><th class="n">80% prediction interval</th></tr></thead><tbody>' +
+      rows.map(r => '<tr id="gv-r-' + r.state + r.year + '"><td>' + esc(r.name) + '<small>' + longDate(r.election) + (r.special ? ' (special)' : '') + '</small>' + cand(r) + '</td>' +
+        '<td class="who">' + (r.governor ? '<i style="background:var(--' + (r.party === 'R' ? 'r' : r.party === 'D' ? 'd' : 'k4') + ')"></i>' + esc(r.governor) : 'Vacant') + '<small>' + esc(r.plan) + runs(r) + '</small></td>' +
+        '<td class="n">' + gvLean(r.lean) + '</td><td class="n">' + hsCell(r.p_dem) + '</td><td class="n ' + pcl(r.margin) + '">' + pts(r.margin) + pollTxt(r) + '</td><td class="n">' + pts(r.high80) + ' to ' + pts(r.low80) + '</td></tr>').join('') + '</tbody>';
+    $('gv-t-cap').textContent = 'Lean: how the state votes against the nation in the last two presidential elections, in points of the two-party vote. Margins are in points: the Democrat\'s share less the Republican\'s. Polls count once both nominees are chosen, partisan ones left out. The 80% prediction interval is where the margin falls in 80% of simulated elections; governor races are far less tied to how a state votes for president than Senate or House races are, so the intervals are wide until the polls come in.';
+    const B = G.backtests || {}, t = (B.tests || {})['2026'], Mo = G.model, yrs = Mo.years, l26 = t ? t.rows.find(r => r.days === 1) : null;
+    $('gv-how').innerHTML = '<p>Each race starts from the national mood the Senate forecast reads (from the president\'s approval and, once there are polls of it, the generic congressional ballot), which sets the year\'s level, and from how the state votes against the nation. A governor running again counts for a great deal: a sitting governor on the ballot has been worth about ' + Math.round(2 * Mo.coef.inc_d) + ' points of margin to a Democrat and ' + Math.round(-2 * Mo.coef.inc_r) + ' to a Republican. Once both nominees are chosen, the race\'s polls are blended in, with more weight the more polls there are and the nearer the election; for governors they come to carry most of the forecast. The weights were fitted on every governor race from ' + yrs[0] + ' to ' + yrs[yrs.length - 1] + '.</p>' +
+      (l26 ? '<p>Run on 2026 without having seen it, the method called ' + l26.called + ' of ' + l26.races + ' races on the last day and expected about ' + Math.round(l26.dem_won_mean) + ' Democratic wins, with 80% of simulated elections between ' + Math.round(l26.dem_won_low) + ' and ' + Math.round(l26.dem_won_high) + '. Democrats won ' + t.dem_won + '.</p>' : '') +
+      '<p><a href="#model/governor">How the governor model works, in full</a> · <a href="#backtests/governor">How it has done</a></p>';
+  }
+  function drawGovModel(G) {
+    const Mo = G.model, N = G.national, c = Mo.coef, f1 = v => v.toFixed(1), f2 = v => v.toFixed(2), yrs = Mo.years, span = yrs[0] + ' to ' + yrs[yrs.length - 1], Dd = Mo.distances, P = Mo.polls;
+    const tr = (cells, h) => '<tr>' + cells.map((x, i) => '<' + (h ? 'th' : 'td') + (i ? ' class="n"' : '') + '>' + x + '</' + (h ? 'th' : 'td') + '>').join('') + '</tr>';
+    const ks = ['365', '120', '60', '14', '1'].filter(k => P[k] && P[k].own_sd != null), sh = (q, w) => Math.round(100 * (q.w0 + (q.w1 - q.w0) * w / (w + q.k))) + '%';
+    const far = Dd['365'], near = Dd['1'];
+    $('gm-body').innerHTML = '<h2>The governor model</h2>' +
+      '<p>The governor model forecasts each governor race from today through the next even-year election, the odd-year races before it included, and counts the governorships each party holds after them. It reads the same national mood as the Senate and House models and, in a presidential year, runs that year\'s races inside the presidential model\'s simulated elections; everything else in it was fitted on the governor races of ' + span + ' and tested on each year since the national mood was first read, with that year left out (the Back-tests tab).</p>' +
+      '<h3 class="step">Step 1: The year\'s level</h3><p>A governor\'s race moves with the nation less than a House race does. Across ' + span + ', each year\'s level moved ' + f2(Mo.beta) + ' of a point for each point of the national House vote, and sat ' + f1(Math.abs(Mo.alpha)) + ' points ' + (Mo.alpha < 0 ? 'below' : 'above') + ' an even race when the House vote was even; years strayed from that line by ' + f1(Mo.level_sd) + ' points. The forecast puts the national mood where the House vote is: today ' + f1(N.mood) + '%, which sets the level at ' + f1(N.level) + '%.</p>' +
+      '<h3 class="step">Step 2: Each race</h3><p>To the level the forecast adds ' + f2(c.lean) + ' of a point for each point the state leans (its Democratic share of the presidential vote against the nation\'s in the last two elections, three parts the last one), and a governor running: ' + f1(2 * c.inc_d) + ' points of margin for a Democrat, ' + f1(-2 * c.inc_r) + ' for a Republican. Without polls a race\'s own error has a spread (standard deviation) of ' + f1(2 * Mo.race_sd) + ' points of margin: governor races turn on the candidates more than any other race here.</p>' +
+      '<h3 class="step">Step 3: Who runs</h3><p>A governor who is term-limited, retiring or beaten in the primary leaves the race open. One who has not said runs in ' + in100(Mo.governors_ran) + ' of simulated elections, the share of governors free to run who were on the November ballot, ' + span + ' (' + Mo.governors_free + ' governors). Once both nominees are chosen, they settle it.</p>' +
+      '<h3 class="step">Step 4: The race\'s polls</h3><p>Once both nominees are chosen, the race\'s polls of the two of them, from its Wikipedia page and the polling pages it points to, are averaged in the presidential model\'s weights and blended with the starting point. Polls paid for by a party, a party committee or a campaign are left out. The polls\' share grows with how much polling there is, from a floor to a cap fitted at each distance on the races polled in ' + (Mo.poll_years && Mo.poll_years.length ? Mo.poll_years[0] + ' to ' + Mo.poll_years[Mo.poll_years.length - 1] : span) + '; races with polls then have a smaller error of their own.</p>' +
+      (ks.length ? '<div class="scroll" tabindex="0" role="region" aria-label="Table"><table>' + tr(['The polls\' share of a race\'s forecast'].concat(ks.map(k => days2(+k))), true) + tr(['about one fresh poll'].concat(ks.map(k => sh(P[k], 0.5)))) + tr(['about five'].concat(ks.map(k => sh(P[k], 2.5)))) +
+        tr(['a race\'s own error with polls (points of margin)'].concat(ks.map(k => f1(2 * P[k].own_sd)))) + '</table></div>' : '') +
+      '<h3 class="step">Step 5: Simulating the races</h3><p>The races are simulated together ' + G.sims.toLocaleString('en-US') + ' times. Each race\'s error has a part every race shares, drawn from a t distribution with ' + Mo.t_df + ' degrees of freedom: ' + f2(Mo.beta) + ' times the national mood\'s miss of the House vote at that distance, with the years\' own spread about the line (' + f1(2 * far.shared_sd) + ' points of margin a year out, ' + f1(2 * near.shared_sd) + ' on the last day), and a part of its own. ' +
+      (G.year % 4 === 0 ? 'The ' + G.year + ' races are drawn inside the presidential forecast\'s own simulated elections, each moving about ' + f1(Mo.pres_link) + ' points with each point its state\'s presidential vote moves. ' : '') + 'The governorships are counted after the races: each race\'s winner, and in the other states the governor their last election chose.</p>' +
+      '<h3 class="step">Sources and limits</h3><p class="fine">Races, governors, their plans, candidates and polls: Wikipedia (CC BY-SA 4.0), read every hour. Results of 2006 to 2024 and polls of 2018 to 2024: FiveThirtyEight (CC BY 4.0), the polls from the archived copy in github.com/jcervas/data. The national mood: the Senate model.</p>' +
+      '<p class="fine">Limits worth knowing: the odd-year races are forecast with the equation fitted on even years, since the national House vote, which sets a year\'s level, is only cast in even years; a race with a strong independent is forecast as a two-party race; and with ' + (NUMW[yrs.length] || yrs.length) + ' election years and few races in presidential years, the fit has little to learn from in those years.</p>';
+  }
+  function drawGovBack(G) {
+    const B = G.backtests; if (!B) { $('gb-stand').textContent = 'The governor back-tests are not available.'; return; }
+    const f1 = v => v.toFixed(1), yrs = B.years, rows = B.rows, S1 = B.summary['1'], S0 = (B.summary_without_polls || {})['1'];
+    const ld = rows.filter(r => r.days === 1), ins = ld.filter(r => r.inside).length;
+    $('gb-stand').textContent = 'Every year of governor races from ' + yrs[0] + ' to ' + yrs[yrs.length - 1] + ', forecast by the governor model with that year left out of its fit and the national mood as it stood. On the last day it called ' + S1.called + ' of ' + S1.races + ' races, missed a typical race by ' + f1(S1.avg_miss) + ' points of margin, and the number of races Democrats won fell inside its 80% range in ' + ins + ' of ' + yrs.length + ' years.';
+    const ds = [365, 120, 60, 14, 1].filter(d => rows.some(r => r.days === d)); let cur = 1;
+    const drawYear = () => { $('gb-days').innerHTML = ds.map(d => '<button type="button" aria-pressed="' + (d === cur) + '" data-d="' + d + '">' + days2(d) + '</button>').join('');
+      $('gb-year').innerHTML = '<thead><tr><th>Year</th><th class="n">Races called</th><th class="n">Typical miss</th><th class="n">Democratic wins forecast</th><th class="n">80% prediction interval</th><th class="n">Actual</th></tr></thead><tbody>' +
+        rows.filter(r => r.days === cur).map(r => '<tr><td>' + r.year + '</td><td class="n">' + r.called + ' of ' + r.races + '</td><td class="n">' + f1(r.avg_miss) + '</td><td class="n">' + f1(r.dem_won_mean) + '</td><td class="n">' + Math.round(r.dem_won_low) + ' to ' + Math.round(r.dem_won_high) + '</td><td class="n">' + r.dem_won + (r.inside ? '' : ' (outside)') + '</td></tr>').join('') + '</tbody>';
+      $('gb-year-cap').textContent = 'Typical miss: the average gap, in points, between a race\'s forecast margin and its result. Democratic wins: of that year\'s races.'; };
+    $('gb-days').addEventListener('click', e => { const b = e.target.closest('button[data-d]'); if (b) { cur = +b.dataset.d; drawYear(); } }); drawYear();
+    const Sk = Object.keys(B.summary).map(Number).sort((a, b) => b - a), first = B.summary[String(Sk[0])];
+    $('gb-dist-p').textContent = 'The same test run from a year before each election to the last day. The forecast sharpens as the polls of the nominees come in: the typical miss falls from ' + f1(first.avg_miss) + ' points a year out to ' + f1(S1.avg_miss) + ' on the last day' + (S0 ? ', against ' + f1(S0.avg_miss) + ' on the last day without the polls' : '') + '.';
+    $('gb-dist').innerHTML = '<thead><tr><th>When</th><th class="n">Races called</th><th class="n">Typical miss</th><th class="n">Brier score</th><th class="n">Wins inside the 80% range</th></tr></thead><tbody>' +
+      Sk.map(d => { const s = B.summary[String(d)]; return '<tr><td>' + days2(d) + '</td><td class="n">' + Math.round(s.called) + ' of ' + Math.round(s.races) + '</td><td class="n">' + f1(s.avg_miss) + '</td><td class="n">' + s.brier.toFixed(3) + '</td><td class="n">' + Math.round(s.inside80 * s.years) + ' of ' + Math.round(s.years) + '</td></tr>'; }).join('') + '</tbody>';
+    $('gb-dist-cap').textContent = 'Over the ' + (NUMW[yrs.length] || yrs.length) + ' years. The Brier score is the average squared gap between each race\'s chance and what happened: 0 is perfect and 0.25 is a coin toss.';
+    const t = (B.tests || {})['2026']; $('gb-26-c').hidden = $('gb-26-f').hidden = !t;
+    if (t) { const l = t.rows.find(r => r.days === 1), far = t.rows.find(r => r.days === 365) || t.rows[0];
+      $('gb-26-p').textContent = '2026 joins the model\'s fit once its results settle. Here are its ' + t.races_n + ' races forecast from ' + B.fit_years[0] + ' to ' + B.fit_years[B.fit_years.length - 1] + ' alone. Democrats won ' + t.dem_won + '. A year out the forecast expected ' + f1(far.dem_won_mean) + ' Democratic wins' + (far.inside ? ', inside its 80% range' : ', outside its 80% range') + '; on the last day ' + f1(l.dem_won_mean) + (l.inside ? ', inside it' : ', outside it') + ', with ' + l.called + ' of ' + l.races + ' races called.';
+      $('gb-26').innerHTML = '<thead><tr><th>When</th><th class="n">Races called</th><th class="n">Typical miss</th><th class="n">Democratic wins forecast</th><th class="n">80% prediction interval</th><th class="n">Actual</th></tr></thead><tbody>' +
+        t.rows.slice().sort((a, b) => b.days - a.days).map(r => '<tr><td>' + days2(r.days) + '</td><td class="n">' + r.called + ' of ' + r.races + '</td><td class="n">' + f1(r.avg_miss) + '</td><td class="n">' + f1(r.dem_won_mean) + '</td><td class="n">' + Math.round(r.dem_won_low) + ' to ' + Math.round(r.dem_won_high) + '</td><td class="n">' + r.dem_won + (r.inside ? '' : ' (outside)') + '</td></tr>').join('') + '</tbody>';
+      $('gb-26-cap').textContent = 'Results as Wikipedia gave them on ' + longDate(t.read) + '. The national mood for 2026 is as it stood at each distance.'; }
+    $('gb-tried').innerHTML = '<thead><tr><th>Idea</th><th>What the test showed</th><th>Verdict</th></tr></thead><tbody>' +
+      (B.tested || []).map(x => '<tr><td>' + esc(x.idea) + '</td><td>' + esc(x.result) + '</td><td>' + (x.adopted ? 'Kept' : 'Left out') + '</td></tr>').join('') + '</tbody>';
+  }
+
+  // ---- tabs. #presidency (also #forecast, the old name), #senate, #house, #governors, #polls, #model, #backtests,
+  // #research; #states/PA opens a state in the Presidency tab's State by state section; #polls/senate, #model/senate and
+  // #backtests/senate show the Senate side of those tabs, #model/house and #backtests/house the House side,
+  // #model/governor and #backtests/governor the governors'; #model/narrow and the like go to a section inside a tab.
   const SW = ['polls', 'model', 'backtests'];
   function showSide(tab, side) {
     document.querySelectorAll('[data-sw="' + tab + '"] button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === side)));
     document.querySelectorAll('[data-panel^="' + tab + ':"]').forEach(el => { el.hidden = el.dataset.panel !== tab + ':' + side; });
     if (side === 'senate') senateInto(tab);
     if (side === 'house') houseInto(tab);
+    if (side === 'governor') govInto(tab);
   }
-  const SIDES = {polls: ['senate'], model: ['senate', 'house'], backtests: ['senate', 'house']};
+  const SIDES = {polls: ['senate'], model: ['senate', 'house', 'governor'], backtests: ['senate', 'house', 'governor']};
   document.querySelectorAll('[data-sw]').forEach(g => g.addEventListener('click', e => { const b = e.target.closest('button[data-v]'); if (b) location.hash = '#' + g.dataset.sw + (b.dataset.v === 'pres' ? '' : '/' + b.dataset.v); }));
   let stQuiet = false;          // a state picked inside the State by state section: show it without jumping the page
   $('st-sel').addEventListener('change', () => { stQuiet = true; }, true); $('st-strip').addEventListener('click', () => { stQuiet = true; }, true);
   if (!stSel) stHint();
-  (function () { const TABS = {presidency: 't-forecast', senate: 't-senate', house: 't-house', polls: 't-polls', model: 't-model', backtests: 't-backtests', research: 't-research'}, ALIAS = {forecast: 'presidency', states: 'presidency'};
+  (function () { const TABS = {presidency: 't-forecast', senate: 't-senate', house: 't-house', governors: 't-governor', polls: 't-polls', model: 't-model', backtests: 't-backtests', research: 't-research'}, ALIAS = {forecast: 'presidency', states: 'presidency'};
     const go = () => { const parts = (location.hash || '#presidency').slice(1).split('/'), asked = ALIAS[parts[0]] || parts[0], cur = TABS[asked] ? asked : 'presidency';
       Object.keys(TABS).forEach(k => { $(TABS[k]).hidden = k !== cur; }); document.querySelectorAll('#tabs a').forEach(a => { if (a.getAttribute('href') === '#' + cur) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
       if (cur === 'senate') senateInto('senate');
       if (cur === 'house') houseInto('house');
+      if (cur === 'governors') govInto('governor');
       if (SW.indexOf(cur) >= 0) showSide(cur, (SIDES[cur] || []).indexOf(parts[1]) >= 0 ? parts[1] : 'pres');
       if (parts[0] === 'states') { const want = parts[1] && ST[parts[1]] ? parts[1] : stSel; if (want) showState(want); else stHint();
         if (!stQuiet) $('states').scrollIntoView({behavior: 'instant', block: 'start'}); stQuiet = false; tipHide(); return; }
-      const to = parts[1] && parts[1] !== 'senate' && parts[1] !== 'house' && document.getElementById(parts[1]);          // a section inside the tab, as in #model/narrow
+      const to = parts[1] && ['senate', 'house', 'governor'].indexOf(parts[1]) < 0 && document.getElementById(parts[1]);          // a section inside the tab, as in #model/narrow
       if (to && $(TABS[cur]).contains(to)) to.scrollIntoView({behavior: 'instant', block: 'start'}); else window.scrollTo({top: 0, behavior: 'instant'});
       tipHide(); };
     const navh = () => document.documentElement.style.setProperty('--navh', document.querySelector('nav').offsetHeight + 'px');

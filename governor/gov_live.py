@@ -256,7 +256,7 @@ def page_data(out, H, model):
     """The site's governor data (docs/api/governor.json): the Governors tab, its model and its back-tests."""
     bp = os.path.join(D, 'backtest.json'); B = json.load(open(bp)) if os.path.exists(bp) else None
     keep = [k for k in ('365', '120', '60', '14', '1') if k in model['distances']]
-    mdl = {k: model[k] for k in ('years', 'coef', 'race_sd', 'alpha', 'beta', 'level_sd', 'governors_ran', 'governors_free')}
+    mdl = {k: model.get(k) for k in ('years', 'coef', 'race_sd', 'alpha', 'beta', 'level_sd', 'governors_ran', 'governors_free', 'poll_years')}
     mdl.update({'t_df': model['simulation']['t_df'], 'pres_link': model['simulation']['pres_link'],
                 'distances': {k: model['distances'][k] for k in keep}, 'polls': {k: model['polls'][k] for k in keep}})
     P = {k: out[k] for k in ('as_of', 'year', 'cycle', 'governors_now', 'not_up', 'national', 'presidential_forecast', 'summary', 'distribution', 'races')}

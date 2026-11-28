@@ -44,6 +44,12 @@ def governors_who_ran(T, years):
     return round(float(on.mean()), 4) if len(free) else None, int(len(free))
 
 
+def poll_years(years):
+    """The fitted years with race polls (data/governor/polls_by_date.csv)."""
+    p = os.path.join(D, 'polls_by_date.csv')
+    return sorted(int(y) for y in set(pd.read_csv(p).year) & set(years)) if os.path.exists(p) else []
+
+
 def model(T, years):
     w, lev, sd = S.fit(T, years)
     N = S.national(); nv = S.votes()
@@ -61,7 +67,7 @@ def model(T, years):
             'years': years, 'columns': S.COLS, 'coef': {c: round(float(v), 5) for c, v in zip(S.COLS, w)}, 'race_sd': round(sd, 4),
             'levels': {str(y): round(float(lev[y]), 4) for y in years}, 'votes': {str(y): float(nv[y]) for y in years if y in nv.index},
             'alpha': round(alpha, 4), 'beta': round(beta, 4), 'level_sd': round(lsd, 4), 'distances': dist, 'polls': polls,
-            'governors_ran': ran, 'governors_free': free,
+            'governors_ran': ran, 'governors_free': free, 'poll_years': poll_years(years),
             'simulation': {'t_df': S.T_DF, 'pres_link': sim['pres_link'], 'shared_floor': sim['shared_floor'], 'own_floor': sim['own_floor']}}
 
 

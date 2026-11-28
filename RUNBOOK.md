@@ -142,6 +142,25 @@ contested districts. The after-election job adds it once the page is complete (n
 Back-tests tab shows 2026 forecast from 2018-2024 and scored on the winners (`python house/after_election.py --year 2026
 --pages FILE --test --save`, with the pages saved by `tools/fetch_house_pages.py` through the samples workflow).
 
+## The governor jobs (The Margin)
+
+| Job | Workflow | What it does | What starts it |
+|---|---|---|---|
+| The governor forecast | `Governor forecast` (`governor.yml`) | reads Wikipedia's overviews and race pages of every governor race through the next even-year election (the odd-year races before it included), takes the national mood from the Senate forecast and reruns the forecast (`governor/gov_live.py`) | the end of each run of `Senate forecast`, GitHub's schedule (minute 35), a run started by hand |
+| After each year's races | `Governors after the election` (`governor-after.yml`) | once a year's results have settled (seven weeks) and Wikipedia has every race's result, adds the races and their polls to the training data, refits the model and remakes the back-tests (`governor/gov_after.py`, `governor/gov_fit.py`) | the governor forecast job, once its last run is a week old; GitHub's schedule (Mondays, 16:37 UTC); by hand |
+
+**Each job's health**, read as the Senate's:
+[governor-forecast.json](https://ka82205.github.io/the-margin/api/health/governor-forecast.json),
+[governor-after.json](https://ka82205.github.io/the-margin/api/health/governor-after.json). The errors are the House's
+(above): a page that changed shape stops the run and keeps the last forecast; a Senate forecast more than three days old
+stops it too; "not added yet" lists what Wikipedia still lacks. The checks also need every one of the 50 states accounted
+for: those with a race, and those whose last election (read from the overview of the year it was held) chose their
+governor.
+
+2026's 36 races pass every check already; the after-election job adds them, with their polls, once seven weeks have
+passed (December 22). Until then the Back-tests tab shows 2026 forecast from 2006-2024 (`python governor/gov_after.py
+--year 2026 --pages FILE --test --save`).
+
 ## Secrets
 
 Four secrets, all optional, set under each repository's Settings, Secrets and variables, Actions. Never put one in a file,
@@ -247,7 +266,8 @@ authors' published methods and are not adjusted.
 
     the-margin        python -m pytest tests && node tests/test_page.js && node tests/browser_hover.js && node tests/browser_page.js
                       (the Senate, each on its own: python tests/test_senate_live.py, test_after_election.py,
-                      test_fec_live.py, test_senate_health.py; the House: python tests/test_house.py)
+                      test_fec_live.py, test_senate_health.py; the House: python tests/test_house.py; the governors:
+                      python tests/test_governor.py)
                       (the studies: python interval_study.py, market_study.py, method_change.py, keys_study.py, state_trend_study.py)
     fifty-two-keys    python -m pytest tests
     tipping-point     python pipeline/tests/test_runs.py && python pipeline/tests/test_civiqs.py

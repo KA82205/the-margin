@@ -200,6 +200,12 @@
  },
  "governors_ran": 0.7598,
  "governors_free": 179,
+ "poll_years": [
+  2018,
+  2020,
+  2022,
+  2024
+ ],
  "simulation": {
   "t_df": 5,
   "pres_link": 0.5,
