@@ -1,9 +1,9 @@
 {
  "job": "senate-forecast",
  "ok": true,
- "last_run": "2026-11-27",
- "last_success": "2026-11-27",
- "overdue_after": "2026-11-28",
+ "last_run": "2026-11-28",
+ "last_success": "2026-11-28",
+ "overdue_after": "2026-11-29",
  "failing_since": null,
  "error": null,
  "runs": "every hour, after each run of the presidential forecast",

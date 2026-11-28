@@ -1,8 +1,8 @@
 {
- "as_of": "2026-11-27",
+ "as_of": "2026-11-28",
  "year": 2028,
  "election": "2028-11-07",
- "days_out": 711,
+ "days_out": 710,
  "distance_used": 365,
  "president": "Donald Trump",
  "president_party": "R",
@@ -34,18 +34,18 @@
   "shift_to_seat_model": 0.532
  },
  "presidential_forecast": {
-  "as_of": "2026-11-27",
+  "as_of": "2026-11-28",
   "p_dem": 0.6979,
-  "published_p_model": 0.6978
+  "published_p_model": 0.6979
  },
  "simulation": {
   "sims": 40000,
-  "shared_sd": 2.7653,
+  "shared_sd": 2.7645,
   "sd_total": {
-   "polls": 3.273,
-   "no_polls": 3.8135
+   "polls": 3.2723,
+   "no_polls": 3.8129
   },
-  "shared_sd_beside_president": 2.2101,
+  "shared_sd_beside_president": 2.2096,
   "pres_link": 0.5
  },
  "summary": {
@@ -68,28 +68,28 @@
   "45": 0.00022,
   "46": 0.00017,
   "47": 0.00057,
-  "48": 0.00093,
-  "49": 0.00158,
+  "48": 0.0009,
+  "49": 0.0016,
   "50": 0.0048,
-  "51": 0.0102,
-  "52": 0.01717,
-  "53": 0.03168,
-  "54": 0.05167,
-  "55": 0.07812,
+  "51": 0.01015,
+  "52": 0.0172,
+  "53": 0.0317,
+  "54": 0.05153,
+  "55": 0.07817,
   "56": 0.11083,
-  "57": 0.13415,
+  "57": 0.13423,
   "58": 0.13442,
-  "59": 0.12387,
-  "60": 0.097,
+  "59": 0.12395,
+  "60": 0.09703,
   "61": 0.071,
-  "62": 0.04785,
+  "62": 0.0478,
   "63": 0.0314,
   "64": 0.0207,
   "65": 0.01202,
-  "66": 0.008,
-  "67": 0.00447,
+  "66": 0.00797,
+  "67": 0.0045,
   "68": 0.00255,
-  "69": 0.00143,
+  "69": 0.0014,
   "70": 0.00097,
   "71": 0.00055,
   "72": 0.0006,
@@ -117,9 +117,9 @@
     }
    ],
    "margin": -15.56,
-   "low80": -25.14,
+   "low80": -25.13,
    "high80": -5.99,
-   "p_dem": 0.0208,
+   "p_dem": 0.0207,
    "p_dem_if_dem_president": 0.0275,
    "p_dem_if_rep_president": 0.0051,
    "fundamentals_margin": -16.58,
@@ -129,8 +129,8 @@
    "track": 0.0,
    "page": "2028 United States Senate special election in Tennessee",
    "pres_link": 0.5,
-   "sd_own": 2.1187,
-   "sd_total": 3.8135,
+   "sd_own": 2.1234,
+   "sd_total": 3.8129,
    "run_gap_margin": null
   },
   {
@@ -159,8 +159,8 @@
    "track": -7.0972,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.3233,
-   "sd_total": 3.8135,
+   "sd_own": 2.3228,
+   "sd_total": 3.8129,
    "run_gap_margin": -6.2
   },
   {
@@ -181,7 +181,7 @@
    "high80": 7.07,
    "p_dem": 0.3729,
    "p_dem_if_dem_president": 0.4436,
-   "p_dem_if_rep_president": 0.2094,
+   "p_dem_if_rep_president": 0.2095,
    "fundamentals_margin": -3.49,
    "polls_margin": null,
    "polls": 0,
@@ -189,8 +189,8 @@
    "track": 6.5683,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.2419,
-   "sd_total": 3.8135,
+   "sd_own": 2.2414,
+   "sd_total": 3.8129,
    "run_gap_margin": 0.02
   },
   {
@@ -208,10 +208,10 @@
    "declared": [],
    "margin": 7.18,
    "low80": -2.49,
-   "high80": 16.88,
-   "p_dem": 0.8314,
+   "high80": 16.87,
+   "p_dem": 0.8316,
    "p_dem_if_dem_president": 0.8882,
-   "p_dem_if_rep_president": 0.7001,
+   "p_dem_if_rep_president": 0.7007,
    "fundamentals_margin": 6.14,
    "polls_margin": null,
    "polls": 0,
@@ -219,8 +219,8 @@
    "track": -1.8384,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.2283,
-   "sd_total": 3.8135,
+   "sd_own": 2.2277,
+   "sd_total": 3.8129,
    "run_gap_margin": 2.89
   },
   {
@@ -249,8 +249,8 @@
    "track": 1.9848,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 1.6176,
-   "sd_total": 3.8135,
+   "sd_own": 1.6168,
+   "sd_total": 3.8129,
    "run_gap_margin": -2.07
   },
   {
@@ -268,7 +268,7 @@
    "declared": [],
    "margin": 31.43,
    "low80": 21.54,
-   "high80": 41.27,
+   "high80": 41.26,
    "p_dem": 0.9997,
    "p_dem_if_dem_president": 0.9999,
    "p_dem_if_rep_president": 0.9993,
@@ -279,8 +279,8 @@
    "track": 2.1847,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.1754,
-   "sd_total": 3.8135,
+   "sd_own": 2.1748,
+   "sd_total": 3.8129,
    "run_gap_margin": 4.72
   },
   {
@@ -309,8 +309,8 @@
    "track": -5.3666,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.3056,
-   "sd_total": 3.8135,
+   "sd_own": 2.3051,
+   "sd_total": 3.8129,
    "run_gap_margin": 1.28
   },
   {
@@ -332,11 +332,11 @@
     }
    ],
    "margin": 25.72,
-   "low80": 16.16,
+   "low80": 16.15,
    "high80": 35.22,
    "p_dem": 0.9988,
    "p_dem_if_dem_president": 0.9993,
-   "p_dem_if_rep_president": 0.9975,
+   "p_dem_if_rep_president": 0.9976,
    "fundamentals_margin": 24.73,
    "polls_margin": null,
    "polls": 0,
@@ -344,8 +344,8 @@
    "track": 0.4,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.4131,
-   "sd_total": 3.8135,
+   "sd_own": 2.4167,
+   "sd_total": 3.8129,
    "run_gap_margin": null
   },
   {
@@ -374,8 +374,8 @@
    "track": -3.0205,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.3712,
-   "sd_total": 3.8135,
+   "sd_own": 2.3707,
+   "sd_total": 3.8129,
    "run_gap_margin": -4.34
   },
   {
@@ -392,11 +392,11 @@
    "fixed": null,
    "declared": [],
    "margin": 9.73,
-   "low80": -0.03,
+   "low80": -0.02,
    "high80": 19.39,
    "p_dem": 0.8992,
    "p_dem_if_dem_president": 0.9408,
-   "p_dem_if_rep_president": 0.8031,
+   "p_dem_if_rep_president": 0.8032,
    "fundamentals_margin": 8.7,
    "polls_margin": null,
    "polls": 0,
@@ -404,8 +404,8 @@
    "track": -0.5958,
    "page": "2028 United States Senate election in Georgia",
    "pres_link": 0.5,
-   "sd_own": 2.3553,
-   "sd_total": 3.8135,
+   "sd_own": 2.3548,
+   "sd_total": 3.8129,
    "run_gap_margin": 3.45
   },
   {
@@ -433,9 +433,9 @@
    "lean": 12.588,
    "track": 6.6541,
    "page": null,
-   "pres_link": 0.4799,
+   "pres_link": 0.4798,
    "sd_own": 1.0,
-   "sd_total": 3.8135,
+   "sd_total": 3.8129,
    "run_gap_margin": 6.75
   },
   {
@@ -464,8 +464,8 @@
    "track": 0.2778,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.3919,
-   "sd_total": 3.8135,
+   "sd_own": 2.3914,
+   "sd_total": 3.8129,
    "run_gap_margin": -2.84
   },
   {
@@ -482,7 +482,7 @@
    "fixed": null,
    "declared": [],
    "margin": 22.54,
-   "low80": 12.55,
+   "low80": 12.56,
    "high80": 32.41,
    "p_dem": 0.9965,
    "p_dem_if_dem_president": 0.9986,
@@ -494,8 +494,8 @@
    "track": 1.9038,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.3748,
-   "sd_total": 3.8135,
+   "sd_own": 2.3744,
+   "sd_total": 3.8129,
    "run_gap_margin": 4.59
   },
   {
@@ -514,8 +514,8 @@
    "margin": -10.69,
    "low80": -20.5,
    "high80": -0.84,
-   "p_dem": 0.0833,
-   "p_dem_if_dem_president": 0.1079,
+   "p_dem": 0.0832,
+   "p_dem_if_dem_president": 0.1077,
    "p_dem_if_rep_president": 0.0264,
    "fundamentals_margin": -11.7,
    "polls_margin": null,
@@ -524,8 +524,8 @@
    "track": -3.0937,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.0144,
-   "sd_total": 3.8135,
+   "sd_own": 2.0138,
+   "sd_total": 3.8129,
    "run_gap_margin": -4.38
   },
   {
@@ -545,8 +545,8 @@
    "low80": -13.72,
    "high80": 5.67,
    "p_dem": 0.2935,
-   "p_dem_if_dem_president": 0.354,
-   "p_dem_if_rep_president": 0.1538,
+   "p_dem_if_dem_president": 0.3538,
+   "p_dem_if_rep_president": 0.154,
    "fundamentals_margin": -5.08,
    "polls_margin": null,
    "polls": 0,
@@ -554,8 +554,8 @@
    "track": 0.4171,
    "page": "2028 United States Senate election in Iowa",
    "pres_link": 0.5,
-   "sd_own": 2.101,
-   "sd_total": 3.8135,
+   "sd_own": 2.1005,
+   "sd_total": 3.8129,
    "run_gap_margin": -2.78
   },
   {
@@ -574,7 +574,7 @@
    "margin": -7.01,
    "low80": -16.64,
    "high80": 2.69,
-   "p_dem": 0.1736,
+   "p_dem": 0.1737,
    "p_dem_if_dem_president": 0.2165,
    "p_dem_if_rep_president": 0.0747,
    "fundamentals_margin": -8.05,
@@ -584,8 +584,8 @@
    "track": 1.2159,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.3386,
-   "sd_total": 3.8135,
+   "sd_own": 2.3381,
+   "sd_total": 3.8129,
    "run_gap_margin": -2.42
   },
   {
@@ -602,7 +602,7 @@
    "fixed": null,
    "declared": [],
    "margin": -16.88,
-   "low80": -26.48,
+   "low80": -26.47,
    "high80": -7.32,
    "p_dem": 0.0144,
    "p_dem_if_dem_president": 0.019,
@@ -614,8 +614,8 @@
    "track": 6.0276,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.268,
-   "sd_total": 3.8135,
+   "sd_own": 2.2675,
+   "sd_total": 3.8129,
    "run_gap_margin": -0.23
   },
   {
@@ -649,8 +649,8 @@
    "track": -8.0,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.0851,
-   "sd_total": 3.8135,
+   "sd_own": 2.0845,
+   "sd_total": 3.8129,
    "run_gap_margin": null
   },
   {
@@ -679,8 +679,8 @@
    "track": 1.0239,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.3313,
-   "sd_total": 3.8135,
+   "sd_own": 2.3308,
+   "sd_total": 3.8129,
    "run_gap_margin": 4.19
   },
   {
@@ -709,8 +709,8 @@
    "track": -0.4384,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.2029,
-   "sd_total": 3.8135,
+   "sd_own": 2.2024,
+   "sd_total": 3.8129,
    "run_gap_margin": -3.17
   },
   {
@@ -729,9 +729,9 @@
    "margin": 8.42,
    "low80": -1.29,
    "high80": 17.9,
-   "p_dem": 0.8688,
+   "p_dem": 0.8689,
    "p_dem_if_dem_president": 0.9175,
-   "p_dem_if_rep_president": 0.7562,
+   "p_dem_if_rep_president": 0.7565,
    "fundamentals_margin": 7.39,
    "polls_margin": null,
    "polls": 0,
@@ -739,8 +739,8 @@
    "track": -3.85,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.3637,
-   "sd_total": 3.8135,
+   "sd_own": 2.3632,
+   "sd_total": 3.8129,
    "run_gap_margin": 1.97
   },
   {
@@ -769,8 +769,8 @@
    "track": 0.5116,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.3887,
-   "sd_total": 3.8135,
+   "sd_own": 2.3883,
+   "sd_total": 3.8129,
    "run_gap_margin": 3.96
   },
   {
@@ -799,8 +799,8 @@
    "track": -1.7826,
    "page": "2028 United States Senate election in New York",
    "pres_link": 0.5,
-   "sd_own": 2.2833,
-   "sd_total": 3.8135,
+   "sd_own": 2.2874,
+   "sd_total": 3.8129,
    "run_gap_margin": 2.91
   },
   {
@@ -826,7 +826,7 @@
    "high80": 12.57,
    "p_dem": 0.6639,
    "p_dem_if_dem_president": 0.7492,
-   "p_dem_if_rep_president": 0.4668,
+   "p_dem_if_rep_president": 0.4669,
    "fundamentals_margin": 2.05,
    "polls_margin": null,
    "polls": 0,
@@ -834,8 +834,8 @@
    "track": 0.106,
    "page": "2028 United States Senate election in North Carolina",
    "pres_link": 0.5,
-   "sd_own": 2.3928,
-   "sd_total": 3.8135,
+   "sd_own": 2.3923,
+   "sd_total": 3.8129,
    "run_gap_margin": null
   },
   {
@@ -864,8 +864,8 @@
    "track": -6.2519,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 1.4785,
-   "sd_total": 3.8135,
+   "sd_own": 1.4778,
+   "sd_total": 3.8129,
    "run_gap_margin": -5.81
   },
   {
@@ -890,7 +890,7 @@
    "low80": -9.29,
    "high80": 9.88,
    "p_dem": 0.5121,
-   "p_dem_if_dem_president": 0.5945,
+   "p_dem_if_dem_president": 0.5946,
    "p_dem_if_rep_president": 0.3217,
    "fundamentals_margin": -0.73,
    "polls_margin": null,
@@ -899,8 +899,8 @@
    "track": -8.207,
    "page": "2028 United States Senate election in Ohio",
    "pres_link": 0.5,
-   "sd_own": 2.2666,
-   "sd_total": 3.8135,
+   "sd_own": 2.2661,
+   "sd_total": 3.8129,
    "run_gap_margin": null
   },
   {
@@ -918,7 +918,7 @@
    "declared": [],
    "margin": -23.04,
    "low80": -32.74,
-   "high80": -13.38,
+   "high80": -13.39,
    "p_dem": 0.0028,
    "p_dem_if_dem_president": 0.0036,
    "p_dem_if_rep_president": 0.0008,
@@ -929,8 +929,8 @@
    "track": 0.0606,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.1689,
-   "sd_total": 3.8135,
+   "sd_own": 2.1684,
+   "sd_total": 3.8129,
    "run_gap_margin": -2.94
   },
   {
@@ -952,10 +952,10 @@
     }
    ],
    "margin": 24.65,
-   "low80": 15.09,
+   "low80": 15.1,
    "high80": 34.19,
    "p_dem": 0.9986,
-   "p_dem_if_dem_president": 0.9995,
+   "p_dem_if_dem_president": 0.9994,
    "p_dem_if_rep_president": 0.9965,
    "fundamentals_margin": 23.64,
    "polls_margin": null,
@@ -964,8 +964,8 @@
    "track": -0.633,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.3707,
-   "sd_total": 3.8135,
+   "sd_own": 2.3745,
+   "sd_total": 3.8129,
    "run_gap_margin": null
   },
   {
@@ -989,9 +989,9 @@
    "margin": 11.44,
    "low80": 1.48,
    "high80": 21.3,
-   "p_dem": 0.9284,
+   "p_dem": 0.9285,
    "p_dem_if_dem_president": 0.9591,
-   "p_dem_if_rep_president": 0.8576,
+   "p_dem_if_rep_president": 0.8577,
    "fundamentals_margin": 10.38,
    "polls_margin": null,
    "polls": 0,
@@ -999,8 +999,8 @@
    "track": 2.7159,
    "page": "2028 United States Senate election in Pennsylvania",
    "pres_link": 0.5,
-   "sd_own": 2.3847,
-   "sd_total": 3.8135,
+   "sd_own": 2.3842,
+   "sd_total": 3.8129,
    "run_gap_margin": 4.96
   },
   {
@@ -1024,9 +1024,9 @@
    "margin": -8.56,
    "low80": -18.17,
    "high80": 1.01,
-   "p_dem": 0.1256,
+   "p_dem": 0.1255,
    "p_dem_if_dem_president": 0.16,
-   "p_dem_if_rep_president": 0.046,
+   "p_dem_if_rep_president": 0.0459,
    "fundamentals_margin": -9.6,
    "polls_margin": null,
    "polls": 0,
@@ -1034,8 +1034,8 @@
    "track": -0.2,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.4296,
-   "sd_total": 3.8135,
+   "sd_own": 2.4291,
+   "sd_total": 3.8129,
    "run_gap_margin": null
   },
   {
@@ -1057,7 +1057,7 @@
     }
    ],
    "margin": -21.13,
-   "low80": -30.65,
+   "low80": -30.64,
    "high80": -11.67,
    "p_dem": 0.0044,
    "p_dem_if_dem_president": 0.0059,
@@ -1069,8 +1069,8 @@
    "track": -5.823,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.0729,
-   "sd_total": 3.8135,
+   "sd_own": 2.0724,
+   "sd_total": 3.8129,
    "run_gap_margin": null
   },
   {
@@ -1090,7 +1090,7 @@
    "low80": -20.11,
    "high80": -1.04,
    "p_dem": 0.0789,
-   "p_dem_if_dem_president": 0.1027,
+   "p_dem_if_dem_president": 0.1026,
    "p_dem_if_rep_president": 0.024,
    "fundamentals_margin": -11.68,
    "polls_margin": null,
@@ -1098,9 +1098,9 @@
    "lean": -11.011,
    "track": 5.0108,
    "page": "2028 United States Senate election in Utah",
-   "pres_link": 0.4787,
+   "pres_link": 0.4786,
    "sd_own": 1.0,
-   "sd_total": 3.8135,
+   "sd_total": 3.8129,
    "run_gap_margin": -0.69
   },
   {
@@ -1118,7 +1118,7 @@
    "declared": [],
    "margin": 42.72,
    "low80": 32.21,
-   "high80": 53.05,
+   "high80": 53.04,
    "p_dem": 1.0,
    "p_dem_if_dem_president": 1.0,
    "p_dem_if_rep_president": 1.0,
@@ -1129,8 +1129,8 @@
    "track": 8.9191,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.2004,
-   "sd_total": 3.8135,
+   "sd_own": 2.1999,
+   "sd_total": 3.8129,
    "run_gap_margin": 7.78
   },
   {
@@ -1164,8 +1164,8 @@
    "track": -6.544,
    "page": null,
    "pres_link": 0.5,
-   "sd_own": 2.3761,
-   "sd_total": 3.8135,
+   "sd_own": 2.3756,
+   "sd_total": 3.8129,
    "run_gap_margin": null
   },
   {
@@ -1185,7 +1185,7 @@
    "low80": -3.44,
    "high80": 15.75,
    "p_dem": 0.7954,
-   "p_dem_if_dem_president": 0.8615,
+   "p_dem_if_dem_president": 0.8616,
    "p_dem_if_rep_president": 0.6426,
    "fundamentals_margin": 5.11,
    "polls_margin": null,
@@ -1194,8 +1194,8 @@
    "track": 1.5433,
    "page": "2028 United States Senate election in Wisconsin",
    "pres_link": 0.5,
-   "sd_own": 2.2922,
-   "sd_total": 3.8135,
+   "sd_own": 2.2917,
+   "sd_total": 3.8129,
    "run_gap_margin": -2.27
   }
  ],
