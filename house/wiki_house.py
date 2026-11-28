@@ -241,3 +241,58 @@ def fetch(titles_, chunk=5, pause=1.5):
             if f in got: out[t] = got[f]
         time.sleep(pause)
     return out
+
+
+# ------------------------------------------------------------------------------------------------- the states' pages
+def _field(block, k):
+    m = re.search(r'\|\s*' + k + r'\s*=\s*((?:[^|{}]|\{\{[^{}]*\}\}|\[\[[^\]]*\]\])*)', block)
+    return m.group(1).strip() if m else ''
+
+
+def boxes(text):
+    """Each election box in a stretch of a page: {'title', 'candidates': [{'name', 'party', 'votes', 'share', 'won'}]},
+    a candidate on several lines (New York's fusion parties) once, under the major party among their lines."""
+    out = []
+    for b in re.finditer(r'\{\{\s*Election box begin(.*?)\{\{\s*Election box end\s*\}\}', text or '', re.S | re.I):
+        body = b.group(0); title = plain(_field(b.group(1), 'title'))
+        by = {}
+        for c in re.finditer(r'\{\{\s*Election box (winning )?candidate[^|]*((?:[^{}]|\{\{[^{}]*\}\})*)\}\}', body, re.I):
+            f = c.group(2); name = plain(_field(f, 'candidate')); party = _field(f, 'party')
+            if not name or re.fullmatch(r'(?i)total|write-?ins?|others?|blank|none', name.strip()) or re.match(r'(?i)total', plain(party)): continue
+            name = re.sub(r'\s*\((?:incumbent|inc\.)\)\s*', ' ', name).strip(" '")
+            p = party_code(party); v = number(_field(f, 'votes')); s = number(_field(f, 'percentage'))
+            k = re.sub(r'[^a-z]', '', name.lower())
+            cur = by.setdefault(k, {'name': name, 'party': None, 'votes': None, 'share': None, 'won': False})
+            if p in ('D', 'R') or cur['party'] is None: cur['party'] = p if p in ('D', 'R') or cur['party'] is None else cur['party']
+            if v is not None: cur['votes'] = (cur['votes'] or 0) + v
+            if s is not None: cur['share'] = (cur['share'] or 0) + s
+            cur['won'] |= bool(c.group(1))
+        out.append({'title': title, 'candidates': list(by.values())})
+    return out
+
+
+def district_sections(text, st):
+    """{district: the stretch of a state's page about it}; a state with one seat is all one stretch (district 0)."""
+    heads = list(re.finditer(r'\n(=+)\s*(?:\[\[[^\]|]*\|)?District\s+(\d+|at-large)\]?\]?\s*\1', text or '', re.I))
+    if st in ONE_SEAT or not heads: return {0: text or ''}
+    out = {}
+    for i, h in enumerate(heads):
+        level = len(h.group(1)); end = len(text)
+        for h2 in heads[i + 1:]:
+            if len(h2.group(1)) <= level: end = h2.start(); break
+        else:
+            m = re.compile(r'\n={1,%d}[^=]' % level).search(text, h.end()); end = m.start() if m else len(text)
+        d = 0 if h.group(2).lower() == 'at-large' else int(h.group(2))
+        out.setdefault(d, text[h.start():end])
+    return out
+
+
+def general_box(section):
+    """The general election's box in a district's stretch, and the runoff's when there was one: the last box that is
+    not a primary's, and the last whose title names a runoff."""
+    bx = [b for b in boxes(section) if b['candidates']]
+    gen = [b for b in bx if not re.search(r'primary|convention|caucus|runoff|special', b['title'], re.I)]
+    if not gen:
+        gen = [b for b in bx if not re.search(r'primary|convention|caucus', b['title'], re.I) and not re.search(r'runoff', b['title'], re.I)]
+    run = [b for b in bx if re.search(r'runoff', b['title'], re.I) and not re.search(r'primary', b['title'], re.I)]
+    return (gen[-1] if gen else None), (run[-1] if run else None)

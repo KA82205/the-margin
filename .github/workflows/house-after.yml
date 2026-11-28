@@ -1,0 +1,80 @@
+name: House after the election
+# Once a week: once an election's results have settled (seven weeks after election day) and Wikipedia has every
+# district's result, its districts are added to the House model's training data, the model is refitted and the back-tests
+# made again (house/after_election.py). Until then, and once an election is in, the run finds nothing to do. The hourly
+# House forecast job starts this one when its last run is a week old, since GitHub's own schedule, below, starts runs late
+# or not at all (RUNBOOK.md). Each run records the job's health in docs/api/health/house-after.json: a due election that
+# could not be added yet counts as a failure there, with what is missing.
+on:
+  schedule:
+    - cron: "17 16 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: house-after
+  cancel-in-progress: false
+
+jobs:
+  after:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy pandas
+
+      - name: Add the last election, if it is due
+        id: run
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          python house/after_election.py 2>&1 | tee "$RUNNER_TEMP/run.log"
+
+      - name: Record the job's health
+        if: always()
+        run: python senate/health.py house-after "${{ steps.run.outcome }}" "$RUNNER_TEMP/run.log"
+
+      - name: Save
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "forecast-bot"
+          git config user.email "forecast-bot@users.noreply.github.com"
+          msg="House after-election job: health $(TZ=America/New_York date '+%Y-%m-%d')"
+          if [ "${{ steps.run.outcome }}" = "success" ]; then
+            git add data/house/training.csv data/house/model.json data/house/backtest.json data/house/members.csv
+            git diff --cached --quiet || msg="House: the last election added to the training data, and the model refitted"
+          fi
+          git add docs/api/health/house-after.json || true
+          if git diff --cached --quiet; then echo "Nothing new, and the job's health is the same."; exit 0; fi
+          git commit -q -m "$msg"
+          git checkout -q -- .
+          for i in $(seq 1 40); do
+            busy=0
+            for wf in update.yml senate.yml house.yml; do
+              for s in in_progress queued; do
+                n=$(gh api "repos/${{ github.repository }}/actions/workflows/$wf/runs?status=$s&per_page=1" --jq '.total_count' 2>/dev/null || echo 0)
+                busy=$((busy + n))
+              done
+            done
+            [ "$busy" = "0" ] && break
+            sleep 15
+          done
+          for i in 1 2 3; do
+            git pull --rebase -q origin main && git push -q && exit 0
+            sleep 10
+          done
+          echo "::warning::The repository kept changing while this run saved; the next run tries again."
+
+      - name: Flag a failed run
+        if: steps.run.outcome == 'failure'
+        run: echo "::warning::The House after-election step failed this time (docs/api/health/house-after.json says why); nothing was changed, and the next run tries again."

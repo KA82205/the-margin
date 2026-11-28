@@ -72,33 +72,35 @@ def national():
 
 
 def fit(T, years, cols):
-    a = T[T.year.isin(years) & T.usable]
+    a = T[T.year.isin(years) & T.usable & T.dem2.notna()]
     Y = pd.get_dummies(a.year).astype(float)
     X = np.column_stack([a[c].values for c in cols] + [Y[c].values for c in Y.columns])
     b = np.linalg.lstsq(X, a.dem2.values, rcond=None)[0]
     return b[:len(cols)], dict(zip(Y.columns, b[len(cols):])), float(np.std(a.dem2.values - X @ b))
 
 
-def run(cols, cook75=False, money=None):
-    T0 = load(cook75); N = national(); nv = N.drop_duplicates('year').set_index('year').vote; out = []
+def run(cols, cook75=False, money=None, T0=None, tests=None, train=None):
+    """Each test year (YEARS, unless given) forecast at each distance from the training years (the other YEARS, unless
+    given), scored on the seats each party won and on each race's winner."""
+    T0 = load(cook75) if T0 is None else T0; N = national(); nv = N.drop_duplicates('year').set_index('year').vote; out = []
     for d in DAYS:
         T = with_money(T0, d, money) if money else T0
-        for y in YEARS:
-            train = [z for z in YEARS if z != y]
-            w, lev, sd = fit(T, train, cols)
-            gaps = [lev[z] - nv[z] for z in train]; gap, gap_sd = np.mean(gaps), float(np.std(gaps, ddof=1))
+        for y in tests or YEARS:
+            tr = [z for z in (train or YEARS) if z != y]
+            w, lev, sd = fit(T, tr, cols)
+            gaps = [lev[z] - nv[z] for z in tr]; gap, gap_sd = np.mean(gaps), float(np.std(gaps, ddof=1))
             te = T[T.year == y]; m = te.usable
             base = te[cols].fillna(0).values @ w
             real = int((te.winner == 'D').sum()); fixed_d = int((te.winner[~te.contested] == 'D').sum())
             unknown = te.contested & ~m                                       # contested races without a lean: left to chance
-            mood_err = N[(N.days == d) & (N.year != y)].assign(e=lambda g: g.mood - g.vote).e
+            mood_err = N[(N.days == d) & (N.year != y)].assign(e=lambda g: g.mood - g.vote).e        # every other year the national mood was read
             shared = float(np.sqrt(np.mean(mood_err ** 2) + gap_sd ** 2))
             level = float(N[(N.year == y) & (N.days == d)].mood.iloc[0]) + gap
             rng = np.random.default_rng(2028 + y + d)
             L = level + shared * rng.standard_t(T_DF, SIMS) * np.sqrt((T_DF - 2) / T_DF)
             draws = L[:, None] + base[m.values][None, :] + sd * rng.standard_normal((SIMS, int(m.sum())))
             seats = (draws > 50).sum(1) + fixed_d + rng.binomial(int(unknown.sum()), 0.5, SIMS)
-            p = (draws > 50).mean(0); won = (te.dem2[m] > 50).values
+            p = (draws > 50).mean(0); won = (te.winner[m] == 'D').values
             out.append({'year': y, 'days': d, 'seats_mid': float(np.median(seats)), 'actual': real, 'low80': float(np.percentile(seats, 10)), 'high80': float(np.percentile(seats, 90)),
                         'p_majority': float((seats >= 218).mean()), 'called': int(((p > .5) == won).sum()), 'races': int(m.sum()), 'unknown': int(unknown.sum()),
                         'brier': float(np.mean((p - won) ** 2)), 'log_loss': float(-np.mean(np.log(np.clip(np.where(won, p, 1 - p), 1e-4, 1)))), 'level': level, 'shared': shared, 'sd': sd})

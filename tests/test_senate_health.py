@@ -66,10 +66,16 @@ def main():
     check(not HL.due('senate-after'), 'the after-election job ran yesterday: not due')
     os.environ['SENATE_TODAY'] = '2027-03-10'
     check(HL.due('senate-after'), 'the after-election job ran a week ago: due')
+    h = HL.record('house-forecast', 'success', log('{"as_of": "2027-03-10"}\n'))
+    check(h['ok'] and h['overdue_after'] == '2027-03-11', f'the House forecast: {h}')
+    check(HL.due('house-after'), 'no record yet: the House after-election job is due')
+    ha = HL.record('house-after', 'success', log('2026: not added yet: 190 contested districts without a share\n'))
+    check(not ha['ok'] and 'not added yet' in ha['error'], f'the House after-election job, a due election not added: {ha}')
+    check(not HL.due('house-after'), 'the House after-election job ran today: not due')
     for job in HL.JOBS:
         with open(HL.path(job)) as fh: j = json.load(fh)
         check(j['workflow'].endswith(HL.JOBS[job][1]) and j['how_to_read'], f'{job}: names its workflow and says how to read it')
-    print('FAIL: ' + '; '.join(bad) if bad else 'OK: the Senate jobs\' health files'); sys.exit(1 if bad else 0)
+    print('FAIL: ' + '; '.join(bad) if bad else 'OK: the Senate and House jobs\' health files'); sys.exit(1 if bad else 0)
 
 
 if __name__ == '__main__':

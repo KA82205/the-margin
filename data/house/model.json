@@ -1,0 +1,151 @@
+{
+ "note": "The live House forecast's fitted pieces (house/fit.py). Shares are the Democratic two-party share, in points.",
+ "years": [
+  2018,
+  2020,
+  2022,
+  2024
+ ],
+ "columns": [
+  "lean",
+  "inc_d",
+  "inc_r"
+ ],
+ "coef": {
+  "lean": 0.89781,
+  "inc_d": 1.86933,
+  "inc_r": -2.68551
+ },
+ "district_sd": 2.9405,
+ "levels": {
+  "2018": 54.3363,
+  "2020": 51.3446,
+  "2022": 49.9505,
+  "2024": 49.7963
+ },
+ "votes": {
+  "2018": 54.379,
+  "2020": 51.59,
+  "2022": 48.613,
+  "2024": 48.66
+ },
+ "gap": 0.5464,
+ "gap_sd": 0.8058,
+ "distances": {
+  "365": {
+   "mood_rmse": 2.1233,
+   "mood_bias": -0.7821,
+   "shared_sd": 2.271,
+   "mood_years": [
+    2018,
+    2020,
+    2022,
+    2024,
+    2026
+   ]
+  },
+  "250": {
+   "mood_rmse": 1.8786,
+   "mood_bias": -0.8197,
+   "shared_sd": 2.0441,
+   "mood_years": [
+    2018,
+    2020,
+    2022,
+    2024,
+    2026
+   ]
+  },
+  "120": {
+   "mood_rmse": 1.8858,
+   "mood_bias": -0.5809,
+   "shared_sd": 2.0508,
+   "mood_years": [
+    2018,
+    2020,
+    2022,
+    2024,
+    2026
+   ]
+  },
+  "60": {
+   "mood_rmse": 1.815,
+   "mood_bias": -0.2854,
+   "shared_sd": 1.9859,
+   "mood_years": [
+    2018,
+    2020,
+    2022,
+    2024,
+    2026
+   ]
+  },
+  "30": {
+   "mood_rmse": 1.5577,
+   "mood_bias": -0.2592,
+   "shared_sd": 1.7538,
+   "mood_years": [
+    2018,
+    2020,
+    2022,
+    2024,
+    2026
+   ]
+  },
+  "14": {
+   "mood_rmse": 1.5834,
+   "mood_bias": -0.502,
+   "shared_sd": 1.7766,
+   "mood_years": [
+    2018,
+    2020,
+    2022,
+    2024,
+    2026
+   ]
+  },
+  "7": {
+   "mood_rmse": 1.5904,
+   "mood_bias": -0.5204,
+   "shared_sd": 1.7828,
+   "mood_years": [
+    2018,
+    2020,
+    2022,
+    2024,
+    2026
+   ]
+  },
+  "1": {
+   "mood_rmse": 1.5263,
+   "mood_bias": -0.5154,
+   "shared_sd": 1.7259,
+   "mood_years": [
+    2018,
+    2020,
+    2022,
+    2024,
+    2026
+   ]
+  }
+ },
+ "members": {
+  "run_share": 0.8721,
+  "primary_loss": 0.019,
+  "years": [
+   2018,
+   2020,
+   2022,
+   2024,
+   2026
+  ]
+ },
+ "redraw_sd": 0.777,
+ "redraw_districts": 67,
+ "simulation": {
+  "t_df": 5,
+  "pres_link": 0.5,
+  "shared_floor": 0.5,
+  "own_floor": 1.0
+ }
+}
