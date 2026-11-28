@@ -15,8 +15,14 @@ import wiki_house as WH
 def main(out, years, states=True):
     d = os.path.join(out, 'house_pages'); os.makedirs(d, exist_ok=True)
     for y in years:
-        want = WH.titles(y, states)
-        pages = WH.fetch(want)
+        pages = WH.fetch([WH.overview(y)])
+        one = WH.one_seat(pages[WH.overview(y)]['text'], y) if WH.overview(y) in pages else None
+        want = WH.titles(y, states, one)
+        pages.update(WH.fetch([t for t in want if t not in pages]))
+        # the district pages the states' pages point to, where polls and results of the closest races often are
+        import polls as PO
+        links = sorted({t for p in list(pages.values()) for t in PO.main_links(p['text'], y)})
+        if states and links: pages.update(WH.fetch(links)); want += links
         with open(os.path.join(d, f'{y}.json'), 'w') as f: json.dump(pages, f)
         print(y, len(pages), 'of', len(want), 'pages,', sum(len(p['text']) for p in pages.values()), 'characters; missing:', [t for t in want if t not in pages])
 

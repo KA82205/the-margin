@@ -3,7 +3,7 @@ runoff and an all-party first round, the states' map changes, the overview's sea
 running and the chance it leaves the others, a redraw whose leans are not yet updated, and the checks that stop a run.
     python tests/test_house.py
 """
-import os, sys
+import os, re, sys
 import numpy as np
 import pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE); sys.path.insert(0, os.path.join(ROOT, 'house'))
@@ -117,17 +117,71 @@ def main():
         check(LV.plan(s) == want, f'"{s}" reads as {LV.plan(s)}, not {want}')
     # the chance a member who has not said runs: the past rate less those who have said they are running
     LV.YEAR = 2028
-    model = {'members': {'run_share': 0.87, 'primary_loss': 0.02}, 'redraw_sd': 0.8}
+    model = {'members': {'run_share': 0.87, 'primary_loss': 0.02}, 'redraw_sd': 0.8, 'redraw_move_sd': 9.7}
     text = PAGE.replace('Incumbent retired to run for U.S. Senate.<br/>Republican hold.', "Incumbent's intent unknown").replace('Incumbent re-elected.', 'Incumbent running for re-election.')
+    text = re.sub(r'\{\{plainlist\}\}.*?\{\{endplainlist\}\}', 'TBD', text, flags=re.S)                 # before the primaries: no nominees
     W, ch, pu, nu = LV.districts(text, model, None)
     check(nu == 1 and abs(pu - min(0.97, max(0.5, (0.87 * 2 - 0.98) / 1))) < 1e-9 and W.p_inc_d[1] == 0.98 and W.p_inc_r[1] == 0 and W.p_inc_r[0] == pu,
           f'members\' chances of running: {pu}, {W[["p_inc_d", "p_inc_r"]].values.tolist()}')
     # Alabama enacted a new map; while its leans equal the last election's, the redraw's spread is added
     latest = pd.DataFrame({'state': ['AL', 'AL'], 'district': [1, 2], 'pvi': [-17.0, -7.0]})
     W2, _, _, _ = LV.districts(text, model, latest)
-    check((W2.extra_sd == LV.REDRAW_MOVE_SD).all(), f'a new map with the old leans: {W2.extra_sd.tolist()}')
+    check((W2.extra_sd == model['redraw_move_sd']).all(), f'a new map with the old leans: {W2.extra_sd.tolist()}')
     W3, _, _, _ = LV.districts(text, model, latest.assign(pvi=[-18.0, -7.0]))
     check((W3.extra_sd == 0).all(), f'a new map with new leans: {W3.extra_sd.tolist()}')
+    # once the nominees are named, they decide who is on the ballot: Figures is the Democrats' nominee, so he runs;
+    # in the 1st, Moore is not the Republicans' nominee (Carl is), so the seat is open
+    W4, _, _, _ = LV.districts(PAGE, model, None)
+    check(list(W4.plan) == ['lost', 'renominated'] and W4.p_inc_r[0] == 0 and W4.p_inc_d[1] == 1, f'nominees decide: {W4[["plan", "p_inc_d", "p_inc_r"]].values.tolist()}')
+    check(LV.same_person('Shomari Figures', 'Shomari Figures') and not LV.same_person('Barry Moore', 'Jerry Carl'), 'the same person, and not')
+    # the polls of a district, read with the Senate's table reader: a sponsored poll and a party committee's left out
+    import polls as PO
+    POLLS = """==District 9==
+===General election===
+====Polling====
+{| class="wikitable"
+! Poll source
+! Date(s)<br />administered
+! Sample<br />size
+! Margin<br />of error
+! Marcy<br />Kaptur (D)
+! Derek<br />Merrin (R)
+|-
+|RedBox Research (D)
+|October 20-23, 2026
+|858 (LV)
+|±4.5%
+|'''49%'''
+|43%
+|-
+|DCCC Analytics Department
+|September 22–23, 2026
+|481 (LV)
+|±4.5%
+|48%
+|48%
+|-
+|Siena College
+|October 1–5, 2026
+|600 (LV)
+|±4.0%
+|47%
+|46%
+|-
+|Remington Research{{efn|Poll sponsored by the NRCC}}
+|October 3–6, 2026
+|500 (LV)
+|±4.4%
+|44%
+|48%
+|}
+"""
+    got = PO.parse(POLLS, 'Marcy Kaptur', 'Derek Merrin', 'OH', 9, 2026)
+    check([(p['pollster'], p['partisan']) for p in got] == [('RedBox Research', 'D'), ('DCCC Analytics Department', 'P'), ('Siena College', ''), ('Remington Research', 'P')], f'district polls: {got}')
+    A = PO.averages(pd.DataFrame(got), 2026)
+    last = A[A.days == 14]
+    check(len(last) == 1 and abs(last.poll.iloc[0] - 100 * 47 / 93) < 1e-3 and last.polls.iloc[0] == 1, f'only the poll that is not partisan counts: {A.to_dict("records")}')
+
     # the checks that stop a run
     try:
         LV.validate(W, {'blend': 52.0}, 230.0); bad.append('two districts passed the checks')

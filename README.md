@@ -351,6 +351,7 @@ it finally stood or left out, and the results above should be read with that in 
 | House forecast: districts, leans, members and their plans (`house/`) | Wikipedia's overview of each House election (CC BY-SA 4.0), read every hour; the leans are the Cook Political Report's PVI as listed there |
 | House back-tests: results 2012-2024 | FiveThirtyEight `election_results_house.csv` (CC BY 4.0), in `data/house/training.csv`; later elections from Wikipedia |
 | House back-tests: leans for lines Cook had not published | The Downballot's presidential results by congressional district (the-downballot.com/data), used with credit; only one number a district is kept (`data/house/leans_alt.csv`) |
+| House district polls | 2018-2024: FiveThirtyEight `house_polls_historical.csv` (CC BY 4.0), from the archived copy in `jcervas/data`; from 2026: Wikipedia's state and district pages, read every hour |
 | House back-tests: money (tested, not used) | The FEC's candidate summaries and reports (public domain) |
 | Map | us-atlas 3.0.1 (ISC), Census cartographic boundaries |
 

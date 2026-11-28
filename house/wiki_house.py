@@ -190,19 +190,30 @@ def map_changes(text):
 UA = {'User-Agent': 'election-research (github.com/KA82205/the-margin)'}
 API = 'https://en.wikipedia.org/w/api.php?'
 NAMES = {v: k for k, v in STATES.items()}
-ONE_SEAT = {'AK', 'DE', 'ND', 'SD', 'VT', 'WY'}                  # a single seat since 2022 (Montana has two)
 
 
 def overview(year):
     return f'{year} United States House of Representatives elections'
 
 
-def state_title(year, st):
-    return f'{year} United States House of Representatives election{"" if st in ONE_SEAT else "s"} in {NAMES[st]}'
+def one_seat(text, year):
+    """The states with a single seat that year, as the overview lists them (a district 0)."""
+    return {r['state'] for r in rows(text, year) if r['district'] == 0}
 
 
-def titles(year, states=True):
-    return [overview(year)] + ([state_title(year, st) for st in sorted(NAMES)] if states else [])
+def state_title(year, st, one=False):
+    """A state's page of the election: "election in" for a state with a single seat, "elections in" for the rest."""
+    return f'{year} United States House of Representatives election{"" if one else "s"} in {NAMES[st]}'
+
+
+def titles(year, states=True, single=None):
+    """The overview and, with states, every state's page; single: the states with one seat (one_seat()); without it
+    both forms of each state's title are asked for."""
+    out = [overview(year)]
+    if states:
+        for st in sorted(NAMES):
+            out += [state_title(year, st, st in single)] if single is not None else [state_title(year, st, True), state_title(year, st, False)]
+    return out
 
 
 def _api(params, tries=5):
@@ -271,10 +282,10 @@ def boxes(text):
     return out
 
 
-def district_sections(text, st):
+def district_sections(text, st, one=False):
     """{district: the stretch of a state's page about it}; a state with one seat is all one stretch (district 0)."""
     heads = list(re.finditer(r'\n(=+)\s*(?:\[\[[^\]|]*\|)?District\s+(\d+|at-large)\]?\]?\s*\1', text or '', re.I))
-    if st in ONE_SEAT or not heads: return {0: text or ''}
+    if one or not heads: return {0: text or ''}
     out = {}
     for i, h in enumerate(heads):
         level = len(h.group(1)); end = len(text)

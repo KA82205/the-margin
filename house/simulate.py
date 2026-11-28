@@ -22,7 +22,7 @@ other elections only, every seat simulated together, and scored on the seats, th
     each district's error   normal, the spread of the fit's misses
     uncontested seats       to the party that ran
 
-    python house/simulate.py [cook75] [money | money_cycle]
+    python house/simulate.py [cook75] [money | money_cycle] [polls]
 """
 import os, sys
 import numpy as np
@@ -64,6 +64,49 @@ def with_money(T, days, how):
     return T
 
 
+def with_polls(T, days):
+    """Each district's polling average at this distance (data/house/polls_by_date.csv, house/polls.py): poll, poll_w."""
+    P = pd.read_csv(os.path.join(D, 'polls_by_date.csv'))
+    P = P[P.days == days][['year', 'state', 'district', 'poll', 'poll_w']]
+    return T.drop(columns=[c for c in ('poll', 'poll_w') if c in T.columns]).merge(P, on=['year', 'state', 'district'], how='left')
+
+
+K_GRID = np.exp(np.linspace(np.log(0.05), np.log(50), 60))
+W_GRID = np.round(np.arange(0, 1.0001, 0.05), 2)
+
+
+def poll_share(pw, p):
+    """The polls' share of a district's forecast: w0 for any average, rising toward w1 as the polling grows, by
+    pw / (pw + k), pw being the average's total weight (as in the Senate model)."""
+    w0, w1, k = p
+    return w0 + (w1 - w0) * pw / (pw + k)
+
+
+def volume_fit(f, y, poll, pw):
+    """(w0, w1, k): the grid point with the least squared error on the training years' districts with polls."""
+    if len(f) < 10: return (0.0, 0.0, 1.0)
+    dx = poll - f; pairs = np.array([(a, b) for a in W_GRID for b in W_GRID if b >= a]); best = (np.inf, None)
+    for k in K_GRID:
+        W = pairs[:, :1] + (pairs[:, 1:] - pairs[:, :1]) * (pw / (pw + k))[None, :]
+        sse = (((f + W * dx) - y) ** 2).sum(axis=1); i = int(np.argmin(sse))
+        if sse[i] < best[0]: best = (float(sse[i]), (float(pairs[i, 0]), float(pairs[i, 1]), float(k)))
+    return best[1]
+
+
+def poll_fit(T, train, w, gap, N, d):
+    """The poll blend and the own error of districts with polls at distance d, from the training years: each year's
+    districts placed at that year's national mood at d plus the gap, blended with their polls; the own error is the
+    spread of the blended misses about each year's average miss (the shared error stands for that average)."""
+    a = T[T.year.isin(train) & T.usable & T.dem2.notna() & T.poll.notna()].copy()
+    if len(a) < 10: return (0.0, 0.0, 1.0), None, 0
+    mood = N[N.days == d].set_index('year').mood
+    a['f'] = a.year.map(mood).values + gap + a[['lean', 'inc_d', 'inc_r']].fillna(0).values @ w
+    p = volume_fit(a.f.values, a.dem2.values, a.poll.values, a.poll_w.values)
+    a['m'] = a.f + poll_share(a.poll_w.values, p) * (a.poll - a.f); a['e'] = a.dem2 - a.m
+    own = float(np.sqrt(np.mean((a.e - a.groupby('year').e.transform('mean')) ** 2)))
+    return p, own, len(a)
+
+
 def national():
     t = pd.read_csv(os.path.join(ROOT, 'data', 'senate', 'training_rows.csv')); nf = pd.read_csv(os.path.join(ROOT, 'data', 'senate', 'national_fundamentals.csv')).set_index('year')
     g = t.groupby(['year', 'days']).blend_approval.median().rename('mood').reset_index()
@@ -79,26 +122,35 @@ def fit(T, years, cols):
     return b[:len(cols)], dict(zip(Y.columns, b[len(cols):])), float(np.std(a.dem2.values - X @ b))
 
 
-def run(cols, cook75=False, money=None, T0=None, tests=None, train=None):
+def run(cols, cook75=False, money=None, T0=None, tests=None, train=None, polls=False):
     """Each test year (YEARS, unless given) forecast at each distance from the training years (the other YEARS, unless
-    given), scored on the seats each party won and on each race's winner."""
+    given), scored on the seats each party won and on each race's winner. With polls, each district with a polling
+    average at that distance is blended with it (poll_fit, fitted on the training years)."""
     T0 = load(cook75) if T0 is None else T0; N = national(); nv = N.drop_duplicates('year').set_index('year').vote; out = []
     for d in DAYS:
         T = with_money(T0, d, money) if money else T0
+        if polls: T = with_polls(T, d)
         for y in tests or YEARS:
             tr = [z for z in (train or YEARS) if z != y]
             w, lev, sd = fit(T, tr, cols)
             gaps = [lev[z] - nv[z] for z in tr]; gap, gap_sd = np.mean(gaps), float(np.std(gaps, ddof=1))
             te = T[T.year == y]; m = te.usable
+            level = float(N[(N.year == y) & (N.days == d)].mood.iloc[0]) + gap
             base = te[cols].fillna(0).values @ w
+            own = np.full(len(te), sd)
+            if polls:
+                pp, own_p, _ = poll_fit(T, tr, w, gap, N, d)
+                hp = te.poll.notna().values & m.values
+                f = level + base; share = np.where(hp, poll_share(te.poll_w.fillna(0).values, pp), 0.0)
+                base = base + share * (te.poll.fillna(0).values - f)
+                if own_p is not None: own = np.where(hp, own_p, sd)
             real = int((te.winner == 'D').sum()); fixed_d = int((te.winner[~te.contested] == 'D').sum())
             unknown = te.contested & ~m                                       # contested races without a lean: left to chance
             mood_err = N[(N.days == d) & (N.year != y)].assign(e=lambda g: g.mood - g.vote).e        # every other year the national mood was read
             shared = float(np.sqrt(np.mean(mood_err ** 2) + gap_sd ** 2))
-            level = float(N[(N.year == y) & (N.days == d)].mood.iloc[0]) + gap
             rng = np.random.default_rng(2028 + y + d)
             L = level + shared * rng.standard_t(T_DF, SIMS) * np.sqrt((T_DF - 2) / T_DF)
-            draws = L[:, None] + base[m.values][None, :] + sd * rng.standard_normal((SIMS, int(m.sum())))
+            draws = L[:, None] + base[m.values][None, :] + own[m.values][None, :] * rng.standard_normal((SIMS, int(m.sum())))
             seats = (draws > 50).sum(1) + fixed_d + rng.binomial(int(unknown.sum()), 0.5, SIMS)
             p = (draws > 50).mean(0); won = (te.winner[m] == 'D').values
             out.append({'year': y, 'days': d, 'seats_mid': float(np.median(seats)), 'actual': real, 'low80': float(np.percentile(seats, 10)), 'high80': float(np.percentile(seats, 90)),
@@ -116,6 +168,6 @@ def summary(r):
 if __name__ == '__main__':
     a = sys.argv[1:]; money = 'money_cycle' if 'money_cycle' in a else 'money' if 'money' in a else None
     cols = ['lean', 'inc_d', 'inc_r'] + (['money', 'has_money'] if money else [])
-    r = run(cols, cook75='cook75' in a, money=money)
+    r = run(cols, cook75='cook75' in a, money=money, polls='polls' in a)
     print(r[r.days.isin([365, 120, 1])][['year', 'days', 'seats_mid', 'actual', 'low80', 'high80', 'p_majority', 'called', 'races', 'unknown']].round(3).to_string(index=False))
     print(summary(r).round(3).to_string())

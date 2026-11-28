@@ -14,13 +14,18 @@ an election is added to the training table (after_election.py), and by hand afte
     redrawn maps            the spread between the lean Cook published for a district before its map was redrawn and the
                             lean on the new lines (2024's redrawn states), added to a district's error while its lean
                             predates its map
+    district polls          each district's polling average (house/polls.py) blended in as the Senate's race polls are:
+                            a share for any average rising toward a cap as the polling grows, fitted at each distance on
+                            the training years; districts with polls have their own error, the spread of the blended
+                            misses about each year's average miss
     the back-tests          each fitted year forecast from the others at each distance, scored on the seats and on each
-                            race's winner (simulate.run); a year read before its shares were all in is kept as a test of
-                            that year from the years before it (after_election.py --test)
+                            race's winner (simulate.run), with the district polls and, for comparison, without; a year
+                            read before its shares were all in is kept as a test of that year from the years before it
+                            (after_election.py --test)
 
     python house/fit.py
 """
-import json, os, sys
+import glob, json, os, sys
 import numpy as np
 import pandas as pd
 
@@ -44,25 +49,53 @@ def redraw_sd(T):
     return round(float(np.std(d, ddof=1)), 3), len(d)
 
 
+def redraw_move_sd(T):
+    """How far a redraw between censuses moved a district's lean: the lean on the new lines less the lean of the same
+    district number before, in every state redrawn between censuses in the training table."""
+    d = []
+    for y in sorted(T.year.unique()):
+        if y % 10 == 2: continue
+        sts = set(T[(T.year == y) & (T.redrawn == 1)].state)
+        if not sts: continue
+        a = T[(T.year == y) & T.state.isin(sts)].set_index(['state', 'district']).lean
+        b = T[(T.year == y - 2) & T.state.isin(sts)].set_index(['state', 'district']).pvi
+        d += [float(a[k] - b[k]) for k in a.index.intersection(b.index) if pd.notna(a[k]) and pd.notna(b[k])]
+    return round(float(np.sqrt(np.mean(np.square(d)))), 3), len(d)
+
+
+def senate_simulation():
+    """The simulation settings shared with the Senate model: its latest fitted model.json."""
+    ps = sorted(glob.glob(os.path.join(ROOT, 'data', 'senate', '[0-9]' * 4, 'model.json')))
+    return json.load(open(ps[-1]))['simulation']
+
+
 def model(T, years):
     w, lev, sd = S.fit(T, years, COLS)
     N = S.national(); nv = N.drop_duplicates('year').set_index('year').vote
-    gaps = {y: float(lev[y] - nv[y]) for y in years}; gap, gap_sd = float(np.mean(gaps.values() and list(gaps.values()))), float(np.std(list(gaps.values()), ddof=1))
-    dist = {}
+    gaps = {y: float(lev[y] - nv[y]) for y in years}; gap, gap_sd = float(np.mean(list(gaps.values()))), float(np.std(list(gaps.values()), ddof=1))
+    dist, polls = {}, {}
     for d in S.DAYS:
         e = N[(N.days == d) & N.vote.notna()].assign(e=lambda g: g.mood - g.vote)
         dist[str(d)] = {'mood_rmse': round(float(np.sqrt(np.mean(e.e ** 2))), 4), 'mood_bias': round(float(e.e.mean()), 4),
-                        'shared_sd': round(float(np.sqrt(np.mean(e.e ** 2) + gap_sd ** 2)), 4), 'mood_years': [int(y) for y in e.year]}
+                        'shared_sd': round(float(np.sqrt(np.mean(e.e ** 2) + gap_sd ** 2)), 4), 'mood_years': [int(y) for y in e.year],
+                        'mood_miss': {str(int(y)): round(float(v), 3) for y, v in zip(e.year, e.e)}}
+        (w0, w1, k), own, n = S.poll_fit(S.with_polls(T, d), years, w, gap, N, d)
+        polls[str(d)] = {'w0': w0, 'w1': w1, 'k': round(k, 4), 'own_sd': round(own, 4) if own is not None else None, 'districts': n}
+    # given each year's own level: how far the Democrats ran ahead of the fit in the closest districts
+    a = T[T.year.isin(years) & T.usable & T.dem2.notna()].copy()
+    a['f'] = a.year.map({y: lev[y] for y in years}).values + a[COLS].fillna(0).values @ w
+    close = a[(a.f - 50).abs() < 2.5]
+    tossup = {str(int(y)): round(float((g.dem2 - g.f).mean()), 3) for y, g in close.groupby('year')}
     M = pd.read_csv(os.path.join(D, 'members.csv')); M = M[M.year >= FIRST]
-    rs, rn = redraw_sd(T)
-    sim = json.load(open(os.path.join(ROOT, 'data', 'senate', '2028', 'model.json')))['simulation']
+    rs, rn = redraw_sd(T); ms, mn = redraw_move_sd(T)
+    sim = senate_simulation()
     return {'note': 'The live House forecast\'s fitted pieces (house/fit.py). Shares are the Democratic two-party share, in points.',
             'years': years, 'columns': COLS, 'coef': {c: round(float(v), 5) for c, v in zip(COLS, w)}, 'district_sd': round(sd, 4),
             'levels': {str(y): round(float(lev[y]), 4) for y in years}, 'votes': {str(y): float(nv[y]) for y in years},
-            'gap': round(gap, 4), 'gap_sd': round(gap_sd, 4), 'distances': dist,
+            'gap': round(gap, 4), 'gap_sd': round(gap_sd, 4), 'distances': dist, 'polls': polls, 'tossup_gap': tossup,
             'members': {'run_share': round(float(M.on_ballot.sum() / M.seats_with_member.sum()), 4),
                         'primary_loss': round(float(M.lost_primary.sum() / (M.on_ballot.sum() + M.lost_primary.sum())), 4), 'years': [int(y) for y in M.year]},
-            'redraw_sd': rs, 'redraw_districts': rn,
+            'redraw_sd': rs, 'redraw_districts': rn, 'redraw_move_sd': ms, 'redraw_move_districts': mn,
             'simulation': {'t_df': S.T_DF, 'pres_link': sim['pres_link'], 'shared_floor': sim['shared_floor'], 'own_floor': sim['own_floor']}}
 
 
@@ -82,12 +115,19 @@ TESTED = [
 
 
 def backtest(T, years, keep):
-    r = S.run(COLS, T0=T, tests=years, train=years)
-    s = S.summary(r)
+    """The back-test of the forecast as it is (district polls in), and of it without the polls, for the comparison."""
+    r = S.run(COLS, T0=T, tests=years, train=years, polls=True)
+    r0 = S.run(COLS, T0=T, tests=years, train=years, polls=False)
+    s, s0 = S.summary(r), S.summary(r0)
+    summ = lambda x: {str(int(d)): {k: round(float(v), 4) for k, v in row.items()} for d, row in x.iterrows()}
     rows = r[['year', 'days', 'seats_mid', 'actual', 'low80', 'high80', 'p_majority', 'called', 'races', 'brier', 'level']].round(4).to_dict('records')
     tests = {k: v for k, v in (keep or {}).items() if int(k) not in years}
+    last, first = s.loc[1], s0.loc[1]
+    polls = {'idea': 'District polls, blended in as the Senate\'s race polls are: more of the weight the more polling there is, up to a cap, fitted at each distance',
+             'result': f'On the last day, Brier score {last.brier:.3f} against {first.brier:.3f} without them, the seat count\'s typical miss {last.seat_miss:.1f} seats against {first.seat_miss:.1f}, '
+                       f'and {int(last.called):,} races called against {int(first.called):,} ({years[0]}-{years[-1]})', 'adopted': bool(last.brier <= first.brier)}
     return {'note': 'Each election forecast from the other elections at each distance from election day; seats are the Democrats\'.',
-            'years': years, 'rows': rows, 'summary': {str(int(d)): {k: round(float(v), 4) for k, v in x.items()} for d, x in s.iterrows()}, 'tests': tests, 'tested': TESTED}
+            'years': years, 'rows': rows, 'summary': summ(s), 'summary_without_polls': summ(s0), 'tests': tests, 'tested': TESTED + [polls]}
 
 
 def main():
@@ -98,7 +138,8 @@ def main():
     b = backtest(T, years, old.get('tests'))
     with open(bp, 'w') as f: json.dump(b, f, indent=1)
     print('fitted on', years, '| weights', m['coef'], '| district sd', m['district_sd'], '| gap', m['gap'], m['gap_sd'])
-    print('shared sd by distance', {d: v['shared_sd'] for d, v in m['distances'].items()}, '| members', m['members'], '| redraw sd', m['redraw_sd'], m['redraw_districts'])
+    print('shared sd by distance', {d: v['shared_sd'] for d, v in m['distances'].items()}, '| members', m['members'], '| redraw sd', m['redraw_sd'], m['redraw_districts'], '| redraw move', m['redraw_move_sd'], m['redraw_move_districts'])
+    print('polls', m['polls'], '| toss-up gap', m['tossup_gap'])
     print(pd.DataFrame(b['summary']).T.to_string())
     return m
 

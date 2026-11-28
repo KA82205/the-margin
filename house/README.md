@@ -89,4 +89,14 @@ have not said whether they run, primaries, open and vacant seats, new maps and s
 presidential simulations. `house/after_election.py`, run every week by `.github/workflows/house-after.yml`, adds each
 election to the training table once its results settle and Wikipedia has them all, then refits the model.
 
+## District polls (step 7)
+
+`house/polls.py` averages each district's polls of its two nominees at each distance from election day, as the
+presidential model weighs polls, partisan ones left out (`data/house/polls_by_date.csv`): FiveThirtyEight's House polls
+for 2018-2024 (`tools/fetch_house_polls.py` fetches the archived file), Wikipedia's pages from 2026 on. They are blended in
+as the Senate's race polls are, with the share fitted at each distance (`house/fit.py`). In the back-test, 2018-2024, the
+last day's Brier score fell from 0.032 to 0.029 and the seat count's typical miss from 10.8 to 9.8 seats; in 2026 the
+last day's forecast moved from 236 to 238 seats and called two more races. The live forecast reads a district's polls
+once the overview names its two nominees, and the nominees also settle whether the member is on the ballot.
+
 Tests: `python tests/test_house.py`.

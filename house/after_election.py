@@ -32,7 +32,7 @@ import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE); sys.path.insert(0, HERE)
-import build_data as BD, live as LV, wiki_house as WH
+import build_data as BD, live as LV, polls as PO, wiki_house as WH
 
 D = os.path.join(ROOT, 'data', 'house')
 WAIT_DAYS = 49
@@ -76,14 +76,18 @@ def seats_box(text):
 
 
 def gather(year, saved=None):
-    """The overview, the states' pages and the district pages needed: {title: page}."""
+    """The overview, then the states' pages (titled by how many seats each has, as the overview lists them) and the
+    district pages they point to: {title: page}."""
     if saved:
-        pages = json.load(open(saved)); get = lambda ts: {t: pages[t] for t in ts if t in pages}
+        S = json.load(open(saved)); get = lambda ts: {t: S[t] for t in ts if t in S}
     else:
-        pages, get = {}, WH.fetch
-    want = [t for t in WH.titles(year) if t not in pages]
-    if want: pages.update(get(want))
+        get = WH.fetch
+    pages = get([WH.overview(year)])
     if WH.overview(year) not in pages: raise RuntimeError(f'The page "{WH.overview(year)}" could not be read')
+    one = WH.one_seat(pages[WH.overview(year)]['text'], year)
+    pages.update(get([t for t in WH.titles(year, True, one) if t not in pages]))
+    links = sorted({t for p in list(pages.values()) for t in PO.main_links(p['text'], year)} - set(pages))
+    if links: pages.update(get(links))
     return pages, get
 
 
@@ -94,7 +98,8 @@ def read(year, pages, get):
     W['C'] = W.candidates_raw.map(WH.candidates)
     W['score'] = W.pvi.notna() * 2 + W.members.map(len) + W.C.map(bool)
     W = W.sort_values('score', ascending=False).groupby(['state', 'district'], as_index=False).first()
-    secs = {st: WH.district_sections(pages.get(WH.state_title(year, st), {}).get('text', ''), st) for st in WH.NAMES}
+    one = set(W.state[W.district == 0])
+    secs = {st: WH.district_sections(pages.get(WH.state_title(year, st, st in one), {}).get('text', ''), st, st in one) for st in WH.NAMES}
     # the district pages of districts the overview gives no shares for and their state's page has no section on
     need = []
     for r in W.itertuples():
@@ -140,7 +145,7 @@ def read(year, pages, get):
                      'dem2': round(dem2, 3) if contested and dem2 is not None else np.nan, 'contested': contested, 'winner': won[0] if won else None, 'how': how,
                      'pvi': r.pvi, 'pvi_stale': bool(r.pvi_stale), 'members': list(r.members), 'status': st, 'new_seat': bool(r.new_seat),
                      'moved_from': r.moved if isinstance(r.moved, list) else [], 'candidates': cand,
-                     'redrawn': int(changes.get(r.state) == 'enacted' or (year % 10 == 2 and r.state not in WH.ONE_SEAT and r.state != 'MT'))})
+                     'redrawn': int(changes.get(r.state) == 'enacted' or (year % 10 == 2 and r.state not in one))})
     return pd.DataFrame(rows), ov
 
 
@@ -208,15 +213,37 @@ def check(year, R, ov, strict=True):
 
 
 # ----------------------------------------------------------------------------------------------------------- testing
+def earlier_years(year):
+    """The years the model is fitted on that come before this one (house/fit.py's rule)."""
+    import fit, simulate as S
+    return [y for y in fit.years_fitted(S.load(cook75=True)) if y < year]
+
+
+def year_polls(year, pages, R):
+    """The year's district polls of its two nominees (each district's Democrat and Republican on the November ballot),
+    averaged at each distance from election day, into data/house/polls_by_date.csv (its rows for the year replaced)."""
+    nominees = {}
+    for r in R.itertuples():
+        dm = [n for n, p in r.candidates if p == 'D']; rp = [n for n, p in r.candidates if p == 'R']
+        if len(dm) == 1 and len(rp) == 1: nominees[(r.state, int(r.district))] = (dm[0], rp[0])
+    P = PO.from_pages(pages, year, nominees)
+    A = PO.averages(P, year) if len(P) else pd.DataFrame(columns=['year', 'state', 'district', 'days', 'poll', 'poll_w', 'polls'])
+    p = os.path.join(D, 'polls_by_date.csv'); old = pd.read_csv(p) if os.path.exists(p) else A.iloc[:0]
+    pd.concat([old[old.year != year], A], ignore_index=True).sort_values(['year', 'state', 'district', 'days'], ascending=[True, True, True, False]).to_csv(p, index=False)
+    print(f'{year}: {len(P)} district polls ({int((P.partisan.fillna("") == "").sum()) if len(P) else 0} not partisan) in {A[["state", "district"]].drop_duplicates().shape[0]} districts')
+    return A
+
+
 def test(year, R):
     """The forecast of the year from the years before it (none of it fitted on the year), at each distance, scored on
-    the seats each party won and on each race's winner. The leans as published for the year's lines."""
+    the seats each party won and on each race's winner. The leans as published for the year's lines; the year's polls as
+    year_polls() saved them."""
     import simulate as S
     T = S.load(cook75=True)
     R = R.copy(); R['lean'] = R.pvi; R['lean_from'] = np.where(R.pvi.notna() & ~R.pvi_stale.astype(bool), 'published', None)
     R['usable'] = R.contested & R.lean.notna() & R.lean_from.notna()
     T2 = pd.concat([T, R], ignore_index=True, sort=False)
-    r = S.run(['lean', 'inc_d', 'inc_r'], T0=T2, tests=[year], train=[y for y in S.YEARS if y < year])
+    r = S.run(['lean', 'inc_d', 'inc_r'], T0=T2, tests=[year], train=earlier_years(year), polls=True)
     return r
 
 
@@ -224,7 +251,7 @@ def given_vote(year, R):
     """The seats the districts give once the national House vote is known: the fit on the years before, the year's
     level at its House vote plus the usual gap."""
     import simulate as S
-    T = S.load(cook75=True); tr = [y for y in S.YEARS if y < year]
+    T = S.load(cook75=True); tr = earlier_years(year)
     w, lev, sd = S.fit(T, tr, ['lean', 'inc_d', 'inc_r'])
     nv = S.national().drop_duplicates('year').set_index('year').vote
     level = float(nv[year] + np.mean([lev[z] - nv[z] for z in tr]))
@@ -238,7 +265,7 @@ def save_test(year, R, r):
     the training table and the back-tests proper."""
     bp = os.path.join(D, 'backtest.json'); B = json.load(open(bp)) if os.path.exists(bp) else {}
     B.setdefault('tests', {})[str(year)] = {
-        'note': f'{year} forecast from the elections before it ({", ".join(str(y) for y in sorted(set(R.year)) if y < year) or "2018-2024"}), none of it fitted on {year}; scored on the winners as Wikipedia gave them on the day read',
+        'note': f'{year} forecast from the elections before it ({", ".join(str(y) for y in earlier_years(year))}), none of it fitted on {year}; scored on the winners as Wikipedia gave them on the day read',
         'read': str(pd.Timestamp.now(tz='America/New_York').date()), 'undecided': int(R.winner.isna().sum()),
         'dem_won': int((R.winner == 'D').sum()), 'rep_won': int((R.winner == 'R').sum()), 'given_vote': given_vote(year, R),
         'rows': r[['days', 'seats_mid', 'actual', 'low80', 'high80', 'p_majority', 'called', 'races', 'brier', 'level']].round(4).to_dict('records')}
@@ -262,6 +289,7 @@ def add(year, saved=None, strict=True):
     new = table(year, R, T)
     T = pd.concat([T[T.year != year], new], ignore_index=True).sort_values(['year', 'state', 'district'])
     T.to_csv(tp, index=False)
+    year_polls(year, pages, R)
     # the members: how many held a seat, how many were on the November ballot and how many lost their primary
     mp = os.path.join(D, 'members.csv'); M = pd.read_csv(mp)
     st = R.status.map(LV.clean_status)
@@ -283,6 +311,7 @@ def main(argv):
         print('checks:', check(year, R, ov) or 'all pass')
         new = table(year, R, pd.read_csv(os.path.join(D, 'training.csv')))
         print('winners:', new.winner.value_counts().to_dict(), '| shares for', int(new.dem2.notna().sum()), 'of', int(new.contested.sum()), 'contested | members on the ballot: D', int(new.inc_d.sum()), 'R', int(new.inc_r.sum()))
+        year_polls(year, pages, R)
         r = test(year, new)
         print(r[['year', 'days', 'seats_mid', 'actual', 'low80', 'high80', 'p_majority', 'called', 'races', 'brier', 'level']].round(3).to_string(index=False))
         if '--save' in a: save_test(year, new, r)
